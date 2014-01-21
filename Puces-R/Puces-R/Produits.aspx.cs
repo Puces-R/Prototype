@@ -15,7 +15,7 @@ namespace Puces_R
         {
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT * FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie", myConnection);
+            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie", myConnection);
             DataTable tableFilms = new DataTable();
             commandeFilms.Fill(tableFilms);
 
@@ -45,6 +45,8 @@ namespace Puces_R
 
                 DataRowView drvFilm = (DataRowView)e.Item.DataItem;
 
+
+
                 long noProduit = (long)drvFilm["NoProduit"];
                 String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];
                 String strCategorie = (String)drvFilm["Description"];
@@ -52,12 +54,12 @@ namespace Puces_R
                 decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
                 short intQuantite = (short)drvFilm["NombreItems"];
 
-                lblNoProduit.Text = noProduit.ToString();
+                lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
                 lblCategorie.Text = strCategorie;
                 lblDescriptionAbregee.Text = strDescriptionAbregee;
-                lblPrixDemande.Text = decPrixDemande.ToString();
-                lblQuantite.Text = intQuantite.ToString();
+                lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
+                lblQuantite.Text = "Quantité: " + intQuantite.ToString();
             }
         }
     }

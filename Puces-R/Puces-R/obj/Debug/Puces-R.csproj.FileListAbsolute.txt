@@ -2,3 +2,8 @@ C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
 C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
 C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
 C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\ResolveAssemblyReference.cache
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb

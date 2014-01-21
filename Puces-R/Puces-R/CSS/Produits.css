@@ -1,0 +1,21 @@
+﻿#dtlProduits
+{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.productRectangle > *
+{
+    display:block;
+}
+
+.productRectangle
+{
+    width:180px;
+    padding:5px;
+    margin:5px;
+    background-color:LightGray;
+    font-size:small;
+    border-radius:10px;
+    box-shadow: 3px 3px 4px Gray;
+}

@@ -1,0 +1,4 @@
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb

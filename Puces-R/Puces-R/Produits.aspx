@@ -9,11 +9,32 @@
 </head>
 <body>
     <form runat="server">
+        <div class="boiteListeDeroulante">
+            Recherche:
+            <asp:DropDownList ID="ddlTypeRecherche" runat="server">
+                <asp:ListItem Text="Date de parution" />
+                <asp:ListItem Text="Numéro" />
+                <asp:ListItem Text="Catégorie" />
+                <asp:ListItem Text="Description" />
+            </asp:DropDownList>
+            <asp:TextBox ID="txtCritereRecherche" runat="server" />
+            <asp:Button runat="server" Text="Go" ID="btnRecherche" />
+        </div>
+        <div class="boiteListeDeroulante">
+            Trier par:
+            <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
+                <asp:ListItem Text="Numéro"></asp:ListItem>
+                <asp:ListItem Text="Catégorie"></asp:ListItem>
+                <asp:ListItem Text="Date de parution"></asp:ListItem>
+            </asp:DropDownList>
+        </div>
         <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
             <ItemTemplate>
                 <div class="productRectangle">
                     <asp:Label runat="server" ID="lblNoProduit" />
-                    <asp:Image runat="server" ID="imgProduit" />
+                    <div class="boiteImageProduit">
+                        <div><asp:Image runat="server" ID="imgProduit" /></div>
+                    </div>
                     <asp:Label runat="server" ID="lblDescriptionAbregee" />
                     <asp:Label runat="server" ID="lblCategorie" />
                     <asp:Label runat="server" ID="lblPrixDemande" />

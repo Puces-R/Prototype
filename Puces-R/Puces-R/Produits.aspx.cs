@@ -13,9 +13,61 @@ namespace Puces_R
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            List<String> whereParts = new List<String>();
+
+            if (txtCritereRecherche.Text != string.Empty)
+            {
+                String colonne = "P.DateCreation";
+                switch (ddlTypeRecherche.SelectedIndex)
+                {
+                    case 0:
+                        colonne = "P.DateCreation";
+                        break;
+                    case 1:
+                        colonne = "P.NoProduit";
+                        break;
+                    case 2:
+                        colonne = "C.Description";
+                        break;
+                    case 3:
+                        colonne = "P.Description";
+                        break;
+                }
+                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+            }
+
+            int noVendeur;
+            if (int.TryParse(Request.Params["novendeur"], out noVendeur))
+            {
+                whereParts.Add("P.NoVendeur = " + noVendeur);
+            }
+
+            String whereClause;
+            if (whereParts.Count > 0)
+            {
+                whereClause = " WHERE " + string.Join(" AND ", whereParts);
+            }
+            else
+            {
+                whereClause = string.Empty;
+            }
+
+            String orderByClause = " ORDER BY ";
+            switch (ddlTrierPar.SelectedIndex)
+            {
+                case 0:
+                    orderByClause += "P.NoProduit";
+                    break;
+                case 1:
+                    orderByClause += "C.Description";
+                    break;
+                case 2:
+                    orderByClause += "P.DateCreation";
+                    break;
+            }
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie", myConnection);
+            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
             DataTable tableFilms = new DataTable();
             commandeFilms.Fill(tableFilms);
 
@@ -44,8 +96,6 @@ namespace Puces_R
                 Label lblQuantite = (Label)item.FindControl("lblQuantite");
 
                 DataRowView drvFilm = (DataRowView)e.Item.DataItem;
-
-
 
                 long noProduit = (long)drvFilm["NoProduit"];
                 String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];

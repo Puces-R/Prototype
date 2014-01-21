@@ -1,4 +1,21 @@
+<<<<<<< HEAD
 L:\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
 L:\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
 L:\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
 L:\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+=======
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\ResolveAssemblyReference.cache
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+C:\Users\kw.kouma\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+C:\Users\kw.kouma\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+C:\Users\kw.kouma\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\kw.kouma\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+C:\Users\kw.kouma\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+>>>>>>> 4e03766fa759824bb1c8e4212851b9fe166cdc76

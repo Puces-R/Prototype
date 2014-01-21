@@ -2,3 +2,7 @@ L:\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
 L:\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
 L:\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
 L:\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+C:\Users\lp.page\Desktop\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb

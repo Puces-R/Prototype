@@ -74,7 +74,7 @@ namespace Puces_R
             PagedDataSource objPds = new PagedDataSource();
             objPds.DataSource = new DataView(tableFilms);
             objPds.AllowPaging = true;
-            objPds.PageSize = 15;
+            objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
 
             objPds.CurrentPageIndex = 0;
             dtlProduits.DataSource = objPds;

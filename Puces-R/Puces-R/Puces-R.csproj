@@ -57,6 +57,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="CodePostal.ascx" />
+    <Content Include="CSS\Produits.css" />
     <Content Include="IdentifiantsInscription.ascx" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />

@@ -11,7 +11,7 @@
 
 .productRectangle
 {
-    width:200px;
+    width:175px;
     padding:10px;
     margin:5px;
     background-color:LightGray;
@@ -28,16 +28,16 @@
 
 .boiteImageProduit
 {
-    width:200px;
-    height:200px;
+    width:175px;
+    height:175px;
     margin:5px 0;
 }
 
 .boiteImageProduit div
 {
     display:table-cell;
-    height:200px;
-    width:200px;
+    height:175px;
+    width:175px;
     vertical-align:middle;
     border:1px solid black;
     background-color:White;
@@ -45,8 +45,8 @@
 
 .boiteImageProduit img
 {
-    max-width:180px;
-    max-height:180px;
+    max-width:150px;
+    max-height:150px;
     display:block;
     margin:auto;
 }

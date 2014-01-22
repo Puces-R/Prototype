@@ -1,0 +1,49 @@
+﻿#pnlProduits
+{
+    text-align:center;
+}
+
+#pnlProduits > div
+{
+    display:inline-block;
+    text-align:left;
+}
+
+.rectangleStylise
+{
+    padding:10px;
+    margin:5px;
+    background-color:LightGray;
+    border:1px solid black;
+    font-size:small;
+    border-radius:10px;
+    box-shadow: 3px 3px 4px Gray;
+    overflow:hidden;
+}
+
+.boiteImageProduit
+{
+    width:175px;
+    height:175px;
+    margin:5px;
+    display:inline-block;
+    float:left;
+}
+
+.boiteImageProduit > div
+{
+    display:table-cell;
+    height:175px;
+    width:175px;
+    vertical-align:middle;
+    border:1px solid black;
+    background-color:White;
+}
+
+.boiteImageProduit img
+{
+    max-width:150px;
+    max-height:150px;
+    display:block;
+    margin:auto;
+}

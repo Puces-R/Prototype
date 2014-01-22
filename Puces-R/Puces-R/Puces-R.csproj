@@ -59,15 +59,15 @@
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
+    <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
+    <Content Include="CSS\Site.css" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
-    <Content Include="IdentifiantsInscription.ascx" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
+    <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
-    <Content Include="Styles\Site.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -138,13 +138,6 @@
     <Compile Include="Connexion.aspx.designer.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,6 +161,13 @@
     </Compile>
     <Compile Include="InscriptionVendeur.aspx.designer.cs">
       <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Panier.aspx.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Panier.aspx.designer.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Produits.aspx.cs">
       <DependentUpon>Produits.aspx</DependentUpon>

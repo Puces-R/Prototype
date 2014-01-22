@@ -1,0 +1,16 @@
+﻿.rectangleProduits
+{
+    width:350px;
+}
+
+.boiteDetailsProduit > div
+{
+    display:table-cell;
+    height:175px;
+    vertical-align:middle;
+}
+
+.boiteDetailsProduit > div > *
+{
+    display:block;
+}

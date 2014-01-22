@@ -61,6 +61,7 @@
     <Content Include="Connexion.aspx" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
+    <Content Include="CSS\Site.css" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
     <Content Include="InscriptionClient.aspx" />
@@ -163,6 +164,7 @@
     </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Panier.aspx.designer.cs">
       <DependentUpon>Panier.aspx</DependentUpon>

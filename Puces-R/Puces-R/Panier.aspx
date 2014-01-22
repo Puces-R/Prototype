@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Panier</title>
+    <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Panier.css" />
 </head>
 <body>
@@ -13,7 +14,7 @@
             <div>
                 <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound">
                     <ItemTemplate>
-                        <div class="rectangleProduits">
+                        <div class="rectangleStylise rectangleProduits">
                             <div class="boiteImageProduit">
                                 <div>
                                     <asp:Image runat="server" ID="imgProduit" />

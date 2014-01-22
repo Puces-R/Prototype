@@ -13,9 +13,17 @@ namespace Puces_R
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int noClient;
+            if (!int.TryParse(Request.Params["noclient"], out noClient))
+            {
+                Response.Redirect("Default.aspx", true);
+            }
+   
+            String whereClause = " WHERE A.NoClient = " + noClient;
+
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit", myConnection);
+            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableFilms = new DataTable();
             commandeFilms.Fill(tableFilms);
 

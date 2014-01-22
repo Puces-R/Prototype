@@ -4,7 +4,6 @@
 <%@ Register TagPrefix="yc" TagName="IdentifiantsInscription" Src="~/IdentifiantsInscription.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Telephone.ascx" %>
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/CodePostal.ascx" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -13,7 +12,7 @@
 <body>
     <form id="form1" runat="server">
     <table>
-        <yc:IdentifiantsInscription runat="server" />
+        <yc:IdentifiantsInscription runat="server" ID="tbIdentifiants" />
         <tr>
             <td>
                 Nom d'affaire
@@ -94,7 +93,8 @@
             <td>
                 <asp:TextBox runat="server" ID="tbPoids" MaxLength="10" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPoids" ErrorMessage="Obligatoire" />
-                <asp:RangeValidator runat="server" ControlToValidate="tbPoids" Type="Double" MinimumValue="0" ErrorMessage="Format" />
+                <asp:RangeValidator runat="server" ControlToValidate="tbPoids" Type="Double" MinimumValue="0" MaximumValue="100"
+                    ErrorMessage="Format" />
             </td>
         </tr>
         <tr>
@@ -104,21 +104,24 @@
             <td>
                 <asp:TextBox runat="server" ID="tbPrixLivraison" MaxLength="50" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPrixLivraison" ErrorMessage="Obligatoire" />
-                <asp:RangeValidator runat="server" ControlToValidate="tbPrixLivraison" Type="Currency" MinimumValue="0" MaximumValue="100" ErrorMessage="Format" />
+                <asp:RangeValidator runat="server" ControlToValidate="tbPrixLivraison" Type="Currency"
+                    MinimumValue="0" MaximumValue="100" ErrorMessage="Format" />
             </td>
         </tr>
         <tr>
-        <td></td>
+            <td>
+            </td>
             <td>
                 <asp:CheckBox runat="server" ID="cbTaxes" Checked="true" Text="Taxes" />
             </td>
-            <!-- Pourcentage -->
-            <!-- Configuration -->
-            <tr>
-                <td colspan="2">
-                    <asp:Button runat="server" ID="btnConfirmer" Text="Confirmer l'inscription" />
-                </td>
-            </tr>
+        </tr>
+        <!-- Pourcentage -->
+        <!-- Configuration -->
+        <tr>
+            <td colspan="2">
+                <asp:Button runat="server" ID="btnConfirmer" Text="Confirmer l'inscription" CausesValidation="false" OnClick="inscription" />
+            </td>
+        </tr>
     </table>
     </form>
 </body>

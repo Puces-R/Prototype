@@ -10,7 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class InscriptionClient {
+    public partial class Connexion {
         
         /// <summary>
         /// Contrôle form1.
@@ -22,21 +22,12 @@ namespace Puces_R {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Contrôle ctlIdentifiants.
+        /// Contrôle tbIdentifiants.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Identifiants ctlIdentifiants;
-        
-        /// <summary>
-        /// Contrôle btnConfirmer.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmer;
+        protected global::Puces_R.Identifiants tbIdentifiants;
     }
 }

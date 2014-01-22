@@ -55,7 +55,7 @@ namespace Puces_R
 
                 cmdAjoutVendeur.Parameters.AddWithValue("@ville", tbVille.Text == string.Empty ? DBNull.Value : (object)tbVille.Text);
                 cmdAjoutVendeur.Parameters.AddWithValue("@province", "QC"); // Placeholder
-                cmdAjoutVendeur.Parameters.AddWithValue("@codePostal", tbCodePostal.Code);
+                cmdAjoutVendeur.Parameters.AddWithValue("@codePostal", tbCodePostal.Code == null ? DBNull.Value : (object)tbCodePostal.Code);
                 cmdAjoutVendeur.Parameters.AddWithValue("@pays", tbPays.Text == string.Empty ? DBNull.Value : (object)tbPays.Text); // À vérifier
                 cmdAjoutVendeur.Parameters.AddWithValue("@tel1", tbTel1.NoTelephone);
 

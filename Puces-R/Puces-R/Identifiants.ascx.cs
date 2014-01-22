@@ -8,9 +8,24 @@ using System.Data.SqlClient;
 
 namespace Puces_R
 {
-    public partial class IdentifiantsInscription : System.Web.UI.UserControl
+    public partial class Identifiants : System.Web.UI.UserControl
     {
+        public bool Inscription
+        {
+            get
+            {
+                return _inscription;
+            }
+            set
+            {
+                _inscription = value;
+                trInscription.Visible = value;
+                adresseExiste.Visible = value;
+            }
+        }
+
         SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
+        private bool _inscription = false;
 
         public string Adresse
         {

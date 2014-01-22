@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionVendeur.aspx.cs"
     Inherits="Puces_R.InscriptionVendeur" %>
 
-<%@ Register TagPrefix="yc" TagName="IdentifiantsInscription" Src="~/IdentifiantsInscription.ascx" %>
+<%@ Register TagPrefix="yc" TagName="Identifiants" Src="~/Identifiants.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Telephone.ascx" %>
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/CodePostal.ascx" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,8 +11,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <yc:Identifiants runat="server" ID="tbIdentifiants" Inscription="true" />
     <table>
-        <yc:IdentifiantsInscription runat="server" ID="tbIdentifiants" />
         <tr>
             <td>
                 Nom d'affaire

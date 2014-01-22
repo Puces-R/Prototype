@@ -57,8 +57,9 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="CodePostal.ascx" />
+    <Content Include="Connexion.aspx" />
     <Content Include="CSS\Produits.css" />
-    <Content Include="IdentifiantsInscription.ascx" />
+    <Content Include="Identifiants.ascx" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
     <Content Include="Produits.aspx" />
@@ -120,6 +121,13 @@
     <Compile Include="CodePostal.ascx.designer.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Connexion.aspx.cs">
+      <DependentUpon>Connexion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connexion.aspx.designer.cs">
+      <DependentUpon>Connexion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,12 +138,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IdentifiantsInscription.ascx.cs">
-      <DependentUpon>IdentifiantsInscription.ascx</DependentUpon>
+    <Compile Include="Identifiants.ascx.cs">
+      <DependentUpon>Identifiants.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="IdentifiantsInscription.ascx.designer.cs">
-      <DependentUpon>IdentifiantsInscription.ascx</DependentUpon>
+    <Compile Include="Identifiants.ascx.designer.cs">
+      <DependentUpon>Identifiants.ascx</DependentUpon>
     </Compile>
     <Compile Include="InscriptionClient.aspx.cs">
       <DependentUpon>InscriptionClient.aspx</DependentUpon>

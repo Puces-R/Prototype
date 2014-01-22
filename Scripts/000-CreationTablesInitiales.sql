@@ -33,6 +33,14 @@ ALTER TABLE BD6B8_424R.dbo.PPTypesPoids ADD PRIMARY KEY(CodePoids)
 ALTER TABLE BD6B8_424R.dbo.PPVendeurs ADD PRIMARY KEY(NoVendeur)
 ALTER TABLE BD6B8_424R.dbo.PPVendeursClients ADD PRIMARY KEY(NoVendeur, NoClient, DateVisite)
 
+/* Créations des tables personnelles */
+
+CREATE TABLE BD6B8_424R.dbo.PPGestionnaires (
+	NoGestionnaire bigint PRIMARY KEY,
+	AdresseEmail varchar(100),
+	MotDePasse varchar(50)
+)
+
 /* Création des clefs étrangères */
 
 ALTER TABLE BD6B8_424R.dbo.PPArticlesEnPanier ADD FOREIGN KEY(NoClient) REFERENCES BD6B8_424R.dbo.PPClients(NoClient)

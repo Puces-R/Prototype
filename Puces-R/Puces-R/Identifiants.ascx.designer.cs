@@ -10,7 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class IdentifiantsInscription {
+    public partial class Identifiants {
         
         /// <summary>
         /// Contrôle tbCourriel.
@@ -22,22 +22,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox tbCourriel;
         
         /// <summary>
-        /// Contrôle RequiredFieldValidator1.
+        /// Contrôle valCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
-        /// Contrôle RegularExpressionValidator1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valCourriel;
         
         /// <summary>
         /// Contrôle adresseExiste.
@@ -65,6 +56,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator mdpPresent;
+        
+        /// <summary>
+        /// Contrôle trInscription.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow trInscription;
         
         /// <summary>
         /// Contrôle tbMotPasseConfirmation.

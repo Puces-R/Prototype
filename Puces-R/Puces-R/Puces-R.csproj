@@ -56,10 +56,13 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
     <Content Include="CSS\Produits.css" />
     <Content Include="Identifiants.ascx" />
+    <Content Include="CSS\style_sec4.css" />
+    <Content Include="IdentifiantsInscription.ascx" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
     <Content Include="Produits.aspx" />
@@ -113,6 +116,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="accueil_gestionnaire.aspx.cs">
+      <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accueil_gestionnaire.aspx.designer.cs">
+      <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
     <Compile Include="CodePostal.ascx.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>
@@ -197,7 +207,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52677</DevelopmentServerPort>
+          <DevelopmentServerPort>59078</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

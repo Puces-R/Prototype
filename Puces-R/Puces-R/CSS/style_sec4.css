@@ -1,0 +1,69 @@
+﻿#dtlProduits
+{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.productRectangle > *
+{
+    display:block;
+}
+
+.titre_tab
+{ 
+    width:300px;
+    padding:10px;
+    background-color:black;
+    border:1px solid black;
+    font-size:small;
+    border-radius:10px 10px 5px 5px;
+    box-shadow: 3px 3px Gray;
+    color: White;
+}
+
+.cont_tab
+{ 
+    width:275px;
+    height:100px;
+    padding:10px;
+    background-color:LightGray;
+    border:1px solid black;
+    font-size:small;
+    border-radius:5px 5px 10px 10px;
+    box-shadow: 1px 1px 4px 4px Gray;
+}
+
+.space_cell
+{
+    width:30px;
+}
+
+.boiteListeDeroulante
+{
+    margin:5px;
+}
+
+.boiteImageProduit
+{
+    width:175px;
+    height:175px;
+    margin:5px 0;
+}
+
+.boiteImageProduit div
+{
+    display:table-cell;
+    height:175px;
+    width:175px;
+    vertical-align:middle;
+    border:1px solid black;
+    background-color:White;
+}
+
+.boiteImageProduit img
+{
+    max-width:150px;
+    max-height:150px;
+    display:block;
+    margin:auto;
+}

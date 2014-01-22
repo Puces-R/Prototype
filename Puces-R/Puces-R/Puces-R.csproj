@@ -65,6 +65,7 @@
     <Content Include="IdentifiantsInscription.ascx" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
+    <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -168,6 +169,12 @@
     </Compile>
     <Compile Include="InscriptionVendeur.aspx.designer.cs">
       <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Panier.aspx.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Panier.aspx.designer.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Produits.aspx.cs">
       <DependentUpon>Produits.aspx</DependentUpon>

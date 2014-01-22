@@ -5,7 +5,8 @@
 
 .rectangleProduits
 {
-    width:175px;
+    width:185px;
+    line-height: 17px;
 }
 
 .boiteListeDeroulante

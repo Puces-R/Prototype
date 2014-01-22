@@ -23,12 +23,51 @@ namespace Puces_R
 
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
-            DataTable tableFilms = new DataTable();
-            commandeFilms.Fill(tableFilms);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            DataTable tableProduits = new DataTable();
+            adapteurProduits.Fill(tableProduits);
 
-            rptProduits.DataSource = new DataView(tableFilms);
+            rptProduits.DataSource = new DataView(tableProduits);
             rptProduits.DataBind();
+
+            decimal sousTotal = 0;
+            decimal poidsTotal = 0;
+
+            foreach (DataRow produit in tableProduits.Rows)
+            {
+                sousTotal += (Decimal)produit["PrixDemande"];
+                poidsTotal += (Decimal)produit["Poids"];
+            }
+
+            lblPoidsTotal.Text = poidsTotal.ToString() + " lbs.";
+            lblSousTotal.Text = sousTotal.ToString("C");
+
+            myConnection.Open();
+
+            SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = 1 AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
+            decimal prixLivraison = (decimal)commandeLivraison.ExecuteScalar();
+
+            decimal prixAvecLivraison = sousTotal + prixLivraison;
+
+            SqlCommand commandeTauxTPS = new SqlCommand("SELECT TOP(1) TauxTPS FROM PPTaxeFederale ORDER BY DateEffectiveTPS DESC", myConnection);
+            decimal tauxTPS = ((decimal)commandeTauxTPS.ExecuteScalar()) / 100;
+
+            SqlCommand commandeTauxTVQ = new SqlCommand("SELECT TOP(1) TauxTVQ FROM PPTaxeProvinciale ORDER BY DateEffectiveTVQ DESC", myConnection);
+            decimal tauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
+
+            decimal prixTPS = prixAvecLivraison * tauxTPS;
+            decimal prixTVQ = prixAvecLivraison * tauxTVQ;
+
+            decimal grandTotal = prixAvecLivraison + prixTPS + prixTVQ;
+
+            lblLivraison.Text = prixLivraison.ToString("C");
+            lblTauxTPS.Text = "(" + tauxTPS.ToString("P") + ")";
+            lblTauxTVQ.Text = "(" + tauxTVQ.ToString("P") + ")";
+            lblTPS.Text = prixTPS.ToString("C");
+            lblTVQ.Text = prixTVQ.ToString("C");
+            lblGrandTotal.Text = grandTotal.ToString("C");
+
+            myConnection.Close();
         }
 
         protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)

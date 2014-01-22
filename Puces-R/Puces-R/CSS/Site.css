@@ -1,4 +1,9 @@
-﻿#pnlProduits
+﻿body
+{
+    font-family:Sans-Serif;
+}
+
+#pnlProduits
 {
     text-align:center;
 }
@@ -23,9 +28,9 @@
 
 .boiteImageProduit
 {
-    width:175px;
-    height:175px;
-    margin:5px;
+    width:185px;
+    height:185px;
+    margin:5px 0;
     display:inline-block;
     float:left;
 }
@@ -33,8 +38,8 @@
 .boiteImageProduit > div
 {
     display:table-cell;
-    height:175px;
-    width:175px;
+    height:185px;
+    width:185px;
     vertical-align:middle;
     border:1px solid black;
     background-color:White;

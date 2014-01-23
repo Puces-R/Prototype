@@ -5,7 +5,7 @@
 
 .rectangleProduits
 {
-    width:185px;
+    width:150px;
     font-size:x-small;
 }
 
@@ -16,8 +16,24 @@
 
 .barreListesDeroulantes
 {
+    margin-top:5px;
     text-align:center;
-    border-bottom:5px dotted Gray;
-    padding-bottom:10px;
-    margin-bottom:5px;
+}
+
+.boiteImageProduit
+{
+    width:150px;
+    height:150px;
+}
+
+.boiteImageProduit > div
+{
+    height:150px;
+    width:150px;
+}
+
+.boiteImageProduit img
+{
+    max-width:135px;
+    max-height:135px;
 }

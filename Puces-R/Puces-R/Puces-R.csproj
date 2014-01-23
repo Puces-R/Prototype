@@ -66,6 +66,16 @@
     <Content Include="CSS\Site.css" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\Televerse\1000010.jpg" />
+    <Content Include="Images\Televerse\1000020.jpg" />
+    <Content Include="Images\Televerse\1000030.jpg" />
+    <Content Include="Images\Televerse\1000040.jpg" />
+    <Content Include="Images\Televerse\1000050.jpg" />
+    <Content Include="Images\Televerse\2000010.jpg" />
+    <Content Include="Images\Televerse\2000020.jpg" />
+    <Content Include="Images\Televerse\2000030.jpg" />
+    <Content Include="Images\Televerse\2000040.jpg" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
     <Content Include="LigneMessage.ascx" />
@@ -77,6 +87,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Telephone.ascx" />
     <Content Include="VoirMessage.aspx" />
+    <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -156,6 +167,34 @@
     <Compile Include="Courriel.ascx.designer.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Demonstration.aspx.cs">
+      <DependentUpon>Demonstration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Demonstration.aspx.designer.cs">
+      <DependentUpon>Demonstration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gerer_demandes_vendeurs.aspx.cs">
+      <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gerer_demandes_vendeurs.aspx.designer.cs">
+      <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gerer_inactivite_clients.aspx.cs">
+      <DependentUpon>gerer_inactivite_clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gerer_inactivite_clients.aspx.designer.cs">
+      <DependentUpon>gerer_inactivite_clients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gerer_inactivite_vendeurs.aspx.cs">
+      <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gerer_inactivite_vendeurs.aspx.designer.cs">
+      <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +261,12 @@
     </Compile>
     <Compile Include="VoirMessage.aspx.designer.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>
+    <Compile Include="visualiser_stats_rapports.aspx.cs">
+      <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="visualiser_stats_rapports.aspx.designer.cs">
+      <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

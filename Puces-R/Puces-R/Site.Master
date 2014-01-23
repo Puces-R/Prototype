@@ -2,26 +2,39 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
-<body>
-    <form runat="server">
-    <div class="page">
-        
-        <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
-        </div>
-        <div class="clear">
-        </div>
-    </div>
-    <div class="footer">
-        
-    </div>
-    </form>
-</body>
+    <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+        <link href="CSS/Site.css" rel="stylesheet" type="text/css" />
+        <asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
+    </head>
+    <body>
+        <form runat="server">
+            <div class="page">
+                <div>
+                    <div class="lignePointilleHorizontale header">
+                        <img src="Images/logo.png" class="logo" alt="Logo" />
+                        <span class="titre">Les Petites Puces</span>
+                        <div class="menu">
+                            <asp:Menu runat="server" Orientation="Horizontal">
+                                <StaticMenuItemStyle HorizontalPadding="10" Font-Bold="True" />
+                                <Items>
+                                    <asp:MenuItem Text="Accueil" />
+                                    <asp:MenuItem Text="Demandes de vendeurs" />
+                                    <asp:MenuItem Text="Inactivité" />
+                                    <asp:MenuItem Text="Statistiques et rapports" />
+                                </Items>
+                            </asp:Menu>
+                        </div>
+                    </div>
+                    <div class="lignePointilleHorizontale main">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                    </div>
+                    <div class="footer">
+                        © 2014 Cégep Gérald Godin
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
 </html>

@@ -162,7 +162,7 @@
     </Compile>
     <Compile Include="Courriel.ascx.designer.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Demonstration.aspx.cs">
       <DependentUpon>Demonstration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

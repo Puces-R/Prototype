@@ -33,38 +33,9 @@
     box-shadow: 1px 1px 4px 4px Gray;
 }
 
-.titre_sec
-{
-    width: 580px;
-    font-size: x-large;
-    font-weight: bold;
-    color: #7F8D82;
-    font-family: Cambria;
-    margin: 20px;
-    padding: 10px;
-    box-shadow: 1px 1px 4px 4px Gray;
-}
-
 .space_cell
 {
     width:30px;
-}
-
-.lien_boutton {	
-	background-color:#000000;
-	border:1px solid #ffffff;
-	color:#ffffff;
-	
-	font-style: italic;
-	padding: 5px;	
-	text-align:center;
-    border-radius:5px 5px 5px 5px;
-    width: 275px;
-}
-
-a
-{
-    text-decoration: none;
 }
 
 .boiteListeDeroulante

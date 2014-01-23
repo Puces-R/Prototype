@@ -59,24 +59,20 @@
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
+    <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
-    <Content Include="gerer_demandes_vendeurs.aspx" />
-    <Content Include="gerer_inactivite_clients.aspx" />
-    <Content Include="gerer_inactivite_vendeurs.aspx" />
+    <Content Include="CSS\Site.css" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
-    <Content Include="IdentifiantsInscription.ascx" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
+    <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
-    <Content Include="Styles\Site.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Telephone.ascx" />
-    <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -142,31 +138,6 @@
     <Compile Include="Connexion.aspx.designer.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_demandes_vendeurs.aspx.cs">
-      <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_demandes_vendeurs.aspx.designer.cs">
-      <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_inactivite_clients.aspx.cs">
-      <DependentUpon>gerer_inactivite_clients.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_inactivite_clients.aspx.designer.cs">
-      <DependentUpon>gerer_inactivite_clients.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_inactivite_vendeurs.aspx.cs">
-      <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_inactivite_vendeurs.aspx.designer.cs">
-      <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +162,13 @@
     <Compile Include="InscriptionVendeur.aspx.designer.cs">
       <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Panier.aspx.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Panier.aspx.designer.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Produits.aspx.cs">
       <DependentUpon>Produits.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -212,12 +190,6 @@
     </Compile>
     <Compile Include="Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="visualiser_stats_rapports.aspx.cs">
-      <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="visualiser_stats_rapports.aspx.designer.cs">
-      <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

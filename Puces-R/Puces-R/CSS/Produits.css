@@ -17,4 +17,7 @@
 .barreListesDeroulantes
 {
     text-align:center;
+    border-bottom:5px dotted Gray;
+    padding-bottom:10px;
+    margin-bottom:5px;
 }

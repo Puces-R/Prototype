@@ -30,7 +30,7 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-    <div class="pnlDroite">
+    <div class="pnlDroite pnlDetails">
         <table>
             <tr>
                 <td>Poids Total: </td>

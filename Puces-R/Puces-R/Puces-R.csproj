@@ -61,10 +61,16 @@
     <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
     <Content Include="Courriel.ascx" />
+    <Content Include="CSS\DetailsProduit.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
     <Content Include="EnvoyerMessage.aspx" />
+    <Content Include="Demonstration.aspx" />
+    <Content Include="DetailsProduit.aspx" />
+    <Content Include="gerer_demandes_vendeurs.aspx" />
+    <Content Include="gerer_inactivite_clients.aspx" />
+    <Content Include="gerer_inactivite_vendeurs.aspx" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
     <Content Include="Images\logo.png" />
@@ -181,6 +187,12 @@
     </Compile>
     <Compile Include="EnvoyerMessage.aspx.designer.cs">
       <DependentUpon>EnvoyerMessage.aspx</DependentUpon>
+    <Compile Include="DetailsProduit.aspx.cs">
+      <DependentUpon>DetailsProduit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetailsProduit.aspx.designer.cs">
+      <DependentUpon>DetailsProduit.aspx</DependentUpon>
     </Compile>
     <Compile Include="gerer_demandes_vendeurs.aspx.cs">
       <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>

@@ -1,0 +1,11 @@
+﻿.largeurMaxDetails
+{
+    max-width:400px;
+    display:block;
+    font-size:normal;
+}
+
+.pnlDetails
+{
+    font-size:large;
+}

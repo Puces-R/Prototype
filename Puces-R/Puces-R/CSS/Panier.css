@@ -19,20 +19,9 @@
     margin-left:10px;
 }
 
-.pnlGauche
+.pnlDroite td
 {
-    float:left;
-}
-
-.pnlDroite
-{
-    border-left:5px dotted Gray;
-    padding-left:20px;
-    margin-left:20px;
-    display:inline-block;
-    font-size:x-large;
-    margin-top:20px;
-    text-align:right;
+    padding:5px;
 }
 
 .grandTotal
@@ -43,11 +32,6 @@
 .tauxTaxes
 {
     font-size:small;
-}
-
-.pnlDroite td
-{
-    padding:5px;
 }
 
 .boiteImageProduit
@@ -66,4 +50,11 @@
 {
     max-width:160px;
     max-height:160px;
+}
+
+.pnlDetails
+{
+    font-size:x-large;
+    margin-top:20px;
+    text-align:right;
 }

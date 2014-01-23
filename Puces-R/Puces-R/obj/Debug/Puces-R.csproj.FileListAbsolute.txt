@@ -19,3 +19,7 @@ C:\Users\lp.page\Desktop\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
 C:\Users\lp.page\Desktop\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
 C:\Users\lp.page\Desktop\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
 C:\Users\lp.page\Desktop\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb

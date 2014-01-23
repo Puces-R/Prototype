@@ -21,10 +21,33 @@
     color: White;
 }
 
+.titre_tab2
+{ 
+    width:200px;
+    padding:10px;
+    background-color:black;
+    border:1px solid black;
+    font-size:small;
+    border-radius:10px 10px 5px 5px;
+    box-shadow: 3px 3px Gray;
+    color: White;
+    cursor: pointer;
+}
+
 .cont_tab
 { 
     width:275px;
     height:100px;
+    padding:10px;
+    background-color:LightGray;
+    border:1px solid black;
+    font-size:small;
+    border-radius:5px 5px 10px 10px;
+    box-shadow: 1px 1px 4px 4px Gray;
+}
+
+.cont_tab2
+{ 
     padding:10px;
     background-color:LightGray;
     border:1px solid black;
@@ -60,6 +83,21 @@
 	text-align:center;
     border-radius:5px 5px 5px 5px;
     width: 275px;
+}
+
+.boutton {	
+	background-color:#000000;
+	border:1px solid #ffffff;
+	color:#ffffff;	
+	font-style: italic;
+	padding: 5px;	
+	text-align:center;
+    border-radius:5px 5px 5px 5px;
+}
+
+.ligne_info_demande
+{
+    display: none;
 }
 
 a

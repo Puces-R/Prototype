@@ -51,7 +51,8 @@ namespace Puces_R
 
                    tbDescAbregee.Text = (String)repT[3];
                    tbDescComplete.Text = (String)repT[4];
-                   //String photo = (String)repT[5];
+                   String photo = (String)repT[5];
+                   imgProduits.ImageUrl = "Images/Televerse/" + photo;
                    tbPrix.Text= Convert.ToString((Decimal)repT[6]);
                    tbNbItems.Text = Convert.ToString((Int16)repT[7]);
                     Boolean dispo = (Boolean)repT[8];

@@ -11,32 +11,41 @@ namespace Puces_R
 {
     public partial class Panier : System.Web.UI.Page
     {
+        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
         protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                DataTable tableProduits = calculerCouts();
+
+                rptProduits.DataSource = new DataView(tableProduits);
+                rptProduits.DataBind();
+            }
+        }
+
+        private DataTable calculerCouts()
         {
             int noClient;
             if (!int.TryParse(Request.Params["noclient"], out noClient))
             {
                 Response.Redirect("Default.aspx", true);
             }
-   
+
             String whereClause = " WHERE A.NoClient = " + noClient;
 
-            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
-
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
-
-            rptProduits.DataSource = new DataView(tableProduits);
-            rptProduits.DataBind();
 
             decimal sousTotal = 0;
             decimal poidsTotal = 0;
 
             foreach (DataRow produit in tableProduits.Rows)
             {
-                sousTotal += (Decimal)produit["PrixDemande"];
-                poidsTotal += (Decimal)produit["Poids"];
+                short nbItems = (short)produit["NbItems"];
+                sousTotal += nbItems * (decimal)produit["PrixDemande"];
+                poidsTotal += nbItems * (decimal)produit["Poids"];
             }
 
             lblPoidsTotal.Text = poidsTotal.ToString() + " lbs.";
@@ -68,6 +77,8 @@ namespace Puces_R
             lblGrandTotal.Text = grandTotal.ToString("C");
 
             myConnection.Close();
+
+            return tableProduits;
         }
 
         protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -83,6 +94,7 @@ namespace Puces_R
                 Label lblDescriptionAbregee = (Label)item.FindControl("lblDescriptionAbregee");
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                 TextBox txtQuantite = (TextBox)item.FindControl("txtQuantite");
+                Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
 
                 DataRowView drvFilm = (DataRowView)e.Item.DataItem;
 
@@ -91,7 +103,8 @@ namespace Puces_R
                 String strCategorie = (String)drvFilm["Description"];
                 String strDescriptionAbregee = (String)drvFilm["Nom"];
                 decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
-                short intQuantite = (short)drvFilm["NombreItems"];
+                short intQuantite = (short)drvFilm["NbItems"];
+                long noPanier = (long)drvFilm["NoPanier"];
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
@@ -99,12 +112,22 @@ namespace Puces_R
                 lblDescriptionAbregee.Text = strDescriptionAbregee;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 txtQuantite.Text = intQuantite.ToString();
+                btnMAJQuantite.CommandArgument = noPanier.ToString();
             }
         }
 
-        protected void btnMAJQuantite_OnClick(object sender, EventArgs e)
+        protected void rptProduits_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
+            TextBox txtQuantite = (TextBox)e.Item.FindControl("txtQuantite");
 
+            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
+            myConnection.Open();
+            SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
+            commandeMAJQuantite.ExecuteNonQuery();
+            myConnection.Close();
+
+            calculerCouts();
         }
     }
 }

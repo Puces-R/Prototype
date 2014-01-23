@@ -13,7 +13,7 @@
         <div id="pnlProduits">
             <div>
                 <div class="pnlGauche">
-                    <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound">
+                    <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
                         <ItemTemplate>
                             <div class="rectangleStylise rectangleProduits">
                                 <div class="boiteImageProduit">
@@ -27,10 +27,10 @@
                                         <asp:Label runat="server" ID="lblDescriptionAbregee" />
                                         <asp:Label runat="server" ID="lblCategorie" />
                                         <asp:Label runat="server" ID="lblPrixDemande" />
-                                        <span>
-                                            Quantité: <asp:TextBox runat="server" ID="txtQuantite" Width="30"/>
-                                            <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" OnClick="btnMAJQuantite_OnClick" />
-                                        </span>
+                                        <div>
+                                            Quantité: <asp:TextBox runat="server" ID="txtQuantite" Width="30" />
+                                            <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" CommandName="MAJQuantite" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -52,11 +52,11 @@
                             <td><asp:Label ID="lblLivraison" runat="server" /></td>
                         </tr>
                         <tr>
-                            <td>TPS <asp:Label ID="lblTauxTPS" class="tauxTaxes" runat="server" />: </td>
+                            <td>TPS <asp:Label ID="lblTauxTPS" CssClass="tauxTaxes" runat="server" />: </td>
                             <td><asp:Label ID="lblTPS" runat="server" /></td>
                         </tr>
                         <tr>
-                            <td>TVQ <asp:Label ID="lblTauxTVQ" class="tauxTaxes" runat="server" />: </td>
+                            <td>TVQ <asp:Label ID="lblTauxTVQ" CssClass="tauxTaxes" runat="server" />: </td>
                             <td><asp:Label ID="lblTVQ" runat="server" /></td>
                         </tr>
                         <tr>

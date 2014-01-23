@@ -1,20 +1,21 @@
 ﻿.rectangleProduits
 {
-    width:355px;
+    width:365px;
     margin:15px 0;
 }
 
 .boiteDetailsProduit > div
 {
     display:table-cell;
-    height:175px;
+    height:195px;
     vertical-align:middle;
 }
 
 .boiteDetailsProduit > div > *
 {
     display:block;
-    line-height: 25px;
+    line-height:25px;
+    margin-left:10px;
 }
 
 .pnlGauche

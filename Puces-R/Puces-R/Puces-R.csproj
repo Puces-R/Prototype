@@ -62,6 +62,7 @@
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
+    <Content Include="Demonstration.aspx" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
     <Content Include="InscriptionClient.aspx" />
@@ -137,6 +138,13 @@
     </Compile>
     <Compile Include="Connexion.aspx.designer.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Demonstration.aspx.cs">
+      <DependentUpon>Demonstration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Demonstration.aspx.designer.cs">
+      <DependentUpon>Demonstration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

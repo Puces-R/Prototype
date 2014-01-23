@@ -67,12 +67,12 @@ namespace Puces_R
             }
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
-            DataTable tableProduits = new DataTable();
-            adapteurProduits.Fill(tableProduits);
+            SqlDataAdapter commandeFilms = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
+            DataTable tableFilms = new DataTable();
+            commandeFilms.Fill(tableFilms);
 
             PagedDataSource objPds = new PagedDataSource();
-            objPds.DataSource = new DataView(tableProduits);
+            objPds.DataSource = new DataView(tableFilms);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
 

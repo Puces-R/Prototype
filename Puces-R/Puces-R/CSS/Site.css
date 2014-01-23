@@ -20,7 +20,6 @@
     margin:5px;
     background-color:LightGray;
     border:1px solid black;
-    font-size:small;
     border-radius:10px;
     box-shadow: 3px 3px 4px Gray;
     overflow:hidden;
@@ -47,8 +46,8 @@
 
 .boiteImageProduit img
 {
-    max-width:150px;
-    max-height:150px;
+    max-width:160px;
+    max-height:160px;
     display:block;
     margin:auto;
 }

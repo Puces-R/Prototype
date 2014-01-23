@@ -59,6 +59,7 @@
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
+    <Content Include="Courriel.ascx" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
@@ -137,6 +138,13 @@
     </Compile>
     <Compile Include="Connexion.aspx.designer.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Courriel.ascx.cs">
+      <DependentUpon>Courriel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Courriel.ascx.designer.cs">
+      <DependentUpon>Courriel.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

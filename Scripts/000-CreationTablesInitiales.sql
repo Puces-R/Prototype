@@ -54,6 +54,16 @@ CREATE TABLE BD6B8_424R.dbo.PPGestionnaires (
 	DateDerniereConnexion smalldatetime
 )
 
+CREATE TABLE BD6B8_424R.dbo.PPMessages (
+	Envoyeur bigint,
+	Recepteur bigint,
+	DateEnvoi smalldatetime,
+	Sujet varchar(50),
+	Contenu varchar(500),
+	Lu bit,
+	PRIMARY KEY(Envoyeur, Recepteur, DateEnvoi)
+)
+
 /* Création des clefs étrangères */
 
 ALTER TABLE BD6B8_424R.dbo.PPArticlesEnPanier ADD FOREIGN KEY(NoClient) REFERENCES BD6B8_424R.dbo.PPClients(NoClient)

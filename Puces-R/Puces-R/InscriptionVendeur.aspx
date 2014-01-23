@@ -11,6 +11,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:Label runat="server" ID="lbl" />
     <yc:Identifiants runat="server" ID="tbIdentifiants" Inscription="true" />
     <table>
         <tr>
@@ -67,7 +68,7 @@
                 Pays
             </td>
             <td>
-                <asp:TextBox runat="server" ID="tbPays" MaxLength="10" />
+                <asp:TextBox runat="server" ID="tbPays" Text="Canada" MaxLength="10" />
             </td>
         </tr>
         <tr>
@@ -93,7 +94,7 @@
             <td>
                 <asp:TextBox runat="server" ID="tbPoids" MaxLength="10" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPoids" ErrorMessage="Obligatoire" />
-                <asp:RangeValidator runat="server" ControlToValidate="tbPoids" Type="Double" MinimumValue="0" MaximumValue="100"
+                <asp:RangeValidator runat="server" ControlToValidate="tbPoids" Type="Integer" MinimumValue="0" MaximumValue="100"
                     ErrorMessage="Format" />
             </td>
         </tr>
@@ -115,8 +116,6 @@
                 <asp:CheckBox runat="server" ID="cbTaxes" Checked="true" Text="Taxes" />
             </td>
         </tr>
-        <!-- Pourcentage -->
-        <!-- Configuration -->
         <tr>
             <td colspan="2">
                 <asp:Button runat="server" ID="btnConfirmer" Text="Confirmer l'inscription" CausesValidation="false" OnClick="inscription" />

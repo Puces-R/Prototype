@@ -28,6 +28,7 @@ namespace Puces_R
                                                              "SELECT NoVendeur AS No, 'V' AS Type, AdresseEmail, MotDePasse FROM PPVendeurs UNION " +
                                                              "SELECT NoGestionnaire AS No, 'G' AS Type, AdresseEmail, MotDePasse FROM PPGestionnaires) AS X " +
                                                          "WHERE (AdresseEmail LIKE @adr) AND (MotDePasse COLLATE sql_latin1_General_CP1_cs_as LIKE @mdp)", connexion);
+
                 cmdConnexion.Parameters.AddWithValue("@adr", tbIdentifiants.Adresse);
                 cmdConnexion.Parameters.AddWithValue("@mdp", tbIdentifiants.MotDePasse);
                 connexion.Open();
@@ -46,7 +47,7 @@ namespace Puces_R
                             Response.Redirect("http://fr.wikipedia.org/wiki/Vendeur", false);
                             break;
                         case 'G':
-                            Response.Redirect("http://fr.wikipedia.org/wiki/Gestionnaire", false);
+                            Response.Redirect("accueil_gestionnaire.aspx", false);
                             break;
                     }
                 }

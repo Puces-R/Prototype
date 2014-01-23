@@ -18,9 +18,9 @@ namespace Puces_R
             }
             set
             {
-                _inscription = value;
-                trInscription.Visible = value;
-                adresseExiste.Visible = value;
+                _inscription =
+                trInscriptionMdp.Visible =
+                trInscriptionCourriel.Visible = value;
             }
         }
 
@@ -31,11 +31,7 @@ namespace Puces_R
         {
             get
             {
-                return tbCourriel.Text;
-            }
-            set
-            {
-                tbCourriel.Text = value;
+                return tbCourriel.Adresse;
             }
         }
 
@@ -45,18 +41,6 @@ namespace Puces_R
             {
                 return tbMotPasse.Text;
             }
-        }
-
-        protected void validerAdresseExistante(object sender, ServerValidateEventArgs e)
-        {
-            SqlCommand cmdAdresse = new SqlCommand("SELECT CASE WHEN COUNT(AdresseEmail) > 0 THEN 'true' ELSE 'false' END " + 
-                                                   "FROM (SELECT AdresseEmail FROM PPClients UNION " + 
-                                                         "SELECT AdresseEmail FROM PPVendeurs) X " + 
-                                                   "WHERE (AdresseEmail = @adresse)", connexion);
-            cmdAdresse.Parameters.AddWithValue("@adresse", tbCourriel.Text);
-            connexion.Open();
-            e.IsValid = !bool.Parse(cmdAdresse.ExecuteScalar().ToString());
-            connexion.Close();
         }
 
         protected void validerMotPasse(object sender, ServerValidateEventArgs e)

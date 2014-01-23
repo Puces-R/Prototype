@@ -19,25 +19,25 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCourriel;
+        protected global::Puces_R.Courriel tbCourriel;
         
         /// <summary>
-        /// Contrôle valCourriel.
+        /// Contrôle trInscriptionCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valCourriel;
+        protected global::System.Web.UI.WebControls.TableRow trInscriptionCourriel;
         
         /// <summary>
-        /// Contrôle adresseExiste.
+        /// Contrôle tbCourrielConfirmation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator adresseExiste;
+        protected global::Puces_R.Courriel tbCourrielConfirmation;
         
         /// <summary>
         /// Contrôle tbMotPasse.
@@ -58,13 +58,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator mdpPresent;
         
         /// <summary>
-        /// Contrôle trInscription.
+        /// Contrôle trInscriptionMdp.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow trInscription;
+        protected global::System.Web.UI.WebControls.TableRow trInscriptionMdp;
         
         /// <summary>
         /// Contrôle tbMotPasseConfirmation.

@@ -10,7 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class InscriptionVendeur {
+    public partial class InsertionProduits {
         
         /// <summary>
         /// Contrôle frmInscription.

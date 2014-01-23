@@ -49,7 +49,9 @@
                         <div class="rectangleStylise rectangleProduits">
                             <asp:Label runat="server" ID="lblNoProduit" />
                             <div class="boiteImageProduit">
-                                <div><asp:Image runat="server" ID="imgProduit" /></div>
+                                <div>
+                                    <asp:Image runat="server" ID="imgProduit" />
+                                </div>
                             </div>
                             <asp:Label runat="server" ID="lblDescriptionAbregee" />
                             <asp:Label runat="server" ID="lblCategorie" />

@@ -1,16 +1,51 @@
 ﻿.rectangleProduits
 {
-    width:350px;
+    width:365px;
+    margin:15px 0;
+    font-size:small;
 }
 
 .boiteDetailsProduit > div
 {
     display:table-cell;
-    height:175px;
+    height:195px;
     vertical-align:middle;
 }
 
 .boiteDetailsProduit > div > *
 {
     display:block;
+    line-height:25px;
+    margin-left:10px;
+}
+
+.pnlGauche
+{
+    float:left;
+}
+
+.pnlDroite
+{
+    border-left:5px dotted Gray;
+    padding-left:20px;
+    margin-left:20px;
+    display:inline-block;
+    font-size:x-large;
+    margin-top:20px;
+    text-align:right;
+}
+
+.grandTotal
+{
+    border-top:1px solid Gray;
+}
+
+.tauxTaxes
+{
+    font-size:small;
+}
+
+.pnlDroite td
+{
+    padding:5px;
 }

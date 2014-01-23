@@ -10,60 +10,78 @@
 namespace Puces_R {
     
     
-    public partial class Produits {
+    public partial class Identifiants {
         
         /// <summary>
-        /// Contrôle ddlTypeRecherche.
+        /// Contrôle tbCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        protected global::System.Web.UI.WebControls.TextBox tbCourriel;
         
         /// <summary>
-        /// Contrôle txtCritereRecherche.
+        /// Contrôle valCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valCourriel;
         
         /// <summary>
-        /// Contrôle btnRecherche.
+        /// Contrôle adresseExiste.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        protected global::System.Web.UI.WebControls.CustomValidator adresseExiste;
         
         /// <summary>
-        /// Contrôle ddlTrierPar.
+        /// Contrôle tbMotPasse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
+        protected global::System.Web.UI.WebControls.TextBox tbMotPasse;
         
         /// <summary>
-        /// Contrôle ddlParPage.
+        /// Contrôle mdpPresent.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator mdpPresent;
         
         /// <summary>
-        /// Contrôle dtlProduits.
+        /// Contrôle trInscription.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtlProduits;
+        protected global::System.Web.UI.WebControls.TableRow trInscription;
+        
+        /// <summary>
+        /// Contrôle tbMotPasseConfirmation.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotPasseConfirmation;
+        
+        /// <summary>
+        /// Contrôle valMdp.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator valMdp;
     }
 }

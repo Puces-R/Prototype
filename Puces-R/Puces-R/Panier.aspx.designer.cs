@@ -10,60 +10,87 @@
 namespace Puces_R {
     
     
-    public partial class Produits {
+    public partial class Panier {
         
         /// <summary>
-        /// Contrôle ddlTypeRecherche.
+        /// Contrôle rptProduits.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        protected global::System.Web.UI.WebControls.Repeater rptProduits;
         
         /// <summary>
-        /// Contrôle txtCritereRecherche.
+        /// Contrôle lblPoidsTotal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        protected global::System.Web.UI.WebControls.Label lblPoidsTotal;
         
         /// <summary>
-        /// Contrôle btnRecherche.
+        /// Contrôle lblSousTotal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        protected global::System.Web.UI.WebControls.Label lblSousTotal;
         
         /// <summary>
-        /// Contrôle ddlTrierPar.
+        /// Contrôle lblLivraison.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
+        protected global::System.Web.UI.WebControls.Label lblLivraison;
         
         /// <summary>
-        /// Contrôle ddlParPage.
+        /// Contrôle lblTauxTPS.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+        protected global::System.Web.UI.WebControls.Label lblTauxTPS;
         
         /// <summary>
-        /// Contrôle dtlProduits.
+        /// Contrôle lblTPS.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtlProduits;
+        protected global::System.Web.UI.WebControls.Label lblTPS;
+        
+        /// <summary>
+        /// Contrôle lblTauxTVQ.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTauxTVQ;
+        
+        /// <summary>
+        /// Contrôle lblTVQ.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTVQ;
+        
+        /// <summary>
+        /// Contrôle lblGrandTotal.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGrandTotal;
     }
 }

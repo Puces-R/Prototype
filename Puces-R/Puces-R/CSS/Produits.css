@@ -1,0 +1,23 @@
+﻿.rectangleProduits > *
+{
+    display:block;
+}
+
+.rectangleProduits
+{
+    width:185px;
+    line-height: 17px;
+}
+
+.boiteListeDeroulante
+{
+    margin:0 10px;
+}
+
+.barreListesDeroulantes
+{
+    text-align:center;
+    border-bottom:5px dotted Gray;
+    padding-bottom:10px;
+    margin-bottom:5px;
+}

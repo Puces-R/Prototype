@@ -56,12 +56,23 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Styles\Site.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="accueil_gestionnaire.aspx" />
+    <Content Include="CodePostal.ascx" />
+    <Content Include="Connexion.aspx" />
+    <Content Include="CSS\Panier.css" />
+    <Content Include="CSS\Produits.css" />
+    <Content Include="CSS\Site.css" />
+    <Content Include="Identifiants.ascx" />
+    <Content Include="CSS\style_sec4.css" />
+    <Content Include="InscriptionClient.aspx" />
+    <Content Include="InscriptionVendeur.aspx" />
+    <Content Include="Panier.aspx" />
+    <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Telephone.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -106,15 +117,64 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="accueil_gestionnaire.aspx.cs">
+      <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="accueil_gestionnaire.aspx.designer.cs">
+      <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CodePostal.ascx.cs">
+      <DependentUpon>CodePostal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodePostal.ascx.designer.cs">
+      <DependentUpon>CodePostal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Connexion.aspx.cs">
+      <DependentUpon>Connexion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Connexion.aspx.designer.cs">
+      <DependentUpon>Connexion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Identifiants.ascx.cs">
+      <DependentUpon>Identifiants.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Identifiants.ascx.designer.cs">
+      <DependentUpon>Identifiants.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="InscriptionClient.aspx.cs">
+      <DependentUpon>InscriptionClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InscriptionClient.aspx.designer.cs">
+      <DependentUpon>InscriptionClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InscriptionVendeur.aspx.cs">
+      <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InscriptionVendeur.aspx.designer.cs">
+      <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Panier.aspx.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Panier.aspx.designer.cs">
+      <DependentUpon>Panier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Produits.aspx.cs">
+      <DependentUpon>Produits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Produits.aspx.designer.cs">
+      <DependentUpon>Produits.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -123,6 +183,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Telephone.ascx.cs">
+      <DependentUpon>Telephone.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Telephone.ascx.designer.cs">
+      <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +207,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52677</DevelopmentServerPort>
+          <DevelopmentServerPort>59078</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

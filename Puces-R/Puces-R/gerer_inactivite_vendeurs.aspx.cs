@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Puces_R
 {
-    public partial class _Default : System.Web.UI.Page
+    public partial class gerer_inactivite_vendeurs : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

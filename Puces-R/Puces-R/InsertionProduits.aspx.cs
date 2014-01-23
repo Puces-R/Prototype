@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Puces_R
 {
-    public partial class InscriptionVendeur : System.Web.UI.Page
+    public partial class InsertionProduits : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

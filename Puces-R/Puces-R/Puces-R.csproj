@@ -57,38 +57,26 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
+    <Content Include="BoiteMessage.aspx" />
     <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
     <Content Include="Courriel.ascx" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
-    <Content Include="Demonstration.aspx" />
-    <Content Include="gerer_demandes_vendeurs.aspx" />
-    <Content Include="gerer_inactivite_clients.aspx" />
-    <Content Include="gerer_inactivite_vendeurs.aspx" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
-    <Content Include="Images\Televerse\1000010.jpg" />
-    <Content Include="Images\Televerse\1000020.jpg" />
-    <Content Include="Images\Televerse\1000030.jpg" />
-    <Content Include="Images\Televerse\1000040.jpg" />
-    <Content Include="Images\Televerse\1000050.jpg" />
-    <Content Include="Images\Televerse\2000010.jpg" />
-    <Content Include="Images\Televerse\2000020.jpg" />
-    <Content Include="Images\Televerse\2000030.jpg" />
-    <Content Include="Images\Televerse\2000040.jpg" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
-    <Content Include="InsertionProduits.aspx" />
+    <Content Include="LigneMessage.ascx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="SuppressionProduits.aspx" />
     <Content Include="Telephone.ascx" />
+    <Content Include="VoirMessage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -140,6 +128,13 @@
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BoiteMessage.aspx.cs">
+      <DependentUpon>BoiteMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BoiteMessage.aspx.designer.cs">
+      <DependentUpon>BoiteMessage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CodePostal.ascx.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,33 +155,6 @@
     </Compile>
     <Compile Include="Courriel.ascx.designer.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
-    <Compile Include="Demonstration.aspx.cs">
-      <DependentUpon>Demonstration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Demonstration.aspx.designer.cs">
-      <DependentUpon>Demonstration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_demandes_vendeurs.aspx.cs">
-      <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="gerer_demandes_vendeurs.aspx.designer.cs">
-      <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_inactivite_clients.aspx.cs">
-      <DependentUpon>gerer_inactivite_clients.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="gerer_inactivite_clients.aspx.designer.cs">
-      <DependentUpon>gerer_inactivite_clients.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gerer_inactivite_vendeurs.aspx.cs">
-      <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="gerer_inactivite_vendeurs.aspx.designer.cs">
-      <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,12 +180,12 @@
     <Compile Include="InscriptionVendeur.aspx.designer.cs">
       <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InsertionProduits.aspx.cs">
-      <DependentUpon>InsertionProduits.aspx</DependentUpon>
+    <Compile Include="LigneMessage.ascx.cs">
+      <DependentUpon>LigneMessage.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="InsertionProduits.aspx.designer.cs">
-      <DependentUpon>InsertionProduits.aspx</DependentUpon>
+    <Compile Include="LigneMessage.ascx.designer.cs">
+      <DependentUpon>LigneMessage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
@@ -241,19 +209,19 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="SuppressionProduits.aspx.cs">
-      <DependentUpon>SuppressionProduits.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SuppressionProduits.aspx.designer.cs">
-      <DependentUpon>SuppressionProduits.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Telephone.ascx.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="VoirMessage.aspx.cs">
+      <DependentUpon>VoirMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoirMessage.aspx.designer.cs">
+      <DependentUpon>VoirMessage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

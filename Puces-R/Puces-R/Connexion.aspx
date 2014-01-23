@@ -8,8 +8,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <yc:Identifiants runat="server" ID="tbIdentifiants" Inscription="false" />
-    <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
+    <table>
+        <yc:Identifiants runat="server" ID="tbIdentifiants" Type="CONNEXION" />
+        <tr>
+            <td>
+                <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
+            </td>
+        </tr>
+    </table>
     </form>
 </body>
 </html>

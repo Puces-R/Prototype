@@ -75,7 +75,6 @@ namespace Puces_R
                 cmdAjoutVendeur.ExecuteNonQuery();
 
                 cmdVendeur.Parameters.AddWithValue("@no", noVendeur);
-                lbl.Text = cmdVendeur.ExecuteScalar().ToString();
 
                 connexion.Close();
             }

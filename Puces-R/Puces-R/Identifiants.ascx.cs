@@ -10,22 +10,33 @@ namespace Puces_R
 {
     public partial class Identifiants : System.Web.UI.UserControl
     {
-        public bool Inscription
+        public enum TypeIdentification
         {
-            get
-            {
-                return _inscription;
-            }
+            INSCRIPTION, CONNEXION, MOT_DE_PASSE
+        }
+
+        public TypeIdentification Type
+        {
             set
             {
-                _inscription =
-                trInscriptionMdp.Visible =
-                trInscriptionCourriel.Visible = value;
+                tbCourriel.Existe =
+                trCourriel.Visible = trCourrielConfirmation.Visible = trMdpConfirmation.Visible = true;
+                switch (value)
+                {
+                    case TypeIdentification.INSCRIPTION:
+                        // RIEN
+                        break;
+                    case TypeIdentification.CONNEXION:
+                        tbCourriel.Existe = trCourrielConfirmation.Visible = trMdpConfirmation.Visible = false;
+                        break;
+                    case TypeIdentification.MOT_DE_PASSE:
+                        trCourriel.Visible = trCourrielConfirmation.Visible = false;
+                        break;
+                }
             }
         }
 
         SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
-        private bool _inscription = false;
 
         public string Adresse
         {

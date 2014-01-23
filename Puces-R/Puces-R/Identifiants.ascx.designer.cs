@@ -13,6 +13,15 @@ namespace Puces_R {
     public partial class Identifiants {
         
         /// <summary>
+        /// Contrôle trCourriel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow trCourriel;
+        
+        /// <summary>
         /// Contrôle tbCourriel.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace Puces_R {
         protected global::Puces_R.Courriel tbCourriel;
         
         /// <summary>
-        /// Contrôle trInscriptionCourriel.
+        /// Contrôle trCourrielConfirmation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow trInscriptionCourriel;
+        protected global::System.Web.UI.WebControls.TableRow trCourrielConfirmation;
         
         /// <summary>
         /// Contrôle tbCourrielConfirmation.
@@ -58,13 +67,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator mdpPresent;
         
         /// <summary>
-        /// Contrôle trInscriptionMdp.
+        /// Contrôle trMdpConfirmation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow trInscriptionMdp;
+        protected global::System.Web.UI.WebControls.TableRow trMdpConfirmation;
         
         /// <summary>
         /// Contrôle tbMotPasseConfirmation.

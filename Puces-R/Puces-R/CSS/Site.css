@@ -3,12 +3,24 @@
     font-family:Sans-Serif;
 }
 
-#pnlProduits
+.logo
+{
+    height:50px;
+    vertical-align:middle;
+}
+
+.titre
+{
+    font-size:xx-large;
+    vertical-align:middle;
+}
+
+.page
 {
     text-align:center;
 }
 
-#pnlProduits > div
+.page > div
 {
     display:inline-block;
     text-align:left;
@@ -50,4 +62,11 @@
     max-height:160px;
     display:block;
     margin:auto;
+}
+
+.lignePointilleHorizontale
+{
+    border-bottom:5px dotted Gray;
+    padding-bottom:10px;
+    margin-bottom:5px;
 }

@@ -69,6 +69,7 @@
     <Content Include="gerer_inactivite_vendeurs.aspx" />
     <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\Televerse\1000010.jpg" />
     <Content Include="Images\Televerse\1000020.jpg" />
     <Content Include="Images\Televerse\1000030.jpg" />
@@ -89,6 +90,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="SuppressionProduits.aspx" />
     <Content Include="Telephone.ascx" />
+    <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -254,6 +256,13 @@
     </Compile>
     <Compile Include="Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="visualiser_stats_rapports.aspx.cs">
+      <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="visualiser_stats_rapports.aspx.designer.cs">
+      <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

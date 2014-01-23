@@ -59,7 +59,7 @@
      </tr>
 
      <tr>
-          <td colspan="2" > <asp:Image ImageUrl="logo.png" Width="350" Height="250" runat="server" /> </td><td></td>
+          <td colspan="2" > <asp:Image ID="imgProduits" ImageUrl="logo.png" Width="350" Height="250" runat="server" /> </td><td></td>
          
      </tr>
      <%--<tr>

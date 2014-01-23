@@ -29,6 +29,19 @@ namespace Puces_R
             
         }
 
+        protected void verifierSiProduitDansPanier()
+        {
+            SqlConnection dbConn = new SqlConnection();
+            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
+            SqlConnection maConnexion = new SqlConnection();
+            maConnexion.ConnectionString = maChaineDeConnexion;
+            maConnexion.Open();
+
+            SqlCommand maCommande = new SqlCommand("select * from PPArticlesEnPanier where NoProduit=" + noProduit, maConnexion);
+            object rep = maCommande.ExecuteScalar();
+            maConnexion.Close();
+        }
+
         protected void chargerDonnees() 
         {
             SqlConnection dbConn = new SqlConnection();

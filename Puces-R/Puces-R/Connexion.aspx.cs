@@ -29,8 +29,8 @@ namespace Puces_R
                                                              "SELECT NoGestionnaire AS No, 'G' AS Type, AdresseEmail, MotDePasse FROM PPGestionnaires) AS X " +
                                                          "WHERE (AdresseEmail LIKE @adr) AND (MotDePasse COLLATE sql_latin1_General_CP1_cs_as LIKE @mdp)", connexion);
 
-                cmdConnexion.Parameters.AddWithValue("@adr", tbIdentifiants.Adresse);
-                cmdConnexion.Parameters.AddWithValue("@mdp", tbIdentifiants.MotDePasse);
+                cmdConnexion.Parameters.AddWithValue("@adr", tbCourriel.Text);
+                cmdConnexion.Parameters.AddWithValue("@mdp", tbMotPasse.MotPasse);
                 connexion.Open();
                 SqlDataReader sdr = cmdConnexion.ExecuteReader();
                 if (sdr.Read())

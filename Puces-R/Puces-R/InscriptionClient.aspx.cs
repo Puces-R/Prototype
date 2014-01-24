@@ -66,8 +66,10 @@ namespace Puces_R
                 {
                     client.Send(courriel);
                 }
-                catch (Exception)
-                {}
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
             }
         }
     }

@@ -7,17 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace Puces_R
 {
-    public partial class Telephone : System.Web.UI.UserControl
+    public partial class Province : System.Web.UI.UserControl
     {
-        public string NoTelephone
+        public string CodeProvince
         {
             get
             {
-                return tbTel.Text;
-            }
-            set
-            {
-                tbTel.Text = value;
+                return ddlProvince.SelectedValue;
             }
         }
 

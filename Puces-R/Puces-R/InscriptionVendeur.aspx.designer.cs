@@ -94,6 +94,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox tbPays;
         
         /// <summary>
+        /// Contrôle tbProvince.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.Province tbProvince;
+        
+        /// <summary>
         /// Contrôle tbTel1.
         /// </summary>
         /// <remarks>

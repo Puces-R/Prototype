@@ -7,17 +7,21 @@ using System.Web.UI.WebControls;
 
 namespace Puces_R
 {
-    public partial class CodePostal : System.Web.UI.UserControl
+    public partial class MotDePasse : System.Web.UI.UserControl
     {
-        public string Code
+        public bool Obligatoire
+        {
+            set
+            {
+                reqMDP.Visible = value;
+            }
+        }
+
+        public string MotPasse
         {
             get
             {
-                return tbCodePostal.Text == string.Empty ? null : tbCodePostal.Text.ToUpper();
-            }
-            set
-            {
-                tbCodePostal.Text = value;
+                return tbMDP.Text;
             }
         }
 

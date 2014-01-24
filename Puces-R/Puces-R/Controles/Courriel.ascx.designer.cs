@@ -10,16 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class Connexion {
-        
-        /// <summary>
-        /// Contrôle form1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+    public partial class Courriel {
         
         /// <summary>
         /// Contrôle tbCourriel.
@@ -31,12 +22,30 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox tbCourriel;
         
         /// <summary>
-        /// Contrôle tbMotPasse.
+        /// Contrôle reqCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.MotDePasse tbMotPasse;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqCourriel;
+        
+        /// <summary>
+        /// Contrôle formatCourriel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator formatCourriel;
+        
+        /// <summary>
+        /// Contrôle adresseExiste.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator adresseExiste;
     }
 }

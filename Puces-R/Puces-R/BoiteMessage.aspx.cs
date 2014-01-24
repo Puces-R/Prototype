@@ -24,7 +24,7 @@ namespace Puces_R
             SqlDataReader sdr = cmdMessages.ExecuteReader();
             for (int i = 0 ; sdr.Read() ; i++)
             {
-                LigneMessage l = (LigneMessage)Page.LoadControl("~/LigneMessage.ascx");
+                LigneMessage l = (LigneMessage)Page.LoadControl("~/Controles/LigneMessage.ascx");
                 ListeMessage.Controls.Add(l);
                 l.De = sdr["AdresseEmail"].ToString();
                 l.Sujet = sdr["Sujet"].ToString();

@@ -10,87 +10,96 @@
 namespace Puces_R {
     
     
-    public partial class Identifiants {
+    public partial class Telephone {
         
         /// <summary>
-        /// Contrôle trCourriel.
+        /// Contrôle tbReg.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow trCourriel;
+        protected global::System.Web.UI.WebControls.TextBox tbReg;
         
         /// <summary>
-        /// Contrôle tbCourriel.
+        /// Contrôle reqReg.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Courriel tbCourriel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqReg;
         
         /// <summary>
-        /// Contrôle trCourrielConfirmation.
+        /// Contrôle formatReg.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow trCourrielConfirmation;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator formatReg;
         
         /// <summary>
-        /// Contrôle tbCourrielConfirmation.
+        /// Contrôle tbPart1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Courriel tbCourrielConfirmation;
+        protected global::System.Web.UI.WebControls.TextBox tbPart1;
         
         /// <summary>
-        /// Contrôle tbMotPasse.
+        /// Contrôle reqPart1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMotPasse;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPart1;
         
         /// <summary>
-        /// Contrôle mdpPresent.
+        /// Contrôle formatPart1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator mdpPresent;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator formatPart1;
         
         /// <summary>
-        /// Contrôle trMdpConfirmation.
+        /// Contrôle tbPart2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow trMdpConfirmation;
+        protected global::System.Web.UI.WebControls.TextBox tbPart2;
         
         /// <summary>
-        /// Contrôle tbMotPasseConfirmation.
+        /// Contrôle reqPart2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMotPasseConfirmation;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPart2;
         
         /// <summary>
-        /// Contrôle valMdp.
+        /// Contrôle formatPart2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator valMdp;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator formatPart2;
+        
+        /// <summary>
+        /// Contrôle reqTel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator reqTel;
     }
 }

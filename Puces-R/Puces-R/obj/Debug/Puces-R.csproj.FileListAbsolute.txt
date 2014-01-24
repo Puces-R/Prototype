@@ -23,3 +23,8 @@ C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
 C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
 C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
 C:\Users\kw.kouma\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+C:\Users\Raikou4\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
+C:\Users\Raikou4\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
+C:\Users\Raikou4\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Raikou4\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
+C:\Users\Raikou4\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb

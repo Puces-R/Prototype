@@ -10,15 +10,24 @@
 namespace Puces_R {
     
     
-    public partial class Telephone {
+    public partial class DoubleMdp {
         
         /// <summary>
-        /// Contrôle tbTel.
+        /// Contrôle tbMDP1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTel;
+        protected global::Puces_R.MotDePasse tbMDP1;
+        
+        /// <summary>
+        /// Contrôle tbMDP2.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.MotDePasse tbMDP2;
     }
 }

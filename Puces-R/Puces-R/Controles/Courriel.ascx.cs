@@ -12,17 +12,27 @@ namespace Puces_R
     {
         SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
 
-        private bool _existe = false;
-
         public bool Existe
+        {
+            set
+            {
+               adresseExiste.Visible = value;
+            }
+        }
+
+        public bool Obligatoire
+        {
+            set
+            {
+                reqCourriel.Visible = value;
+            }
+        }
+
+        public bool IsValid
         {
             get
             {
-                return _existe;
-            }
-            set
-            {
-                _existe = adresseExiste.Visible = value;
+                return (!reqCourriel.Visible || reqCourriel.IsValid) && formatCourriel.IsValid && (!adresseExiste.Visible || adresseExiste.IsValid);
             }
         }
 
@@ -30,7 +40,7 @@ namespace Puces_R
         {
             get
             {
-                return tbCourriel.Text;
+                return tbCourriel.Text.ToLower();
             }
         }
 

@@ -31,7 +31,7 @@ namespace Puces_R
 
             if (Page.IsValid)
             {
-                SqlCommand cmdNoVendeur = new SqlCommand("SELECT ISNULL(MAX(NoVendeur), 0) + 10 FROM PPVendeurs", connexion);
+                SqlCommand cmdNoVendeur = new SqlCommand("SELECT ISNULL(MAX(NoVendeur), 0) + 1 FROM PPVendeurs", connexion);
                 SqlCommand cmdAjoutVendeur = new SqlCommand("INSERT INTO PPVendeurs values(@no, @nomAffaire, @nom, @prenom, @rue, " + 
                                                                                           "@ville, @province, @codePostal, @pays, @tel1, " +
                                                                                           "@tel2, @courriel, @mdp, @maxLivraison, @gratuite, @taxes, " +
@@ -40,10 +40,7 @@ namespace Puces_R
                 /* * * * * * * * * * * * * * * * * * * * * * * * * */
                 /* * * * * * * * * * * NOTES * * * * * * * * * * * */
                 /* * * * * * * * * * * * * * * * * * * * * * * * * */
-                /* Province : DDL ?                                */
-                /* Pays : À mettre (pas utile si on assume Canada) */
                 /* Téléphone : Si juste ds tel2, mettre ds tel1 ?  */
-                /* Quel est le pourcentage ? 1% = 1 ou 0.01 ?      */
                 /* Status : Libre ?                                */
 
                 
@@ -56,12 +53,12 @@ namespace Puces_R
                 cmdAjoutVendeur.Parameters.AddWithValue("@rue", tbRue.Text == string.Empty ? DBNull.Value : (object)tbRue.Text);
 
                 cmdAjoutVendeur.Parameters.AddWithValue("@ville", tbVille.Text == string.Empty ? DBNull.Value : (object)tbVille.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@province", "QC"); // Placeholder
+                cmdAjoutVendeur.Parameters.AddWithValue("@province", tbProvince.CodeProvince);
                 cmdAjoutVendeur.Parameters.AddWithValue("@codePostal", tbCodePostal.Code == null ? DBNull.Value : (object)tbCodePostal.Code);
                 cmdAjoutVendeur.Parameters.AddWithValue("@pays", tbPays.Text == string.Empty ? DBNull.Value : (object)tbPays.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@tel1", tbTel1.NoTelephone);
+                cmdAjoutVendeur.Parameters.AddWithValue("@tel1", tbTel1.NoTelephone == string.Empty ? DBNull.Value : (object)tbTel1.NoTelephone);
 
-                cmdAjoutVendeur.Parameters.AddWithValue("@tel2", tbTel2.NoTelephone);
+                cmdAjoutVendeur.Parameters.AddWithValue("@tel2", tbTel2.NoTelephone == string.Empty ? DBNull.Value : (object)tbTel2.NoTelephone);
                 cmdAjoutVendeur.Parameters.AddWithValue("@courriel", tbIdentifiants.Adresse);
                 cmdAjoutVendeur.Parameters.AddWithValue("@mdp", tbIdentifiants.MotDePasse);
                 cmdAjoutVendeur.Parameters.AddWithValue("@maxLivraison", tbPoids.Text);

@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetailsProduit.aspx.cs" Inherits="Puces_R.DetailsProduit" %>
 
+<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuClient runat="server" />
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link href="CSS/DetailsProduit.css" rel="stylesheet" type="text/css" />
 </asp:Content>

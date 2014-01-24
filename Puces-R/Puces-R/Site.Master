@@ -16,19 +16,13 @@
                         <img src="Images/logo.png" class="logo" alt="Logo" />
                         <span class="titre">Les Petites Puces</span>
                         <div class="menu">
-                            <asp:Menu runat="server" Orientation="Horizontal">
-                                <StaticMenuItemStyle HorizontalPadding="10" Font-Bold="True" />
-                                <Items>
-                                    <asp:MenuItem Text="Accueil" />
-                                    <asp:MenuItem Text="Demandes de vendeurs" />
-                                    <asp:MenuItem Text="Inactivité" />
-                                    <asp:MenuItem Text="Statistiques et rapports" />
-                                </Items>
-                            </asp:Menu>
+                            <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
                         </div>
                     </div>
                     <div class="lignePointilleHorizontale main">
-                        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                        <div>
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                        </div>
                     </div>
                     <div class="footer">
                         © 2014 Cégep Gérald Godin

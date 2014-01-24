@@ -1,5 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Panier.aspx.cs" Inherits="Puces_R.Panier" MasterPageFile="Site.Master" %>
 
+<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuClient runat="server" />
+</asp:Content>
+
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link rel="stylesheet" type="text/css" href="CSS/Panier.css" />
 </asp:Content>

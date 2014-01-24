@@ -1,4 +1,12 @@
-﻿a img, a:link img, a:visited img, a:hover img, a:active img { border:0 !important; }
+﻿a img, a:link img, a:visited img, a:hover img, a:active img 
+{ 
+    border:0 !important; 
+}
+
+a
+{ 
+    color:#0052AE;
+}
 
 body
 {
@@ -26,7 +34,14 @@ body
 
 .main
 {
+   text-align:center;
+}
+
+.main > div
+{
     overflow:hidden;
+    display:inline-block;
+    text-align:left;
 }
 
 .page

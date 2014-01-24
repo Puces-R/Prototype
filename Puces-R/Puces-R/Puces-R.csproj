@@ -58,9 +58,18 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="BoiteMessage.aspx" />
-    <Content Include="CodePostal.ascx" />
     <Content Include="Connexion.aspx" />
-    <Content Include="Courriel.ascx" />
+    <Content Include="Controles\CodePostal.ascx" />
+    <Content Include="Controles\Courriel.ascx" />
+    <Content Include="Controles\DoubleMdp.ascx" />
+    <Content Include="Controles\Identifiants.ascx" />
+    <Content Include="Controles\LigneMessage.ascx" />
+    <Content Include="Controles\MenuClient.ascx" />
+    <Content Include="Controles\MenuGestionnaire.ascx" />
+    <Content Include="Controles\MenuVendeur.ascx" />
+    <Content Include="Controles\MotDePasse.ascx" />
+    <Content Include="Controles\Province.ascx" />
+    <Content Include="Controles\Telephone.ascx" />
     <Content Include="CSS\DetailsProduit.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
@@ -71,7 +80,6 @@
     <Content Include="gerer_demandes_vendeurs.aspx" />
     <Content Include="gerer_inactivite_clients.aspx" />
     <Content Include="gerer_inactivite_vendeurs.aspx" />
-    <Content Include="Identifiants.ascx" />
     <Content Include="CSS\style_sec4.css" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Televerse\1000010.jpg" />
@@ -85,14 +93,12 @@
     <Content Include="Images\Televerse\2000040.jpg" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
-    <Content Include="LigneMessage.ascx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Telephone.ascx" />
     <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
@@ -153,13 +159,6 @@
     <Compile Include="BoiteMessage.aspx.designer.cs">
       <DependentUpon>BoiteMessage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CodePostal.ascx.cs">
-      <DependentUpon>CodePostal.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CodePostal.ascx.designer.cs">
-      <DependentUpon>CodePostal.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Connexion.aspx.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -167,12 +166,82 @@
     <Compile Include="Connexion.aspx.designer.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Courriel.ascx.cs">
+    <Compile Include="Controles\CodePostal.ascx.cs">
+      <DependentUpon>CodePostal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\CodePostal.ascx.designer.cs">
+      <DependentUpon>CodePostal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Courriel.ascx.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Courriel.ascx.designer.cs">
+    <Compile Include="Controles\Courriel.ascx.designer.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\DoubleMdp.ascx.cs">
+      <DependentUpon>DoubleMdp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\DoubleMdp.ascx.designer.cs">
+      <DependentUpon>DoubleMdp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Identifiants.ascx.cs">
+      <DependentUpon>Identifiants.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\Identifiants.ascx.designer.cs">
+      <DependentUpon>Identifiants.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\LigneMessage.ascx.cs">
+      <DependentUpon>LigneMessage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\LigneMessage.ascx.designer.cs">
+      <DependentUpon>LigneMessage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MenuClient.ascx.cs">
+      <DependentUpon>MenuClient.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuClient.ascx.designer.cs">
+      <DependentUpon>MenuClient.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MenuGestionnaire.ascx.cs">
+      <DependentUpon>MenuGestionnaire.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuGestionnaire.ascx.designer.cs">
+      <DependentUpon>MenuGestionnaire.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MenuVendeur.ascx.cs">
+      <DependentUpon>MenuVendeur.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuVendeur.ascx.designer.cs">
+      <DependentUpon>MenuVendeur.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MotDePasse.ascx.cs">
+      <DependentUpon>MotDePasse.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MotDePasse.ascx.designer.cs">
+      <DependentUpon>MotDePasse.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Province.ascx.cs">
+      <DependentUpon>Province.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\Province.ascx.designer.cs">
+      <DependentUpon>Province.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Telephone.ascx.cs">
+      <DependentUpon>Telephone.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\Telephone.ascx.designer.cs">
+      <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
     <Compile Include="Demonstration.aspx.cs">
       <DependentUpon>Demonstration.aspx</DependentUpon>
@@ -187,7 +256,7 @@
     </Compile>
     <Compile Include="EnvoyerMessage.aspx.designer.cs">
       <DependentUpon>EnvoyerMessage.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="DetailsProduit.aspx.cs">
       <DependentUpon>DetailsProduit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,13 +288,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Identifiants.ascx.cs">
-      <DependentUpon>Identifiants.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Identifiants.ascx.designer.cs">
-      <DependentUpon>Identifiants.ascx</DependentUpon>
-    </Compile>
     <Compile Include="InscriptionClient.aspx.cs">
       <DependentUpon>InscriptionClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -239,13 +301,6 @@
     </Compile>
     <Compile Include="InscriptionVendeur.aspx.designer.cs">
       <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LigneMessage.ascx.cs">
-      <DependentUpon>LigneMessage.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LigneMessage.ascx.designer.cs">
-      <DependentUpon>LigneMessage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
@@ -268,13 +323,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Telephone.ascx.cs">
-      <DependentUpon>Telephone.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Telephone.ascx.designer.cs">
-      <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
     <Compile Include="VoirMessage.aspx.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>

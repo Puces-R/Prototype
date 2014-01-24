@@ -43,7 +43,7 @@
                 <asp:Label runat="server" ID="lblNoProduit" />
                 <div class="boiteImageProduit">
                     <div>
-                        <asp:Image runat="server" ID="imgProduit" />
+                        <asp:HyperLink runat="server" ID="hypProduit" />
                     </div>
                 </div>
                 <asp:Label runat="server" ID="lblDescriptionAbregee" />

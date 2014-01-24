@@ -55,5 +55,33 @@ namespace Puces_R
                 myConnection.Close();
             }
         }
+
+        protected void btnAjouterPanier_Click(object sender, EventArgs e)
+        {
+            String nbItems = txtQuantite.Text;
+            String noClient = Request.Params["noclient"];
+            String noProduit = Request.Params["noproduit"];
+            String noVendeur = noProduit.Substring(5);
+            String noPanier = noClient + noProduit;
+            
+            myConnection.Open();
+            SqlCommand commandeDejaPresent = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE noPanier = " + noPanier, myConnection);
+            bool dejaPresent = (int)commandeDejaPresent.ExecuteScalar() > 0;
+            if (dejaPresent)
+            {
+                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + nbItems + " WHERE NoPanier = " + noPanier, myConnection);
+                commandeMAJQuantite.ExecuteNonQuery();
+            }
+            else
+            {
+                String dateCreation = DateTime.Now.ToShortDateString();
+                String values = String.Join(",", noPanier, noClient, noVendeur, noProduit, dateCreation, nbItems);
+                SqlCommand commandeAjout = new SqlCommand("INSERT INTO PPArticlesEnPanier VALUES (" + values + ")", myConnection);
+                commandeAjout.ExecuteNonQuery();
+            }
+            myConnection.Close();
+            
+            Response.Redirect("Panier.aspx?noclient=" + noClient);
+        }
     }
 }

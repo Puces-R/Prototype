@@ -1,4 +1,6 @@
-﻿body
+﻿a img, a:link img, a:visited img, a:hover img, a:active img { border:0 !important; }
+
+body
 {
     font-family:Sans-Serif;
 }
@@ -98,10 +100,21 @@
 .pnlDetails
 {
     margin-top:20px;
+    margin-bottom:20px;
 }
 
 .pnlDetails td
 {
     vertical-align:top;
     padding:5px;
+}
+
+.boiteQuantite
+{
+    width:30px;
+}
+
+.pnlDetails td:first-child 
+{ 
+    text-align: right
 }

@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="EnvoyerMessage.aspx.designer.cs">
       <DependentUpon>EnvoyerMessage.aspx</DependentUpon>
+	</Compile>
     <Compile Include="DetailsProduit.aspx.cs">
       <DependentUpon>DetailsProduit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

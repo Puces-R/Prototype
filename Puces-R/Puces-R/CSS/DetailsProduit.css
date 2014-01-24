@@ -1,11 +1,21 @@
-﻿.largeurMaxDetails
+﻿.description
 {
-    max-width:400px;
+    max-width:350px;
     display:block;
-    font-size:normal;
 }
 
 .pnlDetails
 {
     font-size:large;
+}
+
+.boiteImageProduit > div
+{
+    padding:10px;
+}
+
+.boiteImageProduit img
+{
+    max-width:400px;
+    max-height:400px;
 }

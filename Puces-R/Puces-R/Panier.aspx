@@ -21,7 +21,7 @@
                             <asp:Label runat="server" ID="lblCategorie" />
                             <asp:Label runat="server" ID="lblPrixDemande" />
                             <div>
-                                Quantité: <asp:TextBox runat="server" ID="txtQuantite" Width="30" />
+                                Quantité: <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" />
                                 <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" CommandName="MAJQuantite" />
                             </div>
                         </div>

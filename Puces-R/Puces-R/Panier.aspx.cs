@@ -17,14 +17,11 @@ namespace Puces_R
         {
             if (!Page.IsPostBack)
             {
-                DataTable tableProduits = calculerCouts();
-
-                rptProduits.DataSource = new DataView(tableProduits);
-                rptProduits.DataBind();
+                calculerCouts();
             }
         }
 
-        private DataTable calculerCouts()
+        private void calculerCouts()
         {
             int noClient;
             if (!int.TryParse(Request.Params["noclient"], out noClient))
@@ -78,7 +75,8 @@ namespace Puces_R
 
             myConnection.Close();
 
-            return tableProduits;
+            rptProduits.DataSource = new DataView(tableProduits);
+            rptProduits.DataBind();
         }
 
         protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -123,8 +121,16 @@ namespace Puces_R
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
             myConnection.Open();
-            SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
-            commandeMAJQuantite.ExecuteNonQuery();
+            if (txtQuantite.Text == "0")
+            {
+                SqlCommand commandeSuppression = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoPanier = " + e.CommandArgument, myConnection);
+                commandeSuppression.ExecuteNonQuery();
+            }
+            else
+            {
+                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
+                commandeMAJQuantite.ExecuteNonQuery();
+            }
             myConnection.Close();
 
             calculerCouts();

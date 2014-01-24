@@ -20,12 +20,6 @@
     text-align:center;
 }
 
-.boiteImageProduit
-{
-    width:150px;
-    height:150px;
-}
-
 .boiteImageProduit > div
 {
     height:150px;
@@ -34,6 +28,6 @@
 
 .boiteImageProduit img
 {
-    max-width:135px;
-    max-height:135px;
+    max-width:140px;
+    max-height:140px;
 }

@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>Description: </td>
-                <td><asp:Label ID="lblDescription" runat="server" CssClass="largeurMaxDetails" /></td>
+                <td><asp:Label ID="lblDescription" runat="server" CssClass="description" /></td>
             </tr>
             <tr>
                 <td>Prix demandé: </td>
@@ -35,17 +35,25 @@
                 <td><asp:Label ID="lblPrixEnVente" runat="server" /></td>
             </tr>
             <tr>
-                <td>Quantité disponible: </td>
+                <td>Disponible: </td>
                 <td><asp:Label ID="lblQuantiteDisponible" runat="server" /></td>
             </tr>
             <tr>
-                <td>Date de création: </td>
+                <td>Création: </td>
                 <td><asp:Label ID="lblDateCreation" runat="server" /></td>
             </tr>
             <tr>
-                <td>Date de mise à jour: </td>
+                <td>Mise à jour: </td>
                 <td><asp:Label ID="lblDateMiseAJour" runat="server" /></td>
             </tr>
-        </table>
+            <tr>
+                <td>Quantité: </td>
+                <td><asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" Text="1" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" /></td>
+            </tr>
+        </table>       
     </div>
 </asp:Content>

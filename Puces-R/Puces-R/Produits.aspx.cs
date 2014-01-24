@@ -89,7 +89,7 @@ namespace Puces_R
             {
 
                 Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                Image imgProduit = (Image)item.FindControl("imgProduit");
+                HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
                 Label lblCategorie = (Label)item.FindControl("lblCategorie");
                 Label lblDescriptionAbregee = (Label)item.FindControl("lblDescriptionAbregee");
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
@@ -105,7 +105,8 @@ namespace Puces_R
                 short intQuantite = (short)drvFilm["NombreItems"];
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
-                imgProduit.ImageUrl = urlImage;
+                hypProduit.ImageUrl = urlImage;
+                hypProduit.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit + "&noclient=10000";
                 lblCategorie.Text = strCategorie;
                 lblDescriptionAbregee.Text = strDescriptionAbregee;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");

@@ -17,6 +17,14 @@ namespace Puces_R
             }
         }
 
+        public string Label
+        {
+            set
+            {
+                lbl.Text = value;
+            }
+        }
+
         public string NoTelephone
         {
             get

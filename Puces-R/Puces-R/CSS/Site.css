@@ -1,135 +1,138 @@
-﻿a img, a:link img, a:visited img, a:hover img, a:active img 
-{ 
-    border:0 !important; 
+﻿a img, a:link img, a:visited img, a:hover img, a:active img
+{
+    border: 0 !important;
 }
 
 a
-{ 
-    color:#0052AE;
+{
+    color: #0052AE;
 }
 
 body
 {
-    font-family:Sans-Serif;
+    font-family: Sans-Serif;
+    margin: 12px auto;
 }
 
 .logo
 {
-    height:50px;
-    vertical-align:middle;
+    height: 50px;
+    vertical-align: middle;
 }
 
 .titre
 {
-    font-size:xx-large;
-    vertical-align:middle;
+    font-size: xx-large;
+    vertical-align: middle;
 }
 
 .menu
 {
-    float:right;
-    line-height:50px;
-    vertical-align:middle;
+    float: right;
+    line-height: 50px;
+    vertical-align: middle;
 }
 
 .main
 {
-   text-align:center;
+    text-align: center;
 }
 
 .main > div
 {
-    overflow:hidden;
-    display:inline-block;
-    text-align:left;
+    overflow: hidden;
+    display: inline-block;
+    text-align: left;
 }
 
 .page
 {
-    text-align:center;
+    text-align: center;
 }
 
 .page > div
 {
-    display:inline-block;
-    text-align:left;
+    display: inline-block;
+    text-align: left;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .footer
 {
-    text-align:right;
+    text-align: right;
 }
 
 .rectangleStylise
 {
-    padding:10px 15px;
-    margin:5px;
-    background-color:LightGray;
-    border:1px solid black;
-    border-radius:10px;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: LightGray;
+    border: 1px solid black;
+    border-radius: 10px;
     box-shadow: 3px 3px 4px Gray;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .boiteImageProduit
 {
-    margin:5px 0;
-    display:inline-block;
-    float:left;
-    border:1px solid Black;
+    margin: 5px 0;
+    display: inline-block;
+    float: left;
+    border: 1px solid Black;
 }
 
 .boiteImageProduit > div
 {
-    display:table-cell;
-    vertical-align:middle;
-    background-color:White;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: White;
 }
 
 .boiteImageProduit img
 {
-    display:block;
-    margin:auto;
+    display: block;
+    margin: auto;
 }
 
 .lignePointilleHorizontale
 {
-    border-bottom:5px dotted Gray;
-    padding-bottom:10px;
-    margin-bottom:5px;
+    border-bottom: 5px dotted Gray;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .pnlGauche
 {
-    float:left;
+    float: left;
 }
 
 .pnlDroite
 {
-    border-left:5px dotted Gray;
-    padding-left:20px;
-    margin-left:20px;
-    display:inline-block;
+    border-left: 5px dotted Gray;
+    padding-left: 20px;
+    margin-left: 20px;
+    display: inline-block;
 }
 
 .pnlDetails
 {
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .pnlDetails td
 {
-    vertical-align:top;
-    padding:5px;
+    vertical-align: top;
+    padding: 5px;
 }
 
 .boiteQuantite
 {
-    width:30px;
+    width: 30px;
 }
 
-.pnlDetails td:first-child 
-{ 
-    text-align: right
+.pnlDetails td:first-child
+{
+    text-align: right;
 }

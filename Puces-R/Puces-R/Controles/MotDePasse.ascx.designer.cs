@@ -13,6 +13,15 @@ namespace Puces_R {
     public partial class MotDePasse {
         
         /// <summary>
+        /// Contrôle lbl.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl;
+        
+        /// <summary>
         /// Contrôle tbMDP.
         /// </summary>
         /// <remarks>
@@ -22,12 +31,12 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox tbMDP;
         
         /// <summary>
-        /// Contrôle reqMDP.
+        /// Contrôle tdReqMDP.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqMDP;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdReqMDP;
     }
 }

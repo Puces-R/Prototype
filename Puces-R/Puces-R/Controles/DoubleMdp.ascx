@@ -1,19 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DoubleMdp.ascx.cs" Inherits="Puces_R.DoubleMdp" %>
 <%@ Register TagPrefix="yc" TagName="MotDePasse" Src="~/Controles/MotDePasse.ascx" %>
 <tr>
-    <td>
-        Mot de passe
-    </td>
-    <td>
-        <yc:MotDePasse runat="server" ID="tbMDP1" Obligatoire="true" />
-    </td>
+    <yc:MotDePasse runat="server" ID="tbMDP1" Obligatoire="true" />
 </tr>
 <tr>
+    <yc:MotDePasse runat="server" ID="tbMDP2" Obligatoire="false" Label="Confirmer le mot de passe"/>
     <td>
-        Confirmer le mot de passe
-    </td>
-    <td>
-        <yc:MotDePasse runat="server" ID="tbMDP2" Obligatoire="false" />
-        <asp:CustomValidator runat="server" OnServerValidate="validerMDPIdentique" ErrorMessage="Différents" />
+        <asp:CustomValidator runat="server" OnServerValidate="validerMDPIdentique" ErrorMessage="Les mots de passe ne correspondent pas" Display="Dynamic"/>
     </td>
 </tr>

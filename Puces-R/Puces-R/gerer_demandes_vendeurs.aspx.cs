@@ -30,8 +30,6 @@ namespace Puces_R
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPVendeurs WHERE Statut = 2", myConnection);
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
-            
-            myConnection.Open();
             myConnection.Close();
 
             return tableDemandes;
@@ -51,7 +49,10 @@ namespace Puces_R
                 Label charge_max_demande = (Label)item.FindControl("charge_max_demande");
                 Label livraison_gratuite = (Label)item.FindControl("livraison_gratuite");
                 Label date_demande = (Label)item.FindControl("date_demande");
-                Button btnDetails = (Button)item.FindControl("btnDetails");
+                Button btnRefuser = (Button)item.FindControl("btn_refuser");
+                Button btn_accepter = (Button)item.FindControl("btn_accepter");
+                TextBox cont_mail_acceptation = (TextBox)item.FindControl("cont_mail_acceptation");
+                TextBox cont_mail_refus = (TextBox)item.FindControl("cont_mail_refus");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
                                 
@@ -62,12 +63,43 @@ namespace Puces_R
                 charge_max_demande.Text = drvDemande["MaxLivraison"].ToString() + "Kg";
                 livraison_gratuite.Text = drvDemande["LivraisonGratuite"].ToString();
                 date_demande.Text = drvDemande["DateCreation"].ToString();
+                btnRefuser.CommandArgument = drvDemande["NoVendeur"].ToString();
+                btn_accepter.CommandArgument = drvDemande["NoVendeur"].ToString();
+                cont_mail_acceptation.Text = "Bonjour " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString() + "\nFélicitations! Votre inscription sur LesPetitesPuces.com a été acceptée.";
+                cont_mail_refus.Text = "Bonjour " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString() + "\nVotre inscription sur LesPetitesPuces.com n'a pas été acceptée.";
             }
         }
 
         protected void rptDemandes_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-           
+            
+        }
+
+        protected void refus_demande(object sender, CommandEventArgs e)
+        {
+            myConnection.Open();
+            SqlCommand commande_refuser_demande = new SqlCommand("DELETE FROM PPVendeurs WHERE NoVendeur = " + e.CommandArgument, myConnection);
+            commande_refuser_demande.ExecuteNonQuery();
+
+            DataTable tableProduits = charge_demandes();
+
+            rptDemandes.DataSource = new DataView(tableProduits);
+            rptDemandes.DataBind();
+
+            myConnection.Close();
+        }
+
+        protected void acceptation_demande(object sender, CommandEventArgs e)
+        {
+            myConnection.Open();
+            SqlCommand commande_accepter_demande = new SqlCommand("UPDATE PPVendeurs SET Statut = 0 WHERE NoVendeur = " + e.CommandArgument, myConnection);
+            commande_accepter_demande.ExecuteNonQuery();
+
+            DataTable tableProduits = charge_demandes();
+
+            rptDemandes.DataSource = new DataView(tableProduits);
+            rptDemandes.DataBind();
+            myConnection.Close();
         }
     }
 }

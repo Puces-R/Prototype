@@ -7,22 +7,20 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="titre_sec">Demandes de vendeurs</div>
+            <table border="0" width="100%"> 
     <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" OnItemCommand="rptDemandes_ItemCommand">
-        <HeaderTemplate>
-            <table border="0">  
-        </HeaderTemplate>
         <ItemTemplate>      
-            <tr>
-                <td colspan="2" class="titre_tab2" onclick="afficheOuMasqueInfoVendeur(this);"><asp:Label runat="server" ID="titre_demande" /></td>
+            <tr onclick="afficheOuMasqueInfoVendeur(this);">
+                <td colspan="2" class="titre_tab2" ><asp:Label runat="server" ID="titre_demande" /></td>
             </tr>
-            <tr class="ligne_info_demande" runat="server">
+            <tr class="ligne_info_demande" runat="server" >
                 <td colspan="2" class="cont_tab2">
-                    <table border="0">
-                        <colgroup>
+                    <table border="0" width="100%">
+                        <colgroup  >
                             <col width="50%"/>
                             <col width="50%"/>
                         </colgroup>
-                        <tr>
+                        <tr >
                             <td align="right">Adresse:</td>
                             <td><asp:Label runat="server" ID="addr_demande" /></td>
                         </tr>
@@ -47,17 +45,39 @@
                             <td><asp:Label runat="server" ID="date_demande" /></td>
                         </tr>
                         <tr>
-                            <td align="right">
-                                <asp:Button id="btn_accepter" runat="server" text="Accetpter" CssClass="boutton" CommandName="acceptation_demande"/> 
+                            <td align="right"><input type="button" value="Accepter" onclick="afficher_accepter(this);" class="boutton" /></td>
+                            <td><input type="button" value="Refuser" onclick="afficher_refuser(this);" class="boutton" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="verdict_vendeur">
+                                <h2 class="center">Acceptation de la demande:</h2>
+                                <p class="center">
+                                    Entrez le taux de facturation du vendeur: <asp:TextBox runat="server" id="taux_facturation" TextMode="Number" Columns="4" Width="55" /> <br />
+                                </p>
+                                Mail de confirmation de l'acceptation envoyé au vendeur <br />
+                                <span class="remarque">(N'ajouter pas le taux dans le mail de confirmation, il sera automatiquement ajouté dans le mail avant l'envoi)</span><br />
+                                <asp:TextBox runat="server" id="cont_mail_acceptation" TextMode="MultiLine" Columns="70" Rows="15" />
+                                <p class="center">
+                                    <asp:Button id="btn_accepter" runat="server" text="Envoyer le courriel d'acceptation" CssClass="boutton" OnCommand="acceptation_demande"/>
+                                    <input type="button" value="Annuler" onclick="annuler_acceptation(this);" class="boutton" />
+                                </p>
                             </td>
-                            <td><asp:Button ID="btn_refuser" runat="server" text="Refuser" CssClass="boutton" CommandName="refus_demande"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="verdict_vendeur">
+                                <h2 class="center">Refus de la demande:</h2>
+                                Mail de refus envoyé au vendeur <br />
+                                <asp:TextBox runat="server" id="cont_mail_refus" TextMode="MultiLine" Columns="70" Rows="15" />
+                                <p class="center">
+                                    <asp:Button id="btn_refuser" runat="server" text="Envoyer le courriel de refus" CssClass="boutton" OnCommand="refus_demande" />
+                                    <input type="button" value="Annuler" onclick="annuler_refus(this);" class="boutton" />
+                                </p>
+                            </td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
     </asp:Repeater>
+            </table>
 </asp:Content>

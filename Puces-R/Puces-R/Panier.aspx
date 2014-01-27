@@ -11,7 +11,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <div class="pnlGauche">
+    <div class="panneau pnlGauche">
         <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
             <ItemTemplate>
                 <div class="rectangleStylise rectangleProduits">
@@ -36,7 +36,7 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-    <div class="pnlDroite pnlDetails">
+    <div class="panneau pnlDroite pnlDetails">
         <table>
             <tr>
                 <td>Poids Total: </td>

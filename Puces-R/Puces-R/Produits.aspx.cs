@@ -11,6 +11,8 @@ namespace Puces_R
 {
     public partial class Produits : System.Web.UI.Page
     {
+        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
         protected void Page_Load(object sender, EventArgs e)
         {
             List<String> whereParts = new List<String>();
@@ -26,9 +28,6 @@ namespace Puces_R
                     case 1:
                         colonne = "P.NoProduit";
                         break;
-                    case 2:
-                        colonne = "C.Description";
-                        break;
                     case 3:
                         colonne = "P.Description";
                         break;
@@ -40,6 +39,20 @@ namespace Puces_R
             if (int.TryParse(Request.Params["novendeur"], out noVendeur))
             {
                 whereParts.Add("P.NoVendeur = " + noVendeur);
+            }
+
+            int noCategorie;
+            if (IsPostBack)
+            {
+                noCategorie = int.Parse(ddlCategorie.SelectedValue);
+                whereParts.Add("P.NoCategorie = " + noCategorie);
+            }
+            else
+            {
+                if (int.TryParse(Request.Params["nocategorie"], out noCategorie))
+                {
+                    whereParts.Add("P.NoCategorie = " + noCategorie);
+                }
             }
 
             String whereClause;
@@ -65,7 +78,6 @@ namespace Puces_R
                     orderByClause += "P.DateCreation";
                     break;
             }
-            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
             DataTable tableProduits = new DataTable();
@@ -79,6 +91,25 @@ namespace Puces_R
             objPds.CurrentPageIndex = 0;
             dtlProduits.DataSource = objPds;
             dtlProduits.DataBind();
+
+            if (!IsPostBack)
+            {
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie WHERE P.NoVendeur = " + noVendeur, myConnection);
+                DataTable tableCategories = new DataTable();
+                adapteurCategories.Fill(tableCategories);
+
+                ddlCategorie.DataSource = tableCategories;
+                ddlCategorie.DataTextField = "Description";
+                ddlCategorie.DataValueField = "NoCategorie";
+                ddlCategorie.DataBind();
+                ddlCategorie.SelectedValue = noCategorie.ToString();
+
+                SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+
+                myConnection.Open();
+                ((SiteMaster)Master).Vendeur = (String)commandVendeur.ExecuteScalar();
+                myConnection.Close();
+            }
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)

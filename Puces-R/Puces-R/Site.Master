@@ -19,6 +19,9 @@
                             <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
                         </div>
                     </div>
+                    <asp:Panel runat="server" ID="pnlVendeur" CssClass="lignePointilleHorizontale barreVendeur" Visible=false>
+                        <asp:Label runat="server" ID="lblVendeur" />
+                    </asp:Panel>
                     <div class="lignePointilleHorizontale main">
                         <div>
                             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>

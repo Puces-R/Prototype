@@ -3,8 +3,8 @@
 <asp:Menu runat="server" Orientation="Horizontal">
     <StaticMenuItemStyle HorizontalPadding="10" Font-Bold="True" />
     <Items>
-        <asp:MenuItem Text="Accueil" />
-        <asp:MenuItem Text="Panier" />
+        <asp:MenuItem Text="Accueil" NavigateUrl="../AccueilClient.aspx?noclient=10000" />
+        <asp:MenuItem Text="Panier" NavigateUrl="../Panier.aspx?noclient=10000" />
         <asp:MenuItem Text="Modifier le profil" />
         <asp:MenuItem Text="Déconnecter" NavigateUrl="../Connexion.aspx" />
     </Items>

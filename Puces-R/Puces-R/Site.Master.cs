@@ -9,9 +9,13 @@ namespace Puces_R
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public String Vendeur
         {
-
+            set
+            {
+                lblVendeur.Text = value;
+                pnlVendeur.Visible = true;
+            }
         }
     }
 }

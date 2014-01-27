@@ -11,14 +11,14 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div class="pnlGauche">
+    <div class="panneau pnlGauche">
         <div class="boiteImageProduit">
             <div>
                 <asp:Image runat="server" ID="imgProduit" />
             </div>
         </div>
     </div>
-    <div class="pnlDroite pnlDetails">
+    <div class="panneau pnlDroite pnlDetails">
         <table>
             <tr>
                 <td>Produit: </td>

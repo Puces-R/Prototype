@@ -29,7 +29,13 @@ namespace Puces_R
                 Response.Redirect("Default.aspx", true);
             }
 
-            String whereClause = " WHERE A.NoClient = " + noClient;
+            int noVendeur;
+            if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
+            {
+                Response.Redirect("Default.aspx", true);
+            }
+
+            String whereClause = " WHERE A.NoClient = " + noClient + " AND P.NoVendeur = " + noVendeur;
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
@@ -49,6 +55,9 @@ namespace Puces_R
             lblSousTotal.Text = sousTotal.ToString("C");
 
             myConnection.Open();
+
+            SqlCommand commandeVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + noVendeur , myConnection);
+            ((SiteMaster)Master).Vendeur = (String)commandeVendeur.ExecuteScalar();
 
             SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = 1 AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
             decimal prixLivraison = (decimal)commandeLivraison.ExecuteScalar();

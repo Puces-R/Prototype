@@ -1,18 +1,23 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionVendeur.aspx.cs"
-    Inherits="Puces_R.InscriptionVendeur" %>
+    Inherits="Puces_R.InscriptionVendeur" MasterPageFile="~/Site.Master" %>
 
 <%@ Register TagPrefix="yc" TagName="Identifiants" Src="~/Controles/Identifiants.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>S'inscrire en tant que vendeur</title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<%@ Register TagPrefix="yc" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
+    <yc:MenuClient runat="server" />
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <style type="text/css">
+        td
+        {
+            border: 1px solid black;
+        }
+    </style>
     <table>
         <yc:Identifiants runat="server" ID="tbIdentifiants" />
         <tr>
@@ -22,6 +27,8 @@
             <td>
                 <asp:TextBox runat="server" ID="tbNomAffaires" MaxLength="50" />
             </td>
+            <td>
+            </td>
         </tr>
         <tr>
             <td>
@@ -29,6 +36,8 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="tbNom" MaxLength="50" />
+            </td>
+            <td>
             </td>
         </tr>
         <tr>
@@ -38,6 +47,8 @@
             <td>
                 <asp:TextBox runat="server" ID="tbPrenom" MaxLength="50" />
             </td>
+            <td>
+            </td>
         </tr>
         <tr>
             <td>
@@ -45,6 +56,8 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="tbRue" MaxLength="50" />
+            </td>
+            <td>
             </td>
         </tr>
         <tr>
@@ -54,51 +67,45 @@
             <td>
                 <asp:TextBox runat="server" ID="tbVille" MaxLength="50" />
             </td>
-        </tr>
-        <tr>
             <td>
-                Code Postal
-            </td>
-            <td>
-                <yc:CodePostal runat="server" ID="tbCodePostal" />
             </td>
         </tr>
+        <yc:CodePostal runat="server" ID="tbCodePostal" />
         <tr>
             <td>
                 Pays
             </td>
             <td>
-                <asp:TextBox runat="server" ID="tbPays" Text="Canada" MaxLength="10" Enabled="false"/>
-            </td>
-        </tr>
-        <tr>
-        <td>Province</td>
-        <td><yc:Province runat="server" ID="tbProvince" /></td>
-        <tr>
-            <td>
-                Téléphone 1
+                <asp:TextBox runat="server" ID="tbPays" Text="Canada" MaxLength="10" Enabled="false" />
             </td>
             <td>
-                <yc:Telephone runat="server" ID="tbTel1" Obligatoire="true" />
             </td>
         </tr>
         <tr>
             <td>
-                Téléphone 2
+                Province
             </td>
             <td>
-                <yc:Telephone runat="server" ID="tbTel2" />
+                <yc:Province runat="server" ID="tbProvince" />
+            </td>
+            <td>
             </td>
         </tr>
+        <yc:Telephone runat="server" ID="tbTel1" Label="Téléphone 1" />
+        <yc:Telephone runat="server" ID="tbTel2" Label="Téléphone 2"/>
         <tr>
             <td>
                 Poids maximal d'une commande
             </td>
             <td>
                 <asp:TextBox runat="server" ID="tbPoids" MaxLength="10" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPoids" ErrorMessage="Obligatoire" />
+            </td>
+            <td>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPoids" ErrorMessage="Ce champ est obligatoire"
+                    Display="Dynamic" />
                 <asp:RangeValidator runat="server" ControlToValidate="tbPoids" Type="Integer" MinimumValue="0"
-                    MaximumValue="100" ErrorMessage="Format" />
+                    MaximumValue="2147483647" ErrorMessage="Ce doit doit contenir un nombre entre 0 et 2147483647"
+                    Display="Dynamic" />
             </td>
         </tr>
         <tr>
@@ -107,9 +114,13 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="tbPrixLivraison" MaxLength="50" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPrixLivraison" ErrorMessage="Obligatoire" />
+            </td>
+            <td>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPrixLivraison" ErrorMessage="Ce champ est obligatoire"
+                    Display="Dynamic" />
                 <asp:RangeValidator runat="server" ControlToValidate="tbPrixLivraison" Type="Currency"
-                    MinimumValue="0" MaximumValue="100" ErrorMessage="Format" />
+                    MinimumValue="0" MaximumValue="214748,36" ErrorMessage="Ce champ doit contenir un nombre en 0 et 214748,36"
+                    Display="Dynamic" />
             </td>
         </tr>
         <tr>
@@ -118,14 +129,14 @@
             <td>
                 <asp:CheckBox runat="server" ID="cbTaxes" Checked="true" Text="Taxes" />
             </td>
+            <td>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="3" style="text-align: center;" >
                 <asp:Button runat="server" ID="btnConfirmer" Text="Confirmer l'inscription" CausesValidation="false"
                     OnClick="inscription" />
             </td>
         </tr>
     </table>
-    </form>
-</body>
-</html>
+</asp:Content>

@@ -56,8 +56,10 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="BoiteMessage.aspx" />
+    <Content Include="Commande.aspx" />
     <Content Include="Connexion.aspx" />
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\Courriel.ascx" />
@@ -70,6 +72,8 @@
     <Content Include="Controles\MotDePasse.ascx" />
     <Content Include="Controles\Province.ascx" />
     <Content Include="Controles\Telephone.ascx" />
+    <Content Include="CSS\AccueilClient.css" />
+    <Content Include="CSS\Commande.css" />
     <Content Include="CSS\DetailsProduit.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
@@ -145,6 +149,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AccueilClient.aspx.cs">
+      <DependentUpon>AccueilClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccueilClient.aspx.designer.cs">
+      <DependentUpon>AccueilClient.aspx</DependentUpon>
+    </Compile>
     <Compile Include="accueil_gestionnaire.aspx.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -158,6 +169,13 @@
     </Compile>
     <Compile Include="BoiteMessage.aspx.designer.cs">
       <DependentUpon>BoiteMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Commande.aspx.cs">
+      <DependentUpon>Commande.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Commande.aspx.designer.cs">
+      <DependentUpon>Commande.aspx</DependentUpon>
     </Compile>
     <Compile Include="Connexion.aspx.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>

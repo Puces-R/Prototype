@@ -527,5 +527,30 @@ function b(strIDBalise,strValeur) {
     |-------------------------------------------------------------------------------------|
     */
     function afficheOuMasqueInfoVendeur(objBalise) {
-        afficheOuMasqueBalise(objBalise.nextSibling);
+        objBalise.nextSibling.nextSibling.style.display = (objBalise.nextSibling.nextSibling.style.display == '' ? 'table-row' : '');
     }
+
+    function afficher_accepter(objBalise) {
+        //alert(objBalise.parentNode.parentNode.nextSibling.nextSibling.firstChild.nextSibling.innerHTML);
+        //alert(objBalise.parentNode.parentNode.nextSibling.nextSibling.firstChild.nextSibling.style.display);
+        objBalise.parentNode.parentNode.nextSibling.nextSibling.firstChild.nextSibling.style.display = 'table-cell';
+        objBalise.parentNode.parentNode.style.display = "none";
+        //objBalise.parentNode.parentNode.nextSibling.style.display = "none";
+    }
+
+    function afficher_refuser(objBalise) {
+        objBalise.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.style.display = 'table-cell';
+        objBalise.parentNode.parentNode.style.display = "none";
+        //objBalise.parentNode.parentNode.nextSibling.style.display = "none";
+    }
+
+    function annuler_acceptation(objBalise) {
+        objBalise.parentNode.parentNode.style.display = "none";
+        objBalise.parentNode.parentNode.parentNode.previousSibling.previousSibling.style.display = "table-row";
+        //objBalise.parentNode.parentNode.nextSibling.style.display = "none";
+    }
+    function annuler_refus(objBalise) {
+        objBalise.parentNode.parentNode.style.display = "none";
+        objBalise.parentNode.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.style.display = "table-row";
+        //objBalise.parentNode.parentNode.nextSibling.style.display = "none";
+    }    

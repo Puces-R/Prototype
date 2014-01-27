@@ -17,7 +17,6 @@
             <asp:DropDownList ID="ddlTypeRecherche" runat="server">
                 <asp:ListItem Text="Date de parution" />
                 <asp:ListItem Text="Numéro" />
-                <asp:ListItem Text="Catégorie" />
                 <asp:ListItem Text="Description" />
             </asp:DropDownList>
             <asp:TextBox ID="txtCritereRecherche" runat="server" />
@@ -41,6 +40,10 @@
                 <asp:ListItem Value="25" />
                 <asp:ListItem Value="50" />
             </asp:DropDownList>
+        </span>
+        <span class="boiteListeDeroulante">
+            Catégorie:
+            <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" />
         </span>
     </div>
     <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">

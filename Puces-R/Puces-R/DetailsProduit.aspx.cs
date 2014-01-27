@@ -11,6 +11,18 @@ namespace Puces_R
 {
     public partial class DetailsProduit : System.Web.UI.Page
     {
+        private long NoVendeur
+        {
+            get
+            {
+                return (long)ViewState["NoVendeur"];
+            }
+            set
+            {
+                ViewState["NoVendeur"] = value;
+            }
+        }
+
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,7 +37,7 @@ namespace Puces_R
 
                 String whereClause = " WHERE P.noProduit = " + noProduit;
 
-                SqlCommand commandeProduit = new SqlCommand("SELECT P.NoProduit,Photo,P.Description,C.Description AS Categorie,Nom,PrixDemande,PrixVente,NombreItems,Poids,DateCreation,DateMAJ FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause, myConnection);
+                SqlCommand commandeProduit = new SqlCommand("SELECT P.NoProduit,Photo,P.Description,C.Description AS Categorie,P.Nom,PrixDemande,PrixVente,NombreItems,Poids,P.DateCreation,P.DateMAJ,V.NoVendeur,NomAffaires FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPVendeurs V ON P.NoVendeur = V.NoVendeur" + whereClause, myConnection);
 
                 myConnection.Open();
 
@@ -34,13 +46,16 @@ namespace Puces_R
 
                 this.imgProduit.ImageUrl = "Images/Televerse/" + lecteurProduit["Photo"].ToString();
 
-                this.lblProduit.Text = lecteurProduit["Nom"].ToString();
-                this.lblCategorie.Text = lecteurProduit["Categorie"].ToString();
-                this.lblDescription.Text = lecteurProduit["Description"].ToString();
+                this.lblProduit.Text = (String)lecteurProduit["Nom"];
+                this.lblCategorie.Text = (String)lecteurProduit["Categorie"];
+                this.lblDescription.Text = (String)lecteurProduit["Description"];
                 this.lblPrixDemande.Text = ((decimal)lecteurProduit["PrixDemande"]).ToString("C");
                 this.lblPrixEnVente.Text = ((decimal)lecteurProduit["PrixVente"]).ToString("C");
                 this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
+                ((SiteMaster)Master).Vendeur = (String)lecteurProduit["NomAffaires"];
+
+                this.NoVendeur = (long)lecteurProduit["NoVendeur"];
 
                 object dateMAJ = lecteurProduit["DateMAJ"];
                 if (dateMAJ is DBNull)
@@ -61,7 +76,6 @@ namespace Puces_R
             String nbItems = txtQuantite.Text;
             String noClient = Request.Params["noclient"];
             String noProduit = Request.Params["noproduit"];
-            String noVendeur = noProduit.Substring(5);
             String noPanier = noClient + noProduit;
             
             myConnection.Open();
@@ -75,13 +89,13 @@ namespace Puces_R
             else
             {
                 String dateCreation = DateTime.Now.ToShortDateString();
-                String values = String.Join(",", noPanier, noClient, noVendeur, noProduit, dateCreation, nbItems);
+                String values = String.Join(",", noPanier, noClient, NoVendeur, noProduit, dateCreation, nbItems);
                 SqlCommand commandeAjout = new SqlCommand("INSERT INTO PPArticlesEnPanier VALUES (" + values + ")", myConnection);
                 commandeAjout.ExecuteNonQuery();
             }
             myConnection.Close();
-            
-            Response.Redirect("Panier.aspx?noclient=" + noClient);
+
+            Response.Redirect("Panier.aspx?noclient=" + noClient + "&novendeur=" + NoVendeur);
         }
     }
 }

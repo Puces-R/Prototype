@@ -536,6 +536,8 @@ function b(strIDBalise,strValeur) {
         objBalise.parentNode.parentNode.nextSibling.nextSibling.firstChild.nextSibling.style.display = 'table-cell';
         objBalise.parentNode.parentNode.style.display = "none";
         //objBalise.parentNode.parentNode.nextSibling.style.display = "none";
+        objBalise.parentNode.parentNode.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.
+        nextSibling.firstChild.nextSibling.nextSibling.nextSibling.required = 'true';
     }
 
     function afficher_refuser(objBalise) {
@@ -545,6 +547,8 @@ function b(strIDBalise,strValeur) {
     }
 
     function annuler_acceptation(objBalise) {
+        objBalise.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling
+        .previousSibling.previousSibling.previousSibling.firstChild.nextSibling.nextSibling.nextSibling.removeAttribute("required");
         objBalise.parentNode.parentNode.style.display = "none";
         objBalise.parentNode.parentNode.parentNode.previousSibling.previousSibling.style.display = "table-row";
         //objBalise.parentNode.parentNode.nextSibling.style.display = "none";

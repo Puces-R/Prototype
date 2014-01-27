@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Net.Mail;
+using System.Net;
 
 namespace Puces_R
 {
@@ -21,6 +23,18 @@ namespace Puces_R
 
                 rptDemandes.DataSource = new DataView(tableProduits);
                 rptDemandes.DataBind();
+            }
+
+            if (Session["err_msg"] != null)
+                if (Session["err_msg"] != "")
+                {
+                    Response.Write(Session["err_msg"]);
+                    Session["err_msg"] = "";
+                }
+
+            foreach (RepeaterItem item in rptDemandes.Items)
+            {
+                Label courriel = (Label)item.FindControl("courriel_demande");
             }
         }
 
@@ -63,8 +77,8 @@ namespace Puces_R
                 charge_max_demande.Text = drvDemande["MaxLivraison"].ToString() + "Kg";
                 livraison_gratuite.Text = drvDemande["LivraisonGratuite"].ToString();
                 date_demande.Text = drvDemande["DateCreation"].ToString();
-                btnRefuser.CommandArgument = drvDemande["NoVendeur"].ToString();
-                btn_accepter.CommandArgument = drvDemande["NoVendeur"].ToString();
+                btnRefuser.CommandArgument = drvDemande["AdresseEmail"].ToString();
+                btn_accepter.CommandArgument = drvDemande["AdresseEmail"].ToString();
                 cont_mail_acceptation.Text = "Bonjour " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString() + "\nFélicitations! Votre inscription sur LesPetitesPuces.com a été acceptée.";
                 cont_mail_refus.Text = "Bonjour " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString() + "\nVotre inscription sur LesPetitesPuces.com n'a pas été acceptée.";
             }
@@ -78,8 +92,42 @@ namespace Puces_R
         protected void refus_demande(object sender, CommandEventArgs e)
         {
             myConnection.Open();
-            SqlCommand commande_refuser_demande = new SqlCommand("DELETE FROM PPVendeurs WHERE NoVendeur = " + e.CommandArgument, myConnection);
+            SqlCommand commande_refuser_demande = new SqlCommand("DELETE FROM PPVendeurs WHERE AdresseEmail = '" + e.CommandArgument + "'", myConnection);
+            TextBox tbMail, tbTaux;
             commande_refuser_demande.ExecuteNonQuery();
+
+            try
+            {
+                MailMessage msg = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
+
+                //Response.Write(rptDemandes.Items.Count);
+                foreach (RepeaterItem item in rptDemandes.Items)
+                {
+                    Label courriel = (Label) item.FindControl("courriel_demande");
+                    if (courriel.Text == e.CommandArgument.ToString())
+                    {
+                        tbMail = (TextBox)item.FindControl("cont_mail_refus");
+                        //tbTaux = (TextBox)item.FindControl("taux_facturation");
+                        msg.Body = tbMail.Text;
+                        //msg.Body += " \nTaux de facturation retenu par le gestionnaire: " + tbTaux.Text + "%";
+                    }
+                    //Response.Write("_" + courriel.Text + "_");
+                    //Response.Write(rptDemandes.Items.Count);
+                }
+
+                msg.Subject = "Refus de la demande d'abonnement au site LesPetiesPuces.com";
+                msg.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
+                msg.To.Add(new MailAddress(e.CommandArgument.ToString()));
+                SmtpServer.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(msg);
+
+            }
+            catch (Exception k)
+            {
+                Session["err_msg"] = "Echec de l'envoi du mail de confirmation: " + k.ToString();
+            }
 
             DataTable tableProduits = charge_demandes();
 
@@ -91,14 +139,52 @@ namespace Puces_R
 
         protected void acceptation_demande(object sender, CommandEventArgs e)
         {
+            TextBox tbMail, tbTaux;
+            string taux_val = "";
+            MailMessage msg = new MailMessage();
+
+            //Response.Write(rptDemandes.Items.Count);
+            foreach (RepeaterItem item in rptDemandes.Items)
+            {
+                Label courriel = (Label)item.FindControl("courriel_demande");
+                if (courriel.Text == e.CommandArgument.ToString())
+                {
+                    tbMail = (TextBox)item.FindControl("cont_mail_acceptation");
+                    tbTaux = (TextBox)item.FindControl("taux_facturation");
+                    msg.Body = tbMail.Text;
+                    msg.Body += " \nTaux de facturation retenu par le gestionnaire: " + tbTaux.Text + "%";
+                    taux_val = tbTaux.Text;
+                }
+                //Response.Write("_" + courriel.Text + "_");
+                //Response.Write(rptDemandes.Items.Count);
+            }
+
             myConnection.Open();
-            SqlCommand commande_accepter_demande = new SqlCommand("UPDATE PPVendeurs SET Statut = 0 WHERE NoVendeur = " + e.CommandArgument, myConnection);
+            SqlCommand commande_accepter_demande = new SqlCommand("UPDATE PPVendeurs SET Statut = 0, Pourcentage = " + taux_val + " WHERE AdresseEmail = '" + e.CommandArgument + "'", myConnection);
             commande_accepter_demande.ExecuteNonQuery();
+            //Response.Write(commande_accepter_demande.CommandText);
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);                
+
+                msg.Subject = "Acceptation de la demande d'abonnement au site LesPetiesPuces.com";
+                msg.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
+                msg.To.Add(new MailAddress(e.CommandArgument.ToString()));
+                SmtpServer.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(msg);
+
+            }
+            catch (Exception k)
+            {
+                Session["err_msg"] = "Echec de l'envoi du mail de confirmation: " + k.ToString();
+            }
 
             DataTable tableProduits = charge_demandes();
 
             rptDemandes.DataSource = new DataView(tableProduits);
             rptDemandes.DataBind();
+
             myConnection.Close();
         }
     }

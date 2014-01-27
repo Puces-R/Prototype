@@ -35,6 +35,8 @@ namespace Puces_R
             cmdEnvoyer.ExecuteNonQuery();
 
             connexion.Close();
+
+            Response.Redirect("BoiteMessage.aspx");
         }
 
         protected void apercuMessage(object sender, EventArgs e)

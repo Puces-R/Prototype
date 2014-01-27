@@ -24,15 +24,13 @@ namespace Puces_R
                                                         "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
                                                         "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
                                                         "ON M.Envoyeur = X.No " +
-                                                        "WHERE M.Recepteur = 10700 AND M.NoMessage = @noMsg", connexion);
+                                                        "WHERE M.NoMessage = @noMsg", connexion);
 
-                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg AND Recepteur = @noRcpt", connexion);
+                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg", connexion);
 
                 cmdMessage.Parameters.AddWithValue("@noMsg", noMessage);
-                cmdMessage.Parameters.AddWithValue("@noRcpt", 10700); // cmdMessage.Parameters.AddWithValue("@noRcpt", (Int64)Session["ID"]);
 
                 cmdLu.Parameters.AddWithValue("@noMsg", noMessage);
-                cmdLu.Parameters.AddWithValue("@noRcpt", 10700); // cmdLu.Parameters.AddWithValue("@noRcpt", (Int64)Session["ID"]);
 
                 connexion.Open();
 

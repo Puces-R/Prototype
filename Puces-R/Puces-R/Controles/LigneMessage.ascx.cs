@@ -71,6 +71,7 @@ namespace Puces_R
         protected void voirMessage(object sender, EventArgs e)
         {
             Session["NoMessage"] = ((LigneMessage)((Control)sender).Parent.Parent.Parent).NoMessage;
+            Response.Write(Session["NoMessage"]);
             Response.Redirect("VoirMessage.aspx", true);
         }
     }

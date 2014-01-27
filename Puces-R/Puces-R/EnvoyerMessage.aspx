@@ -43,7 +43,7 @@
         </table>
     </div>
     <asp:Panel ID="divApercu" runat="server" Visible="false" CssClass="rectangleStylise">
-        <table>
+        <table style="border-collapse: collapse; table-layout:fixed; width:0;">
             <tr>
                 <td style="width: 100px;">
                     Date
@@ -64,7 +64,7 @@
                 <td>
                     Sujet
                 </td>
-                <td>
+                <td style="overflow: hidden; width: 700px;">
                     <asp:Label runat="server" ID="lblSujet">Sujet</asp:Label>
                 </td>
             </tr>
@@ -72,7 +72,7 @@
                 <td style="vertical-align: top;">
                     Message
                 </td>
-                <td style="background-color: White; border: solid gray 1px; padding: 10px;">
+                <td style="background-color: White; border: solid gray 1px; padding: 10px; overflow: hidden; width: 700px;">
                     <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
                 </td>
             </tr>

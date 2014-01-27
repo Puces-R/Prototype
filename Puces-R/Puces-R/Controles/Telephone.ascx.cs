@@ -32,6 +32,13 @@ namespace Puces_R
                 string tel = tbReg.Text + tbPart1.Text + tbPart2.Text;
                 return tel == string.Empty ? null : tel;
             }
+            set
+            {
+                string no = new string(value.Where(c => char.IsDigit(c)).ToArray());
+                tbReg.Text = no.Substring(0, 3);
+                tbPart1.Text = no.Substring(3, 3);
+                tbPart2.Text = no.Substring(6, 4);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

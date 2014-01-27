@@ -14,7 +14,7 @@
                 <td style="width: 100px;">
                     Date
                 </td>
-                <td style="width: 900px;">
+                <td style="width: 700px;">
                     <asp:Label runat="server" ID="lblDate">Date</asp:Label>
                 </td>
             </tr>
@@ -43,5 +43,5 @@
                 </td>
             </tr>
         </table>
-        <div>
+    </div>
 </asp:Content>

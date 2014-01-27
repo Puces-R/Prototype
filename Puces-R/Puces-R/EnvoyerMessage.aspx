@@ -31,7 +31,7 @@
                     Message
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbMessage" TextMode="MultiLine" Width="500px" Height="150px" />
+                    <asp:TextBox runat="server" ID="tbMessage" TextMode="MultiLine" Width="700px" Height="150px" />
                 </td>
             </tr>
             <tr>
@@ -42,5 +42,40 @@
             </tr>
         </table>
     </div>
-    <p runat="server" ID="pApercu" Visible="false" style="width: 500px; border: 1px solid gray ; padding: 10px; margin: auto;"></p>
+    <asp:Panel ID="divApercu" runat="server" Visible="false" CssClass="rectangleStylise">
+        <table>
+            <tr>
+                <td style="width: 100px;">
+                    Date
+                </td>
+                <td style="width: 700px;">
+                    <asp:Label runat="server" ID="lblDate">Date</asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    De
+                </td>
+                <td>
+                    <asp:Label runat="server" ID="lblDe">De</asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sujet
+                </td>
+                <td>
+                    <asp:Label runat="server" ID="lblSujet">Sujet</asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    Message
+                </td>
+                <td style="background-color: White; border: solid gray 1px; padding: 10px;">
+                    <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
+                </td>
+            </tr>
+        </table>
+    </asp:Panel>
 </asp:Content>

@@ -15,6 +15,10 @@ namespace Puces_R
             {
                 return ddlProvince.SelectedValue;
             }
+            set
+            {
+                ddlProvince.SelectedValue = value.ToUpper();
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

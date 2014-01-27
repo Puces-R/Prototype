@@ -35,12 +35,17 @@ namespace Puces_R
             cmdEnvoyer.ExecuteNonQuery();
 
             connexion.Close();
+
+            Response.Redirect("BoiteMessage.aspx");
         }
 
         protected void apercuMessage(object sender, EventArgs e)
         {
-            pApercu.Visible = true;
-            pApercu.InnerHtml = tbMessage.Text.Replace("\r\n", "<br />"); ;
+            divApercu.Visible = true;
+            lblDate.Text = DateTime.Now.ToString("d MMMM yyyy à hh\\hmm");
+            lblDe.Text = "test";
+            lblSujet.Text = tbSujet.Text;
+            lblMessage.Text = tbMessage.Text.Replace("\r\n", "<br />");
         }
     }
 }

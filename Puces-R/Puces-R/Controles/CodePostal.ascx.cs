@@ -25,6 +25,12 @@ namespace Puces_R
 
                 return code == string.Empty ? null : code;
             }
+            set
+            {
+                string code = value.Replace("-", "").Replace(" ", "").Trim();
+                tbPart1.Text = code.Substring(0, 3);
+                tbPart2.Text = code.Substring(3, 3);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

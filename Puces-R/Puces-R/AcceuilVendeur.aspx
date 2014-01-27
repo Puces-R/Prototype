@@ -13,6 +13,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
  <div class="panneau ">
  <asp:Label ID="nbVisite" runat="server" Text="Nombre de visites sur votre catalogue  " ></asp:Label>
+
+  <div class="panneau pnlGauche">
         <h2>Paniers en Cours</h2>
         <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
             <ItemTemplate>
@@ -54,7 +56,9 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+        </div>
 
+         <div class="panneau pnlDroite">
          <h2>Commandes non traitées </h2>
          <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptCommandes_ItemDataBound" OnItemCommand="rptCommandes_ItemCommand">
             <ItemTemplate>
@@ -62,7 +66,9 @@
                    
                     <div class="boiteDetailsProduit">
                         <div>
-                            <asp:Label runat="server" ID="lblNoCommande" />
+
+                           <%-- <asp:Label runat="server" ID="lblNoCommande" />--%>
+                            <asp:HyperLink runat="server" ID="hypCommande" />
                             <asp:Label runat="server" ID="lblNoClient" />
                             <asp:Label runat="server" ID="lblCategorie" />
                             <asp:Label runat="server" ID="lblnoVendeur" />
@@ -82,6 +88,6 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-
+        </div>
     </div>
  </asp:Content>

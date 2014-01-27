@@ -46,7 +46,7 @@ namespace Puces_R
             String noC = statut[0];
             String stat = statut[1];
 
-            Response.Write(noC + "----" + stat);
+           // Response.Write(noC + "----" + stat);
             myConnection.Open();
 
             if (stat == "O")
@@ -80,7 +80,7 @@ namespace Puces_R
             {
 
 
-                Label lblNoProduit = (Label)item.FindControl("lblNoCommande");
+                HyperLink lblNoProduit = (HyperLink)item.FindControl("hypCommande");
                 Label lblNoClient = (Label)item.FindControl("lblNoClient");
                 Label lblNoVendeur = (Label)item.FindControl("lblNoVendeur");
                 Label lblDateCommande = (Label)item.FindControl("lblDateCommande");
@@ -109,7 +109,8 @@ namespace Puces_R
                 String Statut = (String)drvFilm["Statut"];
                 String strAutorisation = (String)drvFilm["NoAutorisation"];
 
-                lblNoProduit.Text = "No. " + noCommande.ToString();
+                lblNoProduit.Text = "No." + noCommande.ToString();
+                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande="+noCommande;
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
                 lblNoVendeur.Text = noVendeur.ToString();

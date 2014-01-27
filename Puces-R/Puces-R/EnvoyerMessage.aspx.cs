@@ -36,5 +36,11 @@ namespace Puces_R
 
             connexion.Close();
         }
+
+        protected void apercuMessage(object sender, EventArgs e)
+        {
+            pApercu.Visible = true;
+            pApercu.InnerHtml = tbMessage.Text.Replace("\r\n", "<br />"); ;
+        }
     }
 }

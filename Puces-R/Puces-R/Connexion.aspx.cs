@@ -44,7 +44,7 @@ namespace Puces_R
                             Response.Redirect("AccueilClient.aspx", false);
                             break;
                         case 'V':
-                            Response.Redirect("http://fr.wikipedia.org/wiki/Vendeur", false);
+                            Response.Redirect("AcceuilVendeur.aspx", false);
                             break;
                         case 'G':
                             Response.Redirect("accueil_gestionnaire.aspx", false);
@@ -58,6 +58,27 @@ namespace Puces_R
 
                 connexion.Close();
             }
+        }
+
+        protected void defautClient(object sender, EventArgs e)
+        {
+            Session["ID"] = 10000;
+            Session["Type"] = 'C';
+            Response.Redirect("AccueilClient.aspx", false);
+        }
+
+        protected void defautVendeur(object sender, EventArgs e)
+        {
+            Session["ID"] = 10;
+            Session["Type"] = 'V';
+            Response.Redirect("AcceuilVendeur.aspx", false);
+        }
+
+        protected void defautGestionnaire(object sender, EventArgs e)
+        {
+            Session["ID"] = 1;
+            Session["Type"] = 'G';
+            Response.Redirect("accueil_gestionnaire.aspx", false);
         }
     }
 }

@@ -26,8 +26,11 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" style="text-align;">
+            <td colspan="3" style="text-align: center;">
                 <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
+                <asp:Button runat="server" CausesValidation="false" Text="Client" OnClick="defautClient" />
+                <asp:Button runat="server" CausesValidation="false" Text="Vendeur" OnClick="defautVendeur" />
+                <asp:Button runat="server" CausesValidation="false" Text="Gestionnaire" OnClick="defautGestionnaire" />
             </td>
         </tr>
     </table>

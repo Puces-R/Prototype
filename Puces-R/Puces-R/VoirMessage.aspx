@@ -11,16 +11,16 @@
     <div class="rectangleStylise">
         <table>
             <tr>
-                <td>
-                    Date :
+                <td style="width: 100px;">
+                    Date
                 </td>
-                <td>
+                <td style="width: 900px;">
                     <asp:Label runat="server" ID="lblDate">Date</asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    De :
+                    De
                 </td>
                 <td>
                     <asp:Label runat="server" ID="lblDe">De</asp:Label>
@@ -28,17 +28,17 @@
             </tr>
             <tr>
                 <td>
-                    Sujet :
+                    Sujet
                 </td>
                 <td>
                     <asp:Label runat="server" ID="lblSujet">Sujet</asp:Label>
                 </td>
             </tr>
             <tr>
-                <td>
-                    Message :
+                <td style="vertical-align: top;">
+                    Message
                 </td>
-                <td style="background-color: White;">
+                <td style="background-color: White; border: solid gray 1px; padding: 10px;">
                     <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
                 </td>
             </tr>

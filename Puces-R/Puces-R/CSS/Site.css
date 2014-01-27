@@ -4,14 +4,9 @@
 }
 
 a
-<<<<<<< HEAD
 { 
     color:#0052AE;
     text-decoration:none;
-=======
-{
-    color: #0052AE;
->>>>>>> ae3325865761638fa73ec63567f8c33aa4e0b117
 }
 
 body
@@ -78,19 +73,11 @@ body
 
 .rectangleStylise
 {
-<<<<<<< HEAD
-    padding:10px 15px;
-    margin:15px;
-    background-color:LightGray;
-    border:1px solid black;
-    border-radius:10px;
-=======
     padding: 10px 15px;
     margin: 5px;
     background-color: LightGray;
     border: 1px solid black;
     border-radius: 10px;
->>>>>>> ae3325865761638fa73ec63567f8c33aa4e0b117
     box-shadow: 3px 3px 4px Gray;
     overflow: hidden;
 }
@@ -136,12 +123,6 @@ body
 
 .pnlDroite
 {
-<<<<<<< HEAD
-    border-left:5px dotted Gray;
-    padding-left:20px;
-    display:inline-block;
-    margin-left:20px;
-=======
     border-left: 5px dotted Gray;
     padding-left: 20px;
     margin-left: 20px;
@@ -152,7 +133,6 @@ body
 {
     margin-top: 20px;
     margin-bottom: 20px;
->>>>>>> ae3325865761638fa73ec63567f8c33aa4e0b117
 }
 
 .pnlDetails td
@@ -166,7 +146,6 @@ body
     width: 30px;
 }
 
-<<<<<<< HEAD
 .pnlDetails td:first-child 
 { 
     text-align: right
@@ -176,9 +155,3 @@ body
 {
     font-weight:bold;
 }
-=======
-.pnlDetails td:first-child
-{
-    text-align: right;
-}
->>>>>>> ae3325865761638fa73ec63567f8c33aa4e0b117

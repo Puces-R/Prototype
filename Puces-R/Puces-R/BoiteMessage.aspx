@@ -1,45 +1,60 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"
+    MasterPageFile="~/Site.Master" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
+    <yc:MenuInvite runat="server" />
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <style type="text/css">
+        .sBoite
+        {
+            border-collapse: collapse;
+            table-layout:fixed;
+            width:0;
+        }
+        .sBoite td, .sBoite th
+        {
+            height: 30px;
+            text-align: left;
+            border-bottom: 1px solid gray;
+            border-top: 1px solid gray;
+        }
         
-    .sBoite 
-    {
-        border-collapse:collapse;
-    }
-    .sBoite td, .sBoite th
-    {
-        height: 30px;
-        text-align:left;
-        border: solid 1px black;
-    }
-    
-    .sBoite .sCheckbox 
-    {
-        width: 30px;
-    }
-    
-    .sBoite .sDe 
-    {
-        width: 250px;
-    }
-    
-    .sBoite .sSujet 
-    {
-        width: 800px;
-    }
-    
-    .sBoite .sDate 
-    {
-        width: 200px;   
-    }
+        .sBoite .sLigneMessage:hover 
+        {
+            background-color: white;
+        }
+        
+        .sBoite .sLigneMessage a:hover 
+        {
+            text-decoration: underline;
+        }
+        
+        .sBoite .sCheckbox
+        {
+            width: 30px;
+        }
+        
+        .sBoite .sDe
+        {
+            width: 250px;
+        }
+        
+        .sBoite .sSujet
+        {
+            width: 600px;
+            overflow:hidden;
+        }
+        
+        .sBoite .sDate
+        {
+            width: 200px;
+        }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
+    <div class="rectangleStylise">
     <table class="sBoite">
         <thead>
             <tr>
@@ -59,6 +74,5 @@
         <tbody runat="server" id="ListeMessage">
         </tbody>
     </table>
-    </form>
-</body>
-</html>
+    </div>
+</asp:Content>

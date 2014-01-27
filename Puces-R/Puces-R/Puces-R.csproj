@@ -68,6 +68,7 @@
     <Content Include="Controles\LigneMessage.ascx" />
     <Content Include="Controles\MenuClient.ascx" />
     <Content Include="Controles\MenuGestionnaire.ascx" />
+    <Content Include="Controles\MenuInvite.ascx" />
     <Content Include="Controles\MenuVendeur.ascx" />
     <Content Include="Controles\MotDePasse.ascx" />
     <Content Include="Controles\Province.ascx" />
@@ -232,6 +233,13 @@
     </Compile>
     <Compile Include="Controles\MenuGestionnaire.ascx.designer.cs">
       <DependentUpon>MenuGestionnaire.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MenuInvite.ascx.cs">
+      <DependentUpon>MenuInvite.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuInvite.ascx.designer.cs">
+      <DependentUpon>MenuInvite.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\MenuVendeur.ascx.cs">
       <DependentUpon>MenuVendeur.ascx</DependentUpon>

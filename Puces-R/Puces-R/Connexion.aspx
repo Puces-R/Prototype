@@ -2,19 +2,13 @@
     MasterPageFile="~/Site.Master" %>
 
 <%@ Register TagName="MotDePasse" TagPrefix="yc" Src="~/Controles/MotDePasse.ascx" %>
-<%@ Register TagPrefix="yc" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuClient runat="server" />
+    <yc:MenuInvite runat="server" />
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <style type="text/css">
-        td
-        {
-            border: solid black 1px;
-        }
-    </style>
     <table>
         <tr>
             <td>

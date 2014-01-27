@@ -41,7 +41,7 @@ namespace Puces_R
                     switch ((char)Session["Type"])
                     {
                         case 'C':
-                            Response.Redirect("http://fr.wikipedia.org/wiki/Client", false);
+                            Response.Redirect("AccueilClient.aspx", false);
                             break;
                         case 'V':
                             Response.Redirect("http://fr.wikipedia.org/wiki/Vendeur", false);

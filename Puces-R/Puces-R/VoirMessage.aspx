@@ -1,25 +1,47 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VoirMessage.aspx.cs" Inherits="Puces_R.VoirMessage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VoirMessage.aspx.cs" Inherits="Puces_R.VoirMessage"
+    MasterPageFile="~/Site.Master" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <p>
-    <asp:Label runat="server" ID="lblDate">Date</asp:Label>
-    </p>
-    <p>
-    <asp:Label runat="server" ID="lblDe">De</asp:Label>
-    </p>
-    <p>
-    <asp:Label runat="server" ID="lblSujet">Sujet</asp:Label>
-    </p>
-    <p>
-    <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
-    </p>
-    </form>
-</body>
-</html>
+<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
+    <yc:MenuInvite runat="server" />
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <div class="rectangleStylise">
+        <table>
+            <tr>
+                <td>
+                    Date :
+                </td>
+                <td>
+                    <asp:Label runat="server" ID="lblDate">Date</asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    De :
+                </td>
+                <td>
+                    <asp:Label runat="server" ID="lblDe">De</asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sujet :
+                </td>
+                <td>
+                    <asp:Label runat="server" ID="lblSujet">Sujet</asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Message :
+                </td>
+                <td style="background-color: White;">
+                    <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
+                </td>
+            </tr>
+        </table>
+        <div>
+</asp:Content>

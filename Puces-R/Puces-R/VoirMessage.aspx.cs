@@ -40,7 +40,7 @@ namespace Puces_R
 
             if (sdr.Read())
             {
-                lblDate.Text = ((DateTime)sdr["DateEnvoi"]).ToString();
+                lblDate.Text = ((DateTime)sdr["DateEnvoi"]).ToString("d MMMM yyyy à h\\hmm");
                 lblDe.Text = sdr["AdresseEmail"].ToString();
                 lblMessage.Text = sdr["Contenu"].ToString().Replace("\r\n", "<br />");
                 lblSujet.Text = sdr["Sujet"].ToString();

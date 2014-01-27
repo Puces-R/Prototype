@@ -5,19 +5,13 @@
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
-<%@ Register TagPrefix="yc" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuClient runat="server" />
+    <yc:MenuInvite runat="server" />
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <style type="text/css">
-        td
-        {
-            border: 1px solid black;
-        }
-    </style>
     <table>
         <yc:Identifiants runat="server" ID="tbIdentifiants" />
         <tr>

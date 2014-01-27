@@ -5,6 +5,11 @@
     <script type="text/javascript" src="lib/js/librairie.js"></script>
 </asp:Content>
 
+<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="titre_sec">Demandes de vendeurs</div>
             <table border="0" width="100%"> 
@@ -50,9 +55,19 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="verdict_vendeur">
-                                <h2 class="center">Acceptation de la demande:</h2>
+                                <h2 class="center">Acceptation de la demande:</h2>                                
                                 <p class="center">
-                                    Entrez le taux de facturation du vendeur: <asp:TextBox runat="server" id="taux_facturation" TextMode="Number" Columns="4" Width="55" /> <br />
+                                    Entrez le taux de facturation du vendeur 
+                                    <span class="remarque">(Format: 00.00)</span>: 
+                                    <asp:TextBox runat="server" id="taux_facturation" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" TextMode="Number" /> <br />
+                                    <asp:RegularExpressionValidator
+                                        runat="server"
+                                        id="regex_taux"
+                                        ControlToValidate="taux_facturation"
+                                        Display="Dynamic"
+                                        ErrorMessage="Format: 00.00"
+                                        EnableClientScript="true" 
+                                        ValidationExpression="^\d{1,2}\.\d{1,2}$" />
                                 </p>
                                 Mail de confirmation de l'acceptation envoyé au vendeur <br />
                                 <span class="remarque">(N'ajouter pas le taux dans le mail de confirmation, il sera automatiquement ajouté dans le mail avant l'envoi)</span><br />

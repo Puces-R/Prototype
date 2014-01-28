@@ -58,6 +58,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
+    <Content Include="Controles\BoiteMessage.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
     <Content Include="Connexion.aspx" />
@@ -167,6 +168,13 @@
     </Compile>
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\BoiteMessage.ascx.cs">
+      <DependentUpon>BoiteMessage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\BoiteMessage.ascx.designer.cs">
+      <DependentUpon>BoiteMessage.ascx</DependentUpon>
     </Compile>
     <Compile Include="BoiteMessage.aspx.cs">
       <DependentUpon>BoiteMessage.aspx</DependentUpon>

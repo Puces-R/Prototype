@@ -10,60 +10,42 @@
 namespace Puces_R {
     
     
-    public partial class BoiteMessage {
+    public partial class BoiteMessageControle {
         
         /// <summary>
-        /// Contrôle menuAction.
+        /// Contrôle divBoite.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menuAction;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBoite;
         
         /// <summary>
-        /// Contrôle ListeMessage.
+        /// Contrôle cbAll.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeMessage;
+        protected global::System.Web.UI.WebControls.CheckBox cbAll;
         
         /// <summary>
-        /// Contrôle ListeEnvoi.
+        /// Contrôle lblLabel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeEnvoi;
+        protected global::System.Web.UI.WebControls.Label lblLabel;
         
         /// <summary>
-        /// Contrôle ListeCorbeil.
+        /// Contrôle Liste.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeCorbeil;
-        
-        /// <summary>
-        /// Contrôle ListeArchive.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeArchive;
-        
-        /// <summary>
-        /// Contrôle ListeBrouillon.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeBrouillon;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Liste;
     }
 }

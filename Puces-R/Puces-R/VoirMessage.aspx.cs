@@ -26,11 +26,12 @@ namespace Puces_R
                                                         "ON M.Envoyeur = X.No " +
                                                         "WHERE M.NoMessage = @noMsg", connexion);
 
-                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg", connexion);
+                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg AND Recepteur = @noRcpt", connexion);
 
                 cmdMessage.Parameters.AddWithValue("@noMsg", noMessage);
 
                 cmdLu.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdLu.Parameters.AddWithValue("@noRcpt", 10700 /*Session["ID"]*/);
 
                 connexion.Open();
 

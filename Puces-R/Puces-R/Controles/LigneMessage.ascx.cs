@@ -37,6 +37,10 @@ namespace Puces_R
             {
                 return cb.Checked;
             }
+            set
+            {
+                cb.Checked = value;
+            }
         }
 
         public string De

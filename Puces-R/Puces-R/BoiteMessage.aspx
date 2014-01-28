@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"
     MasterPageFile="~/Site.Master" %>
 
+<%@ Register TagPrefix="yc" TagName="Boite" Src="~/Controles/BoiteMessage.ascx" %>
 <%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <yc:MenuInvite runat="server" />
@@ -19,7 +20,10 @@
         {
             height: 30px;
             text-align: left;
-            border-bottom: 1px solid gray;
+        }
+        
+        .sBoite td
+        {
             border-top: 1px solid gray;
         }
         
@@ -59,72 +63,53 @@
             font-size: 0.75em;
         }
     </style>
+    <script type="text/javascript">
+        function checkAll(checkbox) {
+            var idCB = checkbox.id;
+            var idSeparate = idCB.split('_');
+            idSeparate.pop();
+            var id = idSeparate.join('_');
+
+            for (var i = 0; i < document.getElementById(id + '_Liste').childNodes.length; i++) {
+                var cb = document.getElementById(id + '_ctl' + (i < 10 ? '0' : '') + i + '_cb');
+                if (cb != null) {
+                    cb.checked = checkbox.checked;
+                }
+            }
+        }
+    </script>
     <div>
-        <div style="float: left;">
-            <asp:Menu runat="server" Orientation="Horizontal" OnMenuItemClick="clickOption" CssClass="sMenuBoite">
-                <StaticMenuItemStyle HorizontalPadding="10" />
-                <Items>
-                    <asp:MenuItem Text="Nouveau message" Value="New" />
-                    <asp:MenuItem Text="Marquer comme lu" Value="Lu" />
-                    <asp:MenuItem Text="Marquer comme non-lu" Value="Non-lu" />
-                    <asp:MenuItem Text="Archiver" Value="Archiver" />
-                    <asp:MenuItem Text="Supprimer" Value="Supprimer" />
-                </Items>
-            </asp:Menu>
+        <div>
+            <div style="float: left;">
+                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" OnMenuItemClick="clickOption"
+                    CssClass="sMenuBoite">
+                    <StaticMenuItemStyle HorizontalPadding="10" />
+                    <Items>
+                        <asp:MenuItem Text="Nouveau message" Value="New" />
+                        <asp:MenuItem Text="Marquer comme lu" Value="Read" />
+                        <asp:MenuItem Text="Marquer comme non-lu" Value="Unread" />
+                        <asp:MenuItem Text="Archiver" Value="Archive" />
+                        <asp:MenuItem Text="Supprimer" Value="Delete" />
+                    </Items>
+                </asp:Menu>
+            </div>
+            <div style="float: right;">
+                <asp:Menu runat="server" Orientation="Horizontal" OnMenuItemClick="voirMessage" CssClass="sMenuBoite">
+                    <StaticMenuItemStyle HorizontalPadding="10" />
+                    <Items>
+                        <asp:MenuItem Text="Boîte principale" Value="Box" />
+                        <asp:MenuItem Text="Archivé" Value="Archived" />
+                        <asp:MenuItem Text="Corbeil" Value="Deleted" />
+                        <asp:MenuItem Text="Envoyé" Value="Sent" />
+                        <asp:MenuItem Text="Brouillon" Value="Draft" />
+                    </Items>
+                </asp:Menu>
+            </div>
         </div>
-        <div style="float: right;">
-            <asp:Menu runat="server" Orientation="Horizontal" OnMenuItemClick="voirMessage" CssClass="sMenuBoite">
-                <StaticMenuItemStyle HorizontalPadding="10" />
-                <Items>
-                <asp:MenuItem Text="Boîte principale" Value="Box" />
-                    <asp:MenuItem Text="Archivé" Value="Archived" />
-                    <asp:MenuItem Text="Corbeil" Value="Deleted" />
-                    <asp:MenuItem Text="Envoyé" Value="Sent" />
-                    <asp:MenuItem Text="Brouillon" Value="Draft" />
-                </Items>
-            </asp:Menu>
-        </div>
-    </div>
-    <div runat="server" ID="divMessages" class="rectangleStylise" style="float: left;">
-        <table class="sBoite">
-            <thead>
-                <tr>
-                    <th class="sCheckbox">
-                    </th>
-                    <th class="sDe">
-                        De
-                    </th>
-                    <th class="sSujet">
-                        Sujet
-                    </th>
-                    <th class="sDate">
-                        Date
-                    </th>
-                </tr>
-            </thead>
-            <tbody runat="server" id="ListeMessage">
-            </tbody>
-        </table>
-    </div>
-    <div runat="server" id="divEnvoyes" class="rectangleStylise" style="float: left;" Visible="false">
-        <table class="sBoite">
-            <thead>
-                <tr>
-                    <th class="sCheckbox">
-                    </th>
-                    <th class="sDe">
-                        À
-                    </th>
-                    <th class="sSujet">
-                        Sujet
-                    </th>
-                    <th class="sDate">
-                        Date
-                    </th>
-                </tr>
-            </thead>
-            <tbody runat="server" id="ListeEnvoye">
-            </tbody>
-        </table>
+        <yc:Boite runat="server" ID="ListeMessage" Visible="true" />
+        <yc:Boite runat="server" ID="ListeEnvoi" />
+        <yc:Boite runat="server" ID="ListeCorbeil" />
+        <yc:Boite runat="server" ID="ListeArchive" />
+        <yc:Boite runat="server" ID="ListeBrouillon" />
     </div>
 </asp:Content>

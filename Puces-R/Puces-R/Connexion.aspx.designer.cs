@@ -13,15 +13,6 @@ namespace Puces_R {
     public partial class Connexion {
         
         /// <summary>
-        /// Contrôle ctrMenu.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuInvite ctrMenu;
-        
-        /// <summary>
         /// Contrôle tbCourriel.
         /// </summary>
         /// <remarks>

@@ -17,6 +17,15 @@ namespace Puces_R
             }
         }
 
+        public bool Changement
+        {
+            set
+            {
+                tbMDP1.Label = (value ? "Nouveau m" : "M") + "ot de passe";
+                tbMDP2.Label = "Confirmer le " + (value ? "nouveau " : "") + "mot de passe";
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

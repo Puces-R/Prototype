@@ -7,6 +7,6 @@
         <asp:MenuItem Text="S'inscrire comme client" NavigateUrl="~/InscriptionClient.aspx" />
         <asp:MenuItem Text="S'inscrire comme vendeur" NavigateUrl="~/InscriptionVendeur.aspx" />
         <asp:MenuItem Text="Connexion" NavigateUrl="~/Connexion.aspx" />
-        <asp:MenuItem Text="Mot de passe oublié ?" />
+        <asp:MenuItem Text="Mot de passe oublié ?" NavigateUrl="~/RecupererMotDePasse.aspx" />
     </Items>
 </asp:Menu>

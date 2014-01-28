@@ -9,7 +9,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <div class="rectangleStylise">
+    <div class="rectangleComplet rectangleItem">
         <table>
             <yc:Identifiants runat="server" ID="ctlIdentifiants" />
             <tr>

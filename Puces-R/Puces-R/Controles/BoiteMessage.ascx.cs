@@ -43,7 +43,7 @@ namespace Puces_R
                 TableRow tr = new TableRow();
                 TableCell td = new TableCell();
                 td.ColumnSpan = 4;
-                td.Text = "Vous n'avez aucun message";
+                td.Text = "Il n'y a pas de message";
                 td.Style.Add(HtmlTextWriterStyle.TextAlign, "center");
                 td.Style.Add(HtmlTextWriterStyle.FontStyle, "italic");
                 tr.Controls.Add(td);

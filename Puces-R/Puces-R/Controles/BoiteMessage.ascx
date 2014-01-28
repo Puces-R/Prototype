@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.ascx.cs"
     Inherits="Puces_R.BoiteMessageControle" %>
 
-<div runat="server" ID="divBoite" class="rectangleStylise" style="float: left;" visible="false">
+<div runat="server" ID="divBoite" class="rectangleComplet rectangleItem" style="float: left;" visible="false">
     <table class="sBoite">
         <thead>
             <tr>

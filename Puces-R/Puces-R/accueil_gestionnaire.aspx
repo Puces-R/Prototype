@@ -1,9 +1,16 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="accueil_gestionnaire.aspx.cs" Inherits="Puces_R.accueil_gestionnaire" Title="Accueil gestionnaire" %>
+
+<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link href="CSS/Site.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<div>
     <asp:Table runat="server">
         <asp:TableRow  >
             <asp:TableCell ColumnSpan="3" CssClass="titre_sec">Quoi de neuf ...</asp:TableCell><asp:TableCell ></asp:TableCell>
@@ -80,5 +87,5 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-
+</div>
 </asp:Content>

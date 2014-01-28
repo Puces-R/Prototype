@@ -1,16 +1,18 @@
 ﻿<%@ Page Title="Gérer les nouvelles demandes de vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="gerer_demandes_vendeurs.aspx.cs" Inherits="Puces_R.gerer_demandes_vendeurs" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
-    <script type="text/javascript" src="lib/js/librairie.js"></script>
-</asp:Content>
-
 <%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
 </asp:Content>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
+    <script type="text/javascript" src="lib/js/librairie.js"></script>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div>
     <div class="titre_sec">Demandes de vendeurs</div>
             <table border="0" width="100%"> 
     <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" OnItemCommand="rptDemandes_ItemCommand">
@@ -95,4 +97,5 @@
         </ItemTemplate>
     </asp:Repeater>
             </table>
+            </div>
 </asp:Content>

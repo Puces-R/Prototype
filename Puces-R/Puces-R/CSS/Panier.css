@@ -35,12 +35,12 @@
 
 .boiteImageProduit > div
 {
-    height:185px;
-    width:185px;
+    height:180px;
+    width:180px;
 }
 
 .boiteImageProduit img
 {
-    max-width:175px;
-    max-height:175px;
+    max-width:165px;
+    max-height:165px;
 }

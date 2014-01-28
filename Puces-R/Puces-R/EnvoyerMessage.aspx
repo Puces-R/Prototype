@@ -8,7 +8,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <div class="rectangleStylise">
+    <div>
         <table>
             <tr>
                 <td style="width: 100px;">
@@ -42,7 +42,7 @@
             </tr>
         </table>
     </div>
-    <asp:Panel ID="divApercu" runat="server" Visible="false" CssClass="rectangleStylise">
+    <asp:Panel ID="divApercu" runat="server" Visible="false">
         <table style="border-collapse: collapse; table-layout:fixed; width:0;">
             <tr>
                 <td style="width: 100px;">

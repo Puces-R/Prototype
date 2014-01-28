@@ -8,7 +8,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <div class="rectangleStylise">
+    <div>
         <table style="border-collapse: collapse; table-layout:fixed; width:0;">
             <tr>
                 <td style="width: 100px;">

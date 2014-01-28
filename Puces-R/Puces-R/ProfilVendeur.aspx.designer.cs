@@ -10,15 +10,6 @@
 namespace Puces_R {
     
     
-    public partial class accueil_gestionnaire {
-        
-        /// <summary>
-        /// Contrôle MenuGestionnaire1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuGestionnaire MenuGestionnaire1;
+    public partial class ProfilVendeur {
     }
 }

@@ -6,7 +6,7 @@
         <asp:MenuItem Text="Accueil" />
         <asp:MenuItem Text="Gérer les commandes" />
         <asp:MenuItem Text="Gérer les produits" />
-        <asp:MenuItem Text="Modifier le profil" />
+        <asp:MenuItem Text="Modifier le profil" NavigateUrl="../ProfilVendeur.aspx"/>
         <asp:MenuItem Text="Déconnecter" NavigateUrl="../Connexion.aspx" />
     </Items>
 </asp:Menu>

@@ -57,6 +57,8 @@ namespace Puces_R
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
 
+                ctrMenu.NoVendeur = NoVendeur;
+
                 object dateMAJ = lecteurProduit["DateMAJ"];
                 if (dateMAJ is DBNull)
                 {
@@ -74,9 +76,8 @@ namespace Puces_R
         protected void btnAjouterPanier_Click(object sender, EventArgs e)
         {
             String nbItems = txtQuantite.Text;
-            String noClient = Request.Params["noclient"];
             String noProduit = Request.Params["noproduit"];
-            String noPanier = noClient + noProduit;
+            String noPanier = Session["ID"] + noProduit;
             
             myConnection.Open();
             SqlCommand commandeDejaPresent = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE noPanier = " + noPanier, myConnection);
@@ -89,13 +90,13 @@ namespace Puces_R
             else
             {
                 String dateCreation = DateTime.Now.ToShortDateString();
-                String values = String.Join(",", noPanier, noClient, NoVendeur, noProduit, dateCreation, nbItems);
+                String values = String.Join(",", noPanier, Session["ID"], NoVendeur, noProduit, dateCreation, nbItems);
                 SqlCommand commandeAjout = new SqlCommand("INSERT INTO PPArticlesEnPanier VALUES (" + values + ")", myConnection);
                 commandeAjout.ExecuteNonQuery();
             }
             myConnection.Close();
 
-            Response.Redirect("Panier.aspx?noclient=" + noClient + "&novendeur=" + NoVendeur);
+            Response.Redirect("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur);
         }
     }
 }

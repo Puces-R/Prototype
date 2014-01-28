@@ -7,117 +7,99 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class DetailsProduit {
+    public partial class ProfilClient {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle txtPrenom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
+        protected global::System.Web.UI.WebControls.TextBox txtPrenom;
         
         /// <summary>
-        /// Contrôle imgProduit.
+        /// Contrôle txtNom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduit;
+        protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
-        /// Contrôle lblProduit.
+        /// Contrôle txtRue.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProduit;
+        protected global::System.Web.UI.WebControls.TextBox txtRue;
         
         /// <summary>
-        /// Contrôle lblCategorie.
+        /// Contrôle txtVille.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorie;
+        protected global::System.Web.UI.WebControls.TextBox txtVille;
         
         /// <summary>
-        /// Contrôle lblDescription.
+        /// Contrôle ctrProvince.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescription;
+        protected global::Puces_R.Province ctrProvince;
         
         /// <summary>
-        /// Contrôle lblPrixDemande.
+        /// Contrôle txtPays.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixDemande;
+        protected global::System.Web.UI.WebControls.TextBox txtPays;
         
         /// <summary>
-        /// Contrôle lblPrixEnVente.
+        /// Contrôle ctrCodePostal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixEnVente;
+        protected global::Puces_R.CodePostal ctrCodePostal;
         
         /// <summary>
-        /// Contrôle lblQuantiteDisponible.
+        /// Contrôle ctrTelephone.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantiteDisponible;
+        protected global::Puces_R.Telephone ctrTelephone;
         
         /// <summary>
-        /// Contrôle lblDateCreation.
+        /// Contrôle ctrCellulaire.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateCreation;
+        protected global::Puces_R.Telephone ctrCellulaire;
         
         /// <summary>
-        /// Contrôle lblDateMiseAJour.
+        /// Contrôle btnSauvegarder.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateMiseAJour;
-        
-        /// <summary>
-        /// Contrôle txtQuantite.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuantite;
-        
-        /// <summary>
-        /// Contrôle btnAjouterPanier.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjouterPanier;
+        protected global::System.Web.UI.WebControls.Button btnSauvegarder;
     }
 }

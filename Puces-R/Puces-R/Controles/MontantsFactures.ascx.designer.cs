@@ -7,117 +7,81 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class DetailsProduit {
+    public partial class MontantsFactures {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle lblPoidsTotal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
+        protected global::System.Web.UI.WebControls.Label lblPoidsTotal;
         
         /// <summary>
-        /// Contrôle imgProduit.
+        /// Contrôle lblSousTotal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduit;
+        protected global::System.Web.UI.WebControls.Label lblSousTotal;
         
         /// <summary>
-        /// Contrôle lblProduit.
+        /// Contrôle lblLivraison.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProduit;
+        protected global::System.Web.UI.WebControls.Label lblLivraison;
         
         /// <summary>
-        /// Contrôle lblCategorie.
+        /// Contrôle lblTauxTPS.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorie;
+        protected global::System.Web.UI.WebControls.Label lblTauxTPS;
         
         /// <summary>
-        /// Contrôle lblDescription.
+        /// Contrôle lblTPS.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescription;
+        protected global::System.Web.UI.WebControls.Label lblTPS;
         
         /// <summary>
-        /// Contrôle lblPrixDemande.
+        /// Contrôle lblTauxTVQ.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixDemande;
+        protected global::System.Web.UI.WebControls.Label lblTauxTVQ;
         
         /// <summary>
-        /// Contrôle lblPrixEnVente.
+        /// Contrôle lblTVQ.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixEnVente;
+        protected global::System.Web.UI.WebControls.Label lblTVQ;
         
         /// <summary>
-        /// Contrôle lblQuantiteDisponible.
+        /// Contrôle lblGrandTotal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantiteDisponible;
-        
-        /// <summary>
-        /// Contrôle lblDateCreation.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateCreation;
-        
-        /// <summary>
-        /// Contrôle lblDateMiseAJour.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateMiseAJour;
-        
-        /// <summary>
-        /// Contrôle txtQuantite.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuantite;
-        
-        /// <summary>
-        /// Contrôle btnAjouterPanier.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjouterPanier;
+        protected global::System.Web.UI.WebControls.Label lblGrandTotal;
     }
 }

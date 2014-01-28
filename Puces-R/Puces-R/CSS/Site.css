@@ -74,7 +74,7 @@ body
 .rectangleStylise
 {
     padding: 10px 15px;
-    margin: 5px;
+    margin: 15px;
     background-color: LightGray;
     border: 1px solid black;
     border-radius: 10px;
@@ -108,12 +108,18 @@ body
     border-bottom: 5px dotted Gray;
     padding-bottom: 10px;
     margin-bottom: 5px;
+    display: inline-block; 
+    width: 100%;
 }
 
 .panneau
 {
-   margin-top:20px;
-   margin-bottom:20px;
+   margin-top:10px;
+}
+
+.panneau h2
+{
+    margin-top:-5px;
 }
 
 .pnlGauche
@@ -123,16 +129,11 @@ body
 
 .pnlDroite
 {
+    float: right;
     border-left: 5px dotted Gray;
     padding-left: 20px;
     margin-left: 20px;
     display: inline-block;
-}
-
-.pnlDetails
-{
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .pnlDetails td
@@ -155,3 +156,38 @@ body
 {
     font-weight:bold;
 }
+
+.tableProduits
+{
+    border-collapse:collapse;
+    margin:10px;
+    width:350px;
+    font-size:small;
+}
+
+.tableProduits td
+{
+    text-align:right;
+}
+
+.tableProduits td:first-child
+{
+    text-align:left;
+}
+
+.tableProduits th, .tableProduits td
+{
+    padding:5px;
+    border: 1px dotted Black;
+}
+
+.tableProfil th, .tableProfil td 
+{
+    padding:3px;
+    font-size:large;
+}
+
+.tableProfil td:first-child
+ {
+    text-align:right;
+ }

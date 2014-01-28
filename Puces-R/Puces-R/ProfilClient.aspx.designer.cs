@@ -7,10 +7,10 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R.Controles {
+namespace Puces_R {
     
     
-    public partial class MenuClient {
+    public partial class ProfilClient {
         
         /// <summary>
         /// Contrôle ctrMenu.
@@ -19,6 +19,6 @@ namespace Puces_R.Controles {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu ctrMenu;
+        protected global::Puces_R.Controles.MenuClient ctrMenu;
     }
 }

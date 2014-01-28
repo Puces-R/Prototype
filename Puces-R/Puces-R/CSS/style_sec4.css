@@ -34,6 +34,18 @@
     cursor: pointer;
 }
 
+.titre_tab3
+{ 
+    padding:10px;
+    background-color:black;
+    border:1px solid black;
+    font-size:small;
+    border-radius:3px 3px 3px 3px;
+    box-shadow: 3px 3px Gray;
+    color: White;
+    cursor: pointer;
+}
+
 .cont_tab
 { 
     width:275px;
@@ -56,6 +68,37 @@
     box-shadow: 1px 1px 4px 4px Gray;
 }
 
+.cont_categorie
+{ 
+    padding:10px;
+    border:1px solid black;
+    font-size:small;
+    border-radius:5px 5px 10px 10px;
+    box-shadow: 1px 1px 4px 4px Gray;
+}
+
+.vendeur_innactif
+{
+    padding: 10px 20px 10px 10px;
+    margin: 3px 5px 3px 5px;
+    background-color: LightGray;
+    border: 1px solid black;
+    font-size:small;
+    border-radius:3px 3px 5px 5px;
+    box-shadow: 1px 1px 1px 1px Gray;
+}
+
+.table_conf_suppr
+{
+    padding: 5px 5px 5px 5px;
+    margin: 3px 10px 3px 5px;
+    background-color: LightBlue;
+    border: 1px solid black;
+    font-size: small;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 1px 1px Gray;
+}
+
 .titre_sec
 {
     width: 580px;
@@ -73,11 +116,15 @@
     width:30px;
 }
 
+.a_droite
+{
+    text-align: right;    
+}
+
 .lien_boutton {	
 	background-color:#000000;
 	border:1px solid #ffffff;
-	color:#ffffff;
-	
+	color:#ffffff;	
 	font-style: italic;
 	padding: 5px;	
 	text-align:center;

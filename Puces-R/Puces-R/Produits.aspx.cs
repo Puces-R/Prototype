@@ -41,6 +41,8 @@ namespace Puces_R
                 whereParts.Add("P.NoVendeur = " + noVendeur);
             }
 
+            ctrMenu.NoVendeur = noVendeur;
+
             int noCategorie;
             if (IsPostBack)
             {
@@ -104,11 +106,7 @@ namespace Puces_R
                 ddlCategorie.DataBind();
                 ddlCategorie.SelectedValue = noCategorie.ToString();
 
-                SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
-
-                myConnection.Open();
-                ((SiteMaster)Master).Vendeur = (String)commandVendeur.ExecuteScalar();
-                myConnection.Close();
+                ((SiteMaster)Master).NoVendeur = noVendeur;
             }
         }
 
@@ -137,7 +135,7 @@ namespace Puces_R
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 hypProduit.ImageUrl = urlImage;
-                hypProduit.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit + "&noclient=10000";
+                hypProduit.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
                 lblCategorie.Text = strCategorie;
                 lblDescriptionAbregee.Text = strDescriptionAbregee;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");

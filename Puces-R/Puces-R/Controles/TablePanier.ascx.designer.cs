@@ -10,15 +10,15 @@
 namespace Puces_R.Controles {
     
     
-    public partial class MenuClient {
+    public partial class TablePanier {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle rptProduits.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu ctrMenu;
+        protected global::System.Web.UI.WebControls.Repeater rptProduits;
     }
 }

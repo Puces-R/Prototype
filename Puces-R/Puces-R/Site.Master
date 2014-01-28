@@ -23,9 +23,7 @@
                         <asp:Label runat="server" ID="lblVendeur" />
                     </asp:Panel>
                     <div class="lignePointilleHorizontale main">
-                        <div>
-                            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
-                        </div>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
                     </div>
                     <div class="footer">
                         © 2014 Cégep Gérald Godin

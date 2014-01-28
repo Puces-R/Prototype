@@ -15,77 +15,31 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                calculerCouts();
+                if (Session["ID"] == null)
+                {
+                    Response.Redirect("Default.aspx", true);
+                }
+
+                int noVendeur;
+                if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
+                {
+                    Response.Redirect("Default.aspx", true);
+                }
+
+                ctrMenu.NoVendeur = noVendeur;
+                ctrMontantsFactures.NoVendeur = noVendeur;
+
+                String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
+
+                SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+                DataTable tableProduits = new DataTable();
+                adapteurProduits.Fill(tableProduits);
+
+                rptProduits.DataSource = new DataView(tableProduits);
+                rptProduits.DataBind();
             }
-        }
-
-        private void calculerCouts()
-        {
-            int noClient;
-            if (!int.TryParse(Request.Params["noclient"], out noClient))
-            {
-                Response.Redirect("Default.aspx", true);
-            }
-
-            int noVendeur;
-            if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
-            {
-                Response.Redirect("Default.aspx", true);
-            }
-
-            String whereClause = " WHERE A.NoClient = " + noClient + " AND P.NoVendeur = " + noVendeur;
-
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
-            DataTable tableProduits = new DataTable();
-            adapteurProduits.Fill(tableProduits);
-
-            decimal sousTotal = 0;
-            decimal poidsTotal = 0;
-
-            foreach (DataRow produit in tableProduits.Rows)
-            {
-                short nbItems = (short)produit["NbItems"];
-                sousTotal += nbItems * (decimal)produit["PrixDemande"];
-                poidsTotal += nbItems * (decimal)produit["Poids"];
-            }
-
-            lblPoidsTotal.Text = poidsTotal.ToString() + " lbs.";
-            lblSousTotal.Text = sousTotal.ToString("C");
-
-            myConnection.Open();
-
-            SqlCommand commandeVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + noVendeur , myConnection);
-            ((SiteMaster)Master).Vendeur = (String)commandeVendeur.ExecuteScalar();
-
-            SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = 1 AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
-            decimal prixLivraison = (decimal)commandeLivraison.ExecuteScalar();
-
-            decimal prixAvecLivraison = sousTotal + prixLivraison;
-
-            SqlCommand commandeTauxTPS = new SqlCommand("SELECT TOP(1) TauxTPS FROM PPTaxeFederale ORDER BY DateEffectiveTPS DESC", myConnection);
-            decimal tauxTPS = ((decimal)commandeTauxTPS.ExecuteScalar()) / 100;
-
-            SqlCommand commandeTauxTVQ = new SqlCommand("SELECT TOP(1) TauxTVQ FROM PPTaxeProvinciale ORDER BY DateEffectiveTVQ DESC", myConnection);
-            decimal tauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
-
-            decimal prixTPS = prixAvecLivraison * tauxTPS;
-            decimal prixTVQ = prixAvecLivraison * tauxTVQ;
-
-            decimal grandTotal = prixAvecLivraison + prixTPS + prixTVQ;
-
-            lblLivraison.Text = prixLivraison.ToString("C");
-            lblTauxTPS.Text = "(" + tauxTPS.ToString("P") + ")";
-            lblTauxTVQ.Text = "(" + tauxTVQ.ToString("P") + ")";
-            lblTPS.Text = prixTPS.ToString("C");
-            lblTVQ.Text = prixTVQ.ToString("C");
-            lblGrandTotal.Text = grandTotal.ToString("C");
-
-            myConnection.Close();
-
-            rptProduits.DataSource = new DataView(tableProduits);
-            rptProduits.DataBind();
         }
 
         protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -142,7 +96,12 @@ namespace Puces_R
             }
             myConnection.Close();
 
-            calculerCouts();
+            ctrMontantsFactures.CalculerCouts();
         }
+
+        protected void btnCommander_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Commande.aspx?novendeur=" + Request.Params["novendeur"], true);
+        }        
     }
 }

@@ -9,9 +9,14 @@ namespace Puces_R.Controles
 {
     public partial class MenuClient : System.Web.UI.UserControl
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public long NoVendeur
         {
-
+            set
+            {
+                MenuItem itmPanier = new MenuItem("Panier");
+                itmPanier.NavigateUrl = "../Panier.aspx?novendeur=" + value;
+                ctrMenu.Items.AddAt(1, itmPanier);
+            }
         }
     }
 }

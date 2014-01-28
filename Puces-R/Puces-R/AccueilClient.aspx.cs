@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
@@ -17,8 +18,7 @@ namespace Puces_R
         {
             if (!Page.IsPostBack)
             {
-                int noClient;
-                if (!int.TryParse(Request.Params["noclient"], out noClient))
+                if (Session["ID"] == null)
                 {
                     Response.Redirect("Default.aspx", true);
                 }
@@ -30,7 +30,7 @@ namespace Puces_R
                 rptCategories.DataSource = new DataView(tableCategories);
                 rptCategories.DataBind();
 
-                SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + noClient + " GROUP BY V.NomAffaires, A.NoVendeur", myConnection);
+                SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + Session["ID"] + " GROUP BY V.NomAffaires, A.NoVendeur", myConnection);
                 DataTable tablePaniers = new DataTable();
                 adapteurPaniers.Fill(tablePaniers);
 
@@ -105,7 +105,7 @@ namespace Puces_R
             {
                 HyperLink hypVendeur = (HyperLink)item.FindControl("hypVendeur");
                 Label lblSousTotal = (Label)item.FindControl("lblSousTotal");
-                Repeater rptProduits = (Repeater)item.FindControl("rptProduits");
+                TablePanier ctrProduits = (TablePanier)item.FindControl("ctrProduits");
                 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
 
@@ -114,42 +114,9 @@ namespace Puces_R
                 long noVendeur = (long)drvPanier["NoVendeur"];
 
                 hypVendeur.Text = vendeur;
-                hypVendeur.NavigateUrl = "Panier.aspx?noclient=10000&novendeur=" + noVendeur;
+                hypVendeur.NavigateUrl = "Panier.aspx?novendeur=" + noVendeur;
                 lblSousTotal.Text = sousTotal.ToString("C");
-
-                SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, PrixVente, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + noVendeur + " AND A.NoClient = 10000", myConnection);
-                DataTable tableProduits = new DataTable();
-                adapteurProduits.Fill(tableProduits);
-
-                rptProduits.DataSource = new DataView(tableProduits);
-                rptProduits.DataBind();
-            }
-        }
-
-        protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            RepeaterItem item = e.Item;
-
-            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
-            {
-                HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
-                Label lblQuantite = (Label)item.FindControl("lblQuantite");
-                Label lblPrixUnitaire = (Label)item.FindControl("lblPrixUnitaire");
-                Label lblPrixTotal = (Label)item.FindControl("lblPrixTotal");
-
-                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
-
-                String produit = (String)drvProduit["Nom"];
-                short quantite = (short)drvProduit["NbItems"];
-                decimal prixUnitaire = (decimal)drvProduit["PrixVente"];
-                decimal prixTotal = quantite * prixUnitaire;
-                long noProduit = (long)drvProduit["NoProduit"];
-
-                hypProduit.Text = produit;
-                hypProduit.NavigateUrl = "DetailsProduit.aspx?noclient=10000&noproduit=" + noProduit;
-                lblQuantite.Text = quantite.ToString();
-                lblPrixUnitaire.Text = prixUnitaire.ToString("C");
-                lblPrixTotal.Text = prixTotal.ToString("C");
+                ctrProduits.NoVendeur = noVendeur;
             }
         }
     }

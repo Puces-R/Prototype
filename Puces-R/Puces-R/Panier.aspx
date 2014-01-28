@@ -17,7 +17,7 @@
             <h2>Articles en panier</h2>
             <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
                 <ItemTemplate>
-                    <div class="rectangleStylise rectangleProduits">
+                    <div class="rectangleProduits rectangleComplet rectangleItem">
                         <div class="boiteImageProduit">
                             <div>
                                 <asp:Image runat="server" ID="imgProduit" />

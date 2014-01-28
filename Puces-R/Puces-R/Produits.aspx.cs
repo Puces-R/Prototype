@@ -116,11 +116,10 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-
+                HyperLink hypDescriptionAbregee = (HyperLink)item.FindControl("hypDescriptionAbregee");
                 Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
+                Image imgProduit = (Image)item.FindControl("imgProduit");
                 Label lblCategorie = (Label)item.FindControl("lblCategorie");
-                Label lblDescriptionAbregee = (Label)item.FindControl("lblDescriptionAbregee");
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                 Label lblQuantite = (Label)item.FindControl("lblQuantite");
 
@@ -134,10 +133,10 @@ namespace Puces_R
                 short intQuantite = (short)drvFilm["NombreItems"];
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
-                hypProduit.ImageUrl = urlImage;
-                hypProduit.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
+                imgProduit.ImageUrl = urlImage;
+                hypDescriptionAbregee.Text = strDescriptionAbregee;
+                hypDescriptionAbregee.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
                 lblCategorie.Text = strCategorie;
-                lblDescriptionAbregee.Text = strDescriptionAbregee;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 lblQuantite.Text = "Quantité: " + intQuantite.ToString();
             }

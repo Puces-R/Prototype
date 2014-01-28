@@ -52,17 +52,23 @@
     <div>
         <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
             <ItemTemplate>
-                <div class="rectangleStylise rectangleProduits">
-                    <asp:Label runat="server" ID="lblNoProduit" />
-                    <div class="boiteImageProduit">
+                <div class="rectangleProduits rectangleComplet rectangleItem">
+                    <div class="titreRectangle">
                         <div>
-                            <asp:HyperLink runat="server" ID="hypProduit" />
+                            <asp:HyperLink runat="server" ID="hypDescriptionAbregee" />
                         </div>
                     </div>
-                    <asp:Label runat="server" ID="lblDescriptionAbregee" />
-                    <asp:Label runat="server" ID="lblCategorie" />
-                    <asp:Label runat="server" ID="lblPrixDemande" />
-                    <asp:Label runat="server" ID="lblQuantite" />
+                    <div class="boiteImageProduit">
+                        <div>
+                            <asp:Image runat="server" ID="imgProduit" />
+                        </div>
+                    </div>
+                    <div class="detailsProduit">
+                        <asp:Label runat="server" ID="lblNoProduit" />
+                        <asp:Label runat="server" ID="lblCategorie" />
+                        <asp:Label runat="server" ID="lblPrixDemande" />
+                        <asp:Label runat="server" ID="lblQuantite" />
+                    </div>
                 </div>
             </ItemTemplate>
         </ASP:DataList>

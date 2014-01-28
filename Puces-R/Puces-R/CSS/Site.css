@@ -61,6 +61,7 @@ body
 
 .barreVendeur
 {
+    margin-top:5px;
     font-size:x-large;
     font-weight:bold;
     text-align:center;
@@ -69,17 +70,6 @@ body
 .footer
 {
     text-align: right;
-}
-
-.rectangleStylise
-{
-    padding: 10px 15px;
-    margin: 15px;
-    background-color: LightGray;
-    border: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 3px 3px 4px Gray;
-    overflow: hidden;
 }
 
 .boiteImageProduit
@@ -152,11 +142,6 @@ body
     text-align: right
 }
 
-.titreRectangle
-{
-    font-weight:bold;
-}
-
 .tableProduits
 {
     border-collapse:collapse;
@@ -188,6 +173,47 @@ body
 }
 
 .tableProfil td:first-child
- {
+{
     text-align:right;
- }
+}
+ 
+.rectangleItem
+{
+    padding: 10px;
+    box-shadow: 3px 3px 4px Gray;
+    overflow: hidden;
+    border: 1px solid Black;
+}
+ 
+.hautRectangle
+{
+    background-color: #555555;
+    border-radius: 10px 10px 0 0;
+    border-bottom-style: none; 
+}
+
+.hautRectangle *
+{
+    color:White;
+}
+ 
+.basRectangle
+{
+    background-color: LightGray;
+    border-radius: 0 0 10px 10px;
+    border-top-style: none; 
+    margin-bottom:15px;
+}
+
+.rectangleComplet
+{
+    background-color: LightGray;
+    border-radius: 10px;
+    margin-bottom:15px;
+}
+
+.tableFacture
+{
+    font-size:x-large;
+    text-align:right;
+}

@@ -19,7 +19,7 @@
                 <ASP:Repeater id="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
                     <ItemTemplate>
                         <div>
-                            <asp:Label runat="server" ID="lblCategorie" CssClass="titreRectangle" />
+                            <asp:Label runat="server" ID="lblCategorie" CssClass="categorie" />
                             <asp:Repeater ID="rptVendeurs" runat="server" OnItemDataBound="rptVendeurs_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="vendeur">
@@ -41,8 +41,10 @@
             <h2>Paniers</h2>
             <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
                 <ItemTemplate>
-                    <div class="rectangleStylise">
-                        <asp:HyperLink runat="server" ID="hypVendeur" CssClass="titreRectangle" />
+                    <div class="rectangleItem hautRectangle">
+                        <asp:HyperLink runat="server" ID="hypVendeur" />
+                    </div>
+                    <div class="rectangleItem basRectangle">
                         <lp:TablePanier runat="server" ID="ctrProduits" />
                         <div class="sousTotal">
                             Sous-Total: <asp:Label runat="server" ID="lblSousTotal" />

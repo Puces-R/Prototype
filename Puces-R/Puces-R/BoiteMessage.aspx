@@ -85,7 +85,7 @@
             </asp:Menu>
         </div>
     </div>
-    <div runat="server" ID="divMessages" class="rectangleStylise" style="float: left;">
+    <div runat="server" ID="divMessages" style="float: left;">
         <table class="sBoite">
             <thead>
                 <tr>
@@ -106,7 +106,7 @@
             </tbody>
         </table>
     </div>
-    <div runat="server" id="divEnvoyes" class="rectangleStylise" style="float: left;" Visible="false">
+    <div runat="server" id="divEnvoyes" style="float: left;" Visible="false">
         <table class="sBoite">
             <thead>
                 <tr>

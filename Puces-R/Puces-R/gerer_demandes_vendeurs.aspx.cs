@@ -69,7 +69,7 @@ namespace Puces_R
                 rptDemandes.DataSource = pdsDemandes;
                 rptDemandes.DataBind();
 
-                ((SiteMaster)Master).Titre = "Nouvelles demandes de vendeurs";
+                ((SiteMaster)Master).Vendeur = "Nouvelles demandes de vendeurs";
             //}
 
             if (Session["err_msg"] != null)

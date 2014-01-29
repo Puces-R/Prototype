@@ -44,6 +44,7 @@
     box-shadow: 3px 3px Gray;
     color: White;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .cont_tab
@@ -75,6 +76,7 @@
     font-size:small;
     border-radius:5px 5px 10px 10px;
     box-shadow: 1px 1px 4px 4px Gray;
+    display: none;
 }
 
 .vendeur_innactif
@@ -97,6 +99,7 @@
     font-size: small;
     border-radius: 5px 5px 5px 5px;
     box-shadow: 1px 1px 1px 1px Gray;
+    display: none;
 }
 
 .titre_sec
@@ -167,6 +170,49 @@
 a
 {
     text-decoration: none;
+}
+
+.pnlGauche
+{
+    float: left;
+}
+
+.pnlDroite
+{
+    float: right;
+}
+
+.div_englobant
+{
+    
+}
+
+.categories
+{
+    line-height:20px;
+}
+
+.categorie
+{
+    font-weight:bold;
+}
+
+.lienProduitsVendeur
+{
+    margin-left:10px;
+    font-size:small;
+    color: #0052AE;
+    cursor: pointer;
+}
+
+.vendeur
+{
+    font-size:small;
+}
+
+.titre_vendeur_inactif1
+{
+    cursor: pointer;
 }
 
 .boiteListeDeroulante

@@ -39,7 +39,8 @@ body
 
 .menu div
 {
-    height: 35px;
+    line-height: 25px;
+    display:inline-block;
 }
 
 .main
@@ -225,4 +226,21 @@ body
 {
     font-size:x-large;
     text-align:right;
+}
+
+.popupMenu
+{
+    background-color:rgba(211,211,211,0.75);
+    border: 3px dashed Gray;
+}
+
+.popupMenu li
+{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.popupMenu li a
+{
+    padding: 10px !important;
 }

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="accueil_gestionnaire.aspx.cs" Inherits="Puces_R.accueil_gestionnaire" Title="Accueil gestionnaire" %>
 
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
+<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="/Controles/MenuGestionnaire.ascx" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />

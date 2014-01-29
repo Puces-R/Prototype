@@ -3,6 +3,10 @@
 <asp:Menu runat="server" Orientation="Horizontal" ID="ctrMenu">
     <StaticMenuItemStyle HorizontalPadding="10" />
     <StaticSelectedStyle ForeColor="#6AC331" />
+    <LevelSubMenuStyles>
+        <asp:SubMenuStyle />
+        <asp:SubMenuStyle CssClass="popupMenu" />
+    </LevelSubMenuStyles>
     <Items>
         <asp:MenuItem Text="Accueil" NavigateUrl="../AcceuilVendeur.aspx"/>
         <asp:MenuItem Text="Nettoyer les paniers" NavigateUrl="../GererPanierVendeur.aspx"/>

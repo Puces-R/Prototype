@@ -25,9 +25,21 @@ namespace Puces_R.Controles
             }
         }
 
+        public long NoClient
+        {
+            get
+            {
+                return (long)ViewState["NoClient"];
+            }
+            set
+            {
+                ViewState["NoClient"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, PrixVente, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + NoVendeur + " AND A.NoClient = " + Session["ID"], myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, PrixVente, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + NoVendeur + " AND A.NoClient = " + NoClient, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

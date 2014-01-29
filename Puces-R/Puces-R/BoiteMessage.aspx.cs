@@ -12,8 +12,7 @@ namespace Puces_R
 
     public partial class BoiteMessage : System.Web.UI.Page
     {
-        SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
-        private string boiteCourante;
+        SqlConnection connexion = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,19 +23,10 @@ namespace Puces_R
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connexion;
-            BoiteMessageControle[] boites = { ListeEnvoi, ListeCorbeil, ListeArchive, ListeBrouillon, ListeMessage };
-            Int64[] selectionne = null;
-
-            foreach (BoiteMessageControle b in boites)
-            {
-                if (b.Visible)
-                {
-                    selectionne = b.Checked;
-                }
-            }
+            Int64[] selectionne = ListeMessage.Checked;
 
 
-            if (selectionne.Length > 0)
+            if (ListeMessage.NbMessages > 0)
             {
                 string[] param = new string[selectionne.Length];
 
@@ -75,50 +65,6 @@ namespace Puces_R
 
         private void Update()
         {
-            SqlCommand cmdMessages = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
-                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
-                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
-                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
-                                                "ON M.Envoyeur = X.No " +
-                                                "WHERE (M.Recepteur = 10700) AND M.Boite = 0 ORDER BY M.DateEnvoi DESC", connexion);
-
-            SqlCommand cmdEnvoyes = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet FROM PPMessages AS M INNER JOIN " +
-                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
-                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
-                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
-                                                "ON M.Recepteur = X.No " +
-                                                "WHERE (M.Envoyeur = 10700) ORDER BY M.DateEnvoi DESC", connexion);
-            SqlCommand cmdCorbeil = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
-                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
-                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
-                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
-                                                "ON M.Envoyeur = X.No " +
-                                                "WHERE (M.Recepteur = 10700) AND M.Boite = -1 ORDER BY M.DateEnvoi DESC", connexion);
-
-            SqlCommand cmdArchive = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
-                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
-                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
-                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
-                                                "ON M.Envoyeur = X.No " +
-                                                "WHERE (M.Recepteur = 10700) AND M.Boite = 1 ORDER BY M.DateEnvoi DESC", connexion);
-
-            connexion.Open();
-
-            ListeMessage.Fill(cmdMessages);
-            ListeEnvoi.Fill(cmdEnvoyes, true);
-            ListeCorbeil.Fill(cmdCorbeil);
-            ListeArchive.Fill(cmdArchive);
-            connexion.Close();
-        }
-
-        protected void voirMessage(object sender, MenuEventArgs e)
-        {
-            ListeMessage.Visible =
-            ListeEnvoi.Visible =
-            ListeCorbeil.Visible =
-            ListeArchive.Visible =
-            ListeBrouillon.Visible = false;
-
             if (menuAction.FindItem("Restore") != null)
             {
                 menuAction.FindItem("Restore").Text = "Supprimer";
@@ -132,32 +78,76 @@ namespace Puces_R
             }
             menuAction.Visible = true;
 
-            boiteCourante = e.Item.Value;
+            SqlCommand cmd = null;
+            string box = "";
 
-            switch (e.Item.Value)
+            if (Request.QueryString["Box"] != null)
             {
-                case "Sent":
-                    ListeEnvoi.Visible = true;
-                    menuAction.Visible = false;
-                    break;
-                case "Box":
-                    ListeMessage.Visible = true;
-                    break;
-                case "Deleted":
-                    ListeCorbeil.Visible = true;
-                    menuAction.FindItem("Delete").Text = "Restaurer";
-                    menuAction.FindItem("Delete").Value = "Restore";
-                    break;
-                case "Archived":
-                    ListeArchive.Visible = true;
-                    menuAction.FindItem("Archive").Text = "Désarchiver";
-                    menuAction.FindItem("Archive").Value = "Unarchive";
-                    break;
-                case "Draft":
-                    ListeBrouillon.Visible = true;
-                    menuAction.Visible = false;
-                    break;
+                box = Request.QueryString["Box"];
+
+                switch (box)
+                {
+                    case "Sent":
+                        cmd = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet FROM PPMessages AS M INNER JOIN " +
+                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
+                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
+                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
+                                                "ON M.Recepteur = X.No " +
+                                                "WHERE (M.Envoyeur = 10700) ORDER BY M.DateEnvoi DESC", connexion);
+                        menuAction.Visible = false;
+                        break;
+                    case "Deleted":
+                        cmd = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
+                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
+                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
+                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
+                                                "ON M.Envoyeur = X.No " +
+                                                "WHERE (M.Recepteur = 10700) AND M.Boite = -1 ORDER BY M.DateEnvoi DESC", connexion);
+                        menuAction.FindItem("Delete").Text = "Restaurer";
+                        menuAction.FindItem("Delete").Value = "Restore";
+                        break;
+                    case "Archived":
+                        cmd = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
+                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
+                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
+                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
+                                                "ON M.Envoyeur = X.No " +
+                                                "WHERE (M.Recepteur = 10700) AND M.Boite = 1 ORDER BY M.DateEnvoi DESC", connexion);
+                        menuAction.FindItem("Archive").Text = "Désarchiver";
+                        menuAction.FindItem("Archive").Value = "Unarchive";
+                        break;
+                    case "Draft":
+                        cmd = new SqlCommand("SELECT * FROM PPMessages WHERE NoMessage = -1000", connexion);
+                        break;
+                    default:
+                        cmd = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
+                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
+                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
+                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
+                                                "ON M.Envoyeur = X.No " +
+                                                "WHERE (M.Recepteur = 10700) AND M.Boite = 0 ORDER BY M.DateEnvoi DESC", connexion);
+                        break;
+                }
             }
+            else
+            {
+                cmd = new SqlCommand("SELECT M.NoMessage, X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Lu FROM PPMessages AS M INNER JOIN " +
+                                               "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
+                                                "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
+                                                "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
+                                                "ON M.Envoyeur = X.No " +
+                                                "WHERE (M.Recepteur = 10700) AND M.Boite = 0 ORDER BY M.DateEnvoi DESC", connexion);
+            }
+
+
+            connexion.Open();
+            ListeMessage.Fill(cmd, box == "Sent");
+            connexion.Close();
+        }
+
+        protected void voirMessage(object sender, MenuEventArgs e)
+        {
+            Response.Redirect("BoiteMessage.aspx?Box=" + e.Item.Value, true);
         }
     }
 }

@@ -67,21 +67,21 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5001, 10000, 500, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5002, 10000, 500, DATEADD(d, 1, DATEADD(y, -1, GETDATE())))
+(5002, 10000, 500, DATEADD(d, 1, DATEADD(yy, -1, GETDATE())))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5010, 10000, 501, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5011, 10000, 501, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5012, 10000, 501, DATEADD(y, -1, GETDATE()))
+(5012, 10000, 501, DATEADD(yy, -1, GETDATE()))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5020, 10000, 502, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5021, 10000, 502, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5022, 10000, 502, DATEADD(d, -1, DATEADD(y, -1, GETDATE())))
+(5022, 10000, 502, DATEADD(d, -1, DATEADD(yy, -1, GETDATE())))
 
 -- 2 ans
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
@@ -89,21 +89,21 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5101, 10000, 510, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5102, 10000, 510, DATEADD(d, 1, DATEADD(y, -2, GETDATE())))
+(5102, 10000, 510, DATEADD(d, 1, DATEADD(yy, -2, GETDATE())))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5110, 10000, 511, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5111, 10000, 511, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5112, 10000, 511, DATEADD(y, -2, GETDATE()))
+(5112, 10000, 511, DATEADD(yy, -2, GETDATE()))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5120, 10000, 512, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5121, 10000, 512, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5122, 10000, 512, DATEADD(d, -1, DATEADD(y, -2, GETDATE())))
+(5122, 10000, 512, DATEADD(d, -1, DATEADD(yy, -2, GETDATE())))
 
 -- 3 ans
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
@@ -111,21 +111,21 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5201, 10000, 520, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5202, 10000, 520, DATEADD(d, 1, DATEADD(y, -3, GETDATE())))
+(5202, 10000, 520, DATEADD(d, 1, DATEADD(yy, -3, GETDATE())))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5210, 10000, 521, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5211, 10000, 521, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5212, 10000, 521, DATEADD(y, -3, GETDATE()))
+(5212, 10000, 521, DATEADD(yy, -3, GETDATE()))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5220, 10000, 522, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (5221, 10000, 522, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5222, 10000, 522, DATEADD(d, -1, DATEADD(y, -3, GETDATE())))
+(5222, 10000, 522, DATEADD(d, -1, DATEADD(yy, -3, GETDATE())))
 
 -- Produits
 -- 1 an
@@ -270,21 +270,21 @@ INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", Pr
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (60000002, 600, 10, 'Produit 600-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(60000003, 600, 10, 'Produit 600-3', '', 1, 0, 0, 0, DATEADD(d, 1, DATEADD(y, -1, GETDATE())))
+(60000003, 600, 10, 'Produit 600-3', '', 1, 0, 0, 0, DATEADD(d, 1, DATEADD(yy, -1, GETDATE())))
 
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (60100001, 601, 10, 'Produit 601-1', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (60100002, 601, 10, 'Produit 601-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(60100003, 601, 10, 'Produit 601-3', '', 1, 0, 0, 0, DATEADD(y, -1, GETDATE()))
+(60100003, 601, 10, 'Produit 601-3', '', 1, 0, 0, 0, DATEADD(yy, -1, GETDATE()))
 
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (60200001, 602, 10, 'Produit 602-1', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (60200002, 602, 10, 'Produit 602-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(60200003, 602, 10, 'Produit 602-3', '', 1, 0, 0, 0, DATEADD(d, -1, DATEADD(y, -1, GETDATE())))
+(60200003, 602, 10, 'Produit 602-3', '', 1, 0, 0, 0, DATEADD(d, -1, DATEADD(yy, -1, GETDATE())))
 
 -- 2 ans
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
@@ -292,21 +292,21 @@ INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", Pr
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (61000002, 610, 10, 'Produit 610-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(61000003, 610, 10, 'Produit 610-3', '', 1, 0, 0, 0, DATEADD(d, 1, DATEADD(y, -2, GETDATE())))
+(61000003, 610, 10, 'Produit 610-3', '', 1, 0, 0, 0, DATEADD(d, 1, DATEADD(yy, -2, GETDATE())))
 
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (61100001, 611, 10, 'Produit 611-1', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (61100002, 611, 10, 'Produit 611-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(61100003, 611, 10, 'Produit 611-3', '', 1, 0, 0, 0, DATEADD(y, -2, GETDATE()))
+(61100003, 611, 10, 'Produit 611-3', '', 1, 0, 0, 0, DATEADD(yy, -2, GETDATE()))
 
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (61200001, 612, 10, 'Produit 612-1', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (61200002, 612, 10, 'Produit 612-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(61200003, 612, 10, 'Produit 612-3', '', 1, 0, 0, 0, DATEADD(d, -1, DATEADD(y, -2, GETDATE())))
+(61200003, 612, 10, 'Produit 612-3', '', 1, 0, 0, 0, DATEADD(d, -1, DATEADD(yy, -2, GETDATE())))
 
 -- 3 ans
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
@@ -314,21 +314,21 @@ INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", Pr
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (62000002, 620, 10, 'Produit 620-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(62000003, 620, 10, 'Produit 620-3', '', 1, 0, 0, 0, DATEADD(d, 1, DATEADD(y, -3, GETDATE())))
+(62000003, 620, 10, 'Produit 620-3', '', 1, 0, 0, 0, DATEADD(d, 1, DATEADD(yy, -3, GETDATE())))
 
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (62100001, 621, 10, 'Produit 621-1', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (62100002, 621, 10, 'Produit 621-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(62100003, 621, 10, 'Produit 621-3', '', 1, 0, 0, 0, DATEADD(y, -3, GETDATE()))
+(62100003, 621, 10, 'Produit 621-3', '', 1, 0, 0, 0, DATEADD(yy, -3, GETDATE()))
 
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (62200001, 622, 10, 'Produit 622-1', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
 (62200002, 622, 10, 'Produit 622-2', '', 1, 0, 0, 0, '2000-01-01')
 INSERT INTO PPProduits(NoProduit, NoVendeur, NoCategorie, Nom, "Description", PrixDemande, NombreItems, Disponibilité, Poids, DateCreation) values
-(62200003, 622, 10, 'Produit 622-3', '', 1, 0, 0, 0, DATEADD(d, -1, DATEADD(y, -3, GETDATE())))
+(62200003, 622, 10, 'Produit 622-3', '', 1, 0, 0, 0, DATEADD(d, -1, DATEADD(yy, -3, GETDATE())))
 
 -- Ajouts details commande
 

@@ -10,6 +10,9 @@ namespace Puces_R
 {
     public partial class BoiteMessageControle : System.Web.UI.UserControl
     {
+
+        private int _nbMessages;
+
         public new bool Visible
         {
             get
@@ -22,13 +25,20 @@ namespace Puces_R
             }
         }
 
+        public int NbMessages
+        {
+            get
+            {
+                return _nbMessages;
+            }
+        }
+
         public void Fill(SqlCommand cmd, bool sent = false)
         {
             Liste.Controls.Clear();
             lblLabel.Text = sent ? "À" : "De";
             SqlDataReader sdr = cmd.ExecuteReader();
-            int cmpt = 0;
-            for (cmpt = 0; sdr.Read(); cmpt++)
+            for (_nbMessages = 0; sdr.Read(); _nbMessages++)
             {
                 LigneMessage l = (LigneMessage)Page.LoadControl("~/Controles/LigneMessage.ascx");
                 Liste.Controls.Add(l);
@@ -38,7 +48,7 @@ namespace Puces_R
                 l.Lu = sent ? true : (Boolean)sdr["Lu"];
                 l.NoMessage = (Int64)sdr["NoMessage"];
             }
-            if (cmpt == 0)
+            if (_nbMessages == 0)
             {
                 TableRow tr = new TableRow();
                 TableCell td = new TableCell();

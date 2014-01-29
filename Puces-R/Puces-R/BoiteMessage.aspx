@@ -107,9 +107,5 @@
             </div>
         </div>
         <yc:Boite runat="server" ID="ListeMessage" Visible="true" />
-        <yc:Boite runat="server" ID="ListeEnvoi" />
-        <yc:Boite runat="server" ID="ListeCorbeil" />
-        <yc:Boite runat="server" ID="ListeArchive" />
-        <yc:Boite runat="server" ID="ListeBrouillon" />
     </div>
 </asp:Content>

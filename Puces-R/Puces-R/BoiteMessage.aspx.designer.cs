@@ -29,41 +29,5 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::Puces_R.BoiteMessageControle ListeMessage;
-        
-        /// <summary>
-        /// Contrôle ListeEnvoi.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeEnvoi;
-        
-        /// <summary>
-        /// Contrôle ListeCorbeil.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeCorbeil;
-        
-        /// <summary>
-        /// Contrôle ListeArchive.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeArchive;
-        
-        /// <summary>
-        /// Contrôle ListeBrouillon.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.BoiteMessageControle ListeBrouillon;
     }
 }

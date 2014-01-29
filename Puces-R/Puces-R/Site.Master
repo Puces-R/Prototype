@@ -16,7 +16,9 @@
                         <img src="Images/logo.png" class="logo" alt="Logo" />
                         <span class="titre">Les Petites Puces</span>
                         <div class="menu">
-                            <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
+                            <div>
+                                <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
+                            </div>
                         </div>
                     </div>
                     <asp:Panel runat="server" ID="pnlTitre" CssClass="lignePointilleHorizontale barreVendeur" Visible="false">

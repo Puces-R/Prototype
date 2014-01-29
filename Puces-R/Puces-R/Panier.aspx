@@ -46,7 +46,7 @@
                 </div>
             </asp:View>
             <asp:View runat="server">
-                <div class="panierVide">Le panier de ce vendeur est présentement vide!</div>
+                <div class="panierVide">Le panier pour ce vendeur est présentement vide!</div>
             </asp:View>
         </asp:MultiView>
     </div>

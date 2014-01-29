@@ -10,15 +10,24 @@
 namespace Puces_R.Controles {
     
     
-    public partial class MenuInvite {
+    public partial class Categories {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle rptCategories.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu ctrMenu;
+        protected global::System.Web.UI.WebControls.Repeater rptCategories;
+        
+        /// <summary>
+        /// Contrôle HyperLink1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
     }
 }

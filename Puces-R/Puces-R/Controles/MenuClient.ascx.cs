@@ -12,6 +12,16 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            string urlRequete = System.IO.Path.GetFileName(Request.Url.AbsoluteUri);
+            foreach (MenuItem item in ctrMenu.Items)
+            {
+                string urlItem = System.IO.Path.GetFileName(item.NavigateUrl);
+                item.Selected = urlRequete.Contains(urlItem);
+            }
+        }
+
         public long NoVendeur
         {
             set

@@ -45,9 +45,9 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 PageActuelle = 0;
-
+ 
                 chargerProduits();
-                
+
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie WHERE P.NoVendeur = " + noVendeur, myConnection);
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
@@ -59,7 +59,14 @@ namespace Puces_R
                 ddlCategorie.Items.Add(new ListItem("Toutes", "-1"));
                 ddlCategorie.SelectedValue = noCategorie.ToString();
 
-                ((SiteMaster)Master).NoVendeur = noVendeur;
+                if (noVendeur == -1)
+                {
+                    ((SiteMaster)Master).Titre = "Catalogue Global";
+                }
+                else
+                {
+                    ((SiteMaster)Master).NoVendeur = noVendeur;
+                }
             }
         }
 
@@ -120,7 +127,7 @@ namespace Puces_R
                     case 1:
                         colonne = "P.NoProduit";
                         break;
-                    case 3:
+                    case 2:
                         colonne = "P.Description";
                         break;
                 }
@@ -131,10 +138,17 @@ namespace Puces_R
             {
                 whereParts.Add("P.NoVendeur = " + noVendeur);
             }
+            else
+            {
+                noVendeur = -1;
+            }
 
             if (!IsPostBack)
             {
-                ctrMenu.NoVendeur = noVendeur;
+                if (noVendeur != -1)
+                {
+                    ctrMenu.NoVendeur = noVendeur;
+                }
             }
 
             if (IsPostBack)
@@ -193,9 +207,12 @@ namespace Puces_R
 
             NbPages = objPds.PageCount;
 
-            objPds.CurrentPageIndex = 0;
             dtlProduits.DataSource = objPds;
             dtlProduits.DataBind();
+
+            pnlLeftNavigation.Visible = (PageActuelle > 0);
+            pnlRightNavigation.Visible = (PageActuelle < NbPages - 1);
+            pnlLigneNavigation.Visible = pnlLeftNavigation.Visible || pnlRightNavigation.Visible;
         }
 
         protected void btnFirst_OnClick(object sender, EventArgs e)
@@ -219,6 +236,30 @@ namespace Puces_R
         protected void btnLast_OnClick(object sender, EventArgs e)
         {
             PageActuelle = NbPages - 1;
+            chargerProduits();
+        }
+
+        protected void btnRecherche_OnClick(object sender, EventArgs e)
+        {
+            PageActuelle = 0;
+            chargerProduits();
+        }
+
+        protected void ddlTrierPar_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            PageActuelle = 0;
+            chargerProduits();
+        }
+
+        protected void ddlParPage_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            PageActuelle = 0;
+            chargerProduits();
+        }
+
+        protected void ddlCategorie_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            PageActuelle = 0;
             chargerProduits();
         }
     }

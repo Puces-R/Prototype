@@ -61,3 +61,21 @@
 {
     margin-right:15px;
 }
+
+.first,.previous
+{
+    float:left;
+    margin-right:15px;
+}
+
+.last,.next
+{
+    float:right;
+    margin-left:15px;
+}
+
+.imageCentree
+{
+    height:16px;
+    vertical-align:middle;
+}

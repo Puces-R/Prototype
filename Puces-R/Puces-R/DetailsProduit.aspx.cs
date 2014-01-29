@@ -44,16 +44,42 @@ namespace Puces_R
                 SqlDataReader lecteurProduit = commandeProduit.ExecuteReader();
                 lecteurProduit.Read();
 
-                this.imgProduit.ImageUrl = "Images/Televerse/" + lecteurProduit["Photo"].ToString();
+                Object photo = lecteurProduit["Photo"];
+                String urlImage;
+                if (photo is DBNull)
+                {
+                    urlImage = "Images/image_non_disponible.png";
+                }
+                else
+                {
+                    urlImage = "Images/Televerse/" + (String)photo;
+                }
+                this.imgProduit.ImageUrl = urlImage;
 
                 this.lblProduit.Text = (String)lecteurProduit["Nom"];
                 this.lblCategorie.Text = (String)lecteurProduit["Categorie"];
                 this.lblDescription.Text = (String)lecteurProduit["Description"];
-                this.lblPrixDemande.Text = ((decimal)lecteurProduit["PrixDemande"]).ToString("C");
-                this.lblPrixEnVente.Text = ((decimal)lecteurProduit["PrixVente"]).ToString("C");
+
+                decimal decPrixDemande = (decimal)lecteurProduit["PrixDemande"];
+
+                this.lblPrixDemande.Text = decPrixDemande.ToString("C");
+
+                Object objPrixVente = lecteurProduit["PrixVente"];
+                decimal decPrixVente;
+                if (objPrixVente is DBNull)
+                {
+                    decPrixVente = decPrixDemande;
+                }
+                else
+                {
+                    decPrixVente = (decimal)objPrixVente;
+                }
+                this.lblPrixEnVente.Text = decPrixVente.ToString("C");
+
+
                 this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
-                ((SiteMaster)Master).Vendeur = (String)lecteurProduit["NomAffaires"];
+                ((SiteMaster)Master).Titre = (String)lecteurProduit["NomAffaires"];
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
 

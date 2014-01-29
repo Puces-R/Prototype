@@ -14,16 +14,19 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int noVendeur;
-            if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
+            if (!IsPostBack)
             {
-                Response.Redirect("Default.aspx", true);
-            }
+                int noVendeur;
+                if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
+                {
+                    Response.Redirect("Default.aspx", true);
+                }
 
-            ((SiteMaster)Master).NoVendeur = noVendeur;
-            ctrMenu.NoVendeur = noVendeur;
-            ctrMontantsFactures.NoVendeur = noVendeur;
-            ctrTablePanier.NoVendeur = noVendeur;
+                ((SiteMaster)Master).NoVendeur = noVendeur;
+                ctrMenu.NoVendeur = noVendeur;
+                ctrMontantsFactures.NoVendeur = noVendeur;
+                ctrTablePanier.NoVendeur = noVendeur;
+            }
         }
     }
 }

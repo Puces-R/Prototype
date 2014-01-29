@@ -31,22 +31,22 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MenuItems;
         
         /// <summary>
-        /// Contrôle pnlVendeur.
+        /// Contrôle pnlTitre.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVendeur;
+        protected global::System.Web.UI.WebControls.Panel pnlTitre;
         
         /// <summary>
-        /// Contrôle lblVendeur.
+        /// Contrôle lblTitre.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVendeur;
+        protected global::System.Web.UI.WebControls.Label lblTitre;
         
         /// <summary>
         /// Contrôle MainContent.

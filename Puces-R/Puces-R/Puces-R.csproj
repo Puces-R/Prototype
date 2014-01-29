@@ -90,7 +90,12 @@
     <Content Include="gerer_inactivite_clients.aspx" />
     <Content Include="gerer_inactivite_vendeurs.aspx" />
     <Content Include="CSS\style_sec4.css" />
+    <Content Include="Images\Dernier.png" />
+    <Content Include="Images\image_non_disponible.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\Precedent.png" />
+    <Content Include="Images\Premier.png" />
+    <Content Include="Images\Prochain.png" />
     <Content Include="Images\Televerse\1000010.jpg" />
     <Content Include="Images\Televerse\1000020.jpg" />
     <Content Include="Images\Televerse\1000030.jpg" />

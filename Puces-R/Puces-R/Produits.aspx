@@ -73,4 +73,21 @@
             </ItemTemplate>
         </ASP:DataList>
     </div>
+    <div class="lignePointilleHorizontale"></div>
+    <div class="first">
+        <asp:ImageButton runat="server" ID="imgFirst" OnClick="btnFirst_OnClick" ImageUrl="Images/Premier.png" CssClass="imageCentree" />
+        <asp:LinkButton runat="server" Text="Premier" ID="btnFirst" OnClick="btnFirst_OnClick" />
+    </div>
+    <div class="previous">
+        <asp:ImageButton runat="server" ID="imgPrevious" OnClick="btnPrevious_OnClick" ImageUrl="Images/Precedent.png" CssClass="imageCentree" />
+        <asp:LinkButton runat="server" Text="Précédent" ID="btnPrevious" OnClick="btnPrevious_OnClick" />
+    </div>
+    <div class="last">
+        <asp:LinkButton runat="server" Text="Dernier" ID="btnLast" OnClick="btnLast_OnClick" />
+        <asp:ImageButton runat="server" ID="imgLast" OnClick="btnLast_OnClick" ImageUrl="Images/Dernier.png" CssClass="imageCentree" />
+    </div>
+    <div class="next">
+        <asp:LinkButton runat="server" Text="Prochain" ID="btnNext" OnClick="btnNext_OnClick" />
+        <asp:ImageButton runat="server" ID="imgNext" OnClick="btnNext_OnClick" ImageUrl="Images/Prochain.png" CssClass="imageCentree" />
+    </div>
 </asp:Content>

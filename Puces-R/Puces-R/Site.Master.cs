@@ -10,12 +10,12 @@ namespace Puces_R
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
-        public String Vendeur
+        public String Titre
         {
             set
             {
-                lblVendeur.Text = value;
-                pnlVendeur.Visible = true;
+                lblTitre.Text = value;
+                pnlTitre.Visible = true;
             }
         }
 
@@ -28,7 +28,7 @@ namespace Puces_R
                 SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
 
                 myConnection.Open();
-                Vendeur = (String)commandVendeur.ExecuteScalar();
+                Titre = (String)commandVendeur.ExecuteScalar();
                 myConnection.Close();
             }
         }

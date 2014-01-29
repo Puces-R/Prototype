@@ -17,29 +17,39 @@ namespace Puces_R
         {
             if (!IsPostBack)
             {
-                if (Session["ID"] == null)
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
-
-                int noVendeur;
-                if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
-
-                ctrMenu.NoVendeur = noVendeur;
-                ctrMontantsFactures.NoVendeur = noVendeur;
-
-                String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
-
-                SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
-                DataTable tableProduits = new DataTable();
-                adapteurProduits.Fill(tableProduits);
-
-                rptProduits.DataSource = new DataView(tableProduits);
-                rptProduits.DataBind();
+                chargerProduits();
             }
+        }
+
+        private void chargerProduits()
+        {
+            if (Session["ID"] == null)
+            {
+                Response.Redirect("Default.aspx", true);
+            }
+
+            int noVendeur;
+            if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
+            {
+                Response.Redirect("Default.aspx", true);
+            }
+
+            ctrMenu.NoVendeur = noVendeur;
+            ctrMontantsFactures.NoVendeur = noVendeur;
+            ((SiteMaster)Master).NoVendeur = noVendeur;
+
+            String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
+
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            DataTable tableProduits = new DataTable();
+            adapteurProduits.Fill(tableProduits);
+
+            rptProduits.DataSource = new DataView(tableProduits);
+            rptProduits.DataBind();
+
+            ctrMontantsFactures.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur;
+
+            mvMain.ActiveViewIndex = tableProduits.Rows.Count == 0 ? 1 : 0;
         }
 
         protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -96,6 +106,7 @@ namespace Puces_R
             }
             myConnection.Close();
 
+            chargerProduits();
             ctrMontantsFactures.CalculerCouts();
         }
 

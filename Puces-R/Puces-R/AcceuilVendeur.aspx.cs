@@ -16,20 +16,20 @@ namespace Puces_R
         protected void Page_Load(object sender, EventArgs e)
         {
             myConnection.Open();
-            SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur=20",myConnection);
+            SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur="+Session["ID"],myConnection);
             object nb = (object)maC.ExecuteScalar();
             myConnection.Close();
 
             nbVisite.Text = nbVisite.Text + " : " + Convert.ToString(nb);
 
-            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT (C.Nom + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient", myConnection);
+            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT TOP 5 (C.Nom + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient", myConnection);
             DataTable tablePaniers = new DataTable();
             adapteurPaniers.Fill(tablePaniers);
 
             rptPaniers.DataSource = new DataView(tablePaniers);
             rptPaniers.DataBind();
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT * from PPCommandes where Statut='I' and NoVendeur="+Session["ID"], myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where Statut='I' and NoVendeur="+Session["ID"] +" order by DateCommande DESC ", myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
             rptProduits.DataSource = tableProduits;
@@ -153,7 +153,7 @@ namespace Puces_R
                 Repeater rptProduits = (Repeater)item.FindControl("rptProduits");
 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
-
+                
                 String vendeur = (String)drvPanier["NomAffaires"];
                 decimal sousTotal = (decimal)drvPanier["SousTotal"];
                 long noVendeur = (long)drvPanier["NoVendeur"];

@@ -19,7 +19,7 @@ namespace Puces_R
             {
                 SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-                SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT * from PPCommandes where NoVendeur=10", myConnection);
+                SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where NoVendeur=10 and Statut='I' ORDER BY DateCommande DESC", myConnection);
                 DataTable tableProduits = new DataTable();
                 adapteurProduits.Fill(tableProduits);
                 rptProduits.DataSource = tableProduits;
@@ -83,7 +83,7 @@ namespace Puces_R
                 //Decimal tps = (Decimal)drvFilm["TPS"];
                 //Decimal tvq = (Decimal)drvFilm["TVQ"];
                 //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
-                String Statut = (String)drvFilm["Statut"];
+                //String Statut = (String)drvFilm["Statut"];
                 //String strAutorisation = (String)drvFilm["NoAutorisation"];
 
                 lblNoProduit.Text = "No. " + noCommande.ToString();
@@ -96,9 +96,9 @@ namespace Puces_R
                 lblTPS.Text = tps;
                 lblTVQ.Text = tvq;
                 lblPoids.Text = poidstotal.ToString();
-                lblStatut.Text = Statut;
+                //lblStatut.Text = Statut;
                 //lblAutorisation.Text = strAutorisation;
-                btnMAJQuantite.CommandArgument = noCommande.ToString() + "-" + Statut;
+               // btnMAJQuantite.CommandArgument = noCommande.ToString() + "-" + Statut;
             }
         }
 

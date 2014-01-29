@@ -127,7 +127,7 @@ namespace Puces_R
                     case 1:
                         colonne = "P.NoProduit";
                         break;
-                    case 3:
+                    case 2:
                         colonne = "P.Description";
                         break;
                 }

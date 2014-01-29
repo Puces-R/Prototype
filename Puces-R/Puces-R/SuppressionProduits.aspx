@@ -1,24 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SuppressionProduits.aspx.cs" Inherits="Puces_R.SuppressionProduits" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SuppressionProduits.aspx.cs" Inherits="Puces_R.SuppressionProduits"  %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div id="divEnTete">
-         <asp:Label ID="lblTitre"  Text="Suppression d'un produit " runat="server"/><br />
-        
-     </div> 
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuClient ID="MenuClient1" runat="server" />
+</asp:Content>
 
-     <div>   
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
+    <link href="CSS/SuppressionProduits.css" rel="stylesheet" type="text/css" />
+</asp:Content>
 
-     <table>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+    <div>
 
-     
-     
+    <asp:Label ID="lblAvertissement" runat="server" CssClass="sRouge"></asp:Label>
+
+    <h2>Modification d'un produit </h2>
+
+ <table>
+
      <tr>
          <td><asp:Label ID="lblCategorieProduits"  runat="server">Catégorie :</asp:Label></td>
          <td><asp:DropDownList ID="ddlCategorieProduits"  runat="server" enabled="false"></asp:DropDownList></td>
@@ -45,7 +45,7 @@
 
      <tr>
           <td><asp:Label ID="lblDescComplete" runat="server">Descrption Complète:</asp:Label></td>
-        <td> <asp:TextBox id="tbDescComplete"  TextMode="multiline" runat="server"  placeholder="Entrez le message"  title="aide" Enabled="false"></asp:TextBox><br />
+        <td> <asp:TextBox id="tbDescComplete"  TextMode="multiline" runat="server"  placeholder="Entrez le message"  title="aide" Enabled="false" CssClass="DescComplete" ></asp:TextBox><br />
         
 
                    
@@ -100,10 +100,9 @@
          <td><asp:Label ID="lblDisponibilité" runat="server">Disponibilité:</asp:Label></td>
          <td><asp:CheckBox ID="cbDisponibilite" runat="server" Text="Le produit est-il visible par les clients?" enabled="false" /> </td>
       </tr>
-         </Table>
+ </Table>
 
-         <asp:Button ID="btnAjout" Text="Confirmer la suppression!" runat="server" />
+         <asp:Button ID="btnAjout" Text="Confirmer la suppression!" runat="server" OnClick="supprimerProduits"/>
+         <asp:Button ID="btnRetour" Text="Retour " runat="server" PostBackUrl="GestionProduits.aspx"/>
     </div>
-    </form>
-</body>
-</html>
+ </asp:Content>

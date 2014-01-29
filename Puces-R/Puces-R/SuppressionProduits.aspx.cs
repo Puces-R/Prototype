@@ -14,23 +14,76 @@ namespace Puces_R
         int noProduit = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+
             if (!int.TryParse(Request.Params["noproduit"], out noProduit))
             {
 
-                Response.Redirect("http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal");
+                Response.Redirect("Connexion.aspx");
             }
-            else 
+            else
             {
                 chargerCategorie();
                 chargerDonnees();
+
+                if (verifierSiProduitDansPanier())
+                {
+                   lblAvertissement.Text="LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D UN CLIENT!";
+                }
                 //Response.Write(noProduit.ToString());
             }
-            
+
         }
 
-        protected void verifierSiProduitDansPanier()
+        protected void supprimerProduits(object sender, EventArgs e)
         {
+            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
+            SqlConnection maConnexion = new SqlConnection();
+            maConnexion.ConnectionString = maChaineDeConnexion;
+            maConnexion.Open();
+
+            SqlCommand maCommande;
+            if (verifierSiProduitEstCommande())
+            {
+                maCommande = new SqlCommand("UPDATE PPProduits SET NombreItems=0,Disponibilité=0 where NoProduit=" + noProduit, maConnexion);
+                maCommande.ExecuteNonQuery();
+                Response.Redirect("Connexion.aspx");
+            }
+            else
+            {
+                maCommande = new SqlCommand("DELETE FROM PPProduits WHERE NoProduit=" + noProduit, maConnexion);
+                maCommande.ExecuteNonQuery();
+                Response.Redirect("Connexion.aspx");
+            }
+
+            maConnexion.Close();
+        }
+        protected bool verifierSiProduitEstCommande()
+        {
+            bool produitDansCommande = false;
+            SqlConnection dbConn = new SqlConnection();
+            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
+            SqlConnection maConnexion = new SqlConnection();
+            maConnexion.ConnectionString = maChaineDeConnexion;
+            maConnexion.Open();
+
+            SqlCommand maCommande = new SqlCommand("select * from PPDetailsCommandes where NoProduit=" + noProduit, maConnexion);
+            object rep = maCommande.ExecuteScalar();
+            if (rep != null)
+            {
+                produitDansCommande = true;
+            }
+            else
+            {
+                produitDansCommande = false;
+            }
+            maConnexion.Close();
+            return produitDansCommande;
+
+        }
+
+        protected bool verifierSiProduitDansPanier()
+        {
+            bool produitDansPanier = false;
             SqlConnection dbConn = new SqlConnection();
             String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
             SqlConnection maConnexion = new SqlConnection();
@@ -39,10 +92,19 @@ namespace Puces_R
 
             SqlCommand maCommande = new SqlCommand("select * from PPArticlesEnPanier where NoProduit=" + noProduit, maConnexion);
             object rep = maCommande.ExecuteScalar();
+            if (rep != null)
+            {
+                produitDansPanier = true;
+            }
+            else
+            {
+                produitDansPanier = false;
+            }
             maConnexion.Close();
+            return produitDansPanier;
         }
 
-        protected void chargerDonnees() 
+        protected void chargerDonnees()
         {
             SqlConnection dbConn = new SqlConnection();
             String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
@@ -50,7 +112,7 @@ namespace Puces_R
             maConnexion.ConnectionString = maChaineDeConnexion;
             maConnexion.Open();
 
-            SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoProduit="+ noProduit, maConnexion);
+            SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoProduit=" + noProduit, maConnexion);
             object rep = maCommande.ExecuteScalar();
 
             if (rep != null)
@@ -62,18 +124,18 @@ namespace Puces_R
                     int categorie = (int)repT[2];
                     LoaderCategorie(categorie);
 
-                   tbDescAbregee.Text = (String)repT[3];
-                   tbDescComplete.Text = (String)repT[4];
-                   String photo = (String)repT[5];
-                   imgProduits.ImageUrl = "Images/Televerse/" + photo;
-                   tbPrix.Text= Convert.ToString((Decimal)repT[6]);
-                   tbNbItems.Text = Convert.ToString((Int16)repT[7]);
+                    tbDescAbregee.Text = (String)repT[3];
+                    tbDescComplete.Text = (String)repT[4];
+                    String photo = (String)repT[5];
+                    imgProduits.ImageUrl = "Images/Televerse/" + photo;
+                    tbPrix.Text = Convert.ToString((Decimal)repT[6]);
+                    tbNbItems.Text = Convert.ToString((Int16)repT[7]);
                     Boolean dispo = (Boolean)repT[8];
                     if (dispo)
                     {
-                        cbDisponibilite.Checked=true;
+                        cbDisponibilite.Checked = true;
                     }
-                    else 
+                    else
                     {
                         cbDisponibilite.Checked = false;
                     }
@@ -81,7 +143,7 @@ namespace Puces_R
                     //Double prixV = (Decimal)repT[10];
                     tbPois.Text = Convert.ToString((Decimal)repT[11]);
                     //DateTime dateCreation = (DateTime)repT[12];
-                    
+
                 }
             }
             else
@@ -93,10 +155,10 @@ namespace Puces_R
 
         public void LoaderCategorie(int numero)
         {
-            
+
             switch (numero)
             {
-                case 10: ddlCategorieProduits.SelectedIndex=1; break;
+                case 10: ddlCategorieProduits.SelectedIndex = 1; break;
                 case 20: ddlCategorieProduits.SelectedIndex = 2; break;
                 case 30: ddlCategorieProduits.SelectedIndex = 3; break;
                 case 40: ddlCategorieProduits.SelectedIndex = 4; break;
@@ -105,7 +167,7 @@ namespace Puces_R
                 case 70: ddlCategorieProduits.SelectedIndex = 7; break;
                 case 80: ddlCategorieProduits.SelectedIndex = 8; break;
             }
-            
+
 
 
 

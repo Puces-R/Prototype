@@ -29,7 +29,7 @@ namespace Puces_R
             rptPaniers.DataSource = new DataView(tablePaniers);
             rptPaniers.DataBind();
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT * from PPCommandes where Statut='I'", myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT * from PPCommandes where Statut='I' and NoVendeur="+Session["ID"], myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
             rptProduits.DataSource = tableProduits;
@@ -100,14 +100,30 @@ namespace Puces_R
                 Int64 strCategorie = (Int64)drvFilm["NoClient"];
                 Int64 noVendeur = (Int64)drvFilm["NoVendeur"];
                 DateTime strDate = (DateTime)drvFilm["DateCommande"];
-                decimal decPrixDemande = (decimal)drvFilm["Livraison"];
-                short intQuantite = (short)drvFilm["TypeLivraison"];
-                Decimal noPanier = (Decimal)drvFilm["MontantTotal"];
-                Decimal tps = (Decimal)drvFilm["TPS"];
-                Decimal tvq = (Decimal)drvFilm["TVQ"];
-                Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
-                String Statut = (String)drvFilm["Statut"];
-                String strAutorisation = (String)drvFilm["NoAutorisation"];
+                //decimal decPrixDemande = (decimal)drvFilm["Livraison"];
+                //short intQuantite = (short)drvFilm["TypeLivraison"];
+                //Decimal noPanier = (Decimal)drvFilm["MontantTotal"];
+                //Decimal tps = (Decimal)drvFilm["TPS"];
+                //Decimal tvq = (Decimal)drvFilm["TVQ"];
+                //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
+                //String Statut = (String)drvFilm["Statut"];
+                //String strAutorisation = (String)drvFilm["NoAutorisation"];
+
+                String decPrixDemande = Convert.ToString(drvFilm["Livraison"].ToString().Replace(',', '.'));
+                Response.Write(decPrixDemande);
+                String intQuantite = Convert.ToString(drvFilm["TypeLivraison"]);
+                Response.Write(intQuantite);
+                String noPanier = Convert.ToString(drvFilm["MontantTotal"]);
+                String tps = Convert.ToString(drvFilm["TPS"]);
+                String tvq = Convert.ToString(drvFilm["TVQ"]);
+                String poidstotal = Convert.ToString(drvFilm["PoidsTotal"]);
+                //Decimal tps = (Decimal)drvFilm["TPS"];
+                //Decimal tvq = (Decimal)drvFilm["TVQ"];
+                //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
+
+                //String Statut = (String)drvFilm["Statut"];
+               // String strAutorisation = (String)drvFilm["NoAutorisation"];
+
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
                 lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande="+noCommande;
@@ -117,11 +133,11 @@ namespace Puces_R
                 lblDateCommande.Text = "Livraison : " + strDate.ToShortDateString();
                 lblTypeLivraison.Text = intQuantite.ToString();
                 lblMontantTotal.Text = noPanier.ToString();
-                lblTPS.Text = tps.ToString("C");
-                lblTVQ.Text = tvq.ToString("C");
+                lblTPS.Text = tps;
+                lblTVQ.Text = tvq;
                 lblPoids.Text = poidstotal.ToString();
-                lblStatut.Text = Statut;
-                lblAutorisation.Text = strAutorisation;
+                //lblStatut.Text = Statut;
+               // lblAutorisation.Text = strAutorisation;
                 //btnMAJQuantite.CommandArgument = noCommande.ToString() + "-" + Statut;
             }
         }

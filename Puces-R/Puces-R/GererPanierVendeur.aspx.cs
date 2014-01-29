@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Puces_R
 {
-    public partial class ProfilVendeur : System.Web.UI.Page
+    public partial class GererPanierVendeur : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
     }
 }

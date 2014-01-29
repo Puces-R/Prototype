@@ -34,10 +34,19 @@ namespace Puces_R
             }
             set
             {
-                string no = new string(value.Where(c => char.IsDigit(c)).ToArray());
-                tbReg.Text = no.Substring(0, 3);
-                tbPart1.Text = no.Substring(3, 3);
-                tbPart2.Text = no.Substring(6, 4);
+                if (value == null || value.Trim() == string.Empty)
+                {
+                    tbReg.Text =
+                    tbPart1.Text =
+                    tbPart2.Text = "";
+                }
+                else
+                {
+                    string no = new string(value.Where(c => char.IsDigit(c)).ToArray());
+                    tbReg.Text = no.Substring(0, 3);
+                    tbPart1.Text = no.Substring(3, 3);
+                    tbPart2.Text = no.Substring(6, 4);
+                }
             }
         }
 

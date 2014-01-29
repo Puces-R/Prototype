@@ -7,189 +7,171 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class SuppressionProduits {
+    public partial class ProfilVendeur {
         
         /// <summary>
-        /// Contrôle MenuClient1.
+        /// Contrôle tbNomAffaires.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuVendeur MenuClient1;
+        protected global::System.Web.UI.WebControls.TextBox tbNomAffaires;
         
         /// <summary>
-        /// Contrôle lblAvertissement.
+        /// Contrôle txtPrenom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAvertissement;
+        protected global::System.Web.UI.WebControls.TextBox txtPrenom;
         
         /// <summary>
-        /// Contrôle lblCategorieProduits.
+        /// Contrôle txtNom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorieProduits;
+        protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
-        /// Contrôle ddlCategorieProduits.
+        /// Contrôle txtRue.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategorieProduits;
+        protected global::System.Web.UI.WebControls.TextBox txtRue;
         
         /// <summary>
-        /// Contrôle lblDesc.
+        /// Contrôle txtVille.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtVille;
         
         /// <summary>
-        /// Contrôle tbDescAbregee.
+        /// Contrôle ctrProvince.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescAbregee;
+        protected global::Puces_R.Province ctrProvince;
         
         /// <summary>
-        /// Contrôle lblPrix.
+        /// Contrôle ctrCodePostal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrix;
+        protected global::Puces_R.CodePostal ctrCodePostal;
         
         /// <summary>
-        /// Contrôle tbPrix.
+        /// Contrôle txtPays.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPrix;
+        protected global::System.Web.UI.WebControls.TextBox txtPays;
         
         /// <summary>
-        /// Contrôle lblDescComplete.
+        /// Contrôle ctrTelephone1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescComplete;
+        protected global::Puces_R.Telephone ctrTelephone1;
         
         /// <summary>
-        /// Contrôle tbDescComplete.
+        /// Contrôle ctrTelephone2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescComplete;
+        protected global::Puces_R.Telephone ctrTelephone2;
         
         /// <summary>
-        /// Contrôle lblPhoto.
+        /// Contrôle lblCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPhoto;
+        protected global::System.Web.UI.WebControls.Label lblCourriel;
         
         /// <summary>
-        /// Contrôle imgProduits.
+        /// Contrôle btnPassword.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduits;
+        protected global::System.Web.UI.WebControls.Button btnPassword;
         
         /// <summary>
-        /// Contrôle lblNbItems.
+        /// Contrôle tbMaxLivraison.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNbItems;
+        protected global::System.Web.UI.WebControls.TextBox tbMaxLivraison;
         
         /// <summary>
-        /// Contrôle tbNbItems.
+        /// Contrôle tbLivraisonGratuite.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNbItems;
+        protected global::System.Web.UI.WebControls.TextBox tbLivraisonGratuite;
         
         /// <summary>
-        /// Contrôle lblPois.
+        /// Contrôle cbTaxes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPois;
+        protected global::System.Web.UI.WebControls.CheckBox cbTaxes;
         
         /// <summary>
-        /// Contrôle tbPois.
+        /// Contrôle tbPourcentage.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPois;
+        protected global::System.Web.UI.WebControls.TextBox tbPourcentage;
         
         /// <summary>
-        /// Contrôle lblDisponibilité.
+        /// Contrôle lblMAJ.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDisponibilité;
+        protected global::System.Web.UI.WebControls.Label lblMAJ;
         
         /// <summary>
-        /// Contrôle cbDisponibilite.
+        /// Contrôle btnSauvegarder.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbDisponibilite;
-        
-        /// <summary>
-        /// Contrôle btnAjout.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjout;
-        
-        /// <summary>
-        /// Contrôle btnRetour.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRetour;
+        protected global::System.Web.UI.WebControls.Button btnSauvegarder;
     }
 }

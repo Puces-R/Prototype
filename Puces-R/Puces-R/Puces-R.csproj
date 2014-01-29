@@ -85,9 +85,11 @@
     <Content Include="CSS\accueil_gestionnaire.css" />
     <Content Include="CSS\Commande.css" />
     <Content Include="CSS\DetailsProduit.css" />
+    <Content Include="CSS\GestionCommandesVendeur.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
+    <Content Include="CSS\SuppressionProduits.css" />
     <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
     <Content Include="Demonstration.aspx" />

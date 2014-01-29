@@ -26,6 +26,7 @@ namespace Puces_R
                 ctrMenu.NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
+                ctrTablePanier.NoClient = (int)Session["ID"];
             }
         }
     }

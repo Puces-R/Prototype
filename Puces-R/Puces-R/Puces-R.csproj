@@ -80,6 +80,7 @@
     <Content Include="Controles\TablePanier.ascx" />
     <Content Include="Controles\Telephone.ascx" />
     <Content Include="CSS\AccueilClient.css" />
+    <Content Include="CSS\accueil_gestionnaire.css" />
     <Content Include="CSS\Commande.css" />
     <Content Include="CSS\DetailsProduit.css" />
     <Content Include="CSS\Panier.css" />
@@ -405,6 +406,7 @@
     <Compile Include="InsertionProduits.aspx.designer.cs">
       <DependentUpon>InsertionProduits.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Librairie.cs" />
     <Compile Include="ModifierMotPasse.aspx.cs">
       <DependentUpon>ModifierMotPasse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

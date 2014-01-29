@@ -1,0 +1,13 @@
+﻿.basRectangle
+{
+    width:400px;
+    height:160px;
+    position:relative;
+}
+
+.lienDetails
+{
+    position:absolute;
+    right:10px;
+    bottom:10px;
+}

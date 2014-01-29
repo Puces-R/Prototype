@@ -9,29 +9,31 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <table>
-        <tr>
-            <td>
-                Adresse courriel
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="tbCourriel" MaxLength="100" />
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="false" />
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="text-align: center;">
-                <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
-                <asp:Button runat="server" CausesValidation="false" Text="Client" OnClick="defautClient" />
-                <asp:Button runat="server" CausesValidation="false" Text="Vendeur" OnClick="defautVendeur" />
-                <asp:Button runat="server" CausesValidation="false" Text="Gestionnaire" OnClick="defautGestionnaire" />
-            </td>
-        </tr>
-    </table>
+    <div class="rectangleComplet rectangleItem">
+        <table>
+            <tr>
+                <td>
+                    Adresse courriel
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="tbCourriel" MaxLength="100" />
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="false" />
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center;">
+                    <asp:Button ID="Button1" runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
+                    <asp:Button ID="Button2" runat="server" CausesValidation="false" Text="Client" OnClick="defautClient" />
+                    <asp:Button ID="Button3" runat="server" CausesValidation="false" Text="Vendeur" OnClick="defautVendeur" />
+                    <asp:Button ID="Button4" runat="server" CausesValidation="false" Text="Gestionnaire" OnClick="defautGestionnaire" />
+                </td>
+            </tr>
+        </table>
+    </div>
 </asp:Content>

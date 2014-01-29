@@ -11,7 +11,9 @@
         <td><asp:Label ID="lblSousTotal" runat="server" /></td>
     </tr>
     <tr>
-        <td>Livraison: </td>
+        <td>
+            <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlModesLivraison_OnSelectedIndexChanged" Font-Size="X-Large" />:
+        </td>
         <td><asp:Label ID="lblLivraison" runat="server" /></td>
     </tr>
     <tr>
@@ -25,5 +27,11 @@
     <tr>
         <td>Grand-Total: </td>
         <td><asp:Label ID="lblGrandTotal" runat="server" CssClass="grandTotal" /></td>
+    </tr>
+    <tr>
+        <td />
+        <td>
+            <asp:Button runat="server" Text="Commander" Font-Size="X-Large" ID="btnCommander" OnClick="btnCommander_OnClick" />
+        </td>
     </tr>
 </table>

@@ -10,27 +10,29 @@ namespace Puces_R
 {
     public partial class VoirMessage : System.Web.UI.Page
     {
-        SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
+        SqlConnection connexion = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["NoMessage"] != null)
+            Int64 noMessage;
+            if (Request.QueryString["No"] != null && Int64.TryParse(Request.QueryString["No"], out noMessage))
             {
-                Int64 noMessage = (Int64)Session["NoMessage"];
-                Session.Remove("NoMessage");
 
                 SqlCommand cmdMessage = new SqlCommand("SELECT X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Contenu FROM PPMessages AS M INNER JOIN " +
                                                        "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
                                                         "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
                                                         "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
                                                         "ON M.Envoyeur = X.No " +
-                                                        "WHERE M.NoMessage = @noMsg", connexion);
+                                                        "WHERE M.NoMessage = @noMsg AND " +
+                                                        "(M.Envoyeur = @id OR M.Recepteur = @id)", connexion);
 
-                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg", connexion);
+                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg AND Recepteur = @noRcpt", connexion);
 
                 cmdMessage.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdMessage.Parameters.AddWithValue("@id", 10700 /*Session["ID"].ToString()*/);
 
                 cmdLu.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdLu.Parameters.AddWithValue("@noRcpt", 10700 /*Session["ID"]*/);
 
                 connexion.Open();
 
@@ -44,6 +46,10 @@ namespace Puces_R
                     lblDe.Text = sdr["AdresseEmail"].ToString();
                     lblMessage.Text = sdr["Contenu"].ToString().Replace("\r\n", "<br />");
                     lblSujet.Text = sdr["Sujet"].ToString();
+                }
+                else
+                {
+                    Response.Redirect("BoiteMessage.aspx", true);
                 }
 
                 connexion.Close();

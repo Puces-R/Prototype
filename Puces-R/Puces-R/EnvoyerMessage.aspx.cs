@@ -10,7 +10,7 @@ namespace Puces_R
 {
     public partial class EnvoyerMessage : System.Web.UI.Page
     {
-        SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
+        SqlConnection connexion = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,7 @@ namespace Puces_R
 
         protected void envoyerMessage(object sender, EventArgs e)
         {
-            SqlCommand cmdEnvoyer = new SqlCommand("INSERT INTO PPMessages values(@from, @rcpt, @date, @sujet, @contenu, 0, @no)", connexion);
+            SqlCommand cmdEnvoyer = new SqlCommand("INSERT INTO PPMessages values(@no, @from, @rcpt, @date, @sujet, @contenu, 0, 0)", connexion);
             SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
 
             connexion.Open();

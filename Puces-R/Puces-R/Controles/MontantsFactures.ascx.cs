@@ -11,6 +11,18 @@ namespace Puces_R.Controles
 {
     public partial class MontantsFactures : System.Web.UI.UserControl
     {
+        public String NavigateUrl
+        {
+            get
+            {
+                return (String)ViewState["NavigateUrl"];
+            }
+            set
+            {
+                ViewState["NavigateUrl"] = value;
+            }
+        }
+
         public int NoVendeur
         {
             get
@@ -29,6 +41,15 @@ namespace Puces_R.Controles
         {
             if (!Page.IsPostBack)
             {
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
+                DataTable tableCategories = new DataTable();
+                adapteurCategories.Fill(tableCategories);
+
+                ddlModesLivraison.DataSource = tableCategories;
+                ddlModesLivraison.DataTextField = "Description";
+                ddlModesLivraison.DataValueField = "CodeLivraison";
+                ddlModesLivraison.DataBind();
+
                 CalculerCouts();
             }
         }
@@ -63,7 +84,7 @@ namespace Puces_R.Controles
 
             SqlCommand commandeVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + NoVendeur, myConnection);
 
-            SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = 1 AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
+            SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = " + ddlModesLivraison.SelectedValue + " AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
             decimal prixLivraison = (decimal)commandeLivraison.ExecuteScalar();
 
             decimal prixAvecLivraison = sousTotal + prixLivraison;
@@ -87,6 +108,16 @@ namespace Puces_R.Controles
             lblGrandTotal.Text = grandTotal.ToString("C");
 
             myConnection.Close();
+        }
+
+        protected void ddlModesLivraison_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalculerCouts();
+        }
+
+        protected void btnCommander_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(NavigateUrl, true);
         }
     }
 }

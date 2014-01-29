@@ -80,5 +80,21 @@ namespace Puces_R
                 e.IsValid = false;
             }
         }
+
+
+        public static string Parse(string NoTel)
+        {
+            return new string(NoTel.Trim().Where(c => char.IsDigit(c)).ToArray());
+        }
+
+        public static string Format(string NoTel)
+        {
+            string tmp = Parse(NoTel);
+            string reg = tmp.Substring(0, 3);
+            string part1 = tmp.Substring(3, 3);
+            string part2 = tmp.Substring(6, 4);
+
+            return "(" + reg + ") " + part1 + "-" + part2;
+        }
     }
 }

@@ -1,12 +1,7 @@
-﻿.rectangleProduits > *
+﻿.rectangleProduits
 {
-    display:block;
-}
-
-.rectangleProduits
-{
-    width:150px;
-    font-size:x-small;
+    width:180px;
+    font-size:small;
 }
 
 .boiteListeDeroulante
@@ -16,18 +11,70 @@
 
 .barreListesDeroulantes
 {
-    margin-top:5px;
+    margin-top:10px;
     text-align:center;
 }
 
 .boiteImageProduit > div
 {
-    height:150px;
-    width:150px;
+    height:180px;
+    width:180px;
 }
 
 .boiteImageProduit img
 {
-    max-width:140px;
-    max-height:140px;
+    max-width:165px;
+    max-height:165px;
 }
+
+.titreRectangle
+{
+    font-size:larger;
+    height:35px;
+    display: table;
+    float: left;
+    vertical-align:middle;
+}
+
+.titreRectangle > div
+{
+    width:180px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.titreRectangle a
+{
+    display: block;
+    margin: auto;
+    font-weight: bold;
+}
+
+.detailsProduit *
+{
+    font-size:smaller;
+    display:block;
+}
+
+.navigation > div
+{
+    margin:0 15px;
+    display:inline;
+}
+
+.leftNavigation
+{
+    float:left;
+}
+
+.rightNavigation
+{
+    float:right;
+}
+
+.imageCentree
+{
+    height:16px;
+    vertical-align:middle;
+}
+

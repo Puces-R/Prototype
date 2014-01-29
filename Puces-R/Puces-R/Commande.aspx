@@ -22,7 +22,7 @@
             <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" />
         </div>
         <div class="panneau pnlDroite pnlDetails">
-            <h2>Panier</h2>
+            <h2>Produits</h2>
             <lp:TablePanier runat="server" ID="ctrTablePanier" />
         </div>
     </div>

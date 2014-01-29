@@ -22,6 +22,15 @@ namespace Puces_R {
         protected global::Puces_R.Controles.MenuClient ctrMenu;
         
         /// <summary>
+        /// Contrôle mvMain.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mvMain;
+        
+        /// <summary>
         /// Contrôle rptProduits.
         /// </summary>
         /// <remarks>
@@ -38,14 +47,5 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::Puces_R.Controles.MontantsFactures ctrMontantsFactures;
-        
-        /// <summary>
-        /// Contrôle btnCommander.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCommander;
     }
 }

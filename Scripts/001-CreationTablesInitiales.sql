@@ -37,8 +37,8 @@ ALTER TABLE BD6B8_424R.dbo.PPVendeursClients ADD PRIMARY KEY(NoVendeur, NoClient
 
 CREATE TABLE BD6B8_424R.dbo.PPGestionnaires (
 	NoGestionnaire bigint PRIMARY KEY,
-	AdresseEmail varchar(100),
-	MotDePasse varchar(50),
+	AdresseEmail varchar(100) NOT NULL,
+	MotDePasse varchar(50) NOT NULL,
 	Nom varchar(50),
 	Prenom varchar(50),
 	Rue varchar(50),
@@ -55,13 +55,14 @@ CREATE TABLE BD6B8_424R.dbo.PPGestionnaires (
 )
 
 CREATE TABLE BD6B8_424R.dbo.PPMessages (
-	Envoyeur bigint,
-	Recepteur bigint,
+	NoMessage bigint PRIMARY KEY,
+	Envoyeur bigint NOT NULL,
+	Recepteur bigint NOT NULL,
 	DateEnvoi smalldatetime,
-	Sujet varchar(50),
-	Contenu varchar(500),
+	Sujet varchar(50) NOT NULL,
+	Contenu varchar(500) NOT NULL,
 	Lu bit,
-	PRIMARY KEY(Envoyeur, Recepteur, DateEnvoi)
+	Boite smallint NOT NULL
 )
 
 /* Création des clefs étrangères */

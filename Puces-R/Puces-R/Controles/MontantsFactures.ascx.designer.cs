@@ -31,6 +31,15 @@ namespace Puces_R.Controles {
         protected global::System.Web.UI.WebControls.Label lblSousTotal;
         
         /// <summary>
+        /// Contrôle ddlModesLivraison.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModesLivraison;
+        
+        /// <summary>
         /// Contrôle lblLivraison.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,14 @@ namespace Puces_R.Controles {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGrandTotal;
+        
+        /// <summary>
+        /// Contrôle btnCommander.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCommander;
     }
 }

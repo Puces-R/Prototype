@@ -3,6 +3,11 @@
     line-height:20px;
 }
 
+.categorie
+{
+    font-weight:bold;
+}
+
 .lienProduitsVendeur
 {
     margin-left:10px;
@@ -17,4 +22,11 @@
 .sousTotal
 {
     text-align:right;
+}
+
+.catalogueGlobal
+{
+    margin:15px 0;
+    font-weight:bold;
+    font-size:x-large;
 }

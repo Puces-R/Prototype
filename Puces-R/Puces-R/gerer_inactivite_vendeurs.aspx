@@ -1,16 +1,18 @@
 ﻿<%@ Page Title="Gérer l'inactivité des vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="gerer_inactivite_vendeurs.aspx.cs" Inherits="Puces_R.gerer_inactivite_vendeurs" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/site.css" />
-    <script type="text/javascript" src="lib/js/librairie.js"></script>
-</asp:Content>
 
 <%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
 </asp:Content>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/site.css" />
+    <script type="text/javascript" src="lib/js/librairie.js"></script>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<div>
     <div class="titre_sec">Gestion de l'inactivité des vendeurs</div>
 
     <div id="categorie_innactivité">
@@ -79,4 +81,5 @@
             </asp:Repeater>
         </div>
     </div>
+</div>
 </asp:Content>

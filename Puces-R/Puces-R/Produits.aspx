@@ -73,8 +73,7 @@
             </ItemTemplate>
         </ASP:DataList>
     </div>
-    <div class="lignePointilleHorizontale"></div>
-    
+    <asp:Panel runat="server" ID="pnlLigneNavigation" class="lignePointilleHorizontale"></asp:Panel>
     <asp:Panel runat="server" ID="pnlLeftNavigation" CssClass="navigation leftNavigation">
         <div>
             <asp:ImageButton runat="server" ID="imgFirst" OnClick="btnFirst_OnClick" ImageUrl="Images/Premier.png" CssClass="imageCentree" />

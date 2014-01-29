@@ -209,6 +209,7 @@ namespace Puces_R
 
             pnlLeftNavigation.Visible = (PageActuelle > 0);
             pnlRightNavigation.Visible = (PageActuelle < NbPages - 1);
+            pnlLigneNavigation.Visible = pnlLeftNavigation.Visible || pnlRightNavigation.Visible;
         }
 
         protected void btnFirst_OnClick(object sender, EventArgs e)
@@ -237,21 +238,25 @@ namespace Puces_R
 
         protected void btnRecherche_OnClick(object sender, EventArgs e)
         {
+            PageActuelle = 0;
             chargerProduits();
         }
 
         protected void ddlTrierPar_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            PageActuelle = 0;
             chargerProduits();
         }
 
         protected void ddlParPage_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            PageActuelle = 0;
             chargerProduits();
         }
 
         protected void ddlCategorie_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            PageActuelle = 0;
             chargerProduits();
         }
     }

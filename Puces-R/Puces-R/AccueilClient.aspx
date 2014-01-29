@@ -36,6 +36,9 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
+            <div class="catalogueGlobal">
+                <asp:HyperLink NavigateUrl="Produits.aspx" runat="server" Text="Tout les produits" />
+            </div>
         </div>
         <div class="panneau pnlDroite">
             <h2>Paniers</h2>

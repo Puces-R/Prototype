@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace Puces_R.Controles
 {
@@ -11,13 +12,13 @@ namespace Puces_R.Controles
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string urlRequete = System.IO.Path.GetFileName(Request.Url.AbsoluteUri);
+            String urlPage = Path.GetFileNameWithoutExtension(Request.Url.AbsoluteUri);
             foreach (MenuItem item in ctrMenu.Items)
             {
-                string urlItem = System.IO.Path.GetFileName(item.NavigateUrl);
                 if (item.Selectable)
                 {
-                    item.Selected = urlRequete.Contains(urlItem);
+                    String urlItem = Path.GetFileNameWithoutExtension(item.NavigateUrl);
+                    item.Selected = String.Equals(urlItem, urlPage);
                 }
             }
         }

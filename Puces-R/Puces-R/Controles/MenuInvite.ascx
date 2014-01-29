@@ -9,7 +9,7 @@
     </LevelSubMenuStyles>
     <Items>
         <asp:MenuItem Text="Accueil" />
-        <asp:MenuItem Text="S'inscrire..." Selectable="false">
+        <asp:MenuItem Text="Inscription" Selectable="false">
             <asp:MenuItem Text="Client" NavigateUrl="~/InscriptionClient.aspx" />
             <asp:MenuItem Text="Vendeur" NavigateUrl="~/InscriptionVendeur.aspx" />
         </asp:MenuItem>

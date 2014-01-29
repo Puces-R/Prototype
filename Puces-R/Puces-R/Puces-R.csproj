@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AcceuilVendeur.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -84,6 +85,7 @@
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
+    <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
     <Content Include="Demonstration.aspx" />
     <Content Include="DetailsProduit.aspx" />
@@ -106,15 +108,23 @@
     <Content Include="Images\Televerse\2000020.jpg" />
     <Content Include="Images\Televerse\2000030.jpg" />
     <Content Include="Images\Televerse\2000040.jpg" />
+    <Content Include="Images\Televerse\3000010.jpg" />
+    <Content Include="Images\Televerse\3000020.jpg" />
+    <Content Include="Images\Televerse\3000030.jpg" />
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
+    <Content Include="InsertionProduits.aspx" />
+    <Content Include="ModifierMotPasse.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
+    <Content Include="ProfilVendeur.aspx" />
+    <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="SuppressionProduits.aspx" />
     <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
@@ -132,6 +142,13 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AcceuilVendeur.aspx.cs">
+      <DependentUpon>AcceuilVendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AcceuilVendeur.aspx.designer.cs">
+      <DependentUpon>AcceuilVendeur.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -322,6 +339,13 @@
     <Compile Include="Demonstration.aspx.designer.cs">
       <DependentUpon>Demonstration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetailsCommandes.aspx.cs">
+      <DependentUpon>DetailsCommandes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetailsCommandes.aspx.designer.cs">
+      <DependentUpon>DetailsCommandes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EnvoyerMessage.aspx.cs">
       <DependentUpon>EnvoyerMessage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -374,6 +398,20 @@
     <Compile Include="InscriptionVendeur.aspx.designer.cs">
       <DependentUpon>InscriptionVendeur.aspx</DependentUpon>
     </Compile>
+    <Compile Include="InsertionProduits.aspx.cs">
+      <DependentUpon>InsertionProduits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InsertionProduits.aspx.designer.cs">
+      <DependentUpon>InsertionProduits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierMotPasse.aspx.cs">
+      <DependentUpon>ModifierMotPasse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModifierMotPasse.aspx.designer.cs">
+      <DependentUpon>ModifierMotPasse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -395,13 +433,34 @@
     <Compile Include="ProfilClient.aspx.designer.cs">
       <DependentUpon>ProfilClient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProfilVendeur.aspx.cs">
+      <DependentUpon>ProfilVendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfilVendeur.aspx.designer.cs">
+      <DependentUpon>ProfilVendeur.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecupererMotDePasse.aspx.cs">
+      <DependentUpon>RecupererMotDePasse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecupererMotDePasse.aspx.designer.cs">
+      <DependentUpon>RecupererMotDePasse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SuppressionProduits.aspx.cs">
+      <DependentUpon>SuppressionProduits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuppressionProduits.aspx.designer.cs">
+      <DependentUpon>SuppressionProduits.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoirMessage.aspx.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>

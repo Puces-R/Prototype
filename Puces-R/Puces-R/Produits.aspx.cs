@@ -145,7 +145,10 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
-                ctrMenu.NoVendeur = noVendeur;
+                if (noVendeur != -1)
+                {
+                    ctrMenu.NoVendeur = noVendeur;
+                }
             }
 
             if (IsPostBack)

@@ -2,6 +2,7 @@
 
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
 <%@ Register TagPrefix="lp" TagName="TablePanier" Src="~/Controles/TablePanier.ascx" %>
+<%@ Register TagPrefix="lp" TagName="Categories" Src="~/Controles/Categories.ascx" %>
  
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuClient runat="server" />
@@ -14,31 +15,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <div class="panneau pnlGauche">
-            <h2>Catégories</h2>
-            <div class="categories">
-                <ASP:Repeater id="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
-                    <ItemTemplate>
-                        <div>
-                            <asp:Label runat="server" ID="lblCategorie" CssClass="categorie" />
-                            <asp:Repeater ID="rptVendeurs" runat="server" OnItemDataBound="rptVendeurs_ItemDataBound">
-                                <ItemTemplate>
-                                    <div class="vendeur">
-                                        <asp:HyperLink runat="server" ID="hypVendeur" CssClass="lienProduitsVendeur" /> (<asp:Label runat="server" ID="lblNbProduits" />)
-                                    </div>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                    <asp:Panel runat="server" ID="pnlAucunVendeur" CssClass="lienProduitsVendeur">
-                                        Aucun vendeurs
-                                    </asp:Panel>
-                                </FooterTemplate>
-                            </asp:Repeater>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-            <div class="catalogueGlobal">
-                <asp:HyperLink NavigateUrl="Produits.aspx" runat="server" Text="Tout les produits" />
-            </div>
+            <lp:Categories runat="server" />
         </div>
         <div class="panneau pnlDroite">
             <h2>Paniers</h2>

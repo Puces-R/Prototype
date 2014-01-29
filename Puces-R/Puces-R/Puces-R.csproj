@@ -62,6 +62,7 @@
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
     <Content Include="Connexion.aspx" />
+    <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="Connexion.aspx.designer.cs">
       <DependentUpon>Connexion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Categories.ascx.cs">
+      <DependentUpon>Categories.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\Categories.ascx.designer.cs">
+      <DependentUpon>Categories.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\CodePostal.ascx.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>

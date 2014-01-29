@@ -59,7 +59,8 @@ body
 
 .menu div
 {
-    height: 35px;
+    line-height: 25px;
+    display:inline-block;
 }
 
 .main
@@ -211,6 +212,7 @@ body
     box-shadow: 3px 3px 4px Gray;
     overflow: hidden;
     border: 1px solid Black;
+    margin:15px;
 }
  
 .hautRectangle
@@ -218,6 +220,7 @@ body
     background-color: #555555;
     border-radius: 10px 10px 0 0;
     border-bottom-style: none; 
+    margin-bottom:0;
 }
 
 .hautRectangle *
@@ -230,18 +233,34 @@ body
     background-color: LightGray;
     border-radius: 0 0 10px 10px;
     border-top-style: none; 
-    margin-bottom:15px;
+    margin-top:0;
 }
 
 .rectangleComplet
 {
     background-color: LightGray;
     border-radius: 10px;
-    margin-bottom:15px;
 }
 
 .tableFacture
 {
     font-size:x-large;
     text-align:right;
+}
+
+.popupMenu
+{
+    background-color:rgba(211,211,211,0.75);
+    border: 3px dashed Gray;
+}
+
+.popupMenu li
+{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.popupMenu li a
+{
+    padding: 10px !important;
 }

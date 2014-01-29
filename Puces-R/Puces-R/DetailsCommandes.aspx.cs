@@ -47,16 +47,17 @@ namespace Puces_R
                     tbNoClient.Text = Convert.ToString((Int64)repT[1]);
                     tbNoVendeur.Text = Convert.ToString((Int64)repT[2]);
                     tbDate.Text = Convert.ToString((DateTime)repT[3]);
-                    tbLivraisonM.Text = Convert.ToString((Decimal)repT[4]);
-                    tbLivraisonType.Text = Convert.ToString((short)repT[5]);
-                    tbMontant.Text = Convert.ToString((Decimal)repT[6]);
-                    TbTps.Text = Convert.ToString((Decimal)repT[7]);
-                    tbTvq.Text = Convert.ToString((Decimal)repT[8]);
-                    tbPoids.Text = Convert.ToString((Decimal)repT[9]);
+                    tbLivraisonM.Text = Convert.ToString(repT[4]);
+                    tbLivraisonType.Text = Convert.ToString(repT[5]);
+                    tbMontant.Text = Convert.ToString(repT[6]);
+                    TbTps.Text = Convert.ToString(repT[7]);
+                    tbTvq.Text = Convert.ToString(repT[8]);
+                    tbPoids.Text = Convert.ToString(repT[9]);
                     tbStatut.Text = Convert.ToString((String)repT[10]);
                     tbNoAutorisation.Text = (String)repT[11];
                 }
             }
+
             else
             {
                 Response.Redirect("Connexion.aspx");

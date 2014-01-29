@@ -2,7 +2,6 @@
 {
     width:180px;
     font-size:small;
-    margin-top:15px;
 }
 
 .boiteListeDeroulante
@@ -55,11 +54,6 @@
 {
     font-size:smaller;
     display:block;
-}
-
-.rectangleItem
-{
-    margin-right:15px;
 }
 
 .navigation > div

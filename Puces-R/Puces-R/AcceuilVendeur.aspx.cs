@@ -16,20 +16,20 @@ namespace Puces_R
         protected void Page_Load(object sender, EventArgs e)
         {
             myConnection.Open();
-            SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur=20",myConnection);
+            SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur="+Session["ID"],myConnection);
             object nb = (object)maC.ExecuteScalar();
             myConnection.Close();
 
             nbVisite.Text = nbVisite.Text + " : " + Convert.ToString(nb);
 
-            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT (C.Nom + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient", myConnection);
+            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT TOP 5 (C.Nom + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient", myConnection);
             DataTable tablePaniers = new DataTable();
             adapteurPaniers.Fill(tablePaniers);
 
             rptPaniers.DataSource = new DataView(tablePaniers);
             rptPaniers.DataBind();
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT * from PPCommandes where Statut='I'", myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where Statut='I' and NoVendeur="+Session["ID"] +" order by DateCommande DESC ", myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
             rptProduits.DataSource = tableProduits;
@@ -100,14 +100,30 @@ namespace Puces_R
                 Int64 strCategorie = (Int64)drvFilm["NoClient"];
                 Int64 noVendeur = (Int64)drvFilm["NoVendeur"];
                 DateTime strDate = (DateTime)drvFilm["DateCommande"];
-                decimal decPrixDemande = (decimal)drvFilm["Livraison"];
-                short intQuantite = (short)drvFilm["TypeLivraison"];
-                Decimal noPanier = (Decimal)drvFilm["MontantTotal"];
-                Decimal tps = (Decimal)drvFilm["TPS"];
-                Decimal tvq = (Decimal)drvFilm["TVQ"];
-                Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
-                String Statut = (String)drvFilm["Statut"];
-                String strAutorisation = (String)drvFilm["NoAutorisation"];
+                //decimal decPrixDemande = (decimal)drvFilm["Livraison"];
+                //short intQuantite = (short)drvFilm["TypeLivraison"];
+                //Decimal noPanier = (Decimal)drvFilm["MontantTotal"];
+                //Decimal tps = (Decimal)drvFilm["TPS"];
+                //Decimal tvq = (Decimal)drvFilm["TVQ"];
+                //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
+                //String Statut = (String)drvFilm["Statut"];
+                //String strAutorisation = (String)drvFilm["NoAutorisation"];
+
+                String decPrixDemande = Convert.ToString(drvFilm["Livraison"].ToString().Replace(',', '.'));
+                Response.Write(decPrixDemande);
+                String intQuantite = Convert.ToString(drvFilm["TypeLivraison"]);
+                Response.Write(intQuantite);
+                String noPanier = Convert.ToString(drvFilm["MontantTotal"]);
+                String tps = Convert.ToString(drvFilm["TPS"]);
+                String tvq = Convert.ToString(drvFilm["TVQ"]);
+                String poidstotal = Convert.ToString(drvFilm["PoidsTotal"]);
+                //Decimal tps = (Decimal)drvFilm["TPS"];
+                //Decimal tvq = (Decimal)drvFilm["TVQ"];
+                //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
+
+                //String Statut = (String)drvFilm["Statut"];
+               // String strAutorisation = (String)drvFilm["NoAutorisation"];
+
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
                 lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande="+noCommande;
@@ -117,11 +133,11 @@ namespace Puces_R
                 lblDateCommande.Text = "Livraison : " + strDate.ToShortDateString();
                 lblTypeLivraison.Text = intQuantite.ToString();
                 lblMontantTotal.Text = noPanier.ToString();
-                lblTPS.Text = tps.ToString("C");
-                lblTVQ.Text = tvq.ToString("C");
+                lblTPS.Text = tps;
+                lblTVQ.Text = tvq;
                 lblPoids.Text = poidstotal.ToString();
-                lblStatut.Text = Statut;
-                lblAutorisation.Text = strAutorisation;
+                //lblStatut.Text = Statut;
+               // lblAutorisation.Text = strAutorisation;
                 //btnMAJQuantite.CommandArgument = noCommande.ToString() + "-" + Statut;
             }
         }
@@ -137,7 +153,7 @@ namespace Puces_R
                 Repeater rptProduits = (Repeater)item.FindControl("rptProduits");
 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
-
+                
                 String vendeur = (String)drvPanier["NomAffaires"];
                 decimal sousTotal = (decimal)drvPanier["SousTotal"];
                 long noVendeur = (long)drvPanier["NoVendeur"];

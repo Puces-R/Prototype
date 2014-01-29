@@ -5,13 +5,13 @@
     <StaticSelectedStyle ForeColor="#6AC331" />
     <LevelSubMenuStyles>
         <asp:SubMenuStyle />
-        <asp:SubMenuStyle BackColor="White" BorderColor="Gray" BorderWidth="2" BorderStyle="Dashed" HorizontalPadding="10" />
+        <asp:SubMenuStyle CssClass="popupMenu" />
     </LevelSubMenuStyles>
     <Items>
         <asp:MenuItem Text="Accueil" NavigateUrl="~/Accueil.aspx" />
-        <asp:MenuItem Text="S'inscrire..." Selectable="false">
-            <asp:MenuItem Text="Client" NavigateUrl="~/InscriptionClient.aspx" />
-            <asp:MenuItem Text="Vendeur" NavigateUrl="~/InscriptionVendeur.aspx" />
+        <asp:MenuItem Text="Inscription" Selectable="false">
+            <asp:MenuItem Text="Inscription d'un client" NavigateUrl="~/InscriptionClient.aspx" />
+            <asp:MenuItem Text="Inscription d'un vendeur" NavigateUrl="~/InscriptionVendeur.aspx" />
         </asp:MenuItem>
         <asp:MenuItem Text="Connexion" NavigateUrl="~/Connexion.aspx" />
         <asp:MenuItem Text="Mot de passe oublié ?" NavigateUrl="~/RecupererMotDePasse.aspx" />

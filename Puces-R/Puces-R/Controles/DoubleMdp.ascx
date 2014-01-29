@@ -5,7 +5,7 @@
 </tr>
 <tr>
     <yc:MotDePasse runat="server" ID="tbMDP2" Obligatoire="false" Label="Confirmer le mot de passe"/>
-    <td>
+    <td class="erreur">
         <asp:CustomValidator runat="server" OnServerValidate="validerMDPIdentique" ErrorMessage="Les mots de passe ne correspondent pas" Display="Dynamic"/>
     </td>
 </tr>

@@ -21,6 +21,26 @@ body
     vertical-align: middle;
 }
 
+.formulaire
+{
+    table-layout: fixed;
+    width: 500px;
+}
+
+.formulaire td
+{
+    height: 30px;
+}
+
+.erreur
+{
+    font-size: 10px;
+    color: Red;
+    text-align:left;
+    font-style: italic;
+    width: 150px;
+}
+
 .titre
 {
     font-size: xx-large;

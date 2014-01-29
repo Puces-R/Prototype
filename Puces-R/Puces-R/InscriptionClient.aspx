@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="rectangleComplet rectangleItem">
-        <table>
+        <table class="formulaire">
             <yc:Identifiants runat="server" ID="ctlIdentifiants" />
             <tr>
                 <td colspan="3" style="text-align: center;">

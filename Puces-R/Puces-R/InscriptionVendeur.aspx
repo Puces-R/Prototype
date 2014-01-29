@@ -13,7 +13,7 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 <div class="rectangleComplet rectangleItem">
-    <table>
+    <table class="formulaire">
         <yc:Identifiants runat="server" ID="tbIdentifiants" />
         <tr>
             <td>
@@ -65,7 +65,7 @@
             <td>
             </td>
         </tr>
-        <yc:CodePostal runat="server" ID="tbCodePostal" />
+        <yc:CodePostal runat="server" ID="tbCodePostal" Obligatoire="true" />
         <tr>
             <td>
                 Pays
@@ -86,7 +86,7 @@
             <td>
             </td>
         </tr>
-        <yc:Telephone runat="server" ID="tbTel1" Label="Téléphone 1" />
+        <yc:Telephone runat="server" ID="tbTel1" Label="Téléphone 1" Obligatoire="true" />
         <yc:Telephone runat="server" ID="tbTel2" Label="Téléphone 2"/>
         <tr>
             <td>
@@ -95,11 +95,11 @@
             <td>
                 <asp:TextBox runat="server" ID="tbPoids" MaxLength="10" />
             </td>
-            <td>
+            <td class="erreur">
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPoids" ErrorMessage="Ce champ est obligatoire"
                     Display="Dynamic" />
                 <asp:RangeValidator runat="server" ControlToValidate="tbPoids" Type="Integer" MinimumValue="0"
-                    MaximumValue="2147483647" ErrorMessage="Ce doit doit contenir un nombre entre 0 et 2147483647"
+                    MaximumValue="2147483647" ErrorMessage="Ce champ doit contenir un nombre entre 0 et 2147483647"
                     Display="Dynamic" />
             </td>
         </tr>
@@ -110,7 +110,7 @@
             <td>
                 <asp:TextBox runat="server" ID="tbPrixLivraison" MaxLength="50" />
             </td>
-            <td>
+            <td class="erreur">
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPrixLivraison" ErrorMessage="Ce champ est obligatoire"
                     Display="Dynamic" />
                 <asp:RangeValidator runat="server" ControlToValidate="tbPrixLivraison" Type="Currency"

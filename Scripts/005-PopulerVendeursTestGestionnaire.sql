@@ -62,137 +62,137 @@ INSERT INTO PPVendeurs(NoVendeur, NomAffaires, AdresseEmail, MotDePasse) values
 
 -- Commandes
 -- 1 an
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5000, 10000, 500, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5001, 10000, 500, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5002, 10000, 500, DATEADD(d, 1, DATEADD(yy, -1, GETDATE())))
+INSERT INTO PPCommandes values
+(5000, 10000, 500, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5001, 10000, 500, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5002, 10000, 500, DATEADD(d, 1, DATEADD(yy, -1, GETDATE())), 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5010, 10000, 501, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5011, 10000, 501, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5012, 10000, 501, DATEADD(yy, -1, GETDATE()))
+INSERT INTO PPCommandes values
+(5010, 10000, 501, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5011, 10000, 501, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5012, 10000, 501, DATEADD(yy, -1, GETDATE()), 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5020, 10000, 502, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5021, 10000, 502, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5022, 10000, 502, DATEADD(d, -1, DATEADD(yy, -1, GETDATE())))
+INSERT INTO PPCommandes values
+(5020, 10000, 502, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5021, 10000, 502, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5022, 10000, 502, DATEADD(d, -1, DATEADD(yy, -1, GETDATE())), 1, 1, 1, 1, 1, 1, 'I', 1)
 
 -- 2 ans
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5100, 10000, 510, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5101, 10000, 510, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5102, 10000, 510, DATEADD(d, 1, DATEADD(yy, -2, GETDATE())))
+INSERT INTO PPCommandes values
+(5100, 10000, 510, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5101, 10000, 510, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5102, 10000, 510, DATEADD(d, 1, DATEADD(yy, -2, GETDATE())), 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5110, 10000, 511, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5111, 10000, 511, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5112, 10000, 511, DATEADD(yy, -2, GETDATE()))
+INSERT INTO PPCommandes values
+(5110, 10000, 511, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5111, 10000, 511, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5112, 10000, 511, DATEADD(yy, -2, GETDATE()), 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5120, 10000, 512, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5121, 10000, 512, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5122, 10000, 512, DATEADD(d, -1, DATEADD(yy, -2, GETDATE())))
+INSERT INTO PPCommandes values
+(5120, 10000, 512, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5121, 10000, 512, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5122, 10000, 512, DATEADD(d, -1, DATEADD(yy, -2, GETDATE())), 1, 1, 1, 1, 1, 1, 'I', 1)
 
 -- 3 ans
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5200, 10000, 520, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5201, 10000, 520, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5202, 10000, 520, DATEADD(d, 1, DATEADD(yy, -3, GETDATE())))
+INSERT INTO PPCommandes values
+(5200, 10000, 520, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5201, 10000, 520, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5202, 10000, 520, DATEADD(d, 1, DATEADD(yy, -3, GETDATE())), 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5210, 10000, 521, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5211, 10000, 521, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5212, 10000, 521, DATEADD(yy, -3, GETDATE()))
+INSERT INTO PPCommandes values
+(5210, 10000, 521, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5211, 10000, 521, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5212, 10000, 521, DATEADD(yy, -3, GETDATE()), 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5220, 10000, 522, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5221, 10000, 522, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(5222, 10000, 522, DATEADD(d, -1, DATEADD(yy, -3, GETDATE())))
+INSERT INTO PPCommandes values
+(5220, 10000, 522, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5221, 10000, 522, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(5222, 10000, 522, DATEADD(d, -1, DATEADD(yy, -3, GETDATE())), 1, 1, 1, 1, 1, 1, 'I', 1)
 
 -- Produits
 -- 1 an
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6000, 10000, 600, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6001, 10000, 600, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6002, 10000, 600, '2000-01-01')
+INSERT INTO PPCommandes values
+(6000, 10000, 600, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6001, 10000, 600, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6002, 10000, 600, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6010, 10000, 601, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6011, 10000, 601, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6012, 10000, 601, '2000-01-01')
+INSERT INTO PPCommandes values
+(6010, 10000, 601, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6011, 10000, 601, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6012, 10000, 601, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6020, 10000, 602, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6021, 10000, 602, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6022, 10000, 602, '2000-01-01')
+INSERT INTO PPCommandes values
+(6020, 10000, 602, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6021, 10000, 602, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6022, 10000, 602, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
 -- 2 ans
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6100, 10000, 610, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6101, 10000, 610, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6102, 10000, 610, '2000-01-01')
+INSERT INTO PPCommandes values
+(6100, 10000, 610, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6101, 10000, 610, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6102, 10000, 610, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6110, 10000, 611, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6111, 10000, 611, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6112, 10000, 611, '2000-01-01')
+INSERT INTO PPCommandes values
+(6110, 10000, 611, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6111, 10000, 611, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6112, 10000, 611, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6120, 10000, 612, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6121, 10000, 612, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6122, 10000, 612, '2000-01-01')
+INSERT INTO PPCommandes values
+(6120, 10000, 612, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6121, 10000, 612, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6122, 10000, 612, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
 -- 3 ans
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6200, 10000, 620, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6201, 10000, 620, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6202, 10000, 620, '2000-01-01')
+INSERT INTO PPCommandes values
+(6200, 10000, 620, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6201, 10000, 620, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6202, 10000, 620, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6210, 10000, 621, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6211, 10000, 621, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6212, 10000, 621, '2000-01-01')
+INSERT INTO PPCommandes values
+(6210, 10000, 621, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6211, 10000, 621, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6212, 10000, 621, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6220, 10000, 622, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6221, 10000, 622, '2000-01-01')
-INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(6222, 10000, 622, '2000-01-01')
+INSERT INTO PPCommandes values
+(6220, 10000, 622, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6221, 10000, 622, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
+INSERT INTO PPCommandes values
+(6222, 10000, 622, '2000-01-01', 1, 1, 1, 1, 1, 1, 'I', 1)
 
 -- Ajouts produits
 

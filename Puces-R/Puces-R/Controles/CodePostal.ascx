@@ -15,7 +15,7 @@
         <asp:RegularExpressionValidator runat="server" ID="formatPart2" ControlToValidate="tbPart2"
             ValidationExpression="^\d[a-zA-Z]\d$" />
     </td>
-    <td>
+    <td class="erreur">
         <asp:CustomValidator runat="server" ID="reqCodePostal" OnServerValidate="validerObligatoire"
             ErrorMessage="Ce champ est obligatoire" Visible="false" Display="Dynamic" />
         <asp:CustomValidator runat="server" OnServerValidate="validerFormat" ErrorMessage="Le format du code postal est incorrect"

@@ -10,7 +10,7 @@
     <td>
         <asp:TextBox runat="server" ID="tbCourrielConfirmation" MaxLength="100" />
     </td>
-    <td>
+    <td class="erreur">
         <asp:CustomValidator runat="server" OnServerValidate="validerCourrielIdentique" ErrorMessage="Les adresses courriel ne correspondent pas"
             Display="Dynamic" />
     </td>

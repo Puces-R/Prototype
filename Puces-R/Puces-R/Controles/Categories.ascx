@@ -23,5 +23,5 @@
     </asp:Repeater>
 </div>
 <div class="catalogueGlobal">
-    <asp:HyperLink ID="HyperLink1" NavigateUrl="../Produits.aspx" runat="server" Text="Tout les produits" />
+    <asp:HyperLink ID="hypTous" NavigateUrl="../Produits.aspx" runat="server" Text="Tous les produits" />
 </div>

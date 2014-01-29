@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="rectangleComplet rectangleItem">
-        <table>
+        <table class="formulaire" style="width: 250px;">
             <tr>
                 <td>
                     Adresse courriel
@@ -24,6 +24,11 @@
             <tr>
                 <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="false" />
                 <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="erreur" colspan="3">
+                    <asp:CustomValidator runat="server" ErrorMessage="Les identifiants sont incorrects" OnServerValidate="existe" />
                 </td>
             </tr>
             <tr>

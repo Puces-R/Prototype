@@ -8,7 +8,7 @@
         <asp:SubMenuStyle BackColor="White" BorderColor="Gray" BorderWidth="2" BorderStyle="Dashed" HorizontalPadding="10" />
     </LevelSubMenuStyles>
     <Items>
-        <asp:MenuItem Text="Accueil" />
+        <asp:MenuItem Text="Accueil" NavigateUrl="~/Accueil.aspx" />
         <asp:MenuItem Text="S'inscrire..." Selectable="false">
             <asp:MenuItem Text="Client" NavigateUrl="~/InscriptionClient.aspx" />
             <asp:MenuItem Text="Vendeur" NavigateUrl="~/InscriptionVendeur.aspx" />

@@ -19,7 +19,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="text-align: center; height: 12px; font-size: 10px; width: 200px; color: Red; font-style:italic;">
+                <td class="erreur" colspan="2" style="text-align: center; height: 12px; width: 200px;">
                     <asp:CustomValidator runat="server" OnServerValidate="adresseExiste"
                         ErrorMessage="Aucun utilisateur ne correspond à cette adresse" Display="Dynamic" />
                 </td>

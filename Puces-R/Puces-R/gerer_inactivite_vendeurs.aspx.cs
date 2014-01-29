@@ -70,7 +70,7 @@ namespace Puces_R
             rptInnactifs1.DataSource = pdsDemandes;
             rptInnactifs1.DataBind();
 
-            ((SiteMaster)Master).Vendeur = "Nouvelles demandes de vendeurs";
+            ((SiteMaster)Master).Titre = "Nouvelles demandes de vendeurs";
             //}
 
             if (Session["err_msg"] != null)
@@ -98,7 +98,7 @@ namespace Puces_R
                     Response.Write(Session["err_msg"]);
                     Session["err_msg"] = "";
                 }
-            ((SiteMaster)Master).Vendeur = "Gestion de l'inactivité des vendeurs";
+            ((SiteMaster)Master).Titre = "Gestion de l'inactivité des vendeurs";
         }
 
         private DataTable charge_inactifs1()

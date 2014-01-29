@@ -21,11 +21,11 @@
                     <asp:ListItem Text="Description" />
                 </asp:DropDownList>
                 <asp:TextBox ID="txtCritereRecherche" runat="server" />
-                <asp:Button runat="server" Text="Go" ID="btnRecherche" />
+                <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="btnRecherche_OnClick"/>
             </span>
             <span class="boiteListeDeroulante">
                 Trier par:
-                <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
+                <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTrierPar_OnSelectedIndexChanged" >
                     <asp:ListItem Text="Numéro" />
                     <asp:ListItem Text="Catégorie" />
                     <asp:ListItem Text="Date de parution" />
@@ -33,7 +33,7 @@
             </span>
             <span class="boiteListeDeroulante">
                 Par page:
-                <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true">
+                <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlParPage_OnSelectedIndexChanged" >
                     <asp:ListItem Value="5" />
                     <asp:ListItem Value="10" />
                     <asp:ListItem Value="15" Selected="True" />
@@ -44,7 +44,7 @@
             </span>
             <span class="boiteListeDeroulante">
                 Catégorie:
-                <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" />
+                <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategorie_OnSelectedIndexChanged" />
             </span>
         </div>
     </div>
@@ -74,20 +74,25 @@
         </ASP:DataList>
     </div>
     <div class="lignePointilleHorizontale"></div>
-    <div class="first">
-        <asp:ImageButton runat="server" ID="imgFirst" OnClick="btnFirst_OnClick" ImageUrl="Images/Premier.png" CssClass="imageCentree" />
-        <asp:LinkButton runat="server" Text="Premier" ID="btnFirst" OnClick="btnFirst_OnClick" />
-    </div>
-    <div class="previous">
-        <asp:ImageButton runat="server" ID="imgPrevious" OnClick="btnPrevious_OnClick" ImageUrl="Images/Precedent.png" CssClass="imageCentree" />
-        <asp:LinkButton runat="server" Text="Précédent" ID="btnPrevious" OnClick="btnPrevious_OnClick" />
-    </div>
-    <div class="last">
-        <asp:LinkButton runat="server" Text="Dernier" ID="btnLast" OnClick="btnLast_OnClick" />
-        <asp:ImageButton runat="server" ID="imgLast" OnClick="btnLast_OnClick" ImageUrl="Images/Dernier.png" CssClass="imageCentree" />
-    </div>
-    <div class="next">
-        <asp:LinkButton runat="server" Text="Prochain" ID="btnNext" OnClick="btnNext_OnClick" />
-        <asp:ImageButton runat="server" ID="imgNext" OnClick="btnNext_OnClick" ImageUrl="Images/Prochain.png" CssClass="imageCentree" />
-    </div>
+    
+    <asp:Panel runat="server" ID="pnlLeftNavigation" CssClass="navigation leftNavigation">
+        <div>
+            <asp:ImageButton runat="server" ID="imgFirst" OnClick="btnFirst_OnClick" ImageUrl="Images/Premier.png" CssClass="imageCentree" />
+            <asp:LinkButton runat="server" Text="Premier" ID="btnFirst" OnClick="btnFirst_OnClick" />
+        </div>
+        <div>
+            <asp:ImageButton runat="server" ID="imgPrevious" OnClick="btnPrevious_OnClick" ImageUrl="Images/Precedent.png" CssClass="imageCentree" />
+            <asp:LinkButton runat="server" Text="Précédent" ID="btnPrevious" OnClick="btnPrevious_OnClick" />
+        </div>
+    </asp:Panel>
+    <asp:Panel runat="server" ID="pnlRightNavigation" CssClass="navigation rightNavigation">
+        <div>
+            <asp:LinkButton runat="server" Text="Suivant" ID="btnNext" OnClick="btnNext_OnClick" />
+            <asp:ImageButton runat="server" ID="imgNext" OnClick="btnNext_OnClick" ImageUrl="Images/Prochain.png" CssClass="imageCentree" />
+        </div>   
+        <div>
+            <asp:LinkButton runat="server" Text="Dernier" ID="btnLast" OnClick="btnLast_OnClick" />
+            <asp:ImageButton runat="server" ID="imgLast" OnClick="btnLast_OnClick" ImageUrl="Images/Dernier.png" CssClass="imageCentree" />
+        </div>
+    </asp:Panel>
 </asp:Content>

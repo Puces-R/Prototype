@@ -85,6 +85,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.DataList dtlProduits;
         
         /// <summary>
+        /// Contrôle pnlLeftNavigation.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlLeftNavigation;
+        
+        /// <summary>
         /// Contrôle imgFirst.
         /// </summary>
         /// <remarks>
@@ -121,22 +130,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.LinkButton btnPrevious;
         
         /// <summary>
-        /// Contrôle btnLast.
+        /// Contrôle pnlRightNavigation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLast;
-        
-        /// <summary>
-        /// Contrôle imgLast.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgLast;
+        protected global::System.Web.UI.WebControls.Panel pnlRightNavigation;
         
         /// <summary>
         /// Contrôle btnNext.
@@ -155,5 +155,23 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imgNext;
+        
+        /// <summary>
+        /// Contrôle btnLast.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLast;
+        
+        /// <summary>
+        /// Contrôle imgLast.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgLast;
     }
 }

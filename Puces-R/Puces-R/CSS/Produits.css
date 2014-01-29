@@ -62,16 +62,20 @@
     margin-right:15px;
 }
 
-.first,.previous
+.navigation > div
 {
-    float:left;
-    margin-right:15px;
+    margin:0 15px;
+    display:inline;
 }
 
-.last,.next
+.leftNavigation
+{
+    float:left;
+}
+
+.rightNavigation
 {
     float:right;
-    margin-left:15px;
 }
 
 .imageCentree
@@ -79,3 +83,4 @@
     height:16px;
     vertical-align:middle;
 }
+

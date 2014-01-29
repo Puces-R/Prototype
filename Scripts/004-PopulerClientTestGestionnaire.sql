@@ -209,21 +209,21 @@ INSERT INTO PPArticlesEnPanier values
 INSERT INTO PPArticlesEnPanier values
 (200401000020, 20040, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200401000030, 20040, 10, 1000030, DATEADD(d, 1, DATEADD(y, -1, GETDATE())), 1)
+(200401000030, 20040, 10, 1000030, DATEADD(d, 1, DATEADD(yy, -1, GETDATE())), 1)
 
 INSERT INTO PPArticlesEnPanier values
 (200411000010, 20041, 10, 1000010, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
 (200411000020, 20041, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200411000030, 20041, 10, 1000030, DATEADD(y, -1, GETDATE()), 1)
+(200411000030, 20041, 10, 1000030, DATEADD(yy, -1, GETDATE()), 1)
 
 INSERT INTO PPArticlesEnPanier values
 (200421000010, 20042, 10, 1000010, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
 (200421000020, 20042, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200421000030, 20042, 10, 1000030, DATEADD(d, -1, DATEADD(y, -1, GETDATE())), 1)
+(200421000030, 20042, 10, 1000030, DATEADD(d, -1, DATEADD(yy, -1, GETDATE())), 1)
 
 -- 2 ans
 INSERT INTO PPArticlesEnPanier values
@@ -231,21 +231,21 @@ INSERT INTO PPArticlesEnPanier values
 INSERT INTO PPArticlesEnPanier values
 (200501000020, 20050, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200501000030, 20050, 10, 1000030, DATEADD(d, 1, DATEADD(y, -2, GETDATE())), 1)
+(200501000030, 20050, 10, 1000030, DATEADD(d, 1, DATEADD(yy, -2, GETDATE())), 1)
 
 INSERT INTO PPArticlesEnPanier values
 (200511000010, 20051, 10, 1000010, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
 (200511000020, 20051, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200511000030, 20051, 10, 1000030, DATEADD(y, -2, GETDATE()), 1)
+(200511000030, 20051, 10, 1000030, DATEADD(yy, -2, GETDATE()), 1)
 
 INSERT INTO PPArticlesEnPanier values
 (200521000010, 20052, 10, 1000010, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
 (200521000020, 20052, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200521000030, 20052, 10, 1000030, DATEADD(d, -1, DATEADD(y, -2, GETDATE())), 1)
+(200521000030, 20052, 10, 1000030, DATEADD(d, -1, DATEADD(yy, -2, GETDATE())), 1)
 
 -- 3 ans
 INSERT INTO PPArticlesEnPanier values
@@ -253,21 +253,21 @@ INSERT INTO PPArticlesEnPanier values
 INSERT INTO PPArticlesEnPanier values
 (200601000020, 20060, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200601000030, 20060, 10, 1000030, DATEADD(d, 1, DATEADD(y, -3, GETDATE())), 1)
+(200601000030, 20060, 10, 1000030, DATEADD(d, 1, DATEADD(yy, -3, GETDATE())), 1)
 
 INSERT INTO PPArticlesEnPanier values
 (200611000010, 20061, 10, 1000010, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
 (200611000020, 20061, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200611000030, 20061, 10, 1000030, DATEADD(y, -3, GETDATE()), 1)
+(200611000030, 20061, 10, 1000030, DATEADD(yy, -3, GETDATE()), 1)
 
 INSERT INTO PPArticlesEnPanier values
 (200621000010, 20062, 10, 1000010, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
 (200621000020, 20062, 10, 1000020, '2000-01-01', 1)
 INSERT INTO PPArticlesEnPanier values
-(200621000030, 20062, 10, 1000030, DATEADD(d, -1, DATEADD(y, -3, GETDATE())), 1)
+(200621000030, 20062, 10, 1000030, DATEADD(d, -1, DATEADD(yy, -3, GETDATE())), 1)
 
 -- Vérifications commande
 -- 1 mois
@@ -672,7 +672,7 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 
 -- 1 an
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3400, 30040, 10, DATEADD(d, 1, DATEADD(y, -1, GETDATE())))
+(3400, 30040, 10, DATEADD(d, 1, DATEADD(yy, -1, GETDATE())))
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3401, 30040, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
@@ -683,18 +683,18 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3411, 30041, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3412, 30041, 10, DATEADD(y, -1, GETDATE()))
+(3412, 30041, 10, DATEADD(yy, -1, GETDATE()))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3420, 30042, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3421, 30042, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3422, 30042, 10, DATEADD(d, -1, DATEADD(y, -1, GETDATE())))
+(3422, 30042, 10, DATEADD(d, -1, DATEADD(yy, -1, GETDATE())))
 
 -- 2 ans
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3500, 30050, 10, DATEADD(d, 1, DATEADD(y, -2, GETDATE())))
+(3500, 30050, 10, DATEADD(d, 1, DATEADD(yy, -2, GETDATE())))
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3501, 30050, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
@@ -705,18 +705,18 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3511, 30051, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3512, 30051, 10, DATEADD(y, -2, GETDATE()))
+(3512, 30051, 10, DATEADD(yy, -2, GETDATE()))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3520, 30052, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3521, 30052, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3522, 30052, 10, DATEADD(d, -1, DATEADD(y, -2, GETDATE())))
+(3522, 30052, 10, DATEADD(d, -1, DATEADD(yy, -2, GETDATE())))
 
 -- 3 ans
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3600, 30060, 10, DATEADD(d, 1, DATEADD(y, -3, GETDATE())))
+(3600, 30060, 10, DATEADD(d, 1, DATEADD(yy, -3, GETDATE())))
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3601, 30060, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
@@ -727,14 +727,14 @@ INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3611, 30061, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3612, 30061, 10, DATEADD(y, -3, GETDATE()))
+(3612, 30061, 10, DATEADD(yy, -3, GETDATE()))
 
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3620, 30062, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
 (3621, 30062, 10, '2000-01-01')
 INSERT INTO PPCommandes(NoCommande, NoClient, NoVendeur, DateCommande) values
-(3622, 30062, 10, DATEADD(d, -1, DATEADD(y, -3, GETDATE())))
+(3622, 30062, 10, DATEADD(d, -1, DATEADD(yy, -3, GETDATE())))
 
 -- Details
 -- Paniers

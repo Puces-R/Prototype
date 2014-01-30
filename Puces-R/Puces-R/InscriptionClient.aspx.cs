@@ -21,13 +21,13 @@ namespace Puces_R
 
         protected void inscription(object sender, EventArgs e)
         {
-            
+
             Page.Validate();
-            
+
             if (Page.IsValid)
             {
                 connexion.Open();
-                SqlCommand cmdNoClient = new SqlCommand("SELECT ISNULL(MAX(NoClient), 9900) + 100 FROM PPClients", connexion);
+                SqlCommand cmdNoClient = new SqlCommand("SELECT ISNULL(MAX(NoClient), 9999) + 1 FROM PPClients", connexion);
                 int noClient = int.Parse(cmdNoClient.ExecuteScalar().ToString());
                 SqlCommand cmdInsertion = new SqlCommand("INSERT INTO PPClients(NoClient, AdresseEmail, MotDePasse, DateCreation) values (@no, @adresse, @mdp, @date)", connexion);
                 cmdInsertion.Parameters.AddWithValue("@no", noClient);
@@ -38,38 +38,16 @@ namespace Puces_R
                 cmdInsertion.ExecuteNonQuery();
 
                 connexion.Close();
-                // Vérifier les courriels : envoi irrégulier
-                SmtpClient client = new SmtpClient();
-                MailMessage courriel = new MailMessage();
 
-                courriel.From = new MailAddress("no-reply@lespetitespuces.com", "Les Petites Puces");
-                courriel.To.Add(ctlIdentifiants.Adresse);
-                courriel.Subject = "Inscription aux Petites Puces";
-                courriel.IsBodyHtml = true;
-                courriel.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                Courriel c = new Courriel();
 
-
-                courriel.Body = "NoClient = " + noClient + "<br />" +
+                c.ajouterDestinataire(ctlIdentifiants.Adresse);
+                c.Sujet = "Inscription aux Petites Puces";
+                c.Message = "NoClient = " + noClient + "<br />" +
                                 "Adresse courriel = " + ctlIdentifiants.Adresse + "<br />" +
                                 "Mot de passe = " + ctlIdentifiants.MotDePasse;
-                courriel.BodyEncoding = System.Text.Encoding.UTF8;
+                c.envoyer();
 
-                client.Host = "smtp.gmail.com";
-                client.Port = 465;
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("raikou4@gmail.com", "p0k3m0n2515");
-
-
-                try
-                {
-                    client.Send(courriel);
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex.Message);
-                }
             }
         }
     }

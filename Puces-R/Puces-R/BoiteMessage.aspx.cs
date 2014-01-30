@@ -26,7 +26,7 @@ namespace Puces_R
             Int64[] selectionne = ListeMessage.Checked;
 
 
-            if (ListeMessage.NbMessages > 0)
+            if (selectionne.Length > 0)
             {
                 string[] param = new string[selectionne.Length];
 

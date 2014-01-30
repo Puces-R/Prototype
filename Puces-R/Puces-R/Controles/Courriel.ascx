@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Courriel.ascx.cs" Inherits="Puces_R.Courriel" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Courriel.ascx.cs" Inherits="Puces_R.CourrielControle" %>
 <tr>
     <td>
         Adresse courriel

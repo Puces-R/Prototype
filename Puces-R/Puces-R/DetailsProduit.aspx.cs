@@ -124,5 +124,10 @@ namespace Puces_R
 
             Response.Redirect("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur);
         }
+
+        protected void btnEnvoyerMessage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EnvoyerMessage.aspx", true);
+        }
     }
 }

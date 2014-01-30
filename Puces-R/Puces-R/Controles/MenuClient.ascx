@@ -3,10 +3,7 @@
 <asp:Menu runat="server" Orientation="Horizontal" ID="ctrMenu">
     <StaticMenuItemStyle HorizontalPadding="10" />
     <StaticSelectedStyle ForeColor="#6AC331" />
-    <LevelSubMenuStyles>
-        <asp:SubMenuStyle />
-        <asp:SubMenuStyle CssClass="popupMenu" />
-    </LevelSubMenuStyles>
+    <DynamicMenuStyle CssClass="popupMenu" />
     <Items>
         <asp:MenuItem Text="Accueil" NavigateUrl="../AccueilClient.aspx" />
         <asp:MenuItem Text="Modifier le profil" NavigateUrl="../ProfilClient.aspx" />

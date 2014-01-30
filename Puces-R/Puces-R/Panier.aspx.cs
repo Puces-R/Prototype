@@ -11,6 +11,18 @@ namespace Puces_R
 {
     public partial class Panier : System.Web.UI.Page
     {
+        private int NoVendeur
+        {
+            get
+            {
+                return (int)ViewState["NoVendeur"];
+            }
+            set
+            {
+                ViewState["NoVendeur"] = value;
+            }
+        }
+
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,6 +46,7 @@ namespace Puces_R
                 Response.Redirect("Default.aspx", true);
             }
 
+            this.NoVendeur = noVendeur;
             ctrMenu.NoVendeur = noVendeur;
             ctrMontantsFactures.NoVendeur = noVendeur;
             ((SiteMaster)Master).NoVendeur = noVendeur;
@@ -91,8 +104,6 @@ namespace Puces_R
 
         protected void rptProduits_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
-
             TextBox txtQuantite = (TextBox)e.Item.FindControl("txtQuantite");
 
             myConnection.Open();
@@ -117,6 +128,19 @@ namespace Puces_R
         protected void btnCommander_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("Commande.aspx?novendeur=" + Request.Params["novendeur"], true);
-        }        
+        }
+
+        protected void btnViderPanier_OnClick(object sender, EventArgs e)
+        {
+            myConnection.Open();
+
+            SqlCommand commandeSuppression = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + NoVendeur, myConnection);
+            commandeSuppression.ExecuteNonQuery();
+
+            myConnection.Close();
+
+            chargerProduits();
+            ctrMontantsFactures.CalculerCouts();
+        }
     }
 }

@@ -100,6 +100,7 @@
     <Content Include="gerer_inactivite_clients.aspx" />
     <Content Include="gerer_inactivite_vendeurs.aspx" />
     <Content Include="CSS\style_sec4.css" />
+    <Content Include="gerer_vendeurs.aspx" />
     <Content Include="GestionCommandesVendeur.aspx" />
     <Content Include="GestionProduits.aspx" />
     <Content Include="Images\Dernier.png" />
@@ -132,6 +133,7 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
+    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -414,6 +416,13 @@
     </Compile>
     <Compile Include="gerer_inactivite_vendeurs.aspx.designer.cs">
       <DependentUpon>gerer_inactivite_vendeurs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gerer_vendeurs.aspx.cs">
+      <DependentUpon>gerer_vendeurs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gerer_vendeurs.aspx.designer.cs">
+      <DependentUpon>gerer_vendeurs.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionCommandesVendeur.aspx.cs">
       <DependentUpon>GestionCommandesVendeur.aspx</DependentUpon>

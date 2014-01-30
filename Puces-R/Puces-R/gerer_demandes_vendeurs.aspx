@@ -93,7 +93,7 @@
                                             <p class="center">
                                                 Entrez le taux de facturation du vendeur 
                                                 <span class="remarque">(Format: 00.00)</span>: 
-                                                <asp:TextBox runat="server" id="taux_facturation" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" TextMode="Number" /> <br />
+                                                <asp:TextBox runat="server" id="taux_facturation" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
                                                 <asp:RegularExpressionValidator
                                                     runat="server"
                                                     id="regex_taux"

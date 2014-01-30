@@ -16,7 +16,7 @@
         <asp:MultiView runat="server" ID="mvMain" ActiveViewIndex="0">
             <asp:View runat="server">
                 <div class="panneau pnlGauche">
-                    <h2>Articles en panier</h2>
+                    <h2>Articles en panier <asp:Button runat="server" ID="btnViderPanier" Text="Vider le panier" OnClick="btnViderPanier_OnClick" CssClass="boutonVider" /></h2>
                     <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
                         <ItemTemplate>
                             <div class="rectangleProduits rectangleComplet rectangleItem">

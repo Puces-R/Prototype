@@ -4,18 +4,24 @@
 <%@ Register TagPrefix="yc" TagName="MotDePasse" Src="~/Controles/MotDePasse.ascx" %>
 <%@ Register TagPrefix="yc" TagName="DoubleMdp" Src="~/Controles/DoubleMdp.ascx" %>
 <%@ Register TagPrefix="yc" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
-<asp:Content runat="server" contentplaceholderid="MenuItems">
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <yc:MenuClient runat="server" />
 </asp:Content>
-<asp:Content runat="server" contentplaceholderid="HeadContent">
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
-<asp:Content runat="server" contentplaceholderid="MainContent">
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="rectangleComplet rectangleItem">
         <table>
             <tr>
                 <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="true" />
             </tr>
-            <yc:DoubleMdp runat="server" ID="tbMDP" Changement="true" />
+            <yc:DoubleMdp runat="server" ID="tbNouveauMotPasse" Changement="true" />
+            <tr>
+                <td colspan="3" class="erreur">
+                    <asp:CustomValidator runat="server" OnServerValidate="mdpValide" ErrorMessage="Le mot de passe entré est incorrect"
+                        Display="Dynamic" />
+                </td>
+            </tr>
             <tr>
                 <td colspan="3" style="text-align: center;">
                     <asp:Button runat="server" CausesValidation="false" Text="Modifier" OnClick="modifierMdp" />

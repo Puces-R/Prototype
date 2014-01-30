@@ -33,6 +33,14 @@ namespace Puces_R
             }
         }
 
+        public bool IsValid
+        {
+            get
+            {
+                return !tdReqMDP.Visible || reqMDP.IsValid;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

@@ -22,12 +22,12 @@ namespace Puces_R {
         protected global::Puces_R.MotDePasse tbMotPasse;
         
         /// <summary>
-        /// Contrôle tbMDP.
+        /// Contrôle tbNouveauMotPasse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.DoubleMdp tbMDP;
+        protected global::Puces_R.DoubleMdp tbNouveauMotPasse;
     }
 }

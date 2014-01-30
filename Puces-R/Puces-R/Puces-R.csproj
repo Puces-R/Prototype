@@ -358,9 +358,7 @@
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Courriel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="Courriel.cs" />
     <Compile Include="Demonstration.aspx.cs">
       <DependentUpon>Demonstration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

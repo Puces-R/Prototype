@@ -10,7 +10,7 @@ namespace Puces_R
 {
     public partial class RecupererMotDePasse : System.Web.UI.Page
     {
-        SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
+        SqlConnection connexion = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,9 +19,11 @@ namespace Puces_R
 
         protected void adresseExiste(object sender, ServerValidateEventArgs e)
         {
+            tbCourriel.Text = tbCourriel.Text.Trim();
+
             SqlCommand cmdExiste = new SqlCommand("SELECT CASE WHEN COUNT(AdresseEmail) = 0 THEN 'false' ELSE 'true' END FROM " +
-                "(SELECT AdresseEmail FROM PPClients UNION " + 
-                 "SELECT AdresseEmail FROM PPVendeurs UNION " + 
+                "(SELECT AdresseEmail FROM PPClients UNION " +
+                 "SELECT AdresseEmail FROM PPVendeurs UNION " +
                  "SELECT AdresseEmail FROM PPGestionnaires) AS X " +
                  "WHERE (AdresseEmail = @adresse)", connexion);
             cmdExiste.Parameters.AddWithValue("@adresse", tbCourriel.Text);
@@ -34,6 +36,25 @@ namespace Puces_R
         protected void envoyerMdp(object sender, EventArgs e)
         {
             Page.Validate();
+
+            if (Page.IsValid)
+            {
+                SqlCommand cmdMdp = new SqlCommand("SELECT MotDePasse FROM " +
+                "(SELECT MotDePasse, AdresseEmail FROM PPClients UNION " +
+                 "SELECT MotDePasse, AdresseEmail FROM PPVendeurs UNION " +
+                 "SELECT MotDePasse, AdresseEmail FROM PPGestionnaires) AS X " +
+                 "WHERE (AdresseEmail = @adresse)", connexion);
+
+                cmdMdp.Parameters.AddWithValue("@adresse", tbCourriel.Text);
+
+                Courriel c = new Courriel();
+                c.ajouterDestinataire(tbCourriel.Text.Trim());
+                c.Sujet = "Récupération du mot de passe";
+                connexion.Open();
+                c.Message = "Mot de passe : " + cmdMdp.ExecuteScalar().ToString();
+                connexion.Close();
+                c.envoyer();
+            }
         }
     }
 }

@@ -48,7 +48,14 @@ namespace Puces_R
  
                 chargerProduits();
 
-                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie WHERE P.NoVendeur = " + noVendeur, myConnection);
+                String whereClause = String.Empty;
+
+                if (noVendeur != -1)
+                {
+                    whereClause =  " WHERE P.NoVendeur = " + noVendeur;
+                }
+
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" + whereClause, myConnection);
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
 

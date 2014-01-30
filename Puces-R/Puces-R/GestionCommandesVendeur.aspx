@@ -14,7 +14,7 @@
     <div>
    <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
             <ItemTemplate>
-                <div class="rectangleStylise rectangleProduits">
+                <div class="rectangleItem rectangleComplet">
                    
                     <div class="boiteDetailsProduit">
                         <div>

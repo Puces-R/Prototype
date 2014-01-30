@@ -14,7 +14,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session.Clear();
         }
 
         protected void seConnecter(object sender, EventArgs e)

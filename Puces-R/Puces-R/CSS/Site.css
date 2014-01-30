@@ -264,3 +264,11 @@ body
 {
     padding: 10px !important;
 }
+
+.categories
+{
+    max-height:600px;
+    overflow: auto;
+    padding-right:15px;
+    line-height:20px;
+}

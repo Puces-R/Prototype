@@ -73,9 +73,9 @@ namespace Puces_R
                 DateTime strDate = (DateTime)drvFilm["DateCommande"];
                 //Response.Write(decimal.Parse(drvFilm["Livraison"].ToString().Replace(',', '.')));
                 String decPrixDemande = Convert.ToString(drvFilm["Livraison"].ToString().Replace(',','.'));
-                Response.Write(decPrixDemande);
+                //Response.Write(decPrixDemande);
                 String intQuantite = Convert.ToString(drvFilm["TypeLivraison"]);
-                Response.Write(intQuantite);
+                //Response.Write(intQuantite);
                 String noPanier = Convert.ToString(drvFilm["MontantTotal"]);
                 String tps = Convert.ToString(drvFilm["TPS"]);
                 String tvq = Convert.ToString(drvFilm["TVQ"]);
@@ -112,7 +112,7 @@ namespace Puces_R
             String noC = statut[0];
             String stat = statut[1];
 
-            Response.Write(noC + "----" + stat);
+            //Response.Write(noC + "----" + stat);
             myConnection.Open();
 
             if (stat == "O")
@@ -129,7 +129,7 @@ namespace Puces_R
 
             else
             {
-                Response.Write("ALLO");
+                //Response.Write("ALLO");
             }
             // SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
             // commandeMAJQuantite.ExecuteNonQuery();

@@ -13,28 +13,15 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-        private bool _public = false;
-
-        public bool Public
-        {
-            get
-            {
-                return _public;
-            }
-            set
-            {
-                _public = value;
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                if (_public)
+                if (Session["ID"] == null)
                 {
                     hypTous.NavigateUrl = "~/NouveauxProduits.aspx";
                 }
+
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT Description, NoCategorie FROM PPCategories", myConnection);
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
@@ -86,7 +73,16 @@ namespace Puces_R.Controles
                 int nbProduits = (int)drvVendeur["NbProduits"];
 
                 hypVendeur.Text = description;
-                hypVendeur.NavigateUrl = "~/" + (_public ? "NouveauxProduits" : "Produits") + ".aspx?novendeur=" + noVendeur + (_public ? "&nocategorie=" + noCategorie : "");
+
+                if (Session["ID"] != null)
+                {
+                    hypVendeur.NavigateUrl = "~/Produits.aspx?novendeur=" + noVendeur + "&nocategorie=" + noCategorie;
+                }
+                else
+                {
+                    hypVendeur.NavigateUrl = "~/NouveauxProduits.aspx?novendeur=" + noVendeur;
+                }
+
                 lblNbProduits.Text = nbProduits.ToString();
             }
             else if (item.ItemType == ListItemType.Footer)

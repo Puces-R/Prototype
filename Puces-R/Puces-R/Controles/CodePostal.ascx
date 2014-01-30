@@ -2,7 +2,7 @@
     Inherits="Puces_R.CodePostal" %>
 <tr>
     <td>
-        Code postal
+        Code postal: 
     </td>
     <td>
         <asp:TextBox runat="server" ID="tbPart1" MaxLength="3" Width="39px" />

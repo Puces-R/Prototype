@@ -66,6 +66,7 @@ namespace Puces_R
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                 TextBox txtQuantite = (TextBox)item.FindControl("txtQuantite");
                 Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
+                Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
 
                 DataRowView drvFilm = (DataRowView)e.Item.DataItem;
 
@@ -84,26 +85,29 @@ namespace Puces_R
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 txtQuantite.Text = intQuantite.ToString();
                 btnMAJQuantite.CommandArgument = noPanier.ToString();
+                btnSupprimer.CommandArgument = noPanier.ToString();
             }
         }
 
         protected void rptProduits_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            TextBox txtQuantite = (TextBox)e.Item.FindControl("txtQuantite");
-
             SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+            TextBox txtQuantite = (TextBox)e.Item.FindControl("txtQuantite");
+
             myConnection.Open();
-            if (txtQuantite.Text == "0")
+
+            if (e.CommandName == "Supprimer" || (e.CommandName == "MAJQuantite" && txtQuantite.Text == "0"))
             {
                 SqlCommand commandeSuppression = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoPanier = " + e.CommandArgument, myConnection);
                 commandeSuppression.ExecuteNonQuery();
             }
-            else
+            else if (e.CommandName == "MAJQuantite")
             {
                 SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
                 commandeMAJQuantite.ExecuteNonQuery();
             }
+                        
             myConnection.Close();
 
             chargerProduits();

@@ -1,24 +1,23 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InsertionProduits.aspx.cs" Inherits="Puces_R.InsertionProduits" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InsertionProduits.aspx.cs" Inherits="Puces_R.InsertionProduits" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Insertion d'un nouveau produit.</title>
-</head>
-<body>
-    <form id="frmInscription" runat="server">
-    <div id="divEnTete">
-         <asp:Label ID="lblTitre"  Text="Insertion d'un nouveau produit" runat="server"/><br />
-        
-     </div> 
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuClient ID="MenuClient1" runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+
+       <h2>Insertion d'un nouveau produit</h2>
 
      <div>   
 
      <table>
 
-     
-     
      <tr>
          <td><asp:Label ID="lblCategorieProduits"  runat="server">Catégorie :</asp:Label></td>
          <td><asp:DropDownList ID="ddlCategorieProduits"  runat="server"></asp:DropDownList></td>
@@ -151,6 +150,5 @@
 
          <asp:Button ID="btnAjout" Text="Ajouter le produit" runat="server" OnClick="validationSaisie"/>
     </div>
-    </form>
-</body>
-</html>
+
+  </asp:Content>

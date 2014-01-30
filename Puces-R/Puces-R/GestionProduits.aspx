@@ -17,18 +17,20 @@
     <asp:Button ID="btnAjouter" runat="server" PostBackUrl="InsertionProduits.aspx" Text="Ajouter un produit " />
         <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound" OnItemCommand="dtlProduits_ItemCommand">
             <ItemTemplate>
-                <div class="rectangleStylise rectangleProduits">
+                <div class="rectangleItem rectangleComplet">
                     <asp:Label runat="server" ID="lblNoProduit" />
                     <div class="boiteImageProduit">
                         <div>
                             <asp:HyperLink runat="server" ID="hypProduit" />
                         </div>
                     </div>
+
                     <asp:Label runat="server" ID="lblDescriptionAbregee" />
                     <asp:Label runat="server" ID="lblCategorie" />
                     <asp:Label runat="server" ID="lblPrixDemande" />
                     <asp:Label runat="server" ID="lblQuantite" />
 
+                    <br />
                     <asp:Button ID="btnSupprimer" runat="server" Text="Supprimer"  CommandName="Supprimer"/>
                     <asp:Button ID="btnModifier" runat="server" Text="Modifier" CommandName="Modifier"/>
                     

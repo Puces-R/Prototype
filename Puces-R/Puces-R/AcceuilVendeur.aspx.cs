@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
@@ -32,8 +33,8 @@ namespace Puces_R
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where Statut='I' and NoVendeur="+Session["ID"] +" order by DateCommande DESC ", myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
-            rptProduits.DataSource = tableProduits;
-            rptProduits.DataBind();
+            rptCommandes.DataSource = tableProduits;
+            rptCommandes.DataBind();
         }
 
         protected void rptCommandes_ItemCommand(object sender, RepeaterCommandEventArgs e)
@@ -63,7 +64,7 @@ namespace Puces_R
 
             else
             {
-                Response.Write("ALLO");
+                //Response.Write("ALLO");
             }
             // SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
             // commandeMAJQuantite.ExecuteNonQuery();
@@ -78,8 +79,6 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-
-
                 HyperLink lblNoProduit = (HyperLink)item.FindControl("hypCommande");
                 Label lblNoClient = (Label)item.FindControl("lblNoClient");
                 Label lblNoVendeur = (Label)item.FindControl("lblNoVendeur");
@@ -92,7 +91,7 @@ namespace Puces_R
                 Label lblStatut = (Label)item.FindControl("lblStatut");
                 Label lblAutorisation = (Label)item.FindControl("lblNoAutorisation");
                 Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
-
+                
                 DataRowView drvFilm = (DataRowView)e.Item.DataItem;
 
                 long noCommande = (long)drvFilm["NoCommande"];
@@ -109,10 +108,12 @@ namespace Puces_R
                 //String Statut = (String)drvFilm["Statut"];
                 //String strAutorisation = (String)drvFilm["NoAutorisation"];
 
+
+
                 String decPrixDemande = Convert.ToString(drvFilm["Livraison"].ToString().Replace(',', '.'));
-                Response.Write(decPrixDemande);
+                //Response.Write(decPrixDemande);
                 String intQuantite = Convert.ToString(drvFilm["TypeLivraison"]);
-                Response.Write(intQuantite);
+                //Response.Write(intQuantite);
                 String noPanier = Convert.ToString(drvFilm["MontantTotal"]);
                 String tps = Convert.ToString(drvFilm["TPS"]);
                 String tvq = Convert.ToString(drvFilm["TVQ"]);
@@ -150,24 +151,25 @@ namespace Puces_R
             {
                 HyperLink hypVendeur = (HyperLink)item.FindControl("hypVendeur");
                 Label lblSousTotal = (Label)item.FindControl("lblSousTotal");
-                Repeater rptProduits = (Repeater)item.FindControl("rptProduits");
+                TablePanier ctrPanier = (TablePanier)item.FindControl("ctrPanier");
 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
-                
+
                 String vendeur = (String)drvPanier["NomAffaires"];
                 decimal sousTotal = (decimal)drvPanier["SousTotal"];
                 long noVendeur = (long)drvPanier["NoVendeur"];
+                long noClient = (long)drvPanier["NoClient"];
+
+                //long numero = (long)drvPanier["NoClient"];
+                //ctrPanier.NoClient = (long)numero;
 
                 hypVendeur.Text = vendeur;
-                hypVendeur.NavigateUrl = "Panier.aspx?noclient=10000&novendeur=" + noVendeur;
+                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
+
+                ctrPanier.NoClient = noClient;
+                ctrPanier.NoVendeur = (int)Session["ID"];
+
                 lblSousTotal.Text = sousTotal.ToString("C");
-
-                SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, PrixVente, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + noVendeur + " AND A.NoClient = 10000", myConnection);
-                DataTable tableProduits = new DataTable();
-                adapteurProduits.Fill(tableProduits);
-
-                rptProduits.DataSource = new DataView(tableProduits);
-                rptProduits.DataBind();
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AcceuilVendeur.aspx.cs" Inherits="Puces_R.AcceuilVendeur" %>
 
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
+<%@ Register TagPrefix="lp" TagName="PanierProduits" Src="~/Controles/TablePanier.ascx" %>
+
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuClient ID="MenuClient1" runat="server" />
@@ -11,16 +13,18 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
- <div class="panneau ">
- <asp:Label ID="nbVisite" runat="server" Text="Nombre de visites sur votre catalogue  " ></asp:Label>
-
-  <div class="panneau pnlGauche">
+<asp:Label ID="nbVisite" runat="server" Text="Nombre de visites sur votre catalogue " ></asp:Label>
+<div class="panneau ">
+    <div class="panneau pnlGauche">
         <h2>Paniers en Cours</h2>
+
+               
         <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
             <ItemTemplate>
-                <div class="rectangleStylise">
+                <div class="rectangleItem rectangleComplet">
                     <asp:HyperLink runat="server" ID="hypVendeur" CssClass="titreRectangle" />
-                    <asp:Repeater ID="rptProduits" runat="server" OnItemDataBound="rptProduits_ItemDataBound">
+                    <lp:PanierProduits ID="ctrPanier" runat="server" />
+                    <%--<asp:Repeater ID="rptProduits" runat="server" OnItemDataBound="rptProduits_ItemDataBound">
                         <HeaderTemplate>
                             <table class="tableProduits">
                                 <tr>
@@ -49,7 +53,7 @@
                         <FooterTemplate>
                             </table>
                         </FooterTemplate>
-                    </asp:Repeater>
+                    </asp:Repeater>--%>
                     <div class="sousTotal">
                         Sous-Total: <asp:Label runat="server" ID="lblSousTotal" />
                     </div>
@@ -60,9 +64,9 @@
 
          <div class="panneau pnlDroite">
          <h2>Commandes non traitées </h2>
-         <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptCommandes_ItemDataBound" OnItemCommand="rptCommandes_ItemCommand">
+         <asp:Repeater runat="server" ID="rptCommandes" OnItemDataBound="rptCommandes_ItemDataBound" OnItemCommand="rptCommandes_ItemCommand">
             <ItemTemplate>
-                <div class="rectangleStylise rectangleProduits">
+                <div class="rectangleItem rectangleComplet">
                    
                     <div class="boiteDetailsProduit">
                         <div>

@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="rectangleComplet rectangleItem">
-        <table class="formulaire" style="width: 250px;">
+        <table class="formulaire" style="width: 350px;">
             <tr>
                 <td>
                     Adresse courriel

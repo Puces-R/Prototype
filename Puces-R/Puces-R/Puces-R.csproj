@@ -58,6 +58,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Accueil.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="Controles\BoiteMessage.ascx" />
@@ -122,8 +123,10 @@
     <Content Include="InscriptionClient.aspx" />
     <Content Include="InscriptionVendeur.aspx" />
     <Content Include="InsertionProduits.aspx" />
+    <Content Include="lib\js\librairie.js" />
     <Content Include="ModificationProduits.aspx" />
     <Content Include="ModifierMotPasse.aspx" />
+    <Content Include="NouveauxProduits.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
@@ -186,6 +189,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accueil.aspx.cs">
+      <DependentUpon>Accueil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accueil.aspx.designer.cs">
+      <DependentUpon>Accueil.aspx</DependentUpon>
     </Compile>
     <Compile Include="AccueilClient.aspx.cs">
       <DependentUpon>AccueilClient.aspx</DependentUpon>
@@ -456,6 +466,13 @@
     </Compile>
     <Compile Include="ModifierMotPasse.aspx.designer.cs">
       <DependentUpon>ModifierMotPasse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NouveauxProduits.aspx.cs">
+      <DependentUpon>NouveauxProduits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NouveauxProduits.aspx.designer.cs">
+      <DependentUpon>NouveauxProduits.aspx</DependentUpon>
     </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>

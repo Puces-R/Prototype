@@ -40,12 +40,12 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Repeater rptPaniers;
         
         /// <summary>
-        /// Contrôle rptProduits.
+        /// Contrôle rptCommandes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProduits;
+        protected global::System.Web.UI.WebControls.Repeater rptCommandes;
     }
 }

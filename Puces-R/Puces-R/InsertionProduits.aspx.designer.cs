@@ -13,22 +13,13 @@ namespace Puces_R {
     public partial class InsertionProduits {
         
         /// <summary>
-        /// Contrôle frmInscription.
+        /// Contrôle MenuClient1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmInscription;
-        
-        /// <summary>
-        /// Contrôle lblTitre.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitre;
+        protected global::Puces_R.Controles.MenuVendeur MenuClient1;
         
         /// <summary>
         /// Contrôle lblCategorieProduits.

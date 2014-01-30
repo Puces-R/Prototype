@@ -52,7 +52,7 @@ namespace Puces_R
 
                 if (noVendeur != -1)
                 {
-                    whereClause =  " WHERE P.NoVendeur = " + noVendeur;
+                    whereClause = " WHERE Disponibilité = 1 AND P.NoVendeur = " + noVendeur;
                 }
 
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" + whereClause, myConnection);
@@ -181,7 +181,7 @@ namespace Puces_R
             String whereClause;
             if (whereParts.Count > 0)
             {
-                whereClause = " WHERE " + string.Join(" AND ", whereParts);
+                whereClause = " WHERE Disponibilité = 1 AND " + string.Join(" AND ", whereParts);
             }
             else
             {

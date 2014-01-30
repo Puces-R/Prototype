@@ -52,3 +52,9 @@
     text-align:center;
     font-size:large;
 }
+
+.boutonVider
+{
+    display:inline;
+    vertical-align:middle;
+}

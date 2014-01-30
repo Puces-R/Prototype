@@ -59,8 +59,11 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" /></td>
-                </tr>
+                    <td>
+                        <asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" />
+                        <asp:Button runat="server" ID="btnEnvoyerMessage" Text="Contacter le vendeur" OnClick="btnEnvoyerMessage_Click" />
+                    </td>
+                </tr> 
             </table>       
         </div>
     </div>

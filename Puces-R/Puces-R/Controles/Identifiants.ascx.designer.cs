@@ -19,7 +19,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Courriel tbCourriel;
+        protected global::Puces_R.CourrielControle tbCourriel;
         
         /// <summary>
         /// Contrôle tbCourrielConfirmation.

@@ -10,7 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class Courriel {
+    public partial class CourrielControle {
         
         /// <summary>
         /// Contrôle tbCourriel.

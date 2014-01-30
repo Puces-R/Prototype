@@ -35,6 +35,9 @@
                                             Quantité: <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" />
                                             <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" CommandName="MAJQuantite" />
                                         </div>
+                                        <div>
+                                            <asp:Button runat="server" ID="btnSupprimer" Text="Supprimer" CommandName="Supprimer" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

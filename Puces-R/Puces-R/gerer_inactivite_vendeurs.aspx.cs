@@ -15,6 +15,7 @@ namespace Puces_R
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string req_inactif = ""; 
         string whereClause, orderByClause = " ORDER BY ";
+        int anneesMaximal;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,15 +33,11 @@ namespace Puces_R
                 whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
             }
 
-            //String whereClause;
+            whereParts.Add("PPVendeurs.NoVendeur IN ");
+
             if (whereParts.Count > 0)
             {
-                whereClause = " WHERE " + string.Join(" AND ", whereParts);
-                whereClause += " AND PPVendeurs.NoVendeur IN ";
-            }
-            else
-            {
-                whereClause = " WHERE PPVendeurs.NoVendeur IN ";
+                whereClause += " WHERE " + string.Join(" AND ", whereParts);
             }
 
             //String orderByClause = " ORDER BY ";
@@ -56,6 +53,8 @@ namespace Puces_R
                     orderByClause += "PPVendeurs.DateCreation DESC ";
                     break;
             }
+            
+            anneesMaximal = int.Parse(ddlTempsInnactivite.SelectedValue);
 
             //if (Page.IsPostBack)
             //{
@@ -80,7 +79,7 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
 
-            foreach (RepeaterItem item in rptInnactifs1.Items)
+            foreach (DataListItem item in rptInnactifs1.Items)
             {
                 Label courriel = (Label)item.FindControl("courriel_demande");
             }
@@ -106,7 +105,7 @@ namespace Puces_R
             req_inactif = "SELECT * FROM PPVendeurs " + whereClause;
             req_inactif += "( SELECT PPVendeurs.NoVendeur ";
             req_inactif += "FROM PPVendeurs, ( ";
-            req_inactif += "					SELECT PPVendeurs.NoVendeur, MAX(DATEADD(yy, 1,PPProduits.DateCreation)) maxdate ";
+            req_inactif += "					SELECT PPVendeurs.NoVendeur, MAX(DATEADD(yy, " + anneesMaximal + ",PPProduits.DateCreation)) maxdate ";
             req_inactif += "					FROM PPVendeurs, PPProduits   ";
             req_inactif += "					WHERE PPVendeurs.NoVendeur = PPProduits.NoVendeur ";
             req_inactif += "					GROUP BY PPVendeurs.NoVendeur ";
@@ -116,7 +115,7 @@ namespace Puces_R
             req_inactif += "INTERSECT ";
             req_inactif += "SELECT PPVendeurs.NoVendeur ";
             req_inactif += "FROM PPVendeurs, ( ";
-            req_inactif += "					SELECT PPVendeurs.NoVendeur, MAX(DATEADD(yy,1,PPCommandes.DateCommande)) maxdate ";
+            req_inactif += "					SELECT PPVendeurs.NoVendeur, MAX(DATEADD(yy," + anneesMaximal + ",PPCommandes.DateCommande)) maxdate ";
             req_inactif += "					FROM PPVendeurs, PPCommandes   ";
             req_inactif += "					WHERE PPVendeurs.NoVendeur = PPCommandes.NoVendeur ";
             req_inactif += "					GROUP BY PPVendeurs.NoVendeur ";
@@ -154,9 +153,9 @@ namespace Puces_R
             return tableInnactif1;
         }
 
-        protected void rptInnactifs1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptInnactifs1_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            RepeaterItem item = e.Item;
+            DataListItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {

@@ -76,7 +76,6 @@
     font-size:small;
     border-radius:5px 5px 10px 10px;
     box-shadow: 1px 1px 4px 4px Gray;
-    display: none;
 }
 
 .vendeur_innactif
@@ -243,4 +242,14 @@ a
     max-height:150px;
     display:block;
     margin:auto;
+}
+
+.boutonsCentre
+{
+    text-align:center;
+}
+
+.tableTitreValeur td:first-child 
+{
+    text-align:right;
 }

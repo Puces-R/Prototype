@@ -79,7 +79,7 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
 
-            foreach (RepeaterItem item in rptDemandes.Items)
+            foreach (DataListItem item in rptDemandes.Items)
             {
                 Label courriel = (Label)item.FindControl("courriel_demande");
             }
@@ -95,9 +95,9 @@ namespace Puces_R
             return tableDemandes;
         }
 
-        protected void rptDemandes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptDemandes_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            RepeaterItem item = e.Item;
+            DataListItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
@@ -130,7 +130,7 @@ namespace Puces_R
             }
         }
 
-        protected void rptDemandes_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        protected void rptDemandes_ItemCommand(object sender, CommandEventArgs e)
         {
             
         }

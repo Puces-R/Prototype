@@ -1,41 +1,43 @@
+use BD6B8_424R
+
 /* Copie des tables et des données*/
 
-SELECT * INTO BD6B8_424R.dbo.PPArticlesEnPanier FROM BD6B8PetitesPucesH2014Effective.dbo.PPArticlesEnPanier
-SELECT * INTO BD6B8_424R.dbo.PPCategories FROM BD6B8PetitesPucesH2014Effective.dbo.PPCategories
-SELECT * INTO BD6B8_424R.dbo.PPClients FROM BD6B8PetitesPucesH2014Effective.dbo.PPClients
-SELECT * INTO BD6B8_424R.dbo.PPCommandes FROM BD6B8PetitesPucesH2014Effective.dbo.PPCommandes
-SELECT * INTO BD6B8_424R.dbo.PPDetailsCommandes FROM BD6B8PetitesPucesH2014Effective.dbo.PPDetailsCommandes
-SELECT * INTO BD6B8_424R.dbo.PPHistoriquePaiements FROM BD6B8PetitesPucesH2014Effective.dbo.PPHistoriquePaiements
-SELECT * INTO BD6B8_424R.dbo.PPPoidsLivraisons FROM BD6B8PetitesPucesH2014Effective.dbo.PPPoidsLivraisons
-SELECT * INTO BD6B8_424R.dbo.PPProduits FROM BD6B8PetitesPucesH2014Effective.dbo.PPProduits
-SELECT * INTO BD6B8_424R.dbo.PPTaxeFederale FROM BD6B8PetitesPucesH2014Effective.dbo.PPTaxeFederale
-SELECT * INTO BD6B8_424R.dbo.PPTaxeProvinciale FROM BD6B8PetitesPucesH2014Effective.dbo.PPTaxeProvinciale
-SELECT * INTO BD6B8_424R.dbo.PPTypesLivraison FROM BD6B8PetitesPucesH2014Effective.dbo.PPTypesLivraison
-SELECT * INTO BD6B8_424R.dbo.PPTypesPoids FROM BD6B8PetitesPucesH2014Effective.dbo.PPTypesPoids
-SELECT * INTO BD6B8_424R.dbo.PPVendeurs FROM BD6B8PetitesPucesH2014Effective.dbo.PPVendeurs
-SELECT * INTO BD6B8_424R.dbo.PPVendeursClients FROM BD6B8PetitesPucesH2014Effective.dbo.PPVendeursClients
+SELECT * INTO PPArticlesEnPanier FROM BD6B8PetitesPucesH2014Effective.dbo.PPArticlesEnPanier
+SELECT * INTO PPCategories FROM BD6B8PetitesPucesH2014Effective.dbo.PPCategories
+SELECT * INTO PPClients FROM BD6B8PetitesPucesH2014Effective.dbo.PPClients
+SELECT * INTO PPCommandes FROM BD6B8PetitesPucesH2014Effective.dbo.PPCommandes
+SELECT * INTO PPDetailsCommandes FROM BD6B8PetitesPucesH2014Effective.dbo.PPDetailsCommandes
+SELECT * INTO PPHistoriquePaiements FROM BD6B8PetitesPucesH2014Effective.dbo.PPHistoriquePaiements
+SELECT * INTO PPPoidsLivraisons FROM BD6B8PetitesPucesH2014Effective.dbo.PPPoidsLivraisons
+SELECT * INTO PPProduits FROM BD6B8PetitesPucesH2014Effective.dbo.PPProduits
+SELECT * INTO PPTaxeFederale FROM BD6B8PetitesPucesH2014Effective.dbo.PPTaxeFederale
+SELECT * INTO PPTaxeProvinciale FROM BD6B8PetitesPucesH2014Effective.dbo.PPTaxeProvinciale
+SELECT * INTO PPTypesLivraison FROM BD6B8PetitesPucesH2014Effective.dbo.PPTypesLivraison
+SELECT * INTO PPTypesPoids FROM BD6B8PetitesPucesH2014Effective.dbo.PPTypesPoids
+SELECT * INTO PPVendeurs FROM BD6B8PetitesPucesH2014Effective.dbo.PPVendeurs
+SELECT * INTO PPVendeursClients FROM BD6B8PetitesPucesH2014Effective.dbo.PPVendeursClients
 
 
 /* Création des clefs primaires */
 
-ALTER TABLE BD6B8_424R.dbo.PPArticlesEnPanier ADD PRIMARY KEY(NoPanier)
-ALTER TABLE BD6B8_424R.dbo.PPCategories ADD PRIMARY KEY(NoCategorie)
-ALTER TABLE BD6B8_424R.dbo.PPClients ADD PRIMARY KEY(NoClient)
-ALTER TABLE BD6B8_424R.dbo.PPCommandes ADD PRIMARY KEY(NoCommande)
-ALTER TABLE BD6B8_424R.dbo.PPDetailsCommandes ADD PRIMARY KEY(NoDetailCommandes)
-ALTER TABLE BD6B8_424R.dbo.PPHistoriquePaiements ADD PRIMARY KEY(NoHistorique)
-ALTER TABLE BD6B8_424R.dbo.PPPoidsLivraisons ADD PRIMARY KEY(CodeLivraison, CodePoids)
-ALTER TABLE BD6B8_424R.dbo.PPProduits ADD PRIMARY KEY(NoProduit)
-ALTER TABLE BD6B8_424R.dbo.PPTaxeFederale ADD PRIMARY KEY(NoTPS)
-ALTER TABLE BD6B8_424R.dbo.PPTaxeProvinciale ADD PRIMARY KEY(NoTVQ)
-ALTER TABLE BD6B8_424R.dbo.PPTypesLivraison ADD PRIMARY KEY(CodeLivraison)
-ALTER TABLE BD6B8_424R.dbo.PPTypesPoids ADD PRIMARY KEY(CodePoids)
-ALTER TABLE BD6B8_424R.dbo.PPVendeurs ADD PRIMARY KEY(NoVendeur)
-ALTER TABLE BD6B8_424R.dbo.PPVendeursClients ADD PRIMARY KEY(NoVendeur, NoClient, DateVisite)
+ALTER TABLE PPArticlesEnPanier ADD PRIMARY KEY(NoPanier)
+ALTER TABLE PPCategories ADD PRIMARY KEY(NoCategorie)
+ALTER TABLE PPClients ADD PRIMARY KEY(NoClient)
+ALTER TABLE PPCommandes ADD PRIMARY KEY(NoCommande)
+ALTER TABLE PPDetailsCommandes ADD PRIMARY KEY(NoDetailCommandes)
+ALTER TABLE PPHistoriquePaiements ADD PRIMARY KEY(NoHistorique)
+ALTER TABLE PPPoidsLivraisons ADD PRIMARY KEY(CodeLivraison, CodePoids)
+ALTER TABLE PPProduits ADD PRIMARY KEY(NoProduit)
+ALTER TABLE PPTaxeFederale ADD PRIMARY KEY(NoTPS)
+ALTER TABLE PPTaxeProvinciale ADD PRIMARY KEY(NoTVQ)
+ALTER TABLE PPTypesLivraison ADD PRIMARY KEY(CodeLivraison)
+ALTER TABLE PPTypesPoids ADD PRIMARY KEY(CodePoids)
+ALTER TABLE PPVendeurs ADD PRIMARY KEY(NoVendeur)
+ALTER TABLE PPVendeursClients ADD PRIMARY KEY(NoVendeur, NoClient, DateVisite)
 
 /* Créations des tables personnelles */
 
-CREATE TABLE BD6B8_424R.dbo.PPGestionnaires (
+CREATE TABLE PPGestionnaires (
 	NoGestionnaire bigint PRIMARY KEY,
 	AdresseEmail varchar(100) NOT NULL,
 	MotDePasse varchar(50) NOT NULL,
@@ -54,40 +56,59 @@ CREATE TABLE BD6B8_424R.dbo.PPGestionnaires (
 	DateDerniereConnexion smalldatetime
 )
 
-CREATE TABLE BD6B8_424R.dbo.PPMessages (
+CREATE TABLE PPBoites (
+	NoBoite smallint PRIMARY KEY,
+	"Description" varchar(20) NOT NULL
+)
+
+CREATE TABLE PPCategoriesMessage (
+	NoCategorie smallint PRIMARY KEY,
+	"Description" varchar(20) NOT NULL,
+	Couleur int NOT NULL CHECK (Couleur BETWEEN CONVERT(INT, 0x000000) AND CONVERT(INT, 0xFFFFFF))
+)
+
+CREATE TABLE PPMessages (
 	NoMessage bigint PRIMARY KEY,
-	Envoyeur bigint NOT NULL,
-	Recepteur bigint NOT NULL,
-	DateEnvoi smalldatetime,
+	NoExpediteur bigint NOT NULL,
+	DateEnvoi datetime NOT NULL,
 	Sujet varchar(50) NOT NULL,
-	Contenu varchar(500) NOT NULL,
-	Lu bit,
-	Boite smallint NOT NULL
+	Contenu varchar(MAX) NOT NULL,
+	FichierJoint varchar(50),
+	Boite smallint NOT NULL FOREIGN KEY REFERENCES PPBoites(NoBoite),
+	Categorie smallint NULL FOREIGN KEY REFERENCES PPCategoriesMessage(NoCategorie)
+)
+
+CREATE TABLE PPDestinatairesMessages (
+	NoDestinataire bigint,
+	NoMessage bigint FOREIGN KEY REFERENCES PPMessages(NoMessage),
+	Lu bit NOT NULL,
+	Boite smallint NOT NULL FOREIGN KEY REFERENCES PPBoites(NoBoite),
+	Categorie smallint NULL FOREIGN KEY REFERENCES PPCategoriesMessage(NoCategorie), 
+	CONSTRAINT PK_DestinatairesMessages PRIMARY KEY (NoDestinataire, NoMessage)
 )
 
 /* Création des clefs étrangères */
 
-ALTER TABLE BD6B8_424R.dbo.PPArticlesEnPanier ADD FOREIGN KEY(NoClient) REFERENCES BD6B8_424R.dbo.PPClients(NoClient)
-ALTER TABLE BD6B8_424R.dbo.PPArticlesEnPanier ADD FOREIGN KEY(NoVendeur) REFERENCES BD6B8_424R.dbo.PPVendeurs(NoVendeur)
-ALTER TABLE BD6B8_424R.dbo.PPArticlesEnPanier ADD FOREIGN KEY(NoProduit) REFERENCES BD6B8_424R.dbo.PPProduits(NoProduit)
+ALTER TABLE PPArticlesEnPanier ADD FOREIGN KEY(NoClient) REFERENCES PPClients(NoClient)
+ALTER TABLE PPArticlesEnPanier ADD FOREIGN KEY(NoVendeur) REFERENCES PPVendeurs(NoVendeur)
+ALTER TABLE PPArticlesEnPanier ADD FOREIGN KEY(NoProduit) REFERENCES PPProduits(NoProduit)
 
-ALTER TABLE BD6B8_424R.dbo.PPCommandes ADD FOREIGN KEY(NoClient) REFERENCES BD6B8_424R.dbo.PPClients(NoClient)
-ALTER TABLE BD6B8_424R.dbo.PPCommandes ADD FOREIGN KEY(NoVendeur) REFERENCES BD6B8_424R.dbo.PPVendeurs(NoVendeur)
-ALTER TABLE BD6B8_424R.dbo.PPCommandes ADD FOREIGN KEY(TypeLivraison) REFERENCES BD6B8_424R.dbo.PPTypesLivraison(CodeLivraison)
+ALTER TABLE PPCommandes ADD FOREIGN KEY(NoClient) REFERENCES PPClients(NoClient)
+ALTER TABLE PPCommandes ADD FOREIGN KEY(NoVendeur) REFERENCES PPVendeurs(NoVendeur)
+ALTER TABLE PPCommandes ADD FOREIGN KEY(TypeLivraison) REFERENCES PPTypesLivraison(CodeLivraison)
 
-ALTER TABLE BD6B8_424R.dbo.PPDetailsCommandes ADD FOREIGN KEY(NoCommande) REFERENCES BD6B8_424R.dbo.PPCommandes(NoCommande)
-ALTER TABLE BD6B8_424R.dbo.PPDetailsCommandes ADD FOREIGN KEY(NoProduit) REFERENCES BD6B8_424R.dbo.PPProduits(NoProduit)
+ALTER TABLE PPDetailsCommandes ADD FOREIGN KEY(NoCommande) REFERENCES PPCommandes(NoCommande)
+ALTER TABLE PPDetailsCommandes ADD FOREIGN KEY(NoProduit) REFERENCES PPProduits(NoProduit)
 
--- À vérifier
-ALTER TABLE BD6B8_424R.dbo.PPHistoriquePaiements ADD FOREIGN KEY(NoVendeur) REFERENCES BD6B8_424R.dbo.PPVendeurs(NoVendeur)
-ALTER TABLE BD6B8_424R.dbo.PPHistoriquePaiements ADD FOREIGN KEY(NoClient) REFERENCES BD6B8_424R.dbo.PPClients(NoClient)
-ALTER TABLE BD6B8_424R.dbo.PPHistoriquePaiements ADD FOREIGN KEY(NoCommande) REFERENCES BD6B8_424R.dbo.PPCommandes(NoCommande)
+ALTER TABLE PPPoidsLivraisons ADD FOREIGN KEY(CodeLivraison) REFERENCES PPTypesLivraison(CodeLivraison)
+ALTER TABLE PPPoidsLivraisons ADD FOREIGN KEY(CodePoids) REFERENCES PPTypesPoids(CodePoids)
 
-ALTER TABLE BD6B8_424R.dbo.PPPoidsLivraisons ADD FOREIGN KEY(CodeLivraison) REFERENCES BD6B8_424R.dbo.PPTypesLivraison(CodeLivraison)
-ALTER TABLE BD6B8_424R.dbo.PPPoidsLivraisons ADD FOREIGN KEY(CodePoids) REFERENCES BD6B8_424R.dbo.PPTypesPoids(CodePoids)
+ALTER TABLE PPProduits ADD FOREIGN KEY(NoVendeur) REFERENCES PPVendeurs(NoVendeur)
+ALTER TABLE PPProduits ADD FOREIGN KEY(NoCategorie) REFERENCES PPCategories(NoCategorie)
 
-ALTER TABLE BD6B8_424R.dbo.PPProduits ADD FOREIGN KEY(NoVendeur) REFERENCES BD6B8_424R.dbo.PPVendeurs(NoVendeur)
-ALTER TABLE BD6B8_424R.dbo.PPProduits ADD FOREIGN KEY(NoCategorie) REFERENCES BD6B8_424R.dbo.PPCategories(NoCategorie)
+ALTER TABLE PPVendeursClients ADD FOREIGN KEY(NoVendeur) REFERENCES PPVendeurs(NoVendeur)
+ALTER TABLE PPVendeursClients ADD FOREIGN KEY(NoClient) REFERENCES PPClients(NoClient)
 
-ALTER TABLE BD6B8_424R.dbo.PPVendeursClients ADD FOREIGN KEY(NoVendeur) REFERENCES BD6B8_424R.dbo.PPVendeurs(NoVendeur)
-ALTER TABLE BD6B8_424R.dbo.PPVendeursClients ADD FOREIGN KEY(NoClient) REFERENCES BD6B8_424R.dbo.PPClients(NoClient)
+/* Ajout de vérification des données dans la BD
+
+-- À faire (Je suis paresseux)

@@ -17,6 +17,14 @@ namespace Puces_R
             }
         }
 
+        public bool IsValid
+        {
+            get
+            {
+                return tbMDP1.IsValid && (valTbMDP2.IsValid);
+            }
+        }
+
         public bool Changement
         {
             set

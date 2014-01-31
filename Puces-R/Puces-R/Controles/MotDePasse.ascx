@@ -7,5 +7,5 @@
         <asp:TextBox runat="server" ID="tbMDP" TextMode="Password" MaxLength="50" />
     </td>
     <td runat="server" ID="tdReqMDP" Visible="false" class="erreur">
-        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMDP" ErrorMessage="Le mot de passe est obligatoire" Display="Dynamic" />
+        <asp:RequiredFieldValidator ID="reqMDP" runat="server" ControlToValidate="tbMDP" ErrorMessage="Le mot de passe est obligatoire" Display="Dynamic" />
     </td>

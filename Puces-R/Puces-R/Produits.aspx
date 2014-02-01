@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Produits.aspx.cs" Inherits="Puces_R.Produits" MasterPageFile="~/Site.Master"  %>
 
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+<%@ Register TagPrefix="lp" TagName="NavigationParPage" Src="~/Controles/NavigationParPage.ascx" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuClient runat="server" ID="ctrMenu" />
@@ -48,7 +49,8 @@
             </span>
         </div>
     </div>
-    <div class="lignePointilleHorizontale"></div>
+    <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" />
+    <div class="lignePointilleHorizontale pleineLargeur"></div>
     <div>
         <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
             <ItemTemplate>
@@ -73,25 +75,5 @@
             </ItemTemplate>
         </ASP:DataList>
     </div>
-    <asp:Panel runat="server" ID="pnlLigneNavigation" class="lignePointilleHorizontale"></asp:Panel>
-    <asp:Panel runat="server" ID="pnlLeftNavigation" CssClass="navigation leftNavigation">
-        <div>
-            <asp:ImageButton runat="server" ID="imgFirst" OnClick="btnFirst_OnClick" ImageUrl="Images/Premier.png" CssClass="imageCentree" />
-            <asp:LinkButton runat="server" Text="Premier" ID="btnFirst" OnClick="btnFirst_OnClick" />
-        </div>
-        <div>
-            <asp:ImageButton runat="server" ID="imgPrevious" OnClick="btnPrevious_OnClick" ImageUrl="Images/Precedent.png" CssClass="imageCentree" />
-            <asp:LinkButton runat="server" Text="Précédent" ID="btnPrevious" OnClick="btnPrevious_OnClick" />
-        </div>
-    </asp:Panel>
-    <asp:Panel runat="server" ID="pnlRightNavigation" CssClass="navigation rightNavigation">
-        <div>
-            <asp:LinkButton runat="server" Text="Suivant" ID="btnNext" OnClick="btnNext_OnClick" />
-            <asp:ImageButton runat="server" ID="imgNext" OnClick="btnNext_OnClick" ImageUrl="Images/Prochain.png" CssClass="imageCentree" />
-        </div>   
-        <div>
-            <asp:LinkButton runat="server" Text="Dernier" ID="btnLast" OnClick="btnLast_OnClick" />
-            <asp:ImageButton runat="server" ID="imgLast" OnClick="btnLast_OnClick" ImageUrl="Images/Dernier.png" CssClass="imageCentree" />
-        </div>
-    </asp:Panel>
+    <lp:NavigationParPage runat="server" ID="ctrNavigationBas" />
 </asp:Content>

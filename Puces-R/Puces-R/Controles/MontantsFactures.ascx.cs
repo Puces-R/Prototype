@@ -82,10 +82,39 @@ namespace Puces_R.Controles
 
             myConnection.Open();
 
-            SqlCommand commandeVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + NoVendeur, myConnection);
+            SqlCommand commandeVendeur = new SqlCommand("SELECT Province, LivraisonGratuite, MaxLivraison FROM PPVendeurs WHERE NoVendeur = " + NoVendeur, myConnection);
+            SqlDataReader lecteurVendeur = commandeVendeur.ExecuteReader();
 
-            SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = " + ddlModesLivraison.SelectedValue + " AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
-            decimal prixLivraison = (decimal)commandeLivraison.ExecuteScalar();
+            lecteurVendeur.Read();
+
+            decimal livraisonGratuite = (decimal)lecteurVendeur["LivraisonGratuite"];
+            String province = (String)lecteurVendeur["Province"];
+            int poidsMax = (int)lecteurVendeur["MaxLivraison"];
+
+            lecteurVendeur.Close();
+
+            if (poidsTotal <= poidsMax)
+            {
+                mvPartieBas.ActiveViewIndex = 0;
+            }
+            else
+            {
+                mvPartieBas.ActiveViewIndex = 1;
+                lblPoidsMax.Text = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
+            }
+
+            decimal prixLivraison;
+            int codeLivraison = int.Parse(ddlModesLivraison.SelectedValue);
+
+            if (codeLivraison == 1 && sousTotal >= livraisonGratuite)
+            {
+                prixLivraison = 0;
+            }
+            else
+            {
+                SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = " + codeLivraison + " AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
+                prixLivraison = (decimal)commandeLivraison.ExecuteScalar();
+            }
 
             decimal prixAvecLivraison = sousTotal + prixLivraison;
 
@@ -96,13 +125,22 @@ namespace Puces_R.Controles
             decimal tauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
 
             decimal prixTPS = prixAvecLivraison * tauxTPS;
-            decimal prixTVQ = prixAvecLivraison * tauxTVQ;
+
+            decimal prixTVQ;
+            if (province == "QC")
+            {
+                prixTVQ = prixAvecLivraison * tauxTVQ;
+            }
+            else
+            {
+                prixTVQ = 0;
+            }
 
             decimal grandTotal = prixAvecLivraison + prixTPS + prixTVQ;
 
             lblLivraison.Text = prixLivraison.ToString("C");
-            lblTauxTPS.Text = "(" + tauxTPS.ToString("P") + ")";
-            lblTauxTVQ.Text = "(" + tauxTVQ.ToString("P") + ")";
+            lblTauxTPS.Text = "(" + tauxTPS.ToString("P3") + ")";
+            lblTauxTVQ.Text = "(" + tauxTVQ.ToString("P3") + ")";
             lblTPS.Text = prixTPS.ToString("C");
             lblTVQ.Text = prixTVQ.ToString("C");
             lblGrandTotal.Text = grandTotal.ToString("C");

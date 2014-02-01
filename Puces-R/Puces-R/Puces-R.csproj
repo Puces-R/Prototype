@@ -66,6 +66,7 @@
     <Content Include="Commande.aspx" />
     <Content Include="Connexion.aspx" />
     <Content Include="Controles\Categories.ascx" />
+    <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
@@ -77,6 +78,7 @@
     <Content Include="Controles\MenuVendeur.ascx" />
     <Content Include="Controles\MontantsFactures.ascx" />
     <Content Include="Controles\MotDePasse.ascx" />
+    <Content Include="Controles\NavigationParPage.ascx" />
     <Content Include="Controles\ProfilClient.ascx" />
     <Content Include="Controles\ProfilVendeur.ascx" />
     <Content Include="Controles\Province.ascx" />
@@ -248,6 +250,13 @@
     <Compile Include="Controles\Categories.ascx.designer.cs">
       <DependentUpon>Categories.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controles\ChangementMDP.ascx.cs">
+      <DependentUpon>ChangementMDP.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\ChangementMDP.ascx.designer.cs">
+      <DependentUpon>ChangementMDP.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controles\CodePostal.ascx.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -324,6 +333,13 @@
     </Compile>
     <Compile Include="Controles\MotDePasse.ascx.designer.cs">
       <DependentUpon>MotDePasse.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\NavigationParPage.ascx.cs">
+      <DependentUpon>NavigationParPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\NavigationParPage.ascx.designer.cs">
+      <DependentUpon>NavigationParPage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\ProfilClient.ascx.cs">
       <DependentUpon>ProfilClient.ascx</DependentUpon>

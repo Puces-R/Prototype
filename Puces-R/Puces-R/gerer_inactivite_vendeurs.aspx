@@ -51,7 +51,7 @@
                 </asp:DropDownList>
             </span>
         </div>
-    <div class="lignePointilleHorizontale"></div>
+    <div class="lignePointilleHorizontale pleineLargeur"></div>
     <div>
         <div class="panneau pnlGauche">
             <asp:DataList RepeatColumns="2" RepeatDirection="Horizontal" runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >

@@ -13,6 +13,24 @@ namespace Puces_R.Controles {
     public partial class ProfilClient {
         
         /// <summary>
+        /// Contrôle lblCourriel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCourriel;
+        
+        /// <summary>
+        /// Contrôle ctrMotDePasse.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.Controles.ChangementMDP ctrMotDePasse;
+        
+        /// <summary>
         /// Contrôle txtPrenom.
         /// </summary>
         /// <remarks>

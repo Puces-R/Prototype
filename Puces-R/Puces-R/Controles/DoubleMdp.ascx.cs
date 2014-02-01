@@ -29,8 +29,8 @@ namespace Puces_R
         {
             set
             {
-                tbMDP1.Label = (value ? "Nouveau m" : "M") + "ot de passe";
-                tbMDP2.Label = "Confirmer le " + (value ? "nouveau " : "") + "mot de passe";
+                tbMDP1.Label = (value ? "Nouveau m" : "M") + "ot de passe: ";
+                tbMDP2.Label = "Confirmer le mot de passe: ";
             }
         }
 

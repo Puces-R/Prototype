@@ -43,7 +43,7 @@
                 </asp:DropDownList>
             </span>
         </div>
-        <div class="lignePointilleHorizontale"></div>
+        <div class="lignePointilleHorizontale pleineLargeur"></div>
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
         <div style="width:52%;">
             <table border="0" width="100%"> 

@@ -11,7 +11,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <div class="lignePointilleHorizontale">
+    <div class="lignePointilleHorizontale pleineLargeur">
         <asp:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound" >
             <ItemTemplate>
                 <div class="rectangleProduits rectangleComplet rectangleItem">

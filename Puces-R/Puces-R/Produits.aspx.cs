@@ -13,30 +13,6 @@ namespace Puces_R
     {
         private int noVendeur;
         private int noCategorie;
-
-        private int NbPages
-        {
-            get
-            {
-                return (int)ViewState["NbPages"];
-            }
-            set
-            {
-                ViewState["NbPages"] = value;
-            }
-        }
-
-        private int PageActuelle
-        {
-            get
-            {
-                return (int)ViewState["PageActuelle"];
-            }
-            set
-            {
-                ViewState["PageActuelle"] = value;
-            }
-        }
         
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
@@ -44,8 +20,6 @@ namespace Puces_R
         {
             if (!IsPostBack)
             {
-                PageActuelle = 0;
- 
                 chargerProduits();
 
                 String whereClause = String.Empty;
@@ -74,7 +48,25 @@ namespace Puces_R
                 {
                     ((SiteMaster)Master).NoVendeur = noVendeur;
                 }
+
+                AfficherPremierePage();
             }
+
+            ctrNavigationBas.PageChangee += changerDePage;
+            ctrNavigationHaut.PageChangee += changerDePage;
+        }
+
+        private void changerDePage(object sender, EventArgs e)
+        {
+            if (sender == ctrNavigationBas)
+            {
+                ctrNavigationHaut.PageActuelle = ctrNavigationBas.PageActuelle;
+            }
+            else
+            {
+                ctrNavigationBas.PageActuelle = ctrNavigationHaut.PageActuelle;
+            }
+            chargerProduits();
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -117,6 +109,11 @@ namespace Puces_R
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 lblQuantite.Text = "Quantité: " + intQuantite.ToString();
             }
+        }
+
+        private void chargerProduits(object sender, EventArgs e)
+        {
+            chargerProduits();
         }
 
         private void chargerProduits()
@@ -210,63 +207,39 @@ namespace Puces_R
             objPds.DataSource = new DataView(tableProduits);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = PageActuelle;
+            objPds.CurrentPageIndex = ctrNavigationBas.PageActuelle;
 
-            NbPages = objPds.PageCount;
+            ctrNavigationHaut.NbPages = objPds.PageCount;
+            ctrNavigationBas.NbPages = objPds.PageCount;
 
             dtlProduits.DataSource = objPds;
             dtlProduits.DataBind();
-
-            pnlLeftNavigation.Visible = (PageActuelle > 0);
-            pnlRightNavigation.Visible = (PageActuelle < NbPages - 1);
-            pnlLigneNavigation.Visible = pnlLeftNavigation.Visible || pnlRightNavigation.Visible;
-        }
-
-        protected void btnFirst_OnClick(object sender, EventArgs e)
-        {
-            PageActuelle = 0;
-            chargerProduits();
-        }
-
-        protected void btnPrevious_OnClick(object sender, EventArgs e)
-        {
-            PageActuelle -= 1;
-            chargerProduits();
-        }
-
-        protected void btnNext_OnClick(object sender, EventArgs e)
-        {
-            PageActuelle += 1;
-            chargerProduits();
-        }
-
-        protected void btnLast_OnClick(object sender, EventArgs e)
-        {
-            PageActuelle = NbPages - 1;
-            chargerProduits();
         }
 
         protected void btnRecherche_OnClick(object sender, EventArgs e)
         {
-            PageActuelle = 0;
-            chargerProduits();
+            AfficherPremierePage();
         }
 
         protected void ddlTrierPar_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            PageActuelle = 0;
-            chargerProduits();
+            AfficherPremierePage();
         }
 
         protected void ddlParPage_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            PageActuelle = 0;
-            chargerProduits();
+            AfficherPremierePage();
         }
 
         protected void ddlCategorie_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            PageActuelle = 0;
+            AfficherPremierePage();
+        }
+
+        private void AfficherPremierePage()
+        {
+            ctrNavigationHaut.PageActuelle = 0;
+            ctrNavigationBas.PageActuelle = 0;
             chargerProduits();
         }
     }

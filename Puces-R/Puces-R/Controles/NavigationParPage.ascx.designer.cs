@@ -10,114 +10,114 @@
 namespace Puces_R.Controles {
     
     
-    public partial class MontantsFactures {
+    public partial class NavigationParPage {
         
         /// <summary>
-        /// Contrôle lblPoidsTotal.
+        /// Contrôle pnlBarreNavigation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPoidsTotal;
+        protected global::System.Web.UI.WebControls.Panel pnlBarreNavigation;
         
         /// <summary>
-        /// Contrôle lblSousTotal.
+        /// Contrôle pnlLeftNavigation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSousTotal;
+        protected global::System.Web.UI.WebControls.Panel pnlLeftNavigation;
         
         /// <summary>
-        /// Contrôle mvPartieBas.
+        /// Contrôle imgFirst.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvPartieBas;
+        protected global::System.Web.UI.WebControls.ImageButton imgFirst;
         
         /// <summary>
-        /// Contrôle ddlModesLivraison.
+        /// Contrôle btnFirst.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlModesLivraison;
+        protected global::System.Web.UI.WebControls.LinkButton btnFirst;
         
         /// <summary>
-        /// Contrôle lblLivraison.
+        /// Contrôle imgPrevious.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLivraison;
+        protected global::System.Web.UI.WebControls.ImageButton imgPrevious;
         
         /// <summary>
-        /// Contrôle lblTauxTPS.
+        /// Contrôle btnPrevious.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTauxTPS;
+        protected global::System.Web.UI.WebControls.LinkButton btnPrevious;
         
         /// <summary>
-        /// Contrôle lblTPS.
+        /// Contrôle pnlRightNavigation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTPS;
+        protected global::System.Web.UI.WebControls.Panel pnlRightNavigation;
         
         /// <summary>
-        /// Contrôle lblTauxTVQ.
+        /// Contrôle btnNext.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTauxTVQ;
+        protected global::System.Web.UI.WebControls.LinkButton btnNext;
         
         /// <summary>
-        /// Contrôle lblTVQ.
+        /// Contrôle imgNext.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTVQ;
+        protected global::System.Web.UI.WebControls.ImageButton imgNext;
         
         /// <summary>
-        /// Contrôle lblGrandTotal.
+        /// Contrôle btnLast.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGrandTotal;
+        protected global::System.Web.UI.WebControls.LinkButton btnLast;
         
         /// <summary>
-        /// Contrôle btnCommander.
+        /// Contrôle imgLast.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCommander;
+        protected global::System.Web.UI.WebControls.ImageButton imgLast;
         
         /// <summary>
-        /// Contrôle lblPoidsMax.
+        /// Contrôle lblInfoAuCentre.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPoidsMax;
+        protected global::System.Web.UI.WebControls.Label lblInfoAuCentre;
     }
 }

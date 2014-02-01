@@ -38,7 +38,6 @@ body
     color: Red;
     text-align:left;
     font-style: italic;
-    width: 150px;
 }
 
 .titre
@@ -47,19 +46,20 @@ body
     vertical-align: middle;
 }
 
-.menu
+.droitePageMaitre
 {
     float: right;
-    line-height: 50px;
     vertical-align: middle;
     font-weight: bold;
     font-size: larger;
     display:table-cell;
+    height: 50px;
+    text-align:right;
 }
 
 .menu div
 {
-    line-height: 25px;
+    height: 25px;
     display:inline-block;
 }
 
@@ -90,7 +90,6 @@ body
 
 .barreVendeur
 {
-    margin-top:5px;
     font-size:x-large;
     font-weight:bold;
     text-align:center;
@@ -126,8 +125,12 @@ body
 {
     border-bottom: 5px dotted Gray;
     padding-bottom: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     display: inline-block; 
+}
+
+.pleineLargeur
+{
     width: 100%;
 }
 
@@ -275,6 +278,60 @@ body
 
 .barreListesDeroulantes
 {
-    margin-top:10px;
+    margin-top:5px;
     text-align:center;
+}
+
+.tauxTaxes
+{
+    font-size:small;
+}
+
+.infoAuCentre
+{
+    text-align:center;
+}
+
+.leftNavigation
+{
+    position:absolute;
+    left:0;
+}
+
+.rightNavigation
+{
+    position:absolute;
+    right:0;
+}
+
+.navigation > div
+{
+    margin:0 15px;
+    display:inline;
+}
+
+.barreNavigation
+{
+    position:relative;
+    width:100%;
+    text-align:center !important;
+}
+
+.navigation input
+{
+    height:16px;
+    vertical-align:top;
+}
+
+.bonjour
+{
+    font-size:small;
+    font-weight:normal;
+    margin-right:10px;
+    line-height:25px;
+}
+
+.nomUtilisateur
+{
+    font-weight:bold; 
 }

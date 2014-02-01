@@ -3,9 +3,17 @@
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
+<%@ Register TagPrefix="lp" TagName="ChangementMDP" Src="~/Controles/ChangementMDP.ascx" %>
 
 <h2>Profil</h2>
 <table class="tableProfil">
+    <tr>
+        <td>Courriel: </td>
+        <td>
+            <asp:Label ID="lblCourriel" runat="server" />
+        </td>
+    </tr>
+    <lp:ChangementMDP runat="server" ID="ctrMotDePasse" />
     <tr>
         <td>Prénom: </td>
         <td>
@@ -44,6 +52,6 @@
     </tr>
     <yc:CodePostal ID="ctrCodePostal" runat="server" />
     <yc:Telephone ID="ctrTelephone" runat="server" />
-    <yc:Telephone ID="ctrCellulaire" Label="Cellulaire: " runat="server" />
+    <yc:Telephone ID="ctrCellulaire" Label="Cellulaire: " Obligatoire="false" runat="server" />
 </table>
 <asp:Button runat="server" ID="btnSauvegarder" Text="Sauvegarder" OnClick="btnSauvegarder_OnClick" />

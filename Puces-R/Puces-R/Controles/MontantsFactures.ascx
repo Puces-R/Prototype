@@ -10,28 +10,38 @@
         <td>Sous-Total: </td>
         <td><asp:Label ID="lblSousTotal" runat="server" /></td>
     </tr>
-    <tr>
-        <td>
-            <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlModesLivraison_OnSelectedIndexChanged" Font-Size="X-Large" />:
-        </td>
-        <td><asp:Label ID="lblLivraison" runat="server" /></td>
-    </tr>
-    <tr>
-        <td>TPS <asp:Label ID="lblTauxTPS" CssClass="tauxTaxes" runat="server" />: </td>
-        <td><asp:Label ID="lblTPS" runat="server" /></td>
-    </tr>
-    <tr>
-        <td>TVQ <asp:Label ID="lblTauxTVQ" CssClass="tauxTaxes" runat="server" />: </td>
-        <td><asp:Label ID="lblTVQ" runat="server" /></td>
-    </tr>
-    <tr>
-        <td>Grand-Total: </td>
-        <td><asp:Label ID="lblGrandTotal" runat="server" CssClass="grandTotal" /></td>
-    </tr>
-    <tr>
-        <td />
-        <td>
-            <asp:Button runat="server" Text="Commander" Font-Size="X-Large" ID="btnCommander" OnClick="btnCommander_OnClick" />
-        </td>
-    </tr>
+    <asp:MultiView runat="server" ID="mvPartieBas">
+        <asp:View runat="server">
+            <tr>
+                <td>
+                    <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlModesLivraison_OnSelectedIndexChanged" Font-Size="X-Large" />:
+                </td>
+                <td><asp:Label ID="lblLivraison" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>TPS <asp:Label ID="lblTauxTPS" CssClass="tauxTaxes" runat="server" />: </td>
+                <td><asp:Label ID="lblTPS" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>TVQ <asp:Label ID="lblTauxTVQ" CssClass="tauxTaxes" runat="server" />: </td>
+                <td><asp:Label ID="lblTVQ" runat="server" /></td>
+            </tr>
+            <tr>
+                <td>Grand-Total: </td>
+                <td><asp:Label ID="lblGrandTotal" runat="server" CssClass="grandTotal" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:Button runat="server" Text="Commander" Font-Size="X-Large" ID="btnCommander" OnClick="btnCommander_OnClick" />
+                </td>
+            </tr>
+        </asp:View>
+        <asp:View runat="server">
+            <tr>
+                <td colspan="2">
+                    <asp:Label ID="lblPoidsMax" runat="server" Font-Size="Large" ForeColor="Red" />
+                </td>
+            </tr>
+        </asp:View>
+    </asp:MultiView>
 </table>

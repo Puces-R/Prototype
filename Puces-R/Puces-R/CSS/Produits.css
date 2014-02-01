@@ -49,26 +49,3 @@
     font-size:smaller;
     display:block;
 }
-
-.navigation > div
-{
-    margin:0 15px;
-    display:inline;
-}
-
-.leftNavigation
-{
-    float:left;
-}
-
-.rightNavigation
-{
-    float:right;
-}
-
-.imageCentree
-{
-    height:16px;
-    vertical-align:middle;
-}
-

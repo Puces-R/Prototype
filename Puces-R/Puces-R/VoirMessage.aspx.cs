@@ -20,7 +20,7 @@ namespace Puces_R
 
                 SqlCommand cmdMessage = new SqlCommand("SELECT M.NoExpediteur, M.DateEnvoi, M.Sujet, M.Contenu FROM PPMessages M " +
                     "INNER JOIN PPDestinatairesMessages DM ON M.NoMessage = DM.NoMessage " +
-                    "WHERE (M.NoMessage = @noMsg) AND ((DM.NoDestinataire = @id) OR (M.NoExpediteur = @id))", connexion);
+                    "WHERE (M.NoMessage = @noMsg) AND ((DM.NoDestinataire = @id AND DM.Boite > 0) OR (M.NoExpediteur = @id AND M.Boite < 0))", connexion);
 
                 SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
 
@@ -44,6 +44,7 @@ namespace Puces_R
                 }
                 else
                 {
+                    // Bonne gestion de l'erreur ?
                     Response.Redirect("BoiteMessage.aspx", true);
                 }
 
@@ -51,6 +52,7 @@ namespace Puces_R
             }
             else
             {
+                // Bonne gestion de l'erreur ?
                 Response.Redirect("BoiteMessage.aspx", true);
             }
         }

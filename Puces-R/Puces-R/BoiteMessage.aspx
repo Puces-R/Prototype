@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"
     MasterPageFile="~/Site.Master" %>
 
-<%@ Register TagPrefix="yc" TagName="Boite" Src="~/Controles/BoiteMessage.ascx" %>
 <%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <yc:MenuInvite runat="server" />
@@ -63,7 +62,7 @@
             font-size: 0.75em;
         }
     </style>
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         function checkAll(checkbox) {
             var idCB = checkbox.id;
             var idSeparate = idCB.split('_');
@@ -77,31 +76,47 @@
                 }
             }
         }
-    </script>
+    </script-->
     <div>
         <div>
             <div style="float: left;">
-                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" CssClass="sMenuBoite" OnMenuItemClick="clickOption">
+                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" CssClass="sMenuBoite"
+                    OnMenuItemClick="clickOption">
                     <StaticMenuItemStyle HorizontalPadding="10" />
-                    <Items>
-                        <asp:MenuItem Text="Nouveau message" Value="New" />
-                        <asp:MenuItem Text="Marquer comme lu" Value="Read" />
-                        <asp:MenuItem Text="Marquer comme non-lu" Value="Unread" />
-                        <asp:MenuItem Text="Archiver" Value="Archive" />
-                        <asp:MenuItem Text="Supprimer" Value="Delete" />
-                    </Items>
                 </asp:Menu>
             </div>
             <div style="float: right;">
-            <asp:DropDownList runat="server" ID="ddlBoite" OnSelectedIndexChanged="changeBoite" AutoPostBack="true">
-                <asp:ListItem Text="Boîte principale" Value="1" />
-                <asp:ListItem Text="Archive" Value="2" />
-                <asp:ListItem Text="Corbeille" Value="3" />
-                <asp:ListItem Text="Envoyé" Value="-1" />
-                <asp:ListItem Text="Brouillon" Value="-2" />
-            </asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlBoite" OnSelectedIndexChanged="changeBoite"
+                    AutoPostBack="true">
+                    <asp:ListItem Text="Boîte principale" Value="1" />
+                    <asp:ListItem Text="Archive" Value="2" />
+                    <asp:ListItem Text="Corbeille" Value="3" />
+                    <asp:ListItem Text="Envoyé" Value="-1" />
+                    <asp:ListItem Text="Brouillon" Value="-2" />
+                </asp:DropDownList>
             </div>
         </div>
-        <yc:Boite runat="server" ID="ListeMessage" Visible="true" />
+        <div runat="server" class="rectangleComplet rectangleItem" style="float: left;">
+            <table class="sBoite">
+                <thead>
+                    <tr>
+                        <th class="sCheckbox">
+                            <asp:CheckBox runat="server" ID="cbAll" OnClick="checkAll(this)" />
+                        </th>
+                        <th class="sDe">
+                            <asp:LinkButton runat="server" ID="linkDe" OnClick="ordre" Text="De" />
+                        </th>
+                        <th class="sSujet">
+                            <asp:LinkButton runat="server" ID="linkSujet" OnClick="ordre" Text="Sujet" />
+                        </th>
+                        <th class="sDate">
+                            <asp:LinkButton runat="server" ID="linkDate" OnClick="ordre" Text="Date" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody runat="server" ID="ListeMessage">
+                </tbody>
+            </table>
+        </div>
     </div>
 </asp:Content>

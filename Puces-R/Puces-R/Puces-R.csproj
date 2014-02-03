@@ -62,13 +62,14 @@
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="CommandesClient.aspx" />
-    <Content Include="Controles\BoiteMessage.ascx" />
+    <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
     <Content Include="Connexion.aspx" />
     <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
+    <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
@@ -227,12 +228,12 @@
     <Compile Include="CommandesClient.aspx.designer.cs">
       <DependentUpon>CommandesClient.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Controles\BoiteMessage.ascx.cs">
-      <DependentUpon>BoiteMessage.ascx</DependentUpon>
+    <Compile Include="Controles\Adresse.ascx.cs">
+      <DependentUpon>Adresse.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Controles\BoiteMessage.ascx.designer.cs">
-      <DependentUpon>BoiteMessage.ascx</DependentUpon>
+    <Compile Include="Controles\Adresse.ascx.designer.cs">
+      <DependentUpon>Adresse.ascx</DependentUpon>
     </Compile>
     <Compile Include="BoiteMessage.aspx.cs">
       <DependentUpon>BoiteMessage.aspx</DependentUpon>
@@ -359,6 +360,13 @@
     </Compile>
     <Compile Include="Controles\NavigationParPage.ascx.designer.cs">
       <DependentUpon>NavigationParPage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\NettoyerPanier.ascx.cs">
+      <DependentUpon>NettoyerPanier.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\NettoyerPanier.ascx.designer.cs">
+      <DependentUpon>NettoyerPanier.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\ProfilClient.ascx.cs">
       <DependentUpon>ProfilClient.ascx</DependentUpon>
@@ -526,6 +534,7 @@
     <Compile Include="Panier.aspx.designer.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ParametresGet.cs" />
     <Compile Include="Produits.aspx.cs">
       <DependentUpon>Produits.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

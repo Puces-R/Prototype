@@ -52,7 +52,7 @@ namespace Puces_R
                                     "WHERE (NoExpediteur = @id) AND (Boite = @noBoite) " +
                                     "ORDER BY DateEnvoi DESC";
             }
-            cmd.Parameters.AddWithValue("@id", 10700);//Session["ID"]);
+            cmd.Parameters.AddWithValue("@id", 10000);//Session["ID"]);
             cmd.Parameters.AddWithValue("@noBoite", noBoite);
 
             connexion.Open();
@@ -66,7 +66,6 @@ namespace Puces_R
                 l.Date = (DateTime)sdr["DateEnvoi"];
                 l.Lu = noBoite < 0 ? true : (Boolean)sdr["Lu"];
                 l.NoMessage = (Int64)sdr["NoMessage"];
-                Response.Write(l.NoMessage + "<br />");
             }
             if (_nbMessages == 0)
             {

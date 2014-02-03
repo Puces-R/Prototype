@@ -16,12 +16,56 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Update();
+        }
+
+        private void Update()
+        {
+            if (menuAction.FindItem("Restore") != null)
+            {
+                menuAction.FindItem("Restore").Text = "Supprimer";
+                menuAction.FindItem("Restore").Value = "Delete";
+            }
+
+            if (menuAction.FindItem("Unarchive") != null)
+            {
+                menuAction.FindItem("Unarchive").Text = "Archiver";
+                menuAction.FindItem("Unarchive").Value = "Archive";
+            }
+            if (menuAction.FindItem(/*CRUSH ! KILL ! */ "Destroy" /* ! SWAG !*/) != null)
+            {
+                menuAction.Items.Remove(menuAction.FindItem("Destroy"));
+            }
+
+            int i;
+            if (!int.TryParse(Request.QueryString["Box"], out i) || i < -2 || i > 3 || i == 0)
+            {
+                i = 1;
+            }
+            ListeMessage.Fill(connexion, i);
+            switch (i)
+            {
+                case -1:
+                case -2:
+                    menuAction.Visible = false;
+                    break;
+                case 2:
+                    menuAction.FindItem("Archive").Text = "Désarchiver";
+                    menuAction.FindItem("Archive").Value = "Unarchive";
+                    break;
+                case 3:
+                    menuAction.FindItem("Delete").Text = "Restaurer";
+                    menuAction.FindItem("Delete").Value = "Restore";
+                    menuAction.Items.Add(new MenuItem("Supprimer complètement", "Destroy"));
+                    break;
+            }
+
             if (!IsPostBack)
             {
-                ListeMessage.Fill(connexion, 1);
+                ddlBoite.SelectedValue = i.ToString();
             }
         }
-        /*
+
         protected void clickOption(object sender, MenuEventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
@@ -37,35 +81,41 @@ namespace Puces_R
                 {
                     param[i] = string.Format("@no{0}", i);
                     cmd.Parameters.AddWithValue(param[i], selectionne[i]);
+                    Response.Write(selectionne[i] + "<br />");
                 }
 
                 switch (e.Item.Value)
                 {
                     case "Read":
-                        cmd.CommandText = string.Format("UPDATE PPMessages SET Lu = 'True' WHERE NoMessage IN ({0})", string.Join(", ", param));
+                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Lu = 'True' WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
                         break;
                     case "Unread":
-                        cmd.CommandText = string.Format("UPDATE PPMessages SET Lu = 'False' WHERE NoMessage IN ({0})", string.Join(", ", param));
+                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Lu = 'False' WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
                         break;
                     case "Delete":
-                        cmd.CommandText = string.Format("UPDATE PPMessages SET Boite = -1 WHERE NoMessage IN ({0})", string.Join(", ", param));
+                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 3 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                        break;
+                    case "Destroy":
+                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 0 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
                         break;
                     case "Archive":
-                        cmd.CommandText = string.Format("UPDATE PPMessages SET Boite = 1 WHERE NoMessage IN ({0})", string.Join(", ", param));
+                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 2 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
                         break;
                     case "Restore":
                     case "Unarchive":
-                        cmd.CommandText = string.Format("UPDATE PPMessages SET Boite = 0 WHERE NoMessage IN ({0})", string.Join(", ", param));
+                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 1 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
                         break;
                 }
+
+                cmd.Parameters.AddWithValue("@id", 10000);
 
                 connexion.Open();
                 cmd.ExecuteNonQuery();
                 connexion.Close();
-                Update();
+                Response.Redirect(Request.RawUrl);
             }
         }
-        
+        /*
         private void Update()
         {
             if (menuAction.FindItem("Restore") != null)
@@ -151,13 +201,7 @@ namespace Puces_R
 
         protected void changeBoite(object sender, EventArgs e)
         {
-            int noBoite = int.Parse(ddlBoite.SelectedValue);
-            ListeMessage.Fill(connexion, noBoite);
-        }
-
-        protected void voirMessage(object sender, MenuEventArgs e)
-        {
-            Response.Redirect("BoiteMessage.aspx?Box=" + e.Item.Value, true);
+            Response.Redirect("BoiteMessage.aspx?Box=" + ddlBoite.SelectedValue, true);
         }
     }
 }

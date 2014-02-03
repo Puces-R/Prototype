@@ -81,7 +81,7 @@
     <div>
         <div>
             <div style="float: left;">
-                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" CssClass="sMenuBoite">
+                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" CssClass="sMenuBoite" OnMenuItemClick="clickOption">
                     <StaticMenuItemStyle HorizontalPadding="10" />
                     <Items>
                         <asp:MenuItem Text="Nouveau message" Value="New" />
@@ -94,7 +94,7 @@
             </div>
             <div style="float: right;">
             <asp:DropDownList runat="server" ID="ddlBoite" OnSelectedIndexChanged="changeBoite" AutoPostBack="true">
-                <asp:ListItem Selected="True" Text="Boîte principale" Value="1" />
+                <asp:ListItem Text="Boîte principale" Value="1" />
                 <asp:ListItem Text="Archive" Value="2" />
                 <asp:ListItem Text="Corbeille" Value="3" />
                 <asp:ListItem Text="Envoyé" Value="-1" />

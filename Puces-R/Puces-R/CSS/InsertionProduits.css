@@ -1,0 +1,47 @@
+﻿.DescComplete{
+margin: 2px;
+height: 86px;
+width: 300px;
+}
+
+.sRouge
+{
+ background-color:Red;
+ color:yellow;
+ height: 800px;
+ width: 507px; 
+   
+}
+.rectangleProduits > *
+{
+    display:block;
+}
+
+.rectangleProduits
+{
+    width:150px;
+    font-size:x-small;
+}
+
+.boiteListeDeroulante
+{
+    margin:0 10px;
+}
+
+.barreListesDeroulantes
+{
+    margin-top:5px;
+    text-align:center;
+}
+
+.boiteImageProduit > div
+{
+    height:150px;
+    width:150px;
+}
+
+.boiteImageProduit img
+{
+    max-width:140px;
+    max-height:140px;
+}

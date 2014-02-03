@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Puces_R
 {
@@ -20,7 +21,20 @@ namespace Puces_R
             }
         }
 
-        public void chargerCategorie() 
+        protected void validerPrixVente(object sender, ServerValidateEventArgs e)
+        {
+            if (tbPrix.Text == "" || rePrixDemande.IsValid == false)
+            {
+                e.IsValid = true;
+            }
+            else if (rePrixDemande.IsValid == true && rePrixVente.IsValid == true && (Convert.ToDecimal(tbPrixVente.Text.Replace('.', ',')) > Convert.ToDecimal(tbPrix.Text.Replace('.', ','))))
+            {
+                e.IsValid = false;
+            }
+
+        }
+
+        public void chargerCategorie()
         {
             SqlConnection dbConn = new SqlConnection();
             String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
@@ -28,27 +42,53 @@ namespace Puces_R
             maConnexion.ConnectionString = maChaineDeConnexion;
             maConnexion.Open();
 
-           SqlCommand maCommande = new SqlCommand("select * from PPCategories ", maConnexion);
-           SqlDataReader rep = maCommande.ExecuteReader();
+            SqlCommand maCommande = new SqlCommand("select * from PPCategories ", maConnexion);
+            SqlDataReader rep = maCommande.ExecuteReader();
 
-           ddlCategorieProduits.Items.Add("");
-           while (rep.Read())
-           {
-               String nom = (String)rep[1];
-               ddlCategorieProduits.Items.Add(nom);
-           }
+
+            while (rep.Read())
+            {
+                String nom = (String)rep[1];
+                ddlCategorieProduits.Items.Add(nom);
+            }
             maConnexion.Close();
 
 
-             
+
+        }
+
+        protected string televerser()
+        {
+            string filename = "";
+            if (uplNomFichier.HasFile)
+            {
+                try
+                {
+
+                    filename = Path.GetFileName(uplNomFichier.FileName);
+                    uplNomFichier.SaveAs(MapPath("Images/Televerse/") + filename);
+                    Response.Write(filename);
+
+                    //uplNomFichier.SaveAs(MapPath(tbNouveauNomFichier.Text));
+                    //StatusLabel.Text = "Upload status: File uploaded!";
+
+                }
+                catch (Exception ex)
+                {
+                    //StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                }
+
+
+            }
+            return filename;
         }
 
         public int avoirCategorie(String categorie)
         {
             int noCat = 0;
-            switch (categorie) 
+            switch (categorie)
             {
-                case "Articles de maison": noCat=10; break;
+                case "Articles de maison": noCat = 10; break;
                 case "Mobiliers": noCat = 20; break;
                 case "Articles électroniques": noCat = 30; break;
                 case "Articles de bébé et enfants": noCat = 40; break;
@@ -65,11 +105,12 @@ namespace Puces_R
         {
             if (Page.IsValid)
             {
-               insertionProduits( sender,  e);
+                insertionProduits(sender, e);
             }
             else
             {
-                Response.Write("Il y a eu un problème lors de l'insertion. Veuillez corriger les erreurs!");
+                //Response.Write("Il y a eu un problème lors de l'insertion. Veuillez corriger les erreurs!");
+                lblAvertissement.Text = "Il y a eu un problème lors de l'insertion. Veuillez corriger les erreurs!";
             }
 
 
@@ -92,38 +133,38 @@ namespace Puces_R
             while (rep.Read())
             {
                 Int64 no = (Int64)rep[0];
-                String numero= Convert.ToString(no).Substring(2);
+                String numero = Convert.ToString(no).Substring(2);
 
                 int noprod = Convert.ToInt32(numero);
 
-                if(noprod>grand)
+                if (noprod > grand)
                 {
                     grand = noprod;
                 }
 
             }
             rep.Close();
-            
+
             grand++;
             Response.Write(grand.ToString());
 
             String total = "";
             String nb0 = "";
             total = total + Convert.ToString(grand);
-            for (int i = 0; total.Length < 5;i++ )
+            for (int i = 0; total.Length < 5; i++)
             {
                 nb0 += "0";
                 total = nb0 + total;
-                
+
             }
 
             Response.Write(total);
             String noProduit = "10" + total;
-            Int64 numProduit=Convert.ToInt64(noProduit);
-
+            Int64 numProduit = Convert.ToInt64(noProduit);
+            televerser();
 
             SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ",10," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','1000010.jpg'," + tbPrix.Text + "," + tbNbItems.Text + ",1,NULL," + tbPrix.Text + "," + tbPois.Text + "," + "'2007-05-02'," + "NULL)", maConnexion);
-             maCommande1.ExecuteNonQuery();
+            maCommande1.ExecuteNonQuery();
             //Response.Write("VALIDATION EST EFFICACE");
             maConnexion.Close();
         }

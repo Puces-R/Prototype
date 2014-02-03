@@ -22,15 +22,6 @@ namespace Puces_R {
         protected global::Puces_R.Controles.MenuVendeur MenuClient1;
         
         /// <summary>
-        /// Contrôle lblAvertissement.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAvertissement;
-        
-        /// <summary>
         /// Contrôle lblCategorieProduits.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbDisponibilite;
+        
+        /// <summary>
+        /// Contrôle lblAvertissement.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAvertissement;
         
         /// <summary>
         /// Contrôle btnAjout.

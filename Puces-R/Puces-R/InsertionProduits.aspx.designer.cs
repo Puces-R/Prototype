@@ -22,6 +22,15 @@ namespace Puces_R {
         protected global::Puces_R.Controles.MenuVendeur MenuClient1;
         
         /// <summary>
+        /// Contrôle lblAvertissement.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAvertissement;
+        
+        /// <summary>
         /// Contrôle lblCategorieProduits.
         /// </summary>
         /// <remarks>
@@ -94,13 +103,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// Contrôle RangePrixDemande.
+        /// Contrôle rePrixDemande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator RangePrixDemande;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rePrixDemande;
         
         /// <summary>
         /// Contrôle lblDescComplete.
@@ -139,13 +148,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lblPhoto;
         
         /// <summary>
-        /// Contrôle btnAjoutPhoto.
+        /// Contrôle uplNomFichier.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjoutPhoto;
+        protected global::System.Web.UI.WebControls.FileUpload uplNomFichier;
         
         /// <summary>
         /// Contrôle lblNbItems.
@@ -184,6 +193,42 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.RangeValidator RangeNbItems;
         
         /// <summary>
+        /// Contrôle lblprixVente.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblprixVente;
+        
+        /// <summary>
+        /// Contrôle tbPrixVente.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPrixVente;
+        
+        /// <summary>
+        /// Contrôle rePrixVente.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rePrixVente;
+        
+        /// <summary>
+        /// Contrôle adresseExiste.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator adresseExiste;
+        
+        /// <summary>
         /// Contrôle lblPois.
         /// </summary>
         /// <remarks>
@@ -211,13 +256,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredPois;
         
         /// <summary>
-        /// Contrôle RangePois.
+        /// Contrôle rePoids.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator RangePois;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rePoids;
         
         /// <summary>
         /// Contrôle lblDisponibilité.

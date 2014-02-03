@@ -27,7 +27,7 @@ namespace Puces_R
 
                 if (verifierSiProduitDansPanier())
                 {
-                   lblAvertissement.Text="LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D UN CLIENT!";
+                    lblAvertissement.Text = "LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D UN CLIENT!";
                 }
                 //Response.Write(noProduit.ToString());
             }

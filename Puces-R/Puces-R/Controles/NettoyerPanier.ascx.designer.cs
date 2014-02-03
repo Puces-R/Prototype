@@ -7,27 +7,18 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class GererPanierVendeur {
+    public partial class NettoyerPanier {
         
         /// <summary>
-        /// Contrôle MenuClient1.
+        /// Contrôle rptProduits.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuVendeur MenuClient1;
-        
-        /// <summary>
-        /// Contrôle rptPaniers.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPaniers;
+        protected global::System.Web.UI.WebControls.Repeater rptProduits;
     }
 }

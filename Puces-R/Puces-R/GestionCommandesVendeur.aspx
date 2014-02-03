@@ -11,6 +11,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+<h2>Commandes non traitées</h2>
     <div>
    <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
             <ItemTemplate>

@@ -7,12 +7,15 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/InsertionProduits.css" />
 </asp:Content>
+
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
        <h2>Insertion d'un nouveau produit</h2>
+
+       <asp:Label ID="lblAvertissement" runat="server" CssClass="sRouge"></asp:Label>
 
      <div>   
 
@@ -26,12 +29,12 @@
      <tr>
 
         <td><asp:Label ID="lblDesc" runat="server">Descrption abrégée:</asp:Label> </td> 
-         <td><asp:TextBox ID="tbDescAbregee" runat="server"></asp:TextBox>
-         <asp:RequiredFieldValidator id="RequiredAbregee"
+         <td><asp:TextBox ID="tbDescAbregee" runat="server"></asp:TextBox></td> 
+         <td><asp:RequiredFieldValidator id="RequiredAbregee"
                     ControlToValidate="tbDescAbregee"
                     EnableClientScript="false"
                     ErrorMessage="Description abrégée absente!"
-                    runat="server"/></td> 
+                    runat="server"/></td>
          
 
      </tr>
@@ -40,30 +43,30 @@
         <td> <asp:Label ID="lblPrix" runat="server">Prix demandé:</asp:Label>
         </td>
 
-        <td> <asp:TextBox ID="tbPrix" runat="server" /><br />
+        <td> <asp:TextBox ID="tbPrix" runat="server" /></td>
 
-         <asp:RequiredFieldValidator id="RequiredFieldValidator1"
+         <td><asp:RequiredFieldValidator id="RequiredFieldValidator1"
                     ControlToValidate="tbPrix"
                     EnableClientScript="false"
                     ErrorMessage="Prix absent!"
                     runat="server"/>
-           <asp:RangeValidator id="RangePrixDemande"
-                    MinimumValue="0,01"
-                    MaximumValue="9999999999"
-                    Type="Double"
-                    ControlToValidate="tbPrix"
-                    EnableClientScript="false"
-                    ErrorMessage="Le prix n'est pas dans un format valide!"
-                    runat="server"/>
+          
+         <asp:RegularExpressionValidator ID="rePrixDemande" 
+           ControlToValidate="tbPrix"   
+           EnableClientScript="false" runat="server"
+           ErrorMessage="Format invalide !" 
+           ValidationExpression="^\d+([\.\,]\d{0,5})?$"> 
+           </asp:RegularExpressionValidator> 
+
       </td>
 
      </tr>
 
      <tr>
           <td><asp:Label ID="lblDescComplete" runat="server">Descrption Complète:</asp:Label></td>
-        <td> <asp:TextBox ID="tbDescComplete" runat="server"></asp:TextBox><br />
+        <td> <asp:TextBox ID="tbDescComplete"  TextMode="multiline" runat="server" CssClass="DescComplete" ></asp:TextBox></td>
         
-         <asp:RequiredFieldValidator id="RequiredComplete"
+         <td><asp:RequiredFieldValidator id="RequiredComplete"
                     ControlToValidate="tbDescComplete"
                     EnableClientScript="false"
                     ErrorMessage="Description non présente."
@@ -75,8 +78,8 @@
      </tr>
 
      <tr>
-          <td><asp:Label ID="lblPhoto" runat="server">Photo du produit :</asp:Label> </td>
-         <td> <asp:Button ID="btnAjoutPhoto" Text="Téléverser une photo" runat="server"/> </td>
+          <td><asp:Label ID="lblPhoto" runat="server">Photo du produit : </asp:Label> </td>
+         <td> <asp:FileUpload ID="uplNomFichier" runat="server" cssClass="" /></td>
      </tr>
 
      <%--<tr>
@@ -86,15 +89,16 @@
 
      <tr>
          <td><asp:Label ID="lblNbItems" runat="server">Nombre d'items :</asp:Label></td>
-         <td><asp:TextBox ID="tbNbItems" runat="server"></asp:TextBox>
+         <td><asp:TextBox ID="tbNbItems" runat="server"></asp:TextBox></td>
          
+         <td>
           <asp:RequiredFieldValidator id="RequiredNbItems"
                     ControlToValidate="tbNbItems"
                     EnableClientScript="false"
                     ErrorMessage="Le nombre d'items doit être présent!"
                     runat="server"/>
 
-                    </td>
+                    
 
                     
                  <asp:RangeValidator id="RangeNbItems"
@@ -105,48 +109,58 @@
                     EnableClientScript="false"
                     ErrorMessage="Le nombre d'items n'est pas dans un format valide !"
                     runat="server"/>
+            </td>
      </tr>
 
-<%--      <tr>
+      <tr>
          <td><asp:Label ID="lblprixVente" runat="server">Prix de vente:</asp:Label></td>
-         <td><asp:TextBox ID="tbPrixVente" runat="server"></asp:TextBox><br /></td>
+         <td><asp:TextBox ID="tbPrixVente" runat="server"></asp:TextBox></td>
+         
+          <td>
+         <asp:RegularExpressionValidator ID="rePrixVente" 
+           ControlToValidate="tbPrixVente"   
+           EnableClientScript="false" runat="server"
+           ErrorMessage="Format invalide !" 
+           ValidationExpression="^\d+([\.\,]\d{0,5})?$"> 
+          </asp:RegularExpressionValidator> 
+
+          <asp:CustomValidator runat="server" ID="adresseExiste" ControlToValidate="tbPrixVente"
+            OnServerValidate="validerPrixVente" ErrorMessage="Le prix de vente doit être plus petit que le prix demandé! " />
+
+         </td>
+
       </tr>
 
       <tr>
-         <td><asp:Label ID="lblDateVente" runat="server">Date de vente:</asp:Label></td>
-         <td><asp:TextBox ID="tbDateVente" runat="server"></asp:TextBox><br /></td>
-      </tr>--%>
-
-      <tr>
          <td><asp:Label ID="lblPois" runat="server">Pois de l'article:</asp:Label></td>
-         <td><asp:TextBox ID="tbPois" runat="server"></asp:TextBox><br />
+         <td><asp:TextBox ID="tbPois" runat="server"></asp:TextBox></td>
           
+          <td>
            <asp:RequiredFieldValidator id="RequiredPois"
                     ControlToValidate="tbPois"
                     EnableClientScript="false"
                     ErrorMessage="Le pois doit être présent!"
                     runat="server"/>
 
-                  
+              
+           <asp:RegularExpressionValidator ID="rePoids" 
+           ControlToValidate="tbPois"   
+           EnableClientScript="false" runat="server"
+           ErrorMessage="Format invalide !" 
+           ValidationExpression="^\d+([\.\,]\d{0,5})?$"> 
+           </asp:RegularExpressionValidator>   
 
                     
-                 <asp:RangeValidator id="RangePois"
-                    MinimumValue="0,000000000001"
-                    MaximumValue="32767"
-                    Type="Double"
-                    ControlToValidate="tbPois"
-                    EnableClientScript="false"
-                    ErrorMessage="Le format n'est pas valide!"
-                    runat="server"/>
+              
 
              </td>
       </tr>
 
       <tr>
          <td><asp:Label ID="lblDisponibilité" runat="server">Disponibilité:</asp:Label></td>
-         <td><asp:CheckBox ID="cbDisponibilite" runat="server" Text="Le produit est-il visible par les clients?"  AutoPostBack="true" /> </td>
+         <td><asp:CheckBox ID="cbDisponibilite" runat="server" Text="Le produit est-il visible par les clients?"  AutoPostBack="false" /> </td>
       </tr>
-         </Table>
+  </Table>
 
          <asp:Button ID="btnAjout" Text="Ajouter le produit" runat="server" OnClick="validationSaisie"/>
     </div>

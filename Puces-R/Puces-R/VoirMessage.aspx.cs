@@ -18,15 +18,11 @@ namespace Puces_R
             if (Request.QueryString["No"] != null && Int64.TryParse(Request.QueryString["No"], out noMessage))
             {
 
-                SqlCommand cmdMessage = new SqlCommand("SELECT X.AdresseEmail, M.DateEnvoi, M.Sujet, M.Contenu FROM PPMessages AS M INNER JOIN " +
-                                                       "(SELECT NoClient AS No, AdresseEmail FROM PPClients UNION " +
-                                                        "SELECT NoVendeur AS No, AdresseEmail FROM PPVendeurs UNION " +
-                                                        "SELECT NoGestionnaire AS No, AdresseEmail FROM PPGestionnaires) AS X " +
-                                                        "ON M.Envoyeur = X.No " +
-                                                        "WHERE M.NoMessage = @noMsg AND " +
-                                                        "(M.Envoyeur = @id OR M.Recepteur = @id)", connexion);
+                SqlCommand cmdMessage = new SqlCommand("SELECT M.NoExpediteur, M.DateEnvoi, M.Sujet, M.Contenu FROM PPMessages M " +
+                    "INNER JOIN PPDestinatairesMessages DM ON M.NoMessage = DM.NoMessage " +
+                    "WHERE (M.NoMessage = @noMsg) AND ((DM.NoDestinataire = @id) OR (M.NoExpediteur = @id))", connexion);
 
-                SqlCommand cmdLu = new SqlCommand("UPDATE PPMessages SET Lu = 1 WHERE NoMessage = @noMsg AND Recepteur = @noRcpt", connexion);
+                SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
 
                 cmdMessage.Parameters.AddWithValue("@noMsg", noMessage);
                 cmdMessage.Parameters.AddWithValue("@id", 10700 /*Session["ID"].ToString()*/);
@@ -35,7 +31,6 @@ namespace Puces_R
                 cmdLu.Parameters.AddWithValue("@noRcpt", 10700 /*Session["ID"]*/);
 
                 connexion.Open();
-
                 cmdLu.ExecuteNonQuery();
 
                 SqlDataReader sdr = cmdMessage.ExecuteReader();
@@ -43,7 +38,7 @@ namespace Puces_R
                 if (sdr.Read())
                 {
                     lblDate.Text = ((DateTime)sdr["DateEnvoi"]).ToString("d MMMM yyyy à h\\hmm");
-                    lblDe.Text = sdr["AdresseEmail"].ToString();
+                    lblDe.Text = sdr["NoExpediteur"].ToString();
                     lblMessage.Text = sdr["Contenu"].ToString().Replace("\r\n", "<br />");
                     lblSujet.Text = sdr["Sujet"].ToString();
                 }

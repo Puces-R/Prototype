@@ -81,8 +81,7 @@
     <div>
         <div>
             <div style="float: left;">
-                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" OnMenuItemClick="clickOption"
-                    CssClass="sMenuBoite">
+                <asp:Menu ID="menuAction" runat="server" Orientation="Horizontal" CssClass="sMenuBoite">
                     <StaticMenuItemStyle HorizontalPadding="10" />
                     <Items>
                         <asp:MenuItem Text="Nouveau message" Value="New" />
@@ -94,16 +93,13 @@
                 </asp:Menu>
             </div>
             <div style="float: right;">
-                <asp:Menu runat="server" Orientation="Horizontal" OnMenuItemClick="voirMessage" CssClass="sMenuBoite">
-                    <StaticMenuItemStyle HorizontalPadding="10" />
-                    <Items>
-                        <asp:MenuItem Text="Boîte principale" Value="Box" />
-                        <asp:MenuItem Text="Archivé" Value="Archived" />
-                        <asp:MenuItem Text="Corbeil" Value="Deleted" />
-                        <asp:MenuItem Text="Envoyé" Value="Sent" />
-                        <asp:MenuItem Text="Brouillon" Value="Draft" />
-                    </Items>
-                </asp:Menu>
+            <asp:DropDownList runat="server" ID="ddlBoite" OnSelectedIndexChanged="changeBoite" AutoPostBack="true">
+                <asp:ListItem Selected="True" Text="Boîte principale" Value="1" />
+                <asp:ListItem Text="Archive" Value="2" />
+                <asp:ListItem Text="Corbeille" Value="3" />
+                <asp:ListItem Text="Envoyé" Value="-1" />
+                <asp:ListItem Text="Brouillon" Value="-2" />
+            </asp:DropDownList>
             </div>
         </div>
         <yc:Boite runat="server" ID="ListeMessage" Visible="true" />

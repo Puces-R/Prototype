@@ -16,9 +16,12 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Update();
+            if (!IsPostBack)
+            {
+                ListeMessage.Fill(connexion, 1);
+            }
         }
-
+        /*
         protected void clickOption(object sender, MenuEventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
@@ -62,7 +65,7 @@ namespace Puces_R
                 Update();
             }
         }
-
+        
         private void Update()
         {
             if (menuAction.FindItem("Restore") != null)
@@ -143,6 +146,13 @@ namespace Puces_R
             connexion.Open();
             ListeMessage.Fill(cmd, box == "Sent");
             connexion.Close();
+        }
+        */
+
+        protected void changeBoite(object sender, EventArgs e)
+        {
+            int noBoite = int.Parse(ddlBoite.SelectedValue);
+            ListeMessage.Fill(connexion, noBoite);
         }
 
         protected void voirMessage(object sender, MenuEventArgs e)

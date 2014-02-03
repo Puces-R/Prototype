@@ -33,20 +33,40 @@ namespace Puces_R
             }
         }
 
-        public void Fill(SqlCommand cmd, bool sent = false)
+        public void Fill(SqlConnection connexion, int noBoite)
         {
             Liste.Controls.Clear();
-            lblLabel.Text = sent ? "À" : "De";
+            lblLabel.Text = noBoite < 0 ? "À" : "De";
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connexion;
+            if (noBoite > 0)
+            {
+                cmd.CommandText = "SELECT M.NoMessage, DM.Lu, M.NoExpediteur 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages DM " +
+                                                    "INNER JOIN PPMessages M ON DM.NoMessage = M.NoMessage " +
+                                                    "WHERE (DM.Boite = @noBoite) AND (DM.NoDestinataire = @id) " +
+                                                    "ORDER BY M.DateEnvoi DESC";
+            }
+            else if (noBoite < 0)
+            {
+                cmd.CommandText = "SELECT NoMessage, Sujet, NoExpediteur 'Personne', DateEnvoi FROM PPMessages " +
+                                    "WHERE (NoExpediteur = @id) AND (Boite = @noBoite) " +
+                                    "ORDER BY DateEnvoi DESC";
+            }
+            cmd.Parameters.AddWithValue("@id", 10700);//Session["ID"]);
+            cmd.Parameters.AddWithValue("@noBoite", noBoite);
+
+            connexion.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             for (_nbMessages = 0; sdr.Read(); _nbMessages++)
             {
                 LigneMessage l = (LigneMessage)Page.LoadControl("~/Controles/LigneMessage.ascx");
                 Liste.Controls.Add(l);
-                l.De = sdr["AdresseEmail"].ToString();
+                l.De = sdr["Personne"].ToString();
                 l.Sujet = sdr["Sujet"].ToString();
                 l.Date = (DateTime)sdr["DateEnvoi"];
-                l.Lu = sent ? true : (Boolean)sdr["Lu"];
+                l.Lu = noBoite < 0 ? true : (Boolean)sdr["Lu"];
                 l.NoMessage = (Int64)sdr["NoMessage"];
+                Response.Write(l.NoMessage + "<br />");
             }
             if (_nbMessages == 0)
             {
@@ -60,6 +80,7 @@ namespace Puces_R
                 Liste.Controls.Add(tr);
             }
             sdr.Close();
+            connexion.Close();
         }
 
         public Int64[] Checked

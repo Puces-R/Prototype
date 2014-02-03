@@ -33,6 +33,11 @@ namespace Puces_R
             }
         }
 
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            btnCommander.Visible = !ctrMontantsFactures.PoidsMaxAtteint;
+        }
+
         private void chargerProduits()
         {
             if (Session["ID"] == null)
@@ -59,8 +64,6 @@ namespace Puces_R
 
             rptProduits.DataSource = new DataView(tableProduits);
             rptProduits.DataBind();
-
-            ctrMontantsFactures.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur;
 
             mvMain.ActiveViewIndex = tableProduits.Rows.Count == 0 ? 1 : 0;
         }
@@ -125,11 +128,6 @@ namespace Puces_R
             ctrMontantsFactures.CalculerCouts();
         }
 
-        protected void btnCommander_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("Commande.aspx?novendeur=" + Request.Params["novendeur"], true);
-        }
-
         protected void btnViderPanier_OnClick(object sender, EventArgs e)
         {
             myConnection.Open();
@@ -141,6 +139,11 @@ namespace Puces_R
 
             chargerProduits();
             ctrMontantsFactures.CalculerCouts();
+        }
+
+        protected void btnCommander_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Commande.aspx?novendeur=" + NoVendeur, true);
         }
     }
 }

@@ -10,15 +10,15 @@
 namespace Puces_R.Controles {
     
     
-    public partial class MenuClient {
+    public partial class Etoiles {
         
         /// <summary>
-        /// ctrMenu control.
+        /// rptEtoiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu ctrMenu;
+        protected global::System.Web.UI.WebControls.Repeater rptEtoiles;
     }
 }

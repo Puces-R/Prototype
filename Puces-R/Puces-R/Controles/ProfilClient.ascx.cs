@@ -12,6 +12,14 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+        public bool AfficherCourrielEtMotDePasse
+        {
+            set
+            {
+                phCourrielEtMotDePasse.Visible = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -50,7 +58,7 @@ namespace Puces_R.Controles
             }
         }
 
-        protected void btnSauvegarder_OnClick(object sender, EventArgs e)
+        public void Sauvegarder()
         {
             Dictionary<String, String> dicPaires = new Dictionary<String, String>();
 

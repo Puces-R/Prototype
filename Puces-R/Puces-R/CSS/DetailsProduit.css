@@ -1,12 +1,12 @@
 ﻿.description
 {
-    max-width:350px;
+    max-width:250px;
     display:block;
 }
 
 .pnlDetails
 {
-    font-size:large;
+    font-size:medium;
 }
 
 .boiteImageProduit > div
@@ -16,6 +16,11 @@
 
 .boiteImageProduit img
 {
-    max-width:400px;
-    max-height:400px;
+    max-width:300px;
+    max-height:300px;
+}
+
+.pnlDroite
+{
+    min-height:425px;
 }

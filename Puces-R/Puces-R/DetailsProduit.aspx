@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetailsProduit.aspx.cs" Inherits="Puces_R.DetailsProduit" %>
 
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+<%@ Register TagPrefix="lp" TagName="Etoiles" Src="~/Controles/Etoiles.ascx" %>
+
 
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuClient runat="server" ID="ctrMenu" />
@@ -13,6 +15,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <div class="panneau pnlGauche">
+            <h2>Photo</h2>
             <div class="boiteImageProduit">
                 <div>
                     <asp:Image runat="server" ID="imgProduit" />
@@ -20,6 +23,42 @@
             </div>
         </div>
         <div class="panneau pnlDroite pnlDetails">
+            <h2>Évaluations (<asp:Literal ID="litNbEvaluations" runat="server" />)</h2>
+            <asp:MultiView runat="server" ID="mvMoyenneOuMessage">
+                <asp:View runat="server">
+                    Moyenne: <asp:Label ID="lblCoteMoyenne" runat="server" CssClass="coteMoyenne" />
+                </asp:View>
+                <asp:View runat="server">
+                    Ce produit n'a pas encore été évalué.
+                </asp:View>
+            </asp:MultiView>
+            <asp:Panel runat="server" CssClass="evaluation" ID="pnlEvaluation" Visible="false">
+                <div class="rectangleItem hautRectangle">
+                    <asp:Label runat="server" ID="lblClient" />
+                    <lp:Etoiles runat="server" ID="ctrEtoiles" Cote="0" Modifiable="true" />
+                </div>
+                <div class="rectangleItem basRectangle">
+                    <asp:TextBox runat="server" ID="txtCommentaire" Rows="3" TextMode="MultiLine" CssClass="commentaireEvaluation" Font-Size="Small" />
+                    <asp:Button runat="server" ID="btnSoumettre" Text="Soumettre" OnClick="btnSoumettre_OnClick" CssClass="boutonSoumettre" />
+                </div>
+            </asp:Panel>
+            <asp:Repeater runat="server" ID="rptEvaluations" OnItemDataBound="rptEvaluations_OnItemDataBound">
+                <ItemTemplate>
+                    <div class="evaluation">
+                        <div class="rectangleItem hautRectangle">
+                            <asp:Label runat="server" ID="lblClient" />
+                            <lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
+                        </div>
+                        <div class="rectangleItem basRectangle">
+                            <asp:Label runat="server" ID="lblCommentaire" Font-Size="Small" />
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            <asp:Button runat="server" Text="Ajouter la mienne" ID="btnAjouterLaMienne" OnClick="btnAjouterLaMienne_OnClick" CssClass="boutonAjouterLaMienne" />
+        </div>
+        <div class="panneau pnlDroite pnlDetails">
+            <h2>Description</h2>
             <table>
                 <tr>
                     <td>Produit: </td>
@@ -58,8 +97,7 @@
                     <td><asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" Text="1" /></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+                    <td colspan="2" align="right">
                         <asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" />
                         <asp:Button runat="server" ID="btnEnvoyerMessage" Text="Contacter le vendeur" OnClick="btnEnvoyerMessage_Click" />
                     </td>

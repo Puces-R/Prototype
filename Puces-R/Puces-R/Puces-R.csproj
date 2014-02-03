@@ -61,6 +61,7 @@
     <Content Include="Accueil.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
+    <Content Include="CommandesClient.aspx" />
     <Content Include="Controles\BoiteMessage.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
@@ -68,8 +69,10 @@
     <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
+    <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
+    <Content Include="Controles\Etoiles.ascx" />
     <Content Include="Controles\Identifiants.ascx" />
     <Content Include="Controles\LigneMessage.ascx" />
     <Content Include="Controles\MenuClient.ascx" />
@@ -105,6 +108,9 @@
     <Content Include="gerer_vendeurs.aspx" />
     <Content Include="GestionCommandesVendeur.aspx" />
     <Content Include="GestionProduits.aspx" />
+    <Content Include="Images\DemieEtoile.png" />
+    <Content Include="Images\EtoileVide.png" />
+    <Content Include="Images\EtoilePleine.png" />
     <Content Include="Images\Dernier.png" />
     <Content Include="Images\image_non_disponible.png" />
     <Content Include="Images\logo.png" />
@@ -135,7 +141,6 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
-    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -215,6 +220,13 @@
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CommandesClient.aspx.cs">
+      <DependentUpon>CommandesClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommandesClient.aspx.designer.cs">
+      <DependentUpon>CommandesClient.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controles\BoiteMessage.ascx.cs">
       <DependentUpon>BoiteMessage.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -277,6 +289,13 @@
     </Compile>
     <Compile Include="Controles\DoubleMdp.ascx.designer.cs">
       <DependentUpon>DoubleMdp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Etoiles.ascx.cs">
+      <DependentUpon>Etoiles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\Etoiles.ascx.designer.cs">
+      <DependentUpon>Etoiles.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\Identifiants.ascx.cs">
       <DependentUpon>Identifiants.ascx</DependentUpon>

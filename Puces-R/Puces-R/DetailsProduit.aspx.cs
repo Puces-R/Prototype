@@ -6,11 +6,24 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
     public partial class DetailsProduit : System.Web.UI.Page
     {
+        private bool DejaEvalue
+        {
+            get
+            {
+                return (bool)ViewState["DejaEvalue"];
+            }
+            set
+            {
+                ViewState["DejaEvalue"] = value;
+            }
+        }
+
         private long NoVendeur
         {
             get
@@ -40,7 +53,6 @@ namespace Puces_R
                 SqlCommand commandeProduit = new SqlCommand("SELECT P.NoProduit,Photo,P.Description,C.Description AS Categorie,P.Nom,PrixDemande,PrixVente,NombreItems,Poids,P.DateCreation,P.DateMAJ,V.NoVendeur,NomAffaires FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPVendeurs V ON P.NoVendeur = V.NoVendeur" + whereClause, myConnection);
 
                 myConnection.Open();
-
                 SqlDataReader lecteurProduit = commandeProduit.ExecuteReader();
                 lecteurProduit.Read();
 
@@ -94,9 +106,70 @@ namespace Puces_R
                 {
                     this.lblDateMiseAJour.Text = lecteurProduit["DateMAJ"].ToString();
                 }
-
                 myConnection.Close();
+
+                SqlDataAdapter adapteurEvaluations = new SqlDataAdapter("SELECT E.Cote, E.Commentaire, E.DateCreation, C.Prenom + ' ' + C.Nom AS NomComplet FROM PPEvaluations E INNER JOIN PPClients C ON E.NoClient = C.NoClient WHERE E.NoProduit = " + noProduit + " AND C.NoClient != " + Session["ID"], myConnection);
+                DataTable tableEvaluations = new DataTable();
+                adapteurEvaluations.Fill(tableEvaluations);
+
+                rptEvaluations.DataSource = tableEvaluations;
+                rptEvaluations.DataBind();
+
+                SqlCommand commandClient = new SqlCommand("SELECT Prenom + ' ' + Nom AS NomComplet FROM PPClients WHERE NoClient = " + Session["ID"], myConnection);
+
+                myConnection.Open();
+                lblClient.Text = (String)commandClient.ExecuteScalar();
+                myConnection.Close();
+
+                SqlCommand commandeEvaluation = new SqlCommand("SELECT Cote, Commentaire, DateCreation FROM PPEvaluations WHERE NoProduit = " + noProduit + " AND NoClient = " + Session["ID"], myConnection);
+
+                myConnection.Open();
+                SqlDataReader lecteurEvaluation = commandeEvaluation.ExecuteReader();
+                                
+                DejaEvalue = lecteurEvaluation.Read();
+                if (DejaEvalue)
+                {
+                    ctrEtoiles.Cote = (decimal)lecteurEvaluation["Cote"];
+                    txtCommentaire.Text = (String)lecteurEvaluation["Commentaire"];
+                    afficherEvaluation();
+                }
+                myConnection.Close();
+
+                calculerCoteMoyenne();
             }
+        }
+
+        private void calculerCoteMoyenne()
+        {
+            String noProduit = Request.Params["noproduit"];
+
+            SqlCommand commandeMoyenne = new SqlCommand("SELECT AVG(Cote) AS Moyenne, COUNT(NoClient) AS NbEvaluations FROM PPEvaluations WHERE NoProduit = " + noProduit, myConnection);
+
+            myConnection.Open();
+
+            SqlDataReader lecteurMoyenne = commandeMoyenne.ExecuteReader();
+
+            lecteurMoyenne.Read();
+
+            int nbEvaluations = (int)lecteurMoyenne["NbEvaluations"];
+
+            litNbEvaluations.Text = nbEvaluations.ToString();
+            object objMoyenne = lecteurMoyenne["Moyenne"];
+            if (!(objMoyenne is DBNull))
+            {
+                lblCoteMoyenne.Text = ((decimal)lecteurMoyenne["Moyenne"]).ToString("N1") + " / 5";
+            }
+
+            if (nbEvaluations > 0)
+            {
+                mvMoyenneOuMessage.ActiveViewIndex = 0;
+            }
+            else
+            {
+                mvMoyenneOuMessage.ActiveViewIndex = 1;
+            }
+
+            myConnection.Close();
         }
 
         protected void btnAjouterPanier_Click(object sender, EventArgs e)
@@ -128,6 +201,65 @@ namespace Puces_R
         protected void btnEnvoyerMessage_Click(object sender, EventArgs e)
         {
             Response.Redirect("EnvoyerMessage.aspx", true);
+        }
+
+        protected void rptEvaluations_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            RepeaterItem item = e.Item;
+
+            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
+            {
+                Label lblClient = (Label)item.FindControl("lblClient");
+                Etoiles ctrEtoiles = (Etoiles)item.FindControl("ctrEtoiles");
+                Label lblCommentaire = (Label)item.FindControl("lblCommentaire");
+
+                DataRowView drvPanier = (DataRowView)e.Item.DataItem;
+
+                String nomComplet = (String)drvPanier["NomComplet"];
+                decimal cote = (decimal)drvPanier["Cote"];
+                String commentaire = (String)drvPanier["Commentaire"];
+
+                lblClient.Text = nomComplet;
+                ctrEtoiles.Cote = cote;
+                lblCommentaire.Text = commentaire;
+            }
+        }
+
+        protected void btnSoumettre_OnClick(object sender, EventArgs e)
+        {
+            String noProduit = Request.Params["noproduit"];
+
+            SqlCommand commandeEvaluation;
+
+            String commentaire = txtCommentaire.Text.Replace("'", "''");
+
+            if (DejaEvalue)
+            {
+                String valeurs = "Cote = " + ctrEtoiles.Cote + ", Commentaire = '" + commentaire + "', DateMaj = '" + DateTime.Now + "'";
+                commandeEvaluation = new SqlCommand("UPDATE PPEvaluations SET " + valeurs + " WHERE NoClient = " + Session["ID"] + " AND NoProduit = " + noProduit, myConnection);
+            }
+            else
+            {
+                String valeurs = String.Join(", ", Session["ID"], noProduit, ctrEtoiles.Cote, "'" + commentaire + "'", "NULL", "'" + DateTime.Now + "'");
+                commandeEvaluation = new SqlCommand("INSERT INTO PPEvaluations VALUES (" + valeurs + ")", myConnection);
+            }
+
+            myConnection.Open();
+            commandeEvaluation.ExecuteNonQuery();
+            myConnection.Close();
+
+            calculerCoteMoyenne();
+        }
+
+        protected void btnAjouterLaMienne_OnClick(object sender, EventArgs e)
+        {
+            afficherEvaluation();
+        }
+
+        private void afficherEvaluation()
+        {
+            btnAjouterLaMienne.Visible = false;
+            pnlEvaluation.Visible = true;
         }
     }
 }

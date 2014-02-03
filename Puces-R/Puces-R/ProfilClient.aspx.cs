@@ -9,9 +9,9 @@ namespace Puces_R
 {
     public partial class ProfilClient : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void btnSauvegarder_OnClick(object sender, EventArgs e)
         {
-
+            ctrProfil.Sauvegarder();
         }
     }
 }

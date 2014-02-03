@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Puces_R.Controles {
+namespace Puces_R {
     
     
-    public partial class MenuClient {
+    public partial class CommandesClient {
         
         /// <summary>
-        /// ctrMenu control.
+        /// rptCommandes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu ctrMenu;
+        protected global::System.Web.UI.WebControls.Repeater rptCommandes;
     }
 }

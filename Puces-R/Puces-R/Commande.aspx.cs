@@ -10,13 +10,13 @@ namespace Puces_R
 {
     public partial class Commande : System.Web.UI.Page
     {
+        int noVendeur;
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int noVendeur;
                 if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
                 {
                     Response.Redirect("Default.aspx", true);
@@ -28,6 +28,12 @@ namespace Puces_R
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];
             }
+        }
+
+        protected void btnFacturer_OnClick(object sender, EventArgs e)
+        {
+            ctrProfilClient.Sauvegarder();
+            ctrMontantsFactures.ViderPanierEtCreerCommande();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MontantsFactures.ascx.cs" Inherits="Puces_R.Controles.MontantsFactures" %>
 
-<h2>Facture</h2>
 <table class="tableFacture">
     <tr>
         <td>Poids Total: </td>
@@ -29,11 +28,6 @@
             <tr>
                 <td>Grand-Total: </td>
                 <td><asp:Label ID="lblGrandTotal" runat="server" CssClass="grandTotal" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <asp:Button runat="server" Text="Commander" Font-Size="X-Large" ID="btnCommander" OnClick="btnCommander_OnClick" />
-                </td>
             </tr>
         </asp:View>
         <asp:View runat="server">

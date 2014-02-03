@@ -16,7 +16,7 @@
         <asp:MultiView runat="server" ID="mvMain" ActiveViewIndex="0">
             <asp:View runat="server">
                 <div class="panneau pnlGauche">
-                    <h2>Articles en panier <asp:Button runat="server" ID="btnViderPanier" Text="Vider le panier" OnClick="btnViderPanier_OnClick" CssClass="boutonVider" /></h2>
+                    <h2>Articles en panier <asp:Button runat="server" ID="btnViderPanier" Text="Vider le panier" OnClick="btnViderPanier_OnClick" CssClass="boutonApresTitre" /></h2>
                     <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
                         <ItemTemplate>
                             <div class="rectangleProduits rectangleComplet rectangleItem">
@@ -45,7 +45,11 @@
                     </asp:Repeater>
                 </div>
                 <div class="panneau pnlDroite pnlDetails">
+                    <h2>Facture</h2>
                     <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" />
+                    <div class="boutonsAction">
+                        <asp:Button runat="server" Text="Commander" ID="btnCommander" OnClick="btnCommander_OnClick" />
+                    </div>
                 </div>
             </asp:View>
             <asp:View runat="server">

@@ -14,20 +14,17 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div class="lignePointilleHorizontale">
-        <div class="panneau pnlGauche">
-            <lp:ProfilClient runat="server"/>
-        </div>
-        <div class="panneau pnlDroite pnlDetails"> 
-            <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" />
-        </div>
-    </div>
     <div>
         <div class="panneau pnlGauche pnlDetails">
             <h2>Produits</h2>
             <lp:TablePanier runat="server" ID="ctrTablePanier" />
+            <div class="lignePointilleHorizontale pleineLargeur"></div>
+            <h2>Facture</h2>
+            <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" />
         </div>
         <div class="panneau pnlDroite pnlDetails">
+            <lp:ProfilClient ID="ctrProfilClient" runat="server" AfficherCourrielEtMotDePasse="false" />
+            <div class="lignePointilleHorizontale pleineLargeur"></div>
             <h2>Carte de crédit</h2>
             <table>
                 <tr>
@@ -55,6 +52,9 @@
                     </td>
                 </tr>
             </table>
+            <div class="boutonsAction">
+                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" />
+            </div>
         </div>
     </div>
 </asp:Content>

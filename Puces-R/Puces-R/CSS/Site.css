@@ -213,7 +213,7 @@ body
 {
     padding: 10px;
     box-shadow: 3px 3px 4px Gray;
-    overflow: hidden;
+    overflow:hidden;
     border: 1px solid Black;
     margin:15px;
 }
@@ -253,6 +253,7 @@ body
 
 .popupMenu
 {
+    text-align:left;
     background-color:rgba(211,211,211,0.75);
     border: 3px dashed Gray;
 }
@@ -334,4 +335,60 @@ body
 .nomUtilisateur
 {
     font-weight:bold; 
+}
+
+.etoiles
+{
+    float:right;
+}
+
+.etoiles input
+{
+    height:16px;
+    vertical-align:middle;
+}
+
+.evaluation
+{
+    width:350px;
+}
+
+.commentaireEvaluation
+{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.boutonSoumettre
+{
+    margin-top:5px;
+    float:right;
+}
+
+.boutonApresTitre
+{
+    display:inline;
+    vertical-align:middle;
+}
+
+.coteMoyenne
+{
+    font-weight:bold;
+}
+
+.boutonAjouterLaMienne
+{
+    display:block;
+    margin-top:15px;
+}
+
+.boutonsAction
+{
+    text-align:center;
+}
+
+.boutonsAction input
+{
+    margin:5px;
+    font-size:x-large;
 }

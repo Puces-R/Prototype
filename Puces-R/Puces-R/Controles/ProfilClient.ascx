@@ -7,13 +7,15 @@
 
 <h2>Profil</h2>
 <table class="tableProfil">
-    <tr>
-        <td>Courriel: </td>
-        <td>
-            <asp:Label ID="lblCourriel" runat="server" />
-        </td>
-    </tr>
-    <lp:ChangementMDP runat="server" ID="ctrMotDePasse" />
+    <asp:PlaceHolder runat="server" ID="phCourrielEtMotDePasse">
+        <tr>
+            <td>Courriel: </td>
+            <td>
+                <asp:Label ID="lblCourriel" runat="server" />
+            </td>
+        </tr>
+        <lp:ChangementMDP runat="server" ID="ctrMotDePasse" />
+    </asp:PlaceHolder>
     <tr>
         <td>Prénom: </td>
         <td>
@@ -54,4 +56,3 @@
     <yc:Telephone ID="ctrTelephone" runat="server" />
     <yc:Telephone ID="ctrCellulaire" Label="Cellulaire: " Obligatoire="false" runat="server" />
 </table>
-<asp:Button runat="server" ID="btnSauvegarder" Text="Sauvegarder" OnClick="btnSauvegarder_OnClick" />

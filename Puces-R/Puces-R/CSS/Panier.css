@@ -18,6 +18,11 @@
     margin-left:10px;
 }
 
+.pnlDroite
+{
+    min-height:500px;
+}
+
 .pnlDroite td
 {
     padding:5px;
@@ -46,10 +51,4 @@
     margin:100px;
     text-align:center;
     font-size:large;
-}
-
-.boutonVider
-{
-    display:inline;
-    vertical-align:middle;
 }

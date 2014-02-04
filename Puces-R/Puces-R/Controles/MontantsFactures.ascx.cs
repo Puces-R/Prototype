@@ -18,6 +18,22 @@ namespace Puces_R.Controles
         decimal prixTVQ;
         decimal grandTotal;
 
+        public bool Enabled
+        {
+            set
+            {
+                ddlModesLivraison.Enabled = value;
+            }
+        }
+
+        public decimal GrandTotal
+        {
+            get
+            {
+                return grandTotal;
+            }
+        }
+
         public bool PoidsMaxAtteint
         {
             get
@@ -103,7 +119,6 @@ namespace Puces_R.Controles
             if (ViewState["NoCommande"] != null)
             {
                 mvPartieBas.ActiveViewIndex = 0;
-                ddlModesLivraison.Enabled = false;
 
                 myConnection.Open();
 
@@ -217,10 +232,8 @@ namespace Puces_R.Controles
             ChargerModesDeLivraison();
         }
 
-        public void ViderPanierEtCreerCommande()
+        public void EffectuerTransaction()
         {
-            CalculerCouts();
-
             myConnection.Open();
 
             SqlCommand commandeNoCommande = new SqlCommand("SELECT MAX(NoCommande) FROM PPCommandes", myConnection);
@@ -250,8 +263,6 @@ namespace Puces_R.Controles
             commandeViderPanier.ExecuteNonQuery();
 
             myConnection.Close();
-
-            Response.Redirect("CommandesClient.aspx");
         }
     }
 }

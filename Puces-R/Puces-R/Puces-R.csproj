@@ -143,6 +143,7 @@
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
     <Content Include="RecupererMotDePasse.aspx" />
+    <Content Include="ResultatPaiement.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -570,6 +571,13 @@
     </Compile>
     <Compile Include="RecupererMotDePasse.aspx.designer.cs">
       <DependentUpon>RecupererMotDePasse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultatPaiement.aspx.cs">
+      <DependentUpon>ResultatPaiement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultatPaiement.aspx.designer.cs">
+      <DependentUpon>ResultatPaiement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

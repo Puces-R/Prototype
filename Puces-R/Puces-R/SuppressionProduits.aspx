@@ -102,7 +102,8 @@
       </tr>
  </Table>
 
- <asp:Label ID="lblAvertissement" runat="server" CssClass="sRouge"></asp:Label><br />
+ <br />
+ <asp:Label ID="lblAvertissement" runat="server" CssClass="sRouge"></asp:Label><br /><br />
 
          <asp:Button ID="btnAjout" Text="Confirmer la suppression!" runat="server" OnClick="supprimerProduits"/>
          <asp:Button ID="btnRetour" Text="Retour " runat="server" PostBackUrl="GestionProduits.aspx"/>

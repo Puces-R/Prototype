@@ -41,26 +41,5 @@
             </ItemTemplate>
         </asp:Repeater>
 
-                   <%-- <div class="boiteDetailsProduit">
-                        <div>
-                            <asp:Label runat="server" ID="lblNoCommande" />
-                            <asp:Label runat="server" ID="lblNoClient" />
-                            <asp:Label runat="server" ID="lblCategorie" />
-                            <asp:Label runat="server" ID="lblnoVendeur" />
-                            <asp:Label runat="server" ID="lblDateCommande" />
-                            <asp:Label runat="server" ID="lblTypeLivraison" />
-                            <asp:Label runat="server" ID="lblMontantTotal" />
-                            <asp:Label runat="server" ID="lblTPS" />
-                            <asp:Label runat="server" ID="lblTVQ" />
-                            <asp:Label runat="server" ID="lblPoidsTotal" />
-                            <asp:Label runat="server" ID="lblStatut" />
-                            <asp:Label runat="server" ID="lblNoAutorisation" />
-
-                             <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" CommandName="MAJQuantite" />
-                            
-                        </div>
-                    </div>--%>
-          
-
     </div>
     </asp:Content>

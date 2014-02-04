@@ -23,14 +23,14 @@ namespace Puces_R
 
             nbVisite.Text = nbVisite.Text + " : " + Convert.ToString(nb);
 
-            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT TOP 5 (C.Nom + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient", myConnection);
+            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT TOP 5 (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient ORDER BY SousTotal DESC", myConnection);
             DataTable tablePaniers = new DataTable();
             adapteurPaniers.Fill(tablePaniers);
 
             rptPaniers.DataSource = new DataView(tablePaniers);
             rptPaniers.DataBind();
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where Statut='I' and NoVendeur="+Session["ID"] +" order by DateCommande DESC ", myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where Statut='p' and NoVendeur="+Session["ID"] +" order by DateCommande DESC ", myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
             rptCommandes.DataSource = tableProduits;
@@ -122,7 +122,7 @@ namespace Puces_R
                 //Decimal tvq = (Decimal)drvFilm["TVQ"];
                 //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
 
-                //String Statut = (String)drvFilm["Statut"];
+                String Statut = (String)drvFilm["Statut"];
                // String strAutorisation = (String)drvFilm["NoAutorisation"];
 
 
@@ -130,14 +130,27 @@ namespace Puces_R
                 lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande="+noCommande;
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
-                lblNoVendeur.Text = noVendeur.ToString();
-                lblDateCommande.Text = "Livraison : " + strDate.ToShortDateString();
-                lblTypeLivraison.Text = intQuantite.ToString();
-                lblMontantTotal.Text = noPanier.ToString();
-                lblTPS.Text = tps;
-                lblTVQ.Text = tvq;
-                lblPoids.Text = poidstotal.ToString();
-                //lblStatut.Text = Statut;
+                //lblNoVendeur.Text = noVendeur.ToString();
+                lblDateCommande.Text = strDate.ToShortDateString();
+
+                switch (intQuantite.ToString())
+                {
+                    case "1": lblTypeLivraison.Text = "Poste régulière"; ; break;
+                    case "2": lblTypeLivraison.Text = "Poste prioritaire"; break;
+                    case "3": lblTypeLivraison.Text = "Transport privé"; break;
+                }
+
+               // lblTypeLivraison.Text = intQuantite.ToString();
+                lblMontantTotal.Text = noPanier.ToString()+" $";
+                lblTPS.Text = tps+" $";
+                lblTVQ.Text = tvq+" $";
+                lblPoids.Text = poidstotal.ToString()+" kg";
+                switch (Statut) 
+                {
+                    case "p": lblStatut.Text = "Prêt pour livraison";  ; break;
+                    case "l": lblStatut.Text = "Livré" ; break;
+                }
+                
                // lblAutorisation.Text = strAutorisation;
                 //btnMAJQuantite.CommandArgument = noCommande.ToString() + "-" + Statut;
             }
@@ -151,7 +164,11 @@ namespace Puces_R
             {
                 HyperLink hypVendeur = (HyperLink)item.FindControl("hypVendeur");
                 Label lblSousTotal = (Label)item.FindControl("lblSousTotal");
-                TablePanier ctrPanier = (TablePanier)item.FindControl("ctrPanier");
+                Label lblNom = (Label)item.FindControl("lblNom");
+                Label lblNo = (Label)item.FindControl("lblNumero");
+                Label lblDate = (Label)item.FindControl("lblDateMAJ");
+
+                //TablePanier ctrPanier = (TablePanier)item.FindControl("ctrPanier");
 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
 
@@ -160,14 +177,33 @@ namespace Puces_R
                 long noVendeur = (long)drvPanier["NoVendeur"];
                 long noClient = (long)drvPanier["NoClient"];
 
+                
                 //long numero = (long)drvPanier["NoClient"];
                 //ctrPanier.NoClient = (long)numero;
 
-                hypVendeur.Text = vendeur;
-                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
+                String date = "";
+                SqlCommand maC = new SqlCommand("select top 1 DateCreation from PPArticlesEnPanier where NoVendeur="+Session["ID"] +" and NoClient="+noClient.ToString() +"order by DateCreation desc ", myConnection);
+                myConnection.Open();
 
-                ctrPanier.NoClient = noClient;
-                ctrPanier.NoVendeur = (int)Session["ID"];
+               SqlDataReader rep= maC.ExecuteReader();
+               if (rep.Read()) 
+               {
+                   date = Convert.ToString((DateTime)rep[0]);
+                   //Response.Write(rep[0].ToString()+" ----   ");
+               }
+
+               myConnection.Close();
+
+               String nom = drvPanier["NomC"] == DBNull.Value ? "Nom Inconnu " : (String)drvPanier["NomC"];
+               
+                hypVendeur.Text = nom;
+               hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
+
+                lblDate.Text = date;
+                lblNom.Text = nom;
+                lblNo.Text = noClient.ToString();
+                //ctrPanier.NoClient = noClient;
+                //ctrPanier.NoVendeur = (int)Session["ID"];
 
                 lblSousTotal.Text = sousTotal.ToString("C");
             }

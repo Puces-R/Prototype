@@ -41,42 +41,46 @@ namespace Puces_R
 
         protected void btnFacturer_OnClick(object sender, EventArgs e)
         {
-            ctrProfilClient.Sauvegarder();
+            if (Page.IsValid)
+            {
+                ctrProfilClient.Sauvegarder();
 
-            long noVendeur = ctrMontantsFactures.NoVendeur;
-            long codeLivraison = ctrMontantsFactures.CodeLivraison;
+                long noVendeur = ctrMontantsFactures.NoVendeur;
+                long codeLivraison = ctrMontantsFactures.CodeLivraison;
 
-            SqlCommand commandeNomVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+                myConnection.Open();
 
-            myConnection.Open();
-            String nomVendeur = (String)commandeNomVendeur.ExecuteScalar();
-            myConnection.Close();
+                SqlCommand commandeNomVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+                String nomVendeur = (String)commandeNomVendeur.ExecuteScalar();
 
-            Response.Clear();
+                myConnection.Close();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<html>");
-            sb.Append(@"<body onload='document.forms[""form""].submit()'>");
-            sb.Append("<form name='form' action='http://424w.cgodin.qc.ca/lmbrousseau/demo-lesi/lesi-effectue-paiement.php' method='post'>");
+                Response.Clear();
 
-            String baliseInput = "<input type='hidden' name='{0}' value='{1}'>";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<html>");
+                sb.Append(@"<body onload='document.forms[""form""].submit()'>");
+                sb.Append("<form name='form' action='http://424w.cgodin.qc.ca/lmbrousseau/demo-lesi/lesi-effectue-paiement.php' method='post'>");
 
-            sb.AppendFormat(baliseInput, "NoVendeur", noVendeur);
-            sb.AppendFormat(baliseInput, "NomVendeur", nomVendeur);
-            sb.AppendFormat(baliseInput, "NoCarteCredit", txtNumero.Text);
-            sb.AppendFormat(baliseInput, "DateExpirationCarteCredit", txtDateExpiration.Text);
-            sb.AppendFormat(baliseInput, "NoSecuriteCarteCredit", txtCCV.Text);
-            sb.AppendFormat(baliseInput, "MontantPaiement", ctrMontantsFactures.GrandTotal);
-            sb.AppendFormat(baliseInput, "NomPageRetour", "http://" + Request.Url.Authority + "/ResultatPaiement.aspx?novendeur=" + noVendeur + "&codeLivraison=" + codeLivraison);
-            sb.AppendFormat(baliseInput, "InfoSuppl", String.Empty);
+                String baliseInput = "<input type='hidden' name='{0}' value='{1}'>";
 
-            sb.Append("</form>");
-            sb.Append("</body>");
-            sb.Append("</html>");
+                sb.AppendFormat(baliseInput, "NoVendeur", noVendeur);
+                sb.AppendFormat(baliseInput, "NomVendeur", nomVendeur);
+                sb.AppendFormat(baliseInput, "NoCarteCredit", txtNumero.Text);
+                sb.AppendFormat(baliseInput, "DateExpirationCarteCredit", txtDateExpiration.Text);
+                sb.AppendFormat(baliseInput, "NoSecuriteCarteCredit", txtCCV.Text);
+                sb.AppendFormat(baliseInput, "MontantPaiement", ctrMontantsFactures.GrandTotal);
+                sb.AppendFormat(baliseInput, "NomPageRetour", "http://" + Request.Url.Authority + "/ResultatPaiement.aspx?novendeur=" + noVendeur + "&codeLivraison=" + codeLivraison);
+                sb.AppendFormat(baliseInput, "InfoSuppl", String.Empty);
 
-            Response.Write(sb.ToString());
+                sb.Append("</form>");
+                sb.Append("</body>");
+                sb.Append("</html>");
 
-            Response.End();
+                Response.Write(sb.ToString());
+
+                Response.End();
+            }
         }
     }
 }

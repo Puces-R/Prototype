@@ -9,19 +9,9 @@ using System.Data.SqlClient;
 namespace Puces_R
 {
     public partial class ResultatPaiement : System.Web.UI.Page
-    {
-        private String NoAutorisation
-        {
-            get
-            {
-                return (String)ViewState["NoAutorisation"];
-            }
-            set
-            {
-                ViewState["NoAutorisation"] = value;
-            }
-        }
-        
+    {      
+        private bool transactionAccepte = false;
+
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,11 +21,11 @@ namespace Puces_R
 
             HttpRequest requete = HttpContext.Current.Request;
 
-            NoAutorisation = (String)requete.Form["NoAutorisation"];
+            String noAutorisation = (String)requete.Form["NoAutorisation"];
             String dateAutorisation = (String)requete.Form["DateAutorisation"];
             String fraisMarchand = (String)requete.Form["FraisMarchand"];
-            
-            switch (NoAutorisation)
+
+            switch (noAutorisation)
             {
                 case "0":
                     litMessageResultat.Text = "Transaction annulée par l'utilisateur";
@@ -50,7 +40,8 @@ namespace Puces_R
                     litMessageResultat.Text = "Transaction refusée : Carte refusée";
                     break;
                 default:
-
+                    transactionAccepte = true;
+                    hypReessayer.Visible = false;
                     litMessageResultat.Text = "Transaction acceptée";
                     pnlMontantsFactures.Visible = true;
                     ctrMontantsFactures.NoVendeur = noVendeur;
@@ -58,11 +49,13 @@ namespace Puces_R
                     ctrMontantsFactures.ChargerModesDeLivraison();
                     break;
             }
+
+            hypReessayer.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison;
         }
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            if (int.Parse(NoAutorisation) >= 1000)
+            if (transactionAccepte)
             {
                 ctrMontantsFactures.EffectuerTransaction();
             }

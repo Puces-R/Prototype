@@ -16,6 +16,8 @@
         <div class="panneau pnlGauche">
             <div class="messageCentral">
                 <asp:Literal runat="server" ID="litMessageResultat" />
+                <br />
+                <asp:HyperLink runat="server" Text="Réessayer de soumettre la commande" ID="hypReessayer" Font-Size="Smaller" />
             </div>
         </div>
         <asp:Panel runat="server" CssClass="panneau pnlDroite" ID="pnlMontantsFactures" Visible="false">

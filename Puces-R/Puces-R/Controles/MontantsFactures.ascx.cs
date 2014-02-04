@@ -34,11 +34,16 @@ namespace Puces_R.Controles
             }
         }
 
-        public bool PoidsMaxAtteint
+        public String MessageErreur
         {
             get
             {
-                return (mvPartieBas.ActiveViewIndex == 1);
+                return lblMessageErreur.Text;
+            }
+            set
+            {
+                mvPartieBas.ActiveViewIndex = (value == null ? 0 : 1);
+                lblMessageErreur.Text = value;
             }
         }
 
@@ -169,14 +174,9 @@ namespace Puces_R.Controles
 
                 lecteurVendeur.Close();
 
-                if (poidsTotal <= poidsMax)
+                if (poidsTotal > poidsMax)
                 {
-                    mvPartieBas.ActiveViewIndex = 0;
-                }
-                else
-                {
-                    mvPartieBas.ActiveViewIndex = 1;
-                    lblPoidsMax.Text = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
+                    MessageErreur = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
                 }
                 
                 if (CodeLivraison == 1 && sousTotal >= livraisonGratuite)

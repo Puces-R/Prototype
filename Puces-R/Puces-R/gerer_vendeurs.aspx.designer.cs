@@ -22,15 +22,6 @@ namespace Puces_R {
         protected global::Puces_R.Controles.MenuGestionnaire MenuGestionnaire1;
         
         /// <summary>
-        /// Contrôle ddlTypeRecherche.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
-        
-        /// <summary>
         /// Contrôle txtCritereRecherche.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,31 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
         
         /// <summary>
-        /// Contrôle btnRecherche.
+        /// Contrôle ddlCategorie.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategorie;
+        
+        /// <summary>
+        /// Contrôle datepicker3.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox datepicker3;
+        
+        /// <summary>
+        /// Contrôle datepicker4.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox datepicker4;
         
         /// <summary>
         /// Contrôle ddlTrierPar.
@@ -67,21 +76,21 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
         
         /// <summary>
-        /// Contrôle cont_mail_acceptation.
+        /// Contrôle ctrNavigation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cont_mail_acceptation;
+        protected global::Puces_R.Controles.NavigationParPage ctrNavigation;
         
         /// <summary>
-        /// Contrôle btn_accepter.
+        /// Contrôle rptVendeurs.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_accepter;
+        protected global::System.Web.UI.WebControls.DataList rptVendeurs;
     }
 }

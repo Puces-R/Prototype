@@ -209,9 +209,30 @@ a
     font-size:small;
 }
 
+.ui-datepicker
+{
+    font-size: x-small;
+}
+
 .titre_vendeur_inactif1
 {
     cursor: pointer;
+}
+
+.navigation > div
+{
+    margin: 0px 10px 0px 10px;
+    display:inline;
+}
+
+.pnlGauche th
+{
+    text-align: left;
+}
+
+.tableProduits
+{
+    width: 100%;
 }
 
 .boiteListeDeroulante

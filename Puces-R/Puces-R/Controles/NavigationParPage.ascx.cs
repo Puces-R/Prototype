@@ -11,19 +11,26 @@ namespace Puces_R.Controles
     {
         public event EventHandler PageChangee;
 
-        public bool LigneBasVisible
+        public bool reduit
         {
-            set
+            get
             {
-                pnlLigneBas.Visible = value;
+                if (ViewState["reduit"] != null)
+                {
+                    btnFirst.Text = "";
+                    btnPrevious.Text = "";
+                    btnNext.Text = "";
+                    btnLast.Text = "";
+                    return (bool) ViewState["reduit"];
+                }
+                else
+                {
+                    return false;
+                }
             }
-        }
-
-        public bool LigneHautVisible
-        {
             set
             {
-                pnlLigneHaut.Visible = value;
+                ViewState["reduit"] = value;
             }
         }
 
@@ -99,7 +106,7 @@ namespace Puces_R.Controles
             pnlBarreNavigation.Visible = (PageActuelle > 0) || (PageActuelle < NbPages - 1);
             pnlLeftNavigation.Visible = (PageActuelle > 0);
             pnlRightNavigation.Visible = (PageActuelle < NbPages - 1);
-            lblInfoAuCentre.Text = "Page " + (PageActuelle + 1) + " de " + NbPages;
+            lblInfoAuCentre.Text = (reduit ?  " " : "Page ") + (PageActuelle + 1) + " de " + NbPages + " ";
         }
     }
 }

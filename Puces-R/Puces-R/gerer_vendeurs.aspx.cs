@@ -15,61 +15,81 @@ namespace Puces_R
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string whereClause, orderByClause = " ORDER BY ";
+        private int noCategorie;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ((SiteMaster)Master).Titre = "Gérer les vendeurs";
+            
+            if (!IsPostBack)
+            {
+
+                String whereClause = String.Empty;
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" , myConnection);
+                DataTable tableCategories = new DataTable();
+                adapteurCategories.Fill(tableCategories);
+
+                ddlCategorie.DataSource = tableCategories;
+                ddlCategorie.DataTextField = "Description";
+                ddlCategorie.DataValueField = "NoCategorie";
+                ddlCategorie.DataBind();
+                ListItem li = new ListItem("Toutes", "-1");
+                li.Selected = true;
+                ddlCategorie.Items.Add(li);
+                ddlCategorie.SelectedValue = noCategorie.ToString();
+            }
+
             List<String> whereParts = new List<String>();
 
             if (txtCritereRecherche.Text != string.Empty)
             {
-                String colonne = "PPVendeurs.NomAffaires";
-                switch (ddlTypeRecherche.SelectedIndex)
+                string[] mots = txtCritereRecherche.Text.Split(' ');
+
+                foreach (string mot in mots)
                 {
-                    case 0:
-                        colonne = "PPVendeurs.NomAffaires";
-                        break;
+                    whereParts.Add("Nom" + " LIKE '%" + mot + "%'");
+                    whereParts.Add("NomAffaires" + " LIKE '%" + mot + "%'");
+                    whereParts.Add("Prenom" + " LIKE '%" + mot + "%'");
+                    whereParts.Add("Nom" + " LIKE '%" + mot + "%'");
+                    whereParts.Add("AdresseEmail" + " LIKE '%" + mot + "%'");
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
             }
 
+
             //String whereClause;
-            if (whereParts.Count > 0)
+            if (whereParts.Count > 0 )
             {
-                whereClause = " WHERE Statut = 2 AND " + string.Join(" AND ", whereParts);
+                whereClause = " WHERE (" + string.Join(" OR ", whereParts) + ") ";
+                if ((datepicker3.Text != string.Empty) && (datepicker4.Text != string.Empty))
+                {
+                    whereClause += " AND (DateCreation < '" + datepicker4.Text + "' AND DateCreation > '" + datepicker3.Text + "') ";
+                }
             }
             else
             {
-                whereClause = " WHERE Statut = 2 ";
+                whereClause = "";
+                if ((datepicker3.Text != string.Empty) && (datepicker4.Text != string.Empty))
+                {
+                    whereClause += " WHERE DateCreation < '" + datepicker4.Text + "' AND DateCreation > '" + datepicker3.Text + "' ";
+                }
             }
-
-            //String orderByClause = " ORDER BY ";
+            
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "PPVendeurs.NoVendeur";
+                    orderByClause += "V.NomAffaires";
                     break;
                 case 1:
-                    orderByClause += "PPVendeurs.NomAffaires";
+                    orderByClause += "V.Nom";
                     break;
                 case 2:
-                    orderByClause += "PPVendeurs.DateCreation DESC";
+                    orderByClause += "V.DateCreation";
+                    break;
+                default:
+                    orderByClause = "";
                     break;
             }
-
-            //if (IsPostBack)
-            //{
-            DataTable tableProduits = charge_demandes();
-
-            PagedDataSource pdsDemandes = new PagedDataSource();
-            pdsDemandes.DataSource = new DataView(tableProduits);
-            pdsDemandes.AllowPaging = true;
-            pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
-
-            pdsDemandes.CurrentPageIndex = 0;
-
-            ((SiteMaster)Master).Titre = "Gérer les vendeurs";
-            //}
-
+            
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
@@ -77,124 +97,66 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
 
+            chargerResultats();
+
+            ctrNavigation.PageChangee += changerDePage;
         }
 
-        private DataTable charge_demandes()
+        private void changerDePage(object sender, EventArgs e)
         {
-            SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPVendeurs " + whereClause + orderByClause, myConnection);
-            DataTable tableDemandes = new DataTable();
-            adapteurDemandes.Fill(tableDemandes);
+            chargerResultats();
+        }
+
+        private DataTable chargerResultats()
+        {
+            string req = "SELECT * FROM PPVendeurs V " + whereClause;
+
+            if ((ddlCategorie.SelectedValue != "-1") && (ddlCategorie.SelectedValue != ""))
+                req += (txtCritereRecherche.Text == string.Empty? " WHERE " : " AND ") + " V.NoVendeur IN (SELECT NoVendeur FROM PPProduits P, PPCategories C WHERE P.NoCategorie = C.NoCategorie AND C.NoCategorie = " + ddlCategorie.SelectedValue + " GROUP BY NoVendeur) ";
+
+            SqlDataAdapter adapteurResultats = new SqlDataAdapter(req + orderByClause, myConnection);
+            DataTable tableResultats = new DataTable();
+            //Response.Write(ddlCategorie.SelectedValue + req + orderByClause);
+            adapteurResultats.Fill(tableResultats);
             myConnection.Close();
 
-            return tableDemandes;
+            PagedDataSource objPds = new PagedDataSource();
+            objPds.DataSource = new DataView(tableResultats);
+            objPds.AllowPaging = true;
+            objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
+            objPds.CurrentPageIndex = ctrNavigation.PageActuelle;
+
+            ctrNavigation.NbPages = objPds.PageCount;
+
+            rptVendeurs.DataSource = objPds;
+            rptVendeurs.DataBind();
+
+            return tableResultats;
         }
 
-        protected void rptDemandes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptVendeurs_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            RepeaterItem item = e.Item;
+            DataListItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
+                LinkButton nom_affaire = (LinkButton)item.FindControl("nom_affaire");
+                Label nom_complet = (Label)item.FindControl("nom_complet");
+                Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
+                Label date_insc = (Label)item.FindControl("date_insc");
 
-                Label titre_demande = (Label)item.FindControl("titre_demande");
-                Label addr_demande = (Label)item.FindControl("addr_demande");
-                Label tels_demande = (Label)item.FindControl("tels_demande");
-                Label courriel_demande = (Label)item.FindControl("courriel_demande");
-                Label charge_max_demande = (Label)item.FindControl("charge_max_demande");
-                Label livraison_gratuite = (Label)item.FindControl("livraison_gratuite");
-                Label date_demande = (Label)item.FindControl("date_demande");
-                Button btnRefuser = (Button)item.FindControl("btn_refuser");
-                Button btn_accepter = (Button)item.FindControl("btn_accepter");
-                TextBox cont_mail_acceptation = (TextBox)item.FindControl("cont_mail_acceptation");
-                TextBox cont_mail_refus = (TextBox)item.FindControl("cont_mail_refus");
+                DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
-                DataRowView drvDemande = (DataRowView)e.Item.DataItem;
-
-                titre_demande.Text = drvDemande["NomAffaires"].ToString() + ", par " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                addr_demande.Text = drvDemande["Rue"].ToString() + ", " + drvDemande["Ville"].ToString() + ", " + drvDemande["Pays"].ToString();
-                tels_demande.Text = drvDemande["Tel1"].ToString();
-                courriel_demande.Text = drvDemande["AdresseEmail"].ToString();
-                charge_max_demande.Text = drvDemande["MaxLivraison"].ToString() + "Kg";
-                livraison_gratuite.Text = drvDemande["LivraisonGratuite"].ToString();
-                date_demande.Text = drvDemande["DateCreation"].ToString();
-                btnRefuser.CommandArgument = drvDemande["AdresseEmail"].ToString();
-                btn_accepter.CommandArgument = drvDemande["AdresseEmail"].ToString();
-                cont_mail_acceptation.Text = "Bonjour " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString() + "\nFélicitations! Votre inscription sur LesPetitesPuces.com a été acceptée.";
-                cont_mail_refus.Text = "Bonjour " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString() + "\nVotre inscription sur LesPetitesPuces.com n'a pas été acceptée.";
+                nom_affaire.Text = drvVendeurs["NomAffaires"].ToString();
+                nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
+                adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
+                date_insc.Text = drvVendeurs["DateCreation"].ToString();
             }
         }
 
-        protected void rptDemandes_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        protected void rptVendeurs_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
 
-        }
-
-        protected void refus_demande(object sender, CommandEventArgs e)
-        {
-            myConnection.Open();
-            SqlCommand commande_refuser_demande = new SqlCommand("DELETE FROM PPVendeurs WHERE AdresseEmail = '" + e.CommandArgument + "'", myConnection);
-            TextBox tbMail, tbTaux;
-            commande_refuser_demande.ExecuteNonQuery();
-
-            try
-            {
-                MailMessage msg = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-
-                //Response.Write(rptDemandes.Items.Count);
-               
-
-                msg.Subject = "Refus de la demande d'abonnement au site LesPetiesPuces.com";
-                msg.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
-                msg.To.Add(new MailAddress(e.CommandArgument.ToString()));
-                SmtpServer.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(msg);
-
-            }
-            catch (Exception k)
-            {
-                Session["err_msg"] = "Echec de l'envoi du mail de confirmation: " + k.ToString();
-            }
-
-            DataTable tableProduits = charge_demandes();
-
-            myConnection.Close();
-        }
-
-        protected void acceptation_demande(object sender, CommandEventArgs e)
-        {
-            TextBox tbMail, tbTaux;
-            string taux_val = "";
-            MailMessage msg = new MailMessage();
-
-            //Response.Write(rptDemandes.Items.Count);
-           
-
-            myConnection.Open();
-            SqlCommand commande_accepter_demande = new SqlCommand("UPDATE PPVendeurs SET Statut = 0, Pourcentage = " + taux_val + " WHERE AdresseEmail = '" + e.CommandArgument + "'", myConnection);
-            commande_accepter_demande.ExecuteNonQuery();
-            //Response.Write(commande_accepter_demande.CommandText);
-            try
-            {
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-
-                msg.Subject = "Acceptation de la demande d'abonnement au site LesPetiesPuces.com";
-                msg.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
-                msg.To.Add(new MailAddress(e.CommandArgument.ToString()));
-                SmtpServer.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(msg);
-
-            }
-            catch (Exception k)
-            {
-                Session["err_msg"] = "Echec de l'envoi du mail de confirmation: " + k.ToString();
-            }
-
-            DataTable tableProduits = charge_demandes();
-
-            myConnection.Close();
-        }
+        }               
     }
 }

@@ -22,6 +22,15 @@ namespace Puces_R.Controles {
         protected global::System.Web.UI.WebControls.Panel pnlBarreNavigation;
         
         /// <summary>
+        /// Contrôle pnlLigneHaut.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlLigneHaut;
+        
+        /// <summary>
         /// Contrôle pnlLeftNavigation.
         /// </summary>
         /// <remarks>
@@ -119,5 +128,14 @@ namespace Puces_R.Controles {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInfoAuCentre;
+        
+        /// <summary>
+        /// Contrôle pnlLigneBas.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlLigneBas;
     }
 }

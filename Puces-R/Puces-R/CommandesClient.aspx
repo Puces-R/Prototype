@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommandesClient.aspx.cs" Inherits="Puces_R.CommandesClient" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="CommandesClient.aspx.cs" Inherits="Puces_R.CommandesClient" %>
 
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
 <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
@@ -8,42 +8,47 @@
 </asp:Content>
  
 <asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient runat="server" />
+    <lp:MenuClient runat="server" ID="ctrMenu" />
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content runat="server" ContentPlaceHolderID="BarreCriteres">
+
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="Items" runat="server">
     <div>
-        <asp:Repeater runat="server" ID="rptCommandes" OnItemDataBound="rptCommandes_OnItemDataBound">
+        <asp:DataList RepeatColumns="3" RepeatDirection="Horizontal" runat="server" ID="dlCommandes" OnItemDataBound="dlCommandes_OnItemDataBound">
             <ItemTemplate>
-                <div>
+                <div class="rectangleCommande">
                     <div class="rectangleItem hautRectangle">
-                        <asp:Label runat="server" ID="lblNoCommande" />
+                        <div>
+                            <asp:Literal runat="server" ID="litVendeur"/>
+                        </div>
+                        <div>
+                            <asp:Label runat="server" ID="lblDate" Font-Size="Small" />
+                        </div>
                     </div>
                     <div class="rectangleItem basRectangle">
                         <div class="pnlGauche">
-                            <table>
+                            <table class="tableCommande">
                                 <tr>
-                                    <td>Vendeur: </td>
+                                    <td>No. Commande: </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lblVendeur" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Date: </td>
-                                    <td>
-                                        <asp:Label runat="server" ID="lblDate" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Statut: </td>
-                                    <td>
-                                        <asp:Label runat="server" ID="lblStatut" />
+                                        <asp:Label runat="server" ID="lblNoCommande" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>No. Autorisation: </td>
                                     <td>
                                         <asp:Label runat="server" ID="lblNoAutorisation" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Statut: </td>
+                                    <td>
+                                        <b>
+                                            <asp:Label runat="server" ID="lblStatut" />
+                                        </b>
                                     </td>
                                 </tr>
                             </table>
@@ -54,6 +59,6 @@
                     </div>
                 </div>
             </ItemTemplate>
-        </asp:Repeater>
+        </asp:DataList>
     </div>
 </asp:Content>

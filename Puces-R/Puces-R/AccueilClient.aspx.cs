@@ -16,7 +16,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 if (Session["ID"] == null)
                 {
@@ -26,6 +26,8 @@ namespace Puces_R
                 SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + Session["ID"] + " GROUP BY V.NomAffaires, A.NoVendeur", myConnection);
                 DataTable tablePaniers = new DataTable();
                 adapteurPaniers.Fill(tablePaniers);
+
+                mvPaniers.ActiveViewIndex = tablePaniers.Rows.Count > 0 ? 0 : 1;
 
                 rptPaniers.DataSource = new DataView(tablePaniers);
                 rptPaniers.DataBind();

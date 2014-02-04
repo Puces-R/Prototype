@@ -11,6 +11,22 @@ namespace Puces_R.Controles
     {
         public event EventHandler PageChangee;
 
+        public bool LigneBasVisible
+        {
+            set
+            {
+                pnlLigneBas.Visible = value;
+            }
+        }
+
+        public bool LigneHautVisible
+        {
+            set
+            {
+                pnlLigneHaut.Visible = value;
+            }
+        }
+
         public int NbPages
         {
             get

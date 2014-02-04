@@ -11,6 +11,8 @@ namespace Puces_R
     public partial class Commande : System.Web.UI.Page
     {
         int noVendeur;
+        short codeLivraison;
+
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
         protected void Page_Load(object sender, EventArgs e)
@@ -22,11 +24,17 @@ namespace Puces_R
                     Response.Redirect("Default.aspx", true);
                 }
 
+                if (!short.TryParse(Request.Params["codelivraison"], out codeLivraison))
+                {
+                    Response.Redirect("Default.aspx", true);
+                }
+                
                 ((SiteMaster)Master).NoVendeur = noVendeur;
                 ctrMenu.NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];
+                ctrMontantsFactures.CodeLivraison = codeLivraison;
             }
         }
 

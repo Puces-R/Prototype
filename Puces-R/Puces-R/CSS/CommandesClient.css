@@ -1,4 +1,15 @@
-﻿.montantsFactures *
+﻿.basRectangle *
 {
     font-size:small !important;
+}
+
+.pnlDroite
+{
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.rectangleCommande
+{
+    width:400px;
 }

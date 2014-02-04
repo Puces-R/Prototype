@@ -19,19 +19,29 @@
         </div>
         <div class="panneau pnlDroite">
             <h2>Paniers</h2>
-            <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
-                <ItemTemplate>
-                    <div class="rectangleItem hautRectangle">
-                        <asp:HyperLink runat="server" ID="hypVendeur" />
+            <asp:MultiView runat="server" ID="mvPaniers">
+                <asp:View runat="server">
+                    <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
+                        <ItemTemplate>
+                            <div class="rectangleItem hautRectangle">
+                                <asp:HyperLink runat="server" ID="hypVendeur" />
+                            </div>
+                            <div class="rectangleItem basRectangle">
+                                <lp:TablePanier runat="server" ID="ctrProduits" />
+                                <div class="sousTotal">
+                                    Sous-Total: <asp:Label runat="server" ID="lblSousTotal" />
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>                
+                </asp:View>
+                <asp:View runat="server">
+                    <div class="aucunPanier rectangleItem rectangleComplet">
+                        <img src="Images/Precedent.png" alt="Flèche" />
+                        <p>Vous n'avez présentement aucun produit en panier. Vous pouvez explorer par catégorie les différents produits de nos vendeurs.</p>
                     </div>
-                    <div class="rectangleItem basRectangle">
-                        <lp:TablePanier runat="server" ID="ctrProduits" />
-                        <div class="sousTotal">
-                            Sous-Total: <asp:Label runat="server" ID="lblSousTotal" />
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+                </asp:View>
+            </asp:MultiView>
         </div>
     </div>
 </asp:Content>

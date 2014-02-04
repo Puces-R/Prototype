@@ -16,44 +16,79 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ((NavigationItems)Master).ChargerItems += ChargerCommandes;
+
             if (!IsPostBack)
             {
+                ChargerCommandes();
+
                 if (Session["ID"] == null)
                 {
                     Response.Redirect("Default.aspx", true);
                 }
 
-                SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT * FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur WHERE NoClient = " + Session["ID"], myConnection);
-                DataTable tableCommandes = new DataTable();
-                adapteurCommandes.Fill(tableCommandes);
+                ((NavigationItems)Master).CriteresVisibles = false;
 
-                rptCommandes.DataSource = new DataView(tableCommandes);
-                rptCommandes.DataBind();
+                ((NavigationItems)Master).AfficherPremierePage();
             }
         }
 
-        protected void rptCommandes_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void dlCommandes_OnItemDataBound(object sender, DataListItemEventArgs e)
         {
-            RepeaterItem item = e.Item;
+            DataListItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
+                Literal litVendeur = (Literal)item.FindControl("litVendeur");
                 Label lblNoCommande = (Label)item.FindControl("lblNoCommande");
-                Label lblVendeur = (Label)item.FindControl("lblVendeur");
                 Label lblDate = (Label)item.FindControl("lblDate");
                 Label lblStatut = (Label)item.FindControl("lblStatut");
                 Label lblNoAutorisation = (Label)item.FindControl("lblNoAutorisation");
                 MontantsFactures ctrMontantsFactures = (MontantsFactures)item.FindControl("ctrMontantsFactures");
 
-                DataRowView drvPanier = (DataRowView)e.Item.DataItem;
+                DataRowView drvCommande = (DataRowView)e.Item.DataItem;
 
-                lblNoCommande.Text = ((long)drvPanier["NoCommande"]).ToString();
-                lblVendeur.Text = (String)drvPanier["NomAffaires"];
-                lblDate.Text = ((DateTime)drvPanier["DateCommande"]).ToString();
-                lblStatut.Text = (String)drvPanier["Statut"];
-                lblNoAutorisation.Text = (String)drvPanier["NoAutorisation"];
-                ctrMontantsFactures.NoCommande = (long)drvPanier["NoCommande"];
+                litVendeur.Text = (String)drvCommande["NomAffaires"];
+                lblNoCommande.Text = ((long)drvCommande["NoCommande"]).ToString();
+                lblDate.Text = ((DateTime)drvCommande["DateCommande"]).ToString();
+
+                switch ((String)drvCommande["Statut"])
+                {
+                    case "p":
+                        lblStatut.Text = "Prêt à livrer";
+                        break;
+                    case "l":
+                        lblStatut.Text = "Livré";
+                        break;
+                }
+
+                lblNoAutorisation.Text = (String)drvCommande["NoAutorisation"];
+                ctrMontantsFactures.NoCommande = (long)drvCommande["NoCommande"];
+                ctrMontantsFactures.ChargerModesDeLivraison();
             }
+        }
+
+        private void ChargerCommandes(object sender, EventArgs e)
+        {
+            ChargerCommandes();
+        }
+
+        private void ChargerCommandes()
+        {
+            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT * FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur WHERE C.NoClient = " + Session["ID"] + " ORDER BY DateCommande DESC" , myConnection);
+            DataTable tableCommandes = new DataTable();
+            adapteurCommandes.Fill(tableCommandes);
+
+            PagedDataSource objPds = new PagedDataSource();
+            objPds.DataSource = new DataView(tableCommandes);
+            objPds.AllowPaging = true;
+            objPds.PageSize = 15;
+            objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
+
+            ((NavigationItems)Master).NbPages = objPds.PageCount;
+
+            dlCommandes.DataSource = objPds;
+            dlCommandes.DataBind();
         }
     }
 }

@@ -25,3 +25,26 @@
     font-weight:bold;
     font-size:x-large;
 }
+
+.pnlDroite
+{
+    min-height:500px;
+}
+
+.aucunPanier
+{
+    font-size:bold;
+    position:relative;
+}
+ 
+.aucunPanier img { 
+    margin:auto;
+    position:absolute;
+    top:0;
+    bottom:0;
+}
+
+.aucunPanier p { 
+    margin-left:35px;
+    max-width:300px;
+}

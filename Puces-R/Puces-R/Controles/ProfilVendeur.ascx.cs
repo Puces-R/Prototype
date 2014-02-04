@@ -14,7 +14,7 @@ namespace Puces_R.Controles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 if (Session["ID"] == null)
                 {

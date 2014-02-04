@@ -143,7 +143,7 @@ namespace Puces_R
 
         protected void btnCommander_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("Commande.aspx?novendeur=" + NoVendeur, true);
+            Response.Redirect("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, true);
         }
     }
 }

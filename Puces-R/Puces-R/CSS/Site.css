@@ -224,13 +224,14 @@ body
     border-radius: 10px 10px 0 0;
     border-bottom-style: none; 
     margin-bottom:0;
+    color:White;
 }
 
 .hautRectangle *
 {
     color:White;
 }
- 
+
 .basRectangle
 {
     background-color: LightGray;
@@ -391,4 +392,9 @@ body
 {
     margin:5px;
     font-size:x-large;
+}
+
+.tableCommande td:first-child
+{
+    text-align:right;
 }

@@ -16,7 +16,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 if (!int.TryParse(Request.Params["noproduit"], out noProduit))
                 {

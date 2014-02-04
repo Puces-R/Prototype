@@ -56,7 +56,7 @@ namespace Puces_R
             
             anneesMaximal = int.Parse(ddlTempsInnactivite.SelectedValue);
 
-            //if (Page.IsPostBack)
+            //if (IsPostBack)
             //{
             DataTable tableProduits = charge_inactifs1();
 
@@ -83,7 +83,7 @@ namespace Puces_R
             {
                 Label courriel = (Label)item.FindControl("courriel_demande");
             }
-            //if (!Page.IsPostBack)
+            //if (!IsPostBack)
             //{
             //    DataTable tableInnactif1 = charge_inactifs1();
 

@@ -10,78 +10,69 @@
 namespace Puces_R {
     
     
-    public partial class Produits {
+    public partial class NavigationItems {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle HeadContent.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
-        /// Contrôle ddlTypeRecherche.
+        /// Contrôle MenuItems.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MenuItems;
         
         /// <summary>
-        /// Contrôle txtCritereRecherche.
+        /// Contrôle pnlBarreCritere.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        protected global::System.Web.UI.WebControls.Panel pnlBarreCritere;
         
         /// <summary>
-        /// Contrôle btnRecherche.
+        /// Contrôle BarreCriteres.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BarreCriteres;
         
         /// <summary>
-        /// Contrôle ddlTrierPar.
+        /// Contrôle ctrNavigationHaut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
+        protected global::Puces_R.Controles.NavigationParPage ctrNavigationHaut;
         
         /// <summary>
-        /// Contrôle ddlParPage.
+        /// Contrôle Items.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Items;
         
         /// <summary>
-        /// Contrôle ddlCategorie.
+        /// Contrôle ctrNavigationBas.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategorie;
-        
-        /// <summary>
-        /// Contrôle dtlProduits.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtlProduits;
+        protected global::Puces_R.Controles.NavigationParPage ctrNavigationBas;
     }
 }

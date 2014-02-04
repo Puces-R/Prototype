@@ -18,6 +18,8 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ((NavigationItems)Master).ChargerItems += chargerProduits;
+
             if (!IsPostBack)
             {
                 chargerProduits();
@@ -42,31 +44,15 @@ namespace Puces_R
 
                 if (noVendeur == -1)
                 {
-                    ((SiteMaster)Master).Titre = "Catalogue Global";
+                    ((SiteMaster)Master.Master).Titre = "Catalogue Global";
                 }
                 else
                 {
-                    ((SiteMaster)Master).NoVendeur = noVendeur;
+                    ((SiteMaster)Master.Master).NoVendeur = noVendeur;
                 }
 
-                AfficherPremierePage();
+                ((NavigationItems)Master).AfficherPremierePage();
             }
-
-            ctrNavigationBas.PageChangee += changerDePage;
-            ctrNavigationHaut.PageChangee += changerDePage;
-        }
-
-        private void changerDePage(object sender, EventArgs e)
-        {
-            if (sender == ctrNavigationBas)
-            {
-                ctrNavigationHaut.PageActuelle = ctrNavigationBas.PageActuelle;
-            }
-            else
-            {
-                ctrNavigationBas.PageActuelle = ctrNavigationHaut.PageActuelle;
-            }
-            chargerProduits();
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -207,40 +193,17 @@ namespace Puces_R
             objPds.DataSource = new DataView(tableProduits);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = ctrNavigationBas.PageActuelle;
+            objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
 
-            ctrNavigationHaut.NbPages = objPds.PageCount;
-            ctrNavigationBas.NbPages = objPds.PageCount;
+            ((NavigationItems)Master).NbPages = objPds.PageCount;
 
             dtlProduits.DataSource = objPds;
             dtlProduits.DataBind();
         }
 
-        protected void btnRecherche_OnClick(object sender, EventArgs e)
+        protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            AfficherPremierePage();
-        }
-
-        protected void ddlTrierPar_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            AfficherPremierePage();
-        }
-
-        protected void ddlParPage_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            AfficherPremierePage();
-        }
-
-        protected void ddlCategorie_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            AfficherPremierePage();
-        }
-
-        private void AfficherPremierePage()
-        {
-            ctrNavigationHaut.PageActuelle = 0;
-            ctrNavigationBas.PageActuelle = 0;
-            chargerProduits();
+            ((NavigationItems)Master).AfficherPremierePage();
         }
     }
 }

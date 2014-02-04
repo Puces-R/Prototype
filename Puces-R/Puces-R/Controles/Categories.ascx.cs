@@ -15,7 +15,7 @@ namespace Puces_R.Controles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 if (Session["ID"] == null)
                 {
@@ -47,7 +47,7 @@ namespace Puces_R.Controles
 
                 lblCategorie.Text = description;
 
-                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT P.NoVendeur, V.NomAffaires, P.NoCategorie, COUNT(P.NoProduit) AS NbProduits FROM PPVendeurs V INNER JOIN PPProduits P ON V.NoVendeur = P.NoVendeur WHERE P.NoCategorie = " + noCategorie + " GROUP BY P.NoVendeur, V.NomAffaires, P.NoCategorie", myConnection);
+                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT P.NoVendeur, V.NomAffaires, P.NoCategorie, COUNT(P.NoProduit) AS NbProduits FROM PPVendeurs V INNER JOIN PPProduits P ON V.NoVendeur = P.NoVendeur WHERE P.NoCategorie = " + noCategorie + " AND P.Disponibilité = 1 GROUP BY P.NoVendeur, V.NomAffaires, P.NoCategorie", myConnection);
                 DataTable tableVendeurs = new DataTable();
                 adapteurVendeurs.Fill(tableVendeurs);
 

@@ -56,7 +56,7 @@ namespace Puces_R
                     break;
             }
 
-            //if (Page.IsPostBack)
+            //if (IsPostBack)
             //{
                 DataTable tableProduits = charge_demandes();
 

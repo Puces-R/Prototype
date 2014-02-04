@@ -13,7 +13,6 @@ namespace Puces_R.Controles
     {
         decimal sousTotal;
         decimal poidsTotal;
-        short codeLivraison;
         decimal prixLivraison;
         decimal prixTPS;
         decimal prixTVQ;
@@ -51,23 +50,48 @@ namespace Puces_R.Controles
             }
         }
 
+        public short CodeLivraison
+        {
+            get
+            {
+                if (ViewState["CodeLivraison"] == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return (short)ViewState["CodeLivraison"];
+                }
+            }
+            set
+            {
+                ViewState["CodeLivraison"] = value;
+            }
+        }
+
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
-                DataTable tableCategories = new DataTable();
-                adapteurCategories.Fill(tableCategories);
-
-                ddlModesLivraison.DataSource = tableCategories;
-                ddlModesLivraison.DataTextField = "Description";
-                ddlModesLivraison.DataValueField = "CodeLivraison";
-                ddlModesLivraison.DataBind();
-
-                CalculerCouts();
+                ChargerModesDeLivraison();
             }
+        }
+
+        public void ChargerModesDeLivraison()
+        {
+            SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
+            DataTable tableCategories = new DataTable();
+            adapteurCategories.Fill(tableCategories);
+
+            ddlModesLivraison.DataSource = tableCategories;
+            ddlModesLivraison.DataTextField = "Description";
+            ddlModesLivraison.DataValueField = "CodeLivraison";
+            ddlModesLivraison.DataBind();
+            ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
+
+            CalculerCouts();
         }
 
         public void CalculerCouts()
@@ -91,7 +115,7 @@ namespace Puces_R.Controles
 
                 NoVendeur = (long)lecteurCommande["NoVendeur"];
                 poidsTotal = (decimal)lecteurCommande["PoidsTotal"];
-                codeLivraison = (short)lecteurCommande["TypeLivraison"];
+                CodeLivraison = (short)lecteurCommande["TypeLivraison"];
                 prixLivraison = (decimal)lecteurCommande["Livraison"];
                 prixTPS = (decimal)lecteurCommande["TPS"];
                 prixTVQ = (decimal)lecteurCommande["TVQ"];
@@ -100,7 +124,7 @@ namespace Puces_R.Controles
                 lecteurCommande.Close();
                 myConnection.Close();
             }
-            else
+            else if (ViewState["NoVendeur"] != null)
             {
                 String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + NoVendeur;
 
@@ -140,16 +164,14 @@ namespace Puces_R.Controles
                     mvPartieBas.ActiveViewIndex = 1;
                     lblPoidsMax.Text = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
                 }
-
-                codeLivraison = short.Parse(ddlModesLivraison.SelectedValue);
-
-                if (codeLivraison == 1 && sousTotal >= livraisonGratuite)
+                
+                if (CodeLivraison == 1 && sousTotal >= livraisonGratuite)
                 {
                     prixLivraison = 0;
                 }
                 else
                 {
-                    SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = " + codeLivraison + " AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
+                    SqlCommand commandeLivraison = new SqlCommand("SELECT P.Tarif FROM PPTypesPoids T INNER JOIN PPPoidsLivraisons P ON T.CodePoids = P.CodePoids WHERE P.CodeLivraison = " + CodeLivraison + " AND " + poidsTotal.ToString().Replace(",", ".") + " BETWEEN T.PoidsMin AND T.PoidsMax", myConnection);
                     prixLivraison = (decimal)commandeLivraison.ExecuteScalar();
                 }
 
@@ -190,7 +212,8 @@ namespace Puces_R.Controles
 
         protected void ddlModesLivraison_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            CalculerCouts();
+            CodeLivraison = short.Parse(ddlModesLivraison.SelectedValue);
+            ChargerModesDeLivraison();
         }
 
         public void ViderPanierEtCreerCommande()
@@ -203,7 +226,7 @@ namespace Puces_R.Controles
 
             long noCommande = (long)commandeNoCommande.ExecuteScalar() + 1;
 
-            String values = String.Join(", ", noCommande, Session["ID"], NoVendeur, "'" + DateTime.Now + "'", prixLivraison, codeLivraison, grandTotal, prixTPS, prixTVQ, poidsTotal, "'l'", 1);
+            String values = String.Join(", ", noCommande, Session["ID"], NoVendeur, "'" + DateTime.Now + "'", prixLivraison, CodeLivraison, grandTotal, prixTPS, prixTVQ, poidsTotal, "'l'", 1);
 
             SqlCommand commandePaiement = new SqlCommand("INSERT INTO PPCommandes VALUES (" + values + ")", myConnection);
             commandePaiement.ExecuteNonQuery();

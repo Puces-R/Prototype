@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavigationParPage.ascx.cs" Inherits="Puces_R.Controles.NavigationParPage" %>
 
 <asp:Panel runat="server" CssClass="barreNavigation" ID="pnlBarreNavigation">
-    <div class="lignePointilleHorizontale pleineLargeur"></div>
+    <asp:Panel runat="server" class="lignePointilleHorizontale pleineLargeur" ID="pnlLigneHaut" Visible="false" />
     <asp:Panel runat="server" ID="pnlLeftNavigation" CssClass="navigation leftNavigation" Visible="false">
         <div>
             <asp:ImageButton runat="server" ID="imgFirst" OnClick="btnFirst_OnClick" ImageUrl="../Images/Premier.png" />
@@ -23,4 +23,5 @@
         </div>
     </asp:Panel>
     <asp:Label runat="server" ID="lblInfoAuCentre" CssClass="infoAuCentre" />
+    <asp:Panel runat="server" class="lignePointilleHorizontale pleineLargeur" ID="pnlLigneBas" Visible="false" />
 </asp:Panel>

@@ -33,7 +33,8 @@ namespace Puces_R.Controles
                 this.tbNomAffaires.Text = (String)lecteurClient["NomAffaires"];
                 this.txtPrenom.Text = (String)lecteurClient["Prenom"];
                 this.txtNom.Text = (String)lecteurClient["Nom"];
-                this.txtRue.Text = (String)lecteurClient["Rue"];
+                //this.txtRue.Text = (String)lecteurClient["Rue"];
+                Adresse.NoAdresse = (String)lecteurClient["Rue"];
                 this.txtVille.Text = (String)lecteurClient["Ville"];
                 this.ctrProvince.CodeProvince = (String)lecteurClient["Province"];
                 this.txtPays.Text = (String)lecteurClient["Pays"];
@@ -70,7 +71,7 @@ namespace Puces_R.Controles
                 dicPaires.Add("NomAffaires",this.tbNomAffaires.Text);
                 dicPaires.Add("Prenom", this.txtPrenom.Text);
                 dicPaires.Add("Nom", this.txtNom.Text);
-                dicPaires.Add("Rue", this.txtRue.Text);
+               // dicPaires.Add("Rue", this.txtRue.Text);
                 dicPaires.Add("Ville", this.txtVille.Text);
                 dicPaires.Add("Province", this.ctrProvince.CodeProvince);
                 dicPaires.Add("Pays", this.txtPays.Text);
@@ -94,8 +95,8 @@ namespace Puces_R.Controles
 
                 SqlCommand commandeClient = new SqlCommand("UPDATE PPVendeurs SET " + strPaires + " , Taxes=" + taxesC + ",MaxLivraison=@max,LivraisonGratuite=@gratuit WHERE NoVendeur = " + Session["ID"], myConnection);
 
-                commandeClient.Parameters.AddWithValue("@max", Convert.ToInt32(this.tbMaxLivraison.Text));
-                commandeClient.Parameters.AddWithValue("@gratuit", Convert.ToDecimal(this.tbLivraisonGratuite.Text));
+                commandeClient.Parameters.AddWithValue("@max", Convert.ToInt32(this.tbMaxLivraison.Text.Replace('.',',')));
+                commandeClient.Parameters.AddWithValue("@gratuit", Convert.ToDecimal(this.tbLivraisonGratuite.Text.Replace('.', ',')));
 
                 myConnection.Open();
                 commandeClient.ExecuteNonQuery();

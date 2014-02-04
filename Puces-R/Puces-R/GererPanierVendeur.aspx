@@ -1,16 +1,61 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GererPanierVendeur.aspx.cs" Inherits="Puces_R.GererPanierVendeur" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GererPanierVendeur.aspx.cs" Inherits="Puces_R.GererPanierVendeur"  %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
+<%@ Register TagPrefix="se" TagName="PanierNettoyer" Src="~/Controles/NettoyerPanier.ascx" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
+    <lp:MenuClient ID="MenuClient1" runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
+    <link href="CSS/GestionCommandesVendeur.css" rel="stylesheet" type="text/css" />
+</asp:Content>
+
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+
+<h2>Panier(s) Inactif</h2>
+
+               
+        <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
+            <ItemTemplate>
+                <div class="rectangleItem rectangleComplet">
+                    <asp:HyperLink runat="server" ID="hypVendeur" CssClass="titreRectangle" />
+                    <se:PanierNettoyer ID="ctrPanierN" runat="server" />
+                    <%--<asp:Repeater ID="rptProduits" runat="server" OnItemDataBound="rptProduits_ItemDataBound">
+                        <HeaderTemplate>
+                            <table class="tableProduits">
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Quantité</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Prix total</th>
+                                </tr>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                                <tr>
+                                    <td>
+                                        <asp:HyperLink runat="server" ID="hypProduit" />
+                                    </td>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblQuantite" />
+                                    </td>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblPrixUnitaire" />
+                                    </td>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblPrixTotal" />
+                                    </td>
+                                </tr>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>--%>
+                    <div class="sousTotal">
+                        Sous-Total: <asp:Label runat="server" ID="lblSousTotal" />
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+
+</asp:Content>

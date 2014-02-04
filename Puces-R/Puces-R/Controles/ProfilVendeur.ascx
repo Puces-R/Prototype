@@ -1,9 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ProfilVendeur.ascx.cs"
     Inherits="Puces_R.Controles.ProfilVendeur" %>
+
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Courriel" Src="~/Controles/Courriel.ascx" %>
+<%@ Register TagPrefix="se" TagName="Adresse" Src="~/Controles/Adresse.ascx" %>
+
 <h2>
     Profil du vendeur</h2>
 <table class="tableProfil">
@@ -15,6 +18,8 @@
             <asp:TextBox ID="tbNomAffaires" runat="server" />
         </td>
         <td>
+        <asp:RequiredFieldValidator ID="reqNomAffaires" runat="server" ControlToValidate="tbNomAffaires"
+            ErrorMessage="Le nom d'Affaires est obligatoire" Display="Dynamic"/>
         </td>
     </tr>
     <tr>
@@ -25,6 +30,8 @@
             <asp:TextBox ID="txtPrenom" runat="server" />
         </td>
         <td>
+        <asp:RequiredFieldValidator ID="reqPrenom" runat="server" ControlToValidate="txtPrenom"
+            ErrorMessage="Le prénom est obligatoire" Display="Dynamic"/>
         </td>
     </tr>
     <tr>
@@ -35,18 +42,13 @@
             <asp:TextBox ID="txtNom" runat="server" />
         </td>
         <td>
+        <asp:RequiredFieldValidator ID="reqNom" runat="server" ControlToValidate="txtNom"
+            ErrorMessage="Le nom est obligatoire" Display="Dynamic"/>
         </td>
     </tr>
-    <tr>
-        <td>
-            Rue
-        </td>
-        <td>
-            <asp:TextBox ID="txtRue" runat="server" />
-        </td>
-        <td>
-        </td>
-    </tr>
+    
+     <se:Adresse ID="Adresse" runat="server" Label="Rue : "/>
+
     <tr>
         <td>
             Ville
@@ -55,6 +57,8 @@
             <asp:TextBox ID="txtVille" runat="server" />
         </td>
         <td>
+        <asp:RequiredFieldValidator ID="reqVille" runat="server" ControlToValidate="txtVille"
+            ErrorMessage="La ville est obligatoire" Display="Dynamic"/>
         </td>
     </tr>
     <tr>
@@ -73,7 +77,7 @@
             Pays
         </td>
         <td>
-            <asp:TextBox ID="txtPays" runat="server" />
+            <asp:TextBox ID="txtPays" runat="server" Enabled="false"/>
         </td>
         <td>
         </td>
@@ -108,6 +112,18 @@
             <asp:TextBox ID="tbMaxLivraison" runat="server" />
         </td>
         <td>
+        <asp:RequiredFieldValidator id="reqMaxLiv"
+                    ControlToValidate="tbMaxLivraison"
+                    EnableClientScript="false"
+                    ErrorMessage="Prix absent!"
+                    runat="server"/>
+          
+         <asp:RegularExpressionValidator ID="reMaxLiv" 
+           ControlToValidate="tbMaxLivraison"   
+           EnableClientScript="false" runat="server"
+           ErrorMessage="Format invalide !" 
+           ValidationExpression="^\d+([\.\,]\d{0,5})?$"> 
+           </asp:RegularExpressionValidator> 
         </td>
     </tr>
     <tr>
@@ -118,6 +134,18 @@
             <asp:TextBox ID="tbLivraisonGratuite" runat="server" />
         </td>
         <td>
+        <asp:RequiredFieldValidator id="reqLivGrat"
+                    ControlToValidate="tbLivraisonGratuite"
+                    EnableClientScript="false"
+                    ErrorMessage="Prix absent!"
+                    runat="server"/>
+          
+         <asp:RegularExpressionValidator ID="reLivGrat" 
+           ControlToValidate="tbLivraisonGratuite"   
+           EnableClientScript="false" runat="server"
+           ErrorMessage="Format invalide !" 
+           ValidationExpression="^\d+([\.\,]\d{0,5})?$"> 
+           </asp:RegularExpressionValidator> 
         </td>
     </tr>
     <tr>

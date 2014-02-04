@@ -7,45 +7,45 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class BoiteMessageControle {
+    public partial class Adresse {
         
         /// <summary>
-        /// Contrôle divBoite.
+        /// Contrôle lblAdresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBoite;
+        protected global::System.Web.UI.WebControls.Label lblAdresse;
         
         /// <summary>
-        /// Contrôle cbAll.
+        /// Contrôle tbAdresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAll;
+        protected global::System.Web.UI.WebControls.TextBox tbAdresse;
         
         /// <summary>
-        /// Contrôle lblLabel.
+        /// Contrôle reqAdresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLabel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqAdresse;
         
         /// <summary>
-        /// Contrôle Liste.
+        /// Contrôle formatAdresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Liste;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator formatAdresse;
     }
 }

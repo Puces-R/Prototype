@@ -13,9 +13,9 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
     <div>
 
-    <asp:Label ID="lblAvertissement" runat="server" CssClass="sRouge"></asp:Label>
+    
 
-    <h2>Modification d'un produit </h2>
+    <h2>Suppression d'un produit </h2>
 
  <table>
 
@@ -101,6 +101,8 @@
          <td><asp:CheckBox ID="cbDisponibilite" runat="server" Text="Le produit est-il visible par les clients?" enabled="false" /> </td>
       </tr>
  </Table>
+
+ <asp:Label ID="lblAvertissement" runat="server" CssClass="sRouge"></asp:Label><br />
 
          <asp:Button ID="btnAjout" Text="Confirmer la suppression!" runat="server" OnClick="supprimerProduits"/>
          <asp:Button ID="btnRetour" Text="Retour " runat="server" PostBackUrl="GestionProduits.aspx"/>

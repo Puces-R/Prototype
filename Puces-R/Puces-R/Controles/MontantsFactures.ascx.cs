@@ -259,6 +259,9 @@ namespace Puces_R.Controles
 
             commandePaiement.ExecuteNonQuery();
 
+            SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + NoVendeur, myConnection);
+            commandeNbItems.ExecuteNonQuery();
+
             SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + NoVendeur, myConnection);
             commandeViderPanier.ExecuteNonQuery();
 

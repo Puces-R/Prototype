@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Text;
+using System.Data;
 
 namespace Puces_R
 {
@@ -44,7 +45,7 @@ namespace Puces_R
             if (Page.IsValid)
             {
                 ctrProfilClient.Sauvegarder();
-
+                
                 long noVendeur = ctrMontantsFactures.NoVendeur;
                 long codeLivraison = ctrMontantsFactures.CodeLivraison;
 
@@ -81,6 +82,42 @@ namespace Puces_R
 
                 Response.End();
             }
+        }
+
+        protected void valQuantite_OnServerValidate(object sender, ServerValidateEventArgs e)
+        {
+            myConnection.Open();
+
+            SqlCommand commandeRuptureStock = new SqlCommand("SELECT Nom, P.NombreItems FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit AND A.NbItems > P.NombreItems", myConnection);
+            SqlDataReader lecteurRuptureStock = commandeRuptureStock.ExecuteReader();
+
+            if (lecteurRuptureStock.HasRows)
+            {
+                e.IsValid = false;
+
+                String messageErreur = "Ces items sont en rupture de stock: ";
+
+                List<String> tabDescriptions = new List<String>();
+
+                while (lecteurRuptureStock.Read())
+                {
+                    String description = (String)lecteurRuptureStock["Nom"];
+                    short nbDisponible = (short)lecteurRuptureStock["NombreItems"];
+
+                    tabDescriptions.Add(description + " (" + nbDisponible + " disponible(s))");
+                }
+                messageErreur += String.Join(", ", tabDescriptions);
+                messageErreur += ". Veuillez en supprimer ou changer leurs quantités dans votre panier.";
+
+                valQuantite.Text = messageErreur;
+            }
+            else
+            {
+                e.IsValid = true;
+            }
+
+            lecteurRuptureStock.Close();
+            myConnection.Close();
         }
     }
 }

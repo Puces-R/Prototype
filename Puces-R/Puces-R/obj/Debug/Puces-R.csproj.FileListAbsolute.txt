@@ -33,3 +33,4 @@ C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.dll
 C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\bin\Puces-R.pdb
 C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.dll
 C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.pdb
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.csprojResolveAssemblyReference.cache

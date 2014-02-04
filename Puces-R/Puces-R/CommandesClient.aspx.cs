@@ -20,15 +20,23 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
-                ChargerCommandes();
-
                 if (Session["ID"] == null)
                 {
                     Response.Redirect("Default.aspx", true);
                 }
 
-                ((NavigationItems)Master).CriteresVisibles = false;
+                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPCommandes C ON V.NoVendeur = C.NoVendeur WHERE C.NoClient = " + Session["ID"], myConnection);
+                DataTable tableVendeurs = new DataTable();
+                adapteurVendeurs.Fill(tableVendeurs);
 
+                ddlVendeur.DataSource = tableVendeurs;
+                ddlVendeur.DataTextField = "NomAffaires";
+                ddlVendeur.DataValueField = "NoVendeur";
+                ddlVendeur.DataBind();
+                ddlVendeur.Items.Add(new ListItem("Tous", "-1"){Selected=true});
+
+                ChargerCommandes();
+                
                 ((NavigationItems)Master).AfficherPremierePage();
             }
         }
@@ -39,7 +47,7 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Literal litVendeur = (Literal)item.FindControl("litVendeur");
+                Label lblVendeur = (Label)item.FindControl("lblVendeur");
                 Label lblNoCommande = (Label)item.FindControl("lblNoCommande");
                 Label lblDate = (Label)item.FindControl("lblDate");
                 Label lblStatut = (Label)item.FindControl("lblStatut");
@@ -48,9 +56,9 @@ namespace Puces_R
 
                 DataRowView drvCommande = (DataRowView)e.Item.DataItem;
 
-                litVendeur.Text = (String)drvCommande["NomAffaires"];
+                lblVendeur.Text = (String)drvCommande["NomAffaires"];
                 lblNoCommande.Text = ((long)drvCommande["NoCommande"]).ToString();
-                lblDate.Text = ((DateTime)drvCommande["DateCommande"]).ToString();
+                lblDate.Text = "(" + ((DateTime)drvCommande["DateCommande"]).ToString() + ")";
 
                 switch ((String)drvCommande["Statut"])
                 {
@@ -75,20 +83,36 @@ namespace Puces_R
 
         private void ChargerCommandes()
         {
-            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT * FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur WHERE C.NoClient = " + Session["ID"] + " ORDER BY DateCommande DESC" , myConnection);
+            String whereClause = " WHERE C.NoClient = " + Session["ID"];
+
+            int noVendeur = int.Parse(ddlVendeur.SelectedValue);
+
+            if (noVendeur != -1)
+            {
+                whereClause += " AND V.NoVendeur = " + noVendeur;
+            }
+
+            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT * FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur" + whereClause + " ORDER BY DateCommande DESC" , myConnection);
             DataTable tableCommandes = new DataTable();
             adapteurCommandes.Fill(tableCommandes);
 
             PagedDataSource objPds = new PagedDataSource();
             objPds.DataSource = new DataView(tableCommandes);
             objPds.AllowPaging = true;
-            objPds.PageSize = 15;
+            objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
             objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
 
             ((NavigationItems)Master).NbPages = objPds.PageCount;
 
             dlCommandes.DataSource = objPds;
             dlCommandes.DataBind();
+
+            mvCommandes.ActiveViewIndex = tableCommandes.Rows.Count == 0 ? 1 : 0;
+        }
+
+        protected void AfficherPremierePage(object sender, EventArgs e)
+        {
+            ((NavigationItems)Master).AfficherPremierePage();
         }
     }
 }

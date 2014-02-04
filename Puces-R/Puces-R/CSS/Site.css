@@ -398,3 +398,16 @@ body
 {
     text-align:right;
 }
+
+.boiteListeDeroulante
+{
+    margin:0 10px;
+}
+
+.messageCentral
+{
+    font-weight:bold;
+    margin:100px;
+    text-align:center;
+    font-size:large;
+}

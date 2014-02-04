@@ -57,9 +57,19 @@ namespace Puces_R
                         default:
                             throw new InvalidOperationException();
                     }
+
                     myConnection.Open();
-                    lblBonjour.Text = (String)commandUtilisateur.ExecuteScalar();
+                    Object objNomComplet = commandUtilisateur.ExecuteScalar();
                     myConnection.Close();
+
+                    if (objNomComplet is DBNull)
+                    {
+                        lblBonjour.Text = "Utilisateur";
+                    }
+                    else
+                    {
+                        lblBonjour.Text = (String)objNomComplet;
+                    }
                 }
                 else
                 {

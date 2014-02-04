@@ -1,6 +1,12 @@
-﻿.basRectangle *
+﻿.basRectangle
 {
     font-size:small !important;
+    position:relative;
+}
+
+.montantsFactures *
+{
+    font-size:x-small !important;
 }
 
 .pnlDroite
@@ -12,4 +18,12 @@
 .rectangleCommande
 {
     width:400px;
+}
+
+.statutLivraison
+{
+    left:10px;
+    bottom:10px;
+    position:absolute;
+    font-size:large;
 }

@@ -3,6 +3,9 @@
 <asp:Menu runat="server" Orientation="Horizontal" ID="ctrMenu">
     <StaticMenuItemStyle HorizontalPadding="10" />
     <StaticSelectedStyle ForeColor="#6AC331" />
+    <StaticHoverStyle ForeColor="#6AC331" />
+    <DynamicSelectedStyle ForeColor="#6AC331" />
+    <DynamicHoverStyle ForeColor="#6AC331" />
     <DynamicMenuStyle CssClass="popupMenu" />
     <Items>
         <asp:MenuItem Text="Accueil" NavigateUrl="../AccueilClient.aspx" />

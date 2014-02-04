@@ -89,7 +89,6 @@ namespace Puces_R.Controles
             ddlModesLivraison.DataTextField = "Description";
             ddlModesLivraison.DataValueField = "CodeLivraison";
             ddlModesLivraison.DataBind();
-            ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
 
             CalculerCouts();
         }
@@ -207,6 +206,8 @@ namespace Puces_R.Controles
             lblTVQ.Text = prixTVQ.ToString("C");
             lblGrandTotal.Text = grandTotal.ToString("C");
 
+            ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
+
             myConnection.Close();
         }
 
@@ -226,9 +227,23 @@ namespace Puces_R.Controles
 
             long noCommande = (long)commandeNoCommande.ExecuteScalar() + 1;
 
-            String values = String.Join(", ", noCommande, Session["ID"], NoVendeur, "'" + DateTime.Now + "'", prixLivraison, CodeLivraison, grandTotal, prixTPS, prixTVQ, poidsTotal, "'l'", 1);
+            SqlCommand commandePaiement = new SqlCommand("INSERT INTO PPCommandes VALUES (@noCommande, @noClient, @noVendeur, @dateCommande, @livraison, @typeLivraison, @montantTotal, @TPS, @TVQ, @poidsTotal, @statut, @noAutorisation)", myConnection);
 
-            SqlCommand commandePaiement = new SqlCommand("INSERT INTO PPCommandes VALUES (" + values + ")", myConnection);
+            SqlParameterCollection parameters = commandePaiement.Parameters;
+
+            parameters.Add(new SqlParameter("noCommande", noCommande));
+            parameters.Add(new SqlParameter("noClient", Session["ID"]));
+            parameters.Add(new SqlParameter("noVendeur", NoVendeur));
+            parameters.Add(new SqlParameter("dateCommande", DateTime.Now));
+            parameters.Add(new SqlParameter("livraison", prixLivraison));
+            parameters.Add(new SqlParameter("typeLivraison", CodeLivraison));
+            parameters.Add(new SqlParameter("montantTotal", grandTotal));
+            parameters.Add(new SqlParameter("TPS", prixTPS));
+            parameters.Add(new SqlParameter("TVQ", prixTVQ));
+            parameters.Add(new SqlParameter("poidsTotal", poidsTotal));
+            parameters.Add(new SqlParameter("statut", "p"));
+            parameters.Add(new SqlParameter("noAutorisation", 1));
+
             commandePaiement.ExecuteNonQuery();
 
             SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + NoVendeur, myConnection);

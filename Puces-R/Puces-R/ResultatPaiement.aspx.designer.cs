@@ -10,43 +10,43 @@
 namespace Puces_R {
     
     
-    public partial class Panier {
+    public partial class ResultatPaiement {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle MenuClient1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
+        protected global::Puces_R.Controles.MenuClient MenuClient1;
         
         /// <summary>
-        /// Contrôle mvMain.
+        /// Contrôle litMessageResultat.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvMain;
+        protected global::System.Web.UI.WebControls.Literal litMessageResultat;
         
         /// <summary>
-        /// Contrôle btnViderPanier.
+        /// Contrôle hypReessayer.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViderPanier;
+        protected global::System.Web.UI.WebControls.HyperLink hypReessayer;
         
         /// <summary>
-        /// Contrôle rptProduits.
+        /// Contrôle pnlMontantsFactures.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProduits;
+        protected global::System.Web.UI.WebControls.Panel pnlMontantsFactures;
         
         /// <summary>
         /// Contrôle ctrMontantsFactures.
@@ -56,14 +56,5 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::Puces_R.Controles.MontantsFactures ctrMontantsFactures;
-        
-        /// <summary>
-        /// Contrôle btnCommander.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCommander;
     }
 }

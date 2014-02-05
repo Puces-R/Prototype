@@ -11,7 +11,7 @@
 
     <h1>Yan</h1>
     <ul>
-        <li><a href="Connexion.aspx">Connexion</a></li>
+        <li><a href="Default.aspx">Connexion</a></li>
         <li><a href="InscriptionVendeur.aspx">Inscription vendeur</a></li>
         <li><a href="InscriptionClient.aspx">Inscription client</a></li>
     </ul>

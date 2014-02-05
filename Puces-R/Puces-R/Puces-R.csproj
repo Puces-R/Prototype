@@ -58,7 +58,6 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Accueil.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="ChoixDestinataires.aspx" />
@@ -66,10 +65,10 @@
     <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
-    <Content Include="Connexion.aspx" />
     <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
+    <Content Include="Controles\BoiteCommande.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
@@ -98,6 +97,7 @@
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
     <Content Include="CSS\SuppressionProduits.css" />
+    <Content Include="Default.aspx" />
     <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
     <Content Include="Demonstration.aspx" />
@@ -145,6 +145,7 @@
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
     <Content Include="RecupererMotDePasse.aspx" />
+    <Content Include="ResultatPaiement.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -204,13 +205,6 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Accueil.aspx.cs">
-      <DependentUpon>Accueil.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Accueil.aspx.designer.cs">
-      <DependentUpon>Accueil.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AccueilClient.aspx.cs">
       <DependentUpon>AccueilClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -260,13 +254,6 @@
     <Compile Include="Commande.aspx.designer.cs">
       <DependentUpon>Commande.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Connexion.aspx.cs">
-      <DependentUpon>Connexion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Connexion.aspx.designer.cs">
-      <DependentUpon>Connexion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Controles\Categories.ascx.cs">
       <DependentUpon>Categories.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -287,6 +274,13 @@
     </Compile>
     <Compile Include="Controles\CodePostal.ascx.designer.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\BoiteCommande.ascx.cs">
+      <DependentUpon>BoiteCommande.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\BoiteCommande.ascx.designer.cs">
+      <DependentUpon>BoiteCommande.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\Courriel.ascx.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
@@ -415,6 +409,13 @@
       <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
     <Compile Include="Courriel.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Demonstration.aspx.cs">
       <DependentUpon>Demonstration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -588,6 +589,13 @@
     </Compile>
     <Compile Include="RecupererMotDePasse.aspx.designer.cs">
       <DependentUpon>RecupererMotDePasse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultatPaiement.aspx.cs">
+      <DependentUpon>ResultatPaiement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultatPaiement.aspx.designer.cs">
+      <DependentUpon>ResultatPaiement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

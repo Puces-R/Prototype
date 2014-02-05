@@ -18,6 +18,18 @@ namespace Puces_R.Controles
             }
         }
 
+        public string Text
+        {
+            get
+            {
+                return tbAdresse.Text;
+            }
+            set
+            {
+                tbAdresse.Text = value;
+            }
+        }
+
         public string NoAdresse
         {
             get

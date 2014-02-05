@@ -11,6 +11,8 @@ namespace Puces_R.Controles
 {
     public partial class MontantsFactures : System.Web.UI.UserControl
     {
+        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
         decimal sousTotal;
         decimal poidsTotal;
         decimal prixLivraison;
@@ -18,11 +20,32 @@ namespace Puces_R.Controles
         decimal prixTVQ;
         decimal grandTotal;
 
-        public bool PoidsMaxAtteint
+        public bool Enabled
+        {
+            set
+            {
+                ddlModesLivraison.Enabled = value;
+            }
+        }
+
+        public decimal GrandTotal
         {
             get
             {
-                return (mvPartieBas.ActiveViewIndex == 1);
+                return grandTotal;
+            }
+        }
+
+        public String MessageErreur
+        {
+            get
+            {
+                return lblMessageErreur.Text;
+            }
+            set
+            {
+                mvPartieBas.ActiveViewIndex = (value == null ? 0 : 1);
+                lblMessageErreur.Text = value;
             }
         }
 
@@ -54,56 +77,33 @@ namespace Puces_R.Controles
         {
             get
             {
-                if (ViewState["CodeLivraison"] == null)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return (short)ViewState["CodeLivraison"];
-                }
+                return short.Parse(ddlModesLivraison.SelectedValue);
             }
             set
             {
-                ViewState["CodeLivraison"] = value;
+                ddlModesLivraison.SelectedValue = value.ToString();
             }
         }
 
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
-
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void OnPreRender(EventArgs e)
         {
+            base.OnPreRender(e);
+
             if (!IsPostBack)
             {
-                ChargerModesDeLivraison();
-            }
-        }
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
+                DataTable tableCategories = new DataTable();
+                adapteurCategories.Fill(tableCategories);
 
-        public void ChargerModesDeLivraison()
-        {
-            SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
-            DataTable tableCategories = new DataTable();
-            adapteurCategories.Fill(tableCategories);
-
-            ddlModesLivraison.DataSource = tableCategories;
-            ddlModesLivraison.DataTextField = "Description";
-            ddlModesLivraison.DataValueField = "CodeLivraison";
-            ddlModesLivraison.DataBind();
-
-            CalculerCouts();
-        }
-
-        public void CalculerCouts()
-        {
-            if (Session["ID"] == null)
-            {
-                Response.Redirect("Default.aspx", true);
+                ddlModesLivraison.DataSource = tableCategories;
+                ddlModesLivraison.DataTextField = "Description";
+                ddlModesLivraison.DataValueField = "CodeLivraison";
+                ddlModesLivraison.DataBind();
             }
 
             if (ViewState["NoCommande"] != null)
             {
                 mvPartieBas.ActiveViewIndex = 0;
-                ddlModesLivraison.Enabled = false;
 
                 myConnection.Open();
 
@@ -154,14 +154,9 @@ namespace Puces_R.Controles
 
                 lecteurVendeur.Close();
 
-                if (poidsTotal <= poidsMax)
+                if (poidsTotal > poidsMax)
                 {
-                    mvPartieBas.ActiveViewIndex = 0;
-                }
-                else
-                {
-                    mvPartieBas.ActiveViewIndex = 1;
-                    lblPoidsMax.Text = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
+                    MessageErreur = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
                 }
                 
                 if (CodeLivraison == 1 && sousTotal >= livraisonGratuite)
@@ -205,22 +200,12 @@ namespace Puces_R.Controles
             lblTPS.Text = prixTPS.ToString("C");
             lblTVQ.Text = prixTVQ.ToString("C");
             lblGrandTotal.Text = grandTotal.ToString("C");
-
-            ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
-
+            
             myConnection.Close();
         }
 
-        protected void ddlModesLivraison_OnSelectedIndexChanged(object sender, EventArgs e)
+        public void EffectuerTransaction()
         {
-            CodeLivraison = short.Parse(ddlModesLivraison.SelectedValue);
-            ChargerModesDeLivraison();
-        }
-
-        public void ViderPanierEtCreerCommande()
-        {
-            CalculerCouts();
-
             myConnection.Open();
 
             SqlCommand commandeNoCommande = new SqlCommand("SELECT MAX(NoCommande) FROM PPCommandes", myConnection);
@@ -246,12 +231,13 @@ namespace Puces_R.Controles
 
             commandePaiement.ExecuteNonQuery();
 
+            SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + NoVendeur, myConnection);
+            commandeNbItems.ExecuteNonQuery();
+
             SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + NoVendeur, myConnection);
             commandeViderPanier.ExecuteNonQuery();
 
             myConnection.Close();
-
-            Response.Redirect("CommandesClient.aspx");
         }
     }
 }

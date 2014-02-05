@@ -35,8 +35,9 @@
                                             Quantité: <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" />
                                             <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" CommandName="MAJQuantite" />
                                         </div>
+                                        <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" Text="Quantité disponible dépassée!" ControlToValidate="txtQuantite" OnServerValidate="valQuantite_OnServerValidate" CssClass="erreur" />
                                         <div>
-                                            <asp:Button runat="server" ID="btnSupprimer" Text="Supprimer" CommandName="Supprimer" />
+                                            <asp:Button runat="server" ID="btnSupprimer" Text="Supprimer" CommandName="Supprimer" CausesValidation="false" />
                                         </div>
                                     </div>
                                 </div>

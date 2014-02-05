@@ -9,6 +9,9 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />
+
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Produits.css" />
     <script type="text/javascript" src="lib/js/librairie.js"></script>
@@ -19,7 +22,7 @@
          $(function () {
              $("#MainContent_datepicker3").datepicker(); 
              $("#format").change(function () {
-                 $("#MainContent_datepicker3").datepicker("option", "yy-mm-dd", $(this).val());
+                 $("#MainContent_datepicker3").datepicker("format", "yy-mm-dd", $(this).val());
              });
          });
          $(function () {
@@ -68,6 +71,17 @@
                             />--%>
                         </td></tr>
 
+                        <tr><th colspan="2"><br />Statut:</th></tr>
+                        <tr><td colspan="2">
+                            <asp:DropDownList ID="ddlStatut" runat="server" AutoPostBack="true">                                
+                                <asp:ListItem Text="Tous" Value="-1" />
+                                <asp:ListItem Text="Actif" Value="0" />
+                                <asp:ListItem Text="Innactifs" Value="1" />
+                                <asp:ListItem Text="En attente d'approbation" Value="2" />
+                                <asp:ListItem Text="En retard de payement" Value="3" />
+                            </asp:DropDownList><br />
+                        </td></tr>
+
                         <tr><th colspan="2"><br />Trier par:</th></tr>
                         <tr><td colspan="2">
                             <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
@@ -98,11 +112,20 @@
         </div>
         <div class="panneau pnlDroite">
             <h2>Résultats de la recherche</h2>
+            <asp:Panel id="no_result" runat="server" cssclass="aucunPanier rectangleItem rectangleComplet" >
+                <img src="Images/Precedent.png" alt="Flèche" />
+                <p>Aucun résultat pour les critères sélectionnés. Veuillez raffiner vos critères puis re-éssayer.</p>
+            </asp:Panel>
+
             <asp:DataList RepeatColumns="2" RepeatDirection="Horizontal" runat="server" ID="rptVendeurs" OnItemDataBound="rptVendeurs_ItemDataBound" >
                 <ItemTemplate>
                     <div style="width:400px;">
                         <div class="rectangleItem hautRectangle">
-                            <asp:LinkButton runat="server" ID="nom_affaire" />
+                            <table width="100%"><tr>
+                                <td><asp:LinkButton runat="server" ID="nom_affaire" /></td>
+                                <td align="right" ><asp:Button runat="server" ID="btn_gerer" Text="Gérer" OnCommand="selectionner_vendeur" CssClass="a_droite" ForeColor="Black" /></td>
+                            </tr></table>
+                            
                         </div>
                         <div class="rectangleItem basRectangle">
                             <table class="tableProduits" style="width:95%;">

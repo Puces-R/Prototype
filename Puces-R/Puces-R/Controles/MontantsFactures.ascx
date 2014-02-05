@@ -9,11 +9,11 @@
         <td>Sous-Total: </td>
         <td><asp:Label ID="lblSousTotal" runat="server" /></td>
     </tr>
-    <asp:MultiView runat="server" ID="mvPartieBas">
+    <asp:MultiView runat="server" ID="mvPartieBas" ActiveViewIndex="0">
         <asp:View runat="server">
             <tr>
                 <td>
-                    <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlModesLivraison_OnSelectedIndexChanged" Font-Size="X-Large" />:
+                    <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" Font-Size="X-Large" />:
                 </td>
                 <td><asp:Label ID="lblLivraison" runat="server" /></td>
             </tr>
@@ -33,7 +33,7 @@
         <asp:View runat="server">
             <tr>
                 <td colspan="2">
-                    <asp:Label ID="lblPoidsMax" runat="server" Font-Size="Large" ForeColor="Red" />
+                    <asp:Label ID="lblMessageErreur" runat="server" Font-Size="Large" ForeColor="Red" />
                 </td>
             </tr>
         </asp:View>

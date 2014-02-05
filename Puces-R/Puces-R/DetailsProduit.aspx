@@ -94,12 +94,15 @@
                 </tr>
                 <tr>
                     <td>Quantité: </td>
-                    <td><asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" Text="1" /></td>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" Text="1" />
+                        <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" Text="Quantité disponible dépassée!" ControlToValidate="txtQuantite" OnServerValidate="valQuantite_OnServerValidate" CssClass="erreur" />
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" align="right">
                         <asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" />
-                        <asp:Button runat="server" ID="btnEnvoyerMessage" Text="Contacter le vendeur" OnClick="btnEnvoyerMessage_Click" />
+                        <asp:Button runat="server" ID="btnEnvoyerMessage" Text="Contacter le vendeur" OnClick="btnEnvoyerMessage_Click" CausesValidation="false" />
                     </td>
                 </tr> 
             </table>       

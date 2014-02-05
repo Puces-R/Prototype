@@ -10,222 +10,204 @@
 namespace Puces_R {
     
     
-    public partial class DetailsProduit {
+    public partial class vendeur {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle MenuGestionnaire1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
+        protected global::Puces_R.Controles.MenuGestionnaire MenuGestionnaire1;
         
         /// <summary>
-        /// Contrôle imgProduit.
+        /// Contrôle lb_vendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduit;
+        protected global::System.Web.UI.WebControls.LinkButton lb_vendeur;
         
         /// <summary>
-        /// Contrôle litNbEvaluations.
+        /// Contrôle mvVendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNbEvaluations;
+        protected global::System.Web.UI.WebControls.MultiView mvVendeur;
         
         /// <summary>
-        /// Contrôle mvMoyenneOuMessage.
+        /// Contrôle View1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvMoyenneOuMessage;
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// Contrôle lblCoteMoyenne.
+        /// Contrôle lbl_nom_complet.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCoteMoyenne;
+        protected global::System.Web.UI.WebControls.Label lbl_nom_complet;
         
         /// <summary>
-        /// Contrôle pnlEvaluation.
+        /// Contrôle lbl_adresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEvaluation;
+        protected global::System.Web.UI.WebControls.Label lbl_adresse;
         
         /// <summary>
-        /// Contrôle lblClient.
+        /// Contrôle lbl_tel1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClient;
+        protected global::System.Web.UI.WebControls.Label lbl_tel1;
         
         /// <summary>
-        /// Contrôle ctrEtoiles.
+        /// Contrôle lbl_tel2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.Etoiles ctrEtoiles;
+        protected global::System.Web.UI.WebControls.Label lbl_tel2;
         
         /// <summary>
-        /// Contrôle txtCommentaire.
+        /// Contrôle lbl_courriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCommentaire;
+        protected global::System.Web.UI.WebControls.Label lbl_courriel;
         
         /// <summary>
-        /// Contrôle btnSoumettre.
+        /// Contrôle lbl_charge_max.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSoumettre;
+        protected global::System.Web.UI.WebControls.Label lbl_charge_max;
         
         /// <summary>
-        /// Contrôle rptEvaluations.
+        /// Contrôle lbl_livraison_gratuite.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptEvaluations;
+        protected global::System.Web.UI.WebControls.Label lbl_livraison_gratuite;
         
         /// <summary>
-        /// Contrôle btnAjouterLaMienne.
+        /// Contrôle lbl_taxes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjouterLaMienne;
+        protected global::System.Web.UI.WebControls.Label lbl_taxes;
         
         /// <summary>
-        /// Contrôle lblProduit.
+        /// Contrôle lbl_taux_redevence.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProduit;
+        protected global::System.Web.UI.WebControls.Label lbl_taux_redevence;
         
         /// <summary>
-        /// Contrôle lblCategorie.
+        /// Contrôle lbl_date_insc.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorie;
+        protected global::System.Web.UI.WebControls.Label lbl_date_insc;
         
         /// <summary>
-        /// Contrôle lblDescription.
+        /// Contrôle lbl_date_maj.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescription;
+        protected global::System.Web.UI.WebControls.Label lbl_date_maj;
         
         /// <summary>
-        /// Contrôle lblPrixDemande.
+        /// Contrôle lbl_statut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixDemande;
+        protected global::System.Web.UI.WebControls.Label lbl_statut;
         
         /// <summary>
-        /// Contrôle lblPrixEnVente.
+        /// Contrôle View2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixEnVente;
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// Contrôle lblQuantiteDisponible.
+        /// Contrôle lbl_nb_clients.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantiteDisponible;
+        protected global::System.Web.UI.WebControls.Label lbl_nb_clients;
         
         /// <summary>
-        /// Contrôle lblDateCreation.
+        /// Contrôle Label1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateCreation;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Contrôle lblDateMiseAJour.
+        /// Contrôle rptBestClients.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateMiseAJour;
+        protected global::System.Web.UI.WebControls.Repeater rptBestClients;
         
         /// <summary>
-        /// Contrôle txtQuantite.
+        /// Contrôle Label2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuantite;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Contrôle valQuantite.
+        /// Contrôle View3.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator valQuantite;
-        
-        /// <summary>
-        /// Contrôle btnAjouterPanier.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjouterPanier;
-        
-        /// <summary>
-        /// Contrôle btnEnvoyerMessage.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnvoyerMessage;
+        protected global::System.Web.UI.WebControls.View View3;
     }
 }

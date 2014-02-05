@@ -146,6 +146,7 @@
 
 
 <asp:Button ID="btnAjout" Text="Modifier le produit" runat="server" />
+
 <asp:Button runat="server" ID="btnRetour" Text="Retour" CausesValidation="FALSE" PostBackUrl="GestionProduits.aspx" />
 
 </div>

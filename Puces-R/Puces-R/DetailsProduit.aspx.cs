@@ -174,28 +174,33 @@ namespace Puces_R
 
         protected void btnAjouterPanier_Click(object sender, EventArgs e)
         {
-            String nbItems = txtQuantite.Text;
-            String noProduit = Request.Params["noproduit"];
-            String noPanier = Session["ID"] + noProduit;
-            
-            myConnection.Open();
-            SqlCommand commandeDejaPresent = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE noPanier = " + noPanier, myConnection);
-            bool dejaPresent = (int)commandeDejaPresent.ExecuteScalar() > 0;
-            if (dejaPresent)
+            if (IsValid)
             {
-                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + nbItems + " WHERE NoPanier = " + noPanier, myConnection);
-                commandeMAJQuantite.ExecuteNonQuery();
-            }
-            else
-            {
-                String dateCreation = DateTime.Now.ToShortDateString();
-                String values = String.Join(",", noPanier, Session["ID"], NoVendeur, noProduit, dateCreation, nbItems);
-                SqlCommand commandeAjout = new SqlCommand("INSERT INTO PPArticlesEnPanier VALUES (" + values + ")", myConnection);
-                commandeAjout.ExecuteNonQuery();
-            }
-            myConnection.Close();
+                String nbItems = txtQuantite.Text;
+                String noProduit = Request.Params["noproduit"];
+                String noPanier = Session["ID"] + noProduit;
 
-            Response.Redirect("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur);
+                myConnection.Open();
+
+                SqlCommand commandeDejaPresent = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE noPanier = " + noPanier, myConnection);
+                bool dejaPresent = (int)commandeDejaPresent.ExecuteScalar() > 0;
+                if (dejaPresent)
+                {
+                    SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + nbItems + " WHERE NoPanier = " + noPanier, myConnection);
+                    commandeMAJQuantite.ExecuteNonQuery();
+                }
+                else
+                {
+                    String dateCreation = DateTime.Now.ToShortDateString();
+                    String values = String.Join(",", noPanier, Session["ID"], NoVendeur, noProduit, dateCreation, nbItems);
+                    SqlCommand commandeAjout = new SqlCommand("INSERT INTO PPArticlesEnPanier VALUES (" + values + ")", myConnection);
+                    commandeAjout.ExecuteNonQuery();
+                }
+
+                myConnection.Close();
+
+                Response.Redirect("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur);
+            }
         }
 
         protected void btnEnvoyerMessage_Click(object sender, EventArgs e)
@@ -260,6 +265,26 @@ namespace Puces_R
         {
             btnAjouterLaMienne.Visible = false;
             pnlEvaluation.Visible = true;
+        }
+
+        protected void valQuantite_OnServerValidate(object sender, ServerValidateEventArgs e)
+        {
+            short nbDemande;
+            if (short.TryParse(e.Value, out nbDemande))
+            {
+                myConnection.Open();
+
+                SqlCommand commandeNbItems = new SqlCommand("SELECT NombreItems FROM PPProduits WHERE NoProduit = " + Request.Params["noproduit"], myConnection);
+                short nbDisponible = (short)commandeNbItems.ExecuteScalar();
+
+                myConnection.Close();
+
+                e.IsValid = (nbDemande <= nbDisponible);
+            }
+            else
+            {
+                e.IsValid = false;
+            }
         }
     }
 }

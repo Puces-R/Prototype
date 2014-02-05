@@ -73,6 +73,9 @@ namespace Puces_R
                     whereClause += " WHERE DateCreation < '" + datepicker4.Text + "' AND DateCreation > '" + datepicker3.Text + "' ";
                 }
             }
+
+            if (ddlStatut.SelectedValue != "-1")
+                whereClause += (whereClause == "" ? " WHERE " : " AND " ) + "ISNULL(Statut, 0) = " + ddlStatut.SelectedValue + " ";
             
             switch (ddlTrierPar.SelectedIndex)
             {
@@ -87,7 +90,7 @@ namespace Puces_R
                     break;
                 default:
                     orderByClause = "";
-                    break;
+                    break; 
             }
             
             if (Session["err_msg"] != null)
@@ -131,6 +134,10 @@ namespace Puces_R
             rptVendeurs.DataSource = objPds;
             rptVendeurs.DataBind();
 
+            if (tableResultats.Rows.Count == 0)
+                no_result.Visible = true;
+            else no_result.Visible = false;
+
             return tableResultats;
         }
 
@@ -144,6 +151,7 @@ namespace Puces_R
                 Label nom_complet = (Label)item.FindControl("nom_complet");
                 Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
                 Label date_insc = (Label)item.FindControl("date_insc");
+                Button btn_gerer = (Button)item.FindControl("btn_gerer");
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
@@ -151,7 +159,14 @@ namespace Puces_R
                 nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
                 adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
                 date_insc.Text = drvVendeurs["DateCreation"].ToString();
+                btn_gerer.CommandArgument = drvVendeurs["NoVendeur"].ToString();
             }
+        }
+
+        protected void selectionner_vendeur(object sender, CommandEventArgs e)
+        {
+            Session["selected_vendeur"] = e.CommandArgument;
+            Response.Redirect("vendeur.aspx");
         }
 
         protected void rptVendeurs_ItemCommand(object sender, RepeaterCommandEventArgs e)

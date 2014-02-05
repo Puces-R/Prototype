@@ -10,7 +10,16 @@
 namespace Puces_R {
     
     
-    public partial class Connexion {
+    public partial class Default {
+        
+        /// <summary>
+        /// Contrôle MenuInvite1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.Controles.MenuInvite MenuInvite1;
         
         /// <summary>
         /// Contrôle tbCourriel.

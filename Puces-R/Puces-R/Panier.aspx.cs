@@ -35,7 +35,7 @@ namespace Puces_R
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            btnCommander.Visible = !ctrMontantsFactures.PoidsMaxAtteint;
+            btnCommander.Visible = String.IsNullOrEmpty(ctrMontantsFactures.MessageErreur);
         }
 
         private void chargerProduits()
@@ -94,7 +94,7 @@ namespace Puces_R
                 short intQuantite = (short)drvFilm["NbItems"];
                 long noPanier = (long)drvFilm["NoPanier"];
 
-                lblNoProduit.Text = "No. " + noProduit.ToString();
+                lblNoProduit.Text = noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
                 lblCategorie.Text = strCategorie;
                 lblDescriptionAbregee.Text = strDescriptionAbregee;
@@ -107,25 +107,31 @@ namespace Puces_R
 
         protected void rptProduits_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
+            Validate();
+
             TextBox txtQuantite = (TextBox)e.Item.FindControl("txtQuantite");
 
-            myConnection.Open();
+            SqlCommand commandeProduit = null;
 
             if (e.CommandName == "Supprimer" || (e.CommandName == "MAJQuantite" && txtQuantite.Text == "0"))
             {
-                SqlCommand commandeSuppression = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoPanier = " + e.CommandArgument, myConnection);
-                commandeSuppression.ExecuteNonQuery();
+                commandeProduit = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoPanier = " + e.CommandArgument, myConnection);
             }
-            else if (e.CommandName == "MAJQuantite")
+            else if (e.CommandName == "MAJQuantite" && IsValid)
             {
-                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
-                commandeMAJQuantite.ExecuteNonQuery();
+                commandeProduit = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
             }
-                        
-            myConnection.Close();
 
-            chargerProduits();
-            ctrMontantsFactures.CalculerCouts();
+            if (commandeProduit != null)
+            {
+                myConnection.Open();
+                commandeProduit.ExecuteNonQuery();
+                myConnection.Close();
+                chargerProduits();
+            }
+
+            ctrMontantsFactures.MessageErreur = IsValid ? null : "Les quantités sont invalides!";
+            //ctrMontantsFactures.CalculerCouts();
         }
 
         protected void btnViderPanier_OnClick(object sender, EventArgs e)
@@ -138,12 +144,39 @@ namespace Puces_R
             myConnection.Close();
 
             chargerProduits();
-            ctrMontantsFactures.CalculerCouts();
+            //ctrMontantsFactures.CalculerCouts();
         }
 
         protected void btnCommander_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, true);
+            if (IsValid)
+            {
+                Response.Redirect("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, true);
+            }
+        }
+
+        protected void valQuantite_OnServerValidate(object sender, ServerValidateEventArgs e)
+        {
+            short nbDemande;
+            if (short.TryParse(e.Value, out nbDemande))
+            {
+                CustomValidator valQuantite = (CustomValidator)sender;
+                RepeaterItem item = (RepeaterItem)valQuantite.Parent;
+                Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
+                long noProduit = long.Parse(lblNoProduit.Text);
+                myConnection.Open();
+
+                SqlCommand commandeNbItems = new SqlCommand("SELECT NombreItems FROM PPProduits WHERE NoProduit = " + noProduit, myConnection);
+                short nbDisponible = (short)commandeNbItems.ExecuteScalar();
+
+                myConnection.Close();
+
+                e.IsValid = (nbDemande <= nbDisponible);
+            }
+            else
+            {
+                e.IsValid = false;
+            }
         }
     }
 }

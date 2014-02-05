@@ -41,7 +41,7 @@
                             </div>
                             <div class="rectangleItem basRectangle">
                                 <div class="pnlGauche">
-                                    <table class="tableCommande">
+                                    <table class="colonneTitre">
                                         <tr>
                                             <td>No. Commande: </td>
                                             <td>

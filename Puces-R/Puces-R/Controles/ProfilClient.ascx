@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
 <%@ Register TagPrefix="lp" TagName="ChangementMDP" Src="~/Controles/ChangementMDP.ascx" %>
+<%@ Register TagPrefix="se" TagName="Adresse" Src="~/Controles/Adresse.ascx" %>
 
 <h2>Profil</h2>
 <table class="tableProfil">
@@ -20,24 +21,22 @@
         <td>Prénom: </td>
         <td>
             <asp:TextBox ID="txtPrenom" runat="server" />
+            <asp:RequiredFieldValidator runat="server" CssClass="erreur" Text="Le prénom ne peut pas être vide!" ControlToValidate="txtPrenom" />
         </td>
     </tr>
     <tr>
         <td>Nom: </td>
         <td>
             <asp:TextBox ID="txtNom" runat="server" />
+            <asp:RequiredFieldValidator runat="server" CssClass="erreur" Text="Le nom ne peut pas être vide!" ControlToValidate="txtNom" />
         </td>
     </tr>
-    <tr>
-        <td>Rue: </td>
-        <td>
-            <asp:TextBox ID="txtRue" runat="server" />
-        </td>
-    </tr>
+    <se:Adresse ID="txtRue" runat="server" Label="Rue" />
     <tr>
         <td>Ville: </td>
         <td>
             <asp:TextBox ID="txtVille" runat="server" />
+            <asp:RequiredFieldValidator runat="server" CssClass="erreur" Text="La ville ne peut pas être vide!" ControlToValidate="txtVille" />
         </td>
     </tr>
     <tr>
@@ -49,7 +48,7 @@
     <tr>
         <td>Pays: </td>
         <td>
-            <asp:TextBox ID="txtPays" runat="server" />
+            <asp:TextBox ID="txtPays" runat="server" ReadOnly="true" />
         </td>
     </tr>
     <yc:CodePostal ID="ctrCodePostal" runat="server" />

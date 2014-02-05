@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="pnlDroite montantsFactures">
-                                    <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" />
+                                    <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Enabled="false" />
                                 </div>
                             </div>
                         </div>
@@ -71,6 +71,5 @@
                 <div class="messageCentral">Vous n'avez encore jamais effectué de commande!</div>
             </asp:View>
         </asp:MultiView>
-
     </div>
 </asp:Content>

@@ -123,7 +123,8 @@
     text-align: right;    
 }
 
-.lien_boutton {	
+.lien_boutton 
+{	
 	background-color:#000000;
 	border:1px solid #ffffff;
 	color:#ffffff;	
@@ -134,7 +135,8 @@
     width: 275px;
 }
 
-.boutton {	
+.boutton 
+{	
 	background-color:#000000;
 	border:1px solid #ffffff;
 	color:#ffffff;	
@@ -196,12 +198,10 @@ a
     font-weight:bold;
 }
 
-.lienProduitsVendeur
+.info_cellule, .tableProduits td
 {
-    margin-left:10px;
-    font-size:small;
     color: #0052AE;
-    cursor: pointer;
+    text-align: left;
 }
 
 .vendeur
@@ -233,6 +233,11 @@ a
 .tableProduits
 {
     width: 100%;
+}
+
+#no_result
+{
+    display: none;
 }
 
 .boiteListeDeroulante

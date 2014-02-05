@@ -9,7 +9,7 @@
         <td>Sous-Total: </td>
         <td><asp:Label ID="lblSousTotal" runat="server" /></td>
     </tr>
-    <asp:MultiView runat="server" ID="mvPartieBas">
+    <asp:MultiView runat="server" ID="mvPartieBas" ActiveViewIndex="0">
         <asp:View runat="server">
             <tr>
                 <td>
@@ -33,7 +33,7 @@
         <asp:View runat="server">
             <tr>
                 <td colspan="2">
-                    <asp:Label ID="lblPoidsMax" runat="server" Font-Size="Large" ForeColor="Red" />
+                    <asp:Label ID="lblMessageErreur" runat="server" Font-Size="Large" ForeColor="Red" />
                 </td>
             </tr>
         </asp:View>

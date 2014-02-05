@@ -407,7 +407,8 @@ body
 .messageCentral
 {
     font-weight:bold;
-    margin:100px;
+    margin:75px 15px;
     text-align:center;
     font-size:large;
+    color:Red;
 }

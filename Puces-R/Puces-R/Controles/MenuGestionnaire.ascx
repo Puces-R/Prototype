@@ -15,6 +15,6 @@
             <asp:MenuItem Text="Inactivité des Clients" NavigateUrl="../gerer_inactivite_clients.aspx" />
         </asp:MenuItem>
         <asp:MenuItem Text="Statistiques et rapports" NavigateUrl="../visualiser_stats_rapports.aspx" />
-        <asp:MenuItem Text="Déconnecter" NavigateUrl="../Connexion.aspx" />
+        <asp:MenuItem Text="Déconnecter" NavigateUrl="../Default.aspx" />
     </Items>
 </asp:Menu>

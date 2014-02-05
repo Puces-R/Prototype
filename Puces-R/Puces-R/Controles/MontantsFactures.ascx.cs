@@ -18,11 +18,32 @@ namespace Puces_R.Controles
         decimal prixTVQ;
         decimal grandTotal;
 
-        public bool PoidsMaxAtteint
+        public bool Enabled
+        {
+            set
+            {
+                ddlModesLivraison.Enabled = value;
+            }
+        }
+
+        public decimal GrandTotal
         {
             get
             {
-                return (mvPartieBas.ActiveViewIndex == 1);
+                return grandTotal;
+            }
+        }
+
+        public String MessageErreur
+        {
+            get
+            {
+                return lblMessageErreur.Text;
+            }
+            set
+            {
+                mvPartieBas.ActiveViewIndex = (value == null ? 0 : 1);
+                lblMessageErreur.Text = value;
             }
         }
 
@@ -103,7 +124,6 @@ namespace Puces_R.Controles
             if (ViewState["NoCommande"] != null)
             {
                 mvPartieBas.ActiveViewIndex = 0;
-                ddlModesLivraison.Enabled = false;
 
                 myConnection.Open();
 
@@ -154,14 +174,9 @@ namespace Puces_R.Controles
 
                 lecteurVendeur.Close();
 
-                if (poidsTotal <= poidsMax)
+                if (poidsTotal > poidsMax)
                 {
-                    mvPartieBas.ActiveViewIndex = 0;
-                }
-                else
-                {
-                    mvPartieBas.ActiveViewIndex = 1;
-                    lblPoidsMax.Text = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
+                    MessageErreur = "Le poids dépasse le maximum de " + poidsMax + " lbs.";
                 }
                 
                 if (CodeLivraison == 1 && sousTotal >= livraisonGratuite)
@@ -217,10 +232,8 @@ namespace Puces_R.Controles
             ChargerModesDeLivraison();
         }
 
-        public void ViderPanierEtCreerCommande()
+        public void EffectuerTransaction()
         {
-            CalculerCouts();
-
             myConnection.Open();
 
             SqlCommand commandeNoCommande = new SqlCommand("SELECT MAX(NoCommande) FROM PPCommandes", myConnection);
@@ -246,12 +259,13 @@ namespace Puces_R.Controles
 
             commandePaiement.ExecuteNonQuery();
 
+            SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + NoVendeur, myConnection);
+            commandeNbItems.ExecuteNonQuery();
+
             SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + NoVendeur, myConnection);
             commandeViderPanier.ExecuteNonQuery();
 
             myConnection.Close();
-
-            Response.Redirect("CommandesClient.aspx");
         }
     }
 }

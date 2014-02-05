@@ -10,96 +10,69 @@
 namespace Puces_R {
     
     
-    public partial class Commande {
+    public partial class Default {
         
         /// <summary>
-        /// Contrôle ctrMenu.
+        /// Contrôle MenuInvite1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
+        protected global::Puces_R.Controles.MenuInvite MenuInvite1;
         
         /// <summary>
-        /// Contrôle ctrTablePanier.
+        /// Contrôle tbCourriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.TablePanier ctrTablePanier;
+        protected global::System.Web.UI.WebControls.TextBox tbCourriel;
         
         /// <summary>
-        /// Contrôle ctrMontantsFactures.
+        /// Contrôle tbMotPasse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MontantsFactures ctrMontantsFactures;
+        protected global::Puces_R.MotDePasse tbMotPasse;
         
         /// <summary>
-        /// Contrôle ctrProfilClient.
+        /// Contrôle Button1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.ProfilClient ctrProfilClient;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// Contrôle txtNumero.
+        /// Contrôle Button2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumero;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// Contrôle txtDateExpiration.
+        /// Contrôle Button3.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateExpiration;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// Contrôle txtNomCarte.
+        /// Contrôle Button4.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNomCarte;
-        
-        /// <summary>
-        /// Contrôle txtCCV.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCCV;
-        
-        /// <summary>
-        /// Contrôle btnFacturer.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFacturer;
-        
-        /// <summary>
-        /// Contrôle valQuantite.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator valQuantite;
+        protected global::System.Web.UI.WebControls.Button Button4;
     }
 }

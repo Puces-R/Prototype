@@ -26,7 +26,7 @@
                
         <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
             <ItemTemplate>
-                <div class="  boiteDetailsProduit rectangleComplet">
+                <div class="  boiteDetailsProduit rectangleComplet rectangleItem">
 
                 
 

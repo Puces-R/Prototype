@@ -161,12 +161,13 @@ namespace Puces_R
             Response.Write(total);
             String noProduit = "10" + total;
             Int64 numProduit = Convert.ToInt64(noProduit);
-            televerser();
+            String nomImage = televerser();
 
-            SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ",10," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','1000010.jpg'," + tbPrix.Text + "," + tbNbItems.Text + ",1,NULL," + tbPrix.Text + "," + tbPois.Text + "," + "'2007-05-02'," + "NULL)", maConnexion);
+
+            SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ","+Session["ID"]+"," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','1000010.jpg'," + tbPrix.Text + "," + tbNbItems.Text + ",1,NULL," + tbPrix.Text + "," + tbPois.Text + "," + "'2007-05-02'," + "NULL)", maConnexion);
             maCommande1.ExecuteNonQuery();
-            //Response.Write("VALIDATION EST EFFICACE");
             maConnexion.Close();
+            Response.Redirect("GestionProduits.aspx");
         }
 
     }

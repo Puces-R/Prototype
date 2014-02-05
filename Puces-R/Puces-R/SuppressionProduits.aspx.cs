@@ -46,13 +46,13 @@ namespace Puces_R
             {
                 maCommande = new SqlCommand("UPDATE PPProduits SET NombreItems=0,Disponibilité=0 where NoProduit=" + noProduit, maConnexion);
                 maCommande.ExecuteNonQuery();
-                Response.Redirect("Connexion.aspx");
+                Response.Redirect("GestionProduits.aspx");
             }
             else
             {
                 maCommande = new SqlCommand("DELETE FROM PPProduits WHERE NoProduit=" + noProduit, maConnexion);
                 maCommande.ExecuteNonQuery();
-                Response.Redirect("Connexion.aspx");
+                Response.Redirect("GestionProduits.aspx");
             }
 
             maConnexion.Close();
@@ -148,7 +148,7 @@ namespace Puces_R
             }
             else
             {
-                Response.Redirect("http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal");
+                Response.Redirect("Connexion.aspx");
             }
             maConnexion.Close();
         }

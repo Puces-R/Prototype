@@ -17,7 +17,7 @@ namespace Puces_R
            
             if (!int.TryParse(Request.Params["noCommande"], out noCommande))
             {
-                Response.Redirect("Connexion.aspx");
+                Response.Redirect("Default.aspx");
             }
             else
             {
@@ -60,7 +60,7 @@ namespace Puces_R
 
             else
             {
-                Response.Redirect("Connexion.aspx");
+                Response.Redirect("Default.aspx");
             }
             maConnexion.Close();
         }

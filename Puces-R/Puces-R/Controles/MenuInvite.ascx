@@ -8,8 +8,7 @@
     <DynamicHoverStyle ForeColor="#6AC331" />
     <DynamicMenuStyle CssClass="popupMenu" />
     <Items>
-        <asp:MenuItem Text="Accueil" NavigateUrl="~/Accueil.aspx" />
-        <asp:MenuItem Text="Connexion" NavigateUrl="~/Connexion.aspx" />
+        <asp:MenuItem Text="Accueil" NavigateUrl="~/Default.aspx" />
         <asp:MenuItem Text="Inscription" Selectable="false">
             <asp:MenuItem Text="Inscription d'un client" NavigateUrl="~/InscriptionClient.aspx" />
             <asp:MenuItem Text="Inscription d'un vendeur" NavigateUrl="~/InscriptionVendeur.aspx" />

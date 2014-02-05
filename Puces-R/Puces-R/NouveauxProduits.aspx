@@ -36,6 +36,6 @@
         </asp:DataList>
     </div>
     <div>
-        <p>Vous devez <asp:HyperLink runat="server" NavigateUrl="~/InscriptionClient.aspx">vous inscrire</asp:HyperLink> et <asp:HyperLink runat="server" NavigateUrl="~/Connexion.aspx">vous connecter</asp:HyperLink> pour voir tous les produits disponibles et commander</p>
+        <p>Vous devez <asp:HyperLink runat="server" NavigateUrl="~/InscriptionClient.aspx">vous inscrire</asp:HyperLink> et <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">vous connecter</asp:HyperLink> pour voir tous les produits disponibles et commander</p>
     </div>
 </asp:Content>

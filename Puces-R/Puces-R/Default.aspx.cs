@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Puces_R
 {
-    public partial class Connexion : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
         SqlConnection connexion = Librairie.Connexion;
 

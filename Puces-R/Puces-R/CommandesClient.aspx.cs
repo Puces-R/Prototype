@@ -47,32 +47,11 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lblVendeur = (Label)item.FindControl("lblVendeur");
-                Label lblNoCommande = (Label)item.FindControl("lblNoCommande");
-                Label lblDate = (Label)item.FindControl("lblDate");
-                Label lblStatut = (Label)item.FindControl("lblStatut");
-                Label lblNoAutorisation = (Label)item.FindControl("lblNoAutorisation");
-                MontantsFactures ctrMontantsFactures = (MontantsFactures)item.FindControl("ctrMontantsFactures");
+                BoiteCommande ctrCommande = (BoiteCommande)item.FindControl("ctrCommande");
 
                 DataRowView drvCommande = (DataRowView)e.Item.DataItem;
 
-                lblVendeur.Text = (String)drvCommande["NomAffaires"];
-                lblNoCommande.Text = ((long)drvCommande["NoCommande"]).ToString();
-                lblDate.Text = "(" + ((DateTime)drvCommande["DateCommande"]).ToString() + ")";
-
-                switch ((String)drvCommande["Statut"])
-                {
-                    case "p":
-                        lblStatut.Text = "Prêt à livrer";
-                        break;
-                    case "l":
-                        lblStatut.Text = "Livré";
-                        break;
-                }
-
-                lblNoAutorisation.Text = (String)drvCommande["NoAutorisation"];
-                ctrMontantsFactures.NoCommande = (long)drvCommande["NoCommande"];
-                ctrMontantsFactures.ChargerModesDeLivraison();
+                ctrCommande.NoCommande = (long)drvCommande["NoCommande"];
             }
         }
 
@@ -92,7 +71,7 @@ namespace Puces_R
                 whereClause += " AND V.NoVendeur = " + noVendeur;
             }
 
-            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT * FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur" + whereClause + " ORDER BY DateCommande DESC" , myConnection);
+            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT C.NoCommande FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur" + whereClause + " ORDER BY DateCommande DESC" , myConnection);
             DataTable tableCommandes = new DataTable();
             adapteurCommandes.Fill(tableCommandes);
 

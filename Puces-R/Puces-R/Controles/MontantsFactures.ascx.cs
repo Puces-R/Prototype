@@ -11,6 +11,8 @@ namespace Puces_R.Controles
 {
     public partial class MontantsFactures : System.Web.UI.UserControl
     {
+        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
         decimal sousTotal;
         decimal poidsTotal;
         decimal prixLivraison;
@@ -75,50 +77,28 @@ namespace Puces_R.Controles
         {
             get
             {
-                if (ViewState["CodeLivraison"] == null)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return (short)ViewState["CodeLivraison"];
-                }
+                return short.Parse(ddlModesLivraison.SelectedValue);
             }
             set
             {
-                ViewState["CodeLivraison"] = value;
+                ddlModesLivraison.SelectedValue = value.ToString();
             }
         }
 
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
-
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void OnPreRender(EventArgs e)
         {
+            base.OnPreRender(e);
+
             if (!IsPostBack)
             {
-                ChargerModesDeLivraison();
-            }
-        }
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
+                DataTable tableCategories = new DataTable();
+                adapteurCategories.Fill(tableCategories);
 
-        public void ChargerModesDeLivraison()
-        {
-            SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
-            DataTable tableCategories = new DataTable();
-            adapteurCategories.Fill(tableCategories);
-
-            ddlModesLivraison.DataSource = tableCategories;
-            ddlModesLivraison.DataTextField = "Description";
-            ddlModesLivraison.DataValueField = "CodeLivraison";
-            ddlModesLivraison.DataBind();
-
-            CalculerCouts();
-        }
-
-        public void CalculerCouts()
-        {
-            if (Session["ID"] == null)
-            {
-                Response.Redirect("Default.aspx", true);
+                ddlModesLivraison.DataSource = tableCategories;
+                ddlModesLivraison.DataTextField = "Description";
+                ddlModesLivraison.DataValueField = "CodeLivraison";
+                ddlModesLivraison.DataBind();
             }
 
             if (ViewState["NoCommande"] != null)
@@ -220,16 +200,8 @@ namespace Puces_R.Controles
             lblTPS.Text = prixTPS.ToString("C");
             lblTVQ.Text = prixTVQ.ToString("C");
             lblGrandTotal.Text = grandTotal.ToString("C");
-
-            ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
-
+            
             myConnection.Close();
-        }
-
-        protected void ddlModesLivraison_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            CodeLivraison = short.Parse(ddlModesLivraison.SelectedValue);
-            ChargerModesDeLivraison();
         }
 
         public void EffectuerTransaction()

@@ -46,7 +46,7 @@ namespace Puces_R
                     pnlMontantsFactures.Visible = true;
                     ctrMontantsFactures.NoVendeur = noVendeur;
                     ctrMontantsFactures.CodeLivraison = codeLivraison;
-                    ctrMontantsFactures.ChargerModesDeLivraison();
+                    //ctrMontantsFactures.ChargerModesDeLivraison();
                     break;
             }
 

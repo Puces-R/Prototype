@@ -22,15 +22,6 @@ namespace Puces_R {
         protected global::Puces_R.Controles.MenuGestionnaire MenuGestionnaire1;
         
         /// <summary>
-        /// Contrôle lb_vendeur.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lb_vendeur;
-        
-        /// <summary>
         /// Contrôle mvVendeur.
         /// </summary>
         /// <remarks>
@@ -200,6 +191,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// Contrôle Label3.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// Contrôle View3.

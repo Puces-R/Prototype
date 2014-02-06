@@ -73,7 +73,7 @@
                                 <asp:ListItem Text="Actif" Value="0" />
                                 <asp:ListItem Text="Innactifs" Value="1" />
                                 <asp:ListItem Text="En attente d'approbation" Value="2" />
-                                <asp:ListItem Text="En retard de payement" Value="3" />
+                                <asp:ListItem Text="En retard de paiement" Value="3" />
                             </asp:DropDownList><br />
                         </td></tr>
 

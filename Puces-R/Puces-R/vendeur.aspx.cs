@@ -77,7 +77,7 @@ namespace Puces_R
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
                 lbl_livraison_gratuite.Text = "$" + results["LivraisonGratuite"].ToString();
-                lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
+                //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
 
                 ((SiteMaster)Master).Titre = results["NomAffaires"].ToString();
 

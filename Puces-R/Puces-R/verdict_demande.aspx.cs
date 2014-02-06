@@ -29,6 +29,7 @@ namespace Puces_R
                 }
 
             if (!IsPostBack)
+            {
                 if (Session["acceptation_vendeur"] != null)
                 {
                     if (Session["acceptation_vendeur"].ToString() != "")
@@ -51,6 +52,7 @@ namespace Puces_R
                     }
                     else Response.Redirect("Connexion.aspx");
                 }
+            }
 
             myConnection.Open();
             SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs WHERE NoVendeur = " + no_vendeur, myConnection);

@@ -291,3 +291,16 @@ a
 {
 	
 }
+
+#targetchart {
+    width: 500px;
+    height: 375px;
+    padding: 4px;
+    border: 1px solid #dddddd;
+    background: #eeeeee
+}
+
+#targetchart h3 {
+    text-align: center;
+    margin: 0;  
+}

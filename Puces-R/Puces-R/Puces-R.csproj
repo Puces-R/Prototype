@@ -39,6 +39,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -60,6 +61,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
+    <Content Include="BonCommande.aspx" />
     <Content Include="ChoixDestinataires.aspx" />
     <Content Include="CommandesClient.aspx" />
     <Content Include="Controles\Adresse.ascx" />
@@ -144,13 +146,15 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
+    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="ResultatPaiement.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="SuppressionProduits.aspx" />
+    <Content Include="vendeur.aspx" />
+    <Content Include="verdict_demande.aspx" />
     <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
@@ -217,6 +221,13 @@
     </Compile>
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BonCommande.aspx.cs">
+      <DependentUpon>BonCommande.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BonCommande.aspx.designer.cs">
+      <DependentUpon>BonCommande.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChoixDestinataires.aspx.cs">
       <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
@@ -602,6 +613,20 @@
     </Compile>
     <Compile Include="SuppressionProduits.aspx.designer.cs">
       <DependentUpon>SuppressionProduits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vendeur.aspx.cs">
+      <DependentUpon>vendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vendeur.aspx.designer.cs">
+      <DependentUpon>vendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verdict_demande.aspx.cs">
+      <DependentUpon>verdict_demande.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verdict_demande.aspx.designer.cs">
+      <DependentUpon>verdict_demande.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoirMessage.aspx.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>

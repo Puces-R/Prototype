@@ -50,6 +50,8 @@ namespace Puces_R
         {
             if (Page.IsValid)
             {
+                ctrMontantsFactures.CalculerCout();
+
                 ctrProfilClient.Sauvegarder();
                 
                 long noVendeur = ctrMontantsFactures.NoVendeur;

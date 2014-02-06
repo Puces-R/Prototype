@@ -94,7 +94,11 @@ namespace Puces_R.Controles
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
+            CalculerCout();
+        }
 
+        public void CalculerCout()
+        {
             SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
             DataTable tableCategories = new DataTable();
             adapteurCategories.Fill(tableCategories);

@@ -30,7 +30,7 @@
                 <tr>
                     <td>Numéro: </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtNumero" MaxLength="16" TextMode="Number" Columns="16" />
+                        <asp:TextBox runat="server" ID="txtNumero" MaxLength="16" Columns="16" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumero" Text="Le numéro ne peut pas être vide!" CssClass="erreur" Display="Dynamic" />
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumero" ValidationExpression="^\d{16}$" Text="Le numéro doit être composé de 16 chiffres!" CssClass="erreur" Display="Dynamic" />
                     </td>
@@ -75,7 +75,7 @@
                 <tr>
                     <td>CCV: </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtCCV" MaxLength="3" TextMode="Number" Columns="3" />
+                        <asp:TextBox runat="server" ID="txtCCV" MaxLength="3" Columns="3" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCCV" Text="Le numéro de sécurité doit être spécifié!" CssClass="erreur" Display="Dynamic" />
                     </td>
                 </tr>

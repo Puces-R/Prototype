@@ -20,7 +20,7 @@
                                 Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" />
                             </div>
                             <div>
-                                <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
+                                <asp:PlaceHolder runat="server" ID="menu" />
                             </div>
                         </div>
                     </div>

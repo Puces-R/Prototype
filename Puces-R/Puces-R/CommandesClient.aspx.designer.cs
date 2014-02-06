@@ -13,15 +13,6 @@ namespace Puces_R {
     public partial class CommandesClient {
         
         /// <summary>
-        /// Contrôle ctrMenu.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuClient ctrMenu;
-        
-        /// <summary>
         /// Contrôle ddlParPage.
         /// </summary>
         /// <remarks>

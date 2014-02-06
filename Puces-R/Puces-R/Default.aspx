@@ -1,12 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Puces_R.Default" %>
 
-<%@ Register TagPrefix="lp" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
 <%@ Register TagPrefix="lp" TagName="Categories" Src="~/Controles/Categories.ascx" %>
 <%@ Register TagName="MotDePasse" TagPrefix="yc" Src="~/Controles/MotDePasse.ascx" %>
-
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuInvite ID="MenuInvite1" runat="server" />
-</asp:Content>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />

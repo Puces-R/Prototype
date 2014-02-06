@@ -1,10 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"
     MasterPageFile="~/Site.Master" %>
 
-<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuInvite runat="server" />
-</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
@@ -62,21 +58,6 @@
             font-size: 0.75em;
         }
     </style>
-    <!--script type="text/javascript">
-        function checkAll(checkbox) {
-            var idCB = checkbox.id;
-            var idSeparate = idCB.split('_');
-            idSeparate.pop();
-            var id = idSeparate.join('_');
-
-            for (var i = 0; i < document.getElementById(id + '_Liste').childNodes.length; i++) {
-                var cb = document.getElementById(id + '_ctl' + (i < 10 ? '0' : '') + i + '_cb');
-                if (cb != null) {
-                    cb.checked = checkbox.checked;
-                }
-            }
-        }
-    </script-->
     <div>
         <div>
             <div style="float: left;">

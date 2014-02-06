@@ -52,7 +52,7 @@ namespace Puces_R
             }
 
             this.NoVendeur = noVendeur;
-            ctrMenu.NoVendeur = noVendeur;
+            //ctrMenu.NoVendeur = noVendeur;
             ctrMontantsFactures.NoVendeur = noVendeur;
             ((SiteMaster)Master).NoVendeur = noVendeur;
 

@@ -13,15 +13,6 @@ namespace Puces_R.Controles {
     public partial class NouveauxProduits {
         
         /// <summary>
-        /// Contrôle ctrMenu.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuInvite ctrMenu;
-        
-        /// <summary>
         /// Contrôle dtlProduits.
         /// </summary>
         /// <remarks>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Text;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
@@ -32,7 +33,7 @@ namespace Puces_R
                 }
                 
                 ((SiteMaster)Master).NoVendeur = noVendeur;
-                ctrMenu.NoVendeur = noVendeur;
+                ((MenuClient)((SiteMaster)Master).Menu).NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];

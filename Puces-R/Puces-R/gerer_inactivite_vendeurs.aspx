@@ -1,11 +1,5 @@
 ﻿<%@ Page Title="Gérer l'inactivité des vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="gerer_inactivite_vendeurs.aspx.cs" Inherits="Puces_R.gerer_inactivite_vendeurs" EnableEventValidation="false"%>
 
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
-
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/site.css" />

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
@@ -137,7 +138,7 @@ namespace Puces_R
             {
                 if (noVendeur != -1)
                 {
-                    ctrMenu.NoVendeur = noVendeur;
+                    ((MenuClient)(((SiteMaster)Master.Master).Menu)).NoVendeur = noVendeur;
                 }
             }
 

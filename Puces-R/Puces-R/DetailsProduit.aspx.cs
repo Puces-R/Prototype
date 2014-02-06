@@ -88,14 +88,13 @@ namespace Puces_R
                 }
                 this.lblPrixEnVente.Text = decPrixVente.ToString("C");
 
-
                 this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
                 ((SiteMaster)Master).Titre = (String)lecteurProduit["NomAffaires"];
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
 
-                ctrMenu.NoVendeur = NoVendeur;
+                ((MenuClient)((SiteMaster)Master).Menu).NoVendeur = NoVendeur;
 
                 object dateMAJ = lecteurProduit["DateMAJ"];
                 if (dateMAJ is DBNull)

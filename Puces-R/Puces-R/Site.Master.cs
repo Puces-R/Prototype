@@ -21,6 +21,38 @@ namespace Puces_R
             }
         }
 
+        public Control Menu
+        {
+            get
+            {
+                if (menu.Controls.Count == 0)
+                {
+                    if (Session["Type"] != null)
+                    {
+                        switch ((char)Session["Type"])
+                        {
+                            case 'C':
+                                menu.Controls.Add(LoadControl("~/Controles/MenuClient.ascx"));
+                                break;
+                            case 'V':
+                                menu.Controls.Add(LoadControl("~/Controles/MenuVendeur.ascx"));
+                                break;
+                            case 'G':
+                                menu.Controls.Add(LoadControl("~/Controles/MenuGestionnaire.ascx"));
+                                break;
+                            default:
+                                throw new InvalidOperationException();
+                        }
+                    }
+                    else
+                    {
+                        menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
+                    }
+                }
+                return menu.Controls[0];
+            }
+        }
+
         public long NoVendeur
         {
             set
@@ -37,6 +69,31 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (menu.Controls.Count == 0)
+            {
+                if (Session["Type"] != null)
+                {
+                    switch ((char)Session["Type"])
+                    {
+                        case 'C':
+                            menu.Controls.Add(LoadControl("~/Controles/MenuClient.ascx"));
+                            break;
+                        case 'V':
+                            menu.Controls.Add(LoadControl("~/Controles/MenuVendeur.ascx"));
+                            break;
+                        case 'G':
+                            menu.Controls.Add(LoadControl("~/Controles/MenuGestionnaire.ascx"));
+                            break;
+                        default:
+                            throw new InvalidOperationException();
+                    }
+                }
+                else
+                {
+                    menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
+                }
+            }
+
             if (!IsPostBack)
             {
                 if (Session["Type"] != null)

@@ -2,11 +2,6 @@
     CodeBehind="gerer_vendeurs.aspx.cs" Inherits="Puces_R.gerer_vendeurs" EnableEventValidation="false" %>
 
 <%@ Register TagPrefix="lp" TagName="NavigationParPage" Src="~/Controles/NavigationParPage.ascx" %>
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 

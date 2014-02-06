@@ -93,6 +93,7 @@
     <Content Include="CSS\Commande.css" />
     <Content Include="CSS\DetailsProduit.css" />
     <Content Include="CSS\GestionCommandesVendeur.css" />
+    <Content Include="CSS\InsertionProduits.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
     <Content Include="CSS\Site.css" />
@@ -138,7 +139,6 @@
     <Content Include="ModificationProduits.aspx" />
     <Content Include="ModifierMotPasse.aspx" />
     <Content Include="NouveauxProduits.aspx" />
-    <Content Include="PageTest.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
@@ -151,7 +151,6 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="SuppressionProduits.aspx" />
-    <Content Include="TestPopUp.aspx" />
     <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
@@ -546,13 +545,6 @@
     <Compile Include="NouveauxProduits.aspx.designer.cs">
       <DependentUpon>NouveauxProduits.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PageTest.aspx.cs">
-      <DependentUpon>PageTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PageTest.aspx.designer.cs">
-      <DependentUpon>PageTest.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -610,13 +602,6 @@
     </Compile>
     <Compile Include="SuppressionProduits.aspx.designer.cs">
       <DependentUpon>SuppressionProduits.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TestPopUp.aspx.cs">
-      <DependentUpon>TestPopUp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestPopUp.aspx.designer.cs">
-      <DependentUpon>TestPopUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoirMessage.aspx.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>

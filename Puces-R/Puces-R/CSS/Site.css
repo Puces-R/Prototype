@@ -428,3 +428,24 @@ body
 {
     font-size:x-small !important;
 }
+
+.rectangleCommande .basRectangle
+{
+    font-size:small !important;
+    position:relative;
+}
+
+.statutLivraison
+{
+    left:10px;
+    bottom:10px;
+    position:absolute;
+    font-size:large;
+}
+
+.boutonCommande
+{
+    clear:both;
+    text-align:right;
+    padding-top:5px;
+}

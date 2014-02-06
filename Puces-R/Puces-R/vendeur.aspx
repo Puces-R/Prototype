@@ -18,8 +18,13 @@
             <ul>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="0" Text="Informations" ToolTip="Afficher les informations de ce vendeur" /></li>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="1" Text="Statistiques" ToolTip="Afficher les statistiques de ce vendeur" /></li>
-                <li><asp:LinkButton id="lb_vendeur" runat="server" OnCommand="selectionner_vendeur" Text="Historique de payement" ToolTip="Voir l'historique de payements de ce vendeur" /></li>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="2" Text="Actions" ToolTip="Afficher les actions que vous pouvez appliquer à ce vendeur" /></li>
+            </ul>
+            <h2>Actions</h2>
+            <ul>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="0" Text="Envoyer un message interne à ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="1" Text="Envoyer un courriel a ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="selectionner_vendeur" Text="Désactiver ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="2" Text="Gérer les payements de ce vendeurs" ToolTip="" /></li>
             </ul>
         </div>
         <div class="panneau pnlDroite">

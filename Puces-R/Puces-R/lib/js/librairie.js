@@ -10,22 +10,22 @@
       function attacheBalise(objBalise, strIDAttache_objAttache) {
          if (typeof(strIDAttache_objAttache) == 'string') {
             if (strIDAttache_objAttache == '') {
-               /* Attachement à la balise BODY */
+               /* Attachement Ã  la balise BODY */
                document.body.appendChild(objBalise);
             }
             else {
-               /* Attachement à la balise spécifiée sous forme de chaîne */
+               /* Attachement Ã  la balise spÃ©cifiÃ©e sous forme de chaÃ®ne */
                objetBalise(strIDAttache_objAttache).appendChild(objBalise);
             }
          }
          else {
-            /* Attachement à la balise spécifiée sous forme d'objet */
+            /* Attachement Ã  la balise spÃ©cifiÃ©e sous forme d'objet */
             strIDAttache_objAttache.appendChild(objBalise);
          }
       }
       /*
       |-------------------------------------------------------------------------------------|
-      | afficheOuMasqueBalise (02-aoû-2011)
+      | afficheOuMasqueBalise (02-aoÃ»-2011)
       |-------------------------------------------------------------------------------------|
       */
       function afficheOuMasqueBalise(strIDBalise_objBalise, binVisible) {
@@ -65,45 +65,45 @@
       |----------------------------------------------------------------------------------------|
       */
       function formDYN(strID, strIDAttache_objAttache, strMETHOD, strACTION, strCLASS, binVisible) {
-         /* Création d'une instance de la balise */
+         /* CrÃ©ation d'une instance de la balise */
          var objFORM = document.createElement('form');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objFORM) {
-            /* Assignation d'un ID à la balise */
+            /* Assignation d'un ID Ã  la balise */
             id = strID;
-            /* Assignation de la méthode, si applicable */
+            /* Assignation de la mÃ©thode, si applicable */
             if (strMETHOD != null && (strMETHOD =='get' || strMETHOD == 'post')) {
                method = strMETHOD;
             }
-            /* Assignation de l'action rattachée, si applicable */
+            /* Assignation de l'action rattachÃ©e, si applicable */
             if (strACTION != null && strACTION != '') {
                action = strACTION;
             }
-            /* Assignation d'un style à la balise, si applicable */
+            /* Assignation d'un style Ã  la balise, si applicable */
             if (strCLASS != null && strCLASS != '') {
                className = strCLASS;
             }
          }
-         /* Attachement de la balise enfant à la balise parent */
+         /* Attachement de la balise enfant Ã  la balise parent */
          attacheBalise(objFORM, strIDAttache_objAttache);
-         /* Affichage ou masquage de la balise nouvellement créée, si applicable */
+         /* Affichage ou masquage de la balise nouvellement crÃ©Ã©e, si applicable */
          if (binVisible != null) {
             afficheOuMasqueBalise(strID, binVisible);
          }
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objFORM);
          } 
 
 	 /*
       |----------------------------------------------------------------------------------------|
-      | Ajout des fonctions crées dams la serie 2 Vendredi 1 Fervrier 2013
+      | Ajout des fonctions crÃ©es dams la serie 2 Vendredi 1 Fervrier 2013
       |----------------------------------------------------------------------------------------|
       */
     function hiddenDYN(strID, strIDAttache_objAttache, strValeur)
 	{
-		/* Création d'une instance de la balise */
+		/* CrÃ©ation d'une instance de la balise */
          var objHIDDEN = document.createElement('input');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objHIDDEN) {
             /* Assignation d'un ID et d'un name  la balise */
             id = strID;
@@ -117,15 +117,15 @@
          }
          /* Attachement de la balise enfant a la balise parent */
          attacheBalise(objHIDDEN, strIDAttache_objAttache);         
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objHIDDEN);
 	}
 	
 	function divDYN(strID, strIDAttache_objAttache, strCLASS, binVisible)
 	{
-		/* Création d'une instance de la balise */
+		/* CrÃ©ation d'une instance de la balise */
          var objDIV = document.createElement('div');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objDIV) {            
             id = strID;
 			if (strCLASS != null) {
@@ -138,17 +138,17 @@
          if (binVisible != null) {
             afficheOuMasqueBalise(strID, binVisible);
          }		 
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objDIV);
 	}
 	
 	function pDYN(strID, strIDAttache_objAttache, strCLASS, binVisible, strContenu)
 	{
-		 /* Création d'une instance de la balise */
+		 /* CrÃ©ation d'une instance de la balise */
          var objP = document.createElement('p');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objP) {
-            /* Assignation d'un ID à la balise */
+            /* Assignation d'un ID Ã  la balise */
             id = strID;
             /* Assignation du contenu, si applicable */
             if (strContenu != null) {
@@ -159,13 +159,13 @@
 				className = strCLASS;
 			}
          }
-         /* Attachement de la balise enfant à la balise parent */
+         /* Attachement de la balise enfant Ã  la balise parent */
          attacheBalise(objP, strIDAttache_objAttache);
-         /* Affichage ou masquage de la balise nouvellement créée, si applicable */
+         /* Affichage ou masquage de la balise nouvellement crÃ©Ã©e, si applicable */
          if (binVisible != null) {
             afficheOuMasqueBalise(strID, binVisible);
          }
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objP);
 	}
 	
@@ -184,15 +184,15 @@
 	}
 
 	function spanDYN(strID, strIDAttache_objAttache, strCLASS, binVisible, strContenu) {
-	   /* Création d'une instance de la balise */
+	   /* CrÃ©ation d'une instance de la balise */
 	   var objSPAN = document.createElement('span');
-	   /* Assignation des différents attributs */
+	   /* Assignation des diffÃ©rents attributs */
 	   with (objSPAN) {
-		  /* Assignation d'un ID à la balise, si applicable */
+		  /* Assignation d'un ID Ã  la balise, si applicable */
 		  if (strID != '') {
 			 id = strID;
 		  }
-		  /* Assignation d'un style à la balise, si applicable */
+		  /* Assignation d'un style Ã  la balise, si applicable */
 		  if (strCLASS != null && strCLASS != '') {
 			 className = strCLASS;
 		  }
@@ -201,25 +201,25 @@
 			 innerHTML = strContenu;
 		  }
 	   }
-	   /* Attachement de la balise enfant à la balise parent */
+	   /* Attachement de la balise enfant Ã  la balise parent */
 	   attacheBalise(objSPAN, strIDAttache_objAttache);
-	   /* Affichage ou masquage de la balise nouvellement créée;
-		  Le test varie parce que afficheOuMasqueBalise ne peut être appelée si ID est vide! */
+	   /* Affichage ou masquage de la balise nouvellement crÃ©Ã©e;
+		  Le test varie parce que afficheOuMasqueBalise ne peut Ãªtre appelÃ©e si ID est vide! */
 	   if (binVisible != null && strID != '') {
 		  afficheOuMasqueBalise(strID, binVisible);
 	   }
-	   /* Retour d'une référence sur l'instance de la balise */
+	   /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
 	   return(objSPAN);
 	}
 
 	function labelDYN(strIDAttache_objAttache, strContenu) {
-	   /* Création d'une instance de la balise */
+	   /* CrÃ©ation d'une instance de la balise */
 	   var objLABEL = document.createElement('label');
 	   /* Assignation d'un contenu */
 	   objLABEL.innerHTML = strContenu;
-	   /* Attachement de la balise enfant à la balise parent */
+	   /* Attachement de la balise enfant Ã  la balise parent */
 	   attacheBalise(objLABEL, strIDAttache_objAttache);
-	   /* Retour d'une référence sur l'instance de la balise (même si ne représente aucun intérêt !) */
+	   /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise (mÃªme si ne reprÃ©sente aucun intÃ©rÃªt !) */
 	   return(objLABEL);
 	}
 	
@@ -230,24 +230,24 @@
 	}
 	
 	function selectDYN(strID, strIDAttache_objAttache, strCLASS, onChange, binVisible) {
-	   /* Création d'une instance de la balise */
+	   /* CrÃ©ation d'une instance de la balise */
 	   var objSELECT = document.createElement('select');
-	   /* Assignation des différents attributs */
+	   /* Assignation des diffÃ©rents attributs */
 	   with (objSELECT) {
-		  /* Assignation d'un ID à la balise, si applicable */
+		  /* Assignation d'un ID Ã  la balise, si applicable */
 		  if (strID != '') {
 			 id = strID;
 			 name = strID;
 		  }
-		  /* Assignation d'un style à la balise, si applicable */
+		  /* Assignation d'un style Ã  la balise, si applicable */
 		  if (strCLASS != null && strCLASS != '') {
 			 className = strCLASS;
 		  }
 	   }
-	   /* Attachement de la balise enfant à la balise parent */
+	   /* Attachement de la balise enfant Ã  la balise parent */
 	   attacheBalise(objSELECT, strIDAttache_objAttache);
-	   /* Affichage ou masquage de la balise nouvellement créée;
-		  Le test varie parce que afficheOuMasqueBalise ne peut être appelée si ID est vide! */
+	   /* Affichage ou masquage de la balise nouvellement crÃ©Ã©e;
+		  Le test varie parce que afficheOuMasqueBalise ne peut Ãªtre appelÃ©e si ID est vide! */
 	   if (binVisible != null && strID != '') {
 		  afficheOuMasqueBalise(strID, binVisible);
 	   }	   
@@ -256,14 +256,14 @@
 			onchange = function() {onChange(objSELECT);};
 	   }
 	   
-	   /* Retour d'une référence sur l'instance de la balise */
+	   /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
 	   return(objSELECT);
 	}
 	
 	function optionDYN(strIDAttache_objAttache, strValue, strContenu) {
-	   /* Création d'une instance de la balise */
+	   /* CrÃ©ation d'une instance de la balise */
 	   var objOPTION = document.createElement('option');
-	   /* Assignation des différents attributs */
+	   /* Assignation des diffÃ©rents attributs */
 	   
 	   with (objOPTION) {		 
 		   /* Assignation de la valeur, si applicable */
@@ -277,39 +277,39 @@
 		  }
 	   }
 	   
-	   /* Attachement de la balise enfant à la balise parent */
+	   /* Attachement de la balise enfant Ã  la balise parent */
 	   //attacheBalise(objOPTION, strIDAttache_objAttache);			
 		objSELECT = retourneObjet(strIDAttache_objAttache);
 		objSELECT.options.add(objOPTION);
 	   	  
-	   /* Retour d'une référence sur l'instance de la balise */
+	   /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
 	   return(objOPTION);
 	}
 	
 	/*
 |----------------------------------------------------------------------------------------|
-| buttonDYN (07-jul-2011; 14-jan-2012; 15-fév-2013)
+| buttonDYN (07-jul-2011; 14-jan-2012; 15-fÃ©v-2013)
 |----------------------------------------------------------------------------------------|
 */
 function buttonDYN(strID, strIDAttache_objAttache, strCLASS, strVALUE, binActif, binVisible, fonctionOnClick) {
-   /* Création d'une instance de la balise */
+   /* CrÃ©ation d'une instance de la balise */
    var objINPUT = document.createElement('input');
-   /* Assignation des différents attributs */
+   /* Assignation des diffÃ©rents attributs */
    with (objINPUT) {
-      /* Assignation d'un ID et d'un NAME à la balise, si applicable */
+      /* Assignation d'un ID et d'un NAME Ã  la balise, si applicable */
       if (strID != '') {
          id = strID;
          name = strID;
       }
-      /* Définition du type de balise INPUT */
+      /* DÃ©finition du type de balise INPUT */
       type = 'button';
-      /* Assignation d'un style à la balise, si applicable (ne peut être null, puisque value est exigé) */
+      /* Assignation d'un style Ã  la balise, si applicable (ne peut Ãªtre null, puisque value est exigÃ©) */
       if (strCLASS != '') {
          className = strCLASS;
       }
-      /* Assignation d'une valeur à la balise */
+      /* Assignation d'une valeur Ã  la balise */
       value = strVALUE;
-      /* Activation ou désactivation du bouton */
+      /* Activation ou dÃ©sactivation du bouton */
       if (binActif != null) {
          disabled = !binActif;
       }
@@ -318,37 +318,37 @@ function buttonDYN(strID, strIDAttache_objAttache, strCLASS, strVALUE, binActif,
          onclick = function() { fonctionOnClick(this); }
       }
    }
-   /* Attachement de la balise enfant à la balise parent */
+   /* Attachement de la balise enfant Ã  la balise parent */
    attacheBalise(objINPUT, strIDAttache_objAttache);
-   /* Affichage ou masquage de la balise nouvellement créée;
-      Le test varie parce que afficheOuMasqueBalise ne peut être appelée si ID est vide! */
+   /* Affichage ou masquage de la balise nouvellement crÃ©Ã©e;
+      Le test varie parce que afficheOuMasqueBalise ne peut Ãªtre appelÃ©e si ID est vide! */
    if (binVisible != null && strID != '') {
       afficheOuMasqueBalise(strID, binVisible);
    }
-   /* Retour d'une référence sur l'instance de la balise */
+   /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
    return(objINPUT);
 }
 
 /*
 |----------------------------------------------------------------------------------------|
-| inputDYN (11-jul-2011; 20-jan-2012; 15-fév-2013)
+| inputDYN (11-jul-2011; 20-jan-2012; 15-fÃ©v-2013)
 |----------------------------------------------------------------------------------------|
 */
 function inputDYN(strID, strIDAttache_objAttache, strCLASS, strVALUE, strTYPE, strMAXLENGTH, binActif, intSIZE, binVisible) {
-   /* Création d'une instance de la balise */
+   /* CrÃ©ation d'une instance de la balise */
    var objINPUT = document.createElement('input');
-   /* Assignation des différents attributs */
+   /* Assignation des diffÃ©rents attributs */
    with (objINPUT) {
-      /* Assignation d'un ID et d'une NAME à la balise */
+      /* Assignation d'un ID et d'une NAME Ã  la balise */
       id = strID;
       name = strID;
-      /* Définition du type de balise INPUT */
+      /* DÃ©finition du type de balise INPUT */
       type = 'text';
-      /* Assignation d'un style à la balise, si applicable */
+      /* Assignation d'un style Ã  la balise, si applicable */
       if (strCLASS != null && strCLASS != '') {
          className = strCLASS;
       }
-      /* Assignation d'une valeur à la balise, si applicable */
+      /* Assignation d'une valeur Ã  la balise, si applicable */
       if (strVALUE != null && strVALUE != '') {
          value = strVALUE;
       }
@@ -356,7 +356,7 @@ function inputDYN(strID, strIDAttache_objAttache, strCLASS, strVALUE, strTYPE, s
       if (strMAXLENGTH != '') {
          maxLength = strMAXLENGTH;
       }
-      /* Activation ou désactivation du bouton */
+      /* Activation ou dÃ©sactivation du bouton */
       if (binActif != null) {
          disabled = !binActif;
       }
@@ -369,22 +369,22 @@ function inputDYN(strID, strIDAttache_objAttache, strCLASS, strVALUE, strTYPE, s
          type = strTYPE;
       }
    }
-   /* Attachement de la balise enfant à la balise parent */
+   /* Attachement de la balise enfant Ã  la balise parent */
    attacheBalise(objINPUT, strIDAttache_objAttache);
-   /* Affichage ou masquage de la balise nouvellement créée;
-      Le test varie parce que afficheOuMasqueBalise ne peut être appelée si ID est vide! */
+   /* Affichage ou masquage de la balise nouvellement crÃ©Ã©e;
+      Le test varie parce que afficheOuMasqueBalise ne peut Ãªtre appelÃ©e si ID est vide! */
    if (binVisible != null && strID != '') {
       afficheOuMasqueBalise(strID, binVisible);
    }
-   /* Retour d'une référence sur l'instance de la balise */
+   /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
    return(objINPUT);
 }
 
 	function imgDYN(strID, strIDAttache_objAttache, strCLASS, strURL, intHeight, intWidth, binVisible)
 	{
-		/* Création d'une instance de la balise */
+		/* CrÃ©ation d'une instance de la balise */
          var objIMG = document.createElement('img');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objIMG) {            
             id = strID;
 			if (strCLASS != null) {
@@ -400,15 +400,15 @@ function inputDYN(strID, strIDAttache_objAttache, strCLASS, strVALUE, strTYPE, s
          if (binVisible != null) {
             afficheOuMasqueBalise(strID, binVisible);
          }		 
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objIMG);
 	}
 
 function tableDYN(strID, strIDAttache_objAttache, strCLASS, intBORDER, binVisible)
 {
-	/* Création d'une instance de la balise */
+	/* CrÃ©ation d'une instance de la balise */
 	 var objTABLE = document.createElement('table');
-	 /* Assignation des différents attributs */
+	 /* Assignation des diffÃ©rents attributs */
 	 with (objTABLE) {            
 		id = strID;
 		if (strCLASS != null) {
@@ -425,15 +425,15 @@ function tableDYN(strID, strIDAttache_objAttache, strCLASS, intBORDER, binVisibl
 	 if (binVisible != null) {
 		afficheOuMasqueBalise(strID, binVisible);
 	 }		 
-	 /* Retour d'une référence sur l'instance de la balise */
+	 /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
 	 return(objTABLE);
 }
 
 function trDYN(strID, strIDAttache_objAttache, strCLASS, binVisible)
 	{
-		/* Création d'une instance de la balise */
+		/* CrÃ©ation d'une instance de la balise */
          var objTR = document.createElement('tr');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objTR) {            
             id = strID;
 			if (strCLASS != null) {
@@ -446,15 +446,15 @@ function trDYN(strID, strIDAttache_objAttache, strCLASS, binVisible)
          if (binVisible != null) {
             afficheOuMasqueBalise(strID, binVisible);
          }		 
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objTR);
 	}
 	
 	function tdDYN(strID, strIDAttache_objAttache, strCLASS, strContenu, binVisible)
 	{
-		/* Création d'une instance de la balise */
+		/* CrÃ©ation d'une instance de la balise */
          var objTD = document.createElement('td');
-         /* Assignation des différents attributs */
+         /* Assignation des diffÃ©rents attributs */
          with (objTD) {            
             id = strID;
 			if (strCLASS != null) {
@@ -471,21 +471,21 @@ function trDYN(strID, strIDAttache_objAttache, strCLASS, binVisible)
          if (binVisible != null) {
             afficheOuMasqueBalise(strID, binVisible);
          }		 
-         /* Retour d'une référence sur l'instance de la balise */
+         /* Retour d'une rÃ©fÃ©rence sur l'instance de la balise */
          return(objTD);
 	}
 	
 	
 /*
 |--------------------------------------------------------------------------------------------------------------|
-| b (04-aoû-2009; 28-mai-2011)
+| b (04-aoÃ»-2009; 28-mai-2011)
 |--------------------------------------------------------------------------------------------------------------|
-| Attribue une valeur ou récupère le contenu actuel d'une balise de type INPUT,
-| IMG, P ou SPAN. Validation effectuée sur la présence ou non de la balise.
+| Attribue une valeur ou rÃ©cupÃ¨re le contenu actuel d'une balise de type INPUT,
+| IMG, P ou SPAN. Validation effectuÃ©e sur la prÃ©sence ou non de la balise.
 |--------------------------------------------------------------------------------------------------------------|
-| strIDBalise  : Nom de la balise dont on veut récupérer le contenu ou lui en
+| strIDBalise  : Nom de la balise dont on veut rÃ©cupÃ©rer le contenu ou lui en
 |                   attribuer un
-| strValeur       : Si présente, valeur à attribuer
+| strValeur       : Si prÃ©sente, valeur Ã  attribuer
 |--------------------------------------------------------------------------------------------------------------|
 | Fonction requise : Aucune
 |--------------------------------------------------------------------------------------------------------------|
@@ -573,3 +573,14 @@ function b(strIDBalise,strValeur) {
     function annuler_desactiver(objBalise) {
         objBalise.parentNode.parentNode.parentNode.parentNode.style.display = '';
     }
+
+    /*
+    |-------------------------------------------------------------------------------------|
+    | Confirmation de la desactivation (05-Fev-2014)
+    |-------------------------------------------------------------------------------------|
+    */
+
+    function confirm_desactiver() {
+        return confirm("Voulez vous vraiment dÃ©sactiver ce vendeur? \n\n OK=OUI \n\n ou \n\n Annuler=NON \n\n");
+    }
+    

@@ -55,50 +55,28 @@ namespace Puces_R
             }
             
             anneesMaximal = int.Parse(ddlTempsInnactivite.SelectedValue);
-
-            //if (IsPostBack)
-            //{
-            DataTable tableProduits = charge_inactifs1();
-
-            PagedDataSource pdsDemandes = new PagedDataSource();
-            pdsDemandes.DataSource = new DataView(tableProduits);
-            pdsDemandes.AllowPaging = true;
-            pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
-
-            pdsDemandes.CurrentPageIndex = 0;
-            rptInnactifs1.DataSource = pdsDemandes;
-            rptInnactifs1.DataBind();
-
-            ((SiteMaster)Master).Titre = "Nouvelles demandes de vendeurs";
-            //}
-
+                                   
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
                     Response.Write(Session["err_msg"]);
                     Session["err_msg"] = "";
                 }
+            
+            ((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
+            ((NavigationItems)Master).ChargerItems += charge_inactifs1;
 
-            foreach (DataListItem item in rptInnactifs1.Items)
+            if (!IsPostBack)
             {
-                Label courriel = (Label)item.FindControl("courriel_demande");
-            }
-            //if (!IsPostBack)
-            //{
-            //    DataTable tableInnactif1 = charge_inactifs1();
-
-            //    rptInnactifs1.DataSource = new DataView(tableInnactif1);
-            //    rptInnactifs1.DataBind();
-            //}
-
-            if (Session["err_msg"] != null)
-                if (Session["err_msg"] != "")
-                {
-                    Response.Write(Session["err_msg"]);
-                    Session["err_msg"] = "";
-                }
-            ((SiteMaster)Master).Titre = "Gestion de l'inactivité des vendeurs";
+                ((NavigationItems)Master).AfficherPremierePage();
+            } 
         }
+
+        private void charge_inactifs1(object sender, EventArgs e)
+        {
+            charge_inactifs1();
+        }
+
 
         private DataTable charge_inactifs1()
         {
@@ -147,7 +125,18 @@ namespace Puces_R
             SqlDataAdapter adapteurInnactif1 = new SqlDataAdapter(req_inactif, myConnection);
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
-            //Response.Write(req_inactif);
+
+            PagedDataSource pdsDemandes = new PagedDataSource();
+            pdsDemandes.DataSource = new DataView(tableInnactif1);
+            pdsDemandes.AllowPaging = true;
+            pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
+
+            pdsDemandes.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
+            ((NavigationItems)Master).NbPages = pdsDemandes.PageCount;
+
+            rptInnactifs1.DataSource = pdsDemandes;
+            rptInnactifs1.DataBind();
+            
             myConnection.Close();
 
             return tableInnactif1;
@@ -213,6 +202,11 @@ namespace Puces_R
             }           
 
             myConnection.Close();
+        }
+
+        protected void AfficherPremierePage(object sender, EventArgs e)
+        {
+            ((NavigationItems)Master).AfficherPremierePage();
         }
     }
 }

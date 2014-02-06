@@ -110,6 +110,7 @@
                 </div>                
             </div>
         </div>
+        
         <div class="panneau pnlDroite">
             <h2>Résultats de la recherche</h2>
             <asp:Panel id="no_result" runat="server" cssclass="aucunPanier rectangleItem rectangleComplet" >

@@ -1,126 +1,128 @@
 ﻿#dtlProduits
 {
-    margin-left:auto;
-    margin-right:auto;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 .productRectangle > *
 {
-    display:block;
+	display:block;
 }
 
 .titre_tab
 { 
-    width:300px;
-    padding:10px;
-    background-color:black;
-    border:1px solid black;
-    font-size:small;
-    border-radius:10px 10px 5px 5px;
-    box-shadow: 3px 3px Gray;
-    color: White;
+	width:300px;
+	padding:10px;
+	background-color:black;
+	border:1px solid black;
+	font-size:small;
+	border-radius:10px 10px 5px 5px;
+	box-shadow: 3px 3px Gray;
+	color: White;
 }
 
 .titre_tab2
 { 
-    width:200px;
-    padding:10px;
-    background-color:black;
-    border:1px solid black;
-    font-size:small;
-    border-radius:3px 3px 3px 3px;
-    box-shadow: 3px 3px Gray;
-    color: White;
-    cursor: pointer;
+	width:200px;
+	padding:10px;
+	background-color:black;
+	border:1px solid black;
+	font-size:small;
+	border-radius:3px 3px 3px 3px;
+	box-shadow: 3px 3px Gray;
+	color: White;
+	cursor: pointer;
 }
 
 .titre_tab3
 { 
-    padding:10px;
-    background-color:black;
-    border:1px solid black;
-    font-size:small;
-    border-radius:3px 3px 3px 3px;
-    box-shadow: 3px 3px Gray;
-    color: White;
-    cursor: pointer;
-    margin-bottom: 5px;
+	padding:10px;
+	background-color:black;
+	border:1px solid black;
+	font-size:small;
+	border-radius:3px 3px 3px 3px;
+	box-shadow: 3px 3px Gray;
+	color: White;
+	cursor: pointer;
+	margin-bottom: 5px;
 }
 
 .cont_tab
 { 
-    width:275px;
-    height:100px;
-    padding:10px;
-    background-color:LightGray;
-    border:1px solid black;
-    font-size:small;
-    border-radius:5px 5px 10px 10px;
-    box-shadow: 1px 1px 4px 4px Gray;
+	width:275px;
+	height:100px;
+	padding:10px;
+	background-color:LightGray;
+	border:1px solid black;
+	font-size:small;
+	border-radius:5px 5px 10px 10px;
+	box-shadow: 1px 1px 4px 4px Gray;
 }
 
 .cont_tab2
 { 
-    padding:10px;
-    background-color:LightGray;
-    border:1px solid black;
-    font-size:small;
-    border-radius:5px 5px 10px 10px;
-    box-shadow: 1px 1px 4px 4px Gray;
+	padding:10px;
+	background-color:LightGray;
+	border:1px solid black;
+	font-size:small;
+	border-radius:5px 5px 10px 10px;
+	box-shadow: 1px 1px 4px 4px Gray;
 }
 
 .cont_categorie
 { 
-    padding:10px;
-    border:1px solid black;
-    font-size:small;
-    border-radius:5px 5px 10px 10px;
-    box-shadow: 1px 1px 4px 4px Gray;
+	padding:10px;
+	border:1px solid black;
+	font-size:small;
+	border-radius:5px 5px 10px 10px;
+	box-shadow: 1px 1px 4px 4px Gray;
 }
 
 .vendeur_innactif
 {
-    padding: 10px 20px 10px 10px;
-    margin: 3px 5px 3px 5px;
-    background-color: LightGray;
-    border: 1px solid black;
-    font-size:small;
-    border-radius:3px 3px 5px 5px;
-    box-shadow: 1px 1px 1px 1px Gray;
+	padding: 10px 20px 10px 10px;
+	margin: 3px 5px 3px 5px;
+	background-color: LightGray;
+	border: 1px solid black;
+	font-size:small;
+	border-radius:3px 3px 5px 5px;
+	box-shadow: 1px 1px 1px 1px Gray;
 }
 
 .table_conf_suppr
 {
-    padding: 5px 5px 5px 5px;
-    margin: 3px 10px 3px 5px;
-    background-color: LightBlue;
-    border: 1px solid black;
-    font-size: small;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 1px 1px 1px 1px Gray;
-    display: none;
+	padding: 5px 5px 5px 5px;
+	margin: 3px 10px 3px 5px;
+	background-color: LightBlue;
+	border: 1px solid black;
+	font-size: small;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 1px 1px 1px 1px Gray;
+	display: none;
 }
+
+
 
 .titre_sec
 {
-    width: 580px;
-    font-size: x-large;
-    font-weight: bold;
-    color: #7F8D82;
-    font-family: Cambria;
-    margin: 20px;
-    padding: 10px;
-    box-shadow: 1px 1px 4px 4px Gray;
+	width: 580px;
+	font-size: x-large;
+	font-weight: bold;
+	color: #7F8D82;
+	font-family: Cambria;
+	margin: 20px;
+	padding: 10px;
+	box-shadow: 1px 1px 4px 4px Gray;
 }
 
 .space_cell
 {
-    width:30px;
+	width:30px;
 }
 
 .a_droite
 {
-    text-align: right;    
+	text-align: right;    
 }
 
 .lien_boutton 
@@ -131,8 +133,8 @@
 	font-style: italic;
 	padding: 5px;	
 	text-align:center;
-    border-radius:5px 5px 5px 5px;
-    width: 275px;
+	border-radius:5px 5px 5px 5px;
+	width: 275px;
 }
 
 .boutton 
@@ -143,139 +145,149 @@
 	font-style: italic;
 	padding: 5px;	
 	text-align:center;
-    border-radius:5px 5px 5px 5px;
+	border-radius:5px 5px 5px 5px;
 }
 
 .ligne_info_demande
 {
-    display: none;
-    width: inherit;
+	display: none;
+	width: inherit;
 }
 
 .remarque
 {
-    font-size: x-small;
-    font-style: italic;
+	font-size: x-small;
+	font-style: italic;
 }
 
 .center
 {
-    text-align: center;
+	text-align: center;
 }
 
 .verdict_vendeur
 {
-    display: none;
+	
 }
 
 a
 {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .pnlGauche
 {
-    float: left;
+	float: left;
 }
 
 .pnlDroite
 {
-    float: right;
+	float: right;
 }
 
 .div_englobant
 {
-    
+	
 }
 
 .categories
 {
-    line-height:20px;
+	line-height:20px;
 }
 
 .categorie
 {
-    font-weight:bold;
+	font-weight:bold;
 }
 
 .info_cellule, .tableProduits td
 {
-    color: #0052AE;
-    text-align: left;
+	color: #0052AE;
+	text-align: left;
 }
 
 .vendeur
 {
-    font-size:small;
+	font-size:small;
 }
 
 .ui-datepicker
 {
-    font-size: x-small;
+	font-size: x-small;
 }
 
 .titre_vendeur_inactif1
 {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .navigation > div
 {
-    margin: 0px 10px 0px 10px;
-    display:inline;
+	margin: 0px 10px 0px 10px;
+	display:inline;
 }
 
 .pnlGauche th
 {
-    text-align: left;
+	text-align: left;
 }
 
 .tableProduits
 {
-    width: 100%;
+	width: 100%;
 }
 
 #no_result
 {
-    display: none;
+	display: none;
 }
 
 .boiteListeDeroulante
 {
-    margin:5px;
+	margin:5px;
 }
 
 .boiteImageProduit
 {
-    width:175px;
-    height:175px;
-    margin:5px 0;
+	width:175px;
+	height:175px;
+	margin:5px 0;
 }
 
 .boiteImageProduit div
 {
-    display:table-cell;
-    height:175px;
-    width:175px;
-    vertical-align:middle;
-    border:1px solid black;
-    background-color:White;
+	display:table-cell;
+	height:175px;
+	width:175px;
+	vertical-align:middle;
+	border:1px solid black;
+	background-color:White;
 }
 
 .boiteImageProduit img
 {
-    max-width:150px;
-    max-height:150px;
-    display:block;
-    margin:auto;
+	max-width:150px;
+	max-height:150px;
+	display:block;
+	margin:auto;
 }
 
 .boutonsCentre
 {
-    text-align:center;
+	text-align:center;
 }
 
 .tableTitreValeur td:first-child 
 {
-    text-align:right;
+	text-align:right;
+}
+
+.tableTitreValeur td, .tableTitreValeur th
+{
+	
+}
+
+.tableTitreValeur
+{
+	
 }

@@ -24,14 +24,14 @@ namespace Puces_R
                 {
                     Response.Redirect("Default.aspx", true);
                 }
-
-                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPCommandes C ON V.NoVendeur = C.NoVendeur WHERE C.NoClient = " + Session["ID"], myConnection);
+                //SELECT DISTINCT V.NoClient, (V.Nom +' ' +V.Prenom) AS NomComplet FROM PPClients V INNER JOIN PPCommandes C ON V.noClient = C.NoClient WHERE C.NoVendeur =10
+                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NoClient, (V.Nom +' ' +V.Prenom) AS NomComplet FROM PPClients V INNER JOIN PPCommandes C ON V.noClient = C.NoClient WHERE C.NoVendeur ="+Session["ID"], myConnection);
                 DataTable tableVendeurs = new DataTable();
                 adapteurVendeurs.Fill(tableVendeurs);
 
                 ddlVendeur.DataSource = tableVendeurs;
-                ddlVendeur.DataTextField = "NomAffaires";
-                ddlVendeur.DataValueField = "NoVendeur";
+                ddlVendeur.DataTextField = "NomComplet";
+                ddlVendeur.DataValueField = "NoClient";
                 ddlVendeur.DataBind();
                 ddlVendeur.Items.Add(new ListItem("Tous", "-1") { Selected = true });
 
@@ -69,7 +69,7 @@ namespace Puces_R
 
             if (noVendeur != -1)
             {
-                whereClause += " AND V.NoVendeur = " + noVendeur;
+                whereClause += " AND C.NoClient = " + noVendeur;
             }
 
             SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT C.NoCommande ,C.NoClient FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur" + whereClause + " ORDER BY DateCommande DESC", myConnection);

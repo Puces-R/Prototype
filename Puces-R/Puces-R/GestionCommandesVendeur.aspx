@@ -23,7 +23,7 @@
         </asp:DropDownList>
     </span>
     <span class="boiteListeDeroulante">
-        Vendeur:
+        Client:
         <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" />
     </span>
 </asp:Content>

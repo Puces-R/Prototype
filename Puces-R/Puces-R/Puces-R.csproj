@@ -60,6 +60,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
+    <Content Include="ChoixDestinataires.aspx" />
     <Content Include="CommandesClient.aspx" />
     <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
@@ -67,6 +68,7 @@
     <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
+    <Content Include="Controles\BoiteCommande.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
@@ -136,6 +138,7 @@
     <Content Include="ModificationProduits.aspx" />
     <Content Include="ModifierMotPasse.aspx" />
     <Content Include="NouveauxProduits.aspx" />
+    <Content Include="PageTest.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
@@ -146,7 +149,9 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="SuppressionProduits.aspx" />
+    <Content Include="TestPopUp.aspx" />
     <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
@@ -214,6 +219,13 @@
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChoixDestinataires.aspx.cs">
+      <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChoixDestinataires.aspx.designer.cs">
+      <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CommandesClient.aspx.cs">
       <DependentUpon>CommandesClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,6 +274,13 @@
     </Compile>
     <Compile Include="Controles\CodePostal.ascx.designer.cs">
       <DependentUpon>CodePostal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\BoiteCommande.ascx.cs">
+      <DependentUpon>BoiteCommande.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\BoiteCommande.ascx.designer.cs">
+      <DependentUpon>BoiteCommande.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\Courriel.ascx.cs">
       <DependentUpon>Courriel.ascx</DependentUpon>
@@ -527,6 +546,13 @@
     <Compile Include="NouveauxProduits.aspx.designer.cs">
       <DependentUpon>NouveauxProduits.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PageTest.aspx.cs">
+      <DependentUpon>PageTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageTest.aspx.designer.cs">
+      <DependentUpon>PageTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Panier.aspx.cs">
       <DependentUpon>Panier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -584,6 +610,13 @@
     </Compile>
     <Compile Include="SuppressionProduits.aspx.designer.cs">
       <DependentUpon>SuppressionProduits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestPopUp.aspx.cs">
+      <DependentUpon>TestPopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPopUp.aspx.designer.cs">
+      <DependentUpon>TestPopUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoirMessage.aspx.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>

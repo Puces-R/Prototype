@@ -19,9 +19,13 @@ namespace Puces_R
 
         public bool Obligatoire
         {
+            get
+            {
+                return reqMDP.Display != ValidatorDisplay.None;
+            }
             set
             {
-                tdReqMDP.Visible = value;
+                reqMDP.Display = value ? ValidatorDisplay.Static : ValidatorDisplay.None;
             }
         }
 
@@ -37,7 +41,7 @@ namespace Puces_R
         {
             get
             {
-                return !tdReqMDP.Visible || reqMDP.IsValid;
+                return !Obligatoire || reqMDP.IsValid;
             }
         }
 

@@ -37,6 +37,12 @@ namespace Puces_R
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];
                 ctrMontantsFactures.CodeLivraison = codeLivraison;
+
+                int anneeActuelle = DateTime.Today.Year;
+                for (int i = anneeActuelle; i < anneeActuelle + 10; i++)
+                {
+                    ddlAnneeExpiration.Items.Add(i.ToString().Substring(2));
+                }
             }
         }
 
@@ -68,9 +74,9 @@ namespace Puces_R
                 sb.AppendFormat(baliseInput, "NoVendeur", noVendeur);
                 sb.AppendFormat(baliseInput, "NomVendeur", nomVendeur);
                 sb.AppendFormat(baliseInput, "NoCarteCredit", txtNumero.Text);
-                sb.AppendFormat(baliseInput, "DateExpirationCarteCredit", txtDateExpiration.Text);
+                sb.AppendFormat(baliseInput, "DateExpirationCarteCredit", ddlMoisExpiration.SelectedValue + "-" + ddlAnneeExpiration.SelectedValue);
                 sb.AppendFormat(baliseInput, "NoSecuriteCarteCredit", txtCCV.Text);
-                sb.AppendFormat(baliseInput, "MontantPaiement", ctrMontantsFactures.GrandTotal);
+                sb.AppendFormat(baliseInput, "MontantPaiement", ctrMontantsFactures.GrandTotal.ToString("F2").Replace(",","."));
                 sb.AppendFormat(baliseInput, "NomPageRetour", "http://" + Request.Url.Authority + "/ResultatPaiement.aspx?novendeur=" + noVendeur + "&codeLivraison=" + codeLivraison);
                 sb.AppendFormat(baliseInput, "InfoSuppl", String.Empty);
 
@@ -88,7 +94,7 @@ namespace Puces_R
         {
             myConnection.Open();
 
-            SqlCommand commandeRuptureStock = new SqlCommand("SELECT Nom, P.NombreItems FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit AND A.NbItems > P.NombreItems", myConnection);
+            SqlCommand commandeRuptureStock = new SqlCommand("SELECT Nom, P.NombreItems FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit AND A.NbItems > P.NombreItems WHERE NoClient = " + Session["ID"], myConnection);
             SqlDataReader lecteurRuptureStock = commandeRuptureStock.ExecuteReader();
 
             if (lecteurRuptureStock.HasRows)

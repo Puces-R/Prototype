@@ -11,7 +11,10 @@ namespace Puces_R
     {
         protected void btnSauvegarder_OnClick(object sender, EventArgs e)
         {
-            ctrProfil.Sauvegarder();
+            if (IsValid)
+            {
+                ctrProfil.Sauvegarder();
+            }
         }
     }
 }

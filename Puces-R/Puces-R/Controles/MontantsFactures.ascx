@@ -13,7 +13,7 @@
         <asp:View runat="server">
             <tr>
                 <td>
-                    <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlModesLivraison_OnSelectedIndexChanged" Font-Size="X-Large" />:
+                    <asp:DropDownList ID="ddlModesLivraison" runat="server" AutoPostBack="true" Font-Size="X-Large" OnSelectedIndexChanged="ddlModesLivraison_OnSelectedIndexChanged" />:
                 </td>
                 <td><asp:Label ID="lblLivraison" runat="server" /></td>
             </tr>

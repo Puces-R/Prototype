@@ -4,51 +4,51 @@
 <%@ Register TagPrefix="lp" TagName="Categories" Src="~/Controles/Categories.ascx" %>
 <%@ Register TagName="MotDePasse" TagPrefix="yc" Src="~/Controles/MotDePasse.ascx" %>
 
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MenuItems">
+<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuInvite ID="MenuInvite1" runat="server" />
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <div class="panneau pnlGauche">
             <lp:Categories runat="server" Public="true" />
         </div>
-        <div  class="panneau pnlDroite">
+        <div class="panneau pnlDroite">
+            <h2>Connexion</h2>
             <div class="rectangleComplet rectangleItem">
-                <table class="formulaire" style="width: 350px;">
+                <table class="formulaire formulaireConnexion colonneTitre">
                     <tr>
                         <td>
-                            Adresse courriel
+                            Adresse courriel: 
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="tbCourriel" MaxLength="100" />
-                        </td>
-                        <td>
+                            <asp:TextBox runat="server" ID="tbCourriel" MaxLength="100" Width="150" />
                         </td>
                     </tr>
                     <tr>
                         <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="false" />
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="erreur" colspan="3">
-                            <asp:CustomValidator runat="server" ErrorMessage="Les identifiants sont incorrects" OnServerValidate="existe" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="text-align: center;">
-                            <asp:Button ID="Button1" runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
-                            <asp:Button ID="Button2" runat="server" CausesValidation="false" Text="Client" OnClick="defautClient" />
-                            <asp:Button ID="Button3" runat="server" CausesValidation="false" Text="Vendeur" OnClick="defautVendeur" />
-                            <asp:Button ID="Button4" runat="server" CausesValidation="false" Text="Gestionnaire" OnClick="defautGestionnaire" />
-                        </td>
                     </tr>
                 </table>
+                <div>
+                    <div>
+                        <asp:CustomValidator runat="server" Text="Les identifiants sont incorrects" OnServerValidate="existe" CssClass="erreur" Display="Static" />
+                    </div>
+                    <div class="boutonsConnexion">
+                        <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />
+                    </div>
+                </div>
+            </div>
+            <h2>Comptes de test</h2>
+            <div class="rectangleComplet rectangleItem">
+                <div class="boutonsConnexion">
+                    <asp:Button runat="server" CausesValidation="false" Text="Client" OnClick="defautClient" />
+                    <asp:Button runat="server" CausesValidation="false" Text="Vendeur" OnClick="defautVendeur" />
+                    <asp:Button runat="server" CausesValidation="false" Text="Gestionnaire" OnClick="defautGestionnaire" />
+                </div>
             </div>
         </div>
     </div>

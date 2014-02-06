@@ -17,7 +17,7 @@
         <div class="panneau pnlGauche">
             <lp:Categories runat="server" />
         </div>
-        <div class="panneau pnlDroite">
+        <div class="panneau pnlDroite" style="height: 400px;">
             <h2>Paniers</h2>
             <asp:MultiView runat="server" ID="mvPaniers">
                 <asp:View runat="server">

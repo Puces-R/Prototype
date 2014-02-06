@@ -54,10 +54,10 @@ namespace Puces_R
                     ordreCmd += "Personne";
                     break;
                 case 1:
-                    ordreCmd += "M.Sujet";
+                    ordreCmd += "Sujet";
                     break;
                 case 2:
-                    ordreCmd += "M.DateEnvoi";
+                    ordreCmd += "DateEnvoi";
                     break;
             }
 
@@ -73,15 +73,18 @@ namespace Puces_R
 
             if (boite > 0)
             {
-                cmd.CommandText = "SELECT M.NoMessage, DM.Lu, M.NoExpediteur 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages DM " +
-                                                    "INNER JOIN PPMessages M ON DM.NoMessage = M.NoMessage " +
-                                                    "WHERE (DM.Boite = @noBoite) AND (DM.NoDestinataire = @id) " +
-                                                    "ORDER BY " + ordreCmd;
+                cmd.CommandText = "SELECT        M.NoMessage, DM.Lu, X.Texte AS 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
+                                  "PPMessages AS M ON DM.NoMessage = M.NoMessage INNER JOIN  " + 
+                                  "(SELECT NoClient AS No, RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoClient AS varchar(10)) + ')' AS Texte FROM PPClients UNION " + 
+                                   "SELECT NoVendeur AS 'No', RTRIM(NomAffaires) + ' (' + CAST(NoVendeur AS varchar(10)) + ')' AS 'Texte' FROM PPVendeurs UNION " +
+                                   "SELECT NoGestionnaire AS 'No', RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoGestionnaire AS varchar(10)) + ')' AS 'Texte' FROM PPGestionnaires) AS X ON X.No = M.NoExpediteur " +
+                                   "WHERE  (DM.Boite = @noBoite) AND (DM.NoDestinataire = @id) " +
+                                   "ORDER BY " + ordreCmd;
             }
             else if (boite < 0)
             {
-                cmd.CommandText = "SELECT NoMessage, Sujet, NoExpediteur 'Personne', DateEnvoi FROM PPMessages M" +
-                                    "WHERE (NoExpediteur = @id) AND (Boite = @noBoite) " +
+                cmd.CommandText = "SELECT M.NoMessage, M.Sujet, M.NoExpediteur 'Personne', M.DateEnvoi FROM PPMessages M " +
+                                    "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
                                     "ORDER BY " + ordreCmd;
             }
             cmd.Parameters.AddWithValue("@id", 10700);//Session["ID"]);

@@ -6,6 +6,16 @@
     <yc:MenuInvite runat="server" />
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+    <script type="text/javascript">
+        function popup() {
+            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>', "ChoisirVendeur", "height=700,width=900");
+            w.focus();
+        }
+
+        function postback(parametres) {
+            __doPostBack('ChoixDestinataires', parametres);
+        }
+    </script>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="rectangleComplet rectangleItem">
@@ -15,7 +25,8 @@
                     Destinataire
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbRecepteur" />
+                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="300px" /><br />
+                    <asp:Button runat="server" ID="btn" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
                 </td>
             </tr>
             <tr>
@@ -43,7 +54,7 @@
         </table>
     </div>
     <asp:Panel ID="divApercu" runat="server" Visible="false" CssClass="rectangleComplet rectangleItem">
-        <table style="border-collapse: collapse; table-layout:fixed; width:0;">
+        <table style="border-collapse: collapse; table-layout: fixed; width: 0;">
             <tr>
                 <td style="width: 100px;">
                     Date
@@ -72,7 +83,8 @@
                 <td style="vertical-align: top;">
                     Message
                 </td>
-                <td style="border-radius: 10px; background-color: White; border: solid gray 1px; padding: 10px; overflow: hidden; width: 700px;">
+                <td style="border-radius: 10px; background-color: White; border: solid gray 1px;
+                    padding: 10px; overflow: hidden; width: 700px;">
                     <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
                 </td>
             </tr>

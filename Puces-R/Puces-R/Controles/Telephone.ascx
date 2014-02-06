@@ -17,9 +17,7 @@
         <asp:TextBox runat="server" ID="tbPart2" MaxLength="4" Width="35px" />
         <asp:RequiredFieldValidator runat="server" ID="reqPart2" ControlToValidate="tbPart2" EnableClientScript="false" Display="None"/>
         <asp:RegularExpressionValidator runat="server" ID="formatPart2" ControlToValidate="tbPart2" ValidationExpression="^\d{4}$" EnableClientScript="false" Display="None"/>
-    </td>
-    <td class="erreur">
-        <asp:CustomValidator runat="server" ID="reqTel" OnServerValidate="validerObligatoire" ErrorMessage="Ce champ est obligatoire" Visible="false" Display="Dynamic"/>
-        <asp:CustomValidator runat="server" OnServerValidate="validerTelephone" ErrorMessage="Le format du numéro de téléphone est incorrect" Display="Dynamic" />
+        <asp:CustomValidator runat="server" ID="reqTel" OnServerValidate="validerObligatoire" ErrorMessage="Ce champ est obligatoire" Visible="false" Display="Dynamic" CssClass="erreur"/>
+        <asp:CustomValidator runat="server" OnServerValidate="validerTelephone" ErrorMessage="Le format du numéro de téléphone est incorrect" Display="Dynamic" CssClass="erreur" />
     </td>
 </tr>

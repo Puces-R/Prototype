@@ -46,14 +46,14 @@ namespace Puces_R
                     pnlMontantsFactures.Visible = true;
                     ctrMontantsFactures.NoVendeur = noVendeur;
                     ctrMontantsFactures.CodeLivraison = codeLivraison;
-                    ctrMontantsFactures.ChargerModesDeLivraison();
+                    //ctrMontantsFactures.ChargerModesDeLivraison();
                     break;
             }
 
             hypReessayer.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison;
         }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
+        protected void Page_PreRenderComplete(object sender, EventArgs e)
         {
             if (transactionAccepte)
             {

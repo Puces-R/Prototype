@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="CommandesClient.aspx.cs" Inherits="Puces_R.CommandesClient" %>
 
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
-<%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
+<%@ Register TagPrefix="lp" TagName="BoiteCommande" Src="~/Controles/BoiteCommande.ascx" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/CommandesClient.css" />
@@ -34,36 +34,7 @@
             <asp:View runat="server">
                 <asp:DataList RepeatColumns="3" RepeatDirection="Horizontal" runat="server" ID="dlCommandes" OnItemDataBound="dlCommandes_OnItemDataBound">
                     <ItemTemplate>
-                        <div class="rectangleCommande">
-                            <div class="rectangleItem hautRectangle">
-                                <asp:Label runat="server" ID="lblVendeur" Font-Size="Medium"/>
-                                <asp:Label runat="server" ID="lblDate" Font-Size="x-Small" />
-                            </div>
-                            <div class="rectangleItem basRectangle">
-                                <div class="pnlGauche">
-                                    <table class="tableCommande">
-                                        <tr>
-                                            <td>No. Commande: </td>
-                                            <td>
-                                                <asp:Label runat="server" ID="lblNoCommande" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>No. Autorisation: </td>
-                                            <td>
-                                                <asp:Label runat="server" ID="lblNoAutorisation" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <div class="statutLivraison">
-                                        Statut: <asp:Label runat="server" ID="lblStatut" Font-Bold="true" />
-                                    </div>
-                                </div>
-                                <div class="pnlDroite montantsFactures">
-                                    <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Enabled="false" />
-                                </div>
-                            </div>
-                        </div>
+                        <lp:BoiteCommande runat="server" ID="ctrCommande" />
                     </ItemTemplate>
                 </asp:DataList>
             </asp:View>

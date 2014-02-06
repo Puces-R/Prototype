@@ -7,55 +7,19 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
-    
-    
-    public partial class EnvoyerMessage {
+namespace Puces_R.Controles {
+
+
+    public partial class BoiteCommande{
         
         /// <summary>
-        /// Contrôle lbDestinataires.
+        /// Contrôle lblVendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbDestinataires;
-        
-        /// <summary>
-        /// Contrôle btn.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn;
-        
-        /// <summary>
-        /// Contrôle tbSujet.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSujet;
-        
-        /// <summary>
-        /// Contrôle tbMessage.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMessage;
-        
-        /// <summary>
-        /// Contrôle divApercu.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel divApercu;
+        protected global::System.Web.UI.WebControls.Label lblVendeur;
         
         /// <summary>
         /// Contrôle lblDate.
@@ -67,30 +31,39 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
-        /// Contrôle lblDe.
+        /// Contrôle lblNoCommande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDe;
+        protected global::System.Web.UI.WebControls.Label lblNoCommande;
         
         /// <summary>
-        /// Contrôle lblSujet.
+        /// Contrôle lblNoAutorisation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSujet;
+        protected global::System.Web.UI.WebControls.Label lblNoAutorisation;
         
         /// <summary>
-        /// Contrôle lblMessage.
+        /// Contrôle lblStatut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Label lblStatut;
+        
+        /// <summary>
+        /// Contrôle ctrMontantsFactures.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.Controles.MontantsFactures ctrMontantsFactures;
     }
 }

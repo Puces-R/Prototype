@@ -1,10 +1,5 @@
 ﻿<%@ Page Title="Statistiques & Rapports" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="visualiser_stats_rapports.aspx.cs" Inherits="Puces_R.visualiser_stats_rapports" %>
 
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />

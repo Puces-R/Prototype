@@ -1,14 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="CommandesClient.aspx.cs" Inherits="Puces_R.CommandesClient" %>
 
-<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
 <%@ Register TagPrefix="lp" TagName="BoiteCommande" Src="~/Controles/BoiteCommande.ascx" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/CommandesClient.css" />
-</asp:Content>
- 
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient runat="server" ID="ctrMenu" />
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="BarreCriteres">

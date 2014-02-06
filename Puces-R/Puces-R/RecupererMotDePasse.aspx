@@ -1,10 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecupererMotDePasse.aspx.cs"
     Inherits="Puces_R.RecupererMotDePasse" MasterPageFile="~/Site.Master" %>
 
-<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuInvite ID="MenuInvite" runat="server" />
-</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">

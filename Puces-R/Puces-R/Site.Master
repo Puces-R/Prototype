@@ -15,12 +15,13 @@
                     <div class="lignePointilleHorizontale pleineLargeur header">
                         <img src="Images/logo.png" class="logo" alt="Logo" />
                         <span class="titre">Les Petites Puces</span>
-                        <div class="droitePageMaitre">
+                        <div runat="server" ID="divMenu" class="droitePageMaitre">
                             <div class="bonjour">
-                                Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" />
+                                Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" /> &nbsp;
+                                <asp:HyperLink runat="server" ID="hlDeconnexion" NavigateUrl="~/Default.aspx" Text="Se déconnecter" />
                             </div>
                             <div>
-                                <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
+                                <asp:PlaceHolder runat="server" ID="menu" />
                             </div>
                         </div>
                     </div>

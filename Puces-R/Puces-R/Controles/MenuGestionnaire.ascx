@@ -19,6 +19,5 @@
             <asp:MenuItem Text="Rechercher un client"  />  
         </asp:MenuItem>
         <asp:MenuItem Text="Statistiques et rapports" NavigateUrl="../visualiser_stats_rapports.aspx" />
-        <asp:MenuItem Text="Déconnecter" NavigateUrl="../Default.aspx" />
     </Items>
 </asp:Menu>

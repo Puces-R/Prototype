@@ -25,10 +25,10 @@ namespace Puces_R
                 SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
 
                 cmdMessage.Parameters.AddWithValue("@noMsg", noMessage);
-                cmdMessage.Parameters.AddWithValue("@id", 10700 /*Session["ID"].ToString()*/);
+                cmdMessage.Parameters.AddWithValue("@id", Session["ID"].ToString());
 
                 cmdLu.Parameters.AddWithValue("@noMsg", noMessage);
-                cmdLu.Parameters.AddWithValue("@noRcpt", 10700 /*Session["ID"]*/);
+                cmdLu.Parameters.AddWithValue("@noRcpt", Session["ID"]);
 
                 connexion.Open();
                 cmdLu.ExecuteNonQuery();

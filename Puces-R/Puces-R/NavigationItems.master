@@ -6,10 +6,6 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="MenuItems" runat="server">
-    <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
-</asp:Content>
-
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel runat="server" ID="pnlBarreCritere" CssClass="lignePointilleHorizontale pleineLargeur">
         <div class="barreListesDeroulantes">

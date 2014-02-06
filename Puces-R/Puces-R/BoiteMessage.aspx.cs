@@ -74,8 +74,8 @@ namespace Puces_R
             if (boite > 0)
             {
                 cmd.CommandText = "SELECT        M.NoMessage, DM.Lu, X.Texte AS 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
-                                  "PPMessages AS M ON DM.NoMessage = M.NoMessage INNER JOIN  " + 
-                                  "(SELECT NoClient AS No, RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoClient AS varchar(10)) + ')' AS Texte FROM PPClients UNION " + 
+                                  "PPMessages AS M ON DM.NoMessage = M.NoMessage INNER JOIN  " +
+                                  "(SELECT NoClient AS No, RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoClient AS varchar(10)) + ')' AS Texte FROM PPClients UNION " +
                                    "SELECT NoVendeur AS 'No', RTRIM(NomAffaires) + ' (' + CAST(NoVendeur AS varchar(10)) + ')' AS 'Texte' FROM PPVendeurs UNION " +
                                    "SELECT NoGestionnaire AS 'No', RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoGestionnaire AS varchar(10)) + ')' AS 'Texte' FROM PPGestionnaires) AS X ON X.No = M.NoExpediteur " +
                                    "WHERE  (DM.Boite = @noBoite) AND (DM.NoDestinataire = @id) " +
@@ -87,7 +87,7 @@ namespace Puces_R
                                     "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
                                     "ORDER BY " + ordreCmd;
             }
-            cmd.Parameters.AddWithValue("@id", 10700);//Session["ID"]);
+            cmd.Parameters.AddWithValue("@id", Session["ID"]);
             cmd.Parameters.AddWithValue("@noBoite", boite);
 
             connexion.Open();
@@ -148,65 +148,71 @@ namespace Puces_R
 
         protected void clickOption(object sender, MenuEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = connexion;
-            List<Int64> selectionne = new List<Int64>();
-            foreach (Control c in ListeMessage.Controls)
+            if (e.Item.Value == "New")
             {
-                if (c is LigneMessage)
+                Response.Redirect("EnvoyerMessage.aspx", true);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connexion;
+                List<Int64> selectionne = new List<Int64>();
+                foreach (Control c in ListeMessage.Controls)
                 {
-                    LigneMessage l = (LigneMessage)c;
-                    if (l.Checked)
+                    if (c is LigneMessage)
                     {
-                        selectionne.Add(l.NoMessage);
+                        LigneMessage l = (LigneMessage)c;
+                        if (l.Checked)
+                        {
+                            selectionne.Add(l.NoMessage);
+                        }
                     }
                 }
-            }
 
 
-            if (selectionne.Count > 0)
-            {
-                string[] param = new string[selectionne.Count];
-
-                for (int i = 0; i < selectionne.Count; i++)
+                if (selectionne.Count > 0)
                 {
-                    param[i] = string.Format("@no{0}", i);
-                    cmd.Parameters.AddWithValue(param[i], selectionne[i]);
-                    Response.Write(selectionne[i] + "<br />");
+                    string[] param = new string[selectionne.Count];
+
+                    for (int i = 0; i < selectionne.Count; i++)
+                    {
+                        param[i] = string.Format("@no{0}", i);
+                        cmd.Parameters.AddWithValue(param[i], selectionne[i]);
+                        Response.Write(selectionne[i] + "<br />");
+                    }
+
+                    switch (e.Item.Value)
+                    {
+                        case "Read":
+                            cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Lu = 'True' WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                            break;
+                        case "Unread":
+                            cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Lu = 'False' WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                            break;
+                        case "Delete":
+                            cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 3 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                            break;
+                        case "DestroyDestinataire":
+                            cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 0 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                            break;
+                        case "DestroyExpediteur":
+                            cmd.CommandText = string.Format("UPDATE PPMessages SET Boite = 0 WHERE NoMessage IN ({0}) AND NoExpediteur = @id", string.Join(", ", param)); // Le id est une vérification en plus
+                            break;
+                        case "Archive":
+                            cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 2 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                            break;
+                        case "Restore":
+                        case "Unarchive":
+                            cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 1 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
+                            break;
+                    }
+                    cmd.Parameters.AddWithValue("@id", Session["ID"]);
+
+                    connexion.Open();
+                    cmd.ExecuteNonQuery();
+                    connexion.Close();
+                    Response.Redirect(Request.RawUrl);
                 }
-
-                switch (e.Item.Value)
-                {
-                    case "Read":
-                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Lu = 'True' WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
-                        break;
-                    case "Unread":
-                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Lu = 'False' WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
-                        break;
-                    case "Delete":
-                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 3 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
-                        break;
-                    case "DestroyDestinataire":
-                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 0 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
-                        break;
-                    case "DestroyExpediteur":
-                        cmd.CommandText = string.Format("UPDATE PPMessages SET Boite = 0 WHERE NoMessage IN ({0}) AND NoExpediteur = @id", string.Join(", ", param)); // Le id est une vérification en plus
-                        break;
-                    case "Archive":
-                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 2 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
-                        break;
-                    case "Restore":
-                    case "Unarchive":
-                        cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 1 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
-                        break;
-                }
-
-                cmd.Parameters.AddWithValue("@id", 10700);
-
-                connexion.Open();
-                cmd.ExecuteNonQuery();
-                connexion.Close();
-                Response.Redirect(Request.RawUrl);
             }
         }
 

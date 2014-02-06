@@ -3,10 +3,7 @@
 
 <%@ Register TagPrefix="yc" TagName="MotDePasse" Src="~/Controles/MotDePasse.ascx" %>
 <%@ Register TagPrefix="yc" TagName="DoubleMdp" Src="~/Controles/DoubleMdp.ascx" %>
-<%@ Register TagPrefix="yc" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuClient runat="server" />
-</asp:Content>
+
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">

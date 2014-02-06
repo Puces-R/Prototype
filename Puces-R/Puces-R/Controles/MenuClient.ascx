@@ -11,6 +11,5 @@
         <asp:MenuItem Text="Accueil" NavigateUrl="../AccueilClient.aspx" />
         <asp:MenuItem Text="Commandes" NavigateUrl="../CommandesClient.aspx" />
         <asp:MenuItem Text="Modifier le profil" NavigateUrl="../ProfilClient.aspx" />
-        <asp:MenuItem Text="Déconnecter" NavigateUrl="../Default.aspx" />
     </Items>
 </asp:Menu>

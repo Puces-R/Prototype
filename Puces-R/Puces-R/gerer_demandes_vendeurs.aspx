@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="Gérer les nouvelles demandes de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" 
     CodeBehind="gerer_demandes_vendeurs.aspx.cs" Inherits="Puces_R.gerer_demandes_vendeurs" EnableEventValidation="false" %>
 
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />

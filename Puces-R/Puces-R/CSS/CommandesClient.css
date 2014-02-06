@@ -1,10 +1,4 @@
-﻿.basRectangle
-{
-    font-size:small !important;
-    position:relative;
-}
-
-.pnlDroite
+﻿.pnlDroite
 {
     padding-left: 10px;
     margin-left: 10px;
@@ -13,12 +7,4 @@
 .rectangleCommande
 {
     width:400px;
-}
-
-.statutLivraison
-{
-    left:10px;
-    bottom:10px;
-    position:absolute;
-    font-size:large;
 }

@@ -13,6 +13,6 @@
         <asp:MenuItem Text="Commandes" NavigateUrl="../GestionCommandesVendeur.aspx"/>
         <asp:MenuItem Text="Produits" NavigateUrl="../GestionProduits.aspx"/>
         <asp:MenuItem Text="Modifier le profil" NavigateUrl="../ProfilVendeur.aspx"/>
-        <asp:MenuItem Text="Déconnecter" NavigateUrl="../Default.aspx" />
+        <asp:MenuItem Text="Messages" NavigateUrl="../BoiteMessage.aspx" />
     </Items>
 </asp:Menu>

@@ -19,7 +19,7 @@ namespace Puces_R
         }
 
         [System.Web.Services.WebMethod]
-        public static string GetResultats(string name, string id)
+        public static string GetResultats(string name, string id, char type)
         {
             string[] lstId = id.Split(new char[] { ',' });
             SqlCommand cmdAutocomplete = new SqlCommand("SELECT NoVendeur, NomAffaires 'Texte' FROM PPVendeurs WHERE NomAffaires LIKE @nom", connexion);

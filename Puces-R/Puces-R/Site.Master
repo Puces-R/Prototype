@@ -17,7 +17,8 @@
                         <span class="titre">Les Petites Puces</span>
                         <div class="droitePageMaitre">
                             <div class="bonjour">
-                                Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" />
+                                Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" /> &nbsp;
+                                <asp:HyperLink runat="server" ID="hlDeconnexion" NavigateUrl="~/Default.aspx" Text="Se déconnecter" />
                             </div>
                             <div>
                                 <asp:PlaceHolder runat="server" ID="menu" />

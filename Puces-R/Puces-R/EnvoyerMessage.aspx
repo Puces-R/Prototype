@@ -4,7 +4,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <script type="text/javascript">
         function popup() {
-            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>', "ChoisirVendeur", "height=700,width=900");
+            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>&Type=<%=Session["Type"]%>', "ChoisirVendeur", "height=700,width=900");
             w.focus();
         }
 

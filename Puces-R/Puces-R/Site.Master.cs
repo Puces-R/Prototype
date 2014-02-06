@@ -29,6 +29,7 @@ namespace Puces_R
                 {
                     if (Session["Type"] != null)
                     {
+                        hlDeconnexion.Visible = true;
                         switch ((char)Session["Type"])
                         {
                             case 'C':
@@ -47,6 +48,7 @@ namespace Puces_R
                     else
                     {
                         menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
+                        hlDeconnexion.Visible = false;
                     }
                 }
                 return menu.Controls[0];
@@ -73,6 +75,7 @@ namespace Puces_R
             {
                 if (Session["Type"] != null)
                 {
+                    hlDeconnexion.Visible = true;
                     switch ((char)Session["Type"])
                     {
                         case 'C':
@@ -91,6 +94,7 @@ namespace Puces_R
                 else
                 {
                     menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
+                    hlDeconnexion.Visible = false;
                 }
             }
 

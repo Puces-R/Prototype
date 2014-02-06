@@ -57,24 +57,32 @@ namespace Puces_R
 
         }
 
-        protected string televerser()
+        protected string televerser(long noProduit)
         {
             string filename = "";
             if (uplNomFichier.HasFile)
             {
+                Response.Write("HAS FILWE \n");
                 try
                 {
 
                     filename = Path.GetFileName(uplNomFichier.FileName);
-                    uplNomFichier.SaveAs(MapPath("Images/Televerse/") + filename);
+                    //uplNomFichier.SaveAs(MapPath("Images/Televerse/") + filename);
+                    //Response.Write(filename);
+                    string [] split = filename.Split('.');
+                   // String nom[] = filename.Split('.');
+                    //string ext = System.IO.Path.GetExtension(this.File1.PostedFile.FileName);
+                   // Response.Write(uplNomFichier.PostedFile.ContentType);
+                    //SqlCommand maC = new SqlCommand("select Photo from PPProduits where NoVendeur="+Session["ID"]);
+                    uplNomFichier.SaveAs(MapPath("Images/Televerse/"+Session["ID"]+noProduit.ToString()+"."+split[1]));
+                    filename=Session["ID"]+noProduit.ToString()+"."+split[1];
                     Response.Write(filename);
-
-                    //uplNomFichier.SaveAs(MapPath(tbNouveauNomFichier.Text));
                     //StatusLabel.Text = "Upload status: File uploaded!";
 
                 }
                 catch (Exception ex)
                 {
+                    Response.Write(ex.Message);
                     //StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
                 }
 
@@ -124,10 +132,10 @@ namespace Puces_R
             maConnexion.ConnectionString = maChaineDeConnexion;
             maConnexion.Open();
             int cat = avoirCategorie(ddlCategorieProduits.SelectedItem.Text);
-            Response.Write(cat.ToString());
+            //Response.Write(cat.ToString());
 
             int grand = -999;
-            SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoVendeur=10", maConnexion);
+            SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoVendeur="+Session["ID"], maConnexion);
 
             SqlDataReader rep = maCommande.ExecuteReader();
             while (rep.Read())
@@ -146,7 +154,7 @@ namespace Puces_R
             rep.Close();
 
             grand++;
-            Response.Write(grand.ToString());
+            //Response.Write(grand.ToString());
 
             String total = "";
             String nb0 = "";
@@ -158,16 +166,17 @@ namespace Puces_R
 
             }
 
-            Response.Write(total);
-            String noProduit = "10" + total;
+           // Response.Write(total);
+            String noProduit = Session["ID"] + total;
             Int64 numProduit = Convert.ToInt64(noProduit);
-            String nomImage = televerser();
+            String nomImage = televerser(numProduit);
+            DateTime date = DateTime.Now;
 
 
-            SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ","+Session["ID"]+"," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','1000010.jpg'," + tbPrix.Text + "," + tbNbItems.Text + ",1,NULL," + tbPrix.Text + "," + tbPois.Text + "," + "'2007-05-02'," + "NULL)", maConnexion);
+            SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ","+Session["ID"]+"," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','"+nomImage+"'," + tbPrix.Text + "," + tbNbItems.Text + ",1,NULL," + (tbPrixVente.Text=="" ?"NULL":tbPrixVente.Text ) + "," + tbPois.Text + "," + "'"+date.ToShortDateString()+"'," + "NULL)", maConnexion);
             maCommande1.ExecuteNonQuery();
             maConnexion.Close();
-            Response.Redirect("GestionProduits.aspx");
+            //Response.Redirect("GestionProduits.aspx");
         }
 
     }

@@ -51,7 +51,7 @@
 
     <div>
     <asp:Button ID="btnAjouter" runat="server" PostBackUrl="InsertionProduits.aspx" Text="Ajouter un produit " />
-        <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
+        <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound" OnItemCommand="dtlProduits_ItemCommand">
             <ItemTemplate>
                 <div class="rectangleProduits rectangleComplet rectangleItem">
                     <div class="titreRectangle">
@@ -69,6 +69,10 @@
                         <asp:Label runat="server" ID="lblCategorie" />
                         <asp:Label runat="server" ID="lblPrixDemande" />
                         <asp:Label runat="server" ID="lblQuantite" />
+
+                     <asp:Button ID="btnSupprimer" runat="server" Text="Supprimer"  CommandName="Supprimer"/>
+                    <asp:Button ID="btnModifier" runat="server" Text="Modifier" CommandName="Modifier"/>
+
                     </div>
                 </div>
             </ItemTemplate>

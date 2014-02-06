@@ -155,6 +155,8 @@ namespace Puces_R
                     Label lblCategorie = (Label)item.FindControl("lblCategorie");
                     Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                     Label lblQuantite = (Label)item.FindControl("lblQuantite");
+                    Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
+                    Button btnModifier = (Button)item.FindControl("btnModifier");
 
                     DataRowView drvFilm = (DataRowView)e.Item.DataItem;
 
@@ -182,6 +184,9 @@ namespace Puces_R
                     lblCategorie.Text = strCategorie;
                     lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                     lblQuantite.Text = "Quantité: " + intQuantite.ToString();
+
+                    btnSupprimer.CommandArgument = noProduit.ToString();
+                    btnModifier.CommandArgument = noProduit.ToString();
                 }
                 //Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
                 //HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
@@ -209,8 +214,7 @@ namespace Puces_R
                 //lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 //lblQuantite.Text = "Quantité: " + intQuantite.ToString();
 
-               // //        btnSupprimer.CommandArgument =  noProduit.ToString();
-               ////         btnModifier.CommandArgument =  noProduit.ToString();
+                      
 
                 //Response.Write(btnSupprimer.CommandName);
             

@@ -87,7 +87,7 @@ namespace Puces_R
                                     "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
                                     "ORDER BY " + ordreCmd;
             }
-            cmd.Parameters.AddWithValue("@id", 10700);//Session["ID"]);
+            cmd.Parameters.AddWithValue("@id", Session["ID"]);
             cmd.Parameters.AddWithValue("@noBoite", boite);
 
             connexion.Open();
@@ -206,7 +206,7 @@ namespace Puces_R
                             cmd.CommandText = string.Format("UPDATE PPDestinatairesMessages SET Boite = 1 WHERE NoMessage IN ({0}) AND NoDestinataire = @id", string.Join(", ", param));
                             break;
                     }
-                    cmd.Parameters.AddWithValue("@id", 10700);
+                    cmd.Parameters.AddWithValue("@id", Session["ID"]);
 
                     connexion.Open();
                     cmd.ExecuteNonQuery();

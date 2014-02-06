@@ -2,9 +2,7 @@
     MasterPageFile="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
-</asp:Content>
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <style type="text/css">
+<style type="text/css">
         .sBoite
         {
             border-collapse: collapse;
@@ -58,6 +56,8 @@
             font-size: 0.75em;
         }
     </style>
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
         <div>
             <div style="float: left;">
@@ -82,7 +82,6 @@
                 <thead>
                     <tr>
                         <th class="sCheckbox">
-                            <asp:CheckBox runat="server" ID="cbAll" OnClick="checkAll(this)" />
                         </th>
                         <th class="sDe">
                             <asp:LinkButton runat="server" ID="linkDe" OnClick="ordre" Text="De" />

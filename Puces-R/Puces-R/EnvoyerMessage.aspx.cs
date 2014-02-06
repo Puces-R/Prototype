@@ -65,7 +65,7 @@ namespace Puces_R
 
                 Int64 noMessage = Convert.ToInt64(cmdNoMessage.ExecuteScalar().ToString());
                 cmdMessage.Parameters.AddWithValue("@no", noMessage);
-                cmdMessage.Parameters.AddWithValue("@from", 10700);
+                cmdMessage.Parameters.AddWithValue("@from", Session["ID"]);
                 cmdMessage.Parameters.AddWithValue("@date", DateTime.Now);
                 cmdMessage.Parameters.AddWithValue("@sujet", tbSujet.Text);
                 cmdMessage.Parameters.AddWithValue("@contenu", tbMessage.Text);

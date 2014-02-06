@@ -5,12 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
+        public bool MenuVisible
+        {
+            get
+            {
+                return divMenu.Visible;
+            }
+            set
+            {
+                divMenu.Visible = value;
+            }
+        }
 
         public String Titre
         {
@@ -29,21 +42,36 @@ namespace Puces_R
                 {
                     if (Session["Type"] != null)
                     {
+                        Control c = null;
                         hlDeconnexion.Visible = true;
                         switch ((char)Session["Type"])
                         {
                             case 'C':
-                                menu.Controls.Add(LoadControl("~/Controles/MenuClient.ascx"));
+                                c = LoadControl("~/Controles/MenuClient.ascx");
                                 break;
                             case 'V':
-                                menu.Controls.Add(LoadControl("~/Controles/MenuVendeur.ascx"));
+                                c = LoadControl("~/Controles/MenuVendeur.ascx");
                                 break;
                             case 'G':
-                                menu.Controls.Add(LoadControl("~/Controles/MenuGestionnaire.ascx"));
+                                c = LoadControl("~/Controles/MenuGestionnaire.ascx");
                                 break;
                             default:
                                 throw new InvalidOperationException();
                         }
+                        MenuItem mi = new MenuItem("Messages");
+                        mi.NavigateUrl = "~/BoiteMessage.aspx";
+                        SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
+                        cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
+
+                        myConnection.Open();
+                        int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
+                        myConnection.Close();
+                        if (nbMessages > 0)
+                        {
+                            mi.Text += " (" + nbMessages + ")";
+                        }
+                        ((Menu)c.FindControl("ctrMenu")).Items.Add(mi);
+                        menu.Controls.Add(c);
                     }
                     else
                     {
@@ -75,21 +103,36 @@ namespace Puces_R
             {
                 if (Session["Type"] != null)
                 {
+                    Control c = null;
                     hlDeconnexion.Visible = true;
                     switch ((char)Session["Type"])
                     {
                         case 'C':
-                            menu.Controls.Add(LoadControl("~/Controles/MenuClient.ascx"));
+                            c = LoadControl("~/Controles/MenuClient.ascx");
                             break;
                         case 'V':
-                            menu.Controls.Add(LoadControl("~/Controles/MenuVendeur.ascx"));
+                            c = LoadControl("~/Controles/MenuVendeur.ascx");
                             break;
                         case 'G':
-                            menu.Controls.Add(LoadControl("~/Controles/MenuGestionnaire.ascx"));
+                            c = LoadControl("~/Controles/MenuGestionnaire.ascx");
                             break;
                         default:
                             throw new InvalidOperationException();
                     }
+                    MenuItem mi = new MenuItem("Messages");
+                    mi.NavigateUrl = "~/BoiteMessage.aspx";
+                    SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
+                    cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
+
+                    myConnection.Open();
+                    int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
+                    myConnection.Close();
+                    if (nbMessages > 0)
+                    {
+                        mi.Text += " (" + nbMessages + ")";
+                    }
+                    ((Menu)c.FindControl("ctrMenu")).Items.Add(mi);
+                    menu.Controls.Add(c);
                 }
                 else
                 {

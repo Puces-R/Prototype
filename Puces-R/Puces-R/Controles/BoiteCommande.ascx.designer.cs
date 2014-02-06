@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace Puces_R.Controles {
-
-
-    public partial class BoiteCommande{
+    
+    
+    public partial class BoiteCommande {
         
         /// <summary>
         /// Contrôle lblVendeur.
@@ -49,6 +49,24 @@ namespace Puces_R.Controles {
         protected global::System.Web.UI.WebControls.Label lblNoAutorisation;
         
         /// <summary>
+        /// Contrôle lblClient.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClient;
+        
+        /// <summary>
+        /// Contrôle lblNoClient.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoClient;
+        
+        /// <summary>
         /// Contrôle lblStatut.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace Puces_R.Controles {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStatut;
+        
+        /// <summary>
+        /// Contrôle btnChanger.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChanger;
         
         /// <summary>
         /// Contrôle ctrMontantsFactures.

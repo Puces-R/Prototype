@@ -24,6 +24,30 @@ namespace Puces_R.Controles
             }
         }
 
+        public long NoClient
+        {
+
+            set
+            {
+
+                btnChanger.Visible = true;
+                lblClient.Visible = true;
+                lblNoClient.Visible = true;
+                lblNoClient.Text = value.ToString();
+            }
+        }
+
+        public bool SetBoutton
+        {
+            
+            set
+            {
+
+                btnChanger.Visible = true;
+                lblClient.Visible = true;
+                lblNoClient.Visible = true;
+            }
+        }
         protected override void OnPreRender(EventArgs e)
         {
             base.OnLoad(e);

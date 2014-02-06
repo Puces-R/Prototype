@@ -1,16 +1,52 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GestionCommandesVendeur.aspx.cs"
+﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionCommandesVendeur.aspx.cs"
     Inherits="Puces_R.GestionCommandesVendeur" %>
 
+<%@ Register TagPrefix="lp" TagName="BoiteCommande" Src="~/Controles/BoiteCommande.ascx" %>
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
+
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
     <lp:MenuClient ID="MenuClient1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/GestionCommandesVendeur.css" rel="stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        Commandes non traitées</h2>
+
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="BarreCriteres">
+    <span class="boiteListeDeroulante">
+        Par page:
+        <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+            <asp:ListItem Value="3" />
+            <asp:ListItem Value="6" />
+            <asp:ListItem Value="9" />
+            <asp:ListItem Value="15" Selected="True" />
+            <asp:ListItem Value="30" />
+        </asp:DropDownList>
+    </span>
+    <span class="boiteListeDeroulante">
+        Vendeur:
+        <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" />
+    </span>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="Items" runat="server">
+    <div>
+        <asp:MultiView runat="server" ID="mvCommandes" ActiveViewIndex="0">
+            <asp:View ID="View1" runat="server">
+                <asp:DataList RepeatColumns="3" RepeatDirection="Horizontal" runat="server" ID="dlCommandes" OnItemDataBound="dlCommandes_OnItemDataBound">
+                    <ItemTemplate>
+                        <lp:BoiteCommande runat="server" ID="ctrCommande" SetBoutton="true"/>
+                    </ItemTemplate>
+                </asp:DataList>
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                <div class="messageCentral">Aucune commande ne vous a été demandé!</div>
+            </asp:View>
+        </asp:MultiView>
+    </div>
+</asp:Content>
+
+<%--<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+   
     <div>
         <%--<asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound" OnItemCommand="rptProduits_ItemCommand">
             <ItemTemplate>
@@ -39,7 +75,7 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>--%>
-        <asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound"
+        <%--<asp:Repeater runat="server" ID="rptProduits" OnItemDataBound="rptProduits_ItemDataBound">
             OnItemCommand="rptProduits_ItemCommand">
             <ItemTemplate>
                 <div class="rectangleItem rectangleComplet">
@@ -118,4 +154,4 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-</asp:Content>
+</asp:Content>--%>

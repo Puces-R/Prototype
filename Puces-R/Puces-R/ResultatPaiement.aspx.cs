@@ -53,7 +53,7 @@ namespace Puces_R
             hypReessayer.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison;
         }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
+        protected void Page_PreRenderComplete(object sender, EventArgs e)
         {
             if (transactionAccepte)
             {

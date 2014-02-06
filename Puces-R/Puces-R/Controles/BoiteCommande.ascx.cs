@@ -51,7 +51,6 @@ namespace Puces_R.Controles
 
             lblNoAutorisation.Text = (String)lecteurCommande["NoAutorisation"];
             ctrMontantsFactures.NoCommande = (long)lecteurCommande["NoCommande"];
-            //ctrMontantsFactures.ChargerModesDeLivraison();
 
             myConnection.Close();
         }

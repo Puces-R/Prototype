@@ -18,21 +18,20 @@ namespace Puces_R.Controles
         decimal prixLivraison;
         decimal prixTPS;
         decimal prixTVQ;
-        decimal grandTotal;
+
+        public decimal GrandTotal
+        {
+            get
+            {
+                return sousTotal + prixLivraison + prixTPS + prixTVQ;
+            }
+        }
 
         public bool Enabled
         {
             set
             {
                 ddlModesLivraison.Enabled = value;
-            }
-        }
-
-        public decimal GrandTotal
-        {
-            get
-            {
-                return grandTotal;
             }
         }
 
@@ -77,11 +76,18 @@ namespace Puces_R.Controles
         {
             get
             {
-                return short.Parse(ddlModesLivraison.SelectedValue);
+                if (ViewState["CodeLivraison"] == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return (short)ViewState["CodeLivraison"];
+                }
             }
             set
             {
-                ddlModesLivraison.SelectedValue = value.ToString();
+                ViewState["CodeLivraison"] = value;
             }
         }
 
@@ -89,17 +95,14 @@ namespace Puces_R.Controles
         {
             base.OnPreRender(e);
 
-            if (!IsPostBack)
-            {
-                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
-                DataTable tableCategories = new DataTable();
-                adapteurCategories.Fill(tableCategories);
+            SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
+            DataTable tableCategories = new DataTable();
+            adapteurCategories.Fill(tableCategories);
 
-                ddlModesLivraison.DataSource = tableCategories;
-                ddlModesLivraison.DataTextField = "Description";
-                ddlModesLivraison.DataValueField = "CodeLivraison";
-                ddlModesLivraison.DataBind();
-            }
+            ddlModesLivraison.DataSource = tableCategories;
+            ddlModesLivraison.DataTextField = "Description";
+            ddlModesLivraison.DataValueField = "CodeLivraison";
+            ddlModesLivraison.DataBind();
 
             if (ViewState["NoCommande"] != null)
             {
@@ -118,7 +121,7 @@ namespace Puces_R.Controles
                 prixLivraison = (decimal)lecteurCommande["Livraison"];
                 prixTPS = (decimal)lecteurCommande["TPS"];
                 prixTVQ = (decimal)lecteurCommande["TVQ"];
-                grandTotal = (decimal)lecteurCommande["MontantTotal"];
+                sousTotal = (decimal)lecteurCommande["MontantTotal"];
 
                 lecteurCommande.Close();
                 myConnection.Close();
@@ -188,7 +191,6 @@ namespace Puces_R.Controles
                     prixTVQ = 0;
                 }
 
-                grandTotal = prixAvecLivraison + prixTPS + prixTVQ;
 
                 lblTauxTPS.Text = "(" + tauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + tauxTVQ.ToString("P3") + ")";
@@ -196,10 +198,11 @@ namespace Puces_R.Controles
 
             lblPoidsTotal.Text = poidsTotal.ToString() + " lbs.";
             lblSousTotal.Text = sousTotal.ToString("C");
+            ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
             lblLivraison.Text = prixLivraison.ToString("C");
             lblTPS.Text = prixTPS.ToString("C");
             lblTVQ.Text = prixTVQ.ToString("C");
-            lblGrandTotal.Text = grandTotal.ToString("C");
+            lblGrandTotal.Text = GrandTotal.ToString("C");
             
             myConnection.Close();
         }
@@ -222,7 +225,7 @@ namespace Puces_R.Controles
             parameters.Add(new SqlParameter("dateCommande", DateTime.Now));
             parameters.Add(new SqlParameter("livraison", prixLivraison));
             parameters.Add(new SqlParameter("typeLivraison", CodeLivraison));
-            parameters.Add(new SqlParameter("montantTotal", grandTotal));
+            parameters.Add(new SqlParameter("montantTotal", sousTotal));
             parameters.Add(new SqlParameter("TPS", prixTPS));
             parameters.Add(new SqlParameter("TVQ", prixTVQ));
             parameters.Add(new SqlParameter("poidsTotal", poidsTotal));
@@ -238,6 +241,11 @@ namespace Puces_R.Controles
             commandeViderPanier.ExecuteNonQuery();
 
             myConnection.Close();
+        }
+
+        protected void ddlModesLivraison_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            CodeLivraison = short.Parse(ddlModesLivraison.SelectedValue);
         }
     }
 }

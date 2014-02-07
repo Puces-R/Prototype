@@ -73,7 +73,7 @@ namespace Puces_R
 
             if (boite > 0)
             {
-                cmd.CommandText = "SELECT        M.NoMessage, DM.Lu, X.Texte AS 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
+                cmd.CommandText = "SELECT M.NoMessage, DM.Lu, X.Texte AS 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
                                   "PPMessages AS M ON DM.NoMessage = M.NoMessage INNER JOIN  " +
                                   "(SELECT NoClient AS No, RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoClient AS varchar(10)) + ')' AS Texte FROM PPClients UNION " +
                                    "SELECT NoVendeur AS 'No', RTRIM(NomAffaires) + ' (' + CAST(NoVendeur AS varchar(10)) + ')' AS 'Texte' FROM PPVendeurs UNION " +
@@ -83,9 +83,14 @@ namespace Puces_R
             }
             else if (boite < 0)
             {
-                cmd.CommandText = "SELECT M.NoMessage, M.Sujet, M.NoExpediteur 'Personne', M.DateEnvoi FROM PPMessages M " +
+                cmd.CommandText = "SELECT M.NoMessage, M.Sujet, DM.NoDestinataire 'Personne', M.DateEnvoi FROM PPDestinatairesMessages DM " +
+                                   "INNER JOIN PPMessages M ON DM.NoMessage = M.NoMessage " + 
                                     "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
                                     "ORDER BY " + ordreCmd;
+                SqlCommand cmdDestinataire = new SqlCommand("SELECT Texte FROM (SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                                                "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                                                "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires)" +
+                                                                "WHERE NoMessage = @no", connexion);
             }
             cmd.Parameters.AddWithValue("@id", Session["ID"]);
             cmd.Parameters.AddWithValue("@noBoite", boite);

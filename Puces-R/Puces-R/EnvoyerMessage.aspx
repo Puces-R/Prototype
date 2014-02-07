@@ -4,7 +4,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <script type="text/javascript">
         function popup() {
-            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>&Type=<%=Session["Type"]%>', "ChoisirVendeur", "height=700,width=900");
+            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>&Type=<% Response.Write("Z" + Session["Type"].ToString()); %>', "ChoisirVendeur", "height=700,width=900");
             w.focus();
         }
 
@@ -21,7 +21,7 @@
                     Destinataire
                 </td>
                 <td>
-                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="300px" /><br />
+                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="700px" /><br />
                     <asp:Button runat="server" ID="btn" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
                 </td>
             </tr>
@@ -30,7 +30,7 @@
                     Sujet
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbSujet" MaxLength="50" Width="500px" />
+                    <asp:TextBox runat="server" ID="tbSujet" MaxLength="50" Width="700px" />
                 </td>
             </tr>
             <tr>

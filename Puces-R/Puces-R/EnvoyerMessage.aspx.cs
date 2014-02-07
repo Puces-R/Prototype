@@ -36,13 +36,16 @@ namespace Puces_R
                     param[i] = string.Format("@no{0}", i);
                     cmd.Parameters.AddWithValue(param[i], lstNoDestinataires[i]);
                 }
-                cmd.CommandText = "SELECT NoVendeur, RTRIM(NomAffaires) + ' (' + CAST(NoVendeur AS varchar(10)) + ')' 'Nom' " +
-                                   string.Format("FROM PPVendeurs WHERE NoVendeur IN ({0})", string.Join(", ", param));
+                cmd.CommandText = "SELECT No, Texte FROM " +
+                                  "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                   "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                   "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
+                     string.Format("WHERE (No IN ({0}))", string.Join(", ", param));
                 connexion.Open();
                 SqlDataReader sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
-                    ListItem i = new ListItem(sdr["Nom"].ToString(), sdr["NoVendeur"].ToString());
+                    ListItem i = new ListItem(sdr["Texte"].ToString(), sdr["No"].ToString());
                     lbDestinataires.Items.Add(i);
                 }
                 sdr.Close();

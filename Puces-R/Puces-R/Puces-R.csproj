@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -61,7 +64,6 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="AccueilClient.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
-    <Content Include="BonCommande.aspx" />
     <Content Include="ChoixDestinataires.aspx" />
     <Content Include="CommandesClient.aspx" />
     <Content Include="Controles\Adresse.ascx" />
@@ -222,12 +224,10 @@
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BonCommande.aspx.cs">
-      <DependentUpon>BonCommande.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BonCommande.aspx.designer.cs">
-      <DependentUpon>BonCommande.aspx</DependentUpon>
+    <Compile Include="BonCommande.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BonCommande.xsd</DependentUpon>
     </Compile>
     <Compile Include="ChoixDestinataires.aspx.cs">
       <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
@@ -454,6 +454,7 @@
     <Compile Include="DetailsProduit.aspx.designer.cs">
       <DependentUpon>DetailsProduit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Facture.cs" />
     <Compile Include="GererPanierVendeur.aspx.cs">
       <DependentUpon>GererPanierVendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -652,6 +653,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NavigationItems.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BonCommande.xsc">
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+    </None>
+    <None Include="BonCommande.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BonCommande.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BonCommande.xss">
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BonCommande.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

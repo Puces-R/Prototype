@@ -13,15 +13,6 @@ namespace Puces_R {
     public partial class ResultatPaiement {
         
         /// <summary>
-        /// Contrôle MenuClient1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuClient MenuClient1;
-        
-        /// <summary>
         /// Contrôle litMessageResultat.
         /// </summary>
         /// <remarks>
@@ -40,21 +31,48 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.HyperLink hypReessayer;
         
         /// <summary>
-        /// Contrôle pnlMontantsFactures.
+        /// Contrôle ctrRapport.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMontantsFactures;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ctrRapport;
         
         /// <summary>
-        /// Contrôle ctrMontantsFactures.
+        /// Contrôle VendeurDetaille.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MontantsFactures ctrMontantsFactures;
+        protected global::System.Web.UI.WebControls.ObjectDataSource VendeurDetaille;
+        
+        /// <summary>
+        /// Contrôle ClientDetaille.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ClientDetaille;
+        
+        /// <summary>
+        /// Contrôle ArticleEnPanierDetaille.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ArticleEnPanierDetaille;
+        
+        /// <summary>
+        /// Contrôle ctrScriptManager.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ctrScriptManager;
     }
 }

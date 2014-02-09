@@ -449,3 +449,9 @@ body
     text-align:right;
     padding-top:5px;
 }
+
+.bonCommande
+{
+    border:1px solid Black;
+    margin:15px;
+}

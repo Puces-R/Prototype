@@ -1,13 +1,5 @@
 ﻿<%@ Page Title="Gérer le vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vendeur.aspx.cs" Inherits="Puces_R.vendeur" %>
 
-<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
-
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
@@ -19,72 +11,6 @@
     <script type="text/javascript" src="lib/js/jchart/jchartfx.coreVector3d.js"></script>
     <script type="text/javascript" src="lib/js/jchart/jchartfx.animation.js"></script>
     <script type="text/javascript" src="lib/js/jchart/jchartfx.advanced.js"></script>
-    <script type="text/javascript" >
-        window.onload = function () {
-            onLoadDoc();
-            onLoadDoc2();
-        }
-
-         var chart1, chart2;
-
-         function onLoadDoc() {
-             chart1 = new cfx.Chart(); chart1.getAnimations().getLoad().setEnabled(true);
-
-             chart1.setGallery(cfx.Gallery.Bar);
-             chart1.getView3D().setEnabled(true);
-             chart1.getView3D().setRotated(true);
-             chart1.getView3D().setAngleX(30);
-             chart1.getView3D().setAngleY(-20);
-             chart1.getView3D().setBoxThickness(10);
-             chart1.getView3D().setDepth(160);
-             chart1.getView3D().setShadow(cfx.Shadow.Fixed);
-
-             var items = [
-                                { "Ventes": 2200, "Mois": "Jan" },
-                                { "Ventes": 1500, "Mois": "Feb" },
-                                { "Ventes": 2100, "Mois": "Mar" },
-                                { "Ventes": 2600, "Mois": "Apr" },
-                                { "Ventes": 3200, "Mois": "May" },
-
-                        ];
-             chart1.setDataSource(items);
-
-             var chartDiv = document.getElementById('ChartDiv1');
-             chart1.create(chartDiv);
-         }
-
-         function onLoadDoc2() {
-             chart2 = new cfx.Chart(); chart2.getAnimations().getLoad().setEnabled(true);
-             PopulateCarProduction(chart2);
-             chart2.setGallery(cfx.Gallery.Pie);
-             var data = chart2.getData();
-             data.setPoints(6);
-             //data.setSeries(2);
-             var titles = chart2.getTitles();
-             var title = new cfx.TitleDockable();
-             title.setText("Répartition des clients par catégorie");
-             titles.add(title);
-             chart2.getAllSeries().getPointLabels().setVisible(true);
-
-         }
-         function PopulateCarProduction(chart2) {
-             var items = [{
-                 "Nombre de clients dans cette catégorie": 1478,
-                 "Catégorie": "Potentiels"
-             }, {
-                 "Nombre de clients dans cette catégorie": 1306,
-                 "Catégorie": "Actifs"
-             }, {
-                 "Nombre de clients dans cette catégorie": 1607,
-                 "Catégorie": "Visiteurs"
-             }];
-
-
-             chart2.setDataSource(items);
-             var chartDiv2 = document.getElementById('ChartDiv2');
-             chart2.create(chartDiv2);
-         }
-   </script> 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -192,7 +118,20 @@
                     </div>
 
                     <div class="rectangleItem hautRectangle">
-                        <asp:Label runat="server" ID="Label2" Text="Total des commandes des cinq derniers mois"/>
+                        <table border="0" width="100%" >
+                            <tr><td>Total des commandes des derniers mois</td>
+                            <td align="right" >
+                                Nombre de mois
+                                <asp:DropDownList ID="ddlNbMois" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerDonneesGraphiques">
+                                <asp:ListItem Value="5" Selected="True" style="color: Black;" />
+                                <asp:ListItem Value="6" style="color: Black;" />
+                                <asp:ListItem Value="7" style="color: Black;" />
+                                <asp:ListItem Value="8" style="color: Black;" />
+                                <asp:ListItem Value="9" style="color: Black;" />
+                                <asp:ListItem Value="10" style="color: Black;" />
+                            </asp:DropDownList>
+                            </td></tr>
+                        </table>
                     </div>
                     <div class="rectangleItem basRectangle">
                          <div id="ChartDiv1" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>                       

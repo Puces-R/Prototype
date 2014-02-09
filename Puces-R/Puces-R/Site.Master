@@ -12,10 +12,10 @@
         <form runat="server">
             <div class="page">
                 <div>
-                    <div class="lignePointilleHorizontale pleineLargeur header">
+                    <div class="lignePointilleHorizontale pleineLargeur header noPrint">
                         <img src="Images/logo.png" class="logo" alt="Logo" />
                         <span class="titre">Les Petites Puces</span>
-                        <div runat="server" ID="divMenu" class="droitePageMaitre">
+                        <div runat="server" ID="divMenu" class="droitePageMaitre noPrint">
                             <div class="bonjour">
                                 Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" /> &nbsp;
                                 <asp:HyperLink runat="server" ID="hlDeconnexion" NavigateUrl="~/Default.aspx" Text="Se déconnecter" />

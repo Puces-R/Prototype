@@ -38,14 +38,17 @@ namespace Puces_R
 
         public Facture(long noClient, long noVendeur, short codeLivraison) : this(codeLivraison)
         {
+            this.NoClient = noClient;
+            this.NoVendeur = noVendeur;
+
             String whereClause = " WHERE A.NoClient = " + noClient+ " AND P.NoVendeur = " + noVendeur;
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, PrixDemande, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
-            SousTotal = 0;
-            PoidsTotal = 0;
+            this.SousTotal = 0;
+            this.PoidsTotal = 0;
 
             foreach (DataRow produit in tableProduits.Rows)
             {
@@ -80,42 +83,42 @@ namespace Puces_R
             decimal prixAvecLivraison = SousTotal + PrixLivraison;
 
             SqlCommand commandeTauxTPS = new SqlCommand("SELECT TOP(1) TauxTPS FROM PPTaxeFederale ORDER BY DateEffectiveTPS DESC", myConnection);
-            TauxTPS = ((decimal)commandeTauxTPS.ExecuteScalar()) / 100;
+            this.TauxTPS = ((decimal)commandeTauxTPS.ExecuteScalar()) / 100;
 
             SqlCommand commandeTauxTVQ = new SqlCommand("SELECT TOP(1) TauxTVQ FROM PPTaxeProvinciale ORDER BY DateEffectiveTVQ DESC", myConnection);
-            TauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
+            this.TauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
 
-            PrixTPS = prixAvecLivraison * TauxTPS;
+            this.PrixTPS = prixAvecLivraison * TauxTPS;
 
             if (province == "QC")
             {
-                PrixTVQ = prixAvecLivraison * TauxTVQ;
+                this.PrixTVQ = prixAvecLivraison * TauxTVQ;
             }
             else
             {
-                PrixTVQ = 0;
+                this.PrixTVQ = 0;
             }
         }
 
         public Facture(long noCommande, short codeLivraison) : this(codeLivraison)
         {
-                myConnection.Open();
+            myConnection.Open();
 
-                SqlCommand commandeCommande = new SqlCommand("SELECT * FROM PPCommandes WHERE NoCommande = " + noCommande, myConnection);
-                SqlDataReader lecteurCommande = commandeCommande.ExecuteReader();
+            SqlCommand commandeCommande = new SqlCommand("SELECT * FROM PPCommandes WHERE NoCommande = " + noCommande, myConnection);
+            SqlDataReader lecteurCommande = commandeCommande.ExecuteReader();
 
-                lecteurCommande.Read();
+            lecteurCommande.Read();
 
-                NoVendeur = (long)lecteurCommande["NoVendeur"];
-                PoidsTotal = (decimal)lecteurCommande["PoidsTotal"];
-                codeLivraison = (short)lecteurCommande["TypeLivraison"];
-                PrixLivraison = (decimal)lecteurCommande["Livraison"];
-                PrixTPS = (decimal)lecteurCommande["TPS"];
-                PrixTVQ = (decimal)lecteurCommande["TVQ"];
-                SousTotal = (decimal)lecteurCommande["MontantTotal"];
+            this.NoVendeur = (long)lecteurCommande["NoVendeur"];
+            this.PoidsTotal = (decimal)lecteurCommande["PoidsTotal"];
+            this.CodeLivraison = (short)lecteurCommande["TypeLivraison"];
+            this.PrixLivraison = (decimal)lecteurCommande["Livraison"];
+            this.PrixTPS = (decimal)lecteurCommande["TPS"];
+            this.PrixTVQ = (decimal)lecteurCommande["TVQ"];
+            this.SousTotal = (decimal)lecteurCommande["MontantTotal"];
 
-                lecteurCommande.Close();
-                myConnection.Close();
+            lecteurCommande.Close();
+            myConnection.Close();
         }
     }
 }

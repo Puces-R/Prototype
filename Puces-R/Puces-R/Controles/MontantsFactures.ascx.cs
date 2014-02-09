@@ -15,6 +15,14 @@ namespace Puces_R.Controles
 
         private Facture facture;
 
+        public decimal GrandTotal
+        {
+            get
+            {
+                return facture.GrandTotal;
+            }
+        }
+
         public bool Enabled
         {
             set
@@ -87,6 +95,8 @@ namespace Puces_R.Controles
 
         public void CalculerCout()
         {
+            facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
+
             SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
             DataTable tableCategories = new DataTable();
             adapteurCategories.Fill(tableCategories);
@@ -102,8 +112,6 @@ namespace Puces_R.Controles
             }
             else if (ViewState["NoVendeur"] != null)
             {
-                mvPartieBas.ActiveViewIndex = 1;
-
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
             }

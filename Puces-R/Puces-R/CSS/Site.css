@@ -17,7 +17,6 @@ body
 
 .logo
 {
-    height: 50px;
     vertical-align: middle;
 }
 
@@ -408,7 +407,7 @@ body
 {
     font-weight:bold;
     margin:75px 15px;
-    text-align:center;
+    text-align:center !important;
     font-size:large;
     color:Red;
 }
@@ -454,4 +453,17 @@ body
 {
     border:1px solid Black;
     margin:15px;
+}
+
+@media print
+{    
+    .noPrint, .noPrint *
+    {
+        display: none !important;
+    }
+    
+    .page > div
+    {
+        width: auto;
+    }
 }

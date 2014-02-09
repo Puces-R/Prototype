@@ -76,7 +76,8 @@
                 </tr>
             </table>
             <div class="boutonsAction">
-                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" />                     
+                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" />
+                <asp:Button runat="server" Text="Simulation" ID="btnEssaie" OnClick="btnEssaie_OnClick" CausesValidation="false" />
             </div>
             <div>
                 <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" OnServerValidate="valQuantite_OnServerValidate" CssClass="erreur" /> 

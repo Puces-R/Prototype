@@ -100,6 +100,7 @@
     <Content Include="CSS\InsertionProduits.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
+    <Content Include="CSS\ResultatPaiement.css" />
     <Content Include="CSS\Site.css" />
     <Content Include="CSS\SuppressionProduits.css" />
     <Content Include="Default.aspx" />
@@ -120,15 +121,20 @@
     <Content Include="Images\EtoilePleine.png" />
     <Content Include="Images\Dernier.png" />
     <Content Include="Images\image_non_disponible.png" />
+    <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Precedent.png" />
     <Content Include="Images\Premier.png" />
+    <Content Include="Images\print.png" />
     <Content Include="Images\Prochain.png" />
+    <Content Include="Images\Televerse\10-1000052.jpg" />
     <Content Include="Images\Televerse\1000010.jpg" />
     <Content Include="Images\Televerse\1000020.jpg" />
     <Content Include="Images\Televerse\1000030.jpg" />
     <Content Include="Images\Televerse\1000040.jpg" />
     <Content Include="Images\Televerse\1000050.jpg" />
+    <Content Include="Images\Televerse\101000054.jpg" />
+    <Content Include="Images\Televerse\101000056.jpg" />
     <Content Include="Images\Televerse\2000010.jpg" />
     <Content Include="Images\Televerse\2000020.jpg" />
     <Content Include="Images\Televerse\2000030.jpg" />
@@ -148,7 +154,6 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
-    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="ResultatPaiement.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -668,7 +673,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BonCommande.rdlc" />
+    <EmbeddedResource Include="BonCommande.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

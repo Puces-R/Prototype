@@ -17,8 +17,7 @@ namespace Puces_R
         int no_vendeur;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            
+        {            
             ((SiteMaster)Master).Titre = "Verdict de la demande";
 
             if (Session["err_msg"] != null)
@@ -107,7 +106,6 @@ namespace Puces_R
             }
 
             Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été refusé.";
-
             Response.Redirect("gerer_demandes_vendeurs.aspx");
 
             myConnection.Close();

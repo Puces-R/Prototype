@@ -6,28 +6,48 @@
     <script src="//code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="lib/js/librairie.js"></script>
     <script>
-        function checkAll() {
-            $('input:checkbox').each(
-             function () {
-                 this.checked = true;  
-             }
-         )
-         }
 
-         function unCheckAll() {
-             $('input:checkbox').each(
-             function () {
-                 this.checked = false;
-             }
-         )
-         }
+        $(document).ready(function () {
+            $('#cb_tout').click(function () { // clic sur la case cocher/decocher
 
-        function initialize() {
-            $('.cocher_tout').click(checkAll);
-            $('.decocher_tout').click(unCheckAll);
+                var cases = $(".basRectangle").find(':checkbox'); // on cherche les checkbox qui dépendent de la liste 'cases'
+                if (this.checked) { // si 'cocheTout' est coché
+                    cases.prop('checked', 'checked'); 
+                } else { // si on décoche 'cocheTout' 
+                    cases.prop('checked', ''); 
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        .basRectangle td
+        {
+            padding: 3px 25px 3px 25px;
         }
+        
+        .hautRectangle th
+        {
+            padding: 7px 25px 7px 25px;
+            font-size: medium;
+        }
+    </style>
 
-        $(document).ready(initialize);  
+    <script type="text/javascript">
+        function check_desactiver_tout(cb_case) {
+            if (cb_case.checked == true) {
+                document.getElementById("<%=btn_desactiver_tout.ClientID %>").disabled = false;
+                //alert(document.getElementById("<%=btn_desactiver_tout.ClientID %>").disabled);
+            }
+            else {
+                var tab_cases = document.getElementsByClassName('cb_selection');
+                var activer = false;
+
+                for (var i = 0; i < tab_cases.length; i++)
+                //if (tab_cases[i].checked != null)
+                    activer = activer || tab_cases[i].checked;
+                document.getElementById("<%=btn_desactiver_tout.ClientID %>").disabled = !activer;
+            }
+        }
     </script>
 </asp:Content>
 
@@ -52,12 +72,11 @@
         <span class="boiteListeDeroulante">
             Par page:
             <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
-                <asp:ListItem Value="6" />
-                <asp:ListItem Value="12" />
-                <asp:ListItem Value="18" />
-                <asp:ListItem Value="24" />
-                <asp:ListItem Value="30" />
+                <asp:ListItem Value="20" />
+                <asp:ListItem Value="25" />
                 <asp:ListItem Value="50" />
+                <asp:ListItem Value="75" />
+                <asp:ListItem Value="100" />
             </asp:DropDownList>
         </span>
         <span class="boiteListeDeroulante">
@@ -69,67 +88,33 @@
                 <asp:ListItem Text="3 Ans" Value="3"/>
             </asp:DropDownList>
         </span>
-        <br />
-        <input id="cocher_tout" class="cocher_tout" runat="server" type="button" value="Sélectionner tout" title="Sélectionner tous les vendeurs innactifs sur cette page" style="margin-top: 15px;" />
-        <input id="decocher_tout" class="decocher_tout" type="button" runat="server" value="Effacer la sélection" title="Décocher tous le vendeurs sélectionnés" />
-        <asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" />
     </div>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="Items" runat="server">
+    <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
         <div style="font-size: small;">
             <input type="hidden" id="hid_liste_a_desactiver" />
-            <asp:DataList RepeatColumns="2" RepeatDirection="Horizontal" runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >
-                <ItemTemplate>
-                    <div style="width:460px;" >
-                        <div class="rectangleItem hautRectangle">
-                            <table border="0" width="100%" >
-                                <tr><td><asp:Label runat="server" ID="titre_inactif1" /></td>
-                                <td align="right"><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" /></td></tr>
-                            </table>
-                        </div>
-                        <div class="rectangleItem basRectangle">
-                            <table class="tableTitreValeur" >
-                                <colgroup>
-                                    <col width="50%" />
-                                    <col width="50%" />
-                                </colgroup>
-                                <tr >
-                                    <th>Adresse:</th>
-                                    <td><asp:Label runat="server" ID="addr_inactif1" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Téléphone:</th>
-                                    <td><asp:Label runat="server" ID="tels_inactif1" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Courriel:</th>
-                                    <td><asp:Label runat="server" ID="courriel_inactif1" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Taux de facturation:</th>
-                                    <td><asp:Label runat="server" ID="taux_facturation_inactif1" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Poids maximal:</th>
-                                    <td><asp:Label runat="server" ID="charge_max_inactif1" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Livraison gratuite:</th>
-                                    <td><asp:Label runat="server" ID="livraison_gratuite_inactif1" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Inactif depuis:</th>
-                                    <td><asp:Label runat="server" ID="date_inactif1" /></td>
-                                </tr>
-                            </table>
-                            <div class="boutonsCentre">
-                                <asp:Button ID="btn_desactiver" runat="server" Text="Désactiver" OnCommand="desactiver_vendeur" OnClientClick="return(confirm_desactiver());" ToolTip="Désactiver ce vendeur" />
-                            </div>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:DataList>
+            <table border="0" width="100%" cellpadding="5" >
+                <tr class="rectangleItem hautRectangle" >
+                    <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>
+                    <th>#</th>
+                    <th>Nom d'affaire</th>
+                    <th>Innactif depuis</th>
+                    <th><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/></th>
+                </tr>
+                <asp:Repeater runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >
+                    <ItemTemplate>                        
+                        <tr class="rectangleItem basRectangle">
+                            <td><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" onchange="check_desactiver_tout(this);" /></td>
+                            <td><asp:Label runat="server" ID="lbl_num" /></td>
+                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
+                            <td><asp:Label runat="server" ID="date_inactif1" /></td>
+                            <td><asp:Button ID="btn_desactiver" runat="server" Text="Désactiver" OnCommand="desactiver_vendeur" ToolTip="Désactiver ce vendeur" /></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </table>
         </div>
     </div>
 </asp:Content>

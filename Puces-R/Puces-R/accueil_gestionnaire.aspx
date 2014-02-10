@@ -6,66 +6,70 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <asp:Table runat="server">
+        <asp:Table runat="server" >
             <asp:TableRow>
                 <asp:TableCell>
                     <div class="rectangleItem hautRectangle">
-                        <span>Gérer les demandes des vendeurs</span>
+                        Meilleurs clients ce mois
                     </div>
-                    <div class="rectangleItem basRectangle">
+                    <div class="rectangleItem basRectangle" style="font-size: small;">
                         <ul>
-                            <li>2 nouvelles demandes dépuis votre dernière visite</li>
-                            <li>5 demandes à traiter</li>                     
+                            <asp:Repeater runat="server" ID="rptMeilleursClients" OnItemDataBound="rptMeilleursClients_ItemDataBound" >
+                                <ItemTemplate> 
+                                    <li><asp:Label runat="server" ID="lbl_meilleur_client" /></li>
+                                </ItemTemplate>
+                            </asp:Repeater>                  
                         </ul>
-                        <div class="lienDetails">
-                            <asp:HyperLink runat="server" NavigateUrl="gerer_demandes_vendeurs.aspx" Text="Détails" />
-                        </div>
                     </div>
                 </asp:TableCell><asp:TableCell>
                     <div class="rectangleItem hautRectangle">
-                        <span>Gérer l'inactivité des vendeurs</span>
+                        Meilleurs vendeurs ce mois
                     </div>
-                    <div class="rectangleItem basRectangle">
+                    <div class="rectangleItem basRectangle" style="font-size: small;">
                         <ul>
-                            <li>2 vendeurs devenus inactifs dépuis votre dernière visite</li>
-                            <li>5 vendeurs inactifs</li>                     
+                            <asp:Repeater runat="server" ID="rptMeilleursVendeurs" OnItemDataBound="rptMeilleursVendeurs_ItemDataBound" >
+                                <ItemTemplate> 
+                                    <li><asp:Label runat="server" ID="lbl_meilleur_vendeur" /></li>
+                                </ItemTemplate>
+                            </asp:Repeater>                  
                         </ul>
-                        <div class="lienDetails">
-                            <asp:HyperLink runat="server" NavigateUrl="gerer_inactivite_vendeurs.aspx" Text="Détails" />
-                        </div>
                     </div>
                 </asp:TableCell></asp:TableRow><asp:TableRow>
                 <asp:TableCell>
                     <div class="rectangleItem hautRectangle">
-                        <span>Gérer l'inactivité des clients</span>
+                        Gérer les demandes des vendeurs (<asp:Label runat="server" ID="lbl_nb_demandes" />)
                     </div>
-                    <div class="rectangleItem basRectangle">
+                    <div class="rectangleItem basRectangle"  style="font-size: small;">
+                        Les cinq dernières demandes
                         <ul>
-                            <li>2 clients devenus inactifs dépuis votre dernière visite</li>
-                            <li>5 clients inactifs</li>                      
+                            <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" >
+                                <ItemTemplate> 
+                                    <li><asp:Label runat="server" ID="lbl_nom_demande" /></li>
+                                </ItemTemplate>
+                            </asp:Repeater>                  
                         </ul>
-                         <div class="lienDetails">
-                            <asp:HyperLink runat="server" NavigateUrl="gerer_inactivite_clients.aspx" Text="Détails" />
+                        <div class="lienDetails">
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="gerer_demandes_vendeurs.aspx" Text="Détails" />
                         </div>
                     </div>
                 </asp:TableCell><asp:TableCell>
                     <div class="rectangleItem hautRectangle">
                         <span>Rapports & Statistiques</span>
                     </div>
-                    <div class="rectangleItem basRectangle">
+                    <div class="rectangleItem basRectangle" style="font-size: small;">
                         <ul>
                             <li>
                                 Du côté des vendeurs
                                 <ul>
-                                    <li>10 nouveaux vendeurs cette année</li>
-                                    <li>50 vendeurs en tout</li>
+                                    <li><asp:Label runat="server" ID="lbl_nb_nouv_vendeurs" /> nouveaux vendeurs ce mois</li>
+                                    <li><asp:Label runat="server" ID="lbl_nb_vendeurs" /> vendeurs en tout</li>
                                 </ul>
                             </li>
                             <li>
                                 Du côté des clients
                                 <ul>
-                                    <li>50 nouveaux clients cette année</li>
-                                    <li>300 clients en tout</li>
+                                    <li><asp:Label runat="server" ID="lbl_nb_nouv_clients" /> nouveaux clients ce mois</li>
+                                    <li><asp:Label runat="server" ID="lbl_nb_clients" /> clients en tout</li>
                                 </ul>
                             </li>                     
                         </ul>

@@ -83,14 +83,16 @@ namespace Puces_R
             }
             else if (boite < 0)
             {
-                cmd.CommandText = "SELECT M.NoMessage, M.Sujet, DM.NoDestinataire 'Personne', M.DateEnvoi FROM PPDestinatairesMessages DM " +
-                                   "INNER JOIN PPMessages M ON DM.NoMessage = M.NoMessage " + 
+                cmd.CommandText = "SELECT NoMessage, Sujet, DateEnvoi, " +
+                                    "(SELECT TOP (1) X.Texte FROM PPDestinatairesMessages AS DM INNER JOIN " +
+                                        "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                         "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X ON X.No = DM.NoDestinataire " +
+                                            "WHERE (DM.NoMessage = M.NoMessage)) AS Personne, " +
+                                    "(SELECT COUNT(*) - 1 FROM PPDestinatairesMessages AS DMX " +
+                                     "WHERE (NoMessage = M.NoMessage)) AS NbDestinataires FROM PPMessages AS M " +
                                     "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
                                     "ORDER BY " + ordreCmd;
-                SqlCommand cmdDestinataire = new SqlCommand("SELECT Texte FROM (SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
-                                                                "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
-                                                                "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires)" +
-                                                                "WHERE NoMessage = @no", connexion);
             }
             cmd.Parameters.AddWithValue("@id", Session["ID"]);
             cmd.Parameters.AddWithValue("@noBoite", boite);
@@ -100,9 +102,10 @@ namespace Puces_R
             int nbMessages = 0;
             for (nbMessages = 0; sdr.Read(); nbMessages++)
             {
+                int nbDestinataires = (boite > 0) ? -1 : int.Parse(sdr["NbDestinataires"].ToString());
                 LigneMessage l = (LigneMessage)Page.LoadControl("~/Controles/LigneMessage.ascx");
                 ListeMessage.Controls.Add(l);
-                l.De = sdr["Personne"].ToString();
+                l.De = sdr["Personne"].ToString() + (nbDestinataires <= 0 ? "" : " et " + nbDestinataires + " autre" + (nbDestinataires < 2 ? "" : "s"));
                 l.Sujet = sdr["Sujet"].ToString();
                 l.Date = (DateTime)sdr["DateEnvoi"];
                 l.Lu = boite < 0 ? true : (Boolean)sdr["Lu"];

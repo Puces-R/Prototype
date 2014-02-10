@@ -60,11 +60,11 @@ namespace Puces_R
             {
                 case 'C':
                     cmdChosen.Add("Vendeur", new SqlCommand("SELECT NoVendeur 'No', RTRIM(NomAffaires) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPVendeurs", connexion));
-                    cmdChosen.Add("Gestionnaire", new SqlCommand("SELECT NoGestionnaire, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPGestionnaires", connexion));
+                    cmdChosen.Add("Gestionnaire", new SqlCommand("SELECT NoGestionnaire 'No', RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPGestionnaires", connexion));
                     break;
                 case 'V':
                     cmdChosen.Add("Client", new SqlCommand("SELECT NoClient 'No', ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) 'Texte' FROM PPClients", connexion));
-                    cmdChosen.Add("Gestionnaire", new SqlCommand("SELECT NoGestionnaire, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPGestionnaires", connexion));
+                    cmdChosen.Add("Gestionnaire", new SqlCommand("SELECT NoGestionnaire 'No', RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPGestionnaires", connexion));
                     break;
                 case 'G':
                     cmdChosen.Add("Client", new SqlCommand("SELECT NoClient 'No', ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) 'Texte' FROM PPClients", connexion));

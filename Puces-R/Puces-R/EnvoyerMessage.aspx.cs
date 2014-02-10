@@ -17,7 +17,26 @@ namespace Puces_R
         {
             ClientScript.GetPostBackEventReference(this, string.Empty);
             string parametres = Request["__EVENTARGUMENT"];
-            if (Request["__EVENTTARGET"] == "ChoixDestinataires" && parametres != string.Empty)
+            lstNoDestinataires = null;
+
+            if (Session["Sujet"] != null)
+            {
+                tbSujet.Text = Session["Sujet"].ToString();
+                Session.Remove("Sujet");
+            }
+
+            if (Session["Message"] != null)
+            {
+                tbMessage.Text = Session["Message"].ToString();
+                Session.Remove("Message");
+            }
+
+            if (Session["ListeDestinataires"] != null)
+            {
+                lstNoDestinataires = (int[])Session["ListeDestinataires"];
+                Session.Remove("ListeDestinataires");
+            }
+            else if (Request["__EVENTTARGET"] == "ChoixDestinataires" && parametres != string.Empty)
             {
                 lbDestinataires.Items.Clear();
                 string[] lstParametres = parametres.Split(",".ToArray());
@@ -26,6 +45,10 @@ namespace Puces_R
                 {
                     lstNoDestinataires[i] = int.Parse(lstParametres[i]);
                 }
+            }
+
+            if (lstNoDestinataires != null)
+            {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connexion;
 

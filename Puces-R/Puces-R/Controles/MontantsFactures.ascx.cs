@@ -95,8 +95,6 @@ namespace Puces_R.Controles
 
         public void CalculerCout()
         {
-            facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
-
             SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT * FROM PPTypesLivraison", myConnection);
             DataTable tableCategories = new DataTable();
             adapteurCategories.Fill(tableCategories);
@@ -108,10 +106,12 @@ namespace Puces_R.Controles
 
             if (ViewState["NoCommande"] != null)
             {
+                facture = new Facture(NoCommande, CodeLivraison);
                 mvPartieBas.ActiveViewIndex = 0;
             }
             else if (ViewState["NoVendeur"] != null)
             {
+                facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
             }

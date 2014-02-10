@@ -114,6 +114,11 @@ namespace Puces_R.Controles
                 facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
+
+                if (facture.PoidsTotal > facture.PoidsMaximal)
+                {
+                    MessageErreur = "Poids maximal de " + facture.PoidsMaximal + " lbs. excédé.";
+                }
             }
 
             lblPoidsTotal.Text = facture.PoidsTotal.ToString() + " lbs.";
@@ -123,7 +128,7 @@ namespace Puces_R.Controles
             lblTPS.Text = facture.PrixTPS.ToString("C");
             lblTVQ.Text = facture.PrixTVQ.ToString("C");
             lblGrandTotal.Text = facture.GrandTotal.ToString("C");
-            
+
             myConnection.Close();
         }
 

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using Puces_R.Controles;
+using System.Drawing;
 
 namespace Puces_R
 {
@@ -64,10 +65,11 @@ namespace Puces_R
             {
                 HyperLink hypDescriptionAbregee = (HyperLink)item.FindControl("hypDescriptionAbregee");
                 Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                Image imgProduit = (Image)item.FindControl("imgProduit");
+                System.Web.UI.WebControls.Image imgProduit = (System.Web.UI.WebControls.Image)item.FindControl("imgProduit");
                 Label lblCategorie = (Label)item.FindControl("lblCategorie");
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                 Label lblQuantite = (Label)item.FindControl("lblQuantite");
+                Label lblEvaluation = (Label)item.FindControl("lblEvaluation");
 
                 DataRowView drvFilm = (DataRowView)e.Item.DataItem;
 
@@ -88,13 +90,33 @@ namespace Puces_R
                 decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
                 short intQuantite = (short)drvFilm["NombreItems"];
 
+                if (drvFilm["Evaluation"] is DBNull)
+                {
+                    lblEvaluation.Text = "Aucune évaluation";
+                }
+                else
+                {
+                    decimal evaluation = (decimal)drvFilm["Evaluation"];
+                    lblEvaluation.Text = "Cote moyenne: " + evaluation.ToString("N1") + " / 5";
+                }
+                
+
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
                 hypDescriptionAbregee.Text = strDescriptionAbregee;
                 hypDescriptionAbregee.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
                 lblCategorie.Text = strCategorie;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
-                lblQuantite.Text = "Quantité: " + intQuantite.ToString();
+                if (intQuantite > 0)
+                {
+                    lblQuantite.Text = "Quantité: " + intQuantite.ToString();
+                }
+                else
+                {
+                    lblQuantite.Text = "En rupture de stock";
+                    lblQuantite.ForeColor = Color.Red;
+                    hypDescriptionAbregee.Enabled = false;
+                }
             }
         }
 
@@ -134,14 +156,6 @@ namespace Puces_R
                 noVendeur = -1;
             }
 
-            if (!IsPostBack)
-            {
-                if (noVendeur != -1)
-                {
-                    ((MenuClient)(((SiteMaster)Master.Master).Menu)).NoVendeur = noVendeur;
-                }
-            }
-
             if (IsPostBack)
             {
                 noCategorie = int.Parse(ddlCategorie.SelectedValue);
@@ -162,10 +176,12 @@ namespace Puces_R
                 }
             }
 
+            whereParts.Add("P.Disponibilité = 1");
+
             String whereClause;
             if (whereParts.Count > 0)
             {
-                whereClause = " WHERE Disponibilité = 1 AND " + string.Join(" AND ", whereParts);
+                whereClause = " WHERE " + string.Join(" AND ", whereParts);
             }
             else
             {
@@ -182,11 +198,14 @@ namespace Puces_R
                     orderByClause += "C.Description";
                     break;
                 case 2:
-                    orderByClause += "P.DateCreation";
+                    orderByClause += "P.DateCreation DESC";
+                    break;
+                case 3:
+                    orderByClause += "Evaluation DESC";
                     break;
             }
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

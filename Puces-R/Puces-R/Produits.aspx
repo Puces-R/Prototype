@@ -21,6 +21,7 @@
             <asp:ListItem Text="Numéro" />
             <asp:ListItem Text="Catégorie" />
             <asp:ListItem Text="Date de parution" />
+            <asp:ListItem Text="Évaluations" />
         </asp:DropDownList>
     </span>
     <span class="boiteListeDeroulante">
@@ -59,6 +60,7 @@
                         <asp:Label runat="server" ID="lblNoProduit" />
                         <asp:Label runat="server" ID="lblCategorie" />
                         <asp:Label runat="server" ID="lblPrixDemande" />
+                        <asp:Label runat="server" ID="lblEvaluation" />
                         <asp:Label runat="server" ID="lblQuantite" />
                     </div>
                 </div>

@@ -33,7 +33,7 @@ namespace Puces_R
             }
         }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
+        protected void Page_PreRenderComplete(object sender, EventArgs e)
         {
             btnCommander.Visible = String.IsNullOrEmpty(ctrMontantsFactures.MessageErreur);
         }

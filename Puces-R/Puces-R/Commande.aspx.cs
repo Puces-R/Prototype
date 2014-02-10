@@ -33,7 +33,6 @@ namespace Puces_R
                 }
                 
                 ((SiteMaster)Master).NoVendeur = noVendeur;
-                ((MenuClient)((SiteMaster)Master).Menu).NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];

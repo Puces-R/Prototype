@@ -103,59 +103,69 @@ namespace Puces_R
         {
             myConnection.Open();
 
-            SqlCommand commandeNoCommande = new SqlCommand("SELECT MAX(NoCommande) FROM PPCommandes", myConnection);
+            SqlTransaction transaction = myConnection.BeginTransaction();
 
-            NoCommande = (long)commandeNoCommande.ExecuteScalar() + 1;
+            try
+            {
+                SqlCommand commandeNoCommande = new SqlCommand("SELECT MAX(NoCommande) FROM PPCommandes", myConnection, transaction);
 
-            SqlCommand commandePaiement = new SqlCommand("INSERT INTO PPCommandes VALUES (@noCommande, @noClient, @noVendeur, @dateCommande, @livraison, @typeLivraison, @montantTotal, @TPS, @TVQ, @poidsTotal, @statut, @noAutorisation)", myConnection);
+                NoCommande = (long)commandeNoCommande.ExecuteScalar() + 1;
 
-            SqlParameterCollection parameters = commandePaiement.Parameters;
+                SqlCommand commandePaiement = new SqlCommand("INSERT INTO PPCommandes VALUES (@noCommande, @noClient, @noVendeur, @dateCommande, @livraison, @typeLivraison, @montantTotal, @TPS, @TVQ, @poidsTotal, @statut, @noAutorisation)", myConnection, transaction);
 
-            parameters.Add(new SqlParameter("noCommande", NoCommande));
-            parameters.Add(new SqlParameter("noClient", Session["ID"]));
-            parameters.Add(new SqlParameter("noVendeur", facture.NoVendeur));
-            parameters.Add(new SqlParameter("dateCommande", DateTime.Now));
-            parameters.Add(new SqlParameter("livraison", facture.PrixLivraison));
-            parameters.Add(new SqlParameter("typeLivraison", facture.CodeLivraison));
-            parameters.Add(new SqlParameter("montantTotal", facture.SousTotal));
-            parameters.Add(new SqlParameter("TPS", facture.PrixTPS));
-            parameters.Add(new SqlParameter("TVQ", facture.PrixTVQ));
-            parameters.Add(new SqlParameter("poidsTotal", facture.PoidsTotal));
-            parameters.Add(new SqlParameter("statut", "p"));
-            parameters.Add(new SqlParameter("noAutorisation", 1));
+                SqlParameterCollection parameters = commandePaiement.Parameters;
 
-            commandePaiement.ExecuteNonQuery();
+                parameters.Add(new SqlParameter("noCommande", NoCommande));
+                parameters.Add(new SqlParameter("noClient", Session["ID"]));
+                parameters.Add(new SqlParameter("noVendeur", facture.NoVendeur));
+                parameters.Add(new SqlParameter("dateCommande", DateTime.Now));
+                parameters.Add(new SqlParameter("livraison", facture.PrixLivraison));
+                parameters.Add(new SqlParameter("typeLivraison", facture.CodeLivraison));
+                parameters.Add(new SqlParameter("montantTotal", facture.SousTotal));
+                parameters.Add(new SqlParameter("TPS", facture.PrixTPS));
+                parameters.Add(new SqlParameter("TVQ", facture.PrixTVQ));
+                parameters.Add(new SqlParameter("poidsTotal", facture.PoidsTotal));
+                parameters.Add(new SqlParameter("statut", "p"));
+                parameters.Add(new SqlParameter("noAutorisation", 1));
 
-            SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + facture.NoVendeur, myConnection);
-            commandeNbItems.ExecuteNonQuery();
+                commandePaiement.ExecuteNonQuery();
 
-            SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + facture.NoVendeur, myConnection);
-            commandeViderPanier.ExecuteNonQuery();
+                SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + facture.NoVendeur, myConnection, transaction);
+                commandeNbItems.ExecuteNonQuery();
 
-            Warning[] warnings;
-            string[] streamids;
-            string mimeType;
-            string encoding;
-            string filenameExtension;
-            string deviceInfo = "<DeviceInfo><OutputFormat>PDF</OutputFormat></DeviceInfo>";
+                SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + facture.NoVendeur, myConnection, transaction);
+                commandeViderPanier.ExecuteNonQuery();
 
-            byte[] bytes = ctrRapport.LocalReport.Render("PDF", deviceInfo, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
-            MemoryStream flux = new MemoryStream(bytes);
+                Warning[] warnings;
+                string[] streamids;
+                string mimeType;
+                string encoding;
+                string filenameExtension;
 
-            Attachment attachement = new Attachment(flux, "BonDeCommande.pdf");
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-            client.EnableSsl = true;
+                byte[] bytes = ctrRapport.LocalReport.Render("PDF", null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
+                MemoryStream flux = new MemoryStream(bytes);
 
-            EnvoyerMessage(client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient), attachement);
-            EnvoyerMessage(client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur), attachement);
+                Attachment attachement = new Attachment(flux, "BonDeCommande-" + NoCommande + ".pdf");
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
+                client.EnableSsl = true;
+
+                EnvoyerMessage(client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement);
+                EnvoyerMessage(client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement);
+
+                transaction.Commit();
+            }
+            catch (SqlException)
+            {
+                transaction.Rollback();
+            }
 
             myConnection.Close();
         }
 
-        private MailAddress GetAdresse(string nomTable, string whereClause)
+        private MailAddress GetAdresse(string nomTable, string whereClause, SqlTransaction transaction)
         {
-            SqlCommand commandeCourriel = new SqlCommand("SELECT AdresseEmail, Prenom + ' ' + Nom AS NomComplet FROM " + nomTable + whereClause, myConnection);
+            SqlCommand commandeCourriel = new SqlCommand("SELECT AdresseEmail, Prenom + ' ' + Nom AS NomComplet FROM " + nomTable + whereClause, myConnection, transaction);
             SqlDataReader lecteurCourriel = commandeCourriel.ExecuteReader();
             lecteurCourriel.Read();
             string courrielClient = (String)lecteurCourriel["AdresseEmail"];

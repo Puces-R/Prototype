@@ -16,6 +16,7 @@ namespace Puces_R
         public long NoVendeur { get; private set; }
         public decimal SousTotal { get; private set; }
         public decimal PoidsTotal { get; private set; }
+        public decimal PoidsMaximal { get; private set; }
         public decimal PrixLivraison { get; private set; }
         public decimal PrixTPS { get; private set; }
         public decimal PrixTVQ { get; private set; }
@@ -65,8 +66,8 @@ namespace Puces_R
             lecteurVendeur.Read();
 
             decimal livraisonGratuite = (decimal)lecteurVendeur["LivraisonGratuite"];
-            String province = (String)lecteurVendeur["Province"];
-            int poidsMax = (int)lecteurVendeur["MaxLivraison"];
+            String provinceVendeur = (String)lecteurVendeur["Province"];
+            this.PoidsMaximal = (int)lecteurVendeur["MaxLivraison"];
 
             lecteurVendeur.Close();
 
@@ -90,13 +91,16 @@ namespace Puces_R
 
             this.PrixTPS = prixAvecLivraison * TauxTPS;
 
-            if (province == "QC")
+            SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
+            string provinceClient = (String)commandeClient.ExecuteScalar();
+
+            if (provinceVendeur != "QC" || provinceClient != "QC")
             {
-                this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                this.PrixTVQ = 0;
             }
             else
             {
-                this.PrixTVQ = 0;
+                this.PrixTVQ = prixAvecLivraison * TauxTVQ;
             }
         }
 

@@ -94,6 +94,11 @@ namespace Puces_R
                 myConnection.Open();
                 Titre = (String)commandVendeur.ExecuteScalar();
                 myConnection.Close();
+
+                if (Menu is MenuClient)
+                {
+                    ((MenuClient)Menu).NoVendeur = value;
+                }
             }
         }
 
@@ -153,9 +158,11 @@ namespace Puces_R
                             commandUtilisateur = new SqlCommand("SELECT Prenom + ' ' + Nom AS NomComplet FROM PPClients WHERE NoClient = " + Session["ID"], myConnection);
                             break;
                         case 'V':
+                            hypDevenirVendeur.Visible = false;
                             commandUtilisateur = new SqlCommand("SELECT Prenom + ' ' + Nom AS NomComplet FROM PPVendeurs WHERE NoVendeur = " + Session["ID"], myConnection);
                             break;
                         case 'G':
+                            hypDevenirVendeur.Visible = false;
                             commandUtilisateur = new SqlCommand("SELECT Prenom + ' ' + Nom AS NomComplet FROM PPGestionnaires WHERE NoGestionnaire = " + Session["ID"], myConnection);
                             break;
                         default:

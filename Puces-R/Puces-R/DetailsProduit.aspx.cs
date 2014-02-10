@@ -94,8 +94,6 @@ namespace Puces_R
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
 
-                ((MenuClient)((SiteMaster)Master).Menu).NoVendeur = NoVendeur;
-
                 object dateMAJ = lecteurProduit["DateMAJ"];
                 if (dateMAJ is DBNull)
                 {

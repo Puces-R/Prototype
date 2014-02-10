@@ -32,6 +32,7 @@
                         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
                     </div>
                     <div class="footer">
+                        <asp:HyperLink runat="server" ID="hypDevenirVendeur" Text="Ouvrir votre propre magasin..." NavigateUrl="InscriptionVendeur.aspx" Font-Size="Small" />
                         © 2014 Cégep Gérald Godin
                     </div>
                 </div>

@@ -22,7 +22,7 @@
                 </td>
                 <td>
                     <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="700px" /><br />
-                    <asp:Button runat="server" ID="btn" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
+                    <asp:Button runat="server" ID="btnDestinataire" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
                 </td>
             </tr>
             <tr>
@@ -45,6 +45,7 @@
                 <td colspan="2" style="text-align: center;">
                     <asp:Button runat="server" OnClick="apercuMessage" Text="Aperçu" />
                     <asp:Button runat="server" OnClick="envoyerMessage" Text="Envoyer" />
+                    <asp:Button runat="server" OnClick="sauvegarderMessage" Text="Sauvegarder comme brouillon" />
                 </td>
             </tr>
         </table>

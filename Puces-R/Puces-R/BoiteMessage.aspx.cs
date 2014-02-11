@@ -110,6 +110,7 @@ namespace Puces_R
                 l.Date = (DateTime)sdr["DateEnvoi"];
                 l.Lu = boite < 0 ? true : (Boolean)sdr["Lu"];
                 l.NoMessage = (Int64)sdr["NoMessage"];
+                l.Brouillon = boite == -2;
             }
             if (nbMessages == 0)
             {

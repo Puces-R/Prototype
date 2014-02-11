@@ -10,6 +10,16 @@ namespace Puces_R
     public partial class LigneMessage : System.Web.UI.UserControl
     {
         private Int64 _noMessage = -1;
+        private bool _brouillon = false;
+        
+
+        public bool Brouillon
+        {
+            set
+            {
+                _brouillon = value;
+            }
+        }
 
         public Int64 NoMessage
         {
@@ -75,7 +85,7 @@ namespace Puces_R
         protected void voirMessage(object sender, EventArgs e)
         {
             Int64 no = ((LigneMessage)((Control)sender).Parent.Parent.Parent).NoMessage;
-            Response.Redirect("VoirMessage.aspx?No=" + no, true);
+            Response.Redirect((_brouillon ? "EnvoyerMessage.aspx?NoMessage=" : "VoirMessage.aspx?No=") + no, true);
         }
     }
 }

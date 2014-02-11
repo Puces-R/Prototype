@@ -13,30 +13,15 @@ namespace Puces_R
     {
         SqlConnection connexion = Librairie.Connexion;
         private int[] lstNoDestinataires;
+        int noBrouillon = -1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ClientScript.GetPostBackEventReference(this, string.Empty);
             string parametres = Request["__EVENTARGUMENT"];
             lstNoDestinataires = null;
 
-            if (Session["Sujet"] != null)
-            {
-                tbSujet.Text = Session["Sujet"].ToString();
-                Session.Remove("Sujet");
-            }
-
-            if (Session["Message"] != null)
-            {
-                tbMessage.Text = Session["Message"].ToString();
-                Session.Remove("Message");
-            }
-
-            if (Session["ListeDestinataires"] != null)
-            {
-                lstNoDestinataires = (int[])Session["ListeDestinataires"];
-                Session.Remove("ListeDestinataires");
-            }
-            else if (Request["__EVENTTARGET"] == "ChoixDestinataires" && parametres != string.Empty)
+            if (Request["__EVENTTARGET"] == "ChoixDestinataires" && parametres != string.Empty)
             {
                 lbDestinataires.Items.Clear();
                 string[] lstParametres = parametres.Split(",".ToArray());
@@ -46,8 +31,71 @@ namespace Puces_R
                     lstNoDestinataires[i] = int.Parse(lstParametres[i]);
                 }
             }
+            else if (Request.QueryString["NoMessage"] != null)
+            {
+                int noMessage = -1;
+                if (int.TryParse(Request.QueryString["NoMessage"], out noMessage))
+                {
+                        SqlCommand cmdTrouverMessage = new SqlCommand("SELECT Sujet, Contenu FROM PPMessages WHERE NoMessage = @no AND NoExpediteur = @id AND Boite = -2", connexion);
+                        SqlCommand cmdDestinataires = new SqlCommand("SELECT NoDestinataire FROM PPDestinatairesMessages WHERE NoMessage = @no", connexion);
+                        cmdTrouverMessage.Parameters.AddWithValue("@no", noMessage);
+                        cmdTrouverMessage.Parameters.AddWithValue("@id", Session["ID"]);
 
-            if (lstNoDestinataires != null)
+                        connexion.Open();
+                        SqlDataReader sdrMsg = cmdTrouverMessage.ExecuteReader();
+                        if (sdrMsg.Read())
+                        {
+                            noBrouillon = noMessage;
+                            if (!IsPostBack)
+                            {
+                                tbSujet.Text = sdrMsg["Sujet"].ToString();
+                                tbMessage.Text = sdrMsg["Contenu"].ToString();
+                            }
+                        }
+                        sdrMsg.Close();
+
+                        if (noBrouillon != -1 && !IsPostBack)
+                        {
+                            cmdDestinataires.Parameters.AddWithValue("@no", noBrouillon);
+                            SqlDataReader sdrDest = cmdDestinataires.ExecuteReader();
+                            List<int> tmpDest = new List<int>();
+                            for (int i = 0; sdrDest.Read(); i++)
+                            {
+                                tmpDest.Add(int.Parse(sdrDest["NoDestinataire"].ToString()));
+                            }
+                            lstNoDestinataires = tmpDest.ToArray();
+                            sdrDest.Close();
+                        }
+                        connexion.Close();
+                }
+            }
+            else if (Session["Sujet"] != null || Session["Message"] != null || Session["ListeDestinataires"] != null || Session["Fixer"] != null)
+            {
+                if (Session["Sujet"] != null)
+                {
+                    tbSujet.Text = Session["Sujet"].ToString();
+                    Session.Remove("Sujet");
+                }
+
+                if (Session["Message"] != null)
+                {
+                    tbMessage.Text = Session["Message"].ToString();
+                    Session.Remove("Message");
+                }
+
+                if (Session["ListeDestinataires"] != null)
+                {
+                    lstNoDestinataires = (int[])Session["ListeDestinataires"];
+                    Session.Remove("ListeDestinataires");
+                }
+
+                if (Session["Fixer"] != null)
+                {
+                    btnDestinataire.Visible = (bool)Session["Fixer"];
+                }
+            }
+
+            if (lstNoDestinataires != null && lstNoDestinataires.Length > 0)
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connexion;
@@ -83,27 +131,36 @@ namespace Puces_R
         {
             if (lbDestinataires.Items.Count > 0 && tbSujet.Text.Trim() != string.Empty && tbMessage.Text.Trim() != string.Empty)
             {
-                SqlCommand cmdMessage = new SqlCommand("INSERT INTO PPMessages values(@no, @from, @date, @sujet, @contenu, NULL, -1, NULL)", connexion);
-                SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
-                SqlCommand cmdDestinataires = new SqlCommand("INSERT INTO PPDestinatairesMessages values(@rcpt, @no, 'false', 1, NULL)", connexion);
+                SqlCommand cmdMessage = new SqlCommand();
+                cmdMessage.Connection = connexion;
 
+                int noMessage;
                 connexion.Open();
+                if (noBrouillon < 0)
+                {
+                    cmdMessage.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @contenu, NULL, -1, NULL)\n";
+                    SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
+                    noMessage = int.Parse(cmdNoMessage.ExecuteScalar().ToString());
+                }
+                else
+                {
+                    cmdMessage.CommandText = "UPDATE PPMessages SET NoExpediteur = @from, DateEnvoi = @date, Sujet = @sujet, Contenu = @message, Boite = -1 WHERE NoMessage = @no\n";
+                    cmdMessage.CommandText += "DELETE FROM PPDestinatairesMessages WHERE NoMessage = @no\n";
+                    noMessage = noBrouillon;
+                }
 
-                Int64 noMessage = Convert.ToInt64(cmdNoMessage.ExecuteScalar().ToString());
                 cmdMessage.Parameters.AddWithValue("@no", noMessage);
                 cmdMessage.Parameters.AddWithValue("@from", Session["ID"]);
                 cmdMessage.Parameters.AddWithValue("@date", DateTime.Now);
                 cmdMessage.Parameters.AddWithValue("@sujet", tbSujet.Text);
-                cmdMessage.Parameters.AddWithValue("@contenu", tbMessage.Text);
+                cmdMessage.Parameters.AddWithValue("@message", tbMessage.Text);
 
-                cmdDestinataires.Parameters.AddWithValue("@no", noMessage);
-                cmdDestinataires.Parameters.Add("@rcpt", SqlDbType.BigInt);
-                cmdMessage.ExecuteNonQuery();
-                foreach (ListItem li in lbDestinataires.Items)
+                for (int i = 0; i < lbDestinataires.Items.Count; i++)
                 {
-                    cmdDestinataires.Parameters["@rcpt"].Value = li.Value;
-                    cmdDestinataires.ExecuteNonQuery();
+                    cmdMessage.CommandText += string.Format("INSERT INTO PPDestinatairesMessages values(@rcpt{0}, @no, 'false', 1, NULL)\n", i);
+                    cmdMessage.Parameters.AddWithValue(string.Format("@rcpt{0}", i), lbDestinataires.Items[i].Value);
                 }
+                cmdMessage.ExecuteNonQuery();
                 connexion.Close();
 
                 Response.Redirect("BoiteMessage.aspx");
@@ -117,6 +174,46 @@ namespace Puces_R
             lblDe.Text = "test";
             lblSujet.Text = tbSujet.Text;
             lblMessage.Text = tbMessage.Text.Replace("\r\n", "<br />");
+        }
+
+        protected void sauvegarderMessage(object sender, EventArgs e)
+        {
+            SqlCommand cmdDestinataires = new SqlCommand("INSERT INTO PPDestinatairesMessages values(@no, @rcpt, 'false', -2, NULL)", connexion);
+            SqlCommand cmdSauvegarder = new SqlCommand();
+            cmdSauvegarder.Connection = connexion;
+
+            int noMessage;
+
+            connexion.Open();
+            if (noBrouillon < 0)
+            {
+                cmdSauvegarder.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @message, NULL, -2, NULL)\n";
+                SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
+                noMessage = int.Parse(cmdNoMessage.ExecuteScalar().ToString());
+            }
+            else
+            {
+                cmdSauvegarder.CommandText = "UPDATE PPMessages SET NoExpediteur = @from, DateEnvoi = @date, Sujet = @sujet, Contenu = @message, Boite = -2 WHERE NoMessage = @no\n";
+                cmdSauvegarder.CommandText += "DELETE FROM PPDestinatairesMessages WHERE NoMessage = @no\n";
+                noMessage = noBrouillon;
+            }
+
+            cmdSauvegarder.Parameters.AddWithValue("@no", noMessage);
+            cmdSauvegarder.Parameters.AddWithValue("@from", Session["ID"]);
+            cmdSauvegarder.Parameters.AddWithValue("@date", DateTime.Now);
+            cmdSauvegarder.Parameters.AddWithValue("@sujet", tbSujet.Text);
+            cmdSauvegarder.Parameters.AddWithValue("@message", tbMessage.Text);
+
+            for (int i = 0; i < lbDestinataires.Items.Count; i++)
+            {
+                cmdSauvegarder.CommandText += string.Format("INSERT INTO PPDestinatairesMessages values(@rcpt{0}, @no, 'false', -2, NULL)\n", i);
+                cmdSauvegarder.Parameters.AddWithValue(string.Format("@rcpt{0}", i), lbDestinataires.Items[i].Value);
+            }
+            cmdSauvegarder.ExecuteNonQuery();
+            connexion.Close();
+
+            Response.Redirect("BoiteMessage.aspx");
+
         }
     }
 }

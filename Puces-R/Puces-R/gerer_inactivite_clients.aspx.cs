@@ -63,8 +63,7 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
 
-            //((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des clients";
-            ((NavigationItems)Master).ChargerItems += charge_inactifs1;
+            Master.ChargerItems += charge_inactifs1;
 
             if (!IsPostBack)
             {

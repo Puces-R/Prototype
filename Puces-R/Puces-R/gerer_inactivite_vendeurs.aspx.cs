@@ -64,7 +64,7 @@ namespace Puces_R
                 }
             
             //((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
-            ((NavigationItems)Master).ChargerItems += charge_inactifs1;
+            Master.ChargerItems += charge_inactifs1;
 
             if (!IsPostBack)
             {

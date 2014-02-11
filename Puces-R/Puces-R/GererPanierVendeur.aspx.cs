@@ -45,7 +45,7 @@ namespace Puces_R
                 //ctrPanier.NoClient = (long)numero;
 
                 hypVendeur.Text = vendeur;
-                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
+                hypVendeur.NavigateUrl = SiteMaster.AjouterChemin("Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur);
 
                 ctrPanier.NoClient = noClient;
                 ctrPanier.NoVendeur = (int)Session["ID"];

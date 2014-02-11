@@ -63,12 +63,12 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
             
-            ((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
-            ((NavigationItems)Master).ChargerItems += charge_inactifs1;
+            Master.Master.Titre = "Gestion de l'inactivité des vendeurs";
+            Master.ChargerItems += charge_inactifs1;
 
             if (!IsPostBack)
             {
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             } 
         }
 
@@ -131,8 +131,8 @@ namespace Puces_R
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
 
-            pdsDemandes.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
-            ((NavigationItems)Master).NbPages = pdsDemandes.PageCount;
+            pdsDemandes.CurrentPageIndex = Master.PageActuelle;
+            Master.NbPages = pdsDemandes.PageCount;
 
             rptInnactifs1.DataSource = pdsDemandes;
             rptInnactifs1.DataBind();
@@ -206,7 +206,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
     }
 }

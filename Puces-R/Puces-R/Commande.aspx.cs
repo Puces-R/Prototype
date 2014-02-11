@@ -32,7 +32,7 @@ namespace Puces_R
                     Response.Redirect("Default.aspx", true);
                 }
                 
-                ((SiteMaster)Master).NoVendeur = noVendeur;
+                Master.NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];

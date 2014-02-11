@@ -19,7 +19,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((SiteMaster)Master).Titre = "Gérer les vendeurs";
+            Master.Titre = "Gérer les vendeurs";
             
             if (!IsPostBack)
             {

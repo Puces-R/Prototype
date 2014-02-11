@@ -2,7 +2,7 @@
 
 <%@ Register TagPrefix="lp" TagName="TablePanier" Src="~/Controles/TablePanier.ascx" %>
 <%@ Register TagPrefix="lp" TagName="Categories" Src="~/Controles/Categories.ascx" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />

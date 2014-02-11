@@ -87,7 +87,7 @@ namespace Puces_R
                         break;
                 }
 
-                hypReessayer.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison;
+                hypReessayer.NavigateUrl = SiteMaster.AjouterChemin("Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison);
             }
         }
 

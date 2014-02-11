@@ -16,7 +16,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).ChargerItems += ChargerCommandes;
+            Master.ChargerItems += ChargerCommandes;
 
             if (!IsPostBack)
             {
@@ -37,7 +37,7 @@ namespace Puces_R
 
                 ChargerCommandes();
 
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             }
         }
 
@@ -80,9 +80,9 @@ namespace Puces_R
             objPds.DataSource = new DataView(tableCommandes);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
+            objPds.CurrentPageIndex = Master.PageActuelle;
 
-            ((NavigationItems)Master).NbPages = objPds.PageCount;
+            Master.NbPages = objPds.PageCount;
 
             dlCommandes.DataSource = objPds;
             dlCommandes.DataBind();
@@ -92,7 +92,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
 
         //SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");

@@ -11,5 +11,17 @@ namespace Puces_R {
     
     
     public partial class accueil_gestionnaire {
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Puces_R
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            ((SiteMaster)Master).Titre = "Verdict de la demande";
+            Master.Titre = "Verdict de la demande";
 
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")

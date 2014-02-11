@@ -90,7 +90,7 @@ namespace Puces_R
 
                 this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
-                ((SiteMaster)Master).Titre = (String)lecteurProduit["NomAffaires"];
+                Master.Titre = (String)lecteurProduit["NomAffaires"];
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
 
@@ -131,7 +131,7 @@ namespace Puces_R
                     afficherEvaluation();
                 }
                 myConnection.Close();
-
+                
                 calculerCoteMoyenne();
             }
         }
@@ -196,7 +196,7 @@ namespace Puces_R
 
                 myConnection.Close();
 
-                Response.Redirect("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur);
+                Response.Redirect(SiteMaster.AjouterChemin("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur));
             }
         }
 

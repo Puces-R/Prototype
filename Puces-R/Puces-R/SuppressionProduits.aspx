@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SuppressionProduits.aspx.cs" Inherits="Puces_R.SuppressionProduits"  %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
 
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">

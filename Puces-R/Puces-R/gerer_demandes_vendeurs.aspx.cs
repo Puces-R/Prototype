@@ -71,12 +71,12 @@ namespace Puces_R
                 }
 
 
-            ((SiteMaster)(Master.Master)).Titre = "Nouvelles demandes de vendeurs";
-            ((NavigationItems)Master).ChargerItems += charge_demandes;
+            Master.Master.Titre = "Nouvelles demandes de vendeurs";
+            Master.ChargerItems += charge_demandes;
 
             if (!IsPostBack)
             {
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             } 
         }
 
@@ -87,7 +87,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
 
         private DataTable charge_demandes()
@@ -102,8 +102,8 @@ namespace Puces_R
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
 
-            pdsDemandes.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
-            ((NavigationItems)Master).NbPages = pdsDemandes.PageCount;
+            pdsDemandes.CurrentPageIndex = Master.PageActuelle;
+            Master.NbPages = pdsDemandes.PageCount;
 
             rptDemandes.DataSource = pdsDemandes;
             rptDemandes.DataBind();

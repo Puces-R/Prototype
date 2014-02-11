@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GererPanierVendeur.aspx.cs" Inherits="Puces_R.GererPanierVendeur"  %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="se" TagName="PanierNettoyer" Src="~/Controles/NettoyerPanier.ascx" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">

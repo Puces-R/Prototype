@@ -1,6 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModifierMotPasse.aspx.cs"
-    Inherits="Puces_R.ModifierMotPasse" MasterPageFile="~/Site.Master" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModifierMotPasse.aspx.cs" Inherits="Puces_R.ModifierMotPasse" MasterPageFile="~/Site.Master" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="yc" TagName="MotDePasse" Src="~/Controles/MotDePasse.ascx" %>
 <%@ Register TagPrefix="yc" TagName="DoubleMdp" Src="~/Controles/DoubleMdp.ascx" %>
 

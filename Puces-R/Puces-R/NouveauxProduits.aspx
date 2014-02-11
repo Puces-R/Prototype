@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NouveauxProduits.aspx.cs" Inherits="Puces_R.Controles.NouveauxProduits" MasterPageFile="~/Site.Master" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/Produits.css" rel="stylesheet" type="text/css" />

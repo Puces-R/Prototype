@@ -42,7 +42,7 @@ namespace Puces_R
         {
             if (Session["ID"] == null)
             {
-                Response.Redirect("Default.aspx", true);
+                Response.Redirect(SiteMaster.AjouterChemin("Default.aspx"), true);
             }
 
             int noVendeur;
@@ -54,7 +54,7 @@ namespace Puces_R
             this.NoVendeur = noVendeur;
             //ctrMenu.NoVendeur = noVendeur;
             ctrMontantsFactures.NoVendeur = noVendeur;
-            ((SiteMaster)Master).NoVendeur = noVendeur;
+            Master.NoVendeur = noVendeur;
 
             String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
 
@@ -151,7 +151,7 @@ namespace Puces_R
         {
             if (IsValid)
             {
-                Response.Redirect("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, true);
+                Response.Redirect(SiteMaster.AjouterChemin("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison), true);
             }
         }
 

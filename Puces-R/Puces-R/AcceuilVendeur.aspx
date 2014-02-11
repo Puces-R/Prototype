@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AcceuilVendeur.aspx.cs" Inherits="Puces_R.AcceuilVendeur" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="PanierProduits" Src="~/Controles/TablePanier.ascx" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">

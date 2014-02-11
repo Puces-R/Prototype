@@ -38,3 +38,4 @@ L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\RdlCompile.compiled
 C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\RdlCompile.cache
 C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\RdlCompile.compiled
 C:\Users\L-P\Documents\GitHub\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.csprojResolveAssemblyReference.cache
+L:\Hiver 2014\Prototype\Puces-R\Puces-R\obj\Debug\Puces-R.csprojResolveAssemblyReference.cache

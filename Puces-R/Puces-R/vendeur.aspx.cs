@@ -16,7 +16,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((SiteMaster)Master).Titre = "Le nom d'affaire";
+            Master.Titre = "Le nom d'affaire";
 
             if (Session["selected_vendeur"] != null)
             {
@@ -79,7 +79,7 @@ namespace Puces_R
                 lbl_livraison_gratuite.Text = "$" + results["LivraisonGratuite"].ToString();
                 //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
 
-                ((SiteMaster)Master).Titre = results["NomAffaires"].ToString();
+                Master.Titre = results["NomAffaires"].ToString();
 
                 switch (results["Statut"].ToString())
                 {

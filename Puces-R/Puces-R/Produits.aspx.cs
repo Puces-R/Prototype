@@ -20,7 +20,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).ChargerItems += chargerProduits;
+            Master.ChargerItems += chargerProduits;
 
             if (!IsPostBack)
             {
@@ -46,14 +46,14 @@ namespace Puces_R
 
                 if (noVendeur == -1)
                 {
-                    ((SiteMaster)Master.Master).Titre = "Catalogue Global";
+                    Master.Master.Titre = "Catalogue Global";
                 }
                 else
                 {
-                    ((SiteMaster)Master.Master).NoVendeur = noVendeur;
+                    Master.Master.NoVendeur = noVendeur;
                 }
 
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             }
         }
 
@@ -104,7 +104,7 @@ namespace Puces_R
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
                 hypDescriptionAbregee.Text = strDescriptionAbregee;
-                hypDescriptionAbregee.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
+                hypDescriptionAbregee.NavigateUrl = SiteMaster.AjouterChemin("DetailsProduit.aspx?noproduit=" + noProduit);
                 lblCategorie.Text = strCategorie;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 if (intQuantite > 0)
@@ -213,9 +213,9 @@ namespace Puces_R
             objPds.DataSource = new DataView(tableProduits);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
+            objPds.CurrentPageIndex = Master.PageActuelle;
 
-            ((NavigationItems)Master).NbPages = objPds.PageCount;
+            Master.NbPages = objPds.PageCount;
 
             dtlProduits.DataSource = objPds;
             dtlProduits.DataBind();
@@ -223,7 +223,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
     }
 }

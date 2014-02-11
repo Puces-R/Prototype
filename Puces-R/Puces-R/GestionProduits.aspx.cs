@@ -16,7 +16,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).ChargerItems += chargerProduits;
+            Master.ChargerItems += chargerProduits;
 
             if (!IsPostBack)
             {
@@ -35,8 +35,8 @@ namespace Puces_R
                 ddlCategorie.SelectedValue = noCategorie.ToString();
 
 
-                ((SiteMaster)Master.Master).NoVendeur = (int)(Session["ID"]);
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.Master.NoVendeur = (int)(Session["ID"]);
+                Master.AfficherPremierePage();
 
                 //SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie where P.NoVendeur=" + Session["ID"], myConnection);
                 //DataTable tableProduits = new DataTable();
@@ -126,9 +126,9 @@ namespace Puces_R
             objPds.DataSource = new DataView(tableProduits);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
+            objPds.CurrentPageIndex = Master.PageActuelle;
 
-            ((NavigationItems)Master).NbPages = objPds.PageCount;
+            Master.NbPages = objPds.PageCount;
 
             dtlProduits.DataSource = objPds;
             dtlProduits.DataBind();
@@ -136,7 +136,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -180,7 +180,7 @@ namespace Puces_R
                     lblNoProduit.Text = "No. " + noProduit.ToString();
                     imgProduit.ImageUrl = urlImage;
                     hypDescriptionAbregee.Text = strDescriptionAbregee;
-                    hypDescriptionAbregee.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
+                    hypDescriptionAbregee.NavigateUrl = SiteMaster.AjouterChemin("DetailsProduit.aspx?noproduit=" + noProduit);
                     lblCategorie.Text = strCategorie;
                     lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                     lblQuantite.Text = "Quantité: " + intQuantite.ToString();

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResultatPaiement.aspx.cs" Inherits="Puces_R.ResultatPaiement" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
 <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
@@ -24,6 +23,7 @@
     <asp:PlaceHolder runat="server" ID="phRapport" Visible="false">
         <div class="lignePointilleHorizontale pleineLargeur"></div>
         <div>
+            <asp:ScriptManager runat="server" EnableHistory="true" />
             <rsweb:ReportViewer SizeToReportContent="true" ID="ctrRapport" runat="server" Font-Names="Verdana" Font-Size="8pt" ShowToolBar="false" InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" CssClass="bonCommande">
                 <LocalReport ReportPath="BonCommande.rdlc">
                     <DataSources>
@@ -51,7 +51,6 @@
                     <asp:Parameter Name="NoClient" DefaultValue="10400" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:ScriptManager ID="ctrScriptManager" runat="server" />
         </div>
     </asp:PlaceHolder>
 </asp:Content>

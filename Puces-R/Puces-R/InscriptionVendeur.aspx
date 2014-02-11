@@ -1,6 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionVendeur.aspx.cs"
-    Inherits="Puces_R.InscriptionVendeur" MasterPageFile="~/Site.Master" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionVendeur.aspx.cs" Inherits="Puces_R.InscriptionVendeur" MasterPageFile="~/Site.Master" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="yc" TagName="Identifiants" Src="~/Controles/Identifiants.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>

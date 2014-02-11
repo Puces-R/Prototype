@@ -127,7 +127,7 @@ namespace Puces_R
 
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
-                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande="+noCommande;
+                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande=" + noCommande;
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
                 //lblNoVendeur.Text = noVendeur.ToString();
@@ -197,7 +197,7 @@ namespace Puces_R
                String nom = drvPanier["NomC"] == DBNull.Value ? "Nom Inconnu " : (String)drvPanier["NomC"];
                
                 hypVendeur.Text = nom;
-               hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
+                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
 
                 lblDate.Text = date;
                 lblNom.Text = nom;

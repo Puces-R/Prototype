@@ -35,7 +35,7 @@ namespace Puces_R
                         ((SiteMaster)Master).Titre = "Voulez vous vraiment désactiver ce vendeur";
                         no_vendeur = Convert.ToInt32(Session["desactiver_vendeur"].ToString());
                         mv_verdict.SetActiveView(view_un_vendeur);
-                        Session["desactiver_vendeur"] = "";
+                        Session["desactiver_vendeur"] = null;
                     }
                 }
                 else
@@ -50,7 +50,7 @@ namespace Puces_R
                             mv_verdict.SetActiveView(view_liste);
                         }
                     }
-                    else Response.Redirect("Connexion.aspx");
+                    else Response.Redirect("Default.aspx");
                 }
             }
 
@@ -65,7 +65,7 @@ namespace Puces_R
                 addr_demande.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
                 tels_demande.Text = results["Tel1"].ToString();
                 courriel_demande.Text = results["AdresseEmail"].ToString();
-                charge_max_demande.Text = results["MaxLivraison"].ToString() + "Kg";
+                charge_max_demande.Text = results["MaxLivraison"].ToString() + "lb";
                 livraison_gratuite.Text = results["LivraisonGratuite"].ToString();
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_desactiver.CommandArgument = results["NoVendeur"].ToString();

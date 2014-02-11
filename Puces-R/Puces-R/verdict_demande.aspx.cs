@@ -17,8 +17,9 @@ namespace Puces_R
         int no_vendeur;
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
-            ((SiteMaster)Master).Titre = "Verdict de la demande";
+        {
+            
+            Master.Titre = "Verdict de la demande";
 
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
@@ -35,7 +36,7 @@ namespace Puces_R
                     {
                         no_vendeur = Convert.ToInt32(Session["acceptation_vendeur"].ToString());
                         mv_verdict.SetActiveView(view_acceptation);
-                        Session["acceptation_vendeur"] = "";
+                        Session["acceptation_vendeur"] = null;
                     }
                 }
                 else
@@ -46,10 +47,10 @@ namespace Puces_R
                         {
                             no_vendeur = Convert.ToInt32(Session["refus_vendeur"].ToString());
                             mv_verdict.SetActiveView(view_refus);
-                            Session["refus_vendeur"] = "";
+                            Session["refus_vendeur"] = null;
                         }
                     }
-                    else Response.Redirect("Connexion.aspx");
+                    else Response.Redirect("Default.aspx");
                 }
             }
 
@@ -64,7 +65,7 @@ namespace Puces_R
                 addr_demande.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
                 tels_demande.Text = results["Tel1"].ToString();
                 courriel_demande.Text = results["AdresseEmail"].ToString();
-                charge_max_demande.Text = results["MaxLivraison"].ToString() + "Kg";
+                charge_max_demande.Text = results["MaxLivraison"].ToString() + "lb";
                 livraison_gratuite.Text = results["LivraisonGratuite"].ToString();
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_accepter.CommandArgument = results["NoVendeur"].ToString();

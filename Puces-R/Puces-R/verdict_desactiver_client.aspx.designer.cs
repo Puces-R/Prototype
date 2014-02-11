@@ -10,96 +10,114 @@
 namespace Puces_R {
     
     
-    public partial class SiteMaster {
+    public partial class verdict_desactiver_client {
         
         /// <summary>
-        /// Contrôle HeadContent.
+        /// Contrôle mv_verdict.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.WebControls.MultiView mv_verdict;
         
         /// <summary>
-        /// Contrôle hypRetour.
+        /// Contrôle view_un_client.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypRetour;
+        protected global::System.Web.UI.WebControls.View view_un_client;
         
         /// <summary>
-        /// Contrôle divMenu.
+        /// Contrôle titre_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMenu;
+        protected global::System.Web.UI.WebControls.Label titre_demande;
         
         /// <summary>
-        /// Contrôle lblBonjour.
+        /// Contrôle addr_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBonjour;
+        protected global::System.Web.UI.WebControls.Label addr_demande;
         
         /// <summary>
-        /// Contrôle hlDeconnexion.
+        /// Contrôle tels_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlDeconnexion;
+        protected global::System.Web.UI.WebControls.Label tels_demande;
         
         /// <summary>
-        /// Contrôle menu.
+        /// Contrôle courriel_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder menu;
+        protected global::System.Web.UI.WebControls.Label courriel_demande;
         
         /// <summary>
-        /// Contrôle pnlTitre.
+        /// Contrôle date_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlTitre;
+        protected global::System.Web.UI.WebControls.Label date_demande;
         
         /// <summary>
-        /// Contrôle lblTitre.
+        /// Contrôle nb_connexions.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitre;
+        protected global::System.Web.UI.WebControls.Label nb_connexions;
         
         /// <summary>
-        /// Contrôle MainContent.
+        /// Contrôle btn_desactiver.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button btn_desactiver;
         
         /// <summary>
-        /// Contrôle hypDevenirVendeur.
+        /// Contrôle view_liste.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypDevenirVendeur;
+        protected global::System.Web.UI.WebControls.View view_liste;
+        
+        /// <summary>
+        /// Contrôle rptInnactifs1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptInnactifs1;
+        
+        /// <summary>
+        /// Contrôle btn_desactiver_liste.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_desactiver_liste;
     }
 }

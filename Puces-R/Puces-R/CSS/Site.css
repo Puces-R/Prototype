@@ -15,11 +15,6 @@ body
     margin: 12px auto;
 }
 
-.logo
-{
-    vertical-align: middle;
-}
-
 .formulaire
 {
     table-layout: fixed;
@@ -42,7 +37,6 @@ body
 .titre
 {
     font-size: xx-large;
-    vertical-align: middle;
 }
 
 .droitePageMaitre
@@ -466,4 +460,15 @@ body
     {
         width: auto;
     }
+}
+
+.gauchePageMaitre
+{
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.logo
+{
+    vertical-align:middle;
 }

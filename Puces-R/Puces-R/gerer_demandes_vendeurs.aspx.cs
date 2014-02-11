@@ -71,12 +71,12 @@ namespace Puces_R
                 }
 
 
-            ((SiteMaster)(Master.Master)).Titre = "Nouvelles demandes de vendeurs";
-            ((NavigationItems)Master).ChargerItems += charge_demandes;
+            Master.Master.Titre = "Nouvelles demandes de vendeurs";
+            Master.ChargerItems += charge_demandes;
 
             if (!IsPostBack)
             {
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             } 
         }
 
@@ -87,7 +87,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
 
         private DataTable charge_demandes()
@@ -102,8 +102,8 @@ namespace Puces_R
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
 
-            pdsDemandes.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
-            ((NavigationItems)Master).NbPages = pdsDemandes.PageCount;
+            pdsDemandes.CurrentPageIndex = Master.PageActuelle;
+            Master.NbPages = pdsDemandes.PageCount;
 
             rptDemandes.DataSource = pdsDemandes;
             rptDemandes.DataBind();
@@ -111,42 +111,29 @@ namespace Puces_R
             return tableDemandes;
         }
 
-        protected void rptDemandes_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void rptDemandes_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            DataListItem item = e.Item;
+
+            RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-
-                Label titre_demande = (Label)item.FindControl("titre_demande");
-                Label addr_demande = (Label)item.FindControl("addr_demande");
-                Label tels_demande = (Label)item.FindControl("tels_demande");
-                Label courriel_demande = (Label)item.FindControl("courriel_demande");
-                Label charge_max_demande = (Label)item.FindControl("charge_max_demande");
-                Label livraison_gratuite = (Label)item.FindControl("livraison_gratuite");
+                Label lbl_num = (Label)item.FindControl("lbl_num");
+                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
                 Label date_demande = (Label)item.FindControl("date_demande");
                 Button btn_accepter = (Button)item.FindControl("btn_accepter");
                 Button btn_refuser = (Button)item.FindControl("btn_refuser");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
-                                
-                titre_demande.Text = drvDemande["NomAffaires"].ToString() + ", par " + drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                addr_demande.Text = drvDemande["Rue"].ToString() + ", " + drvDemande["Ville"].ToString() + ", " + drvDemande["Pays"].ToString();
-                tels_demande.Text = drvDemande["Tel1"].ToString();
-                courriel_demande.Text = drvDemande["AdresseEmail"].ToString();
-                charge_max_demande.Text = drvDemande["MaxLivraison"].ToString() + "Kg";
-                livraison_gratuite.Text = drvDemande["LivraisonGratuite"].ToString();
+
+                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_nom_affaire.Text = drvDemande["NomAffaires"].ToString();
                 date_demande.Text = drvDemande["DateCreation"].ToString();
                 btn_accepter.CommandArgument = drvDemande["NoVendeur"].ToString();
                 btn_refuser.CommandArgument = drvDemande["NoVendeur"].ToString();
             }
         }
-
-        protected void rptDemandes_ItemCommand(object sender, CommandEventArgs e)
-        {
-            
-        }
-
+        
         protected void refus_demande(object sender, CommandEventArgs e)
         {
             Session["refus_vendeur"] = e.CommandArgument.ToString();

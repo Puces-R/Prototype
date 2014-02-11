@@ -1,6 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionCommandesVendeur.aspx.cs"
-    Inherits="Puces_R.GestionCommandesVendeur" %>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionCommandesVendeur.aspx.cs" Inherits="Puces_R.GestionCommandesVendeur" %>
+<%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 <%@ Register TagPrefix="lp" TagName="BoiteCommande" Src="~/Controles/BoiteCommande.ascx" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">

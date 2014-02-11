@@ -1,10 +1,11 @@
-﻿<%@ Page Title="Gérer les nouvelles demandes de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" 
-    CodeBehind="gerer_demandes_vendeurs.aspx.cs" Inherits="Puces_R.gerer_demandes_vendeurs" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gérer les nouvelles demandes de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="gerer_demandes_vendeurs.aspx.cs" Inherits="Puces_R.gerer_demandes_vendeurs" EnableEventValidation="false" %>
+<%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Produits.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/style_sec4_2.css" />
     <script type="text/javascript" src="lib/js/librairie.js"></script>
 </asp:Content>
 
@@ -41,56 +42,30 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="Items" runat="server">
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
-        <div id="div_msg" runat="server"></div>
-        <div style="font-size: small;" >
-            <asp:DataList RepeatColumns="2" RepeatDirection="Horizontal" runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" OnItemCommand="rptDemandes_ItemCommand">
-                <ItemTemplate>
-                    <div>
-                        <div class="rectangleItem hautRectangle" onclick="afficheOuMasqueInfoVendeur(this);">
-                            <asp:Label runat="server" ID="titre_demande" />
-                        </div>
-                        <div class="rectangleItem basRectangle">
-                            <table class="tableTitreValeur">
-                                <colgroup>
-                                    <col width="50%" />
-                                    <col width="50%" />
-                                </colgroup>
-                                <tr >
-                                    <th>Adresse:</th>
-                                    <td><asp:Label runat="server" ID="addr_demande" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Téléphone:</th>
-                                    <td><asp:Label runat="server" ID="tels_demande" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Courriel:</th>
-                                    <td><asp:Label runat="server" ID="courriel_demande" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Poids maximal:</th>
-                                    <td><asp:Label runat="server" ID="charge_max_demande" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Livraison gratuite:</th>
-                                    <td><asp:Label runat="server" ID="livraison_gratuite" /></td>
-                                </tr>
-                                <tr>
-                                    <th>Date de demande:</th>
-                                    <td><asp:Label runat="server" ID="date_demande" /></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Button id="btn_accepter" runat="server" Text="Accepter" OnCommand="acceptation_demande" />
-                                    </td>
-                                    <td>
-                                        <asp:Button id="btn_refuser" runat="server" Text="Refuser" OnCommand="refus_demande" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:DataList>
+    <div id="div_msg" runat="server"></div>
+    <div id="div_chck">    
+        <div style="font-size: small;">
+            <table border="0" width="100%" cellpadding="5" cellspacing="2" >
+                <tr class="rectangleItem hautRectangle" >
+                    <th>#</th>
+                    <th>Nom d'affaire</th>
+                    <th>Date de demande</th>
+                    <th></th>
+                </tr>
+                <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" >
+                    <ItemTemplate>                        
+                        <tr class="rectangleItem basRectangle">
+                            <td><asp:Label runat="server" ID="lbl_num" /></td>
+                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
+                            <td><asp:Label runat="server" ID="date_demande" /></td>
+                            <td>
+                                <asp:Button id="btn_accepter" runat="server" Text="Accepter" OnCommand="acceptation_demande" ToolTip="Accepter la demande de ce vendeur" />
+                                <asp:Button id="btn_refuser" runat="server" Text="Refuser" OnCommand="refus_demande" ToolTip="Refuser la demande de ce vendeur" />
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </table>
         </div>
+    </div>
 </asp:Content>

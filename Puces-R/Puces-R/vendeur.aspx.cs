@@ -16,7 +16,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((SiteMaster)Master).Titre = "Le nom d'affaire";
+            Master.Titre = "Le nom d'affaire";
 
             if (Session["selected_vendeur"] != null)
             {
@@ -72,14 +72,14 @@ namespace Puces_R
             {
                 lbl_nom_complet.Text = results["Prenom"].ToString() + " " + results["Nom"].ToString();
                 lbl_adresse.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
-                lbl_charge_max.Text = results["MaxLivraison"].ToString() + " Kg";
+                lbl_charge_max.Text = results["MaxLivraison"].ToString() + " lb";
                 lbl_courriel.Text = results["AdresseEmail"].ToString();
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
                 lbl_livraison_gratuite.Text = "$" + results["LivraisonGratuite"].ToString();
                 //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
 
-                ((SiteMaster)Master).Titre = results["NomAffaires"].ToString();
+                Master.Titre = results["NomAffaires"].ToString();
 
                 switch (results["Statut"].ToString())
                 {

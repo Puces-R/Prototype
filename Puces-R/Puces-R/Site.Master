@@ -13,9 +13,14 @@
             <div class="page">
                 <div>
                     <div class="lignePointilleHorizontale pleineLargeur header noPrint">
-                        <img src="Images/logo.png" class="logo" alt="Logo" />
-                        <span class="titre">Les Petites Puces</span>
-                        <div runat="server" ID="divMenu" class="droitePageMaitre noPrint">
+                        <img src="Images/logo.png" alt="Logo" class="logo"/>
+                        <div class="gauchePageMaitre">
+                            <span class="titre">Les Petites Puces</span>
+                            <div>
+                                <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="LightGray" />
+                            </div>
+                        </div>
+                        <div runat="server" ID="divMenu" class="droitePageMaitre">
                             <div class="bonjour">
                                 Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" /> &nbsp;
                                 <asp:HyperLink runat="server" ID="hlDeconnexion" NavigateUrl="~/Default.aspx" Text="Se déconnecter" />

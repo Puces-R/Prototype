@@ -63,12 +63,12 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
             
-            ((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
-            ((NavigationItems)Master).ChargerItems += charge_inactifs1;
+            //((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
+            Master.ChargerItems += charge_inactifs1;
 
             if (!IsPostBack)
             {
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             }
 
             if (Session["msg"] != null)
@@ -102,7 +102,7 @@ namespace Puces_R
             req_inactif += "					WHERE PPVendeurs.NoVendeur = PPProduits.NoVendeur ";
             req_inactif += "					GROUP BY PPVendeurs.NoVendeur ";
             req_inactif += "				  ) R2 ";
-            req_inactif += "WHERE R2.maxdate < GETDATE() "; 
+            req_inactif += "WHERE R2.maxdate < GETDATE() ";
             req_inactif += "AND PPVendeurs.NoVendeur = R2.NoVendeur ";
             req_inactif += "INTERSECT ";
             req_inactif += "SELECT PPVendeurs.NoVendeur ";
@@ -112,7 +112,7 @@ namespace Puces_R
             req_inactif += "					WHERE PPVendeurs.NoVendeur = PPCommandes.NoVendeur ";
             req_inactif += "					GROUP BY PPVendeurs.NoVendeur ";
             req_inactif += "				  ) R3 ";
-            req_inactif += "WHERE R3.maxdate < GETDATE() "; 
+            req_inactif += "WHERE R3.maxdate < GETDATE() ";
             req_inactif += "AND PPVendeurs.NoVendeur = R3.NoVendeur ";
             req_inactif += "UNION ";
             req_inactif += "SELECT PPVendeurs.NoVendeur ";
@@ -145,8 +145,8 @@ namespace Puces_R
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
 
-            pdsDemandes.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
-            ((NavigationItems)Master).NbPages = pdsDemandes.PageCount;
+            pdsDemandes.CurrentPageIndex = Master.PageActuelle;
+            Master.NbPages = pdsDemandes.PageCount;
 
             rptInnactifs1.DataSource = pdsDemandes;
             rptInnactifs1.DataBind();
@@ -203,7 +203,7 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
     }
 }

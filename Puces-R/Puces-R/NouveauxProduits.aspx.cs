@@ -22,11 +22,11 @@ namespace Puces_R.Controles
 
                 if (noVendeur == -1)
                 {
-                    ((SiteMaster)Master).Titre = "Catalogue Global";
+                    Master.Titre = "Catalogue Global";
                 }
                 else
                 {
-                    ((SiteMaster)Master).NoVendeur = noVendeur;
+                    Master.NoVendeur = noVendeur;
                 }
             }
         }

@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using Puces_R.Controles;
+using System.Drawing;
+using System.Text;
+using System.Collections.Specialized;
 
 namespace Puces_R
 {
@@ -185,6 +188,13 @@ namespace Puces_R
                 else
                 {
                     lblBonjour.Text = "Visiteur";
+                }
+
+                if (Chemin.UrlRetour != null)
+                {
+                    hypRetour.ForeColor = ColorTranslator.FromHtml("#0052AE");
+                    hypRetour.NavigateUrl = Chemin.UrlRetour;
+                    hypRetour.Text = "◄ " + Chemin.TexteRetour;
                 }
             }
         }

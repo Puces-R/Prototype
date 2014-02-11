@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Modifier le mot de passe" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="ChangePassword.aspx.cs" Inherits="Puces_R.Account.ChangePassword" %>
+﻿<%@ Page Title="Modifier le mot de passe" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="Puces_R.Account.ChangePassword" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>

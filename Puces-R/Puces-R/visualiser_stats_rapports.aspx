@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Statistiques & Rapports" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="visualiser_stats_rapports.aspx.cs" Inherits="Puces_R.visualiser_stats_rapports" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />

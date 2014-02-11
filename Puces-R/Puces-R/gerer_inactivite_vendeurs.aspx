@@ -3,35 +3,22 @@
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/site.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/style_sec4_2.css" />
     <script src="//code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="lib/js/librairie.js"></script>
     <script>
 
         $(document).ready(function () {
-            $('#cb_tout').click(function () { // clic sur la case cocher/decocher
-
-                var cases = $(".basRectangle").find(':checkbox'); // on cherche les checkbox qui dépendent de la liste 'cases'
-                if (this.checked) { // si 'cocheTout' est coché
+            $('#cb_tout').click(function () {
+                var cases = $(".basRectangle").find(':checkbox');
+                if (this.checked) { 
                     cases.prop('checked', 'checked'); 
-                } else { // si on décoche 'cocheTout' 
+                } else {
                     cases.prop('checked', ''); 
                 }
             });
         });
     </script>
-    <style type="text/css">
-        .basRectangle td
-        {
-            padding: 3px 25px 3px 25px;
-        }
-        
-        .hautRectangle th
-        {
-            padding: 7px 25px 7px 25px;
-            font-size: medium;
-        }
-    </style>
-
     <script type="text/javascript">
         function check_desactiver_tout(cb_case) {
             if (cb_case.checked == true) {
@@ -56,7 +43,7 @@
         <span class="boiteListeDeroulante">
             Recherche:
             <asp:DropDownList ID="ddlTypeRecherche" runat="server">
-                <asp:ListItem Text="Nom d'affaire" />
+                <asp:ListItem Text="Nom d'affaires" />
             </asp:DropDownList>
             <asp:TextBox ID="txtCritereRecherche" runat="server" />
             <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
@@ -65,7 +52,7 @@
             Trier par:
             <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
                 <asp:ListItem Text="Numéro" />
-                <asp:ListItem Text="Nom d'affaire" />
+                <asp:ListItem Text="Nom d'affaires" />
                 <asp:ListItem Text="Date de demande" />
             </asp:DropDownList>
         </span>
@@ -94,12 +81,11 @@
     <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
         <div style="font-size: small;">
-            <input type="hidden" id="hid_liste_a_desactiver" />
-            <table border="0" width="100%" cellpadding="5" >
+            <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>
                     <th>#</th>
-                    <th>Nom d'affaire</th>
+                    <th>Nom d'affaires</th>
                     <th>Innactif depuis</th>
                     <th><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/></th>
                 </tr>
@@ -110,7 +96,7 @@
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
                             <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
                             <td><asp:Label runat="server" ID="date_inactif1" /></td>
-                            <td><asp:Button ID="btn_desactiver" runat="server" Text="Désactiver" OnCommand="desactiver_vendeur" ToolTip="Désactiver ce vendeur" /></td>
+                            <td><asp:Button ID="btn_desactiver" runat="server" Text="Voir détails/Désactiver" OnCommand="desactiver_vendeur" ToolTip="Désactiver ce vendeur" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

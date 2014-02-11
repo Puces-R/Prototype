@@ -1,0 +1,31 @@
+﻿.basRectangle td
+{
+    padding: 3px 25px 3px 25px;
+}
+        
+.hautRectangle th
+{
+    padding: 7px 25px 7px 25px;
+    font-size: medium;
+}
+        
+.basRectangle
+{
+    background-color: LightGray;
+    border-radius: 0 0 0 0;
+    border-style: none; 
+}
+        
+.rectangleItem
+{
+    padding: 10px;
+    box-shadow: 0 0 0 Gray;
+    overflow:hidden;
+    border: 1px solid Black;
+    margin:15px;
+}
+
+.tableTitreValeur td:first-child 
+{
+	text-align:left;
+}

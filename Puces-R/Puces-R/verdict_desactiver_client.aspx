@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Détail/Confirmation de la désactivation des vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-    CodeBehind="verdict_desactiver.aspx.cs" Inherits="Puces_R.verdict_desactiver" EnableEventValidation="false" %>
+﻿<%@ Page Title="Détail/Confirmation de la désactivation des clients" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+    CodeBehind="verdict_desactiver_client.aspx.cs" Inherits="Puces_R.verdict_desactiver_client" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">  
     <div>
     <asp:MultiView runat="server" ID="mv_verdict" >
-        <asp:View runat="server" ID="view_un_vendeur">
+        <asp:View runat="server" ID="view_un_client">
             <div class="rectangleItem hautRectangle" >
                 <asp:Label runat="server" ID="titre_demande" />
             </div>
@@ -34,21 +34,17 @@
                         <td><asp:Label runat="server" ID="courriel_demande" /></td>
                     </tr>
                     <tr>
-                        <th>Poids maximal:</th>
-                        <td><asp:Label runat="server" ID="charge_max_demande" /></td>
-                    </tr>
-                    <tr>
-                        <th>Livraison gratuite:</th>
-                        <td><asp:Label runat="server" ID="livraison_gratuite" /></td>
-                    </tr>
-                    <tr>
-                        <th>Date de demande:</th>
+                        <th>Date d'inscription:</th>
                         <td><asp:Label runat="server" ID="date_demande" /></td>
-                    </tr>                        
+                    </tr>    
                     <tr>
-                        <td colspan="2" class="verdict_vendeur">                                        
+                        <th>Nombre de connexion:</th>
+                        <td><asp:Label runat="server" ID="nb_connexions" /></td>
+                    </tr>                     
+                    <tr>
+                        <td colspan="2" class="verdict_client">                                        
                             <p class="center">
-                                <asp:Button id="btn_desactiver" runat="server" text="Désactiver" OnCommand="desactiver_un_vendeur"/>
+                                <asp:Button id="btn_desactiver" runat="server" text="Désactiver" OnCommand="desactiver_un_client"/>
                             </p>
                         </td>
                     </tr>
@@ -57,7 +53,7 @@
         </asp:View>
         <asp:View runat="server" ID="view_liste">
             <div class="rectangleItem hautRectangle" style="width: 500px;" >
-                Liste des vendeurs à désactiver
+                Liste des clients à désactiver
             </div>
             <div class="rectangleItem basRectangle" >
            <ul>            
@@ -68,7 +64,7 @@
                 </asp:Repeater>
            </ul>
                <p class="center">
-                    <asp:Button id="btn_desactiver_liste" runat="server" text="Désactiver ces vendeurs" OnCommand="desactiver_liste_vendeur"/>
+                    <asp:Button id="btn_desactiver_liste" runat="server" text="Désactiver ces clients" OnCommand="desactiver_liste_client"/>
                 </p>
            </div>
         </asp:View>

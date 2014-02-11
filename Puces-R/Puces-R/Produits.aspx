@@ -8,17 +8,17 @@
 <asp:Content runat="server" ContentPlaceHolderID="BarreCriteres">
     <span class="boiteListeDeroulante">
         Recherche:
-        <asp:DropDownList ID="ddlTypeRecherche" runat="server">
+        <asp:DropDownList ID="ddlTypeRecherche" runat="server" Font-Size="X-Small">
             <asp:ListItem Text="Date de parution" />
             <asp:ListItem Text="Numéro" />
             <asp:ListItem Text="Description" />
         </asp:DropDownList>
-        <asp:TextBox ID="txtCritereRecherche" runat="server" />
-        <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage"/>
+        <asp:TextBox ID="txtCritereRecherche" runat="server" Width="50" Font-Size="X-Small" />
+        <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" Font-Size="X-Small" />
     </span>
     <span class="boiteListeDeroulante">
         Trier par:
-        <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+        <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" >
             <asp:ListItem Text="Numéro" />
             <asp:ListItem Text="Catégorie" />
             <asp:ListItem Text="Date de parution" />
@@ -27,7 +27,7 @@
     </span>
     <span class="boiteListeDeroulante">
         Par page:
-        <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+        <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" >
             <asp:ListItem Value="5" />
             <asp:ListItem Value="10" />
             <asp:ListItem Value="15" Selected="True" />
@@ -36,10 +36,37 @@
             <asp:ListItem Value="50" />
         </asp:DropDownList>
     </span>
-    <span class="boiteListeDeroulante">
-        Catégorie:
-        <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" />
-    </span>
+    <div class="boiteListeDeroulante">
+        <asp:MultiView runat="server" ID="mvCategorie" ActiveViewIndex="0">
+            <asp:View runat="server">
+                Catégorie:
+                <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" />
+            </asp:View>
+            <asp:View runat="server">
+                Catégories:
+                <div class="listeCochable">
+                    <asp:CheckBoxList ID="cblCategorie" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
+                </div>
+            </asp:View>
+        </asp:MultiView>
+    </div>
+    <div class="boiteListeDeroulante">
+        <asp:MultiView runat="server" ID="mvVendeur" ActiveViewIndex="0">
+            <asp:View runat="server">
+                Vendeur:
+                <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" />
+            </asp:View>
+            <asp:View runat="server">
+                Vendeurs:
+                <div class="listeCochable">
+                    <asp:CheckBoxList ID="cblVendeur" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
+                </div>
+            </asp:View>
+        </asp:MultiView>
+    </div>
+    <div class="boiteListeDeroulante">
+        <asp:Button runat="server" Text="Avancé" ID="btnRechercheAvance" OnClick="btnRechercheAvance_OnClick" Font-Size="X-Small" />
+    </div>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="Items">

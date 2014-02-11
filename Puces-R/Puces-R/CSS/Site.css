@@ -394,7 +394,20 @@ body
 
 .boiteListeDeroulante
 {
-    margin:0 10px;
+    font-size:small;
+    display:inline-block;
+    vertical-align:top;
+    margin:0 5px;
+}
+
+.boiteListeDeroulante *
+{
+    vertical-align:top;
+}
+
+.boiteListeDeroulante input, .boiteListeDeroulante select
+{
+    vertical-align:middle !important;
 }
 
 .messageCentral

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 namespace Puces_R
 {
@@ -138,15 +139,30 @@ namespace Puces_R
                 connexion.Open();
                 if (noBrouillon < 0)
                 {
-                    cmdMessage.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @contenu, NULL, -1, NULL)\n";
+                    cmdMessage.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @message, @file, -1, NULL)\n";
                     SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
                     noMessage = int.Parse(cmdNoMessage.ExecuteScalar().ToString());
                 }
                 else
                 {
-                    cmdMessage.CommandText = "UPDATE PPMessages SET NoExpediteur = @from, DateEnvoi = @date, Sujet = @sujet, Contenu = @message, Boite = -1 WHERE NoMessage = @no\n";
+                    cmdMessage.CommandText = "UPDATE PPMessages SET NoExpediteur = @from, DateEnvoi = @date, Sujet = @sujet, Contenu = @message, FichierJoint= @file, Boite = -1 WHERE NoMessage = @no\n";
                     cmdMessage.CommandText += "DELETE FROM PPDestinatairesMessages WHERE NoMessage = @no\n";
                     noMessage = noBrouillon;
+                }
+
+                string filename = null;
+                if (upload.HasFile)
+                {
+                    try
+                    {
+                        filename = Path.GetFileName(upload.FileName);
+                        upload.SaveAs(MapPath("MsgDownload/msg" + noMessage + "_" + filename));
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write(ex.Message);
+                        filename = null;
+                    }
                 }
 
                 cmdMessage.Parameters.AddWithValue("@no", noMessage);
@@ -154,6 +170,7 @@ namespace Puces_R
                 cmdMessage.Parameters.AddWithValue("@date", DateTime.Now);
                 cmdMessage.Parameters.AddWithValue("@sujet", tbSujet.Text);
                 cmdMessage.Parameters.AddWithValue("@message", tbMessage.Text);
+                cmdMessage.Parameters.AddWithValue("@file", filename == null ? DBNull.Value : (object)filename);
 
                 for (int i = 0; i < lbDestinataires.Items.Count; i++)
                 {

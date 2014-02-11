@@ -34,6 +34,10 @@
                 </td>
             </tr>
             <tr>
+            <td>Pièce jointe</td>
+            <td><asp:FileUpload runat="server" ID="upload" /></td>
+            </tr>
+            <tr>
                 <td style="vertical-align: top;">
                     Message
                 </td>

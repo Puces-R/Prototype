@@ -678,6 +678,9 @@
     <Compile Include="SuppressionProduits.aspx.designer.cs">
       <DependentUpon>SuppressionProduits.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TelechargementMessage.ashx.cs">
+      <DependentUpon>TelechargementMessage.ashx</DependentUpon>
+    </Compile>
     <Compile Include="vendeur.aspx.cs">
       <DependentUpon>vendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -743,6 +746,7 @@
     <None Include="BonCommande.xss">
       <DependentUpon>BonCommande.xsd</DependentUpon>
     </None>
+    <Content Include="TelechargementMessage.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BonCommande.rdlc">

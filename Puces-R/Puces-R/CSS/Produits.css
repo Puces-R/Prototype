@@ -44,3 +44,23 @@
     font-size:smaller;
     display:block;
 }
+
+.listeCochable
+{
+    border: 1px solid black;
+    text-align:left;
+    max-height:60px;
+    overflow:auto;
+    font-size: smaller;
+    display:inline-block;
+}
+
+.listeCochable *
+{
+    vertical-align:middle;
+}
+
+.listeCochable input
+{
+    margin:-2px 0;
+}

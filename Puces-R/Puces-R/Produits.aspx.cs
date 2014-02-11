@@ -18,6 +18,18 @@ namespace Puces_R
         
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+        private bool RechercheAvance
+        {
+            get
+            {
+                return (bool)ViewState["RechercheAvance"];
+            }
+            set
+            {
+                ViewState["RechercheAvance"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Master.ChargerItems += chargerProduits;
@@ -36,13 +48,16 @@ namespace Puces_R
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" + whereClause, myConnection);
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
-
-                ddlCategorie.DataSource = tableCategories;
-                ddlCategorie.DataTextField = "Description";
-                ddlCategorie.DataValueField = "NoCategorie";
-                ddlCategorie.DataBind();
+                AjouterCategories(ddlCategorie, tableCategories);
                 ddlCategorie.Items.Add(new ListItem("Toutes", "-1"));
-                ddlCategorie.SelectedValue = noCategorie.ToString();
+                AjouterCategories(cblCategorie, tableCategories);
+
+                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT NomAffaires, NoVendeur FROM PPVendeurs", myConnection);
+                DataTable tableVendeurs = new DataTable();
+                adapteurVendeurs.Fill(tableVendeurs);
+                AjouterVendeurs(ddlVendeur, tableVendeurs);
+                ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
+                AjouterVendeurs(cblVendeur, tableVendeurs);
 
                 if (noVendeur == -1)
                 {
@@ -54,7 +69,27 @@ namespace Puces_R
                 }
 
                 Master.AfficherPremierePage();
+
+                RechercheAvance = false;
             }
+        }
+
+        private void AjouterCategories(ListControl controle, DataTable tableCategories)
+        {
+            controle.DataSource = tableCategories;
+            controle.DataTextField = "Description";
+            controle.DataValueField = "NoCategorie";
+            controle.DataBind();
+            controle.SelectedValue = noCategorie.ToString();
+        }
+
+        private void AjouterVendeurs(ListControl controle, DataTable tableVendeurs)
+        {
+            controle.DataSource = tableVendeurs;
+            controle.DataTextField = "NomAffaires";
+            controle.DataValueField = "NoVendeur";
+            controle.DataBind();
+            controle.SelectedValue = noVendeur.ToString();
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -224,6 +259,14 @@ namespace Puces_R
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
             Master.AfficherPremierePage();
+        }
+
+        protected void btnRechercheAvance_OnClick(object sender, EventArgs e)
+        {
+            RechercheAvance = !RechercheAvance;
+
+            mvCategorie.ActiveViewIndex = RechercheAvance ? 1 : 0;
+            mvVendeur.ActiveViewIndex = RechercheAvance ? 1 : 0;
         }
     }
 }

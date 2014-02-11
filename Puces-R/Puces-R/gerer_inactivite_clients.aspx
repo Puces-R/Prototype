@@ -1,11 +1,11 @@
-﻿﻿<%@ Page Title="Gérer l'inactivité des clients" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="gerer_inactivite_clients.aspx.cs" Inherits="Puces_R.gerer_inactivite_clients" EnableEventValidation="false"%>
+﻿<%@Page Title="Gérer l'inactivité des clients" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="gerer_inactivite_clients.aspx.cs" Inherits="Puces_R.gerer_inactivite_clients" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/site.css" />
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4_2.css" />
-    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="lib/js/librairie.js"></script>
     <script>
 

@@ -24,7 +24,7 @@ namespace Puces_R
             }
         }
 
-        public static void Messagerie(int[] destinataires, string sujet = null, string message = null)
+        public static void Messagerie(int[] destinataires, string sujet = null, string message = null, bool fixer = false)
         {
             if (destinataires != null)
             {
@@ -39,6 +39,11 @@ namespace Puces_R
             if (message != null)
             {
                 System.Web.HttpContext.Current.Session["Message"] = message;
+            }
+
+            if (fixer != null)
+            {
+                System.Web.HttpContext.Current.Session["Fixer"] = fixer;
             }
 
             System.Web.HttpContext.Current.Response.Redirect("EnvoyerMessage.aspx");

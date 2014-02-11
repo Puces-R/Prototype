@@ -91,7 +91,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList rptInnactifs1;
+        protected global::System.Web.UI.WebControls.Repeater rptInnactifs1;
         
         /// <summary>
         /// Propriété Master.

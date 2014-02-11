@@ -45,7 +45,7 @@
             <asp:View runat="server">
                 Catégories:
                 <div class="listeCochable">
-                    <asp:CheckBoxList ID="cblCategorie" runat="server" RepeatLayout="Table" />
+                    <asp:CheckBoxList ID="cblCategorie" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
                 </div>
             </asp:View>
         </asp:MultiView>
@@ -59,7 +59,7 @@
             <asp:View runat="server">
                 Vendeurs:
                 <div class="listeCochable">
-                    <asp:CheckBoxList ID="cblVendeur" runat="server" RepeatLayout="Table" />
+                    <asp:CheckBoxList ID="cblVendeur" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
                 </div>
             </asp:View>
         </asp:MultiView>

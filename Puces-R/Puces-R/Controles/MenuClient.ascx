@@ -9,6 +9,7 @@
     <DynamicMenuStyle CssClass="popupMenu" />
     <Items>
         <asp:MenuItem Text="Accueil" NavigateUrl="../AccueilClient.aspx" />
+        <asp:MenuItem Text="Produits" NavigateUrl="../Produits.aspx" />
         <asp:MenuItem Text="Commandes" NavigateUrl="../CommandesClient.aspx" />
         <asp:MenuItem Text="Modifier le profil" NavigateUrl="../ProfilClient.aspx" />
     </Items>

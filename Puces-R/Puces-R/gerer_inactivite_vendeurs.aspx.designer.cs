@@ -67,22 +67,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.DropDownList ddlTempsInnactivite;
         
         /// <summary>
-        /// Contrôle cocher_tout.
+        /// Contrôle div_msg.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton cocher_tout;
-        
-        /// <summary>
-        /// Contrôle decocher_tout.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton decocher_tout;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
         
         /// <summary>
         /// Contrôle btn_desactiver_tout.

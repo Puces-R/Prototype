@@ -23,5 +23,25 @@ namespace Puces_R
                 return new SqlConnection("Server=10.2.50.19;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
             }
         }
+
+        public static void Messagerie(int[] destinataires, string sujet = null, string message = null)
+        {
+            if (destinataires != null)
+            {
+                System.Web.HttpContext.Current.Session["ListeDestinataires"] = destinataires;
+            }
+
+            if (sujet != null)
+            {
+                System.Web.HttpContext.Current.Session["Sujet"] = sujet;
+            }
+
+            if (message != null)
+            {
+                System.Web.HttpContext.Current.Session["Message"] = message;
+            }
+
+            System.Web.HttpContext.Current.Response.Redirect("EnvoyerMessage.aspx");
+        }
     }
 }

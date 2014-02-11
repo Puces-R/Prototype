@@ -83,15 +83,15 @@ namespace Puces_R
             }
             else if (boite < 0)
             {
-                cmd.CommandText = "SELECT NoMessage, Sujet, DateEnvoi, " +
-                                    "(SELECT TOP (1) X.Texte FROM PPDestinatairesMessages AS DM INNER JOIN " +
+                cmd.CommandText = "SELECT        DM.NoMessage, COUNT(*) - 1 AS NbDestinataires, M.Sujet, M.DateEnvoi, " +
+                                    "(SELECT Texte FROM " +
                                         "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
                                          "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
-                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X ON X.No = DM.NoDestinataire " +
-                                            "WHERE (DM.NoMessage = M.NoMessage)) AS Personne, " +
-                                    "(SELECT COUNT(*) - 1 FROM PPDestinatairesMessages AS DMX " +
-                                     "WHERE (NoMessage = M.NoMessage)) AS NbDestinataires FROM PPMessages AS M " +
+                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
+                                     "WHERE (No = MIN(DM.NoDestinataire))) AS Personne " +
+                                  "FROM PPDestinatairesMessages AS DM INNER JOIN PPMessages AS M ON DM.NoMessage = M.NoMessage " +
                                     "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
+                                    "GROUP BY DM.NoMessage, M.Sujet, M.DateEnvoi " +
                                     "ORDER BY " + ordreCmd;
             }
             cmd.Parameters.AddWithValue("@id", Session["ID"]);

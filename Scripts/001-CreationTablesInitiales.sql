@@ -87,6 +87,14 @@ CREATE TABLE PPDestinatairesMessages (
 	CONSTRAINT PK_DestinatairesMessages PRIMARY KEY (NoDestinataire, NoMessage)
 )
 
+CREATE TABLE PPSuiviCompta (
+	NoVendeur bigint,
+	Mois smalldatetime,
+	Montant smallmoney NOT NULL,
+	DatePaiement smalldatetime,
+	CONSTRAINT PK_SuiviCompta PRIMARY KEY (NoVendeur, Mois)
+)
+
 /* Création des clefs étrangères */
 
 ALTER TABLE PPArticlesEnPanier ADD FOREIGN KEY(NoClient) REFERENCES PPClients(NoClient)

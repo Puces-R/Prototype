@@ -19,7 +19,7 @@
                     De
                 </td>
                 <td>
-                    <asp:Label runat="server" ID="lblDe">De</asp:Label>
+                    <asp:Label runat="server" ID="lblDe">De</asp:Label>&nbsp;<asp:LinkButton ID="lnkRepondre" runat="server" Text="Répondre" OnClick="repondre" />
                 </td>
             </tr>
             <tr>

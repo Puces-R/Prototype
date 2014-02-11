@@ -167,7 +167,7 @@
 
 .verdict_vendeur
 {
-	
+	text-align: center;
 }
 
 a
@@ -279,7 +279,7 @@ a
 
 .tableTitreValeur td:first-child 
 {
-	text-align:right;
+	
 }
 
 .tableTitreValeur td, .tableTitreValeur th

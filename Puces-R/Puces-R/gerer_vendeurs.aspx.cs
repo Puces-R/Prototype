@@ -23,7 +23,6 @@ namespace Puces_R
             
             if (!IsPostBack)
             {
-
                 String whereClause = String.Empty;
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" , myConnection);
                 DataTable tableCategories = new DataTable();
@@ -54,7 +53,6 @@ namespace Puces_R
                     whereParts.Add("AdresseEmail" + " LIKE '%" + mot + "%'");
                 }
             }
-
 
             //String whereClause;
             if (whereParts.Count > 0 )

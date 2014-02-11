@@ -10,89 +10,106 @@
 namespace Puces_R {
     
     
-    public partial class gerer_inactivite_clients {
+    public partial class verdict_desactiver {
         
         /// <summary>
-        /// Propriété Master.
-        /// </summary>
-        /// <remarks>
-        /// Propriété générée automatiquement.
-        /// </remarks>
-        public new Puces_R.SiteMaster Master {
-            get {
-                return ((Puces_R.SiteMaster)(base.Master));
-            }
-        }
-        /// Contrôle ddlTypeRecherche.
+        /// Contrôle mv_verdict.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        protected global::System.Web.UI.WebControls.MultiView mv_verdict;
         
         /// <summary>
-        /// Contrôle txtCritereRecherche.
+        /// Contrôle view_un_vendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        protected global::System.Web.UI.WebControls.View view_un_vendeur;
         
         /// <summary>
-        /// Contrôle btnRecherche.
+        /// Contrôle titre_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        protected global::System.Web.UI.WebControls.Label titre_demande;
         
         /// <summary>
-        /// Contrôle ddlTrierPar.
+        /// Contrôle addr_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
+        protected global::System.Web.UI.WebControls.Label addr_demande;
         
         /// <summary>
-        /// Contrôle ddlParPage.
+        /// Contrôle tels_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+        protected global::System.Web.UI.WebControls.Label tels_demande;
         
         /// <summary>
-        /// Contrôle ddlTempsInnactivite.
+        /// Contrôle courriel_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTempsInnactivite;
+        protected global::System.Web.UI.WebControls.Label courriel_demande;
         
         /// <summary>
-        /// Contrôle div_msg.
+        /// Contrôle charge_max_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
+        protected global::System.Web.UI.WebControls.Label charge_max_demande;
         
         /// <summary>
-        /// Contrôle btn_desactiver_tout.
+        /// Contrôle livraison_gratuite.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_desactiver_tout;
+        protected global::System.Web.UI.WebControls.Label livraison_gratuite;
+        
+        /// <summary>
+        /// Contrôle date_demande.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label date_demande;
+        
+        /// <summary>
+        /// Contrôle btn_desactiver.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_desactiver;
+        
+        /// <summary>
+        /// Contrôle view_liste.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view_liste;
         
         /// <summary>
         /// Contrôle rptInnactifs1.
@@ -102,5 +119,14 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptInnactifs1;
+        
+        /// <summary>
+        /// Contrôle btn_desactiver_liste.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_desactiver_liste;
     }
 }

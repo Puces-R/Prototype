@@ -17,6 +17,9 @@ namespace Puces_R
     {
         private bool transactionAccepte = false;
         private Facture facture;
+        String noAutorisation;
+        String dateAutorisation;
+        String fraisMarchand;
 
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
@@ -42,9 +45,9 @@ namespace Puces_R
 
                 HttpRequest requete = HttpContext.Current.Request;
 
-                String noAutorisation = (String)requete.Form["NoAutorisation"];
-                String dateAutorisation = (String)requete.Form["DateAutorisation"];
-                String fraisMarchand = (String)requete.Form["FraisMarchand"];
+                noAutorisation = (String)requete.Form["NoAutorisation"];
+                dateAutorisation = (String)requete.Form["DateAutorisation"];
+                fraisMarchand = (String)requete.Form["FraisMarchand"];
 
                 switch (noAutorisation)
                 {
@@ -111,24 +114,61 @@ namespace Puces_R
 
                 NoCommande = (long)commandeNoCommande.ExecuteScalar() + 1;
 
-                SqlCommand commandePaiement = new SqlCommand("INSERT INTO PPCommandes VALUES (@noCommande, @noClient, @noVendeur, @dateCommande, @livraison, @typeLivraison, @montantTotal, @TPS, @TVQ, @poidsTotal, @statut, @noAutorisation)", myConnection, transaction);
+                SqlCommand commandeCommande = new SqlCommand("INSERT INTO PPCommandes VALUES (@noCommande, @noClient, @noVendeur, @dateCommande, @livraison, @typeLivraison, @montantTotal, @TPS, @TVQ, @poidsTotal, @statut, @noAutorisation)", myConnection, transaction);
 
-                SqlParameterCollection parameters = commandePaiement.Parameters;
+                SqlParameterCollection parametersCommandes = commandeCommande.Parameters;
 
-                parameters.Add(new SqlParameter("noCommande", NoCommande));
-                parameters.Add(new SqlParameter("noClient", Session["ID"]));
-                parameters.Add(new SqlParameter("noVendeur", facture.NoVendeur));
-                parameters.Add(new SqlParameter("dateCommande", DateTime.Now));
-                parameters.Add(new SqlParameter("livraison", facture.PrixLivraison));
-                parameters.Add(new SqlParameter("typeLivraison", facture.CodeLivraison));
-                parameters.Add(new SqlParameter("montantTotal", facture.SousTotal));
-                parameters.Add(new SqlParameter("TPS", facture.PrixTPS));
-                parameters.Add(new SqlParameter("TVQ", facture.PrixTVQ));
-                parameters.Add(new SqlParameter("poidsTotal", facture.PoidsTotal));
-                parameters.Add(new SqlParameter("statut", "p"));
-                parameters.Add(new SqlParameter("noAutorisation", 1));
+                parametersCommandes.Add(new SqlParameter("noCommande", NoCommande));
+                parametersCommandes.Add(new SqlParameter("noClient", Session["ID"]));
+                parametersCommandes.Add(new SqlParameter("noVendeur", facture.NoVendeur));
+                parametersCommandes.Add(new SqlParameter("dateCommande", DateTime.Now));
+                parametersCommandes.Add(new SqlParameter("livraison", facture.PrixLivraison));
+                parametersCommandes.Add(new SqlParameter("typeLivraison", facture.CodeLivraison));
+                parametersCommandes.Add(new SqlParameter("montantTotal", facture.SousTotal));
+                parametersCommandes.Add(new SqlParameter("TPS", facture.PrixTPS));
+                parametersCommandes.Add(new SqlParameter("TVQ", facture.PrixTVQ));
+                parametersCommandes.Add(new SqlParameter("poidsTotal", facture.PoidsTotal));
+                parametersCommandes.Add(new SqlParameter("statut", "p"));
+                parametersCommandes.Add(new SqlParameter("noAutorisation", 1));
 
-                commandePaiement.ExecuteNonQuery();
+                commandeCommande.ExecuteNonQuery();
+
+                SqlCommand commandeNoHistorique = new SqlCommand("SELECT MAX(NoHistorique) FROM PPHistoriquePaiements", myConnection, transaction);
+
+                object objNoHistorique = commandeNoHistorique.ExecuteScalar();
+                 
+                long noHistorique;
+                if (objNoHistorique is DBNull)
+                {
+                    noHistorique = 1;
+                }
+                else
+                {
+                    noHistorique = (long)objNoHistorique + 1;
+                }
+
+                SqlCommand commandePourcentage = new SqlCommand("SELECT Pourcentage FROM PPVendeurs WHERE NoVendeur = " + facture.NoVendeur, myConnection, transaction);
+                decimal pourcentage = (decimal)commandePourcentage.ExecuteScalar();
+                decimal redevance = facture.SousTotal * pourcentage;
+                
+                SqlCommand commandeHistorique = new SqlCommand("INSERT INTO PPHistoriquePaiements VALUES (@noHistorique, @montantVente, @noVendeur, @noClient, @noCommande, @dateVente, @noAutorisation, @fraisLesi, @redevance, @fraisLivraison, @fraisTPS, @fraisTVQ)", myConnection, transaction);
+
+                SqlParameterCollection parametersHistorique = commandeHistorique.Parameters;
+
+                parametersHistorique.Add(new SqlParameter("noHistorique", noHistorique));
+                parametersHistorique.Add(new SqlParameter("montantVente", facture.SousTotal));
+                parametersHistorique.Add(new SqlParameter("noVendeur", facture.NoVendeur));
+                parametersHistorique.Add(new SqlParameter("noClient", Session["ID"]));
+                parametersHistorique.Add(new SqlParameter("noCommande", NoCommande));
+                parametersHistorique.Add(new SqlParameter("dateVente", DateTime.Now));
+                parametersHistorique.Add(new SqlParameter("noAutorisation", noAutorisation));
+                parametersHistorique.Add(new SqlParameter("fraisLesi", fraisMarchand));
+                parametersHistorique.Add(new SqlParameter("redevance", redevance));
+                parametersHistorique.Add(new SqlParameter("fraisLivraison", facture.PrixLivraison));
+                parametersHistorique.Add(new SqlParameter("fraisTPS", facture.PrixTPS));
+                parametersHistorique.Add(new SqlParameter("fraisTVQ", facture.PrixTVQ));
+                
+                commandeHistorique.ExecuteNonQuery();
 
                 SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + facture.NoVendeur, myConnection, transaction);
                 commandeNbItems.ExecuteNonQuery();

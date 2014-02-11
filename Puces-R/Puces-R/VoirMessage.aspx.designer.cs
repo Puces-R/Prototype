@@ -49,6 +49,24 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lblSujet;
         
         /// <summary>
+        /// Contrôle trPiece.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trPiece;
+        
+        /// <summary>
+        /// Contrôle btnDownload.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDownload;
+        
+        /// <summary>
         /// Contrôle lblMessage.
         /// </summary>
         /// <remarks>

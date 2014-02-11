@@ -17,6 +17,12 @@ namespace Puces_R
 
         private int noExpediteur = -1;
 
+        protected void download(object sender, EventArgs e)
+        {
+            Session["NoDownload"] = int.Parse(Request.QueryString["No"]);
+            Response.Redirect("TelechargementMessage.ashx");
+        }
+
         protected void repondre(object sender, EventArgs e)
         {
             Librairie.Messagerie(new int[] {noExpediteur} , "RE : " + lblSujet.Text);
@@ -31,7 +37,7 @@ namespace Puces_R
                 SqlCommand cmdEstDestinataire = new SqlCommand("SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg) AND (NoDestinataire = @noRcpt) AND (Boite > 0)", connexion);
                 SqlCommand cmdEstExpediteur = new SqlCommand("SELECT CASE WHEN COUNT(*) = 1 THEN 'true' ELSE 'false' END FROM PPMessages WHERE (NoMessage = @noMsg) AND (NoExpediteur = @id) AND (Boite < 0)", connexion);
 
-                SqlCommand cmdMessage = new SqlCommand("SELECT M.NoExpediteur, X.Texte, M.DateEnvoi, M.Sujet, M.Contenu FROM PPMessages M " +
+                SqlCommand cmdMessage = new SqlCommand("SELECT M.NoExpediteur, X.Texte, M.DateEnvoi, M.Sujet, M.Contenu, M.FichierJoint FROM PPMessages M " +
                     "INNER JOIN PPDestinatairesMessages DM ON M.NoMessage = DM.NoMessage " +
                     "INNER JOIN (SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
                                 "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
@@ -77,6 +83,11 @@ namespace Puces_R
                         lblMessage.Text = sdr["Contenu"].ToString().Replace("\r\n", "<br />");
                         lblSujet.Text = sdr["Sujet"].ToString();
                         noExpediteur = int.Parse(sdr["NoExpediteur"].ToString());
+                        if (sdr["FichierJoint"] != DBNull.Value)
+                        {
+                            trPiece.Visible = true;
+                            btnDownload.Text = sdr["FichierJoint"].ToString();
+                        }
                     }
                     else
                     {

@@ -67,7 +67,7 @@ namespace Puces_R.Controles
                 long noProduit = (long)drvProduit["NoProduit"];
 
                 hypProduit.Text = produit;
-                hypProduit.NavigateUrl = SiteMaster.AjouterChemin("../DetailsProduit.aspx?noproduit=" + noProduit);
+                hypProduit.NavigateUrl = Chemin.Ajouter("../DetailsProduit.aspx?noproduit=" + noProduit, "Retour au panier");
                 lblQuantite.Text = quantite.ToString();
                 lblPrixUnitaire.Text = prixUnitaire.ToString("C");
                 lblPrixTotal.Text = prixTotal.ToString("C");

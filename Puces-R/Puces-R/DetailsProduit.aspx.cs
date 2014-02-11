@@ -196,7 +196,7 @@ namespace Puces_R
 
                 myConnection.Close();
 
-                Response.Redirect(SiteMaster.AjouterChemin("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur));
+                Response.Redirect(Chemin.Ajouter("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur, "Retourner aux détails du produit"));
             }
         }
 

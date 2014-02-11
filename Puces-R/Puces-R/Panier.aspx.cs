@@ -42,7 +42,7 @@ namespace Puces_R
         {
             if (Session["ID"] == null)
             {
-                Response.Redirect(SiteMaster.AjouterChemin("Default.aspx"), true);
+                Response.Redirect("Default.aspx", true);
             }
 
             int noVendeur;
@@ -151,7 +151,7 @@ namespace Puces_R
         {
             if (IsValid)
             {
-                Response.Redirect(SiteMaster.AjouterChemin("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison), true);
+                Response.Redirect(Chemin.Ajouter("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, "Retour au panier"), true);
             }
         }
 

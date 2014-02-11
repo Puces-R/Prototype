@@ -16,43 +16,6 @@ namespace Puces_R
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
-        public static String UrlActuel
-        {
-            get
-            {
-                var nameValueCollection = HttpUtility.ParseQueryString(HttpContext.Current.Request.QueryString.ToString());
-                nameValueCollection.Remove("chemin");
-                return HttpContext.Current.Request.Path + "?" + nameValueCollection;
-            }
-        }
-
-        private String UrlRetour
-        {
-            set
-            {
-                if (value != null)
-                {
-                    hypRetour.ForeColor = ColorTranslator.FromHtml("#0052AE");
-                    hypRetour.NavigateUrl = value;
-                }
-            }
-        }
-
-        private static String CheminRetour
-        {
-            get
-            {
-                if (HttpContext.Current.Request.Params["chemin"] != null)
-                {
-                    return Decoder((String)HttpContext.Current.Request.Params["chemin"]);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
         public bool MenuVisible
         {
             get
@@ -227,40 +190,13 @@ namespace Puces_R
                     lblBonjour.Text = "Visiteur";
                 }
 
-                if (CheminRetour != null)
+                if (Chemin.UrlRetour != null)
                 {
-                    List<String> parties = new List<String>(CheminRetour.Split(';'));
-                    String dernierePartie = parties.Last();
-                    String urlRetour = dernierePartie;
-                    if (parties.Count > 1)
-                    {
-                        parties.RemoveAt(parties.Count - 1);
-                        urlRetour += "&chemin=" + Encoder(String.Join(";", parties));
-                    }
-                    this.UrlRetour = urlRetour;
+                    hypRetour.ForeColor = ColorTranslator.FromHtml("#0052AE");
+                    hypRetour.NavigateUrl = Chemin.UrlRetour;
+                    hypRetour.Text = "◄ " + Chemin.TexteRetour;
                 }
             }
-        }
-
-        public static String AjouterChemin(string adresse)
-        {
-            String parametre = String.Empty;
-            if (CheminRetour != null)
-            {
-                parametre += CheminRetour + ";";
-            }
-            parametre += UrlActuel;
-            return adresse + (adresse.Contains("?") ? "&" : "?") + "chemin=" + Encoder(parametre);
-        }
-
-        private static String Encoder(String texte)
-        {
-            return Convert.ToBase64String(Encoding.UTF8.GetBytes(texte));
-        }
-
-        private static String Decoder(String texte)
-        {
-            return Encoding.UTF8.GetString(Convert.FromBase64String(texte));
         }
     }
 }

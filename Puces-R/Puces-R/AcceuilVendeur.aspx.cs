@@ -127,7 +127,7 @@ namespace Puces_R
 
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
-                lblNoProduit.NavigateUrl = SiteMaster.AjouterChemin("DetailsCommandes.aspx?noCommande=" + noCommande);
+                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande=" + noCommande;
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
                 //lblNoVendeur.Text = noVendeur.ToString();
@@ -197,7 +197,7 @@ namespace Puces_R
                String nom = drvPanier["NomC"] == DBNull.Value ? "Nom Inconnu " : (String)drvPanier["NomC"];
                
                 hypVendeur.Text = nom;
-                hypVendeur.NavigateUrl = SiteMaster.AjouterChemin("Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur);
+                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
 
                 lblDate.Text = date;
                 lblNom.Text = nom;
@@ -229,7 +229,7 @@ namespace Puces_R
                 long noProduit = (long)drvProduit["NoProduit"];
 
                 hypProduit.Text = produit;
-                hypProduit.NavigateUrl = SiteMaster.AjouterChemin("DetailsProduit.aspx?noclient=10000&noproduit=" + noProduit);
+                hypProduit.NavigateUrl = "DetailsProduit.aspx?noclient=10000&noproduit=" + noProduit;
                 lblQuantite.Text = quantite.ToString();
                 lblPrixUnitaire.Text = prixUnitaire.ToString("C");
                 lblPrixTotal.Text = prixTotal.ToString("C");

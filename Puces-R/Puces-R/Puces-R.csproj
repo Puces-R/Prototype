@@ -291,6 +291,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BonCommande.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Chemin.cs" />
     <Compile Include="ChoixDestinataires.aspx.cs">
       <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

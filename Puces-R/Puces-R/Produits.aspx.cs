@@ -104,7 +104,7 @@ namespace Puces_R
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
                 hypDescriptionAbregee.Text = strDescriptionAbregee;
-                hypDescriptionAbregee.NavigateUrl = SiteMaster.AjouterChemin("DetailsProduit.aspx?noproduit=" + noProduit);
+                hypDescriptionAbregee.NavigateUrl = Chemin.Ajouter("DetailsProduit.aspx?noproduit=" + noProduit, "Retour aux produits");
                 lblCategorie.Text = strCategorie;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
                 if (intQuantite > 0)

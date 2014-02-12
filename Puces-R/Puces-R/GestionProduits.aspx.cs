@@ -158,11 +158,11 @@ namespace Puces_R
                     Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
                     Button btnModifier = (Button)item.FindControl("btnModifier");
 
-                    DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                    DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                    long noProduit = (long)drvFilm["NoProduit"];
+                    long noProduit = (long)drvProduit["NoProduit"];
 
-                    Object photo = drvFilm["Photo"];
+                    Object photo = drvProduit["Photo"];
                     String urlImage;
                     if (photo is DBNull)
                     {
@@ -172,10 +172,10 @@ namespace Puces_R
                     {
                         urlImage = "Images/Televerse/" + (String)photo;
                     }
-                    String strCategorie = (String)drvFilm["Description"];
-                    String strDescriptionAbregee = (String)drvFilm["Nom"];
-                    decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
-                    short intQuantite = (short)drvFilm["NombreItems"];
+                    String strCategorie = (String)drvProduit["Description"];
+                    String strDescriptionAbregee = (String)drvProduit["Nom"];
+                    decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
+                    short intQuantite = (short)drvProduit["NombreItems"];
 
                     lblNoProduit.Text = "No. " + noProduit.ToString();
                     imgProduit.ImageUrl = urlImage;
@@ -197,7 +197,7 @@ namespace Puces_R
                 //Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
                 //Button btnModifier = (Button)item.FindControl("btnModifier");
 
-                //DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                // = (DataRowView)e.Item.DataItem;
 
                 //long noProduit = (long)drvFilm["NoProduit"];
                 //String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];

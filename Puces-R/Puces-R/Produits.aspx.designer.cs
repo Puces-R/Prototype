@@ -121,6 +121,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Button btnRechercheAvance;
         
         /// <summary>
+        /// Contrôle mvProduits.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mvProduits;
+        
+        /// <summary>
         /// Contrôle dtlProduits.
         /// </summary>
         /// <remarks>

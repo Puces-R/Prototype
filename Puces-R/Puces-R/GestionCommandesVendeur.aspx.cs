@@ -131,7 +131,7 @@ namespace Puces_R
         //        Label lblAutorisation = (Label)item.FindControl("lblNoAutorisation");
         //        Button btnMAJQuantite = (Button)item.FindControl("btnCommande");
 
-        //        DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+        //         = (DataRowView)e.Item.DataItem;
 
         //        long noCommande = (long)drvFilm["NoCommande"];
         //        //String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];
@@ -216,7 +216,7 @@ namespace Puces_R
         ////        Label lblAutorisation = (Label)item.FindControl("lblNoAutorisation");
         ////        Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
 
-        ////        DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+        ////         = (DataRowView)e.Item.DataItem;
 
         ////        //long noCommande = (long)drvFilm["NoCommande"];
         ////        ////String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];

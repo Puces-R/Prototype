@@ -34,6 +34,7 @@
             <asp:ListItem Value="20" />
             <asp:ListItem Value="25" />
             <asp:ListItem Value="50" />
+            <asp:ListItem Text="Tous" Value="-1" />
         </asp:DropDownList>
     </span>
     <div class="boiteListeDeroulante">
@@ -71,28 +72,35 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="Items">
     <div>
-        <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
-            <ItemTemplate>
-                <div class="rectangleProduits rectangleComplet rectangleItem">
-                    <div class="titreRectangle">
-                        <div>
-                            <asp:HyperLink runat="server" ID="hypDescriptionAbregee" />
+        <asp:MultiView runat="server" ID="mvProduits">
+            <asp:View runat="server">
+                <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
+                    <ItemTemplate>
+                        <div class="rectangleProduits rectangleComplet rectangleItem">
+                            <div class="titreRectangle">
+                                <div>
+                                    <asp:HyperLink runat="server" ID="hypDescriptionAbregee" />
+                                </div>
+                            </div>
+                            <div class="boiteImageProduit">
+                                <div>
+                                    <asp:Image runat="server" ID="imgProduit" />
+                                </div>
+                            </div>
+                            <div class="detailsProduit">
+                                <asp:Label runat="server" ID="lblNoProduit" />
+                                <asp:Label runat="server" ID="lblCategorie" />
+                                <asp:Label runat="server" ID="lblPrixDemande" />
+                                <asp:Label runat="server" ID="lblEvaluation" />
+                                <asp:Label runat="server" ID="lblQuantite" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="boiteImageProduit">
-                        <div>
-                            <asp:Image runat="server" ID="imgProduit" />
-                        </div>
-                    </div>
-                    <div class="detailsProduit">
-                        <asp:Label runat="server" ID="lblNoProduit" />
-                        <asp:Label runat="server" ID="lblCategorie" />
-                        <asp:Label runat="server" ID="lblPrixDemande" />
-                        <asp:Label runat="server" ID="lblEvaluation" />
-                        <asp:Label runat="server" ID="lblQuantite" />
-                    </div>
-                </div>
-            </ItemTemplate>
-        </ASP:DataList>
+                    </ItemTemplate>
+                </ASP:DataList>
+            </asp:View>
+            <asp:View runat="server">
+                <div class="messageCentral">Aucun produit pour ce vendeur et cette catégorie.</div>
+            </asp:View>
+        </asp:MultiView>
     </div>
 </asp:Content>

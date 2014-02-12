@@ -72,11 +72,11 @@ namespace Puces_R.Controles
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                 Label lblQuantite = (Label)item.FindControl("lblQuantite");
 
-                DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvFilm["NoProduit"];
+                long noProduit = (long)drvProduit["NoProduit"];
 
-                Object photo = drvFilm["Photo"];
+                Object photo = drvProduit["Photo"];
                 String urlImage;
                 if (photo is DBNull)
                 {
@@ -86,10 +86,10 @@ namespace Puces_R.Controles
                 {
                     urlImage = "Images/Televerse/" + (String)photo;
                 }
-                String strCategorie = (String)drvFilm["Description"];
-                String strDescriptionAbregee = (String)drvFilm["Nom"];
+                String strCategorie = (String)drvProduit["Description"];
+                String strDescriptionAbregee = (String)drvProduit["Nom"];
                 decimal decPrixDemande = 0;//(decimal)drvFilm["PrixVente"];
-                short intQuantite = (short)drvFilm["NombreItems"];
+                short intQuantite = (short)drvProduit["NombreItems"];
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;

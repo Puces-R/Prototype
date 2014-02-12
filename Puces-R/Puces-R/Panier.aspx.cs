@@ -84,15 +84,15 @@ namespace Puces_R
                 Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
                 Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
 
-                DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvFilm["NoProduit"];
-                String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];
-                String strCategorie = (String)drvFilm["Description"];
-                String strDescriptionAbregee = (String)drvFilm["Nom"];
-                decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
-                short intQuantite = (short)drvFilm["NbItems"];
-                long noPanier = (long)drvFilm["NoPanier"];
+                long noProduit = (long)drvProduit["NoProduit"];
+                String urlImage = "Images/Televerse/" + (String)drvProduit["Photo"];
+                String strCategorie = (String)drvProduit["Description"];
+                String strDescriptionAbregee = (String)drvProduit["Nom"];
+                decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
+                short intQuantite = (short)drvProduit["NbItems"];
+                long noPanier = (long)drvProduit["NoPanier"];
 
                 lblNoProduit.Text = noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;

@@ -90,11 +90,11 @@ namespace Puces_R
                 Label lblQuantite = (Label)item.FindControl("lblQuantite");
                 Label lblEvaluation = (Label)item.FindControl("lblEvaluation");
 
-                DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvFilm["NoProduit"];
+                long noProduit = (long)drvProduit["NoProduit"];
 
-                Object photo = drvFilm["Photo"];
+                Object photo = drvProduit["Photo"];
                 String urlImage;
                 if (photo is DBNull)
                 {
@@ -104,25 +104,26 @@ namespace Puces_R
                 {
                     urlImage = "Images/Televerse/" + (String)photo;
                 }
-                String strCategorie = (String)drvFilm["Description"];
-                String strDescriptionAbregee = (String)drvFilm["Nom"];
-                decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
-                short intQuantite = (short)drvFilm["NombreItems"];
+                String strCategorie = (String)drvProduit["Description"];
+                String strDescriptionAbregee = (String)drvProduit["Nom"];
+                decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
+                short intQuantite = (short)drvProduit["NombreItems"];
 
-                if (drvFilm["Evaluation"] is DBNull)
+                if (drvProduit["Evaluation"] is DBNull)
                 {
                     lblEvaluation.Text = "Aucune évaluation";
                 }
                 else
                 {
-                    decimal evaluation = (decimal)drvFilm["Evaluation"];
+                    decimal evaluation = (decimal)drvProduit["Evaluation"];
                     lblEvaluation.Text = "Cote moyenne: " + evaluation.ToString("N1") + " / 5";
                 }
-                
+
+                int noSequentiel = Master.PageActuelle * int.Parse(ddlParPage.SelectedValue) + item.ItemIndex + 1;
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
-                hypDescriptionAbregee.Text = strDescriptionAbregee;
+                hypDescriptionAbregee.Text = noSequentiel + ". " + strDescriptionAbregee;
                 hypDescriptionAbregee.NavigateUrl = Chemin.Ajouter("DetailsProduit.aspx?noproduit=" + noProduit, "Retour aux produits");
                 lblCategorie.Text = strCategorie;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
@@ -250,21 +251,33 @@ namespace Puces_R
                     orderByClause += "Evaluation DESC";
                     break;
             }
-
+            
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
-            PagedDataSource objPds = new PagedDataSource();
-            objPds.DataSource = new DataView(tableProduits);
-            objPds.AllowPaging = true;
-            objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = Master.PageActuelle;
+            if (tableProduits.Rows.Count > 0)
+            {
+                PagedDataSource objPds = new PagedDataSource();
+                objPds.DataSource = new DataView(tableProduits);
+                if (ddlParPage.SelectedValue != "-1")
+                {
+                    objPds.AllowPaging = true;
+                    objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
+                    objPds.CurrentPageIndex = Master.PageActuelle;
+                }
 
-            Master.NbPages = objPds.PageCount;
+                Master.NbPages = objPds.PageCount;
 
-            dtlProduits.DataSource = objPds;
-            dtlProduits.DataBind();
+                dtlProduits.DataSource = objPds;
+                dtlProduits.DataBind();
+
+                mvProduits.ActiveViewIndex = 0;
+            }
+            else
+            {
+                mvProduits.ActiveViewIndex = 1;
+            }
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)

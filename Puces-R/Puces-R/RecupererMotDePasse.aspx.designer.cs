@@ -13,15 +13,6 @@ namespace Puces_R {
     public partial class RecupererMotDePasse {
         
         /// <summary>
-        /// Contrôle MenuInvite.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuInvite MenuInvite;
-        
-        /// <summary>
         /// Contrôle tbCourriel.
         /// </summary>
         /// <remarks>
@@ -29,5 +20,17 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbCourriel;
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

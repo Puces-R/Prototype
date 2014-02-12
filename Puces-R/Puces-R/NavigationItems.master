@@ -1,13 +1,9 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NavigationItems.master.cs" Inherits="Puces_R.NavigationItems" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="NavigationParPage" Src="~/Controles/NavigationParPage.ascx" %>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
-</asp:Content>
-
-<asp:Content ContentPlaceHolderID="MenuItems" runat="server">
-    <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">

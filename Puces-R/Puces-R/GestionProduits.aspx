@@ -1,10 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionProduits.aspx.cs" Inherits="Puces_R.GestionProduits" %>
-
-<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
-
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient ID="MenuClient1" runat="server" />
-</asp:Content>
+<%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/Produits.css" />

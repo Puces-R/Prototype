@@ -63,13 +63,27 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
             
-            ((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
-            ((NavigationItems)Master).ChargerItems += charge_inactifs1;
+            //((SiteMaster)(Master.Master)).Titre = "Gestion de l'inactivité des vendeurs";
+            Master.ChargerItems += charge_inactifs1;
 
             if (!IsPostBack)
             {
-                ((NavigationItems)Master).AfficherPremierePage();
-            } 
+                Master.AfficherPremierePage();
+            }
+
+            if (Session["msg"] != null)
+                if (Session["msg"].ToString() != "")
+                {
+                    div_msg.InnerText = Session["msg"].ToString();
+                    Session["msg"] = "";
+                }
+
+            if (Session["err_msg"] != null)
+                if (Session["err_msg"].ToString() != "")
+                {
+                    Response.Write(Session["err_msg"]);
+                    Session["err_msg"] = "";
+                }
         }
 
         private void charge_inactifs1(object sender, EventArgs e)
@@ -88,7 +102,7 @@ namespace Puces_R
             req_inactif += "					WHERE PPVendeurs.NoVendeur = PPProduits.NoVendeur ";
             req_inactif += "					GROUP BY PPVendeurs.NoVendeur ";
             req_inactif += "				  ) R2 ";
-            req_inactif += "WHERE R2.maxdate < GETDATE() "; 
+            req_inactif += "WHERE R2.maxdate < GETDATE() ";
             req_inactif += "AND PPVendeurs.NoVendeur = R2.NoVendeur ";
             req_inactif += "INTERSECT ";
             req_inactif += "SELECT PPVendeurs.NoVendeur ";
@@ -98,7 +112,7 @@ namespace Puces_R
             req_inactif += "					WHERE PPVendeurs.NoVendeur = PPCommandes.NoVendeur ";
             req_inactif += "					GROUP BY PPVendeurs.NoVendeur ";
             req_inactif += "				  ) R3 ";
-            req_inactif += "WHERE R3.maxdate < GETDATE() "; 
+            req_inactif += "WHERE R3.maxdate < GETDATE() ";
             req_inactif += "AND PPVendeurs.NoVendeur = R3.NoVendeur ";
             req_inactif += "UNION ";
             req_inactif += "SELECT PPVendeurs.NoVendeur ";
@@ -131,8 +145,8 @@ namespace Puces_R
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
 
-            pdsDemandes.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
-            ((NavigationItems)Master).NbPages = pdsDemandes.PageCount;
+            pdsDemandes.CurrentPageIndex = Master.PageActuelle;
+            Master.NbPages = pdsDemandes.PageCount;
 
             rptInnactifs1.DataSource = pdsDemandes;
             rptInnactifs1.DataBind();
@@ -142,29 +156,21 @@ namespace Puces_R
             return tableInnactif1;
         }
 
-        protected void rptInnactifs1_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void rptInnactifs1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            DataListItem item = e.Item;
+            RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label titre_inactif1 = (Label)item.FindControl("titre_inactif1");
-                Label addr_inactif1 = (Label)item.FindControl("addr_inactif1");
-                Label tels_inactif1 = (Label)item.FindControl("tels_inactif1");
-                Label courriel_inactif1 = (Label)item.FindControl("courriel_inactif1");
-                Label charge_max_inactif1 = (Label)item.FindControl("charge_max_inactif1");
-                Label livraison_gratuite_inactif1 = (Label)item.FindControl("livraison_gratuite_inactif1");
+                Label lbl_num = (Label)item.FindControl("lbl_num");
+                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
                 Label date_inactif1 = (Label)item.FindControl("date_inactif1");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
                 
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
-                titre_inactif1.Text = drvinactif1["NomAffaires"].ToString() + ", par " + drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
-                addr_inactif1.Text = drvinactif1["Rue"].ToString() + ", " + drvinactif1["Ville"].ToString() + ", " + drvinactif1["Pays"].ToString();
-                tels_inactif1.Text = drvinactif1["Tel1"].ToString();
-                courriel_inactif1.Text = drvinactif1["AdresseEmail"].ToString();
-                charge_max_inactif1.Text = drvinactif1["MaxLivraison"].ToString() + "Kg";
-                if (drvinactif1["LivraisonGratuite"] != DBNull.Value) livraison_gratuite_inactif1.Text = drvinactif1["LivraisonGratuite"].ToString();
+                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 date_inactif1.Text = drvinactif1["DateCreation"].ToString();
                 //btnRefuser.CommandArgument = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoVendeur"].ToString();
@@ -173,40 +179,31 @@ namespace Puces_R
 
         protected void desactiver_vendeur(object sender, CommandEventArgs e)
         {
-            myConnection.Open();       
-            using (myConnection)
+            Session["desactiver_vendeur"] = e.CommandArgument.ToString();
+            Response.Redirect("verdict_desactiver.aspx");  
+        }
+
+        protected void desactiver_liste(object sender, EventArgs e)
+        {
+            string liste = "";
+            foreach (RepeaterItem vendeur in rptInnactifs1.Items)
             {
-                SqlTransaction transaction;
-
-                transaction = myConnection.BeginTransaction();
-                  
-                try
+                System.Web.UI.HtmlControls.HtmlInputCheckBox cb_desactiver = (System.Web.UI.HtmlControls.HtmlInputCheckBox)vendeur.FindControl("cb_desactiver");
+                if (cb_desactiver.Checked)
                 {
-                    string commande = "UPDATE PPVendeurs SET Statut = 1 WHERE NoVendeur = " + e.CommandArgument + "; ";
-                    commande += "DELETE FROM PPProduits WHERE NoVendeur = " + e.CommandArgument + " AND NoProduit NOT IN (SELECT NoProduit FROM PPDetailsCommandes);";
-                    commande += "UPDATE PPProduits SET Disponibilité = 0 WHERE NoVendeur = " + e.CommandArgument + " AND NoProduit IN (SELECT NoProduit FROM PPDetailsCommandes);";
-                    SqlCommand commande_desactiver_vendeur = new SqlCommand(commande, myConnection, transaction);
-                    commande_desactiver_vendeur.ExecuteNonQuery();
-                    transaction.Commit();
-                    DataTable tableProduits = charge_inactifs1();
-
-                    rptInnactifs1.DataSource = new DataView(tableProduits);
-                    rptInnactifs1.DataBind();
+                    Button btn_desactiver = (Button)vendeur.FindControl("btn_desactiver");
+                    liste += btn_desactiver.CommandArgument + ", ";
                 }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    Session["err_msg"] = "Erreur lors de la mise à jour de la base de données: " + ex.ToString();
-                    Response.Write(ex.ToString());
-                }
-            }           
+            }
 
-            myConnection.Close();
+            Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
+
+            Response.Redirect("verdict_desactiver.aspx");
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
         }
     }
 }

@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerMessage.aspx.cs"
-    Inherits="Puces_R.EnvoyerMessage" MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerMessage.aspx.cs" Inherits="Puces_R.EnvoyerMessage" MasterPageFile="~/Site.Master" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
-<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuInvite runat="server" />
-</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <script type="text/javascript">
         function popup() {
-            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>', "ChoisirVendeur", "height=700,width=900");
+            var w = window.open('ChoixDestinataires.aspx?Destinataire=<% for(int i = 0 ; i < lbDestinataires.Items.Count ; i++) { Response.Write((i == 0 ? "" : ",") + lbDestinataires.Items[i].Value); } %>&Type=<% Response.Write("Z" + Session["Type"].ToString()); %>', "ChoisirVendeur", "height=700,width=900");
             w.focus();
         }
 
@@ -25,8 +21,8 @@
                     Destinataire
                 </td>
                 <td>
-                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="300px" /><br />
-                    <asp:Button runat="server" ID="btn" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
+                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="700px" /><br />
+                    <asp:Button runat="server" ID="btnDestinataire" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
                 </td>
             </tr>
             <tr>
@@ -34,8 +30,12 @@
                     Sujet
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbSujet" MaxLength="50" Width="500px" />
+                    <asp:TextBox runat="server" ID="tbSujet" MaxLength="50" Width="700px" />
                 </td>
+            </tr>
+            <tr>
+            <td>Pièce jointe</td>
+            <td><asp:FileUpload runat="server" ID="upload" /></td>
             </tr>
             <tr>
                 <td style="vertical-align: top;">
@@ -49,6 +49,7 @@
                 <td colspan="2" style="text-align: center;">
                     <asp:Button runat="server" OnClick="apercuMessage" Text="Aperçu" />
                     <asp:Button runat="server" OnClick="envoyerMessage" Text="Envoyer" />
+                    <asp:Button runat="server" OnClick="sauvegarderMessage" Text="Sauvegarder comme brouillon" />
                 </td>
             </tr>
         </table>

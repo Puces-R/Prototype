@@ -1,11 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Panier.aspx.cs" Inherits="Puces_R.Panier" MasterPageFile="Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Panier.aspx.cs" Inherits="Puces_R.Panier" MasterPageFile="~/Site.Master" %>
 
-<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
 <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
-
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient runat="server" ID="ctrMenu" />
-</asp:Content>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link rel="stylesheet" type="text/css" href="CSS/Panier.css" />

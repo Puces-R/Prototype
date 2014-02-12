@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Text;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
@@ -31,8 +32,7 @@ namespace Puces_R
                     Response.Redirect("Default.aspx", true);
                 }
                 
-                ((SiteMaster)Master).NoVendeur = noVendeur;
-                ctrMenu.NoVendeur = noVendeur;
+                Master.NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];
@@ -50,6 +50,8 @@ namespace Puces_R
         {
             if (Page.IsValid)
             {
+                ctrMontantsFactures.CalculerCout();
+
                 ctrProfilClient.Sauvegarder();
                 
                 long noVendeur = ctrMontantsFactures.NoVendeur;
@@ -124,6 +126,17 @@ namespace Puces_R
 
             lecteurRuptureStock.Close();
             myConnection.Close();
+        }
+
+        protected void btnEssaie_OnClick(object sender, EventArgs e)
+        {
+            txtNumero.Text = "1234123412341234";
+            txtNomCarte.Text = "Tom Sawyer";
+            txtCCV.Text = "123";
+            ddlMoisExpiration.SelectedIndex = 1;
+            ddlAnneeExpiration.SelectedIndex = 1;
+            Validate();
+            btnFacturer_OnClick(sender, e);
         }
     }
 }

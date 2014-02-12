@@ -33,7 +33,7 @@ namespace Puces_R
             }
         }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
+        protected void Page_PreRenderComplete(object sender, EventArgs e)
         {
             btnCommander.Visible = String.IsNullOrEmpty(ctrMontantsFactures.MessageErreur);
         }
@@ -52,9 +52,9 @@ namespace Puces_R
             }
 
             this.NoVendeur = noVendeur;
-            ctrMenu.NoVendeur = noVendeur;
+            //ctrMenu.NoVendeur = noVendeur;
             ctrMontantsFactures.NoVendeur = noVendeur;
-            ((SiteMaster)Master).NoVendeur = noVendeur;
+            Master.NoVendeur = noVendeur;
 
             String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
 
@@ -84,15 +84,15 @@ namespace Puces_R
                 Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
                 Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
 
-                DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvFilm["NoProduit"];
-                String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];
-                String strCategorie = (String)drvFilm["Description"];
-                String strDescriptionAbregee = (String)drvFilm["Nom"];
-                decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
-                short intQuantite = (short)drvFilm["NbItems"];
-                long noPanier = (long)drvFilm["NoPanier"];
+                long noProduit = (long)drvProduit["NoProduit"];
+                String urlImage = "Images/Televerse/" + (String)drvProduit["Photo"];
+                String strCategorie = (String)drvProduit["Description"];
+                String strDescriptionAbregee = (String)drvProduit["Nom"];
+                decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
+                short intQuantite = (short)drvProduit["NbItems"];
+                long noPanier = (long)drvProduit["NoPanier"];
 
                 lblNoProduit.Text = noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
@@ -151,7 +151,7 @@ namespace Puces_R
         {
             if (IsValid)
             {
-                Response.Redirect("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, true);
+                Response.Redirect(Chemin.Ajouter("Commande.aspx?novendeur=" + NoVendeur + "&codelivraison=" + ctrMontantsFactures.CodeLivraison, "Retour au panier"), true);
             }
         }
 

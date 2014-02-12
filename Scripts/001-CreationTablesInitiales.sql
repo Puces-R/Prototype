@@ -61,12 +61,6 @@ CREATE TABLE PPBoites (
 	"Description" varchar(20) NOT NULL
 )
 
-CREATE TABLE PPCategoriesMessage (
-	NoCategorie smallint PRIMARY KEY,
-	"Description" varchar(20) NOT NULL,
-	Couleur int NOT NULL CHECK (Couleur BETWEEN CONVERT(INT, 0x000000) AND CONVERT(INT, 0xFFFFFF))
-)
-
 CREATE TABLE PPMessages (
 	NoMessage bigint PRIMARY KEY,
 	NoExpediteur bigint NOT NULL,
@@ -74,8 +68,7 @@ CREATE TABLE PPMessages (
 	Sujet varchar(50) NOT NULL,
 	Contenu varchar(MAX) NOT NULL,
 	FichierJoint varchar(50),
-	Boite smallint NOT NULL FOREIGN KEY REFERENCES PPBoites(NoBoite),
-	Categorie smallint NULL FOREIGN KEY REFERENCES PPCategoriesMessage(NoCategorie)
+	Boite smallint NOT NULL FOREIGN KEY REFERENCES PPBoites(NoBoite)
 )
 
 CREATE TABLE PPDestinatairesMessages (
@@ -83,8 +76,25 @@ CREATE TABLE PPDestinatairesMessages (
 	NoMessage bigint FOREIGN KEY REFERENCES PPMessages(NoMessage),
 	Lu bit NOT NULL,
 	Boite smallint NOT NULL FOREIGN KEY REFERENCES PPBoites(NoBoite),
-	Categorie smallint NULL FOREIGN KEY REFERENCES PPCategoriesMessage(NoCategorie), 
 	CONSTRAINT PK_DestinatairesMessages PRIMARY KEY (NoDestinataire, NoMessage)
+)
+
+CREATE TABLE PPEvaluations (
+	NoClient bigint FOREIGN KEY REFERENCES PPClients(NoClient),
+	NoProduit bigint FOREIGN KEY REFERENCES PPProduits(NoProduit),
+	Cote numeric(2,1) NOT NULL,
+	Commentaire varchar(150),
+	DateMAJ smalldatetime,
+	DateCreation smalldatetime NOT NULL,
+	CONSTRAINT pk_PPEvaluations PRIMARY KEY (NoClient,NoProduit)
+)
+
+CREATE TABLE PPSuiviCompta (
+	NoVendeur bigint,
+	Mois smalldatetime,
+	Montant smallmoney NOT NULL,
+	DatePaiement smalldatetime,
+	CONSTRAINT PK_SuiviCompta PRIMARY KEY (NoVendeur, Mois)
 )
 
 /* Création des clefs étrangères */

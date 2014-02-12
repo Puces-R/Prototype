@@ -13,15 +13,6 @@ namespace Puces_R {
     public partial class gerer_inactivite_vendeurs {
         
         /// <summary>
-        /// Contrôle MenuGestionnaire1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuGestionnaire MenuGestionnaire1;
-        
-        /// <summary>
         /// Contrôle ddlTypeRecherche.
         /// </summary>
         /// <remarks>
@@ -76,22 +67,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.DropDownList ddlTempsInnactivite;
         
         /// <summary>
-        /// Contrôle cocher_tout.
+        /// Contrôle div_msg.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton cocher_tout;
-        
-        /// <summary>
-        /// Contrôle decocher_tout.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton decocher_tout;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
         
         /// <summary>
         /// Contrôle btn_desactiver_tout.
@@ -109,6 +91,18 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList rptInnactifs1;
+        protected global::System.Web.UI.WebControls.Repeater rptInnactifs1;
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.NavigationItems Master {
+            get {
+                return ((Puces_R.NavigationItems)(base.Master));
+            }
+        }
     }
 }

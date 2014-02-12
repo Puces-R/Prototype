@@ -46,10 +46,6 @@ namespace Puces_R.Controles
 
                 if (ctrMenu.FindItem("Panier") == null)
                 {
-                    MenuItem itmProduits = new MenuItem("Produits", "Produits");
-                    itmProduits.NavigateUrl = "../Produits.aspx?novendeur=" + value;
-                    ctrMenu.Items.AddAt(1, itmProduits);
-
                     itmPanier = new MenuItem("Panier", "Panier");
                     itmPanier.NavigateUrl = "../Panier.aspx?novendeur=" + value;
                     ctrMenu.Items.AddAt(2, itmPanier);

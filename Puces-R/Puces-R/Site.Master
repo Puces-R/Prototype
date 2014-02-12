@@ -12,15 +12,21 @@
         <form runat="server">
             <div class="page">
                 <div>
-                    <div class="lignePointilleHorizontale pleineLargeur header">
-                        <img src="Images/logo.png" class="logo" alt="Logo" />
-                        <span class="titre">Les Petites Puces</span>
-                        <div class="droitePageMaitre">
+                    <div class="lignePointilleHorizontale pleineLargeur header noPrint">
+                        <img src="Images/logo.png" alt="Logo" class="logo"/>
+                        <div class="gauchePageMaitre">
+                            <span class="titre">Les Petites Puces</span>
+                            <div>
+                                <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="LightGray" />
+                            </div>
+                        </div>
+                        <div runat="server" ID="divMenu" class="droitePageMaitre">
                             <div class="bonjour">
-                                Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" />
+                                Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" /> &nbsp;
+                                <asp:HyperLink runat="server" ID="hlDeconnexion" NavigateUrl="~/Default.aspx" Text="Se déconnecter" />
                             </div>
                             <div>
-                                <asp:ContentPlaceHolder ID="MenuItems" runat="server"/>
+                                <asp:PlaceHolder runat="server" ID="menu" />
                             </div>
                         </div>
                     </div>
@@ -31,6 +37,7 @@
                         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
                     </div>
                     <div class="footer">
+                        <asp:HyperLink runat="server" ID="hypDevenirVendeur" Text="Ouvrir votre propre magasin..." NavigateUrl="InscriptionVendeur.aspx" Font-Size="Small" CssClass="noPrint" />
                         © 2014 Cégep Gérald Godin
                     </div>
                 </div>

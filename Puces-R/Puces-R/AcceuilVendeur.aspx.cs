@@ -92,13 +92,13 @@ namespace Puces_R
                 Label lblAutorisation = (Label)item.FindControl("lblNoAutorisation");
                 Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
                 
-                DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                DataRowView drvCommande = (DataRowView)e.Item.DataItem;
 
-                long noCommande = (long)drvFilm["NoCommande"];
+                long noCommande = (long)drvCommande["NoCommande"];
                 //String urlImage = "Images/Televerse/" + (String)drvFilm["Photo"];
-                Int64 strCategorie = (Int64)drvFilm["NoClient"];
-                Int64 noVendeur = (Int64)drvFilm["NoVendeur"];
-                DateTime strDate = (DateTime)drvFilm["DateCommande"];
+                Int64 strCategorie = (Int64)drvCommande["NoClient"];
+                Int64 noVendeur = (Int64)drvCommande["NoVendeur"];
+                DateTime strDate = (DateTime)drvCommande["DateCommande"];
                 //decimal decPrixDemande = (decimal)drvFilm["Livraison"];
                 //short intQuantite = (short)drvFilm["TypeLivraison"];
                 //Decimal noPanier = (Decimal)drvFilm["MontantTotal"];
@@ -110,24 +110,24 @@ namespace Puces_R
 
 
 
-                String decPrixDemande = Convert.ToString(drvFilm["Livraison"].ToString().Replace(',', '.'));
+                String decPrixDemande = Convert.ToString(drvCommande["Livraison"].ToString().Replace(',', '.'));
                 //Response.Write(decPrixDemande);
-                String intQuantite = Convert.ToString(drvFilm["TypeLivraison"]);
+                String intQuantite = Convert.ToString(drvCommande["TypeLivraison"]);
                 //Response.Write(intQuantite);
-                String noPanier = Convert.ToString(drvFilm["MontantTotal"]);
-                String tps = Convert.ToString(drvFilm["TPS"]);
-                String tvq = Convert.ToString(drvFilm["TVQ"]);
-                String poidstotal = Convert.ToString(drvFilm["PoidsTotal"]);
+                String noPanier = Convert.ToString(drvCommande["MontantTotal"]);
+                String tps = Convert.ToString(drvCommande["TPS"]);
+                String tvq = Convert.ToString(drvCommande["TVQ"]);
+                String poidstotal = Convert.ToString(drvCommande["PoidsTotal"]);
                 //Decimal tps = (Decimal)drvFilm["TPS"];
                 //Decimal tvq = (Decimal)drvFilm["TVQ"];
                 //Decimal poidstotal = (Decimal)drvFilm["PoidsTotal"];
 
-                String Statut = (String)drvFilm["Statut"];
+                String Statut = (String)drvCommande["Statut"];
                // String strAutorisation = (String)drvFilm["NoAutorisation"];
 
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
-                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande="+noCommande;
+                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande=" + noCommande;
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
                 //lblNoVendeur.Text = noVendeur.ToString();
@@ -197,7 +197,7 @@ namespace Puces_R
                String nom = drvPanier["NomC"] == DBNull.Value ? "Nom Inconnu " : (String)drvPanier["NomC"];
                
                 hypVendeur.Text = nom;
-               hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
+                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
 
                 lblDate.Text = date;
                 lblNom.Text = nom;

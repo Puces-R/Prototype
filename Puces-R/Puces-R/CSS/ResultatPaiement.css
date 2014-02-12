@@ -1,0 +1,13 @@
+﻿.messageCentral
+{
+    margin:15px !important;
+}
+
+.boutonImprimer
+{
+    width:16px;
+    height:16px;
+    border:1px Solid Gray;
+    padding:3px;
+    vertical-align:middle;
+}

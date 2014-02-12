@@ -1,13 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Commande.aspx.cs" Inherits="Puces_R.Commande" %>
-
-<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuClient.ascx" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="ProfilClient" Src="~/Controles/ProfilClient.ascx" %>
 <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
 <%@ Register TagPrefix="lp" TagName="TablePanier" Src="~/Controles/TablePanier.ascx" %>
-
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient runat="server" ID="ctrMenu" />
-</asp:Content>
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/Commande.css" />
@@ -30,7 +25,7 @@
                 <tr>
                     <td>Numéro: </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtNumero" MaxLength="16" TextMode="Number" Columns="16" />
+                        <asp:TextBox runat="server" ID="txtNumero" MaxLength="16" Columns="16" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumero" Text="Le numéro ne peut pas être vide!" CssClass="erreur" Display="Dynamic" />
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumero" ValidationExpression="^\d{16}$" Text="Le numéro doit être composé de 16 chiffres!" CssClass="erreur" Display="Dynamic" />
                     </td>
@@ -75,13 +70,14 @@
                 <tr>
                     <td>CCV: </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtCCV" MaxLength="3" TextMode="Number" Columns="3" />
+                        <asp:TextBox runat="server" ID="txtCCV" MaxLength="3" Columns="3" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCCV" Text="Le numéro de sécurité doit être spécifié!" CssClass="erreur" Display="Dynamic" />
                     </td>
                 </tr>
             </table>
             <div class="boutonsAction">
-                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" />                     
+                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" />
+                <asp:Button runat="server" Text="Simulation" ID="btnEssaie" OnClick="btnEssaie_OnClick" CausesValidation="false" />
             </div>
             <div>
                 <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" OnServerValidate="valQuantite_OnServerValidate" CssClass="erreur" /> 

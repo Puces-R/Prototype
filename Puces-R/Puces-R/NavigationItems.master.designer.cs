@@ -22,15 +22,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
-        /// Contrôle MenuItems.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MenuItems;
-        
-        /// <summary>
         /// Contrôle pnlBarreCritere.
         /// </summary>
         /// <remarks>
@@ -74,5 +65,17 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::Puces_R.Controles.NavigationParPage ctrNavigationBas;
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

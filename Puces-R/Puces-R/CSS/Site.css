@@ -15,12 +15,6 @@ body
     margin: 12px auto;
 }
 
-.logo
-{
-    height: 50px;
-    vertical-align: middle;
-}
-
 .formulaire
 {
     table-layout: fixed;
@@ -43,7 +37,6 @@ body
 .titre
 {
     font-size: xx-large;
-    vertical-align: middle;
 }
 
 .droitePageMaitre
@@ -401,14 +394,27 @@ body
 
 .boiteListeDeroulante
 {
-    margin:0 10px;
+    font-size:small;
+    display:inline-block;
+    vertical-align:top;
+    margin:0 5px;
+}
+
+.boiteListeDeroulante *
+{
+    vertical-align:top;
+}
+
+.boiteListeDeroulante input, .boiteListeDeroulante select
+{
+    vertical-align:middle !important;
 }
 
 .messageCentral
 {
     font-weight:bold;
     margin:75px 15px;
-    text-align:center;
+    text-align:center !important;
     font-size:large;
     color:Red;
 }
@@ -448,4 +454,34 @@ body
     clear:both;
     text-align:right;
     padding-top:5px;
+}
+
+.bonCommande
+{
+    border:1px solid Black;
+    margin:15px;
+}
+
+@media print
+{    
+    .noPrint, .noPrint *
+    {
+        display: none !important;
+    }
+    
+    .page > div
+    {
+        width: auto;
+    }
+}
+
+.gauchePageMaitre
+{
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.logo
+{
+    vertical-align:middle;
 }

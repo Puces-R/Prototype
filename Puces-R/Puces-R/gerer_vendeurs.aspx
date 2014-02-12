@@ -1,12 +1,6 @@
-﻿<%@ Page Title="Gérer les vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-    CodeBehind="gerer_vendeurs.aspx.cs" Inherits="Puces_R.gerer_vendeurs" EnableEventValidation="false" %>
-
+﻿<%@ Page Title="Gérer les vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="gerer_vendeurs.aspx.cs" Inherits="Puces_R.gerer_vendeurs" EnableEventValidation="false" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="NavigationParPage" Src="~/Controles/NavigationParPage.ascx" %>
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -78,14 +72,14 @@
                                 <asp:ListItem Text="Actif" Value="0" />
                                 <asp:ListItem Text="Innactifs" Value="1" />
                                 <asp:ListItem Text="En attente d'approbation" Value="2" />
-                                <asp:ListItem Text="En retard de payement" Value="3" />
+                                <asp:ListItem Text="En retard de paiement" Value="3" />
                             </asp:DropDownList><br />
                         </td></tr>
 
                         <tr><th colspan="2"><br />Trier par:</th></tr>
                         <tr><td colspan="2">
                             <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
-                                <asp:ListItem Text="Nom d'affaire" />
+                                <asp:ListItem Text="Nom d'affaires" />
                                 <asp:ListItem Text="Nom" />
                                 <asp:ListItem Text="Date de d'inscription" />
                             </asp:DropDownList><br /><br />

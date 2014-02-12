@@ -1,15 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VoirMessage.aspx.cs" Inherits="Puces_R.VoirMessage"
     MasterPageFile="~/Site.Master" %>
 
-<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuInvite runat="server" />
-</asp:Content>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="rectangleComplet rectangleItem">
-        <table style="border-collapse: collapse; table-layout:fixed; width:0;">
+        <table style="border-collapse: collapse; table-layout: fixed; width: 0;">
             <tr>
                 <td style="width: 100px;">
                     Date
@@ -23,7 +20,8 @@
                     De
                 </td>
                 <td>
-                    <asp:Label runat="server" ID="lblDe">De</asp:Label>
+                    <asp:Label runat="server" ID="lblDe">De</asp:Label>&nbsp;<asp:LinkButton ID="lnkRepondre"
+                        runat="server" Text="Répondre" OnClick="repondre" />
                 </td>
             </tr>
             <tr>
@@ -34,11 +32,20 @@
                     <asp:Label runat="server" ID="lblSujet">Sujet</asp:Label>
                 </td>
             </tr>
+            <tr runat="server" ID="trPiece" Visible="false">
+                <td>
+                    Pièce jointe
+                </td>
+                <td>
+                    <asp:LinkButton runat="server" ID="btnDownload" OnClick="download" />
+                </td>
+            </tr>
             <tr>
                 <td style="vertical-align: top;">
                     Message
                 </td>
-                <td style="border-radius: 10px; background-color: White; border: solid gray 1px; padding: 10px;overflow: hidden; width: 700px;">
+                <td style="border-radius: 10px; background-color: White; border: solid gray 1px;
+                    padding: 10px; overflow: hidden; width: 700px;">
                     <asp:Label runat="server" ID="lblMessage">Message</asp:Label>
                 </td>
             </tr>

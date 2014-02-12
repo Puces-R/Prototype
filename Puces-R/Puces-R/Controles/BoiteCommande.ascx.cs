@@ -39,7 +39,6 @@ namespace Puces_R.Controles
 
         public bool SetBoutton
         {
-            
             set
             {
 
@@ -48,6 +47,7 @@ namespace Puces_R.Controles
                 lblNoClient.Visible = true;
             }
         }
+
         protected override void OnPreRender(EventArgs e)
         {
             base.OnLoad(e);

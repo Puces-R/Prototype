@@ -13,22 +13,22 @@ namespace Puces_R {
     public partial class ResultatPaiement {
         
         /// <summary>
-        /// Contrôle MenuClient1.
+        /// Contrôle lblMessageResultat.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MenuClient MenuClient1;
+        protected global::System.Web.UI.WebControls.Label lblMessageResultat;
         
         /// <summary>
-        /// Contrôle litMessageResultat.
+        /// Contrôle mvActionMessage.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litMessageResultat;
+        protected global::System.Web.UI.WebControls.MultiView mvActionMessage;
         
         /// <summary>
         /// Contrôle hypReessayer.
@@ -40,21 +40,69 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.HyperLink hypReessayer;
         
         /// <summary>
-        /// Contrôle pnlMontantsFactures.
+        /// Contrôle btnImprimer.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMontantsFactures;
+        protected global::System.Web.UI.WebControls.ImageButton btnImprimer;
         
         /// <summary>
-        /// Contrôle ctrMontantsFactures.
+        /// Contrôle phRapport.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.MontantsFactures ctrMontantsFactures;
+        protected global::System.Web.UI.WebControls.PlaceHolder phRapport;
+        
+        /// <summary>
+        /// Contrôle ctrRapport.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ctrRapport;
+        
+        /// <summary>
+        /// Contrôle VendeurDetaille.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource VendeurDetaille;
+        
+        /// <summary>
+        /// Contrôle ClientDetaille.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ClientDetaille;
+        
+        /// <summary>
+        /// Contrôle ArticleEnPanierDetaille.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ArticleEnPanierDetaille;
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

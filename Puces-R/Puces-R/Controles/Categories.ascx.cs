@@ -19,7 +19,11 @@ namespace Puces_R.Controles
             {
                 if (Session["ID"] == null)
                 {
-                    hypTous.NavigateUrl = "~/NouveauxProduits.aspx";
+                    hypTous.NavigateUrl = Chemin.Ajouter("~/NouveauxProduits.aspx", "Retour à l'accueil");
+                }
+                else
+                {
+                    hypTous.NavigateUrl = Chemin.Ajouter("~/Produits.aspx", "Retour à l'accueil");
                 }
 
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT Description, NoCategorie FROM PPCategories", myConnection);
@@ -76,11 +80,11 @@ namespace Puces_R.Controles
 
                 if (Session["ID"] != null)
                 {
-                    hypVendeur.NavigateUrl = "~/Produits.aspx?novendeur=" + noVendeur + "&nocategorie=" + noCategorie;
+                    hypVendeur.NavigateUrl = Chemin.Ajouter("~/Produits.aspx?novendeur=" + noVendeur + "&nocategorie=" + noCategorie, "Retour à l'accueil");
                 }
                 else
                 {
-                    hypVendeur.NavigateUrl = "~/NouveauxProduits.aspx?novendeur=" + noVendeur;
+                    hypVendeur.NavigateUrl = Chemin.Ajouter("~/NouveauxProduits.aspx?novendeur=" + noVendeur, "Retour à l'accueil");
                 }
 
                 lblNbProduits.Text = nbProduits.ToString();

@@ -1,11 +1,6 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GererPanierVendeur.aspx.cs" Inherits="Puces_R.GererPanierVendeur"  %>
-
-<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="se" TagName="PanierNettoyer" Src="~/Controles/NettoyerPanier.ascx" %>
-
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient ID="MenuClient1" runat="server" />
-</asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/GestionCommandesVendeur.css" rel="stylesheet" type="text/css" />

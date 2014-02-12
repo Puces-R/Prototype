@@ -1,15 +1,10 @@
-﻿<%@ Page Title="Verdict de la dmande du vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-    CodeBehind="verdict_demande.aspx.cs" Inherits="Puces_R.verdict_demande" EnableEventValidation="false" %>
-
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
+﻿﻿<%@ Page Title="Verdict de la dmande du vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verdict_demande.aspx.cs" Inherits="Puces_R.verdict_demande" EnableEventValidation="false" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Produits.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <script type="text/javascript" src="lib/js/librairie.js"></script>
 </asp:Content>
 
@@ -52,7 +47,7 @@
                         <asp:MultiView runat="server" ID="mv_verdict" >
                             <asp:View runat="server" ID="view_acceptation">
                                 <tr>
-                                    <td colspan="2" class="verdict_vendeur">
+                                    <td colspan="2" class="verdict_vendeur center">
                                         <h2 class="center">Acceptation de la demande:</h2>                                
                                         <p class="center">
                                             Entrez le taux de facturation du vendeur 

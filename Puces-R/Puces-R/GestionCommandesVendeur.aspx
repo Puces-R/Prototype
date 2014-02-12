@@ -1,12 +1,7 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionCommandesVendeur.aspx.cs"
-    Inherits="Puces_R.GestionCommandesVendeur" %>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionCommandesVendeur.aspx.cs" Inherits="Puces_R.GestionCommandesVendeur" %>
+<%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 <%@ Register TagPrefix="lp" TagName="BoiteCommande" Src="~/Controles/BoiteCommande.ascx" %>
-<%@ Register TagPrefix="lp" TagName="MenuClient" Src="~/Controles/MenuVendeur.ascx" %>
 
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuClient ID="MenuClient1" runat="server" />
-</asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/GestionCommandesVendeur.css" rel="stylesheet" type="text/css" />
 </asp:Content>

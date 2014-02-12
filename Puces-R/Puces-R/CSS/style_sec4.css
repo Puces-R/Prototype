@@ -167,7 +167,7 @@
 
 .verdict_vendeur
 {
-	
+	text-align: center;
 }
 
 a
@@ -279,7 +279,7 @@ a
 
 .tableTitreValeur td:first-child 
 {
-	text-align:right;
+	
 }
 
 .tableTitreValeur td, .tableTitreValeur th
@@ -290,4 +290,17 @@ a
 .tableTitreValeur
 {
 	
+}
+
+#targetchart {
+    width: 500px;
+    height: 375px;
+    padding: 4px;
+    border: 1px solid #dddddd;
+    background: #eeeeee
+}
+
+#targetchart h3 {
+    text-align: center;
+    margin: 0;  
 }

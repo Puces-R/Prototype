@@ -6,53 +6,74 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Puces_R.Controles;
+using System.Drawing;
 
 namespace Puces_R
 {
     public partial class Produits : System.Web.UI.Page
     {
-        private int noVendeur;
-        private int noCategorie;
+        private String noVendeurs;
+        private String noCategories;
         
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+        private bool RechercheAvance
+        {
+            get
+            {
+                return (bool)ViewState["RechercheAvance"];
+            }
+            set
+            {
+                ViewState["RechercheAvance"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).ChargerItems += chargerProduits;
+            Master.ChargerItems += chargerProduits;
 
             if (!IsPostBack)
             {
+                RechercheAvance = false;
+
                 chargerProduits();
-
-                String whereClause = String.Empty;
-
-                if (noVendeur != -1)
-                {
-                    whereClause = " WHERE Disponibilité = 1 AND P.NoVendeur = " + noVendeur;
-                }
-
-                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" + whereClause, myConnection);
+                
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie WHERE Disponibilité = 1", myConnection);
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
-
-                ddlCategorie.DataSource = tableCategories;
-                ddlCategorie.DataTextField = "Description";
-                ddlCategorie.DataValueField = "NoCategorie";
-                ddlCategorie.DataBind();
+                AjouterCategories(ddlCategorie, tableCategories);
                 ddlCategorie.Items.Add(new ListItem("Toutes", "-1"));
-                ddlCategorie.SelectedValue = noCategorie.ToString();
+                AjouterCategories(cblCategorie, tableCategories);
 
-                if (noVendeur == -1)
-                {
-                    ((SiteMaster)Master.Master).Titre = "Catalogue Global";
-                }
-                else
-                {
-                    ((SiteMaster)Master.Master).NoVendeur = noVendeur;
-                }
+                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPProduits P On V.NoVendeur = P.Novendeur WHERE Disponibilité = 1", myConnection);
+                DataTable tableVendeurs = new DataTable();
+                adapteurVendeurs.Fill(tableVendeurs);
+                AjouterVendeurs(ddlVendeur, tableVendeurs);
+                ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
+                AjouterVendeurs(cblVendeur, tableVendeurs);
 
-                ((NavigationItems)Master).AfficherPremierePage();
+                Master.AfficherPremierePage();
             }
+        }
+
+        private void AjouterCategories(ListControl controle, DataTable tableCategories)
+        {
+            controle.DataSource = tableCategories;
+            controle.DataTextField = "Description";
+            controle.DataValueField = "NoCategorie";
+            controle.DataBind();
+            controle.SelectedValue = noCategories;
+        }
+
+        private void AjouterVendeurs(ListControl controle, DataTable tableVendeurs)
+        {
+            controle.DataSource = tableVendeurs;
+            controle.DataTextField = "NomAffaires";
+            controle.DataValueField = "NoVendeur";
+            controle.DataBind();
+            controle.SelectedValue = noVendeurs;
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -63,16 +84,17 @@ namespace Puces_R
             {
                 HyperLink hypDescriptionAbregee = (HyperLink)item.FindControl("hypDescriptionAbregee");
                 Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                Image imgProduit = (Image)item.FindControl("imgProduit");
+                System.Web.UI.WebControls.Image imgProduit = (System.Web.UI.WebControls.Image)item.FindControl("imgProduit");
                 Label lblCategorie = (Label)item.FindControl("lblCategorie");
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
                 Label lblQuantite = (Label)item.FindControl("lblQuantite");
+                Label lblEvaluation = (Label)item.FindControl("lblEvaluation");
 
-                DataRowView drvFilm = (DataRowView)e.Item.DataItem;
+                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvFilm["NoProduit"];
+                long noProduit = (long)drvProduit["NoProduit"];
 
-                Object photo = drvFilm["Photo"];
+                Object photo = drvProduit["Photo"];
                 String urlImage;
                 if (photo is DBNull)
                 {
@@ -82,18 +104,39 @@ namespace Puces_R
                 {
                     urlImage = "Images/Televerse/" + (String)photo;
                 }
-                String strCategorie = (String)drvFilm["Description"];
-                String strDescriptionAbregee = (String)drvFilm["Nom"];
-                decimal decPrixDemande = (decimal)drvFilm["PrixDemande"];
-                short intQuantite = (short)drvFilm["NombreItems"];
+                String strCategorie = (String)drvProduit["Description"];
+                String strDescriptionAbregee = (String)drvProduit["Nom"];
+                decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
+                short intQuantite = (short)drvProduit["NombreItems"];
+
+                if (drvProduit["Evaluation"] is DBNull)
+                {
+                    lblEvaluation.Text = "Aucune évaluation";
+                }
+                else
+                {
+                    decimal evaluation = (decimal)drvProduit["Evaluation"];
+                    lblEvaluation.Text = "Cote moyenne: " + evaluation.ToString("N1") + " / 5";
+                }
+
+                int noSequentiel = Master.PageActuelle * int.Parse(ddlParPage.SelectedValue) + item.ItemIndex + 1;
 
                 lblNoProduit.Text = "No. " + noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
-                hypDescriptionAbregee.Text = strDescriptionAbregee;
-                hypDescriptionAbregee.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
+                hypDescriptionAbregee.Text = noSequentiel + ". " + strDescriptionAbregee;
+                hypDescriptionAbregee.NavigateUrl = Chemin.Ajouter("DetailsProduit.aspx?noproduit=" + noProduit, "Retour aux produits");
                 lblCategorie.Text = strCategorie;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
-                lblQuantite.Text = "Quantité: " + intQuantite.ToString();
+                if (intQuantite > 0)
+                {
+                    lblQuantite.Text = "Quantité: " + intQuantite.ToString();
+                }
+                else
+                {
+                    lblQuantite.Text = "En rupture de stock";
+                    lblQuantite.ForeColor = Color.Red;
+                    hypDescriptionAbregee.Enabled = false;
+                }
             }
         }
 
@@ -124,47 +167,68 @@ namespace Puces_R
                 whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
             }
 
-            if (int.TryParse(Request.Params["novendeur"], out noVendeur))
+            if (IsPostBack)
             {
-                whereParts.Add("P.NoVendeur = " + noVendeur);
+                if (RechercheAvance)
+                {
+                    List<String> tabVendeurs = new List<String>();
+                    foreach (ListItem item in cblVendeur.Items)
+                    {
+                        if (item.Selected) tabVendeurs.Add(item.Value);
+                    }
+                    if (tabVendeurs.Count > 0)
+                    {
+                        noVendeurs = String.Join(",", tabVendeurs);
+                    }
+                }
+                else if (ddlVendeur.SelectedValue != "-1")
+                {
+                    noVendeurs = ddlVendeur.SelectedValue;
+                }
             }
             else
             {
-                noVendeur = -1;
+                noVendeurs = Request.Params["novendeur"];
             }
-
-            if (!IsPostBack)
+            if (noVendeurs != null)
             {
-                if (noVendeur != -1)
-                {
-                    ctrMenu.NoVendeur = noVendeur;
-                }
+                whereParts.Add("P.NoVendeur IN (" + noVendeurs + ")");
             }
 
             if (IsPostBack)
             {
-                noCategorie = int.Parse(ddlCategorie.SelectedValue);
-                if (noCategorie != -1)
+                if (RechercheAvance)
                 {
-                    whereParts.Add("P.NoCategorie = " + noCategorie);
+                    List<String> tabCategories = new List<String>();
+                    foreach (ListItem item in cblCategorie.Items)
+                    {
+                        if (item.Selected) tabCategories.Add(item.Value);
+                    }
+                    if (tabCategories.Count > 0)
+                    {
+                        noCategories = String.Join(",", tabCategories); 
+                    }
+                }
+                else if (ddlCategorie.SelectedValue != "-1")
+                {
+                    noCategories = ddlCategorie.SelectedValue;
                 }
             }
             else
             {
-                if (int.TryParse(Request.Params["nocategorie"], out noCategorie))
-                {
-                    whereParts.Add("P.NoCategorie = " + noCategorie);
-                }
-                else
-                {
-                    noCategorie = -1;
-                }
+                noCategories = Request.Params["nocategorie"];
             }
+            if (noCategories != null)
+            {
+                whereParts.Add("P.NoCategorie IN (" + noCategories + ")");
+            }
+
+            whereParts.Add("P.Disponibilité = 1");
 
             String whereClause;
             if (whereParts.Count > 0)
             {
-                whereClause = " WHERE Disponibilité = 1 AND " + string.Join(" AND ", whereParts);
+                whereClause = " WHERE " + string.Join(" AND ", whereParts);
             }
             else
             {
@@ -181,29 +245,54 @@ namespace Puces_R
                     orderByClause += "C.Description";
                     break;
                 case 2:
-                    orderByClause += "P.DateCreation";
+                    orderByClause += "P.DateCreation DESC";
+                    break;
+                case 3:
+                    orderByClause += "Evaluation DESC";
                     break;
             }
-
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
+            
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
-            PagedDataSource objPds = new PagedDataSource();
-            objPds.DataSource = new DataView(tableProduits);
-            objPds.AllowPaging = true;
-            objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
-            objPds.CurrentPageIndex = ((NavigationItems)Master).PageActuelle;
+            if (tableProduits.Rows.Count > 0)
+            {
+                PagedDataSource objPds = new PagedDataSource();
+                objPds.DataSource = new DataView(tableProduits);
+                if (ddlParPage.SelectedValue != "-1")
+                {
+                    objPds.AllowPaging = true;
+                    objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
+                    objPds.CurrentPageIndex = Master.PageActuelle;
+                }
 
-            ((NavigationItems)Master).NbPages = objPds.PageCount;
+                Master.NbPages = objPds.PageCount;
 
-            dtlProduits.DataSource = objPds;
-            dtlProduits.DataBind();
+                dtlProduits.DataSource = objPds;
+                dtlProduits.DataBind();
+
+                mvProduits.ActiveViewIndex = 0;
+            }
+            else
+            {
+                mvProduits.ActiveViewIndex = 1;
+            }
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            ((NavigationItems)Master).AfficherPremierePage();
+            Master.AfficherPremierePage();
+        }
+
+        protected void btnRechercheAvance_OnClick(object sender, EventArgs e)
+        {
+            RechercheAvance = !RechercheAvance;
+
+            mvCategorie.ActiveViewIndex = RechercheAvance ? 1 : 0;
+            mvVendeur.ActiveViewIndex = RechercheAvance ? 1 : 0;
+
+            Master.AfficherPremierePage();
         }
     }
 }

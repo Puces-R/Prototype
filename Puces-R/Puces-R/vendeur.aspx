@@ -1,14 +1,17 @@
 ﻿<%@ Page Title="Gérer le vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vendeur.aspx.cs" Inherits="Puces_R.vendeur" %>
-
-<%@ Register TagPrefix="lp" TagName="MenuGestionnaire" Src="~/Controles/MenuGestionnaire.ascx" %>
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MenuItems">
-    <lp:MenuGestionnaire ID="MenuGestionnaire1" runat="server" />
-</asp:Content>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Site.css" />
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
     <script type="text/javascript" src="lib/js/librairie.js"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/jchart/jchartfx.css" />
+    <script type="text/javascript" src="lib/js/jchart/jchartfx.system.js"></script>
+    <script type="text/javascript" src="lib/js/jchart/jchartfx.coreVector.js"></script>
+    <script type="text/javascript" src="lib/js/jchart/jchartfx.coreVector3d.js"></script>
+    <script type="text/javascript" src="lib/js/jchart/jchartfx.animation.js"></script>
+    <script type="text/javascript" src="lib/js/jchart/jchartfx.advanced.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -18,8 +21,13 @@
             <ul>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="0" Text="Informations" ToolTip="Afficher les informations de ce vendeur" /></li>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="1" Text="Statistiques" ToolTip="Afficher les statistiques de ce vendeur" /></li>
-                <li><asp:LinkButton id="lb_vendeur" runat="server" OnCommand="selectionner_vendeur" Text="Historique de payement" ToolTip="Voir l'historique de payements de ce vendeur" /></li>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="2" Text="Actions" ToolTip="Afficher les actions que vous pouvez appliquer à ce vendeur" /></li>
+            </ul>
+            <h2>Actions</h2>
+            <ul>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="0" Text="Envoyer un message interne à ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="1" Text="Envoyer un courriel a ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="selectionner_vendeur" Text="Désactiver ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="2" Text="Gérer les paiements de ce vendeur" ToolTip="" /></li>
             </ul>
         </div>
         <div class="panneau pnlDroite">
@@ -111,10 +119,30 @@
                     </div>
 
                     <div class="rectangleItem hautRectangle">
-                        <asp:Label runat="server" ID="Label2" Text="Total des commandes des cinq derniers mois"/>
+                        <table border="0" width="100%" >
+                            <tr><td>Total des commandes des derniers mois</td>
+                            <td align="right" >
+                                Nombre de mois
+                                <asp:DropDownList ID="ddlNbMois" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerDonneesGraphiques">
+                                <asp:ListItem Value="5" Selected="True" style="color: Black;" />
+                                <asp:ListItem Value="6" style="color: Black;" />
+                                <asp:ListItem Value="7" style="color: Black;" />
+                                <asp:ListItem Value="8" style="color: Black;" />
+                                <asp:ListItem Value="9" style="color: Black;" />
+                                <asp:ListItem Value="10" style="color: Black;" />
+                            </asp:DropDownList>
+                            </td></tr>
+                        </table>
                     </div>
                     <div class="rectangleItem basRectangle">
-                        
+                         <div id="ChartDiv1" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>                       
+                    </div>
+
+                     <div class="rectangleItem hautRectangle">
+                        <asp:Label runat="server" ID="Label3" Text="Total de clients"/>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="ChartDiv2" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>               
                     </div>
 
 

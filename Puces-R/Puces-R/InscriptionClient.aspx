@@ -1,11 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionClient.aspx.cs"
-    Inherits="Puces_R.InscriptionClient" MasterPageFile="~/Site.Master" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionClient.aspx.cs" Inherits="Puces_R.InscriptionClient" MasterPageFile="~/Site.Master" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="yc" TagName="Identifiants" Src="~/Controles/Identifiants.ascx" %>
-<%@ Register TagPrefix="yc" TagName="MenuInvite" Src="~/Controles/MenuInvite.ascx" %>
-<asp:Content runat="server" ContentPlaceHolderID="MenuItems">
-    <yc:MenuInvite runat="server" />
-</asp:Content>
+
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">

@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Qui sommes-nous" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="About.aspx.cs" Inherits="Puces_R.About" %>
+﻿<%@ Page Title="Qui sommes-nous" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="Puces_R.About" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>

@@ -88,14 +88,11 @@ namespace Puces_R
                 }
                 this.lblPrixEnVente.Text = decPrixVente.ToString("C");
 
-
                 this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
-                ((SiteMaster)Master).Titre = (String)lecteurProduit["NomAffaires"];
+                Master.Titre = (String)lecteurProduit["NomAffaires"];
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
-
-                ctrMenu.NoVendeur = NoVendeur;
 
                 object dateMAJ = lecteurProduit["DateMAJ"];
                 if (dateMAJ is DBNull)
@@ -134,7 +131,7 @@ namespace Puces_R
                     afficherEvaluation();
                 }
                 myConnection.Close();
-
+                
                 calculerCoteMoyenne();
             }
         }
@@ -199,13 +196,14 @@ namespace Puces_R
 
                 myConnection.Close();
 
-                Response.Redirect("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur);
+                Response.Redirect(Chemin.Ajouter("Panier.aspx?noclient=" + Session["ID"] + "&novendeur=" + NoVendeur, "Retourner aux détails du produit"));
             }
         }
 
         protected void btnEnvoyerMessage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EnvoyerMessage.aspx", true);
+            String message = "Question sur le produit '" + lblProduit.Text + "' (#" + Request.Params["noproduit"] + ")";
+            Librairie.Messagerie(new int[] { (int)NoVendeur }, message, null, true);
         }
 
         protected void rptEvaluations_OnItemDataBound(object sender, RepeaterItemEventArgs e)

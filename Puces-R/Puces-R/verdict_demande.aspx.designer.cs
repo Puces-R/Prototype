@@ -13,15 +13,6 @@ namespace Puces_R {
     public partial class verdict_demande {
         
         /// <summary>
-        /// Contrôle MenuGestionnaire1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.MenuGestionnaire MenuGestionnaire1;
-        
-        /// <summary>
         /// Contrôle titre_demande.
         /// </summary>
         /// <remarks>
@@ -164,5 +155,17 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_refuser;
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

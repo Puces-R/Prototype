@@ -22,6 +22,24 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
+        /// Contrôle hypRetour.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypRetour;
+        
+        /// <summary>
+        /// Contrôle divMenu.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMenu;
+        
+        /// <summary>
         /// Contrôle lblBonjour.
         /// </summary>
         /// <remarks>
@@ -31,13 +49,22 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lblBonjour;
         
         /// <summary>
-        /// Contrôle MenuItems.
+        /// Contrôle hlDeconnexion.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MenuItems;
+        protected global::System.Web.UI.WebControls.HyperLink hlDeconnexion;
+        
+        /// <summary>
+        /// Contrôle menu.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder menu;
         
         /// <summary>
         /// Contrôle pnlTitre.
@@ -65,5 +92,14 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        
+        /// <summary>
+        /// Contrôle hypDevenirVendeur.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypDevenirVendeur;
     }
 }

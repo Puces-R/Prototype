@@ -34,11 +34,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -94,8 +98,64 @@
     <Content Include="CSS\DetailsProduit.css" />
     <Content Include="CSS\GestionCommandesVendeur.css" />
     <Content Include="CSS\InsertionProduits.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\adventure.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\alternate.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\autumn.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\black-n-blue.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\brown-sugar.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\chartfx5.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\chartfx6.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\chartfx7.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\classic.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\colorful.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\darkpastels.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\earth-tones.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\high-contrast.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\lilacs-in-mist.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\lite.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\mesa.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\mocha.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\modern-business.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\oceanica.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\pastels.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\pocket.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\professional.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\rainy-day.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\sand-n-sky.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\simple.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\sky.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\slate.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\snowy-pine.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\Vivid.css" />
+    <Content Include="CSS\jchart\jChartFX Palettes\windows.css" />
+    <Content Include="CSS\jchart\jchartfx.css" />
+    <Content Include="CSS\jchart\jQueryUI\black-tie.css" />
+    <Content Include="CSS\jchart\jQueryUI\blitzer.css" />
+    <Content Include="CSS\jchart\jQueryUI\cupertino.css" />
+    <Content Include="CSS\jchart\jQueryUI\dark-hive.css" />
+    <Content Include="CSS\jchart\jQueryUI\dot-luv.css" />
+    <Content Include="CSS\jchart\jQueryUI\eggplant.css" />
+    <Content Include="CSS\jchart\jQueryUI\excite-bike.css" />
+    <Content Include="CSS\jchart\jQueryUI\flick.css" />
+    <Content Include="CSS\jchart\jQueryUI\hot-sneaks.css" />
+    <Content Include="CSS\jchart\jQueryUI\humanity.css" />
+    <Content Include="CSS\jchart\jQueryUI\le-frog.css" />
+    <Content Include="CSS\jchart\jQueryUI\mint-choc.css" />
+    <Content Include="CSS\jchart\jQueryUI\overcast.css" />
+    <Content Include="CSS\jchart\jQueryUI\pepper-grinder.css" />
+    <Content Include="CSS\jchart\jQueryUI\redmond.css" />
+    <Content Include="CSS\jchart\jQueryUI\smoothness.css" />
+    <Content Include="CSS\jchart\jQueryUI\south-street.css" />
+    <Content Include="CSS\jchart\jQueryUI\start.css" />
+    <Content Include="CSS\jchart\jQueryUI\sunny.css" />
+    <Content Include="CSS\jchart\jQueryUI\swanky-purse.css" />
+    <Content Include="CSS\jchart\jQueryUI\trontastic.css" />
+    <Content Include="CSS\jchart\jQueryUI\ui-darkness.css" />
+    <Content Include="CSS\jchart\jQueryUI\ui-lightness.css" />
+    <Content Include="CSS\jchart\jQueryUI\vader.css" />
     <Content Include="CSS\Panier.css" />
     <Content Include="CSS\Produits.css" />
+    <Content Include="CSS\ResultatPaiement.css" />
     <Content Include="CSS\Site.css" />
     <Content Include="CSS\SuppressionProduits.css" />
     <Content Include="Default.aspx" />
@@ -116,15 +176,20 @@
     <Content Include="Images\EtoilePleine.png" />
     <Content Include="Images\Dernier.png" />
     <Content Include="Images\image_non_disponible.png" />
+    <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Precedent.png" />
     <Content Include="Images\Premier.png" />
+    <Content Include="Images\print.png" />
     <Content Include="Images\Prochain.png" />
+    <Content Include="Images\Televerse\10-1000052.jpg" />
     <Content Include="Images\Televerse\1000010.jpg" />
     <Content Include="Images\Televerse\1000020.jpg" />
     <Content Include="Images\Televerse\1000030.jpg" />
     <Content Include="Images\Televerse\1000040.jpg" />
     <Content Include="Images\Televerse\1000050.jpg" />
+    <Content Include="Images\Televerse\101000054.jpg" />
+    <Content Include="Images\Televerse\101000056.jpg" />
     <Content Include="Images\Televerse\2000010.jpg" />
     <Content Include="Images\Televerse\2000020.jpg" />
     <Content Include="Images\Televerse\2000030.jpg" />
@@ -149,8 +214,11 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="SuppressionProduits.aspx" />
+    <Content Include="vendeur.aspx" />
+    <Content Include="verdict_demande.aspx" />
+    <Content Include="verdict_desactiver.aspx" />
+    <Content Include="verdict_desactiver_client.aspx" />
     <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
@@ -218,6 +286,16 @@
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BonCommande.cs">
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BonCommande.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Chemin.cs" />
     <Compile Include="ChoixDestinataires.aspx.cs">
       <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -443,6 +521,7 @@
     <Compile Include="DetailsProduit.aspx.designer.cs">
       <DependentUpon>DetailsProduit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Facture.cs" />
     <Compile Include="GererPanierVendeur.aspx.cs">
       <DependentUpon>GererPanierVendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -603,6 +682,37 @@
     <Compile Include="SuppressionProduits.aspx.designer.cs">
       <DependentUpon>SuppressionProduits.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TelechargementMessage.ashx.cs">
+      <DependentUpon>TelechargementMessage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="vendeur.aspx.cs">
+      <DependentUpon>vendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vendeur.aspx.designer.cs">
+      <DependentUpon>vendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verdict_demande.aspx.cs">
+      <DependentUpon>verdict_demande.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verdict_demande.aspx.designer.cs">
+      <DependentUpon>verdict_demande.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verdict_desactiver.aspx.cs">
+      <DependentUpon>verdict_desactiver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verdict_desactiver.aspx.designer.cs">
+      <DependentUpon>verdict_desactiver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verdict_desactiver_client.aspx.cs">
+      <DependentUpon>verdict_desactiver_client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verdict_desactiver_client.aspx.designer.cs">
+      <DependentUpon>verdict_desactiver_client.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VoirMessage.aspx.cs">
       <DependentUpon>VoirMessage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -627,6 +737,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NavigationItems.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BonCommande.xsc">
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+    </None>
+    <None Include="BonCommande.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BonCommande.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BonCommande.xss">
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+    </None>
+    <Content Include="TelechargementMessage.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BonCommande.rdlc">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

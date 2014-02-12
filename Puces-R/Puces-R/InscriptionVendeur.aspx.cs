@@ -37,11 +37,6 @@ namespace Puces_R
                                                                                           "@tel2, @courriel, @mdp, @maxLivraison, @gratuite, @taxes, " +
                                                                                           "NULL, @config, @creation, NULL, @status)", connexion);
                 SqlCommand cmdVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = @no", connexion);
-                /* * * * * * * * * * * * * * * * * * * * * * * * * */
-                /* * * * * * * * * * * NOTES * * * * * * * * * * * */
-                /* * * * * * * * * * * * * * * * * * * * * * * * * */
-                /* Téléphone : Si juste ds tel2, mettre ds tel1 ?  */
-                /* Status : Libre ?                                */
 
                 
                 connexion.Open();
@@ -71,9 +66,15 @@ namespace Puces_R
 
                 cmdAjoutVendeur.ExecuteNonQuery();
 
-                cmdVendeur.Parameters.AddWithValue("@no", noVendeur);
+                cmdVendeur.Parameters.AddWithValue("@no", noVendeur); // ??
 
                 connexion.Close();
+                string retourUrgence = "Default.aspx";
+                if ((char)Session["Type"] == 'C')
+                {
+                    retourUrgence = "AccueilClient.aspx";
+                }
+                Response.Redirect(Chemin.UrlRetour == null ? retourUrgence : Chemin.UrlRetour);
             }
         }
     }

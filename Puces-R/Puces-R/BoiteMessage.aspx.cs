@@ -157,9 +157,28 @@ namespace Puces_R
 
         protected void clickOption(object sender, MenuEventArgs e)
         {
+            ParametresGet paramGet = new ParametresGet(Request.RawUrl);
+            string boite = paramGet.Get("Boite");
+            string boiteTxt = "Retour à la boîte principale";
+            switch (boite)
+            {
+                case "2":
+                    boiteTxt = "Retour aux messages archivés";
+                    break;
+                case "3":
+                    boiteTxt = "Retour à la corbeille";
+                    break;
+                case "-1":
+                    boiteTxt = "Retour aux messages envoyés";
+                    break;
+                case "-2":
+                    boiteTxt = "Retour aux brouillons";
+                    break;
+            }
+
             if (e.Item.Value == "New")
             {
-                Response.Redirect("EnvoyerMessage.aspx", true);
+                Response.Redirect(Chemin.Ajouter("EnvoyerMessage.aspx", boiteTxt), true);
             }
             else
             {
@@ -228,13 +247,30 @@ namespace Puces_R
         protected void changeBoite(object sender, EventArgs e)
         {
             ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "Boite", "Tri", "Ordre" });
+            string boite = param.Get("Boite");
             param.Set("Boite", ddlBoite.SelectedValue);
-            Response.Redirect("BoiteMessage.aspx" + param.Parametres, true);
+            string boiteTxt = "Retour à la boîte principale";
+            switch (boite)
+            {
+                case "2":
+                    boiteTxt = "Retour aux messages archivés";
+                    break;
+                case "3":
+                    boiteTxt = "Retour à la corbeille";
+                    break;
+                case "-1":
+                    boiteTxt = "Retour aux messages envoyés";
+                    break;
+                case "-2":
+                    boiteTxt = "Retour aux brouillons";
+                    break;
+            }
+            Response.Redirect(Chemin.Ajouter("BoiteMessage.aspx" + param.Parametres, boiteTxt), true);
         }
 
         protected void ordre(object sender, EventArgs e)
         {
-            ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "Boite", "Tri", "Ordre" });
+            ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "Boite", "Tri", "Ordre", "texteretour", "cheminretour" });
             int noTri = -1;
 
             if (sender == linkDe)

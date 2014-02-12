@@ -48,6 +48,8 @@ namespace Puces_R
                                 "Mot de passe = " + ctlIdentifiants.MotDePasse;
                 c.envoyer();
 
+                Response.Redirect(Chemin.UrlRetour == null ? "Default.aspx" : Chemin.UrlRetour);
+
             }
         }
     }

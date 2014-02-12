@@ -25,7 +25,8 @@ namespace Puces_R
 
         protected void repondre(object sender, EventArgs e)
         {
-            Librairie.Messagerie(new int[] {noExpediteur} , "RE : " + lblSujet.Text);
+
+            Librairie.Messagerie(new int[] {noExpediteur} , "RE : " + lblSujet.Text, null, false, "Retour au message");
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -92,19 +93,19 @@ namespace Puces_R
                     else
                     {
                         // Bonne gestion de l'erreur ?
-                        Response.Redirect("BoiteMessage.aspx", true);
+                        Response.Redirect(Chemin.UrlRetour, true);
                     }
                 }
                 else
                 {
-                    Response.Redirect("BoiteMessage.aspx", true);
+                    Response.Redirect(Chemin.UrlRetour, true);
                 }
 
                 connexion.Close();
             }
             else
             {
-                Response.Redirect("BoiteMessage.aspx", true);
+                Response.Redirect(Chemin.UrlRetour, true);
             }
         }
     }

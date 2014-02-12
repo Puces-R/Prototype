@@ -37,51 +37,56 @@ namespace Puces_R
             }
         }
 
+        private void loadMenu()
+        {
+            if (menu.Controls.Count == 0)
+            {
+                if (Session["Type"] != null)
+                {
+                    Control c = null;
+                    hlDeconnexion.Visible = true;
+                    hlMessage.Visible = true;
+                    switch ((char)Session["Type"])
+                    {
+                        case 'C':
+                            c = LoadControl("~/Controles/MenuClient.ascx");
+                            break;
+                        case 'V':
+                            c = LoadControl("~/Controles/MenuVendeur.ascx");
+                            break;
+                        case 'G':
+                            c = LoadControl("~/Controles/MenuGestionnaire.ascx");
+                            break;
+                        default:
+                            throw new InvalidOperationException();
+                    }
+                    menu.Controls.Add(c);
+
+                    SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
+                    cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
+
+                    myConnection.Open();
+                    int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
+                    myConnection.Close();
+                    if (nbMessages > 0)
+                    {
+                        hlMessage.Text += " (" + nbMessages + ")";
+                    }
+                }
+                else
+                {
+                    menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
+                    hlDeconnexion.Visible = false;
+                    hlMessage.Visible = false;
+                }
+            }
+        }
+
         public Control Menu
         {
             get
             {
-                if (menu.Controls.Count == 0)
-                {
-                    if (Session["Type"] != null)
-                    {
-                        Control c = null;
-                        hlDeconnexion.Visible = true;
-                        switch ((char)Session["Type"])
-                        {
-                            case 'C':
-                                c = LoadControl("~/Controles/MenuClient.ascx");
-                                break;
-                            case 'V':
-                                c = LoadControl("~/Controles/MenuVendeur.ascx");
-                                break;
-                            case 'G':
-                                c = LoadControl("~/Controles/MenuGestionnaire.ascx");
-                                break;
-                            default:
-                                throw new InvalidOperationException();
-                        }
-                        MenuItem mi = new MenuItem("Messages");
-                        mi.NavigateUrl = "~/BoiteMessage.aspx";
-                        SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
-                        cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
-
-                        myConnection.Open();
-                        int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
-                        myConnection.Close();
-                        if (nbMessages > 0)
-                        {
-                            mi.Text += " (" + nbMessages + ")";
-                        }
-                        ((Menu)c.FindControl("ctrMenu")).Items.Add(mi);
-                        menu.Controls.Add(c);
-                    }
-                    else
-                    {
-                        menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
-                        hlDeconnexion.Visible = false;
-                    }
-                }
+                loadMenu();
                 return menu.Controls[0];
             }
         }
@@ -90,7 +95,7 @@ namespace Puces_R
         {
             set
             {
-                SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+                SqlConnection myConnection = Librairie.Connexion;
 
                 SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
 
@@ -107,48 +112,8 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (menu.Controls.Count == 0)
-            {
-                if (Session["Type"] != null)
-                {
-                    Control c = null;
-                    hlDeconnexion.Visible = true;
-                    switch ((char)Session["Type"])
-                    {
-                        case 'C':
-                            c = LoadControl("~/Controles/MenuClient.ascx");
-                            break;
-                        case 'V':
-                            c = LoadControl("~/Controles/MenuVendeur.ascx");
-                            break;
-                        case 'G':
-                            c = LoadControl("~/Controles/MenuGestionnaire.ascx");
-                            break;
-                        default:
-                            throw new InvalidOperationException();
-                    }
-                    MenuItem mi = new MenuItem("Messages");
-                    mi.NavigateUrl = "~/BoiteMessage.aspx";
-                    SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
-                    cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
-
-                    myConnection.Open();
-                    int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
-                    myConnection.Close();
-                    if (nbMessages > 0)
-                    {
-                        mi.Text += " (" + nbMessages + ")";
-                    }
-                    ((Menu)c.FindControl("ctrMenu")).Items.Add(mi);
-                    menu.Controls.Add(c);
-                }
-                else
-                {
-                    menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
-                    hlDeconnexion.Visible = false;
-                }
-            }
-
+            loadMenu();
+            hypDevenirVendeur.NavigateUrl = Chemin.Ajouter(hypDevenirVendeur.NavigateUrl, "Retour à la page précédente");
             if (!IsPostBack)
             {
                 if (Session["Type"] != null)

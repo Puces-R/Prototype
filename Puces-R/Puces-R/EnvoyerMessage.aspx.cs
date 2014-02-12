@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using System.Text;
 
 namespace Puces_R
 {
@@ -92,7 +93,7 @@ namespace Puces_R
 
                 if (Session["Fixer"] != null)
                 {
-                    btnDestinataire.Visible = (bool)Session["Fixer"];
+                    btnDestinataire.Visible = !((bool)Session["Fixer"]);
                 }
             }
 
@@ -139,7 +140,7 @@ namespace Puces_R
                 connexion.Open();
                 if (noBrouillon < 0)
                 {
-                    cmdMessage.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @message, @file, -1, NULL)\n";
+                    cmdMessage.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @message, @file, -1)\n";
                     SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
                     noMessage = int.Parse(cmdNoMessage.ExecuteScalar().ToString());
                 }
@@ -174,13 +175,13 @@ namespace Puces_R
 
                 for (int i = 0; i < lbDestinataires.Items.Count; i++)
                 {
-                    cmdMessage.CommandText += string.Format("INSERT INTO PPDestinatairesMessages values(@rcpt{0}, @no, 'false', 1, NULL)\n", i);
+                    cmdMessage.CommandText += string.Format("INSERT INTO PPDestinatairesMessages values(@rcpt{0}, @no, 'false', 1)\n", i);
                     cmdMessage.Parameters.AddWithValue(string.Format("@rcpt{0}", i), lbDestinataires.Items[i].Value);
                 }
                 cmdMessage.ExecuteNonQuery();
                 connexion.Close();
 
-                Response.Redirect("BoiteMessage.aspx");
+                 Response.Redirect(Chemin.UrlRetour);
             }
         }
 
@@ -195,7 +196,7 @@ namespace Puces_R
 
         protected void sauvegarderMessage(object sender, EventArgs e)
         {
-            SqlCommand cmdDestinataires = new SqlCommand("INSERT INTO PPDestinatairesMessages values(@no, @rcpt, 'false', -2, NULL)", connexion);
+            SqlCommand cmdDestinataires = new SqlCommand("INSERT INTO PPDestinatairesMessages values(@no, @rcpt, 'false', -2)", connexion);
             SqlCommand cmdSauvegarder = new SqlCommand();
             cmdSauvegarder.Connection = connexion;
 
@@ -204,7 +205,7 @@ namespace Puces_R
             connexion.Open();
             if (noBrouillon < 0)
             {
-                cmdSauvegarder.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @message, NULL, -2, NULL)\n";
+                cmdSauvegarder.CommandText = "INSERT INTO PPMessages values(@no, @from, @date, @sujet, @message, NULL, -2)\n";
                 SqlCommand cmdNoMessage = new SqlCommand("SELECT ISNULL(MAX(NoMessage), 0) + 1 FROM PPMessages", connexion);
                 noMessage = int.Parse(cmdNoMessage.ExecuteScalar().ToString());
             }
@@ -223,13 +224,13 @@ namespace Puces_R
 
             for (int i = 0; i < lbDestinataires.Items.Count; i++)
             {
-                cmdSauvegarder.CommandText += string.Format("INSERT INTO PPDestinatairesMessages values(@rcpt{0}, @no, 'false', -2, NULL)\n", i);
+                cmdSauvegarder.CommandText += string.Format("INSERT INTO PPDestinatairesMessages values(@rcpt{0}, @no, 'false', -2)\n", i);
                 cmdSauvegarder.Parameters.AddWithValue(string.Format("@rcpt{0}", i), lbDestinataires.Items[i].Value);
             }
             cmdSauvegarder.ExecuteNonQuery();
             connexion.Close();
 
-            Response.Redirect("BoiteMessage.aspx");
+            Response.Redirect(Chemin.UrlRetour);
 
         }
     }

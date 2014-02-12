@@ -85,7 +85,25 @@ namespace Puces_R
         protected void voirMessage(object sender, EventArgs e)
         {
             Int64 no = ((LigneMessage)((Control)sender).Parent.Parent.Parent).NoMessage;
-            Response.Redirect((_brouillon ? "EnvoyerMessage.aspx?NoMessage=" : "VoirMessage.aspx?No=") + no, true);
+            ParametresGet paramGet = new ParametresGet(Request.RawUrl);
+            string boite = paramGet.Get("Boite");
+            string boiteTxt = "Retour à la boîte principale";
+            switch (boite)
+            {
+                case "2":
+                    boiteTxt = "Retour aux messages archivés";
+                    break;
+                case "3":
+                    boiteTxt = "Retour à la corbeille";
+                    break;
+                case "-1":
+                    boiteTxt = "Retour aux messages envoyés";
+                    break;
+                case "-2":
+                    boiteTxt = "Retour aux brouillons";
+                    break;
+            }
+            Response.Redirect(Chemin.Ajouter((_brouillon ? "EnvoyerMessage.aspx?NoMessage=" : "VoirMessage.aspx?No=") + no, boiteTxt), true);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Puces_R
             }
         }
 
-        public static void Messagerie(int[] destinataires, string sujet = null, string message = null, bool fixer = false)
+        public static void Messagerie(int[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
         {
             if (destinataires != null)
             {
@@ -41,12 +41,8 @@ namespace Puces_R
                 System.Web.HttpContext.Current.Session["Message"] = message;
             }
 
-            if (fixer != null)
-            {
-                System.Web.HttpContext.Current.Session["Fixer"] = fixer;
-            }
-
-            System.Web.HttpContext.Current.Response.Redirect("EnvoyerMessage.aspx");
+            System.Web.HttpContext.Current.Session["Fixer"] = fixer;
+            System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerMessage.aspx", retour));
         }
     }
 }

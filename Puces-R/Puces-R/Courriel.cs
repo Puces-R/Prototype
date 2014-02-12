@@ -13,6 +13,8 @@ namespace Puces_R
 
         private string _sujet = "";
         private string _message = "";
+        private string _nomEnvoyeur = "";
+        private string _courrielEnvoyeur = "";
 
         public string Sujet
         {
@@ -74,11 +76,17 @@ namespace Puces_R
             _destinataires.AddRange(destinataires);
         }
 
+        public void changerEnvoyeur(string nom, string email)
+        {
+            _courrielEnvoyeur = email;
+            _nomEnvoyeur = nom;
+        }
+
         public bool envoyer()
         {
             MailMessage courriel = new MailMessage();
 
-            courriel.From = new MailAddress("no-reply@lespetitespuces.com", "Les Petites Puces");
+            courriel.From = new MailAddress(_courrielEnvoyeur == "" ? "no-reply@lespetitespuces.com" : _courrielEnvoyeur, _nomEnvoyeur == "" ? "Les Petites Puces" : _nomEnvoyeur);
             foreach (string s in _destinataires)
             {
                 courriel.To.Add(s);

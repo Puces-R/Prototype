@@ -38,37 +38,37 @@ namespace Puces_R
                 int noMessage = -1;
                 if (int.TryParse(Request.QueryString["NoMessage"], out noMessage))
                 {
-                        SqlCommand cmdTrouverMessage = new SqlCommand("SELECT Sujet, Contenu FROM PPMessages WHERE NoMessage = @no AND NoExpediteur = @id AND Boite = -2", connexion);
-                        SqlCommand cmdDestinataires = new SqlCommand("SELECT NoDestinataire FROM PPDestinatairesMessages WHERE NoMessage = @no", connexion);
-                        cmdTrouverMessage.Parameters.AddWithValue("@no", noMessage);
-                        cmdTrouverMessage.Parameters.AddWithValue("@id", Session["ID"]);
+                    SqlCommand cmdTrouverMessage = new SqlCommand("SELECT Sujet, Contenu, FichierJoint FROM PPMessages WHERE NoMessage = @no AND NoExpediteur = @id AND Boite = -2", connexion);
+                    SqlCommand cmdDestinataires = new SqlCommand("SELECT NoDestinataire FROM PPDestinatairesMessages WHERE NoMessage = @no", connexion);
+                    cmdTrouverMessage.Parameters.AddWithValue("@no", noMessage);
+                    cmdTrouverMessage.Parameters.AddWithValue("@id", Session["ID"]);
 
-                        connexion.Open();
-                        SqlDataReader sdrMsg = cmdTrouverMessage.ExecuteReader();
-                        if (sdrMsg.Read())
+                    connexion.Open();
+                    SqlDataReader sdrMsg = cmdTrouverMessage.ExecuteReader();
+                    if (sdrMsg.Read())
+                    {
+                        noBrouillon = noMessage;
+                        if (!IsPostBack)
                         {
-                            noBrouillon = noMessage;
-                            if (!IsPostBack)
-                            {
-                                tbSujet.Text = sdrMsg["Sujet"].ToString();
-                                tbMessage.Text = sdrMsg["Contenu"].ToString();
-                            }
+                            tbSujet.Text = sdrMsg["Sujet"].ToString();
+                            tbMessage.Text = sdrMsg["Contenu"].ToString();
                         }
-                        sdrMsg.Close();
+                    }
+                    sdrMsg.Close();
 
-                        if (noBrouillon != -1 && !IsPostBack)
+                    if (noBrouillon != -1 && !IsPostBack)
+                    {
+                        cmdDestinataires.Parameters.AddWithValue("@no", noBrouillon);
+                        SqlDataReader sdrDest = cmdDestinataires.ExecuteReader();
+                        List<int> tmpDest = new List<int>();
+                        for (int i = 0; sdrDest.Read(); i++)
                         {
-                            cmdDestinataires.Parameters.AddWithValue("@no", noBrouillon);
-                            SqlDataReader sdrDest = cmdDestinataires.ExecuteReader();
-                            List<int> tmpDest = new List<int>();
-                            for (int i = 0; sdrDest.Read(); i++)
-                            {
-                                tmpDest.Add(int.Parse(sdrDest["NoDestinataire"].ToString()));
-                            }
-                            lstNoDestinataires = tmpDest.ToArray();
-                            sdrDest.Close();
+                            tmpDest.Add(int.Parse(sdrDest["NoDestinataire"].ToString()));
                         }
-                        connexion.Close();
+                        lstNoDestinataires = tmpDest.ToArray();
+                        sdrDest.Close();
+                    }
+                    connexion.Close();
                 }
             }
             else if (Session["Sujet"] != null || Session["Message"] != null || Session["ListeDestinataires"] != null || Session["Fixer"] != null)
@@ -181,7 +181,7 @@ namespace Puces_R
                 cmdMessage.ExecuteNonQuery();
                 connexion.Close();
 
-                 Response.Redirect(Chemin.UrlRetour);
+                Response.Redirect(Chemin.UrlRetour);
             }
         }
 

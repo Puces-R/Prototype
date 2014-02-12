@@ -74,6 +74,7 @@
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\BoiteCommande.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
+    <Content Include="EnvoyerCourriel.aspx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
@@ -484,6 +485,13 @@
     </Compile>
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EnvoyerCourriel.aspx.cs">
+      <DependentUpon>EnvoyerCourriel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EnvoyerCourriel.aspx.designer.cs">
+      <DependentUpon>EnvoyerCourriel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Courriel.cs" />
     <Compile Include="Default.aspx.cs">

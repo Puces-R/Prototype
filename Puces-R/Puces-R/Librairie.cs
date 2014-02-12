@@ -44,5 +44,26 @@ namespace Puces_R
             System.Web.HttpContext.Current.Session["Fixer"] = fixer;
             System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerMessage.aspx", retour));
         }
+
+        public static void Courriel(int[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
+        {
+            if (destinataires != null)
+            {
+                System.Web.HttpContext.Current.Session["ListeDestinataires"] = destinataires;
+            }
+
+            if (sujet != null)
+            {
+                System.Web.HttpContext.Current.Session["Sujet"] = sujet;
+            }
+
+            if (message != null)
+            {
+                System.Web.HttpContext.Current.Session["Message"] = message;
+            }
+
+            System.Web.HttpContext.Current.Session["Fixer"] = fixer;
+            System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerCourriel.aspx", retour));
+        }
     }
 }

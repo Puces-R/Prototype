@@ -14,7 +14,7 @@
             <span class="boiteListeDeroulante">
                 Recherche:
                 <asp:DropDownList ID="ddlTypeRecherche" runat="server">
-                    <asp:ListItem Text="Nom d'affaire" />
+                    <asp:ListItem Text="Client" />
                 </asp:DropDownList>
                 <asp:TextBox ID="txtCritereRecherche" runat="server" />
                 <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
@@ -23,9 +23,9 @@
                 Trier par:
                 <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
                     <asp:ListItem Text="Numéro" />
-                    <asp:ListItem Text="Nom d'affaire" />
-                    <asp:ListItem Text="Date de demande" />
-                    <asp:ListItem Text="Montant dû" Selected="True" />
+                    <asp:ListItem Text="Client" />
+                    <asp:ListItem Text="Date de vente" />
+                    <asp:ListItem Text="Montant" Selected="True" />
                 </asp:DropDownList>
             </span>
             <span class="boiteListeDeroulante">
@@ -47,23 +47,19 @@
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
-                    <th>Nom d'affaires</th>
-                    <th>Date de demande</th>
-                    <th>Montant total dû</th>
+                    <th>Client</th>
+                    <th>Redevence</th>
+                    <th>Date de vente</th>
                     <th></th>
                 </tr>
-                <asp:Repeater runat="server" ID="rptRetard" OnItemDataBound="rptRetard_ItemDataBound" >
+                <asp:Repeater runat="server" ID="rptDetailsRedevence" OnItemDataBound="rptDetailsRedevence_ItemDataBound" >
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle">
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="date_demande" /></td>
-                            <td>
-                                $<asp:Label runat="server" ID="lbl_montant_du" />
-                            </td>
-                             <td>
-                                <asp:Button runat="server" ID="btn_voir_histo" OnCommand="voir_histo" ToolTip="Voir/Modifier l'historique de payement de ce vendeur" Text="Détails" />
-                            </td>
+                            <td><asp:label runat="server" ID="lbl_nom_client" /></td>
+                            <td>$<asp:Label runat="server" ID="lbl_redevance" /></td>
+                            <td><asp:Label runat="server" ID="date_vente" /></td>
+                            <td><asp:Button runat="server" ID="btn_voir_details_commande_redevance" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" Text="Détails" /> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

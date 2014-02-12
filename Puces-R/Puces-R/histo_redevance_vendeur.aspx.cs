@@ -161,6 +161,8 @@ namespace Puces_R
 
         protected void voir_details_redevence(object sender, CommandEventArgs e)
         {
+            Session["no_vendeur_no_commande"] = e.CommandArgument;
+            Response.Redirect("details_redevence.aspx");
         }
     }
 }

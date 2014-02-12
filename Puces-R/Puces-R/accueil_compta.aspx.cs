@@ -176,10 +176,11 @@ namespace Puces_R
                         results["NoVendeur"] + " AND YEAR(DateVente) = " + Convert.ToInt32(tab_derniere_date[0]) + " AND MONTH(DateVente) = " +
                         Convert.ToInt32(tab_derniere_date[1]) + " ) = 0 THEN GETDATE() ELSE NULL END ), ";
                 }
-
+                results.Close();
                 SqlCommand inserer_nouveau_mois = new SqlCommand(req.Remove(req.Length - 2), myConnection);
                 inserer_nouveau_mois.ExecuteNonQuery();
                 //Response.Write(inserer_nouveau_mois.CommandText);
+                //Response.Write(derniere_date.ToString() + " - " + DateTime.Now.Date.ToString());
             }
 
             myConnection.Close();

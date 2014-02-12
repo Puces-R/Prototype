@@ -10,81 +10,96 @@
 namespace Puces_R {
     
     
-    public partial class details_redevence {
+    public partial class details_commande_redevance {
         
         /// <summary>
-        /// Contrôle ddlTypeRecherche.
+        /// Contrôle titre_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        protected global::System.Web.UI.WebControls.Label titre_demande;
         
         /// <summary>
-        /// Contrôle txtCritereRecherche.
+        /// Contrôle lbl_nom_vendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        protected global::System.Web.UI.WebControls.Label lbl_nom_vendeur;
         
         /// <summary>
-        /// Contrôle btnRecherche.
+        /// Contrôle lbl_nom_client.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        protected global::System.Web.UI.WebControls.Label lbl_nom_client;
         
         /// <summary>
-        /// Contrôle ddlTrierPar.
+        /// Contrôle lbl_montant_vente.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
+        protected global::System.Web.UI.WebControls.Label lbl_montant_vente;
         
         /// <summary>
-        /// Contrôle ddlParPage.
+        /// Contrôle lbl_redevance.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+        protected global::System.Web.UI.WebControls.Label lbl_redevance;
         
         /// <summary>
-        /// Contrôle div_msg.
+        /// Contrôle lbl_tps.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
+        protected global::System.Web.UI.WebControls.Label lbl_tps;
         
         /// <summary>
-        /// Contrôle rptDetailsRedevence.
+        /// Contrôle lbl_tvq.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptDetailsRedevence;
+        protected global::System.Web.UI.WebControls.Label lbl_tvq;
         
         /// <summary>
-        /// Propriété Master.
+        /// Contrôle lbl_frais_livraison.
         /// </summary>
         /// <remarks>
-        /// Propriété générée automatiquement.
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        public new Puces_R.NavigationItems Master {
-            get {
-                return ((Puces_R.NavigationItems)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Label lbl_frais_livraison;
+        
+        /// <summary>
+        /// Contrôle lbl_num_autorisation.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_num_autorisation;
+        
+        /// <summary>
+        /// Contrôle lbl_frais_lesi.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_frais_lesi;
     }
 }

@@ -2471,22 +2471,29 @@ namespace Puces_R.BonCommandeTableAdapters {
             this._commandCollection[0].CommandText = @"SELECT        PPProduits.Nom, PPProduits.Poids, PPProduits.PrixVente, PPArticlesEnPanier.NbItems, PPProduits.NoProduit, PPArticlesEnPanier.NoPanier
 FROM            PPProduits INNER JOIN
                          PPArticlesEnPanier ON PPProduits.NoProduit = PPArticlesEnPanier.NoProduit
-WHERE NoClient = @NoClient";
+WHERE        (PPArticlesEnPanier.NoClient = @NoClient) AND (PPArticlesEnPanier.NoVendeur = @NoVendeur)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoClient", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "NoClient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoVendeur", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "NoVendeur", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BonCommande.ArticleEnPanierDetailleDataTable dataTable, global::System.Nullable<long> NoClient) {
+        public virtual int Fill(BonCommande.ArticleEnPanierDetailleDataTable dataTable, global::System.Nullable<long> NoClient, global::System.Nullable<long> NoVendeur) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((NoClient.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((long)(NoClient.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((NoVendeur.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(NoVendeur.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2499,13 +2506,19 @@ WHERE NoClient = @NoClient";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BonCommande.ArticleEnPanierDetailleDataTable GetData(global::System.Nullable<long> NoClient) {
+        public virtual BonCommande.ArticleEnPanierDetailleDataTable GetData(global::System.Nullable<long> NoClient, global::System.Nullable<long> NoVendeur) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((NoClient.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((long)(NoClient.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((NoVendeur.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(NoVendeur.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             BonCommande.ArticleEnPanierDetailleDataTable dataTable = new BonCommande.ArticleEnPanierDetailleDataTable();
             this.Adapter.Fill(dataTable);

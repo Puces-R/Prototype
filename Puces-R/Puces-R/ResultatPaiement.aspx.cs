@@ -10,6 +10,7 @@ using Microsoft.Reporting.WebForms;
 using System.Net.Mail;
 using System.Net;
 using System.IO;
+using System.Data;
 
 namespace Puces_R
 {
@@ -77,6 +78,10 @@ namespace Puces_R
                         String typeLivraison = (String)commandeTypeLivraison.ExecuteScalar();
                         myConnection.Close();
 
+                        ctrRapport.LocalReport.DataSources.Clear();  
+
+                        ctrRapport.LocalReport.ReportPath = "BonCommande.rdlc";
+
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("SousTotal", facture.SousTotal.ToString()));
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("Poids", facture.PoidsTotal.ToString()));
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("TypeLivraison", typeLivraison));
@@ -86,6 +91,23 @@ namespace Puces_R
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("GrandTotal", facture.GrandTotal.ToString()));
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("NoAutorisation", noAutorisation));
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("DateAutorisation", dateAutorisation));
+
+                        SqlDataAdapter adapteurArticlesEnPanier = new SqlDataAdapter("SELECT P.Nom, P.Poids, P.PrixVente, A.NbItems, P.NoProduit, A.NoPanier FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE (A.NoClient = " + noClient + ") AND (A.NoVendeur = " + noVendeur + ") ", myConnection);
+                        DataTable tableArticlesEnPanier = new DataTable();
+                        adapteurArticlesEnPanier.Fill(tableArticlesEnPanier);
+                        ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("ArticlesEnPanierDetaille", tableArticlesEnPanier));
+
+                        SqlDataAdapter adapteurClientDetaille = new SqlDataAdapter("SELECT NoClient, AdresseEmail, Prenom + ' ' + Nom AS NomComplet, Rue, Ville, Province, CodePostal, Pays, Tel1, Tel2 FROM PPClients WHERE NoClient = " + noClient, myConnection);
+                        DataTable tableClientDetaille = new DataTable();
+                        adapteurClientDetaille.Fill(tableClientDetaille);
+                        ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("ClientDetaille", tableClientDetaille));
+
+                        SqlDataAdapter adapteurVendeurDetaille = new SqlDataAdapter("SELECT NoVendeur, NomAffaires, Prenom + ' ' + Nom AS NomComplet, Rue, Ville, Province, CodePostal, Pays, Tel1, Tel2, AdresseEmail FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+                        DataTable tableVendeurDetaille = new DataTable();
+                        adapteurVendeurDetaille.Fill(tableVendeurDetaille);
+                        ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("VendeurDetaille", tableVendeurDetaille));
+
+                        ctrRapport.LocalReport.Refresh();
 
                         break;
                 }

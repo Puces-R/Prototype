@@ -286,6 +286,10 @@
     <Compile Include="accueil_gestionnaire.aspx.designer.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BonCommande.cs">
+      <DependentUpon>BonCommande.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BonCommande.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

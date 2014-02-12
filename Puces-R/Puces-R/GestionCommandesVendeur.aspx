@@ -17,6 +17,16 @@
             <asp:ListItem Value="30" />
         </asp:DropDownList>
     </span>
+
+    <span class="boiteListeDeroulante">
+        Par Statut:
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+            <asp:ListItem Value="p" Text="Prêt pour livraison"/>
+            <asp:ListItem Value="l" Text="Livré"/>
+
+        </asp:DropDownList>
+    </span>
+
     <span class="boiteListeDeroulante">
         Client:
         <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" />

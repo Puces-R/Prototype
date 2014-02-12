@@ -12,6 +12,7 @@
         <asp:MenuItem Text="Gerer les vendeurs" NavigateUrl="../gerer_vendeurs.aspx">            
             <asp:MenuItem Text="Inactivité des vendeurs" NavigateUrl="../gerer_inactivite_vendeurs.aspx" />
             <asp:MenuItem Text="Nouvelles demandes de vendeurs" NavigateUrl="../gerer_demandes_vendeurs.aspx" />
+            <asp:MenuItem Text="Suivi des redevences" NavigateUrl="../accueil_compta.aspx" />  
             <asp:MenuItem Text="Rechercher un vendeur" NavigateUrl="../gerer_vendeurs.aspx" />  
         </asp:MenuItem>
         <asp:MenuItem Text="Gerer les clients" NavigateUrl="../gerer_vendeurs.aspx">            

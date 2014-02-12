@@ -23,7 +23,7 @@
                 Trier par:
                 <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
                     <asp:ListItem Text="Numéro" />
-                    <asp:ListItem Text="Nom d'affaire" />
+                    <asp:ListItem Text="Nom d'affaires" />
                     <asp:ListItem Text="Date de demande" />
                 </asp:DropDownList>
             </span>
@@ -48,7 +48,7 @@
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
-                    <th>Nom d'affaire</th>
+                    <th>Nom d'affaires</th>
                     <th>Date de demande</th>
                     <th></th>
                 </tr>

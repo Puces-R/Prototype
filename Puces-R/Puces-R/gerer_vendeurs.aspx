@@ -79,7 +79,7 @@
                         <tr><th colspan="2"><br />Trier par:</th></tr>
                         <tr><td colspan="2">
                             <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
-                                <asp:ListItem Text="Nom d'affaire" />
+                                <asp:ListItem Text="Nom d'affaires" />
                                 <asp:ListItem Text="Nom" />
                                 <asp:ListItem Text="Date de d'inscription" />
                             </asp:DropDownList><br /><br />

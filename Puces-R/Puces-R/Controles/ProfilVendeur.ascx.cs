@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.IO;
+using System.Web.UI.WebControls;
+
 
 namespace Puces_R.Controles
 {
@@ -57,6 +60,34 @@ namespace Puces_R.Controles
 
                 myConnection.Close();
             }
+        }
+        protected void LireXML() 
+        {
+
+        }
+
+        protected void ecrireFichierXML() 
+        {
+            
+       StreamWriter fEcrit; StreamReader fLit;
+       String strNomFichier;
+       String strLigneLue;
+       Int16 i;
+      
+           strNomFichier = Server.MapPath(Session["ID"]+".xml"); 
+
+           /* Création du fichier texte */
+           fEcrit = new StreamWriter(strNomFichier);
+
+
+           /*<?xml version="1.0" encoding="utf-8" ?>
+<college>
+  <departement no="101" nom="Biologie">*/
+
+fEcrit.WriteLine(" <?xml version=\""+"1.0" +"encoding=\""+"utf-8" +"\"?>");
+fEcrit.WriteLine("");
+fEcrit.Close();
+
         }
 
         protected void sauverProfil(object sender, EventArgs e) 

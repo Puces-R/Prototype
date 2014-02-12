@@ -202,7 +202,8 @@ namespace Puces_R
 
         protected void btnEnvoyerMessage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EnvoyerMessage.aspx", true);
+            String message = "Question sur le produit '" + lblProduit.Text + "' (#" + Request.Params["noproduit"] + ")";
+            Librairie.Messagerie(new int[] { (int)NoVendeur }, message, null, true);
         }
 
         protected void rptEvaluations_OnItemDataBound(object sender, RepeaterItemEventArgs e)

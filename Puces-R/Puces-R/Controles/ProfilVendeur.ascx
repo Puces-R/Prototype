@@ -7,8 +7,9 @@
 <%@ Register TagPrefix="yc" TagName="Courriel" Src="~/Controles/Courriel.ascx" %>
 <%@ Register TagPrefix="se" TagName="Adresse" Src="~/Controles/Adresse.ascx" %>
 
-<h2>
-    Profil du vendeur</h2>
+
+
+<h2>Profil du vendeur</h2>
 <table class="tableProfil">
     <tr>
         <td>

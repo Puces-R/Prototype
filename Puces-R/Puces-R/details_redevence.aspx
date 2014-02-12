@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gérer les nouvelles demandes de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="gerer_demandes_vendeurs.aspx.cs" Inherits="Puces_R.gerer_demandes_vendeurs" EnableEventValidation="false" %>
+﻿<%@ Page Title="Détails de la redevence" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="details_redevence.aspx.cs" Inherits="Puces_R.details_redevence" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -14,7 +14,7 @@
             <span class="boiteListeDeroulante">
                 Recherche:
                 <asp:DropDownList ID="ddlTypeRecherche" runat="server">
-                    <asp:ListItem Text="Nom d'affaire" />
+                    <asp:ListItem Text="Client" />
                 </asp:DropDownList>
                 <asp:TextBox ID="txtCritereRecherche" runat="server" />
                 <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
@@ -23,19 +23,18 @@
                 Trier par:
                 <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
                     <asp:ListItem Text="Numéro" />
-                    <asp:ListItem Text="Nom d'affaires" />
-                    <asp:ListItem Text="Date de demande" />
+                    <asp:ListItem Text="Client" />
+                    <asp:ListItem Text="Date de vente" />
+                    <asp:ListItem Text="Montant" Selected="True" />
                 </asp:DropDownList>
             </span>
             <span class="boiteListeDeroulante">
                 Par page:
                 <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
-                    <asp:ListItem Value="6" />
-                    <asp:ListItem Value="12" />
-                    <asp:ListItem Value="18" />
-                    <asp:ListItem Value="24" />
-                    <asp:ListItem Value="30" />
+                    <asp:ListItem Value="25" />
                     <asp:ListItem Value="50" />
+                    <asp:ListItem Value="75" />
+                    <asp:ListItem Value="100" />
                 </asp:DropDownList>
             </span>
         </div>
@@ -48,20 +47,19 @@
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
-                    <th>Nom d'affaires</th>
-                    <th>Date de demande</th>
+                    <th>Client</th>
+                    <th>Redevence</th>
+                    <th>Date de vente</th>
                     <th></th>
                 </tr>
-                <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" >
+                <asp:Repeater runat="server" ID="rptDetailsRedevence" OnItemDataBound="rptDetailsRedevence_ItemDataBound" >
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle">
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="date_demande" /></td>
-                            <td>
-                                <asp:Button id="btn_accepter" runat="server" Text="Accepter" OnCommand="acceptation_demande" ToolTip="Accepter la demande de ce vendeur" />
-                                <asp:Button id="btn_refuser" runat="server" Text="Refuser" OnCommand="refus_demande" ToolTip="Refuser la demande de ce vendeur" />
-                            </td>
+                            <td><asp:label runat="server" ID="lbl_nom_client" /></td>
+                            <td>$<asp:Label runat="server" ID="lbl_redevance" /></td>
+                            <td><asp:Label runat="server" ID="date_vente" /></td>
+                            <td><asp:Button runat="server" ID="btn_voir_details_commande_redevance" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" Text="Détails" /> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

@@ -111,14 +111,14 @@ namespace Puces_R
                             commande_creer_table.ExecuteNonQuery();
                         }
 
-                        SqlCommand commande_deplacer_details = new SqlCommand("INSERT INTO HistoDetailsCommandes SELECT * FROM PPDetailsCommandes WHERE NoCommande IN (SELECT NoCommande FROM PPCommandes WHERE NoClient = " + no_client + " ) ", myConnection, transaction);
+                        SqlCommand commande_deplacer_details = new SqlCommand("INSERT INTO HistoDetailsCommandes SELECT * FROM PPDetailsCommandes WHERE NoCommande IN (SELECT NoCommande FROM PPCommandes WHERE NoClient = " + e.CommandArgument + " ) ", myConnection, transaction);
                         commande_deplacer_details.ExecuteNonQuery();
-                        SqlCommand commande_effacer_details = new SqlCommand("DELETE FROM PPDetailsCommandes WHERE NoClient = " + no_client, myConnection, transaction);
+                        SqlCommand commande_effacer_details = new SqlCommand("DELETE FROM PPDetailsCommandes WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
                         commande_effacer_details.ExecuteNonQuery();
 
-                        SqlCommand commande_deplacer_commande = new SqlCommand("INSERT INTO HistoCommandes SELECT * FROM PPCommandes WHERE NoClient = " + no_client, myConnection, transaction);
+                        SqlCommand commande_deplacer_commande = new SqlCommand("INSERT INTO HistoCommandes SELECT * FROM PPCommandes WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
                         commande_deplacer_commande.ExecuteNonQuery();
-                        SqlCommand commande_effacer_commande = new SqlCommand("DELETE FROM PPCommandes WHERE NoClient = " + no_client, myConnection, transaction);
+                        SqlCommand commande_effacer_commande = new SqlCommand("DELETE FROM PPCommandes WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
                         commande_effacer_commande.ExecuteNonQuery();
 
                         transaction.Commit();

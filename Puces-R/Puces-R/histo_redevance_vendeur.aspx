@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gérer les nouvelles demandes de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="gerer_demandes_vendeurs.aspx.cs" Inherits="Puces_R.gerer_demandes_vendeurs" EnableEventValidation="false" %>
+﻿<%@ Page Title="Historique de payement des redevences du vendeur" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="histo_redevance_vendeur.aspx.cs" Inherits="Puces_R.histo_redevance_vendeur" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -12,30 +12,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BarreCriteres" runat="server">
         <div class="barreListesDeroulantes">
             <span class="boiteListeDeroulante">
-                Recherche:
-                <asp:DropDownList ID="ddlTypeRecherche" runat="server">
-                    <asp:ListItem Text="Nom d'affaire" />
-                </asp:DropDownList>
-                <asp:TextBox ID="txtCritereRecherche" runat="server" />
-                <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
-            </span>
-            <span class="boiteListeDeroulante">
                 Trier par:
                 <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
-                    <asp:ListItem Text="Numéro" />
-                    <asp:ListItem Text="Nom d'affaires" />
-                    <asp:ListItem Text="Date de demande" />
+                    <asp:ListItem Text="Mois" Selected="True" />
+                    <asp:ListItem Text="Date de paiement" />
+                    <asp:ListItem Text="Montant dû" />
                 </asp:DropDownList>
             </span>
             <span class="boiteListeDeroulante">
                 Par page:
                 <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
-                    <asp:ListItem Value="6" />
-                    <asp:ListItem Value="12" />
-                    <asp:ListItem Value="18" />
-                    <asp:ListItem Value="24" />
-                    <asp:ListItem Value="30" />
+                    <asp:ListItem Value="25" />
                     <asp:ListItem Value="50" />
+                    <asp:ListItem Value="75" />
+                    <asp:ListItem Value="100" />
                 </asp:DropDownList>
             </span>
         </div>
@@ -48,19 +38,21 @@
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
-                    <th>Nom d'affaires</th>
-                    <th>Date de demande</th>
+                    <th>Mois</th>
+                    <th>Montant</th>
+                    <th>Date de paiement</th>
                     <th></th>
                 </tr>
-                <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" >
+                <asp:Repeater runat="server" ID="rptRetard" OnItemDataBound="rptRetard_ItemDataBound" >
                     <ItemTemplate>                        
-                        <tr class="rectangleItem basRectangle">
+                        <tr class="rectangleItem basRectangle" runat="server" id="ligne_histo" >
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="date_demande" /></td>
-                            <td>
-                                <asp:Button id="btn_accepter" runat="server" Text="Accepter" OnCommand="acceptation_demande" ToolTip="Accepter la demande de ce vendeur" />
-                                <asp:Button id="btn_refuser" runat="server" Text="Refuser" OnCommand="refus_demande" ToolTip="Refuser la demande de ce vendeur" />
+                            <td><asp:label runat="server" ID="lbl_mois" /></td>
+                            <td>$<asp:Label runat="server" ID="lbl_montant" /></td>
+                            <td><asp:Label runat="server" ID="date_paiement" /></td>
+                             <td>
+                                <asp:Button runat="server" ID="btn_voir_details_redevence" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" Text="Détails" /> 
+                                <asp:Button runat="server" ID="btn_enregistrer_paiement" OnCommand="enregistrer_paiement" ToolTip="Enregister paiement" Text="Enregister la reception du paiement" />
                             </td>
                         </tr>
                     </ItemTemplate>

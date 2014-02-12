@@ -1,5 +1,8 @@
 use BD6B8_424R
 
+DROP TABLE PPEvaluations
+DROP TABLE PPDestinatairesMessages
+DROP TABLE PPSuiviCompta
 DROP TABLE PPTaxeFederale
 DROP TABLE PPTaxeProvinciale
 DROP TABLE PPHistoriquePaiements
@@ -16,3 +19,4 @@ DROP TABLE PPVendeurs
 DROP TABLE PPGestionnaires
 DROP TABLE PPMessages
 DROP TABLE PPClients
+DROP TABLE PPBoites

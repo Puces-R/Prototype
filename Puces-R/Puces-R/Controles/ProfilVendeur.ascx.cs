@@ -132,7 +132,7 @@ fEcrit.Close();
                 myConnection.Open();
                 commandeClient.ExecuteNonQuery();
                 myConnection.Close();
-                Response.Redirect("AcceuilVendeur.aspx");
+                Response.Redirect("AccueilVendeur.aspx");
             }
         }
     }

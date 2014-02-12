@@ -10,7 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class AcceuilVendeur {
+    public partial class AccueilVendeur {
         
         /// <summary>
         /// Contrôle nbVisite.

@@ -29,7 +29,7 @@ namespace Puces_R
                         Response.Redirect("AccueilClient.aspx", false);
                         break;
                     case 'V':
-                        Response.Redirect("AcceuilVendeur.aspx", false);
+                        Response.Redirect("AccueilVendeur.aspx", false);
                         break;
                     case 'G':
                         Response.Redirect("accueil_gestionnaire.aspx", false);
@@ -75,7 +75,7 @@ namespace Puces_R
         {
             Session["ID"] = 10;
             Session["Type"] = 'V';
-            Response.Redirect("AcceuilVendeur.aspx", false);
+            Response.Redirect("AccueilVendeur.aspx", false);
         }
 
         protected void defautGestionnaire(object sender, EventArgs e)

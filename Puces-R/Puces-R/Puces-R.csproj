@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AcceuilVendeur.aspx" />
+    <Content Include="AccueilVendeur.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -238,12 +238,12 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AcceuilVendeur.aspx.cs">
-      <DependentUpon>AcceuilVendeur.aspx</DependentUpon>
+    <Compile Include="AccueilVendeur.aspx.cs">
+      <DependentUpon>AccueilVendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AcceuilVendeur.aspx.designer.cs">
-      <DependentUpon>AcceuilVendeur.aspx</DependentUpon>
+    <Compile Include="AccueilVendeur.aspx.designer.cs">
+      <DependentUpon>AccueilVendeur.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>

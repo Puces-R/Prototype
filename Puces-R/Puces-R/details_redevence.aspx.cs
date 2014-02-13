@@ -110,6 +110,7 @@ namespace Puces_R
             req += " SELECT NoCommande, PPClients.Nom, PPClients.Prenom, PPHistoriquePaiements.NoHistorique, PPHistoriquePaiements.Redevance, PPHistoriquePaiements.DateVente ";
             req += " FROM PPHistoriquePaiements, PPClients ";
             req += " WHERE PPHistoriquePaiements.NoVendeur = " + no_vendeur;
+            req += " AND PPHistoriquePaiements.NoClient = PPClients.NoClient ";
             req += " AND YEAR(PPHistoriquePaiements.DateVente) = YEAR('" + mois + "') ";
             req += " AND MONTH(PPHistoriquePaiements.DateVente) = MONTH('" + mois + "') " + whereClause + orderByClause;
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter(req, myConnection);

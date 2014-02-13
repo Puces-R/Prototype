@@ -27,9 +27,16 @@ namespace Puces_R
             }
             set
             {
-                string code = value.Replace("-", "").Replace(" ", "").Trim().ToUpper();
-                tbPart1.Text = code.Substring(0, 3);
-                tbPart2.Text = code.Substring(3, 3);
+                if (value == null || value.Trim().Length < 6)
+                {
+                    tbPart1.Text = tbPart2.Text = "";
+                }
+                else
+                {
+                    string code = value.Replace("-", "").Replace(" ", "").Trim().ToUpper();
+                    tbPart1.Text = code.Substring(0, 3);
+                    tbPart2.Text = code.Substring(3, 3);
+                }
             }
         }
 

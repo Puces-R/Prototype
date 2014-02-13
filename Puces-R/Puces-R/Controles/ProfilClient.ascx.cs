@@ -10,7 +10,7 @@ namespace Puces_R.Controles
 {
     public partial class ProfilClient : System.Web.UI.UserControl
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         public bool AfficherCourrielEtMotDePasse
         {
@@ -39,20 +39,15 @@ namespace Puces_R.Controles
                 lecteurClient.Read();
 
                 this.lblCourriel.Text = (String)lecteurClient["AdresseEmail"];
-                this.txtPrenom.Text = (String)lecteurClient["Prenom"];
-                this.txtNom.Text = (String)lecteurClient["Nom"];
-                this.txtRue.Text = (String)lecteurClient["Rue"];
-                this.txtVille.Text = (String)lecteurClient["Ville"];
-                this.ctrProvince.CodeProvince = (String)lecteurClient["Province"];
-                this.txtPays.Text = (String)lecteurClient["Pays"];
-                this.ctrCodePostal.Code = (String)lecteurClient["CodePostal"];
-                this.ctrTelephone.NoTelephone = (String)lecteurClient["Tel1"];
-
-                Object noCellulaire = lecteurClient["Tel2"];
-                if (!(noCellulaire is DBNull))
-                {
-                    this.ctrCellulaire.NoTelephone = (String)noCellulaire;
-                }
+                this.txtPrenom.Text = lecteurClient["Prenom"] is DBNull ? "" : (String)lecteurClient["Prenom"];
+                this.txtNom.Text = lecteurClient["Nom"] is DBNull ? "" : (String)lecteurClient["Nom"];
+                this.txtRue.Text = lecteurClient["Rue"] is DBNull ? "" : (String)lecteurClient["Rue"];
+                this.txtVille.Text = lecteurClient["Ville"] is DBNull ? "" : (String)lecteurClient["Ville"];
+                this.ctrProvince.CodeProvince = lecteurClient["Province"] is DBNull ? "" : (String)lecteurClient["Province"];
+                this.txtPays.Text = lecteurClient["Pays"] is DBNull ? "Canada" : (String)lecteurClient["Pays"];
+                this.ctrCodePostal.Code = lecteurClient["CodePostal"] is DBNull ? "" : (String)lecteurClient["CodePostal"];
+                this.ctrTelephone.NoTelephone = lecteurClient["Tel1"] is DBNull ? "" : (String)lecteurClient["Tel1"];
+                this.ctrCellulaire.NoTelephone = lecteurClient["Tel2"] is DBNull ? "" : (String)lecteurClient["Tel2"];
 
                 myConnection.Close();
             }
@@ -84,7 +79,7 @@ namespace Puces_R.Controles
             }
             String strPaires = String.Join(", ", tabPaires);
 
-            SqlCommand commandeClient = new SqlCommand("UPDATE PPClients SET " + strPaires +" WHERE NoClient = " + Session["ID"], myConnection);
+            SqlCommand commandeClient = new SqlCommand("UPDATE PPClients SET " + strPaires + " WHERE NoClient = " + Session["ID"], myConnection);
 
             myConnection.Open();
             commandeClient.ExecuteNonQuery();

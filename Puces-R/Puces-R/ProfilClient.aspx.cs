@@ -11,6 +11,8 @@ namespace Puces_R
     {
         protected void btnSauvegarder_OnClick(object sender, EventArgs e)
         {
+            Page.Validate();
+
             if (IsValid)
             {
                 ctrProfil.Sauvegarder();

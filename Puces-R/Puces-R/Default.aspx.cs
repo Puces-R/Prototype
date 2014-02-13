@@ -21,20 +21,34 @@ namespace Puces_R
         {
             Page.Validate();
 
+            SqlCommand cmdAddConnexion = new SqlCommand();
+            cmdAddConnexion.Connection = connexion;
+            cmdAddConnexion.Parameters.AddWithValue("@addr", tbCourriel.Text);
+            cmdAddConnexion.Parameters.AddWithValue("@date", DateTime.Now);
+            string redirection = "Default.aspx";
             if (Page.IsValid)
             {
                 switch ((char)Session["Type"])
                 {
                     case 'C':
-                        Response.Redirect("AccueilClient.aspx", false);
+                        cmdAddConnexion.CommandText = "UPDATE PPClients SET NbConnexions = ISNULL(NbConnexions, 0) + 1, DateDerniereConnexion = @date WHERE AdresseEmail = @addr";
+                        redirection = "AccueilClient.aspx";
                         break;
                     case 'V':
-                        Response.Redirect("AccueilVendeur.aspx", false);
+                        cmdAddConnexion.CommandText = "UPDATE PPVendeurs SET NbConnexions = ISNULL(NbConnexions, 0) + 1, DateDerniereConnexion = @date WHERE AdresseEmail = @addr";
+                        redirection = "AccueilVendeur.aspx";
                         break;
                     case 'G':
-                        Response.Redirect("accueil_gestionnaire.aspx", false);
+                        cmdAddConnexion.CommandText = "UPDATE PPGestionnaires SET NbConnexions = ISNULL(NbConnexions, 0) + 1, DateDerniereConnexion = @date WHERE AdresseEmail = @addr";
+                        redirection = "accueil_gestionnaire.aspx";
                         break;
                 }
+
+                connexion.Open();
+                cmdAddConnexion.ExecuteNonQuery();
+                connexion.Close();
+
+                Response.Redirect(redirection, false);
             }
         }
 

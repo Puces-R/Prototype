@@ -13,6 +13,7 @@ namespace Puces_R
     public partial class BoiteMessage : System.Web.UI.Page
     {
         SqlConnection connexion = Librairie.Connexion;
+        int noExpediteur = -1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,12 +53,24 @@ namespace Puces_R
             {
                 case 0:
                     ordreCmd += "Personne";
+                    if (!IsPostBack)
+                    {
+                        linkDe.Text += "&nbsp;" + (ordre == 'D' ? "&#x25B2;" : "&#x25BC;");
+                    }
                     break;
                 case 1:
                     ordreCmd += "Sujet";
+                    if (!IsPostBack)
+                    {
+                        linkSujet.Text += "&nbsp;" + (ordre == 'D' ? "&#x25B2;" : "&#x25BC;");
+                    }
                     break;
-                case 2:
+                default:
                     ordreCmd += "DateEnvoi";
+                    if (!IsPostBack)
+                    {
+                        linkDate.Text += "&nbsp;" + (ordre == 'A' ? "&#x25BC;" : "&#x25B2;");
+                    }
                     break;
             }
 
@@ -75,15 +88,15 @@ namespace Puces_R
             {
                 cmd.CommandText = "SELECT M.NoMessage, DM.Lu, X.Texte AS 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
                                   "PPMessages AS M ON DM.NoMessage = M.NoMessage INNER JOIN  " +
-                                  "(SELECT NoClient AS No, RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoClient AS varchar(10)) + ')' AS Texte FROM PPClients UNION " +
-                                   "SELECT NoVendeur AS 'No', RTRIM(NomAffaires) + ' (' + CAST(NoVendeur AS varchar(10)) + ')' AS 'Texte' FROM PPVendeurs UNION " +
-                                   "SELECT NoGestionnaire AS 'No', RTRIM(ISNULL(Nom + ', ' + Prenom, 'Anonyme')) + ' (' + CAST(NoGestionnaire AS varchar(10)) + ')' AS 'Texte' FROM PPGestionnaires) AS X ON X.No = M.NoExpediteur " +
+                                        "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                         "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X ON X.No = M.NoExpediteur " +
                                    "WHERE  (DM.Boite = @noBoite) AND (DM.NoDestinataire = @id) " +
                                    "ORDER BY " + ordreCmd;
             }
             else if (boite < 0)
             {
-                cmd.CommandText = "SELECT        DM.NoMessage, COUNT(*) - 1 AS NbDestinataires, M.Sujet, M.DateEnvoi, " +
+                cmd.CommandText = "SELECT DM.NoMessage, COUNT(*) - 1 AS NbDestinataires, M.Sujet, M.DateEnvoi, " +
                                     "(SELECT Texte FROM " +
                                         "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
                                          "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
@@ -132,6 +145,90 @@ namespace Puces_R
             int boite;
             int tri;
             char ordre;
+            Int64 noMessage;
+            divMessage.Visible = false;
+            if (!IsPostBack && Request.QueryString["No"] != null && Int64.TryParse(Request.QueryString["No"], out noMessage))
+            {
+                SqlCommand cmdEstDestinataire = new SqlCommand("SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg) AND (NoDestinataire = @noRcpt) AND (Boite > 0)", connexion);
+                SqlCommand cmdEstExpediteur = new SqlCommand("SELECT CASE WHEN COUNT(*) = 1 THEN 'true' ELSE 'false' END FROM PPMessages WHERE (NoMessage = @noMsg) AND (NoExpediteur = @id) AND (Boite < 0)", connexion);
+
+                SqlCommand cmdMessage = new SqlCommand("SELECT M.NoExpediteur, X.Texte, M.DateEnvoi, M.Sujet, M.Contenu, M.FichierJoint FROM PPMessages M " +
+                    "INNER JOIN PPDestinatairesMessages DM ON M.NoMessage = DM.NoMessage " +
+                    "INNER JOIN (SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
+                    "ON X.No = M.NoExpediteur WHERE (M.NoMessage = @noMsg)", connexion);
+                SqlCommand cmdDestinataires = new SqlCommand("SELECT Texte FROM " +
+                         "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' (' + AdresseEmail + ')', AdresseEmail) + ' [Client]' AS Texte FROM PPClients UNION " +
+                          "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' (' + AdresseEmail + ') [Vendeur]' AS Texte FROM PPVendeurs UNION " +
+                          "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' (' + AdresseEmail + ') [Gestionnaire]' AS Texte FROM PPGestionnaires) AS X " +
+                          "WHERE (No IN (SELECT NoDestinataire FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg)))", connexion);
+
+                SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
+
+                cmdEstDestinataire.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdEstDestinataire.Parameters.AddWithValue("@noRcpt", Session["ID"].ToString());
+
+                cmdEstExpediteur.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdEstExpediteur.Parameters.AddWithValue("@id", Session["ID"].ToString());
+
+                cmdMessage.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdMessage.Parameters.AddWithValue("@id", Session["ID"].ToString());
+
+                cmdDestinataires.Parameters.AddWithValue("@noMsg", noMessage);
+
+                cmdLu.Parameters.AddWithValue("@noMsg", noMessage);
+                cmdLu.Parameters.AddWithValue("@noRcpt", Session["ID"]);
+
+
+                connexion.Open();
+
+                bool estDestinataire = bool.Parse(cmdEstDestinataire.ExecuteScalar().ToString());
+                bool estExpediteur = bool.Parse(cmdEstExpediteur.ExecuteScalar().ToString());
+
+                if (estDestinataire || estExpediteur)
+                {
+
+                    if (estExpediteur)
+                    {
+                        lnkRepondre.Visible = false;
+                    }
+
+                    cmdLu.ExecuteNonQuery();
+
+                    SqlDataReader sdr = cmdMessage.ExecuteReader();
+                    bool ok;
+                    if (ok = sdr.Read())
+                    {
+                        lblDate.Text = ((DateTime)sdr["DateEnvoi"]).ToString("d MMMM yyyy à h\\hmm");
+                        lblDe.Text = sdr["Texte"].ToString();
+                        lblMessage.Text = sdr["Contenu"].ToString().Replace("\r\n", "<br />");
+                        lblSujet.Text = sdr["Sujet"].ToString();
+                        noExpediteur = int.Parse(sdr["NoExpediteur"].ToString());
+                        if (sdr["FichierJoint"] != DBNull.Value)
+                        {
+                            trPiece.Visible = true;
+                            btnDownload.Text = sdr["FichierJoint"].ToString();
+                        }
+                    }
+                    divMessage.Visible = ok;
+                    sdr.Close();
+                    if (ok)
+                    {
+                        sdr = cmdDestinataires.ExecuteReader();
+                        int nbDest = 0;
+                        for (nbDest = 0; sdr.Read(); nbDest++)
+                        {
+                            lbDestinataires.Items.Add(sdr["Texte"].ToString());
+                        }
+                        lbDestinataires.Rows = nbDest > 5 ? 5 : nbDest;
+                        sdr.Close();
+                    }
+                }
+
+                connexion.Close();
+            }
+
             if (!int.TryParse(Request.QueryString["Boite"], out boite) || boite < -2 || boite > 3 || boite == 0)
             {
                 boite = 1;
@@ -246,10 +343,10 @@ namespace Puces_R
 
         protected void changeBoite(object sender, EventArgs e)
         {
-            ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "Boite", "Tri", "Ordre" });
+            ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "No", "Boite", "Tri", "Ordre" });
             string boite = param.Get("Boite");
             param.Set("Boite", ddlBoite.SelectedValue);
-            string boiteTxt = "Retour à la boîte principale";
+            string boiteTxt = "Retour à la boîte de réception";
             switch (boite)
             {
                 case "2":
@@ -270,7 +367,7 @@ namespace Puces_R
 
         protected void ordre(object sender, EventArgs e)
         {
-            ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "Boite", "Tri", "Ordre", "texteretour", "cheminretour" });
+            ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "No", "Boite", "Tri", "Ordre", "texteretour", "cheminretour" });
             int noTri = -1;
 
             if (sender == linkDe)
@@ -324,5 +421,19 @@ namespace Puces_R
 
             Response.Redirect("BoiteMessage.aspx" + param.Parametres);
         }
+
+        protected void download(object sender, EventArgs e)
+        {
+            Session["NoDownload"] = int.Parse(Request.QueryString["No"]);
+            Response.Redirect("TelechargementMessage.ashx");
+        }
+
+        protected void repondre(object sender, EventArgs e)
+        {
+
+            Librairie.Messagerie(new int[] { noExpediteur }, "RE : " + lblSujet.Text, null, false, "Retour au message");
+        }
+
+
     }
 }

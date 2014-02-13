@@ -14,7 +14,7 @@ namespace Puces_R
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         public bool MenuVisible
         {
@@ -99,16 +99,18 @@ namespace Puces_R
                             throw new InvalidOperationException();
                     }
                     menu.Controls.Add(c);
-
-                    SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
-                    cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
-
-                    myConnection.Open();
-                    int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
-                    myConnection.Close();
-                    if (nbMessages > 0)
+                    if (!IsPostBack)
                     {
-                        hlMessage.Text = "Messages (" + nbMessages + ")";
+                        SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
+                        cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
+
+                        myConnection.Open();
+                        int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
+                        myConnection.Close();
+                        if (nbMessages > 0)
+                        {
+                            hlMessage.Text += " (" + nbMessages + ")";
+                        }
                     }
                 }
                 else

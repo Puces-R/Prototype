@@ -31,15 +31,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
         
         /// <summary>
-        /// Contrôle btnRecherche.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
-        
-        /// <summary>
         /// Contrôle ddlTrierPar.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,33 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
         
         /// <summary>
+        /// Contrôle pnlDeJusquA.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDeJusquA;
+        
+        /// <summary>
+        /// Contrôle txtAPartirDe.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAPartirDe;
+        
+        /// <summary>
+        /// Contrôle txtJusquA.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtJusquA;
+        
+        /// <summary>
         /// Contrôle mvCategorie.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvCategorie;
         
         /// <summary>
+        /// Contrôle View1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
+        
+        /// <summary>
         /// Contrôle ddlCategorie.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategorie;
+        
+        /// <summary>
+        /// Contrôle View2.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
         /// Contrôle cblCategorie.
@@ -94,6 +130,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvVendeur;
         
         /// <summary>
+        /// Contrôle View3.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View3;
+        
+        /// <summary>
         /// Contrôle ddlVendeur.
         /// </summary>
         /// <remarks>
@@ -101,6 +146,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlVendeur;
+        
+        /// <summary>
+        /// Contrôle View4.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
         /// Contrôle cblVendeur.
@@ -121,6 +175,24 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Button btnRechercheAvance;
         
         /// <summary>
+        /// Contrôle ctrScriptManager.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ctrScriptManager;
+        
+        /// <summary>
+        /// Contrôle udpProduits.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpProduits;
+        
+        /// <summary>
         /// Contrôle mvProduits.
         /// </summary>
         /// <remarks>
@@ -130,6 +202,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvProduits;
         
         /// <summary>
+        /// Contrôle View5.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View5;
+        
+        /// <summary>
         /// Contrôle dtlProduits.
         /// </summary>
         /// <remarks>
@@ -137,6 +218,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtlProduits;
+        
+        /// <summary>
+        /// Contrôle View6.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View6;
         
         /// <summary>
         /// Propriété Master.

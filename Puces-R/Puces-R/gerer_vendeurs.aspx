@@ -27,6 +27,7 @@
          });
     </script>
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/style_sec4_2.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -112,26 +113,26 @@
                 <p>Aucun résultat pour les critères sélectionnés. Veuillez raffiner vos critères puis re-éssayer.</p>
             </asp:Panel>
 
-            <asp:DataList RepeatColumns="2" RepeatDirection="Horizontal" runat="server" ID="rptVendeurs" OnItemDataBound="rptVendeurs_ItemDataBound" >
-                <ItemTemplate>
-                    <div style="width:400px;">
-                        <div class="rectangleItem hautRectangle">
-                            <table width="100%"><tr>
-                                <td><asp:LinkButton runat="server" ID="nom_affaire" /></td>
-                                <td align="right" ><asp:Button runat="server" ID="btn_gerer" Text="Gérer" OnCommand="selectionner_vendeur" CssClass="a_droite" ForeColor="Black" /></td>
-                            </tr></table>
-                            
-                        </div>
-                        <div class="rectangleItem basRectangle">
-                            <table class="tableProduits" style="width:95%;">
-                                <tr><th>Nom complet</th><td><asp:label runat="server" Text="" ID="nom_complet" /></td></tr>
-                                <tr><th>Adresse courriel</th><td><asp:label runat="server" Text="" ID="adresse_courriel" /></td></tr>
-                                <tr><th>Date d'inscription</th><td><asp:label runat="server" Text="" ID="date_insc" /></td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Datalist>
+            <div style="font-size: small;">
+                <table border="0" width="100%" cellpadding="5" cellspacing="2" >
+                    <tr class="rectangleItem hautRectangle" >
+                        <th>#</th>
+                        <th>Nom d'affaires</th>
+                        <th>Nom complet</th>
+                        <th></th>
+                    </tr>
+                    <asp:Repeater runat="server" ID="rptVendeurs" OnItemDataBound="rptVendeurs_ItemDataBound" >
+                        <ItemTemplate>                        
+                            <tr class="rectangleItem basRectangle" >
+                                <td><asp:Label runat="server" ID="lbl_num" /></td>
+                                <td><asp:label runat="server" ID="lbl_nom_affaire" /></td>
+                                <td><asp:label runat="server" ID="nom_complet" /></td>
+                                <td><asp:Button runat="server" ID="btn_gerer" Text="Gérer" OnCommand="selectionner_vendeur" CssClass="a_droite" ForeColor="Black" /></td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </table>
+            </div>
         </div>
     </div>
 </asp:Content>

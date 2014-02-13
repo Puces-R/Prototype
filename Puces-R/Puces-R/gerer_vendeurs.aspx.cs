@@ -139,24 +139,26 @@ namespace Puces_R
             return tableResultats;
         }
 
-        protected void rptVendeurs_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void rptVendeurs_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            DataListItem item = e.Item;
+            RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                LinkButton nom_affaire = (LinkButton)item.FindControl("nom_affaire");
+                Label lbl_num = (Label)item.FindControl("lbl_num");
+                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
                 Label nom_complet = (Label)item.FindControl("nom_complet");
-                Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
-                Label date_insc = (Label)item.FindControl("date_insc");
+                //Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
+                //Label date_insc = (Label)item.FindControl("date_insc");
                 Button btn_gerer = (Button)item.FindControl("btn_gerer");
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
-                nom_affaire.Text = drvVendeurs["NomAffaires"].ToString();
+                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_nom_affaire.Text = drvVendeurs["NomAffaires"].ToString();
                 nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
-                adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
-                date_insc.Text = drvVendeurs["DateCreation"].ToString();
+                //adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
+                //date_insc.Text = drvVendeurs["DateCreation"].ToString();
                 btn_gerer.CommandArgument = drvVendeurs["NoVendeur"].ToString();
             }
         }

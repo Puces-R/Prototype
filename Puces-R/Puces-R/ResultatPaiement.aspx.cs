@@ -78,8 +78,8 @@ namespace Puces_R
                         String typeLivraison = (String)commandeTypeLivraison.ExecuteScalar();
                         myConnection.Close();
 
+                        ctrRapport.LocalReport.EnableExternalImages = true;
                         ctrRapport.LocalReport.DataSources.Clear();  
-
                         ctrRapport.LocalReport.ReportPath = "BonCommande.rdlc";
 
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("SousTotal", facture.SousTotal.ToString()));
@@ -91,6 +91,7 @@ namespace Puces_R
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("GrandTotal", facture.GrandTotal.ToString()));
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("NoAutorisation", noAutorisation));
                         ctrRapport.LocalReport.SetParameters(new ReportParameter("DateAutorisation", dateAutorisation));
+                        ctrRapport.LocalReport.SetParameters(new ReportParameter("LogoVendeur", ""));
 
                         SqlDataAdapter adapteurArticlesEnPanier = new SqlDataAdapter("SELECT P.Nom, P.Poids, P.PrixVente, A.NbItems, P.NoProduit, A.NoPanier FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE (A.NoClient = " + noClient + ") AND (A.NoVendeur = " + noVendeur + ") ", myConnection);
                         DataTable tableArticlesEnPanier = new DataTable();

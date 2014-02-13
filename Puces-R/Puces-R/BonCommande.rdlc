@@ -178,7 +178,7 @@
               <TextRun>
                 <Value>Les petites puces</Value>
                 <Style>
-                  <FontSize>20pt</FontSize>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -190,7 +190,7 @@
         <Top>0.84349cm</Top>
         <Left>2.45181cm</Left>
         <Height>0.94396cm</Height>
-        <Width>6.30473cm</Width>
+        <Width>5.31635cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1219,7 +1219,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!NomAffaires.Value, "VendeurDetaille")</Value>
+                <Value>=First(Fields!NomComplet.Value, "VendeurDetaille")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1502,7 +1502,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>15.20134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>40</ZIndex>
@@ -1536,7 +1536,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>14.60134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>41</ZIndex>
@@ -1570,7 +1570,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>13.40134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>42</ZIndex>
@@ -1604,7 +1604,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>14.00134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>43</ZIndex>
@@ -1638,7 +1638,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>17.00134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>44</ZIndex>
@@ -1672,7 +1672,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>16.40134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>45</ZIndex>
@@ -1706,7 +1706,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox58</rd:DefaultName>
         <Top>15.80134cm</Top>
-        <Left>8.33692cm</Left>
+        <Left>10.05068cm</Left>
         <Height>0.6cm</Height>
         <Width>79.99998pt</Width>
         <ZIndex>46</ZIndex>
@@ -1771,15 +1771,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NomComplet</rd:DefaultName>
         <Top>13.40134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>48</ZIndex>
         <Style>
           <Border>
@@ -1808,15 +1808,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Rue</rd:DefaultName>
         <Top>14.00134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>49</ZIndex>
         <Style>
           <Border>
@@ -1840,15 +1840,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Ville</rd:DefaultName>
         <Top>14.60134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>50</ZIndex>
         <Style>
           <Border>
@@ -1874,15 +1874,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Province</rd:DefaultName>
         <Top>15.20134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>51</ZIndex>
         <Style>
           <Border>
@@ -1909,15 +1909,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CodePostal</rd:DefaultName>
         <Top>15.80134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>52</ZIndex>
         <Style>
           <Border>
@@ -1944,15 +1944,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Pays</rd:DefaultName>
         <Top>16.40134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>53</ZIndex>
         <Style>
           <Border>
@@ -1979,15 +1979,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Tel1</rd:DefaultName>
         <Top>17.00134cm</Top>
-        <Left>11.15914cm</Left>
+        <Left>12.8729cm</Left>
         <Height>0.6cm</Height>
-        <Width>130pt</Width>
+        <Width>81.4209pt</Width>
         <ZIndex>54</ZIndex>
         <Style>
           <Border>
@@ -2497,7 +2497,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -2575,7 +2575,7 @@
         <Top>10.65424cm</Top>
         <Left>0.39942cm</Left>
         <Height>1.2cm</Height>
-        <Width>15.29099cm</Width>
+        <Width>15.29098cm</Width>
         <ZIndex>61</ZIndex>
         <Style>
           <Border>
@@ -2583,6 +2583,54 @@
           </Border>
         </Style>
       </Tablix>
+      <Image Name="Image4">
+        <Source>External</Source>
+        <Value>="Images\Logo\" + Parameters!LogoVendeur.Value</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>0.63711cm</Top>
+        <Left>8.33692cm</Left>
+        <Height>1.32292cm</Height>
+        <Width>1.85208cm</Width>
+        <ZIndex>62</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox54">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!NomAffaires.Value, "VendeurDetaille")</Value>
+                <Style>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox53</rd:DefaultName>
+        <Top>0.84349cm</Top>
+        <Left>10.36539cm</Left>
+        <Height>0.94396cm</Height>
+        <Width>5.32501cm</Width>
+        <ZIndex>63</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>18.03405cm</Height>
     <Style />
@@ -2621,6 +2669,10 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="DateAutorisation">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="LogoVendeur">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

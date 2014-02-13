@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using Puces_R.Controles;
+using System.Drawing;
 
 namespace Puces_R
 {
@@ -88,7 +89,17 @@ namespace Puces_R
                 }
                 this.lblPrixEnVente.Text = decPrixVente.ToString("C");
 
-                this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
+                short quantite = (short)lecteurProduit["NombreItems"];
+                if (quantite > 0)
+                {
+                    lblQuantiteDisponible.Text = "Quantité: " + quantite.ToString();
+                }
+                else
+                {
+                    lblQuantiteDisponible.Text = "En rupture de stock";
+                    lblQuantiteDisponible.ForeColor = Color.Red;
+                }
+
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];

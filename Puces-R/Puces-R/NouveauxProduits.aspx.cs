@@ -22,7 +22,7 @@ namespace Puces_R.Controles
 
                 if (noVendeur == -1)
                 {
-                    Master.Titre = "Catalogue Global";
+                    Master.Titre = "Nouveaux produits";
                 }
                 else
                 {
@@ -65,39 +65,12 @@ namespace Puces_R.Controles
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                HyperLink hypDescriptionAbregee = (HyperLink)item.FindControl("hypDescriptionAbregee");
-                Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                Image imgProduit = (Image)item.FindControl("imgProduit");
-                Label lblCategorie = (Label)item.FindControl("lblCategorie");
-                Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
-                Label lblQuantite = (Label)item.FindControl("lblQuantite");
+                BoiteProduit ctrProduit = (BoiteProduit)item.FindControl("ctrProduit");
 
                 DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvProduit["NoProduit"];
-
-                Object photo = drvProduit["Photo"];
-                String urlImage;
-                if (photo is DBNull)
-                {
-                    urlImage = "Images/image_non_disponible.png";
-                }
-                else
-                {
-                    urlImage = "Images/Televerse/" + (String)photo;
-                }
-                String strCategorie = (String)drvProduit["Description"];
-                String strDescriptionAbregee = (String)drvProduit["Nom"];
-                decimal decPrixDemande = 0;//(decimal)drvFilm["PrixVente"];
-                short intQuantite = (short)drvProduit["NombreItems"];
-
-                lblNoProduit.Text = "No. " + noProduit.ToString();
-                imgProduit.ImageUrl = urlImage;
-                hypDescriptionAbregee.Text = strDescriptionAbregee;
-                hypDescriptionAbregee.Enabled = false;
-                lblCategorie.Text = strCategorie;
-                lblPrixDemande.Text = "Prix de vente: " + decPrixDemande.ToString("C");
-                lblQuantite.Text = "Quantité: " + intQuantite.ToString();
+                ctrProduit.NoProduit = (long)drvProduit["NoProduit"];
+                ctrProduit.NoSequentiel = item.ItemIndex + 1;
             }
         }
     }

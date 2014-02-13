@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Produits.aspx.cs" Inherits="Puces_R.Produits" MasterPageFile="~/NavigationItems.Master" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
+<%@ Register TagPrefix="lp" TagName="BoiteProduit" Src="~/Controles/BoiteProduit.ascx" %>
+
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/Produits.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -114,25 +116,7 @@
             <asp:View ID="View5" runat="server">
                 <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
                     <ItemTemplate>
-                        <div class="rectangleProduits rectangleComplet rectangleItem">
-                            <div class="titreRectangle">
-                                <div>
-                                    <asp:HyperLink runat="server" ID="hypDescriptionAbregee" />
-                                </div>
-                            </div>
-                            <div class="boiteImageProduit">
-                                <div>
-                                    <asp:Image runat="server" ID="imgProduit" />
-                                </div>
-                            </div>
-                            <div class="detailsProduit">
-                                <asp:Label runat="server" ID="lblNoProduit" />
-                                <asp:Label runat="server" ID="lblCategorie" />
-                                <asp:Label runat="server" ID="lblPrixDemande" />
-                                <asp:Label runat="server" ID="lblEvaluation" />
-                                <asp:Label runat="server" ID="lblQuantite" />
-                            </div>
-                        </div>
+                        <lp:BoiteProduit runat="server" ID="ctrProduit" />
                     </ItemTemplate>
                 </ASP:DataList>
             </asp:View>

@@ -17,7 +17,7 @@
         </asp:MenuItem>
         <asp:MenuItem Text="Gerer les clients" NavigateUrl="../gerer_vendeurs.aspx">            
             <asp:MenuItem Text="Inactivité des client" NavigateUrl="../gerer_inactivite_clients.aspx" />
-            <asp:MenuItem Text="Rechercher un client"  />  
+            <asp:MenuItem Text="Rechercher un client" NavigateUrl="../gerer_clients.aspx" />  
         </asp:MenuItem>
         <asp:MenuItem Text="Statistiques et rapports" NavigateUrl="../visualiser_stats_rapports.aspx" />
     </Items>

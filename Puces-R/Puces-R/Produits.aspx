@@ -78,13 +78,12 @@
         </div>
         <div style="display:inline-block;vertical-align:top;text-align:left;">
             <div class="boiteListeDeroulante">
+                Catégorie:
                 <asp:MultiView runat="server" ID="mvCategorie" ActiveViewIndex="0">
                     <asp:View ID="View1" runat="server">
-                        Catégorie:
-                        <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" />
+                        <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" CssClass="largeurFixeCritere" />
                     </asp:View>
                     <asp:View ID="View2" runat="server">
-                        Catégories:
                         <div class="listeCochable">
                             <div>
                                 <asp:CheckBoxList ID="cblCategorie" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
@@ -94,13 +93,12 @@
                 </asp:MultiView>
             </div>
             <div class="boiteListeDeroulante">
+                Vendeur:
                 <asp:MultiView runat="server" ID="mvVendeur" ActiveViewIndex="0">
                     <asp:View ID="View3" runat="server">
-                        Vendeur:
-                        <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" />
+                        <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" CssClass="largeurFixeCritere" />
                     </asp:View>
                     <asp:View ID="View4" runat="server">
-                        Vendeurs:
                         <div class="listeCochable">
                             <div>
                                 <asp:CheckBoxList ID="cblVendeur" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
@@ -110,7 +108,7 @@
                 </asp:MultiView>
             </div>
             <span class="boiteListeDeroulante">
-                <asp:Button runat="server" Text="Avancé" ID="btnRechercheAvance" OnClick="btnRechercheAvance_OnClick" Font-Size="X-Small" />
+                <asp:Button runat="server" Text="▼" ID="btnRechercheAvance" OnClick="btnRechercheAvance_OnClick" Font-Size="X-Small" />
             </span>
         </div>
     </div>

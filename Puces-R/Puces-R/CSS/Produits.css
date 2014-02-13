@@ -45,11 +45,17 @@
     display:block;
 }
 
+.largeurFixeCritere
+{
+    width:200px;
+}
+
 .listeCochable
 {
     max-height:50px;
     display:inline-block;
     width:200px;
+    height:50px;
 }
 
 .listeCochable > div

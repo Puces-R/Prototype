@@ -63,8 +63,10 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="AccueilClient.aspx" />
+    <Content Include="accueil_compta.aspx" />
     <Content Include="accueil_gestionnaire.aspx" />
     <Content Include="ChoixDestinataires.aspx" />
+    <Content Include="client.aspx" />
     <Content Include="CommandesClient.aspx" />
     <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
@@ -74,6 +76,9 @@
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\BoiteCommande.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
+    <Content Include="CSS\style_sec4_2.css" />
+    <Content Include="details_commande_redevance.aspx" />
+    <Content Include="details_redevence.aspx" />
     <Content Include="EnvoyerCourriel.aspx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
@@ -165,6 +170,7 @@
     <Content Include="Demonstration.aspx" />
     <Content Include="DetailsProduit.aspx" />
     <Content Include="GererPanierVendeur.aspx" />
+    <Content Include="gerer_clients.aspx" />
     <Content Include="gerer_demandes_vendeurs.aspx" />
     <Content Include="gerer_inactivite_clients.aspx" />
     <Content Include="gerer_inactivite_vendeurs.aspx" />
@@ -172,13 +178,16 @@
     <Content Include="gerer_vendeurs.aspx" />
     <Content Include="GestionCommandesVendeur.aspx" />
     <Content Include="GestionProduits.aspx" />
+    <Content Include="histo_redevance_vendeur.aspx" />
     <Content Include="Images\DemieEtoile.png" />
     <Content Include="Images\EtoileVide.png" />
     <Content Include="Images\EtoilePleine.png" />
     <Content Include="Images\Dernier.png" />
     <Content Include="Images\image_non_disponible.png" />
+    <Content Include="Images\logo-original.png" />
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\Logo\10.jpg" />
     <Content Include="Images\Precedent.png" />
     <Content Include="Images\Premier.png" />
     <Content Include="Images\print.png" />
@@ -204,14 +213,377 @@
     <Content Include="lib\js\librairie.js" />
     <Content Include="ModificationProduits.aspx" />
     <Content Include="ModifierMotPasse.aspx" />
+    <Content Include="MsgDownload\msg2_Steve_Jobs_Headshot_2010-CROP.jpg" />
     <Content Include="NouveauxProduits.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
+    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="ResultatPaiement.aspx" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.cs-CZ.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.de-DE.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.en-CA.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.en-US.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.fr-FR.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.he-IL.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.hr-HR.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.hu-HU.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.it-IT.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.ja-JP.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.lt.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.ru-RU.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.culture.sa-IN.js" />
+    <Content Include="ScriptsColorPicker\globalization\globalize.js" />
+    <Content Include="ScriptsColorPicker\globalization\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\jqx-all.js" />
+    <Content Include="ScriptsColorPicker\jqxbuttongroup.js" />
+    <Content Include="ScriptsColorPicker\jqxbuttons.js" />
+    <Content Include="ScriptsColorPicker\jqxcalendar.js" />
+    <Content Include="ScriptsColorPicker\jqxchart.js" />
+    <Content Include="ScriptsColorPicker\jqxcheckbox.js" />
+    <Content Include="ScriptsColorPicker\jqxcolorpicker.js" />
+    <Content Include="ScriptsColorPicker\jqxcombobox.js" />
+    <Content Include="ScriptsColorPicker\jqxcore.js" />
+    <Content Include="ScriptsColorPicker\jqxdata.export.js" />
+    <Content Include="ScriptsColorPicker\jqxdata.js" />
+    <Content Include="ScriptsColorPicker\jqxdatatable.js" />
+    <Content Include="ScriptsColorPicker\jqxdatetimeinput.js" />
+    <Content Include="ScriptsColorPicker\jqxdocking.js" />
+    <Content Include="ScriptsColorPicker\jqxdockpanel.js" />
+    <Content Include="ScriptsColorPicker\jqxdragdrop.js" />
+    <Content Include="ScriptsColorPicker\jqxdropdownbutton.js" />
+    <Content Include="ScriptsColorPicker\jqxdropdownlist.js" />
+    <Content Include="ScriptsColorPicker\jqxexpander.js" />
+    <Content Include="ScriptsColorPicker\jqxgauge.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.aggregates.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.columnsreorder.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.columnsresize.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.edit.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.export.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.filter.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.grouping.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.pager.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.selection.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.sort.js" />
+    <Content Include="ScriptsColorPicker\jqxgrid.storage.js" />
+    <Content Include="ScriptsColorPicker\jqxinput.js" />
+    <Content Include="ScriptsColorPicker\jqxknockout.js" />
+    <Content Include="ScriptsColorPicker\jqxlistbox.js" />
+    <Content Include="ScriptsColorPicker\jqxlistmenu.js" />
+    <Content Include="ScriptsColorPicker\jqxmaskedinput.js" />
+    <Content Include="ScriptsColorPicker\jqxmenu.js" />
+    <Content Include="ScriptsColorPicker\jqxnavigationbar.js" />
+    <Content Include="ScriptsColorPicker\jqxnumberinput.js" />
+    <Content Include="ScriptsColorPicker\jqxpanel.js" />
+    <Content Include="ScriptsColorPicker\jqxpasswordinput.js" />
+    <Content Include="ScriptsColorPicker\jqxprogressbar.js" />
+    <Content Include="ScriptsColorPicker\jqxradiobutton.js" />
+    <Content Include="ScriptsColorPicker\jqxrangeselector.js" />
+    <Content Include="ScriptsColorPicker\jqxrating.js" />
+    <Content Include="ScriptsColorPicker\jqxresponse.js" />
+    <Content Include="ScriptsColorPicker\jqxscrollbar.js" />
+    <Content Include="ScriptsColorPicker\jqxscrollview.js" />
+    <Content Include="ScriptsColorPicker\jqxslider.js" />
+    <Content Include="ScriptsColorPicker\jqxsplitter.js" />
+    <Content Include="ScriptsColorPicker\jqxswitchbutton.js" />
+    <Content Include="ScriptsColorPicker\jqxtabs.js" />
+    <Content Include="ScriptsColorPicker\jqxtooltip.js" />
+    <Content Include="ScriptsColorPicker\jqxtouch.js" />
+    <Content Include="ScriptsColorPicker\jqxtree.js" />
+    <Content Include="ScriptsColorPicker\jqxtreegrid.js" />
+    <Content Include="ScriptsColorPicker\jqxtreemap.js" />
+    <Content Include="ScriptsColorPicker\jqxvalidator.js" />
+    <Content Include="ScriptsColorPicker\jqxwindow.js" />
+    <Content Include="ScriptsColorPicker\styles\images\backgroundTop.png" />
+    <Content Include="ScriptsColorPicker\styles\images\backImage.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_black.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_blackhover.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_blackhover_horizontal.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_blackpressed.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_blackpressed_horizontal.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_black_horizontal.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_blueenergy.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_darkblue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_darkbluehover.png" />
+    <Content Include="ScriptsColorPicker\styles\images\bg_darkbluepressed.png" />
+    <Content Include="ScriptsColorPicker\styles\images\blackbackground.png" />
+    <Content Include="ScriptsColorPicker\styles\images\black_gradient.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_black.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_blue_indeterminate.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_disabled.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_indeterminate_black.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_indeterminate_disabled.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_indeterminate_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_lightblue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_lightblue_indeterminate.png" />
+    <Content Include="ScriptsColorPicker\styles\images\check_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\close.png" />
+    <Content Include="ScriptsColorPicker\styles\images\close_blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\close_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\colorpicker\bar-hue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\colorpicker\bar-saturation.png" />
+    <Content Include="ScriptsColorPicker\styles\images\colorpicker\map-hue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\colorpicker\map-saturation-overlay.png" />
+    <Content Include="ScriptsColorPicker\styles\images\colorpicker\map-saturation.png" />
+    <Content Include="ScriptsColorPicker\styles\images\colorpicker\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\crosshair-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\crosshair.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-icons_222222_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-icons_a83300_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-icons_cccccc_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkness\ui-icons_ffffff_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\darkred_gradient.png" />
+    <Content Include="ScriptsColorPicker\styles\images\drag.png" />
+    <Content Include="ScriptsColorPicker\styles\images\dragcancel.png" />
+    <Content Include="ScriptsColorPicker\styles\images\filter.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-calendar-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-calendar.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-cancel-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-cancel.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-delete-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-delete.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-down-blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-down-transparent.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-down-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-down.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-edit-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-edit.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-first-blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-first-transparent.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-first-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-first.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-last-blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-last-transparent.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-last-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-last.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-left-blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-left-transparent.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-left-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-left.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-right-blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-right-transparent.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-right-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-right.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-save-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-save.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-showpassword-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-showpassword.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-up-blue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-up-transparent.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-up-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\icon-up.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_diagonals-small_0_aaaaaa_40x40.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_diagonals-thick_15_444444_40x40.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_diagonals-thick_95_ffdc2e_40x40.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_glass_55_fbf5d0_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_highlight-hard_30_285c00_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_highlight-soft_33_3a8104_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_highlight-soft_50_4eb305_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_highlight-soft_60_4ca20b_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-bg_inset-soft_10_285c00_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-icons_4eb305_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-icons_72b42d_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\le-frog\ui-icons_ffffff_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\icon-first.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\icon-last.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-icons_222222_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-icons_228ef1_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-icons_ef8c08_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-icons_ffd27a_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\lightness\ui-icons_ffffff_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\loader.gif" />
+    <Content Include="ScriptsColorPicker\styles\images\menubutton.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-down-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-down.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-first-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-first.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-last-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-last.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-left-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-left.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-right - Copy.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-right-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-right.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-up-white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\metro-icon-up.png" />
+    <Content Include="ScriptsColorPicker\styles\images\multi-arrow.gif" />
+    <Content Include="ScriptsColorPicker\styles\images\office-icon-down.png" />
+    <Content Include="ScriptsColorPicker\styles\images\office-icon-first.png" />
+    <Content Include="ScriptsColorPicker\styles\images\office-icon-last.png" />
+    <Content Include="ScriptsColorPicker\styles\images\office-icon-left.png" />
+    <Content Include="ScriptsColorPicker\styles\images\office-icon-right.png" />
+    <Content Include="ScriptsColorPicker\styles\images\office-icon-up.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_flat_0_eeeeee_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_flat_55_c0402a_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_flat_55_eeeeee_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_glass_100_f8f8f8_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_glass_35_dddddd_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_glass_60_eeeeee_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_inset-hard_75_999999_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-bg_inset-soft_50_c9c9c9_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-icons_3383bb_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-icons_454545_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-icons_70b2e1_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-icons_999999_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\overcast\ui-icons_fbc856_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\plus.png" />
+    <Content Include="ScriptsColorPicker\styles\images\plus_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\pointer.png" />
+    <Content Include="ScriptsColorPicker\styles\images\rangebar_classic.png" />
+    <Content Include="ScriptsColorPicker\styles\images\rangebar_darkblue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\rangebar_shinyblack.png" />
+    <Content Include="ScriptsColorPicker\styles\images\rangebar_summer.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\icon-first.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\icon-last.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_217bc0_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_2e83ff_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_469bdd_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_6da8d5_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\redmond\ui-icons_f9bd01_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\red_arrow_down.png" />
+    <Content Include="ScriptsColorPicker\styles\images\red_arrow_up.png" />
+    <Content Include="ScriptsColorPicker\styles\images\red_gradient.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_check_black.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_check_disabled.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_check_indeterminate.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_check_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_classic_hover.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_classic_normal.png" />
+    <Content Include="ScriptsColorPicker\styles\images\roundbg_disabled.png" />
+    <Content Include="ScriptsColorPicker\styles\images\search.png" />
+    <Content Include="ScriptsColorPicker\styles\images\search_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-icons_222222_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-icons_2e83ff_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-icons_454545_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-icons_888888_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\smoothness\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sortasc.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sortascbutton.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sortdesc.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sortdescbutton.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sortremove.png" />
+    <Content Include="ScriptsColorPicker\styles\images\star.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_0078ae_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_056b93_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_e0fdff_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_f5e175_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_f7a50d_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\start\ui-icons_fcd113_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\star_disabled.png" />
+    <Content Include="ScriptsColorPicker\styles\images\star_hover.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ReadMe.txt" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_bd7b00_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_d19405_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_eb990f_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_ed9f26_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_fadc7a_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\sunny\ui-icons_ffe180_256x240.png" />
+    <Content Include="ScriptsColorPicker\styles\images\tick.png" />
+    <Content Include="ScriptsColorPicker\styles\images\track_classic.png" />
+    <Content Include="ScriptsColorPicker\styles\images\track_darkblue.png" />
+    <Content Include="ScriptsColorPicker\styles\images\track_shinyblack.png" />
+    <Content Include="ScriptsColorPicker\styles\images\track_summer.png" />
+    <Content Include="ScriptsColorPicker\styles\images\wp_check_indeterminate_white.png" />
+    <Content Include="ScriptsColorPicker\styles\images\wp_check_white.png" />
+    <Content Include="ScriptsColorPicker\styles\jqx.android.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.arctic.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.base.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.black.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.blackberry.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.bootstrap.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.classic.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.darkblue.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.energyblue.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.fresh.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.highcontrast.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.metro.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.metrodark.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.mobile.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.office.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.orange.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.shinyblack.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.summer.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-darkness.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-le-frog.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-lightness.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-overcast.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-redmond.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-smoothness.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-start.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.ui-sunny.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.web.css" />
+    <Content Include="ScriptsColorPicker\styles\jqx.windowsphone.css" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -229,6 +601,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="XML\10.xml" />
+    <Content Include="XML\20.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -280,6 +654,13 @@
     <Compile Include="AccueilClient.aspx.designer.cs">
       <DependentUpon>AccueilClient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="accueil_compta.aspx.cs">
+      <DependentUpon>accueil_compta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accueil_compta.aspx.designer.cs">
+      <DependentUpon>accueil_compta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="accueil_gestionnaire.aspx.cs">
       <DependentUpon>accueil_gestionnaire.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -303,6 +684,13 @@
     </Compile>
     <Compile Include="ChoixDestinataires.aspx.designer.cs">
       <DependentUpon>ChoixDestinataires.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client.aspx.cs">
+      <DependentUpon>client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client.aspx.designer.cs">
+      <DependentUpon>client.aspx</DependentUpon>
     </Compile>
     <Compile Include="CommandesClient.aspx.cs">
       <DependentUpon>CommandesClient.aspx</DependentUpon>
@@ -486,6 +874,20 @@
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
+    <Compile Include="details_commande_redevance.aspx.cs">
+      <DependentUpon>details_commande_redevance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="details_commande_redevance.aspx.designer.cs">
+      <DependentUpon>details_commande_redevance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="details_redevence.aspx.cs">
+      <DependentUpon>details_redevence.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="details_redevence.aspx.designer.cs">
+      <DependentUpon>details_redevence.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EnvoyerCourriel.aspx.cs">
       <DependentUpon>EnvoyerCourriel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -537,6 +939,13 @@
     <Compile Include="GererPanierVendeur.aspx.designer.cs">
       <DependentUpon>GererPanierVendeur.aspx</DependentUpon>
     </Compile>
+    <Compile Include="gerer_clients.aspx.cs">
+      <DependentUpon>gerer_clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gerer_clients.aspx.designer.cs">
+      <DependentUpon>gerer_clients.aspx</DependentUpon>
+    </Compile>
     <Compile Include="gerer_demandes_vendeurs.aspx.cs">
       <DependentUpon>gerer_demandes_vendeurs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -581,6 +990,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="histo_redevance_vendeur.aspx.cs">
+      <DependentUpon>histo_redevance_vendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="histo_redevance_vendeur.aspx.designer.cs">
+      <DependentUpon>histo_redevance_vendeur.aspx</DependentUpon>
     </Compile>
     <Compile Include="InscriptionClient.aspx.cs">
       <DependentUpon>InscriptionClient.aspx</DependentUpon>

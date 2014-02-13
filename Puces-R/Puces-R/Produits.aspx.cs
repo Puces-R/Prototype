@@ -59,14 +59,14 @@ namespace Puces_R
                 Master.AfficherPremierePage();
             }
 
-            ctrScriptManager.RegisterAsyncPostBackControl(cblCategorie);
-            ctrScriptManager.RegisterAsyncPostBackControl(cblVendeur);
-            ctrScriptManager.RegisterAsyncPostBackControl(ddlTypeRecherche);
-            ctrScriptManager.RegisterAsyncPostBackControl(txtCritereRecherche);
-            ctrScriptManager.RegisterAsyncPostBackControl(ddlTrierPar);
-            ctrScriptManager.RegisterAsyncPostBackControl(ddlParPage);
-            ctrScriptManager.RegisterAsyncPostBackControl(txtAPartirDe);
-            ctrScriptManager.RegisterAsyncPostBackControl(txtJusquA);
+            Master.ScriptManager.RegisterAsyncPostBackControl(cblCategorie);
+            Master.ScriptManager.RegisterAsyncPostBackControl(cblVendeur);
+            Master.ScriptManager.RegisterAsyncPostBackControl(ddlTypeRecherche);
+            Master.ScriptManager.RegisterAsyncPostBackControl(txtCritereRecherche);
+            Master.ScriptManager.RegisterAsyncPostBackControl(ddlTrierPar);
+            Master.ScriptManager.RegisterAsyncPostBackControl(ddlParPage);
+            Master.ScriptManager.RegisterAsyncPostBackControl(txtAPartirDe);
+            Master.ScriptManager.RegisterAsyncPostBackControl(txtJusquA);
         }
 
         private void AjouterCategories(ListControl controle, DataTable tableCategories)

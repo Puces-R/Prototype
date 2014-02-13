@@ -4,6 +4,12 @@
 
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
+
+    <script type="text/javascript">
+        function RefreshUpdatePanel() {
+            __doPostBack('<%= udpProduits.ClientID %>', '');
+        };
+    </script>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -12,9 +18,14 @@
             <asp:ContentPlaceHolder runat="server" ID="BarreCriteres"/>
         </div>
     </asp:Panel>
-    <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" LigneBasVisible="true" />
-    <div>
-        <asp:ContentPlaceHolder runat="server" ID="Items"/>
-    </div>
-    <lp:NavigationParPage runat="server" ID="ctrNavigationBas" LigneHautVisible="true" />
+    <asp:ScriptManager runat="server" ID="ctrScriptManager" />
+    <asp:UpdatePanel runat="server" ID="udpProduits">
+        <ContentTemplate>
+            <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" LigneBasVisible="true" />
+            <div>
+                <asp:ContentPlaceHolder runat="server" ID="Items"/>
+            </div>
+            <lp:NavigationParPage runat="server" ID="ctrNavigationBas" LigneHautVisible="true" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

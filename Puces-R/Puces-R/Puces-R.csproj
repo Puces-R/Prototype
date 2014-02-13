@@ -188,6 +188,14 @@
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Logo\10.jpg" />
+    <Content Include="Images\Logo\20.jpg" />
+    <Content Include="Images\Logo\641px-Mad_scientist_transparent_background_svg.png" />
+    <Content Include="Images\Logo\logo.png" />
+    <Content Include="Images\Logo\signpng.png" />
+    <Content Include="Images\Logo\spiderman-logo.png" />
+    <Content Include="Images\Logo\starbucks-coffee-logo.gif" />
+    <Content Include="Images\Logo\superman-logo-012.png" />
+    <Content Include="Images\Logo\tenny_logo_colour_small.png" />
     <Content Include="Images\Precedent.png" />
     <Content Include="Images\Premier.png" />
     <Content Include="Images\print.png" />
@@ -603,6 +611,7 @@
     </Content>
     <Content Include="XML\10.xml" />
     <Content Include="XML\20.xml" />
+    <Content Include="XML\30.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">

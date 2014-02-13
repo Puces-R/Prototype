@@ -10,97 +10,106 @@
 namespace Puces_R {
     
     
-    public partial class gerer_vendeurs {
+    public partial class client {
         
         /// <summary>
-        /// Contrôle txtCritereRecherche.
+        /// Contrôle mvVendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        protected global::System.Web.UI.WebControls.MultiView mvVendeur;
         
         /// <summary>
-        /// Contrôle ddlCategorie.
+        /// Contrôle View1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategorie;
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// Contrôle datepicker3.
+        /// Contrôle lbl_nom_complet.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox datepicker3;
+        protected global::System.Web.UI.WebControls.Label lbl_nom_complet;
         
         /// <summary>
-        /// Contrôle datepicker4.
+        /// Contrôle lbl_adresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox datepicker4;
+        protected global::System.Web.UI.WebControls.Label lbl_adresse;
         
         /// <summary>
-        /// Contrôle ddlStatut.
+        /// Contrôle lbl_tel1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatut;
+        protected global::System.Web.UI.WebControls.Label lbl_tel1;
         
         /// <summary>
-        /// Contrôle ddlTrierPar.
+        /// Contrôle lbl_tel2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
+        protected global::System.Web.UI.WebControls.Label lbl_tel2;
         
         /// <summary>
-        /// Contrôle ddlParPage.
+        /// Contrôle lbl_courriel.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+        protected global::System.Web.UI.WebControls.Label lbl_courriel;
         
         /// <summary>
-        /// Contrôle ctrNavigation.
+        /// Contrôle lbl_date_insc.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.NavigationParPage ctrNavigation;
+        protected global::System.Web.UI.WebControls.Label lbl_date_insc;
         
         /// <summary>
-        /// Contrôle no_result.
+        /// Contrôle lbl_date_maj.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel no_result;
+        protected global::System.Web.UI.WebControls.Label lbl_date_maj;
         
         /// <summary>
-        /// Contrôle rptVendeurs.
+        /// Contrôle lbl_nb_connexion.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptVendeurs;
+        protected global::System.Web.UI.WebControls.Label lbl_nb_connexion;
+        
+        /// <summary>
+        /// Contrôle lbl_statut.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_statut;
         
         /// <summary>
         /// Propriété Master.

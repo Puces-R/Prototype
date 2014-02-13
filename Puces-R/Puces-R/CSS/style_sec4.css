@@ -101,8 +101,6 @@
 	display: none;
 }
 
-
-
 .titre_sec
 {
 	width: 580px;
@@ -303,4 +301,9 @@ a
 #targetchart h3 {
     text-align: center;
     margin: 0;  
+}
+
+.hautRectangle select, .hautRectangle option
+{
+    color: Black;
 }

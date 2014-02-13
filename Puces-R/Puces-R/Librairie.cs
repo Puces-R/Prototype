@@ -99,7 +99,7 @@ namespace Puces_R
             return retour;
         }
 
-        public static void Messagerie(int[] destinataires, string sujet = null, string message = null, bool fixer = false)
+        public static void Messagerie(int[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
         {
             if (destinataires != null)
             {
@@ -116,12 +116,29 @@ namespace Puces_R
                 System.Web.HttpContext.Current.Session["Message"] = message;
             }
 
-            if (fixer != null)
+            System.Web.HttpContext.Current.Session["Fixer"] = fixer;
+            System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerMessage.aspx", retour));
+        }
+
+        public static void Courriel(int[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
+        {
+            if (destinataires != null)
             {
-                System.Web.HttpContext.Current.Session["Fixer"] = fixer;
+                System.Web.HttpContext.Current.Session["ListeDestinataires"] = destinataires;
             }
 
-            System.Web.HttpContext.Current.Response.Redirect("EnvoyerMessage.aspx");
+            if (sujet != null)
+            {
+                System.Web.HttpContext.Current.Session["Sujet"] = sujet;
+            }
+
+            if (message != null)
+            {
+                System.Web.HttpContext.Current.Session["Message"] = message;
+            }
+
+            System.Web.HttpContext.Current.Session["Fixer"] = fixer;
+            System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerCourriel.aspx", retour));
         }
     }
 }

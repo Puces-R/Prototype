@@ -10,52 +10,43 @@
 namespace Puces_R {
     
     
-    public partial class AcceuilVendeur {
+    public partial class EnvoyerCourriel {
         
         /// <summary>
-        /// Contrôle nbVisite.
+        /// Contrôle lbDestinataires.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nbVisite;
+        protected global::System.Web.UI.WebControls.ListBox lbDestinataires;
         
         /// <summary>
-        /// Contrôle rptPaniers.
+        /// Contrôle btnDestinataire.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPaniers;
+        protected global::System.Web.UI.WebControls.Button btnDestinataire;
         
         /// <summary>
-        /// Contrôle hplPanier.
+        /// Contrôle tbSujet.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplPanier;
+        protected global::System.Web.UI.WebControls.TextBox tbSujet;
         
         /// <summary>
-        /// Contrôle rptCommandes.
+        /// Contrôle tbMessage.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCommandes;
-        
-        /// <summary>
-        /// Contrôle hplToutesCommandes.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplToutesCommandes;
+        protected global::System.Web.UI.WebControls.TextBox tbMessage;
         
         /// <summary>
         /// Propriété Master.

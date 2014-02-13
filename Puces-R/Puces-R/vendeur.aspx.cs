@@ -183,7 +183,32 @@ namespace Puces_R
             }
             script += js_tab + " ];chart1.setDataSource(items); var chartDiv = document.getElementById('ChartDiv1');chart1.create(chartDiv);} function onLoadDoc2() { chart2 = new cfx.Chart(); chart2.getAnimations().getLoad().setEnabled(true); PopulateCarProduction(chart2); chart2.setGallery(cfx.Gallery.Pie); var data = chart2.getData(); data.setPoints(6); var titles = chart2.getTitles(); var title = new cfx.TitleDockable(); title.setText('Répartition des clients par catégorie'); titles.add(title); chart2.getAllSeries().getPointLabels().setVisible(true);  } function PopulateCarProduction(chart2) { var items = [{ 'Nombre de clients dans cette catégorie': val1, 'Catégorie': 'Potentiels' }, { 'Nombre de clients dans cette catégorie': val2, 'Catégorie': 'Actifs' }, { 'Nombre de clients dans cette catégorie': val3, 'Catégorie': 'Visiteurs' }]; chart2.setDataSource(items); var chartDiv2 = document.getElementById('ChartDiv2'); chart2.create(chartDiv2); } </script>";
 
-            req = "SELECT (SELECT COUNT(*) AS Expr1  FROM (SELECT DISTINCT NoClient FROM PPVendeursClients WHERE (NoVendeur = " + no_vendeur + " )) AS derivedtbl_1) AS Expr1, (SELECT COUNT(*) AS Expr1 FROM (SELECT DISTINCT NoClient  FROM PPArticlesEnPanier WHERE (NoVendeur = " + no_vendeur + " )) AS derivedtbl_2) AS Expr2, (SELECT COUNT(*) AS Expr1 FROM (SELECT DISTINCT NoClient FROM PPCommandes WHERE (NoVendeur = " + no_vendeur + " )) AS derivedtbl_3) AS Expr3";
+            req += " SELECT ( ";
+            req += " SELECT COUNT(*) ";
+            req += " FROM ( ";
+            req += " 		SELECT DISTINCT NoClient FROM PPVendeursClients ";
+            req += " 		WHERE NoVendeur = 10	 ";
+            req += " 		AND NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPArticlesEnPanier WHERE NoVendeur = 10 UNION SELECT DISTINCT NoClient FROM PPCommandes WHERE NoVendeur = 10) ";
+            req += " 	  )  ";
+            req += " AS derivedtbl_1), ";
+            req += " ( ";
+            req += " SELECT COUNT(*) AS Expr1 ";
+            req += " FROM ( ";
+            req += " 		SELECT DISTINCT NoClient ";
+            req += " 		FROM PPArticlesEnPanier ";
+            req += " 		WHERE (NoVendeur = 10)  ";
+            req += " 		AND NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPCommandes WHERE NoVendeur = 10) ";
+            req += " 	)  ";
+            req += " AS derivedtbl_2), ";
+            req += " ( ";
+            req += " SELECT COUNT(*) AS Expr1 ";
+            req += " FROM ( ";
+            req += " 		SELECT DISTINCT NoClient ";
+            req += " 		FROM PPCommandes ";
+            req += " 		WHERE (NoVendeur = 10) ";
+            req += " 	)  ";
+            req += " AS derivedtbl_3) ";
+
             charger = new SqlCommand(req, myConnection);
             SqlDataReader results2 = charger.ExecuteReader();
 

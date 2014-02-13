@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AcceuilVendeur.aspx.cs" Inherits="Puces_R.AcceuilVendeur" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AccueilVendeur.aspx.cs" Inherits="Puces_R.AccueilVendeur" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="PanierProduits" Src="~/Controles/TablePanier.ascx" %>
 

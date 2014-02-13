@@ -9,7 +9,7 @@
     <div class="rectangleComplet rectangleItem">
         <table>
             <tr>
-                <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="true" />
+                <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="true" Longueur="false" />
             </tr>
             <yc:DoubleMdp runat="server" ID="tbNouveauMotPasse" Changement="true" />
             <tr>

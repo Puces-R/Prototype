@@ -68,7 +68,11 @@ namespace Puces_R
 
         public string Get(string key)
         {
-            return dico[key];
+            if (dico.ContainsKey(key))
+            {
+                return dico[key];
+            }
+            return null;
         }
 
         public void Filter(string[] keys)

@@ -2187,13 +2187,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.55758in</Width>
+              <Width>2.29172in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.99848in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.51711in</Width>
+              <Width>0.76137in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.98425in</Width>
@@ -2457,6 +2457,10 @@
                               <Value>=Fields!Poids.Value</Value>
                               <Style />
                             </TextRun>
+                            <TextRun>
+                              <Value> lbs.</Value>
+                              <Style />
+                            </TextRun>
                           </TextRuns>
                           <Style>
                             <TextAlign>Center</TextAlign>
@@ -2571,7 +2575,7 @@
         <Top>10.65424cm</Top>
         <Left>0.39942cm</Left>
         <Height>1.2cm</Height>
-        <Width>15.34583cm</Width>
+        <Width>15.29099cm</Width>
         <ZIndex>61</ZIndex>
         <Style>
           <Border>

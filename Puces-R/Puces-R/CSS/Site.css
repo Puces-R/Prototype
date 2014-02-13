@@ -404,7 +404,7 @@ body
     font-size:small;
     display:inline-block;
     vertical-align:top;
-    margin:0 5px;
+    margin:5px;
 }
 
 .boiteListeDeroulante *
@@ -491,4 +491,9 @@ body
 .logo
 {
     vertical-align:middle;
+}
+
+.ui-datepicker
+{
+    font-size: x-small;
 }

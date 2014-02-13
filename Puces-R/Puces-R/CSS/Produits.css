@@ -47,20 +47,30 @@
 
 .listeCochable
 {
+    max-height:50px;
+    display:inline-block;
+    width:200px;
+}
+
+.listeCochable > div
+{
     border: 1px solid black;
     text-align:left;
-    max-height:60px;
-    overflow:auto;
-    font-size: smaller;
-    display:inline-block;
+    max-height:50px;
+    font-size: x-small;
+    width:200px;
+    transition:max-height 0.5s linear 0.5s;
+    overflow: auto;
+    position:absolute;
+    background-color:white
+}
+
+.listeCochable > div:hover
+{
+    max-height:200px;
 }
 
 .listeCochable *
 {
     vertical-align:middle;
-}
-
-.listeCochable input
-{
-    margin:-2px 0;
 }

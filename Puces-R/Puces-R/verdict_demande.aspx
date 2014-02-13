@@ -1,4 +1,4 @@
-﻿﻿<%@ Page Title="Verdict de la dmande du vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verdict_demande.aspx.cs" Inherits="Puces_R.verdict_demande" EnableEventValidation="false" %>
+﻿<%@ Page Title="Verdict de la dmande du vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verdict_demande.aspx.cs" Inherits="Puces_R.verdict_demande" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">

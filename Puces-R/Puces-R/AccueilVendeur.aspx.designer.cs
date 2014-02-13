@@ -10,70 +10,52 @@
 namespace Puces_R {
     
     
-    public partial class ProfilVendeur {
+    public partial class AccueilVendeur {
         
         /// <summary>
-        /// Contrôle ctrProfil.
+        /// Contrôle nbVisite.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.ProfilVendeur ctrProfil;
+        protected global::System.Web.UI.WebControls.Label nbVisite;
         
         /// <summary>
-        /// Contrôle lblTaux.
+        /// Contrôle rptPaniers.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTaux;
+        protected global::System.Web.UI.WebControls.Repeater rptPaniers;
         
         /// <summary>
-        /// Contrôle lblMAJ.
+        /// Contrôle hplPanier.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMAJ;
+        protected global::System.Web.UI.WebControls.HyperLink hplPanier;
         
         /// <summary>
-        /// Contrôle btnSauvegarder.
+        /// Contrôle rptCommandes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSauvegarder;
+        protected global::System.Web.UI.WebControls.Repeater rptCommandes;
         
         /// <summary>
-        /// Contrôle hidColor.
+        /// Contrôle hplToutesCommandes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidColor;
-        
-        /// <summary>
-        /// Contrôle fileUploaderLogo.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUploaderLogo;
-        
-        /// <summary>
-        /// Contrôle btnPerso.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPerso;
+        protected global::System.Web.UI.WebControls.HyperLink hplToutesCommandes;
         
         /// <summary>
         /// Propriété Master.

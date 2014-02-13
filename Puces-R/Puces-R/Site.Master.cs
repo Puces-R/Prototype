@@ -38,55 +38,6 @@ namespace Puces_R
             }
         }
 
-        public Control Menu
-        {
-            get
-            {
-                if (menu.Controls.Count == 0)
-                {
-                    if (Session["Type"] != null)
-                    {
-                        Control c = null;
-                        hlDeconnexion.Visible = true;
-                        switch ((char)Session["Type"])
-                        {
-                            case 'C':
-                                c = LoadControl("~/Controles/MenuClient.ascx");
-                                break;
-                            case 'V':
-                                c = LoadControl("~/Controles/MenuVendeur.ascx");
-                                break;
-                            case 'G':
-                                c = LoadControl("~/Controles/MenuGestionnaire.ascx");
-                                break;
-                            default:
-                                throw new InvalidOperationException();
-                        }
-                        MenuItem mi = new MenuItem("Messages");
-                        mi.NavigateUrl = "~/BoiteMessage.aspx";
-                        SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
-                        cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
-
-                        myConnection.Open();
-                        int nbMessages = int.Parse(cmdNbMessages.ExecuteScalar().ToString());
-                        myConnection.Close();
-                        if (nbMessages > 0)
-                        {
-                            mi.Text += " (" + nbMessages + ")";
-                        }
-                        ((Menu)c.FindControl("ctrMenu")).Items.Add(mi);
-                        menu.Controls.Add(c);
-                    }
-                    else
-                    {
-                        menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
-                        hlDeconnexion.Visible = false;
-                    }
-                }
-                return menu.Controls[0];
-            }
-        }
-
         public long NoVendeur
         {
             set
@@ -104,7 +55,7 @@ namespace Puces_R
                     ((MenuClient)Menu).NoVendeur = value;
                 }
                 imgLogo.Visible = true;
-                
+
                 myConnection.Open();
                 SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
                 String nom = (String)commandXML.ExecuteScalar();
@@ -116,21 +67,21 @@ namespace Puces_R
                     String fichier = Librairie.lireXML(MapPath("~/XML/" + nom + ".xml"));
                     imgLogo.Visible = true;
                     Response.Write(fichier);
-                    String [] tab= fichier.Split('|');
+                    String[] tab = fichier.Split('|');
                     String couleur = tab[1];
 
                     //pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
                     divPage.BackColor = Color.FromArgb(127, ColorTranslator.FromHtml("#" + couleur));
-                    imgLogo.ImageUrl = "~/Images/Logo/"+tab[2];
+                    imgLogo.ImageUrl = "~/Images/Logo/" + tab[2];
                 }
-                else 
+                else
                 {
                     Response.Write("EXISTE PAS FICHIER");
                 }
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void loadMenu()
         {
             if (menu.Controls.Count == 0)
             {
@@ -138,6 +89,7 @@ namespace Puces_R
                 {
                     Control c = null;
                     hlDeconnexion.Visible = true;
+                    hlMessage.Visible = true;
                     switch ((char)Session["Type"])
                     {
                         case 'C':
@@ -152,8 +104,8 @@ namespace Puces_R
                         default:
                             throw new InvalidOperationException();
                     }
-                    MenuItem mi = new MenuItem("Messages");
-                    mi.NavigateUrl = "~/BoiteMessage.aspx";
+                    menu.Controls.Add(c);
+
                     SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
                     cmdNbMessages.Parameters.AddWithValue("@no", Session["ID"]);
 
@@ -162,18 +114,31 @@ namespace Puces_R
                     myConnection.Close();
                     if (nbMessages > 0)
                     {
-                        mi.Text += " (" + nbMessages + ")";
+                        hlMessage.Text += " (" + nbMessages + ")";
                     }
-                    ((Menu)c.FindControl("ctrMenu")).Items.Add(mi);
-                    menu.Controls.Add(c);
                 }
                 else
                 {
                     menu.Controls.Add(LoadControl("~/Controles/MenuInvite.ascx"));
                     hlDeconnexion.Visible = false;
+                    hlMessage.Visible = false;
                 }
             }
+        }
 
+        public Control Menu
+        {
+            get
+            {
+                loadMenu();
+                return menu.Controls[0];
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            loadMenu();
+            hypDevenirVendeur.NavigateUrl = Chemin.Ajouter(hypDevenirVendeur.NavigateUrl, "Retour à la page précédente");
             if (!IsPostBack)
             {
                 if (Session["Type"] != null)

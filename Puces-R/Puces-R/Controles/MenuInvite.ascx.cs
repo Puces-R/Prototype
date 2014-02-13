@@ -14,6 +14,10 @@ namespace Puces_R.Controles
         {
             String urlPage = Path.GetFileNameWithoutExtension(Request.Url.AbsoluteUri);
             SelectionnerCourant(ctrMenu.Items, urlPage);
+            foreach (MenuItem i in ctrMenu.FindItem("Inscription").ChildItems)
+            {
+                i.NavigateUrl = Chemin.Ajouter(i.NavigateUrl, "Retour à la page précédente");
+            }
         }
 
         private void SelectionnerCourant(MenuItemCollection items, String urlPage)

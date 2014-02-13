@@ -8,7 +8,7 @@
     <DynamicHoverStyle ForeColor="#6AC331" />
     <DynamicMenuStyle CssClass="popupMenu" />
     <Items>
-        <asp:MenuItem Text="Accueil" NavigateUrl="../AcceuilVendeur.aspx"/>
+        <asp:MenuItem Text="Accueil" NavigateUrl="../AccueilVendeur.aspx"/>
         <asp:MenuItem Text="Nettoyer les paniers" NavigateUrl="../GererPanierVendeur.aspx"/>
         <asp:MenuItem Text="Commandes" NavigateUrl="../GestionCommandesVendeur.aspx"/>
         <asp:MenuItem Text="Produits" NavigateUrl="../GestionProduits.aspx"/>

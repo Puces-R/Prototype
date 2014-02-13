@@ -44,18 +44,29 @@ namespace Puces_R
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
                 AjouterCategories(ddlCategorie, tableCategories);
-                ddlCategorie.Items.Add(new ListItem("Toutes", "-1"));
                 AjouterCategories(cblCategorie, tableCategories);
+                ddlCategorie.Items.Add(new ListItem("Toutes", "-1"));
+                ddlCategorie.SelectedValue = (Request.Params["nocategorie"] == null ? "-1" : Request.Params["nocategorie"]);
 
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPProduits P On V.NoVendeur = P.Novendeur WHERE Disponibilité = 1", myConnection);
                 DataTable tableVendeurs = new DataTable();
                 adapteurVendeurs.Fill(tableVendeurs);
                 AjouterVendeurs(ddlVendeur, tableVendeurs);
-                ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
                 AjouterVendeurs(cblVendeur, tableVendeurs);
+                ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
+                ddlVendeur.SelectedValue = (Request.Params["novendeur"] == null ? "-1" : Request.Params["novendeur"]);
 
                 Master.AfficherPremierePage();
             }
+
+            ctrScriptManager.RegisterAsyncPostBackControl(cblCategorie);
+            ctrScriptManager.RegisterAsyncPostBackControl(cblVendeur);
+            ctrScriptManager.RegisterAsyncPostBackControl(ddlTypeRecherche);
+            ctrScriptManager.RegisterAsyncPostBackControl(txtCritereRecherche);
+            ctrScriptManager.RegisterAsyncPostBackControl(ddlTrierPar);
+            ctrScriptManager.RegisterAsyncPostBackControl(ddlParPage);
+            ctrScriptManager.RegisterAsyncPostBackControl(txtAPartirDe);
+            ctrScriptManager.RegisterAsyncPostBackControl(txtJusquA);
         }
 
         private void AjouterCategories(ListControl controle, DataTable tableCategories)
@@ -64,7 +75,6 @@ namespace Puces_R
             controle.DataTextField = "Description";
             controle.DataValueField = "NoCategorie";
             controle.DataBind();
-            controle.SelectedValue = noCategories;
         }
 
         private void AjouterVendeurs(ListControl controle, DataTable tableVendeurs)
@@ -73,7 +83,6 @@ namespace Puces_R
             controle.DataTextField = "NomAffaires";
             controle.DataValueField = "NoVendeur";
             controle.DataBind();
-            controle.SelectedValue = noVendeurs;
         }
 
         protected void dtlProduits_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -155,13 +164,10 @@ namespace Puces_R
                 switch (ddlTypeRecherche.SelectedIndex)
                 {
                     case 0:
-                        colonne = "P.DateCreation";
+                        colonne = "P.Nom";
                         break;
                     case 1:
                         colonne = "P.NoProduit";
-                        break;
-                    case 2:
-                        colonne = "P.Description";
                         break;
                 }
                 whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
@@ -224,6 +230,25 @@ namespace Puces_R
             }
 
             whereParts.Add("P.Disponibilité = 1");
+
+            if (RechercheAvance)
+            {
+                if (txtAPartirDe.Text != string.Empty)
+                {
+                    if (txtJusquA.Text != string.Empty)
+                    {
+                        whereParts.Add("P.DateCreation BETWEEN '" + txtAPartirDe.Text + "' AND '" + txtJusquA.Text + "'");
+                    }
+                    else
+                    {
+                        whereParts.Add("P.DateCreation > '" + txtAPartirDe.Text + "'");
+                    }
+                }
+                else if (txtJusquA.Text != string.Empty)
+                {
+                    whereParts.Add("P.DateCreation < '" + txtJusquA.Text + "'");
+                }
+            }
 
             String whereClause;
             if (whereParts.Count > 0)
@@ -291,6 +316,7 @@ namespace Puces_R
 
             mvCategorie.ActiveViewIndex = RechercheAvance ? 1 : 0;
             mvVendeur.ActiveViewIndex = RechercheAvance ? 1 : 0;
+            pnlDeJusquA.Visible = RechercheAvance;
 
             Master.AfficherPremierePage();
         }

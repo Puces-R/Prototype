@@ -12,21 +12,8 @@ namespace Puces_R
     {
         SqlConnection connexion = Librairie.Connexion;
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         protected void inscription(object sender, EventArgs e)
         {
-            
-            tbNomAffaires.Text = tbNomAffaires.Text.Trim();
-            tbNom.Text = tbNom.Text.Trim();
-            tbPrenom.Text = tbPrenom.Text.Trim();
-            tbRue.Text = tbRue.Text.Trim();
-            tbVille.Text = tbVille.Text.Trim();
-            tbPays.Text = tbPays.Text.Trim();
-
             Page.Validate();
 
             if (Page.IsValid)
@@ -37,33 +24,28 @@ namespace Puces_R
                                                                                           "@tel2, @courriel, @mdp, @maxLivraison, @gratuite, @taxes, " +
                                                                                           "NULL, @config, @creation, NULL, @status)", connexion);
                 SqlCommand cmdVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = @no", connexion);
-                /* * * * * * * * * * * * * * * * * * * * * * * * * */
-                /* * * * * * * * * * * NOTES * * * * * * * * * * * */
-                /* * * * * * * * * * * * * * * * * * * * * * * * * */
-                /* Téléphone : Si juste ds tel2, mettre ds tel1 ?  */
-                /* Status : Libre ?                                */
 
                 
                 connexion.Open();
                 int noVendeur = int.Parse(cmdNoVendeur.ExecuteScalar().ToString());
                 cmdAjoutVendeur.Parameters.AddWithValue("@no", noVendeur);
-                cmdAjoutVendeur.Parameters.AddWithValue("@nomAffaire", tbNomAffaires.Text == string.Empty ? DBNull.Value : (object)tbNomAffaires.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@nom", tbNom.Text == string.Empty ? DBNull.Value : (object)tbNom.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@prenom", tbPrenom.Text == string.Empty ? DBNull.Value : (object)tbPrenom.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@rue", tbRue.Text == string.Empty ? DBNull.Value : (object)tbRue.Text);
+                cmdAjoutVendeur.Parameters.AddWithValue("@nomAffaire", ctrProfil.NomAffaires);
+                cmdAjoutVendeur.Parameters.AddWithValue("@nom", ctrProfil.Nom);
+                cmdAjoutVendeur.Parameters.AddWithValue("@prenom", ctrProfil.Prenom);
+                cmdAjoutVendeur.Parameters.AddWithValue("@rue", ctrProfil.Adresse);
 
-                cmdAjoutVendeur.Parameters.AddWithValue("@ville", tbVille.Text == string.Empty ? DBNull.Value : (object)tbVille.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@province", tbProvince.CodeProvince);
-                cmdAjoutVendeur.Parameters.AddWithValue("@codePostal", tbCodePostal.Code == null ? DBNull.Value : (object)tbCodePostal.Code);
-                cmdAjoutVendeur.Parameters.AddWithValue("@pays", tbPays.Text == string.Empty ? DBNull.Value : (object)tbPays.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@tel1", tbTel1.NoTelephone == string.Empty ? DBNull.Value : (object)tbTel1.NoTelephone);
+                cmdAjoutVendeur.Parameters.AddWithValue("@ville", ctrProfil.Ville);
+                cmdAjoutVendeur.Parameters.AddWithValue("@province", ctrProfil.Province);
+                cmdAjoutVendeur.Parameters.AddWithValue("@codePostal", ctrProfil.CodePostal);
+                cmdAjoutVendeur.Parameters.AddWithValue("@pays", ctrProfil.Pays);
+                cmdAjoutVendeur.Parameters.AddWithValue("@tel1", ctrProfil.Tel1);
 
-                cmdAjoutVendeur.Parameters.AddWithValue("@tel2", tbTel2.NoTelephone == string.Empty ? DBNull.Value : (object)tbTel2.NoTelephone);
+                cmdAjoutVendeur.Parameters.AddWithValue("@tel2", ctrProfil.Tel2 == string.Empty ? DBNull.Value : (object)ctrProfil.Tel2);
                 cmdAjoutVendeur.Parameters.AddWithValue("@courriel", tbIdentifiants.Adresse);
                 cmdAjoutVendeur.Parameters.AddWithValue("@mdp", tbIdentifiants.MotDePasse);
-                cmdAjoutVendeur.Parameters.AddWithValue("@maxLivraison", tbPoids.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@gratuite", tbPrixLivraison.Text);
-                cmdAjoutVendeur.Parameters.AddWithValue("@taxes", cbTaxes.Checked);
+                cmdAjoutVendeur.Parameters.AddWithValue("@maxLivraison", ctrProfil.PoidsMaximum);
+                cmdAjoutVendeur.Parameters.AddWithValue("@gratuite", ctrProfil.LivraisonGratuite);
+                cmdAjoutVendeur.Parameters.AddWithValue("@taxes", ctrProfil.Taxes);
 
                 cmdAjoutVendeur.Parameters.AddWithValue("@config", DBNull.Value); // Placeholder
                 cmdAjoutVendeur.Parameters.AddWithValue("@creation", DateTime.Now.Date);
@@ -71,9 +53,15 @@ namespace Puces_R
 
                 cmdAjoutVendeur.ExecuteNonQuery();
 
-                cmdVendeur.Parameters.AddWithValue("@no", noVendeur);
+                cmdVendeur.Parameters.AddWithValue("@no", noVendeur); // ??
 
                 connexion.Close();
+                string retourUrgence = "Default.aspx";
+                if ((char)Session["Type"] == 'C')
+                {
+                    retourUrgence = "AccueilClient.aspx";
+                }
+                Response.Redirect(Chemin.UrlRetour == null ? retourUrgence : Chemin.UrlRetour);
             }
         }
     }

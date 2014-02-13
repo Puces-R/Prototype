@@ -23,6 +23,7 @@
                         <div runat="server" ID="divMenu" class="droitePageMaitre">
                             <div class="bonjour">
                                 Bonjour <asp:Label runat="server" ID="lblBonjour" CssClass="nomUtilisateur" /> &nbsp;
+                                <asp:HyperLink runat="server" ID="hlMessage" NavigateUrl="~/BoiteMessage.aspx" Text="Messages" /> &nbsp;
                                 <asp:HyperLink runat="server" ID="hlDeconnexion" NavigateUrl="~/Default.aspx" Text="Se déconnecter" />
                             </div>
                             <div>

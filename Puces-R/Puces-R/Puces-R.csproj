@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AcceuilVendeur.aspx" />
+    <Content Include="AccueilVendeur.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -74,6 +74,7 @@
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\BoiteCommande.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
+    <Content Include="EnvoyerCourriel.aspx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
@@ -237,12 +238,12 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AcceuilVendeur.aspx.cs">
-      <DependentUpon>AcceuilVendeur.aspx</DependentUpon>
+    <Compile Include="AccueilVendeur.aspx.cs">
+      <DependentUpon>AccueilVendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AcceuilVendeur.aspx.designer.cs">
-      <DependentUpon>AcceuilVendeur.aspx</DependentUpon>
+    <Compile Include="AccueilVendeur.aspx.designer.cs">
+      <DependentUpon>AccueilVendeur.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -484,6 +485,13 @@
     </Compile>
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EnvoyerCourriel.aspx.cs">
+      <DependentUpon>EnvoyerCourriel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EnvoyerCourriel.aspx.designer.cs">
+      <DependentUpon>EnvoyerCourriel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Courriel.cs" />
     <Compile Include="Default.aspx.cs">

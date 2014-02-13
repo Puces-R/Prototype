@@ -10,123 +10,99 @@
 namespace Puces_R {
     
     
-    public partial class SiteMaster {
+    public partial class gerer_clients {
         
         /// <summary>
-        /// Contrôle HeadContent.
+        /// Contrôle txtCritereRecherche.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
         
         /// <summary>
-        /// Contrôle divPage.
+        /// Contrôle datepicker3.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel divPage;
+        protected global::System.Web.UI.WebControls.TextBox datepicker3;
         
         /// <summary>
-        /// Contrôle hypRetour.
+        /// Contrôle datepicker4.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypRetour;
+        protected global::System.Web.UI.WebControls.TextBox datepicker4;
         
         /// <summary>
-        /// Contrôle divMenu.
+        /// Contrôle ddlStatut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMenu;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatut;
         
         /// <summary>
-        /// Contrôle lblBonjour.
+        /// Contrôle ddlTrierPar.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBonjour;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
         
         /// <summary>
-        /// Contrôle hlMessage.
+        /// Contrôle ddlParPage.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlMessage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
         
         /// <summary>
-        /// Contrôle hlDeconnexion.
+        /// Contrôle ctrNavigation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlDeconnexion;
+        protected global::Puces_R.Controles.NavigationParPage ctrNavigation;
         
         /// <summary>
-        /// Contrôle menu.
+        /// Contrôle no_result.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder menu;
+        protected global::System.Web.UI.WebControls.Panel no_result;
         
         /// <summary>
-        /// Contrôle pnlTitre.
+        /// Contrôle rptVendeurs.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlTitre;
+        protected global::System.Web.UI.WebControls.Repeater rptVendeurs;
         
         /// <summary>
-        /// Contrôle imgLogo.
+        /// Propriété Master.
         /// </summary>
         /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// Propriété générée automatiquement.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgLogo;
-        
-        /// <summary>
-        /// Contrôle lblTitre.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitre;
-        
-        /// <summary>
-        /// Contrôle MainContent.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-        
-        /// <summary>
-        /// Contrôle hypDevenirVendeur.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypDevenirVendeur;
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

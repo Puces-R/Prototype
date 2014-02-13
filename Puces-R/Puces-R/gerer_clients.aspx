@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gérer les vendeurs" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="gerer_vendeurs.aspx.cs" Inherits="Puces_R.gerer_vendeurs" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gérer les clients" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="gerer_clients.aspx.cs" Inherits="Puces_R.gerer_clients" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="NavigationParPage" Src="~/Controles/NavigationParPage.ascx" %>
 
@@ -33,7 +33,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="div_englobant">
         <div class="panneau pnlGauche">
-            <h2>Rechercher un vendeur</h2>
+            <h2>Rechercher un client</h2>
             <div style="height:700px;">
                 <div>                    
                     <table>
@@ -42,12 +42,7 @@
                             <asp:textbox runat="server" id="txtCritereRecherche" /> &nbsp;
                              <br /><br />
                         </td></tr>
-
-                        <tr><th colspan="2">Catégories</th></tr>
-                        <tr><td colspan="2">
-                            <asp:DropDownList id="ddlCategorie" runat="server" AutoPostBack="true"></asp:DropDownList><br /><br />
-                        </td></tr>
-
+                                                
                         <tr><th colspan="2">Date d'inscription entre</th></tr>
                         <tr><td>Début:</td><td><asp:textbox runat="server" id="datepicker3" /></td></tr>
                         <tr><td>Fin:</td><td>
@@ -72,15 +67,13 @@
                                 <asp:ListItem Text="Tous" Value="-1" />
                                 <asp:ListItem Text="Actif" Value="0" />
                                 <asp:ListItem Text="Innactifs" Value="1" />
-                                <asp:ListItem Text="En attente d'approbation" Value="2" />
-                                <asp:ListItem Text="En retard de paiement" Value="3" />
                             </asp:DropDownList><br />
                         </td></tr>
 
                         <tr><th colspan="2"><br />Trier par:</th></tr>
                         <tr><td colspan="2">
                             <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
-                                <asp:ListItem Text="Nom d'affaires" />
+                                <asp:ListItem Text="Adresse courriel" />
                                 <asp:ListItem Text="Nom" />
                                 <asp:ListItem Text="Date de d'inscription" />
                             </asp:DropDownList><br /><br />
@@ -117,7 +110,7 @@
                 <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                     <tr class="rectangleItem hautRectangle" >
                         <th>#</th>
-                        <th>Nom d'affaires</th>
+                        <th>Adresse courriel</th>
                         <th>Nom complet</th>
                         <th></th>
                     </tr>
@@ -125,9 +118,9 @@
                         <ItemTemplate>                        
                             <tr class="rectangleItem basRectangle" >
                                 <td><asp:Label runat="server" ID="lbl_num" /></td>
-                                <td><asp:label runat="server" ID="lbl_nom_affaire" /></td>
+                                <td><asp:label runat="server" ID="adresse_courriel" /></td>
                                 <td><asp:label runat="server" ID="nom_complet" /></td>
-                                <td><asp:Button runat="server" ID="btn_gerer" Text="Gérer" OnCommand="selectionner_vendeur" CssClass="a_droite" ForeColor="Black" /></td>
+                                <td><asp:Button runat="server" ID="btn_gerer" Text="Gérer" OnCommand="selectionner_client" CssClass="a_droite" ForeColor="Black" /></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

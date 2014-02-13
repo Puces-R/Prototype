@@ -11,7 +11,7 @@ using System.Net;
 
 namespace Puces_R
 {
-    public partial class gerer_vendeurs : System.Web.UI.Page
+    public partial class gerer_clients : System.Web.UI.Page
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string whereClause, orderByClause = " ORDER BY ";
@@ -19,25 +19,8 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Master.Titre = "Gérer les vendeurs";
+            Master.Titre = "Gérer les clients";
             
-            if (!IsPostBack)
-            {
-                String whereClause = String.Empty;
-                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" , myConnection);
-                DataTable tableCategories = new DataTable();
-                adapteurCategories.Fill(tableCategories);
-
-                ddlCategorie.DataSource = tableCategories;
-                ddlCategorie.DataTextField = "Description";
-                ddlCategorie.DataValueField = "NoCategorie";
-                ddlCategorie.DataBind();
-                ListItem li = new ListItem("Toutes", "-1");
-                li.Selected = true;
-                ddlCategorie.Items.Add(li);
-                ddlCategorie.SelectedValue = noCategorie.ToString();
-            }
-
             List<String> whereParts = new List<String>();
 
             if (txtCritereRecherche.Text != string.Empty)
@@ -47,7 +30,6 @@ namespace Puces_R
                 foreach (string mot in mots)
                 {
                     whereParts.Add("Nom" + " LIKE '%" + mot + "%'");
-                    whereParts.Add("NomAffaires" + " LIKE '%" + mot + "%'");
                     whereParts.Add("Prenom" + " LIKE '%" + mot + "%'");
                     whereParts.Add("Nom" + " LIKE '%" + mot + "%'");
                     whereParts.Add("AdresseEmail" + " LIKE '%" + mot + "%'");
@@ -78,12 +60,9 @@ namespace Puces_R
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "V.NomAffaires";
-                    break;
-                case 1:
                     orderByClause += "V.Nom";
                     break;
-                case 2:
+                case 1:
                     orderByClause += "V.DateCreation";
                     break;
                 default:
@@ -110,10 +89,10 @@ namespace Puces_R
 
         private DataTable chargerResultats()
         {
-            string req = "SELECT * FROM PPVendeurs V " + whereClause;
+            string req = "SELECT * FROM PPClients V " + whereClause;
 
-            if ((ddlCategorie.SelectedValue != "-1") && (ddlCategorie.SelectedValue != ""))
-                req += (txtCritereRecherche.Text == string.Empty? " WHERE " : " AND ") + " V.NoVendeur IN (SELECT NoVendeur FROM PPProduits P, PPCategories C WHERE P.NoCategorie = C.NoCategorie AND C.NoCategorie = " + ddlCategorie.SelectedValue + " GROUP BY NoVendeur) ";
+            //if ((ddlCategorie.SelectedValue != "-1") && (ddlCategorie.SelectedValue != ""))
+            //    req += (txtCritereRecherche.Text == string.Empty? " WHERE " : " AND ") + " V.NoVendeur IN (SELECT NoVendeur FROM PPProduits P, PPCategories C WHERE P.NoCategorie = C.NoCategorie AND C.NoCategorie = " + ddlCategorie.SelectedValue + " GROUP BY NoVendeur) ";
 
             SqlDataAdapter adapteurResultats = new SqlDataAdapter(req + orderByClause, myConnection);
             DataTable tableResultats = new DataTable();
@@ -146,32 +125,25 @@ namespace Puces_R
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
                 Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
                 Label nom_complet = (Label)item.FindControl("nom_complet");
-                //Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
+                Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
                 //Label date_insc = (Label)item.FindControl("date_insc");
                 Button btn_gerer = (Button)item.FindControl("btn_gerer");
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
-                lbl_nom_affaire.Text = drvVendeurs["NomAffaires"].ToString();
                 nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
-                //adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
+                adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
                 //date_insc.Text = drvVendeurs["DateCreation"].ToString();
-                btn_gerer.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+                btn_gerer.CommandArgument = drvVendeurs["NoClient"].ToString();
             }
         }
 
-        protected void selectionner_vendeur(object sender, CommandEventArgs e)
+        protected void selectionner_client(object sender, CommandEventArgs e)
         {
-            Session["selected_vendeur"] = e.CommandArgument;
-            Response.Redirect("vendeur.aspx");
-        }
-
-        protected void rptVendeurs_ItemCommand(object sender, RepeaterCommandEventArgs e)
-        {
-
-        }               
+            Session["selected_client"] = e.CommandArgument;
+            Response.Redirect("client.aspx");
+        }     
     }
 }

@@ -63,12 +63,13 @@ namespace Puces_R
 
                 if (nom != "")
                 {
+                    LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
                     String fichier = Librairie.lireXML(MapPath("~/XML/" + nom + ".xml"));
                     imgLogo.Visible = true;
                     String[] tab = fichier.Split('|');
                     String couleur = tab[1];
 
-                    pnlTitre.BackColor = Color.FromArgb(63, ColorTranslator.FromHtml("#" + couleur));
+                    pnlTitre.BackColor = Color.FromArgb(63, ColorTranslator.FromHtml("#" + lecture.Couleur));//modifier couleur par attribut de la classe
                     pnlTitre.CssClass += " barreVendeur ";
                     imgLogo.ImageUrl = "~/Images/Logo/" + tab[2];
                 }

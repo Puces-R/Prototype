@@ -17,7 +17,7 @@ namespace Puces_R
             String fichier = Librairie.lireXML(HttpContext.Current.Server.MapPath("~/XML/" + noVendeur.ToString() + ".xml"));//regarder si cela nécessite un mapath
             String[] tab = fichier.Split('|');
             String couleur = tab[1];
-            nomLogo=tab[2];
+            NomLogo=tab[2];
             Couleur = couleur;
             Existe = tab[0];
         }

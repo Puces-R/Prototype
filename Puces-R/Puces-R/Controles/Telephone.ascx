@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Telephone.ascx.cs" Inherits="Puces_R.Telephone" %>
 <tr>
     <td>
-        <asp:Label runat="server" ID="lbl">Téléphone: </asp:Label>
+        <asp:Label runat="server" ID="lbl">Téléphone</asp:Label>
     </td>
     <td>
         (

@@ -196,9 +196,13 @@ namespace Puces_R
                 }
             }
 
-            Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
-
-            Response.Redirect("verdict_desactiver.aspx");
+            if (liste == "")
+                Session["err_msg"] = "Aucun vendeur selectionné";
+            else
+            {
+                Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
+                Response.Redirect("verdict_desactiver.aspx");
+            }
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)

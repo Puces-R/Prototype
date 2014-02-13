@@ -61,6 +61,13 @@ CREATE TABLE PPBoites (
 	"Description" varchar(20) NOT NULL
 )
 
+INSERT INTO PPBoites values (-2, 'Brouillon')
+INSERT INTO PPBoites values (-1, 'Envoyé')
+INSERT INTO PPBoites values (0, 'Supprimé')
+INSERT INTO PPBoites values (1, 'Boîte de réception')
+INSERT INTO PPBoites values (2, 'Archive')
+INSERT INTO PPBoites values (3, 'Corbeille')
+
 CREATE TABLE PPMessages (
 	NoMessage bigint PRIMARY KEY,
 	NoExpediteur bigint NOT NULL,
@@ -119,6 +126,6 @@ ALTER TABLE PPProduits ADD FOREIGN KEY(NoCategorie) REFERENCES PPCategories(NoCa
 ALTER TABLE PPVendeursClients ADD FOREIGN KEY(NoVendeur) REFERENCES PPVendeurs(NoVendeur)
 ALTER TABLE PPVendeursClients ADD FOREIGN KEY(NoClient) REFERENCES PPClients(NoClient)
 
-/* Ajout de vérification des données dans la BD
+/* Ajout de vérification des données dans la BD */
 
 -- À faire (Je suis paresseux)

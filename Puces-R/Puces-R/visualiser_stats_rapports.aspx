@@ -97,12 +97,9 @@
                     <div class="rectangleItem hautRectangle">Statistiques diverses sur les vendeurs</div>
                     <div class="rectangleItem basRectangle">
                         <table class="tableProduits" style="width:95%;">
-                            <colgroup>
-                                <col width="50%" />
-                                <col width="50%" />
-                            </colgroup>
-                            <tr><th>Nombre total de vendeurs :</th><td><asp:label runat="server" Text="" ID="lbl_total_vendeurs" /></td></tr>
-                            <tr><th colspan="2" align="center" >Répartition du nombre de vendeurs <br /><div id="chart_v0" style="width:100%;height:450px;display:inline-block;margin: 0 auto;"></div></th></tr>
+                            
+                            <tr><th colspan="2" align="center" >Nombre total de vendeurs :<asp:label runat="server" Text="" ID="lbl_total_vendeurs" /></th></tr>
+                            <tr><th colspan="2" align="center" >Répartition du nombre de vendeurs <br /><div id="chart_v0" style="width:100%;height:500px;display:inline-block;margin: 0 auto;"></div></th></tr>
                         </table>
                     </div>
                 </asp:View>

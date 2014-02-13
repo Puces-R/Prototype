@@ -20,3 +20,5 @@ DROP TABLE PPGestionnaires
 DROP TABLE PPMessages
 DROP TABLE PPClients
 DROP TABLE PPBoites
+DROP TABLE HistoCommandes
+DROP TABLE HistoDetailsCommandes

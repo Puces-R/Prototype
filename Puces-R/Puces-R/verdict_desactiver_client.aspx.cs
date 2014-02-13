@@ -167,7 +167,7 @@ namespace Puces_R
             SqlCommand commande_verifier_visite = new SqlCommand("SELECT NoClient FROM PPVendeursClients WHERE NoClient = " + client_a_desactiver, myConnection);
             object visite = commande_verifier_visite.ExecuteScalar();
 
-            if (visite != DBNull.Value)
+            if (visite == DBNull.Value)
             {
                 SqlCommand commande_effacer = new SqlCommand("DELETE FROM PPClients WHERE NoClient = " + client_a_desactiver, myConnection);
                 commande_effacer.ExecuteNonQuery();
@@ -183,8 +183,11 @@ namespace Puces_R
                     {
                         SqlCommand commande_existance_table = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoCommandes' and Xtype='T' ", myConnection, transaction);
                         SqlDataReader rd1 = commande_existance_table.ExecuteReader();
+                        bool rd1_read, rd2_read;
 
-                        if (!rd1.Read())
+                        rd1_read = !rd1.Read();
+                        rd1.Close();
+                        if (rd1_read)
                         {
                             SqlCommand commande_creer_table = new SqlCommand("SELECT * INTO HistoCommandes FROM PPCommandes WHERE 0 = 1 ", myConnection, transaction);
                             commande_creer_table.ExecuteNonQuery();
@@ -193,7 +196,9 @@ namespace Puces_R
                         SqlCommand commande_existance_table2 = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoDetailsCommandes' and Xtype='T' ", myConnection, transaction);
                         SqlDataReader rd2 = commande_existance_table2.ExecuteReader();
 
-                        if (!rd2.Read())
+                        rd2_read = !rd2.Read();
+                        rd2.Close();
+                        if (rd2_read)
                         {
                             SqlCommand commande_creer_table = new SqlCommand("SELECT * INTO HistoDetailsCommandes FROM PPDetailsCommandes WHERE 0 = 1 ", myConnection, transaction);
                             commande_creer_table.ExecuteNonQuery();
@@ -201,16 +206,20 @@ namespace Puces_R
 
                         SqlCommand commande_deplacer_details = new SqlCommand("INSERT INTO HistoDetailsCommandes SELECT * FROM PPDetailsCommandes WHERE NoCommande IN (SELECT NoCommande FROM PPCommandes WHERE NoClient = " + client_a_desactiver + " ) ", myConnection, transaction);
                         commande_deplacer_details.ExecuteNonQuery();
-                        SqlCommand commande_effacer_details = new SqlCommand("DELETE FROM PPDetailsCommandes WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
+                        SqlCommand commande_effacer_details = new SqlCommand("DELETE FROM PPDetailsCommandes WHERE NoCommande IN ( SELECT NoCommande FROM PPCommandes WHERE NoCLient = " + client_a_desactiver + " ) ", myConnection, transaction);
                         commande_effacer_details.ExecuteNonQuery();
 
                         SqlCommand commande_deplacer_commande = new SqlCommand("INSERT INTO HistoCommandes SELECT * FROM PPCommandes WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
                         commande_deplacer_commande.ExecuteNonQuery();
+                        SqlCommand commande_effacer_historique_paiements = new SqlCommand("DELETE FROM PPHistoriquePaiements WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
+                        commande_effacer_historique_paiements.ExecuteNonQuery();
                         SqlCommand commande_effacer_commande = new SqlCommand("DELETE FROM PPCommandes WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
                         commande_effacer_commande.ExecuteNonQuery();
 
+                        SqlCommand commande_effacer_paniers = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
+                        commande_effacer_paniers.ExecuteNonQuery();
+
                         transaction.Commit();
-                        Session["msg"] = "Le client " + titre_demande.Text + " a bien été désactivé.";
                     }
                     catch (SqlException ex)
                     {

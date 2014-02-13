@@ -33,8 +33,7 @@ namespace Puces_R
             set
             {
                 lblTitre.Text = value;
-                pnlTitre.Visible = true;
-
+                pnlTitreAvecLigne.Visible = true;
             }
         }
 
@@ -66,17 +65,12 @@ namespace Puces_R
                 {
                     String fichier = Librairie.lireXML(MapPath("~/XML/" + nom + ".xml"));
                     imgLogo.Visible = true;
-                    Response.Write(fichier);
                     String[] tab = fichier.Split('|');
                     String couleur = tab[1];
 
-                    //pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
-                    divPage.BackColor = Color.FromArgb(127, ColorTranslator.FromHtml("#" + couleur));
+                    pnlTitre.BackColor = Color.FromArgb(63, ColorTranslator.FromHtml("#" + couleur));
+                    pnlTitre.CssClass += " barreVendeur ";
                     imgLogo.ImageUrl = "~/Images/Logo/" + tab[2];
-                }
-                else
-                {
-                    Response.Write("EXISTE PAS FICHIER");
                 }
             }
         }

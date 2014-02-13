@@ -54,7 +54,7 @@ namespace Puces_R
             {
                 if (Request.Params["texteretour"] != null)
                 {
-                    return (String)Request.Params["texteretour"];
+                    return Decoder((String)Request.Params["texteretour"]);
                 }
                 else
                 {
@@ -106,7 +106,7 @@ namespace Puces_R
                 adresse += "?";
             }
             adresse += "cheminretour=" + Encoder(parametre);
-            adresse += "&texteretour=" + texteRetour;
+            adresse += "&texteretour=" + Encoder(texteRetour);
             return adresse;
         }
 

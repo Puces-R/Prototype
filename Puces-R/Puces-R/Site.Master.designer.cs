@@ -85,6 +85,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.PlaceHolder menu;
         
         /// <summary>
+        /// Contrôle pnlTitreAvecLigne.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTitreAvecLigne;
+        
+        /// <summary>
         /// Contrôle pnlTitre.
         /// </summary>
         /// <remarks>

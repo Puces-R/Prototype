@@ -10,7 +10,7 @@
     </head>
     <body>
         <form runat="server">
-            <div class="page">
+            <asp:Panel ID="divPage" CssClass="page" runat="server">
                 <div>
                     <div class="lignePointilleHorizontale pleineLargeur header noPrint">
                         <img src="Images/logo.png" alt="Logo" class="logo"/>
@@ -32,6 +32,7 @@
                         </div>
                     </div>
                     <asp:Panel runat="server" ID="pnlTitre" CssClass="lignePointilleHorizontale pleineLargeur barreVendeur" Visible="false">
+                        <asp:Image ID="imgLogo" runat="server"  ImageUrl="Images/logo.png" Visible="false" CssClass="logoVendeur"/>
                         <asp:Label runat="server" ID="lblTitre" />
                     </asp:Panel>
                     <div class="lignePointilleHorizontale pleineLargeur main">
@@ -42,7 +43,7 @@
                         © 2014 Cégep Gérald Godin
                     </div>
                 </div>
-            </div>
+            </asp:Panel>
         </form>
     </body>
 </html>

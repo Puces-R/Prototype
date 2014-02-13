@@ -25,7 +25,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="false" />
+                        <yc:MotDePasse runat="server" ID="tbMotPasse" Obligatoire="false" Longueur="false" />
                     </tr>
                 </table>
                 <div>

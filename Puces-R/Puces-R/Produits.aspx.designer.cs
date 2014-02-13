@@ -175,24 +175,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Button btnRechercheAvance;
         
         /// <summary>
-        /// Contrôle ctrScriptManager.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ctrScriptManager;
-        
-        /// <summary>
-        /// Contrôle udpProduits.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpProduits;
-        
-        /// <summary>
         /// Contrôle mvProduits.
         /// </summary>
         /// <remarks>

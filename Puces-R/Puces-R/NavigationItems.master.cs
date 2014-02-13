@@ -12,6 +12,14 @@ namespace Puces_R
     {
         public event EventHandler ChargerItems;
 
+        public ScriptManager ScriptManager
+        {
+            get
+            {
+                return ctrScriptManager;
+            }
+        }
+
         public bool CriteresVisibles
         {
             set

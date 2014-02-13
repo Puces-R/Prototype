@@ -59,14 +59,14 @@ namespace Puces_R
                 Master.AfficherPremierePage();
             }
 
-            ctrScriptManager.RegisterAsyncPostBackControl(cblCategorie);
-            ctrScriptManager.RegisterAsyncPostBackControl(cblVendeur);
-            ctrScriptManager.RegisterAsyncPostBackControl(ddlTypeRecherche);
-            ctrScriptManager.RegisterAsyncPostBackControl(txtCritereRecherche);
-            ctrScriptManager.RegisterAsyncPostBackControl(ddlTrierPar);
-            ctrScriptManager.RegisterAsyncPostBackControl(ddlParPage);
-            ctrScriptManager.RegisterAsyncPostBackControl(txtAPartirDe);
-            ctrScriptManager.RegisterAsyncPostBackControl(txtJusquA);
+            Master.ScriptManager.RegisterAsyncPostBackControl(cblCategorie);
+            Master.ScriptManager.RegisterAsyncPostBackControl(cblVendeur);
+            Master.ScriptManager.RegisterAsyncPostBackControl(ddlTypeRecherche);
+            Master.ScriptManager.RegisterAsyncPostBackControl(txtCritereRecherche);
+            Master.ScriptManager.RegisterAsyncPostBackControl(ddlTrierPar);
+            Master.ScriptManager.RegisterAsyncPostBackControl(ddlParPage);
+            Master.ScriptManager.RegisterAsyncPostBackControl(txtAPartirDe);
+            Master.ScriptManager.RegisterAsyncPostBackControl(txtJusquA);
         }
 
         private void AjouterCategories(ListControl controle, DataTable tableCategories)
@@ -91,61 +91,12 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                HyperLink hypDescriptionAbregee = (HyperLink)item.FindControl("hypDescriptionAbregee");
-                Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                System.Web.UI.WebControls.Image imgProduit = (System.Web.UI.WebControls.Image)item.FindControl("imgProduit");
-                Label lblCategorie = (Label)item.FindControl("lblCategorie");
-                Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
-                Label lblQuantite = (Label)item.FindControl("lblQuantite");
-                Label lblEvaluation = (Label)item.FindControl("lblEvaluation");
-
+                BoiteProduit ctrProduit = (BoiteProduit)item.FindControl("ctrProduit");
+                
                 DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                long noProduit = (long)drvProduit["NoProduit"];
-
-                Object photo = drvProduit["Photo"];
-                String urlImage;
-                if (photo is DBNull)
-                {
-                    urlImage = "Images/image_non_disponible.png";
-                }
-                else
-                {
-                    urlImage = "Images/Televerse/" + (String)photo;
-                }
-                String strCategorie = (String)drvProduit["Description"];
-                String strDescriptionAbregee = (String)drvProduit["Nom"];
-                decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
-                short intQuantite = (short)drvProduit["NombreItems"];
-
-                if (drvProduit["Evaluation"] is DBNull)
-                {
-                    lblEvaluation.Text = "Aucune évaluation";
-                }
-                else
-                {
-                    decimal evaluation = (decimal)drvProduit["Evaluation"];
-                    lblEvaluation.Text = "Cote moyenne: " + evaluation.ToString("N1") + " / 5";
-                }
-
-                int noSequentiel = Master.PageActuelle * int.Parse(ddlParPage.SelectedValue) + item.ItemIndex + 1;
-
-                lblNoProduit.Text = "No. " + noProduit.ToString();
-                imgProduit.ImageUrl = urlImage;
-                hypDescriptionAbregee.Text = noSequentiel + ". " + strDescriptionAbregee;
-                hypDescriptionAbregee.NavigateUrl = Chemin.Ajouter("DetailsProduit.aspx?noproduit=" + noProduit, "Retour aux produits");
-                lblCategorie.Text = strCategorie;
-                lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
-                if (intQuantite > 0)
-                {
-                    lblQuantite.Text = "Quantité: " + intQuantite.ToString();
-                }
-                else
-                {
-                    lblQuantite.Text = "En rupture de stock";
-                    lblQuantite.ForeColor = Color.Red;
-                    hypDescriptionAbregee.Enabled = false;
-                }
+                ctrProduit.NoProduit = (long)drvProduit["NoProduit"];
+                ctrProduit.NoSequentiel = Master.PageActuelle * int.Parse(ddlParPage.SelectedValue) + item.ItemIndex + 1;
             }
         }
 
@@ -277,7 +228,7 @@ namespace Puces_R
                     break;
             }
             
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, C.Description, P.Nom, P.PrixDemande, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

@@ -42,8 +42,8 @@ body
 .logoVendeur
 {
    vertical-align:middle;
-   max-width:100px; 
-   max-height:50px;
+   max-width:150px; 
+   max-height:75px;
 }
 
 .droitePageMaitre
@@ -323,6 +323,7 @@ body
     position:relative;
     width:100%;
     text-align:center !important;
+    z-index:-1;
 }
 
 .navigation input

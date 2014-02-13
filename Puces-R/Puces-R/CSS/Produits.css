@@ -66,9 +66,9 @@
     font-size: x-small;
     width:200px;
     transition:max-height 0.5s linear 0.5s;
-    overflow: auto;
+    overflow:auto;
     position:absolute;
-    background-color:white
+    background-color:White;
 }
 
 .listeCochable > div:hover

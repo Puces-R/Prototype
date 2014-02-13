@@ -69,7 +69,7 @@ namespace Puces_R
                     String[] tab = fichier.Split('|');
                     String couleur = tab[1];
 
-                    pnlTitre.BackColor = Color.FromArgb(63, ColorTranslator.FromHtml("#" + lecture.Couleur));//modifier couleur par attribut de la classe
+                    pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
                     pnlTitre.CssClass += " barreVendeur ";
                     imgLogo.ImageUrl = "~/Images/Logo/" + tab[2];
                 }

@@ -7,93 +7,72 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class NavigationItems {
+    public partial class BoiteProduit {
         
         /// <summary>
-        /// Contrôle HeadContent.
+        /// Contrôle hypDescriptionAbregee.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.WebControls.HyperLink hypDescriptionAbregee;
         
         /// <summary>
-        /// Contrôle pnlBarreCritere.
+        /// Contrôle imgProduit.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBarreCritere;
+        protected global::System.Web.UI.WebControls.Image imgProduit;
         
         /// <summary>
-        /// Contrôle BarreCriteres.
+        /// Contrôle lblNoProduit.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BarreCriteres;
+        protected global::System.Web.UI.WebControls.Label lblNoProduit;
         
         /// <summary>
-        /// Contrôle ctrScriptManager.
+        /// Contrôle lblCategorie.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ctrScriptManager;
+        protected global::System.Web.UI.WebControls.Label lblCategorie;
         
         /// <summary>
-        /// Contrôle udpProduits.
+        /// Contrôle lblPrixDemande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpProduits;
+        protected global::System.Web.UI.WebControls.Label lblPrixDemande;
         
         /// <summary>
-        /// Contrôle ctrNavigationHaut.
+        /// Contrôle lblEvaluation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.NavigationParPage ctrNavigationHaut;
+        protected global::System.Web.UI.WebControls.Label lblEvaluation;
         
         /// <summary>
-        /// Contrôle Items.
+        /// Contrôle lblQuantite.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Items;
-        
-        /// <summary>
-        /// Contrôle ctrNavigationBas.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::Puces_R.Controles.NavigationParPage ctrNavigationBas;
-        
-        /// <summary>
-        /// Propriété Master.
-        /// </summary>
-        /// <remarks>
-        /// Propriété générée automatiquement.
-        /// </remarks>
-        public new Puces_R.SiteMaster Master {
-            get {
-                return ((Puces_R.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Label lblQuantite;
     }
 }

@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NouveauxProduits.aspx.cs" Inherits="Puces_R.Controles.NouveauxProduits" MasterPageFile="~/Site.Master" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
+<%@ Register TagPrefix="lp" TagName="BoiteProduit" Src="~/Controles/BoiteProduit.ascx" %>
+
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/Produits.css" rel="stylesheet" type="text/css" />
 </asp:Content>
@@ -9,24 +11,7 @@
     <div class="lignePointilleHorizontale pleineLargeur">
         <asp:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound" >
             <ItemTemplate>
-                <div class="rectangleProduits rectangleComplet rectangleItem">
-                    <div class="titreRectangle">
-                        <div>
-                            <asp:HyperLink runat="server" ID="hypDescriptionAbregee" />
-                        </div>
-                    </div>
-                    <div class="boiteImageProduit">
-                        <div>
-                            <asp:Image runat="server" ID="imgProduit" />
-                        </div>
-                    </div>
-                    <div class="detailsProduit">
-                        <asp:Label runat="server" ID="lblNoProduit" />
-                        <asp:Label runat="server" ID="lblCategorie" />
-                        <asp:Label runat="server" ID="lblPrixDemande" />
-                        <asp:Label runat="server" ID="lblQuantite" />
-                    </div>
-                </div>
+                <lp:BoiteProduit runat="server" ID="ctrProduit" />
             </ItemTemplate>
         </asp:DataList>
     </div>

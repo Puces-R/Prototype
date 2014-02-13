@@ -33,7 +33,45 @@ namespace Puces_R
             set
             {
                 lblTitre.Text = value;
-                pnlTitre.Visible = true;
+                pnlTitreAvecLigne.Visible = true;
+            }
+        }
+
+        public long NoVendeur
+        {
+            set
+            {
+                SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
+                SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
+
+                myConnection.Open();
+                Titre = (String)commandVendeur.ExecuteScalar();
+                myConnection.Close();
+
+                if (Menu is MenuClient)
+                {
+                    ((MenuClient)Menu).NoVendeur = value;
+                }
+                imgLogo.Visible = true;
+
+                myConnection.Open();
+                SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
+                String nom = (String)commandXML.ExecuteScalar();
+
+                myConnection.Close();
+
+                if (nom != "")
+                {
+                    String fichier = Librairie.lireXML(MapPath("~/XML/" + nom + ".xml"));
+                    imgLogo.Visible = true;
+                    String[] tab = fichier.Split('|');
+                    String couleur = tab[1];
+
+                    pnlTitre.BackColor = Color.FromArgb(63, ColorTranslator.FromHtml("#" + couleur));
+                    pnlTitre.CssClass += " barreVendeur ";
+                    imgLogo.ImageUrl = "~/Images/Logo/" + tab[2];
+                }
             }
         }
 
@@ -90,25 +128,6 @@ namespace Puces_R
             {
                 loadMenu();
                 return menu.Controls[0];
-            }
-        }
-
-        public long NoVendeur
-        {
-            set
-            {
-                SqlConnection myConnection = Librairie.Connexion;
-
-                SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
-
-                myConnection.Open();
-                Titre = (String)commandVendeur.ExecuteScalar();
-                myConnection.Close();
-
-                if (Menu is MenuClient)
-                {
-                    ((MenuClient)Menu).NoVendeur = value;
-                }
             }
         }
 

@@ -10,7 +10,7 @@
     </head>
     <body>
         <form runat="server">
-            <div class="page">
+            <asp:Panel ID="divPage" CssClass="page" runat="server">
                 <div>
                     <div class="lignePointilleHorizontale pleineLargeur header noPrint">
                         <img src="Images/logo.png" alt="Logo" class="logo"/>
@@ -31,18 +31,22 @@
                             </div>
                         </div>
                     </div>
-                    <asp:Panel runat="server" ID="pnlTitre" CssClass="lignePointilleHorizontale pleineLargeur barreVendeur" Visible="false">
-                        <asp:Label runat="server" ID="lblTitre" />
+                    <asp:Panel runat="server" ID="pnlTitreAvecLigne" CssClass="pleineLargeur" Visible="false">
+                        <asp:Panel runat="server" ID="pnlTitre" CssClass="barreTitre pleineLargeur">
+                            <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
+                            <asp:Label runat="server" ID="lblTitre" />
+                        </asp:Panel>
+                        <div class="lignePointilleHorizontale pleineLargeur" />
                     </asp:Panel>
-                    <div class="lignePointilleHorizontale pleineLargeur main">
+                    <asp:Panel CssClass="lignePointilleHorizontale pleineLargeur main" runat="server">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
-                    </div>
+                    </asp:Panel>
                     <div class="footer">
                         <asp:HyperLink runat="server" ID="hypDevenirVendeur" Text="Ouvrir votre propre magasin..." NavigateUrl="InscriptionVendeur.aspx" Font-Size="Small" CssClass="noPrint" />
                         © 2014 Cégep Gérald Godin
                     </div>
                 </div>
-            </div>
+            </asp:Panel>
         </form>
     </body>
 </html>

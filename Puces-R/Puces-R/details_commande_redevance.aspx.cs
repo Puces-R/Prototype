@@ -36,7 +36,7 @@ namespace Puces_R
             myConnection.Open();
             string req = "";
 
-            req += " SELECT NoCommande, PPClients.Nom, PPClients.Prenom, MontantVente, Redevance, FraisTPS, FraisTVQ, FraisLivraison, NoAutorisation, FraisLesi ";
+            req += " SELECT NomAffaires, NoCommande, PPClients.Nom, PPClients.Prenom, MontantVente, Redevance, FraisTPS, FraisTVQ, FraisLivraison, NoAutorisation, FraisLesi ";
             req += " FROM PPClients, PPVendeurs, PPHistoriquePaiements ";
             req += " WHERE PPClients.NoClient = PPHistoriquePaiements.NoClient ";
             req += " AND PPVendeurs.NoVendeur = PPHistoriquePaiements.NoVendeur ";
@@ -54,7 +54,7 @@ namespace Puces_R
                 lbl_montant_vente.Text = results["MontantVente"].ToString();
                 lbl_redevance.Text = results["Redevance"].ToString() + "lb";
                 lbl_tps.Text = results["FraisTPS"].ToString();
-                lbl_tvq.Text = results["FraisTPQ"].ToString();
+                lbl_tvq.Text = results["FraisTVQ"].ToString();
                 lbl_frais_livraison.Text = results["FraisLivraison"].ToString();
                 lbl_num_autorisation.Text = results["NoAutorisation"].ToString();
                 lbl_frais_lesi.Text = results["FraisLesi"].ToString();

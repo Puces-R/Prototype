@@ -318,6 +318,8 @@ namespace Puces_R
             mvVendeur.ActiveViewIndex = RechercheAvance ? 1 : 0;
             pnlDeJusquA.Visible = RechercheAvance;
 
+            btnRechercheAvance.Text = RechercheAvance ? "▲" : "▼";
+
             Master.AfficherPremierePage();
         }
     }

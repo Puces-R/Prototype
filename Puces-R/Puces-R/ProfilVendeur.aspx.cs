@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Xml;
 using System.Data.SqlClient;
 
 namespace Puces_R
@@ -15,19 +16,19 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ID"] == null)
+            {
+                Response.Redirect("Default.aspx", true);
+            }
+
             if (!IsPostBack)
             {
-                if (Session["ID"] == null)
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
+                lireXML();
 
-                String whereClause = " WHERE NoVendeur = " + Session["ID"];
-
-                SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPVendeurs" + whereClause, myConnection);
+                SqlCommand commandeClient = new SqlCommand("SELECT NomAffaires, Prenom, Nom, Rue, Ville, Province, Pays, CodePostal, Tel1, Tel2, MaxLivraison, LivraisonGratuite, DateMAJ, Pourcentage, Taxes FROM PPVendeurs WHERE NoVendeur = @no", myConnection);
+                commandeClient.Parameters.AddWithValue("@no", Session["ID"]);
 
                 myConnection.Open();
-
                 SqlDataReader lecteurClient = commandeClient.ExecuteReader();
                 lecteurClient.Read();
 
@@ -46,24 +47,82 @@ namespace Puces_R
                 lblMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Jamais" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]);
                 lblTaux.Text = Convert.ToString((Decimal)lecteurClient["Pourcentage"] * 100) + " %";
                 ctrProfil.Taxes = (Boolean)lecteurClient["Taxes"];
-                /*
-                this.ctrTelephone.NoTelephone = (String)lecteurClient["Tel1"]; 
-
-                Object noCellulaire = lecteurClient["Tel2"];
-                if (!(noCellulaire is DBNull))
-                {
-                    this.ctrCellulaire.NoTelephone = (String)noCellulaire;
-                }
-                */
-                myConnection.Close();
             }
 
-            //Response.Write("salut");
-            Session["couleur"] = "0020A3";
-            string str = "<script type=\"text/javascript\">$(" + "'#jqxColorPicker" + "').jqxColorPicker('setColor', '#0020A3');</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", str);
-
             // ScriptManager.RegisterStartupScript(this, this.GetType(), "Javascript", "DefinirCouleur('0020A3');", true);
+        }
+
+
+
+        protected void lireXML()
+        {
+
+            if (File.Exists(MapPath("XML/" + Session["ID"].ToString() + ".xml")))
+            {
+                XmlTextReader xmlEnLecture = new XmlTextReader(MapPath("XML/" + Session["ID"].ToString() + ".xml"));
+                xmlEnLecture.WhitespaceHandling = WhitespaceHandling.None;
+                String nomLogo = "";
+                String noCouleur = "";
+
+                while (xmlEnLecture.Read())
+                {
+                    switch (xmlEnLecture.NodeType)
+                    {
+
+                        case XmlNodeType.Element:
+
+                            String nom = xmlEnLecture.Name;
+                            switch (nom)
+                            {
+                                case "couleur":
+                                    if (xmlEnLecture.HasAttributes)
+                                    {
+                                        xmlEnLecture.MoveToFirstAttribute();
+                                        do
+                                        {
+                                            switch (xmlEnLecture.Name)
+                                            {
+                                                case "Valeur": noCouleur = xmlEnLecture.Value; break;
+
+                                            }
+                                        }
+                                        while (xmlEnLecture.MoveToNextAttribute());
+                                    }
+                                    break;
+
+                                case "logo":
+                                    if (xmlEnLecture.HasAttributes)
+                                    {
+                                        xmlEnLecture.MoveToFirstAttribute();
+                                        do
+                                        {
+                                            switch (xmlEnLecture.Name)
+                                            {
+
+                                                case "ImageURL": nomLogo = xmlEnLecture.Value; ; break;
+                                            }
+                                        }
+                                        while (xmlEnLecture.MoveToNextAttribute());
+                                    }
+                                    break;
+
+
+
+                            }
+                            break;
+
+                    }
+                }
+                xmlEnLecture.Close();
+
+
+                hidColor.Value = noCouleur;
+
+            }
+            else
+            {
+                Response.Write("File existse pas");
+            }
         }
 
         protected void sauverFavori(object sender, EventArgs e)
@@ -97,6 +156,7 @@ namespace Puces_R
             }
 
             ecrireFichierXML(hidColor.Value, image);
+            Response.Redirect("AcceuilVendeur.aspx");
         }
 
         protected void ecrireFichierXML(String value, String image)
@@ -121,9 +181,11 @@ namespace Puces_R
  <college>
    <departement no="101" nom="Biologie">*/
 
-            fEcrit.WriteLine(" <?xml version=\"" + "1.0" + "\" encoding=\"" + "utf-8" + "\"?>");
+            fEcrit.WriteLine("<?xml version=\"" + "1.0" + "\" encoding=\"" + "utf-8" + "\"?>");
+            fEcrit.WriteLine("<Configuration>");
             fEcrit.WriteLine("<couleur Valeur=\"" + value + "\"> </couleur>");
             fEcrit.WriteLine("<logo ImageURL=\"" + image + "\"> </logo>");
+            fEcrit.WriteLine("</Configuration>");
             fEcrit.Close();
 
         }

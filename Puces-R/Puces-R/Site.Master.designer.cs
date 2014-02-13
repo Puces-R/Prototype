@@ -22,6 +22,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
+        /// Contrôle divPage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divPage;
+        
+        /// <summary>
         /// Contrôle hypRetour.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.PlaceHolder menu;
         
         /// <summary>
+        /// Contrôle pnlTitreAvecLigne.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTitreAvecLigne;
+        
+        /// <summary>
         /// Contrôle pnlTitre.
         /// </summary>
         /// <remarks>
@@ -83,6 +101,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlTitre;
+        
+        /// <summary>
+        /// Contrôle imgLogo.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgLogo;
         
         /// <summary>
         /// Contrôle lblTitre.

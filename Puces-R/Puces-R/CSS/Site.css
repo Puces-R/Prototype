@@ -39,6 +39,13 @@ body
     font-size: xx-large;
 }
 
+.logoVendeur
+{
+   vertical-align:middle;
+   max-width:100px; 
+   max-height:50px;
+}
+
 .droitePageMaitre
 {
     float: right;
@@ -81,11 +88,18 @@ body
     margin: 0 auto;
 }
 
-.barreVendeur
+.barreTitre
 {
     font-size:x-large;
     font-weight:bold;
-    text-align:center;
+    text-align:center; 
+}
+
+.barreVendeur
+{
+    border: 1px solid #555555;
+    border-radius: 10px;
+    padding:10px;
 }
 
 .footer
@@ -273,7 +287,6 @@ body
 
 .barreListesDeroulantes
 {
-    margin-top:5px;
     text-align:center;
 }
 

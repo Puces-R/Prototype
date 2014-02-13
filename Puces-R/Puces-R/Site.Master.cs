@@ -34,6 +34,7 @@ namespace Puces_R
             {
                 lblTitre.Text = value;
                 pnlTitre.Visible = true;
+
             }
         }
 
@@ -101,6 +102,30 @@ namespace Puces_R
                 if (Menu is MenuClient)
                 {
                     ((MenuClient)Menu).NoVendeur = value;
+                }
+                imgLogo.Visible = true;
+                
+                myConnection.Open();
+                SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
+                String nom = (String)commandXML.ExecuteScalar();
+
+                myConnection.Close();
+
+                if (nom != "")
+                {
+                    String fichier = Librairie.lireXML(MapPath("~/XML/" + nom + ".xml"));
+                    imgLogo.Visible = true;
+                    Response.Write(fichier);
+                    String [] tab= fichier.Split('|');
+                    String couleur = tab[1];
+
+                    //pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
+                    divPage.BackColor = Color.FromArgb(127, ColorTranslator.FromHtml("#" + couleur));
+                    imgLogo.ImageUrl = "~/Images/Logo/"+tab[2];
+                }
+                else 
+                {
+                    Response.Write("EXISTE PAS FICHIER");
                 }
             }
         }

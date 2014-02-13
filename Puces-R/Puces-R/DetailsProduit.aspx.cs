@@ -90,9 +90,9 @@ namespace Puces_R
 
                 this.lblQuantiteDisponible.Text = lecteurProduit["NombreItems"].ToString();
                 this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
-                Master.Titre = (String)lecteurProduit["NomAffaires"];
 
                 this.NoVendeur = (long)lecteurProduit["NoVendeur"];
+                Master.NoVendeur = this.NoVendeur;
 
                 object dateMAJ = lecteurProduit["DateMAJ"];
                 if (dateMAJ is DBNull)

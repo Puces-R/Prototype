@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="./ScriptsColorPicker/styles/jqx.base.css" type="text/css" />
     <script type="text/javascript">
         $(document).ready(function () {
-            // Create jqxColorPicker.
-            $("#jqxColorPicker").jqxColorPicker({ width: 350, height: 350 });
-            $("#jqxColorPicker").jqxColorPicker('setColor', '#0020A5');
+            // Create jqxColorPicker. //couleur
+            $("#jqxColorPicker").jqxColorPicker({ width: 200, height: 200 });
+            $("#jqxColorPicker").jqxColorPicker('setColor', '#' + document.getElementById('<%=hidColor.ClientID%>').value);
         });
     </script>
 

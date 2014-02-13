@@ -107,7 +107,7 @@ namespace Puces_R
         {
             string req = "";
 
-            req += " SELECT PPClients.Nom, PPClients.Prenom, PPHistoriquePaiements.NoHistorique, PPHistoriquePaiements.Redevance, PPHistoriquePaiements.DateVente ";
+            req += " SELECT NoCommande, PPClients.Nom, PPClients.Prenom, PPHistoriquePaiements.NoHistorique, PPHistoriquePaiements.Redevance, PPHistoriquePaiements.DateVente ";
             req += " FROM PPHistoriquePaiements, PPClients ";
             req += " WHERE PPHistoriquePaiements.NoVendeur = " + no_vendeur;
             req += " AND YEAR(PPHistoriquePaiements.DateVente) = YEAR('" + mois + "') ";

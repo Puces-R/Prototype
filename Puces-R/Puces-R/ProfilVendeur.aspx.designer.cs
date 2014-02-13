@@ -13,20 +13,40 @@ namespace Puces_R {
     public partial class ProfilVendeur {
         
         /// <summary>
-        /// Contrôle ProfilClient1.
+        /// Contrôle ctrProfil.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.ProfilVendeur ProfilClient1;
+        protected global::Puces_R.Controles.ProfilVendeur ctrProfil;
         
         /// <summary>
-        /// Propriété Master.
+        /// Contrôle lblTaux.
         /// </summary>
         /// <remarks>
-        /// Propriété générée automatiquement.
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTaux;
+        
+        /// <summary>
+        /// Contrôle lblMAJ.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMAJ;
+        
+        /// <summary>
+        /// Contrôle btnSauvegarder.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSauvegarder;
         
         /// <summary>
         /// Contrôle hidColor.
@@ -54,7 +74,13 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPerso;
-
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
         public new Puces_R.SiteMaster Master {
             get {
                 return ((Puces_R.SiteMaster)(base.Master));

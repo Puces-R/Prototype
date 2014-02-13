@@ -9,6 +9,7 @@ namespace Puces_R
 {
     public partial class DoubleMdp : System.Web.UI.UserControl
     {
+
         public string MotDePasse
         {
             get

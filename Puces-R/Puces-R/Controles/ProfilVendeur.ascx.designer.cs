@@ -67,13 +67,13 @@ namespace Puces_R.Controles {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqNom;
         
         /// <summary>
-        /// Contrôle Adresse.
+        /// Contrôle ctrAdresse.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.Adresse Adresse;
+        protected global::Puces_R.Controles.Adresse ctrAdresse;
         
         /// <summary>
         /// Contrôle txtVille.
@@ -139,24 +139,6 @@ namespace Puces_R.Controles {
         protected global::Puces_R.Telephone ctrTelephone2;
         
         /// <summary>
-        /// Contrôle lblCourriel.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourriel;
-        
-        /// <summary>
-        /// Contrôle btnPassword.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPassword;
-        
-        /// <summary>
         /// Contrôle tbMaxLivraison.
         /// </summary>
         /// <remarks>
@@ -164,24 +146,6 @@ namespace Puces_R.Controles {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbMaxLivraison;
-        
-        /// <summary>
-        /// Contrôle reqMaxLiv.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqMaxLiv;
-        
-        /// <summary>
-        /// Contrôle reMaxLiv.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator reMaxLiv;
         
         /// <summary>
         /// Contrôle tbLivraisonGratuite.
@@ -193,24 +157,6 @@ namespace Puces_R.Controles {
         protected global::System.Web.UI.WebControls.TextBox tbLivraisonGratuite;
         
         /// <summary>
-        /// Contrôle reqLivGrat.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqLivGrat;
-        
-        /// <summary>
-        /// Contrôle reLivGrat.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator reLivGrat;
-        
-        /// <summary>
         /// Contrôle cbTaxes.
         /// </summary>
         /// <remarks>
@@ -218,32 +164,5 @@ namespace Puces_R.Controles {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbTaxes;
-        
-        /// <summary>
-        /// Contrôle tbPourcentage.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPourcentage;
-        
-        /// <summary>
-        /// Contrôle lblMAJ.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMAJ;
-        
-        /// <summary>
-        /// Contrôle btnSauvegarder.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSauvegarder;
     }
 }

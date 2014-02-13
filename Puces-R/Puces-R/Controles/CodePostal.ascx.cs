@@ -23,11 +23,11 @@ namespace Puces_R
             {
                 string code = tbPart1.Text + " " + tbPart2.Text;
 
-                return code == string.Empty ? null : code;
+                return code == string.Empty ? null : code.ToUpper();
             }
             set
             {
-                string code = value.Replace("-", "").Replace(" ", "").Trim();
+                string code = value.Replace("-", "").Replace(" ", "").Trim().ToUpper();
                 tbPart1.Text = code.Substring(0, 3);
                 tbPart2.Text = code.Substring(3, 3);
             }

@@ -21,8 +21,8 @@ namespace Puces_R
             DataTable tablePaniers = new DataTable();
             adapteurPaniers.Fill(tablePaniers);
 
-            rptPaniers.DataSource = new DataView(tablePaniers);
-            rptPaniers.DataBind();
+            //rptPaniers.DataSource = new DataView(tablePaniers);
+            //rptPaniers.DataBind();
         }
 
         protected void rptPaniers_ItemDataBound(object sender, RepeaterItemEventArgs e)

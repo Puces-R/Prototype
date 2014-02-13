@@ -48,7 +48,7 @@ namespace Puces_R
                 cmdAjoutVendeur.Parameters.AddWithValue("@taxes", ctrProfil.Taxes);
 
                 cmdAjoutVendeur.Parameters.AddWithValue("@config", DBNull.Value); // Placeholder
-                cmdAjoutVendeur.Parameters.AddWithValue("@creation", DateTime.Now.Date);
+                cmdAjoutVendeur.Parameters.AddWithValue("@creation", DateTime.Now);
                 cmdAjoutVendeur.Parameters.AddWithValue("@status", DBNull.Value); // Libre ? À hardcoder
 
                 cmdAjoutVendeur.ExecuteNonQuery();

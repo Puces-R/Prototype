@@ -33,7 +33,7 @@ namespace Puces_R
                 cmdInsertion.Parameters.AddWithValue("@no", noClient);
                 cmdInsertion.Parameters.AddWithValue("@adresse", ctlIdentifiants.Adresse);
                 cmdInsertion.Parameters.AddWithValue("@mdp", ctlIdentifiants.MotDePasse);
-                cmdInsertion.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                cmdInsertion.Parameters.AddWithValue("@date", DateTime.Now);
 
                 cmdInsertion.ExecuteNonQuery();
 

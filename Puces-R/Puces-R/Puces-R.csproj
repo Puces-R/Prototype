@@ -220,7 +220,6 @@
     <Content Include="verdict_demande.aspx" />
     <Content Include="verdict_desactiver.aspx" />
     <Content Include="verdict_desactiver_client.aspx" />
-    <Content Include="VoirMessage.aspx" />
     <Content Include="visualiser_stats_rapports.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -720,13 +719,6 @@
     </Compile>
     <Compile Include="verdict_desactiver_client.aspx.designer.cs">
       <DependentUpon>verdict_desactiver_client.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VoirMessage.aspx.cs">
-      <DependentUpon>VoirMessage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VoirMessage.aspx.designer.cs">
-      <DependentUpon>VoirMessage.aspx</DependentUpon>
     </Compile>
     <Compile Include="visualiser_stats_rapports.aspx.cs">
       <DependentUpon>visualiser_stats_rapports.aspx</DependentUpon>

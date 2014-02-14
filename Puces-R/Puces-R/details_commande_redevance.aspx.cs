@@ -60,7 +60,7 @@ namespace Puces_R
                 lbl_frais_lesi.Text = results["FraisLesi"].ToString();
             }
 
-            ((SiteMaster)Master).Titre = "Détais de la commande de la redevance";
+            ((SiteMaster)Master).Titre = "Détails de la commande de \"" + results["NomAffaires"].ToString() + "\"";
             myConnection.Close();
         }         
     }

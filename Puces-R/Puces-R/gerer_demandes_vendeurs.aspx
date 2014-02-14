@@ -49,6 +49,7 @@
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
                     <th>Nom d'affaires</th>
+                    <th>Nom du vendeur</th>
                     <th>Date de demande</th>
                     <th></th>
                 </tr>
@@ -57,6 +58,7 @@
                         <tr class="rectangleItem basRectangle">
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
                             <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
+                            <td><asp:Label runat="server" ID="lbl_nom_vendeur" /></td>
                             <td><asp:Label runat="server" ID="date_demande" /></td>
                             <td>
                                 <asp:Button id="btn_accepter" runat="server" Text="Accepter" OnCommand="acceptation_demande" ToolTip="Accepter la demande de ce vendeur" />

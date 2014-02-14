@@ -263,7 +263,7 @@ namespace Puces_R
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
-                item_a_desactiver.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
+                item_a_desactiver.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString() + ", " + drvinactif1["AdresseEmail"].ToString();
             }
         }
     }

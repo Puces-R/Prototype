@@ -123,6 +123,7 @@ namespace Puces_R
                 Label date_demande = (Label)item.FindControl("date_demande");
                 Button btn_accepter = (Button)item.FindControl("btn_accepter");
                 Button btn_refuser = (Button)item.FindControl("btn_refuser");
+                Label lbl_nom_vendeur = (Label)item.FindControl("lbl_nom_vendeur");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
@@ -131,6 +132,7 @@ namespace Puces_R
                 date_demande.Text = drvDemande["DateCreation"].ToString();
                 btn_accepter.CommandArgument = drvDemande["NoVendeur"].ToString();
                 btn_refuser.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_nom_vendeur.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
             }
         }
         

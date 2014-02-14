@@ -44,27 +44,21 @@
     <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
         <div style="font-size: small;">
-            <table border="0" width="100%" cellpadding="5" cellspacing="2" >
+            <table border="0" width="100%" cellpadding="7" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
                     <th>Nom d'affaires</th>
-                    <th>Date de demande</th>
+                    <th>Nom du vendeur</th>
                     <th>Montant total dû</th>
-                    <th></th>
                 </tr>
                 <asp:Repeater runat="server" ID="rptRetard" OnItemDataBound="rptRetard_ItemDataBound" >
-                    <ItemTemplate>                        
-                        <tr class="rectangleItem basRectangle">
-                            <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="date_demande" /></td>
-                            <td>
-                                $<asp:Label runat="server" ID="lbl_montant_du" />
-                            </td>
-                             <td>
-                                <asp:Button runat="server" ID="btn_voir_histo" OnCommand="voir_histo" ToolTip="Voir/Modifier l'historique de payement de ce vendeur" Text="Détails" />
-                            </td>
-                        </tr>
+                    <ItemTemplate>
+                            <tr class="rectangleItem basRectangle">
+                                <td><asp:LinkButton runat="server" ID="lbl_num"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de payement de ce vendeur" /></td>
+                                <td><asp:LinkButton runat="server" ID="lbl_nom_affaire"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de payement de ce vendeur" /></td>
+                                <td><asp:LinkButton runat="server" ID="lbl_nom_vendeur" OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de payement de ce vendeur"  /></td>
+                                <td><asp:LinkButton runat="server" ID="lbl_montant_du"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de payement de ce vendeur" /></td>
+                            </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </table>

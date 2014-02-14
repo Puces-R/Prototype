@@ -90,7 +90,6 @@ namespace Puces_R
             charge_inactifs1();
         }
 
-
         private DataTable charge_inactifs1()
         {        
             req_inactif = "SELECT * FROM PPClients " + whereClause;
@@ -164,14 +163,14 @@ namespace Puces_R
             {
                 Label lbl_num = (Label)item.FindControl("lbl_num");
                 Label lbl_nom_complet = (Label)item.FindControl("lbl_nom_complet");
-                Label date_inactif1 = (Label)item.FindControl("date_inactif1");
+                Label lbl_courriel = (Label)item.FindControl("lbl_courriel");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
 
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
                 lbl_nom_complet.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
-                date_inactif1.Text = drvinactif1["DateCreation"].ToString();
+                lbl_courriel.Text = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoClient"].ToString();
             }
         }
@@ -196,7 +195,6 @@ namespace Puces_R
             }
 
             Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
-
             Response.Redirect("verdict_desactiver_client.aspx");
         }
 

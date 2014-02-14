@@ -68,6 +68,9 @@
                 </p>
            </div>
         </asp:View>
+
+        <asp:View ID="view_stats_desactivation">
+        </asp:View>
     </asp:MultiView>
     </div>
 </asp:Content>

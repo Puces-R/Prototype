@@ -87,7 +87,7 @@
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>
                     <th>#</th>
                     <th>Nom d'affaires</th>
-                    <th>Innactif depuis</th>
+                    <th>Nom du vendeur</th>
                     <th><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/></th>
                 </tr>
                 <asp:Repeater runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >
@@ -96,7 +96,7 @@
                             <td><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" onchange="check_desactiver_tout(this);" /></td>
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
                             <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="date_inactif1" /></td>
+                            <td><asp:Label runat="server" ID="lbl_nom_vendeur" /></td>
                             <td><asp:Button ID="btn_desactiver" runat="server" Text="Voir détails/Désactiver" OnCommand="desactiver_vendeur" ToolTip="Désactiver ce vendeur" /></td>
                         </tr>
                     </ItemTemplate>

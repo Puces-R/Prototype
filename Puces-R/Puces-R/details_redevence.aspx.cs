@@ -84,7 +84,6 @@ namespace Puces_R
                 else Response.Redirect("Default.aspx");
             else Response.Redirect("Default.aspx");
 
-            Master.Master.Titre = "Détails de la redevence";
             Master.ChargerItems += charge_details_redevence;
 
             if (!IsPostBack)
@@ -107,9 +106,10 @@ namespace Puces_R
         {
             string req = "";
 
-            req += " SELECT NoCommande, PPClients.Nom, PPClients.Prenom, PPHistoriquePaiements.NoHistorique, PPHistoriquePaiements.Redevance, PPHistoriquePaiements.DateVente ";
-            req += " FROM PPHistoriquePaiements, PPClients ";
+            req += " SELECT NoCommande, PPClients.Nom, PPClients.Prenom, PPHistoriquePaiements.NoHistorique, PPHistoriquePaiements.Redevance, PPHistoriquePaiements.DateVente, PPVendeurs.NomAffaires ";
+            req += " FROM PPHistoriquePaiements, PPClients, PPVendeurs ";
             req += " WHERE PPHistoriquePaiements.NoVendeur = " + no_vendeur;
+            req += " AND PPVendeurs.NoVendeur = PPHistoriquePaiements.NoVendeur ";
             req += " AND PPHistoriquePaiements.NoClient = PPClients.NoClient ";
             req += " AND YEAR(PPHistoriquePaiements.DateVente) = YEAR('" + mois + "') ";
             req += " AND MONTH(PPHistoriquePaiements.DateVente) = MONTH('" + mois + "') " + whereClause + orderByClause;
@@ -153,6 +153,10 @@ namespace Puces_R
                 lbl_redevance.Text = drvDemande["Redevance"].ToString();
                 date_vente.Text = drvDemande["DateVente"].ToString();
                 btn_voir_details_commande_redevance.CommandArgument = drvDemande["NoCommande"].ToString();
+
+                string[] str_mois = drvDemande["DateVente"].ToString().Split('-');
+                DateTime mois = new DateTime(Convert.ToInt32(str_mois[0]), Convert.ToInt32(str_mois[1]), 1);
+                Master.Master.Titre = "Détails de la redevance de \"" + drvDemande["NomAffaires"].ToString() + "\" pour le mois de " + mois.ToString("MMMM yyyy").ToUpperInvariant();
             }
         }
 

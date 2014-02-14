@@ -164,14 +164,14 @@ namespace Puces_R
             {
                 Label lbl_num = (Label)item.FindControl("lbl_num");
                 Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
-                Label date_inactif1 = (Label)item.FindControl("date_inactif1");
+                Label lbl_nom_vendeur = (Label)item.FindControl("lbl_nom_vendeur");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
                 
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
-                date_inactif1.Text = drvinactif1["DateCreation"].ToString();
+                lbl_nom_vendeur.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
                 //btnRefuser.CommandArgument = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoVendeur"].ToString();
             }

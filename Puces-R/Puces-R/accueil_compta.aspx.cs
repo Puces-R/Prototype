@@ -98,7 +98,7 @@ namespace Puces_R
         {
             string req = "";
 
-            req += " SELECT PPVendeurs.NoVendeur, PPVendeurs.NomAffaires, PPVendeurs.DateCreation, R2.MontantDu, ISNULL(Statut, 0) ";
+            req += " SELECT PPVendeurs.NoVendeur, PPVendeurs.NomAffaires, Nom, Prenom, PPVendeurs.DateCreation, R2.MontantDu, ISNULL(Statut, 0) ";
             req += " FROM PPVendeurs , ";
             req += " (SELECT  NoVendeur, SUM(Montant) AS MontantDu ";
             req += " FROM  PPSuiviCompta ";
@@ -127,24 +127,28 @@ namespace Puces_R
 
         protected void rptRetard_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-
             RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
-                Label date_demande = (Label)item.FindControl("date_demande");
-                Label lbl_montant_du = (Label)item.FindControl("lbl_montant_du");
-                Button btn_voir_histo = (Button)item.FindControl("btn_voir_histo");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_affaire = (LinkButton)item.FindControl("lbl_nom_affaire");
+                LinkButton lbl_nom_vendeur = (LinkButton)item.FindControl("lbl_nom_vendeur");
+                //Label date_demande = (Label)item.FindControl("date_demande");
+                LinkButton lbl_montant_du = (LinkButton)item.FindControl("lbl_montant_du");
 
-                DataRowView drvDemande = (DataRowView)e.Item.DataItem;
+                DataRowView drvDemande = (DataRowView)e.Item.DataItem;                
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvDemande["NomAffaires"].ToString();
-                date_demande.Text = drvDemande["DateCreation"].ToString();
-                lbl_montant_du.Text = drvDemande["MontantDu"].ToString();
-                btn_voir_histo.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_nom_vendeur.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
+                //date_demande.Text = drvDemande["DateCreation"].ToString();
+                lbl_montant_du.Text = drvDemande["MontantDu"].ToString() + "$";
+
+                lbl_num.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_nom_affaire.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_nom_vendeur.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_montant_du.CommandArgument = drvDemande["NoVendeur"].ToString();
             }
         }
 
@@ -163,26 +167,60 @@ namespace Puces_R
             object derniere_date = recuperer_derniere_date.ExecuteScalar();
             string[] tab_derniere_date = derniere_date.ToString().Split('-');
 
-            if ((Convert.ToInt32(tab_derniere_date[0]) != DateTime.Now.Year) || (Convert.ToInt32(tab_derniere_date[1]) != DateTime.Now.Month))
+            if (derniere_date != DBNull.Value)
             {
-                SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs ", myConnection);
-                SqlDataReader results = charger.ExecuteReader();
-
-                while (results.Read())
+                if ((Convert.ToInt32(tab_derniere_date[0]) != DateTime.Now.Year) || (Convert.ToInt32(tab_derniere_date[1]) != DateTime.Now.Month))
                 {
-                    req += "( " + results["NoVendeur"] + ", '" + derniere_date.ToString() + "', (SELECT ISNULL(SUM (Redevance), 0) FROM PPHistoriquePaiements WHERE NoVendeur = " +
-                        results["NoVendeur"] + " AND YEAR(DateVente) = " + Convert.ToInt32(tab_derniere_date[0]) + " AND MONTH(DateVente) = " +
-                        Convert.ToInt32(tab_derniere_date[1]) + " ), CASE WHEN (SELECT ISNULL(SUM (Redevance), 0) FROM PPHistoriquePaiements WHERE NoVendeur = " +
-                        results["NoVendeur"] + " AND YEAR(DateVente) = " + Convert.ToInt32(tab_derniere_date[0]) + " AND MONTH(DateVente) = " +
-                        Convert.ToInt32(tab_derniere_date[1]) + " ) = 0 THEN GETDATE() ELSE NULL END ), ";
-                }
-                results.Close();
-                SqlCommand inserer_nouveau_mois = new SqlCommand(req.Remove(req.Length - 2), myConnection);
-                inserer_nouveau_mois.ExecuteNonQuery();
-                //Response.Write(inserer_nouveau_mois.CommandText);
-                //Response.Write(derniere_date.ToString() + " - " + DateTime.Now.Date.ToString());
-            }
+                    SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs ", myConnection);
+                    SqlDataReader results = charger.ExecuteReader();
 
+                    while (results.Read())
+                    {
+                        req += "( " + results["NoVendeur"] + ", '" + derniere_date.ToString() + "', (SELECT ISNULL(SUM (Redevance), 0) FROM PPHistoriquePaiements WHERE NoVendeur = " +
+                            results["NoVendeur"] + " AND YEAR(DateVente) = " + Convert.ToInt32(tab_derniere_date[0]) + " AND MONTH(DateVente) = " +
+                            Convert.ToInt32(tab_derniere_date[1]) + " ), CASE WHEN (SELECT ISNULL(SUM (Redevance), 0) FROM PPHistoriquePaiements WHERE NoVendeur = " +
+                            results["NoVendeur"] + " AND YEAR(DateVente) = " + Convert.ToInt32(tab_derniere_date[0]) + " AND MONTH(DateVente) = " +
+                            Convert.ToInt32(tab_derniere_date[1]) + " ) = 0 THEN GETDATE() ELSE NULL END ), ";
+                    }
+                    results.Close();
+                    SqlCommand inserer_nouveau_mois = new SqlCommand(req.Remove(req.Length - 2), myConnection);
+                    inserer_nouveau_mois.ExecuteNonQuery();
+                    //Response.Write(inserer_nouveau_mois.CommandText);
+                    //Response.Write(derniere_date.ToString() + " - " + DateTime.Now.Date.ToString());
+                }
+            }
+            else
+            {
+                SqlCommand recuperer_premiere_date = new SqlCommand("SELECT MIN(DateCommande) FROM PPCommandes ", myConnection);
+                object premiere_date = recuperer_premiere_date.ExecuteScalar();
+                SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs ", myConnection);
+
+                if (premiere_date != DBNull.Value)
+                { 
+                    string[] tab_premiere_date = premiere_date.ToString().Split('-');
+                    DateTime dt_premiere = new DateTime(Convert.ToInt32(tab_premiere_date[0]), Convert.ToInt32(tab_premiere_date[1]), 1);
+                    DateTime date_courante = dt_premiere.Date.AddMonths(1), comp_now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    string req_all_update = "INSERT INTO PPSuiviCompta VALUES ";
+
+                    while (date_courante != comp_now)
+                    {
+                        SqlDataReader results = charger.ExecuteReader();
+                        while (results.Read())
+                        {
+                            req_all_update += "( " + results["NoVendeur"] + ", '" + date_courante.ToString() + "', (SELECT ISNULL(SUM (Redevance), 0) FROM PPHistoriquePaiements WHERE NoVendeur = " +
+                            results["NoVendeur"] + " AND YEAR(DateVente) = " + date_courante.Year + " AND MONTH(DateVente) = " +
+                            date_courante.Month + " ), CASE WHEN (SELECT ISNULL(SUM (Redevance), 0) FROM PPHistoriquePaiements WHERE NoVendeur = " +
+                            results["NoVendeur"] + " AND YEAR(DateVente) = " + date_courante.Year + " AND MONTH(DateVente) = " +
+                            date_courante.Month + " ) = 0 THEN GETDATE() ELSE NULL END ), ";
+                        }
+                        date_courante = date_courante.AddMonths(1);
+                        results.Close();
+                    }
+                    SqlCommand inserer_tous_mois = new SqlCommand(req_all_update.Remove(req_all_update.Length - 2), myConnection);
+                    //inserer_tous_mois.ExecuteNonQuery();
+                    //Response.Write(inserer_tous_mois.CommandText);
+                }
+            }
             myConnection.Close();
         }
     }

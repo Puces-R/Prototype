@@ -187,10 +187,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
-        <Top>0.84349cm</Top>
-        <Left>2.45181cm</Left>
-        <Height>0.94396cm</Height>
-        <Width>5.31635cm</Width>
+        <Top>0.90699cm</Top>
+        <Left>2.2788cm</Left>
+        <Height>0.75346cm</Height>
+        <Width>5.4706cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2586,11 +2586,11 @@
       <Image Name="Image4">
         <Source>External</Source>
         <Value>=IIf(IsNothing(Parameters!LogoVendeur.Value), "", "file:///" + Parameters!LogoVendeur.Value)</Value>
-        <Sizing>FitProportional</Sizing>
+        <Sizing>Fit</Sizing>
         <Top>0.63711cm</Top>
         <Left>8.33692cm</Left>
         <Height>1.32292cm</Height>
-        <Width>1.85208cm</Width>
+        <Width>1.32292cm</Width>
         <ZIndex>62</ZIndex>
         <Style>
           <Border>
@@ -2605,9 +2605,8 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Trim(Fields!NomAffaires.Value), "VendeurDetaille")</Value>
+                <Value>=First(Fields!NomAffaires.Value, "VendeurDetaille")</Value>
                 <Style>
-                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -2616,10 +2615,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
-        <Top>0.84349cm</Top>
-        <Left>10.36539cm</Left>
-        <Height>0.94396cm</Height>
-        <Width>5.32501cm</Width>
+        <Top>0.99695cm</Top>
+        <Left>9.65984cm</Left>
+        <Height>0.6cm</Height>
+        <Width>6.03056cm</Width>
         <ZIndex>63</ZIndex>
         <Style>
           <Border>
@@ -2678,7 +2677,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>16.17958cm</Width>
+  <Width>16.12666cm</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

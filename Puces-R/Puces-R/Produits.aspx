@@ -5,6 +5,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/Produits.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -116,7 +117,7 @@
             <asp:View ID="View5" runat="server">
                 <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
                     <ItemTemplate>
-                        <lp:BoiteProduit runat="server" ID="ctrProduit" />
+                        <lp:BoiteProduit runat="server" ID="ctrProduit" LienActive="true" />
                     </ItemTemplate>
                 </ASP:DataList>
             </asp:View>

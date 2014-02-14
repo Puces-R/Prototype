@@ -2585,7 +2585,7 @@
       </Tablix>
       <Image Name="Image4">
         <Source>External</Source>
-        <Value>="Images\Logo\" + Parameters!LogoVendeur.Value</Value>
+        <Value>=IIf(IsNothing(Parameters!LogoVendeur.Value), "", "file:///" + Parameters!LogoVendeur.Value)</Value>
         <Sizing>FitProportional</Sizing>
         <Top>0.63711cm</Top>
         <Left>8.33692cm</Left>
@@ -2605,7 +2605,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!NomAffaires.Value, "VendeurDetaille")</Value>
+                <Value>=First(Trim(Fields!NomAffaires.Value), "VendeurDetaille")</Value>
                 <Style>
                   <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -2674,6 +2674,7 @@
     </ReportParameter>
     <ReportParameter Name="LogoVendeur">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>

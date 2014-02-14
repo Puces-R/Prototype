@@ -61,17 +61,16 @@ namespace Puces_R
 
                 myConnection.Close();
 
-                if (nom != "")
+                LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
+
+                if (lecture.Existe)
                 {
-                    LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
-                    String fichier = Librairie.lireXML(MapPath("~/XML/" + nom + ".xml"));
                     imgLogo.Visible = true;
-                    String[] tab = fichier.Split('|');
-                    String couleur = tab[1];
+                    String couleur = lecture.Couleur;
 
                     pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
                     pnlTitre.CssClass += " barreVendeur ";
-                    imgLogo.ImageUrl = "~/Images/Logo/" + tab[2];
+                    imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
                 }
             }
         }

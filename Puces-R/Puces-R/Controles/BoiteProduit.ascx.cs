@@ -37,6 +37,18 @@ namespace Puces_R.Controles
             }
         }
 
+        public bool LienActive
+        {
+            get
+            {
+                return (bool)ViewState["LienActive"];
+            }
+            set
+            {
+                ViewState["LienActive"] = value;
+            }
+        }
+
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -76,7 +88,10 @@ namespace Puces_R.Controles
             lblNoProduit.Text = "No. " + NoProduit.ToString();
             imgProduit.ImageUrl = urlImage;
             hypDescriptionAbregee.Text = NoSequentiel + ". " + strDescriptionAbregee;
-            hypDescriptionAbregee.NavigateUrl = Chemin.Ajouter("DetailsProduit.aspx?noproduit=" + NoProduit, "Retour aux produits");
+            if (LienActive)
+            {
+                hypDescriptionAbregee.NavigateUrl = Chemin.Ajouter("~/DetailsProduit.aspx?noproduit=" + NoProduit, "Retour aux produits");
+            }
             lblCategorie.Text = strCategorie;
             lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
             if (intQuantite > 0)

@@ -1035,6 +1035,7 @@
     <Compile Include="InsertionProduits.aspx.designer.cs">
       <DependentUpon>InsertionProduits.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LectureXML.cs" />
     <Compile Include="Librairie.cs" />
     <Compile Include="ModificationProduits.aspx.cs">
       <DependentUpon>ModificationProduits.aspx</DependentUpon>

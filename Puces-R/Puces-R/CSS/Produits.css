@@ -69,6 +69,7 @@
     overflow:auto;
     position:absolute;
     background-color:White;
+    z-index:100;
 }
 
 .listeCochable > div:hover

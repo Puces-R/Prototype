@@ -34,11 +34,11 @@
                     <asp:Panel runat="server" ID="pnlTitreAvecLigne" CssClass="pleineLargeur" Visible="false">
                         <asp:Panel runat="server" ID="pnlTitre" CssClass="barreTitre">
                             <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
-                            <asp:Label runat="server" ID="lblTitre" />
+                            <asp:Label runat="server" ID="lblTitre" CssClass="titreVendeur" />
                         </asp:Panel>
                         <div class="lignePointilleHorizontale pleineLargeur" />
                     </asp:Panel>
-                    <asp:Panel CssClass="lignePointilleHorizontale pleineLargeur main" runat="server">
+                    <asp:Panel CssClass="lignePointilleHorizontale pleineLargeur centerChildDiv" runat="server">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
                     </asp:Panel>
                     <div class="footer">

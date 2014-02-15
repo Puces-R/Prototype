@@ -45,9 +45,8 @@ namespace Puces_R.Controles
             }
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 15 P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixVente, P.NombreItems FROM PPProduits P " +
-                                                                 "INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie " +
-                                                                 (noVendeur == -1 ? "" : "WHERE P.NoVendeur = " + noVendeur +  " ") +
-                                                                 "ORDER BY DateCreation DESC", connexion);
+                                                                 "INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie WHERE P.Disponibilité = 1 " +
+                                                                 (noVendeur == -1 ? "" : "AND P.NoVendeur = " + noVendeur +  " ") + "ORDER BY DateCreation DESC", connexion);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

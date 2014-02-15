@@ -33,7 +33,7 @@ namespace Puces_R
             set
             {
                 lblTitre.Text = value;
-                pnlTitreAvecLigne.Visible = true;
+                pnlTitreAvecLigne.Visible = (value != null);
             }
         }
 

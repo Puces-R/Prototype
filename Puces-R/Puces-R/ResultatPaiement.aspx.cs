@@ -7,10 +7,11 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Drawing;
 using Microsoft.Reporting.WebForms;
-using System.Net.Mail;
 using System.Net;
 using System.IO;
 using System.Data;
+using System.Configuration;
+using System.Net.Mail;
 
 namespace Puces_R
 {
@@ -215,12 +216,12 @@ namespace Puces_R
                 MemoryStream flux = new MemoryStream(bytes);
 
                 Attachment attachement = new Attachment(flux, "BonDeCommande-" + NoCommande + ".pdf");
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-                client.EnableSsl = true;
+                SmtpClient client = new SmtpClient("smtpout.secureserver.net", 80);
+                client.Credentials = new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ");
+                MailAddress source = new MailAddress("petitespuces@towardnewobjects.org", "Gestionnaire de LesPetiesPuces.com");
 
-                EnvoyerMessage(client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement);
-                EnvoyerMessage(client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement);
+                EnvoyerMessage(client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement, source);
+                EnvoyerMessage(client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement, source);
 
                 transaction.Commit();
             }
@@ -243,7 +244,7 @@ namespace Puces_R
             return new MailAddress(courrielClient, nomComplet);
         }
 
-        private void EnvoyerMessage(SmtpClient client, MailAddress adresse, Attachment attachement)
+        private void EnvoyerMessage(SmtpClient client, MailAddress adresse, Attachment attachement, MailAddress source)
         {
             MailMessage message = new MailMessage();
             message.Body = "Bonjour " + adresse.DisplayName + ", \n\n";
@@ -251,10 +252,8 @@ namespace Puces_R
             message.Body += "Merci.\n";
             message.Attachments.Add(attachement);
             message.Subject = "Commande #" + NoCommande;
-            message.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
+            message.From = source;
             message.To.Add(adresse);
-            client.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-            client.EnableSsl = true;
             client.Send(message);
         }
     }

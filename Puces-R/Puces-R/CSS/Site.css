@@ -42,8 +42,8 @@ body
 .logoVendeur
 {
    vertical-align:middle;
-   max-width:150px; 
-   max-height:75px;
+   max-width:50px; 
+   max-height:50px;
 }
 
 .droitePageMaitre
@@ -63,12 +63,12 @@ body
     display:inline-block;
 }
 
-.main
+.centerChildDiv
 {
     text-align: center;
 }
 
-.main > div
+.centerChildDiv > div
 {
     overflow: hidden;
     display: inline-block;
@@ -90,16 +90,21 @@ body
 
 .barreTitre
 {
-    font-size:x-large;
-    font-weight:bold;
     text-align:center; 
+}
+
+.titreVendeur
+{
+    font-size:xx-large;
+    font-weight:bold;
+    vertical-align:middle;
 }
 
 .barreVendeur
 {
     border: 1px solid #555555;
     border-radius: 10px;
-    padding:10px;
+    padding: 5px;
 }
 
 .footer
@@ -323,7 +328,6 @@ body
     position:relative;
     width:100%;
     text-align:center !important;
-    z-index:-1;
 }
 
 .navigation input

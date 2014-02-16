@@ -17,21 +17,19 @@ namespace Puces_R.Controles
         {
             if (!IsPostBack)
             {
-                if (Session["ID"] == null)
-                {
-                    hypTous.NavigateUrl = Chemin.Ajouter("~/NouveauxProduits.aspx", "Retour à l'accueil");
-                }
-                else
-                {
-                    hypTous.NavigateUrl = Chemin.Ajouter("~/Produits.aspx", "Retour à l'accueil");
-                }
+                hypTous.NavigateUrl = CreerLienProduits(String.Empty);
 
-                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT Description, NoCategorie FROM PPCategories", myConnection);
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie WHERE P.Disponibilité = 1 AND P.NombreItems > 0 GROUP BY C.Description, C.NoCategorie HAVING COUNT(P.NoProduit) > 0", myConnection);
                 DataTable tableCategories = new DataTable();
                 adapteurCategories.Fill(tableCategories);
-
                 rptCategories.DataSource = new DataView(tableCategories);
                 rptCategories.DataBind();
+
+                SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPProduits P ON V.NoVendeur = P.NoVendeur WHERE P.Disponibilité = 1 AND P.NombreItems > 0 GROUP BY V.NomAffaires, V.NoVendeur HAVING COUNT(P.NoProduit) > 0", myConnection);
+                DataTable tableVendeurs = new DataTable();
+                adapteurVendeurs.Fill(tableVendeurs);
+                rptVendeurs.DataSource = new DataView(tableVendeurs);
+                rptVendeurs.DataBind();
             }
         }
 
@@ -41,26 +39,27 @@ namespace Puces_R.Controles
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lblCategorie = (Label)item.FindControl("lblCategorie");
-                Repeater rptVendeurs = (Repeater)item.FindControl("rptVendeurs");
+                HyperLink hypCategorie = (HyperLink)item.FindControl("hypCategorie");
+                Repeater rptVendeursDeCategorie = (Repeater)item.FindControl("rptVendeursDeCategorie");
 
                 DataRowView drvCategorie = (DataRowView)e.Item.DataItem;
 
                 String description = (String)drvCategorie["Description"];
                 int noCategorie = (int)drvCategorie["NoCategorie"];
 
-                lblCategorie.Text = description;
+                hypCategorie.Text = description;
+                hypCategorie.NavigateUrl = CreerLienProduits("?nocategorie=" + noCategorie);
 
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT P.NoVendeur, V.NomAffaires, P.NoCategorie, COUNT(P.NoProduit) AS NbProduits FROM PPVendeurs V INNER JOIN PPProduits P ON V.NoVendeur = P.NoVendeur WHERE P.NoCategorie = " + noCategorie + " AND P.Disponibilité = 1 GROUP BY P.NoVendeur, V.NomAffaires, P.NoCategorie", myConnection);
                 DataTable tableVendeurs = new DataTable();
                 adapteurVendeurs.Fill(tableVendeurs);
 
-                rptVendeurs.DataSource = new DataView(tableVendeurs);
-                rptVendeurs.DataBind();
+                rptVendeursDeCategorie.DataSource = new DataView(tableVendeurs);
+                rptVendeursDeCategorie.DataBind();
             }
         }
 
-        protected void rptVendeurs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptVendeursDeCategorie_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             RepeaterItem item = e.Item;
 
@@ -77,28 +76,75 @@ namespace Puces_R.Controles
                 int nbProduits = (int)drvVendeur["NbProduits"];
 
                 hypVendeur.Text = description;
-
-                if (Session["ID"] != null)
-                {
-                    hypVendeur.NavigateUrl = Chemin.Ajouter("~/Produits.aspx?novendeur=" + noVendeur + "&nocategorie=" + noCategorie, "Retour à l'accueil");
-                }
-                else
-                {
-                    hypVendeur.NavigateUrl = Chemin.Ajouter("~/NouveauxProduits.aspx?novendeur=" + noVendeur, "Retour à l'accueil");
-                }
+                hypVendeur.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur + "&nocategorie=" + noCategorie);
 
                 lblNbProduits.Text = nbProduits.ToString();
             }
-            else if (item.ItemType == ListItemType.Footer)
+        }
+
+        protected void rptVendeurs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            RepeaterItem item = e.Item;
+
+            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Repeater rptVendeurs = (Repeater)sender;
+                HyperLink hypVendeur = (HyperLink)item.FindControl("hypVendeur");
+                Repeater rptCategoriesDeVendeur = (Repeater)item.FindControl("rptCategoriesDeVendeur");
 
-                if (rptVendeurs.Items.Count > 0)
-                {
-                    Panel pnlAucunVendeur = (Panel)item.FindControl("pnlAucunVendeur");
+                DataRowView drvVendeur = (DataRowView)e.Item.DataItem;
 
-                    pnlAucunVendeur.Visible = false;
-                }
+                String nomAffaires = (String)drvVendeur["NomAffaires"];
+                long noVendeur = (long)drvVendeur["NoVendeur"];
+
+                hypVendeur.Text = nomAffaires;
+                hypVendeur.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur);
+
+                SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT P.NoVendeur, C.Description, P.NoCategorie, COUNT(P.NoProduit) AS NbProduits FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie WHERE P.NoVendeur = " + noVendeur + " AND P.Disponibilité = 1 GROUP BY P.NoVendeur, C.Description, P.NoCategorie", myConnection);
+                DataTable tableCategories = new DataTable();
+                adapteurCategories.Fill(tableCategories);
+
+                rptCategoriesDeVendeur.DataSource = new DataView(tableCategories);
+                rptCategoriesDeVendeur.DataBind();
+            }
+        }
+
+        protected void rptCategoriesDeVendeur_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            RepeaterItem item = e.Item;
+
+            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
+            {
+                HyperLink hypCategorie = (HyperLink)item.FindControl("hypCategorie");
+                Label lblNbProduits = (Label)item.FindControl("lblNbProduits");
+
+                DataRowView drvVendeur = (DataRowView)e.Item.DataItem;
+
+                String description = (String)drvVendeur["Description"];
+                long noVendeur = (long)drvVendeur["NoVendeur"];
+                int noCategorie = (int)drvVendeur["NoCategorie"];
+                int nbProduits = (int)drvVendeur["NbProduits"];
+
+                hypCategorie.Text = description;
+                hypCategorie.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur + "&nocategorie=" + noCategorie);
+
+                lblNbProduits.Text = nbProduits.ToString();
+            }
+        }
+
+        protected void ddlRegroupement_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            mvCatalogue.ActiveViewIndex = ddlRegroupement.SelectedIndex;
+        }
+
+        private string CreerLienProduits(string arguments)
+        {
+            if (Session["ID"] == null)
+            {
+                return Chemin.Ajouter("~/NouveauxProduits.aspx" + arguments, "Retour à l'accueil");
+            }
+            else
+            {
+                return Chemin.Ajouter("~/Produits.aspx" + arguments, "Retour à l'accueil");
             }
         }
     }

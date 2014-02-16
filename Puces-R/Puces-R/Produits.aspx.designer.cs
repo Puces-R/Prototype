@@ -85,15 +85,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvCategorie;
         
         /// <summary>
-        /// View1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
-        
-        /// <summary>
         /// ddlCategorie control.
         /// </summary>
         /// <remarks>
@@ -101,15 +92,6 @@ namespace Puces_R {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategorie;
-        
-        /// <summary>
-        /// View2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
         /// cblCategorie control.
@@ -130,15 +112,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvVendeur;
         
         /// <summary>
-        /// View3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
-        
-        /// <summary>
         /// ddlVendeur control.
         /// </summary>
         /// <remarks>
@@ -146,15 +119,6 @@ namespace Puces_R {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlVendeur;
-        
-        /// <summary>
-        /// View4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
         /// cblVendeur control.
@@ -184,15 +148,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvProduits;
         
         /// <summary>
-        /// View5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View5;
-        
-        /// <summary>
         /// dtlProduits control.
         /// </summary>
         /// <remarks>
@@ -200,15 +155,6 @@ namespace Puces_R {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtlProduits;
-        
-        /// <summary>
-        /// View6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View6;
         
         /// <summary>
         /// Master property.

@@ -12,22 +12,12 @@ namespace Puces_R.Controles
     public partial class NouveauxProduits : System.Web.UI.Page
     {
         private SqlConnection connexion = Librairie.Connexion;
-        private int noVendeur;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 chargerProduits();
-
-                if (noVendeur == -1)
-                {
-                    Master.Titre = "Nouveaux produits";
-                }
-                else
-                {
-                    Master.NoVendeur = noVendeur;
-                }
             }
         }
 
@@ -35,18 +25,37 @@ namespace Puces_R.Controles
         {
             List<String> whereParts = new List<String>();
 
+            int noVendeur;
             if (int.TryParse(Request.Params["novendeur"], out noVendeur))
             {
                 whereParts.Add("P.NoVendeur = " + noVendeur);
+                Master.Titre = "Nouveaux produits";
             }
             else
             {
-                noVendeur = -1;
+                Master.Titre = "Nouveaux produits";
+            }
+
+            int noCategorie;
+            if(int.TryParse(Request.Params["nocategorie"], out noCategorie))
+            {
+                whereParts.Add("P.NoCategorie = " + noCategorie);
+            }
+
+            whereParts.Add("P.Disponibilité = 1");
+
+            String whereClause;
+            if (whereParts.Count > 0)
+            {
+                whereClause = " WHERE " + string.Join(" AND ", whereParts);
+            }
+            else
+            {
+                whereClause = string.Empty;
             }
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 15 P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixVente, P.NombreItems FROM PPProduits P " +
-                                                                 "INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie WHERE P.Disponibilité = 1 " +
-                                                                 (noVendeur == -1 ? "" : "AND P.NoVendeur = " + noVendeur +  " ") + "ORDER BY DateCreation DESC", connexion);
+                                                                 "INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + " ORDER BY DateCreation DESC", connexion);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

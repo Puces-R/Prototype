@@ -77,10 +77,10 @@
             <div class="boiteListeDeroulante">
                 Catégorie:
                 <asp:MultiView runat="server" ID="mvCategorie" ActiveViewIndex="0">
-                    <asp:View ID="View1" runat="server">
+                    <asp:View runat="server">
                         <asp:DropDownList ID="ddlCategorie" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" CssClass="largeurFixeCritere" />
                     </asp:View>
-                    <asp:View ID="View2" runat="server">
+                    <asp:View runat="server">
                         <div class="listeCochable">
                             <div>
                                 <asp:CheckBoxList ID="cblCategorie" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
@@ -92,10 +92,10 @@
             <div class="boiteListeDeroulante">
                 Vendeur:
                 <asp:MultiView runat="server" ID="mvVendeur" ActiveViewIndex="0">
-                    <asp:View ID="View3" runat="server">
+                    <asp:View runat="server">
                         <asp:DropDownList ID="ddlVendeur" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" CssClass="largeurFixeCritere" />
                     </asp:View>
-                    <asp:View ID="View4" runat="server">
+                    <asp:View runat="server">
                         <div class="listeCochable">
                             <div>
                                 <asp:CheckBoxList ID="cblVendeur" runat="server" RepeatLayout="Table" OnSelectedIndexChanged="AfficherPremierePage" AutoPostBack="True" />
@@ -114,14 +114,14 @@
 <asp:Content runat="server" ContentPlaceHolderID="Items">
     <div>
         <asp:MultiView runat="server" ID="mvProduits">
-            <asp:View ID="View5" runat="server">
+            <asp:View runat="server">
                 <ASP:DataList id="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound">
                     <ItemTemplate>
                         <lp:BoiteProduit runat="server" ID="ctrProduit" LienActive="true" />
                     </ItemTemplate>
                 </ASP:DataList>
             </asp:View>
-            <asp:View ID="View6" runat="server">
+            <asp:View runat="server">
                 <div class="messageCentral">Aucun produit ne correspond aux critères.</div>
             </asp:View>
         </asp:MultiView>

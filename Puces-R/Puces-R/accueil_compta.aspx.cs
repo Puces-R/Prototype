@@ -191,7 +191,7 @@ namespace Puces_R
             }
             else
             {
-                SqlCommand recuperer_premiere_date = new SqlCommand("SELECT MIN(DateCommande) FROM PPCommandes ", myConnection);
+                SqlCommand recuperer_premiere_date = new SqlCommand("SELECT MIN(DateVente) FROM PPHistoriquePaiements ", myConnection);
                 object premiere_date = recuperer_premiere_date.ExecuteScalar();
                 SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs ", myConnection);
 
@@ -199,10 +199,10 @@ namespace Puces_R
                 { 
                     string[] tab_premiere_date = premiere_date.ToString().Split('-');
                     DateTime dt_premiere = new DateTime(Convert.ToInt32(tab_premiere_date[0]), Convert.ToInt32(tab_premiere_date[1]), 1);
-                    DateTime date_courante = dt_premiere.Date.AddMonths(1), comp_now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    DateTime date_courante = dt_premiere.Date, comp_now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     string req_all_update = "INSERT INTO PPSuiviCompta VALUES ";
 
-                    while (date_courante != comp_now)
+                    while (date_courante.AddMonths(1) != comp_now)
                     {
                         SqlDataReader results = charger.ExecuteReader();
                         while (results.Read())
@@ -217,7 +217,7 @@ namespace Puces_R
                         results.Close();
                     }
                     SqlCommand inserer_tous_mois = new SqlCommand(req_all_update.Remove(req_all_update.Length - 2), myConnection);
-                    //inserer_tous_mois.ExecuteNonQuery();
+                    inserer_tous_mois.ExecuteNonQuery();
                     //Response.Write(inserer_tous_mois.CommandText);
                 }
             }

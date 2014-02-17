@@ -31,6 +31,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Button btnDestinataire;
         
         /// <summary>
+        /// Contrôle custDestinataire.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator custDestinataire;
+        
+        /// <summary>
         /// Contrôle tbSujet.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbSujet;
+        
+        /// <summary>
+        /// Contrôle reqSujet.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqSujet;
         
         /// <summary>
         /// Contrôle upload.
@@ -56,6 +74,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbMessage;
+        
+        /// <summary>
+        /// Contrôle reqMessage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqMessage;
         
         /// <summary>
         /// Contrôle divApercu.

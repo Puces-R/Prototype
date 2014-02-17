@@ -47,7 +47,7 @@ namespace Puces_R
                 int noProduit;
                 if (!int.TryParse(Request.Params["noproduit"], out noProduit))
                 {
-                    Response.Redirect("Default.aspx", true);
+                    Response.Redirect(Chemin.UrlRetour == null ? ((char)Session["Type"] == 'V' ? "AccueilVendeur.aspx" : "AccueilClient.aspx") : Chemin.UrlRetour);
                 }
 
                 String whereClause = " WHERE P.noProduit = " + noProduit;
@@ -204,6 +204,7 @@ namespace Puces_R
 
         protected void btnAjouterPanier_Click(object sender, EventArgs e)
         {
+            Page.Validate();
             if (IsValid)
             {
                 String nbItems = txtQuantite.Text;
@@ -263,28 +264,37 @@ namespace Puces_R
 
         protected void btnSoumettre_OnClick(object sender, EventArgs e)
         {
-            String noProduit = Request.Params["noproduit"];
-
-            SqlCommand commandeEvaluation;
-
-            String commentaire = txtCommentaire.Text.Replace("'", "''");
-
-            if (DejaEvalue)
+            if (txtCommentaire.Text.Length > 150)
             {
-                String valeurs = "Cote = " + ctrEtoiles.Cote + ", Commentaire = '" + commentaire + "', DateMaj = '" + DateTime.Now + "'";
-                commandeEvaluation = new SqlCommand("UPDATE PPEvaluations SET " + valeurs + " WHERE NoClient = " + Session["ID"] + " AND NoProduit = " + noProduit, myConnection);
+                lblErreurCommentaire.Text = "Limite de 150 caractères dépassée (" + txtCommentaire.Text.Length + ")";
             }
             else
             {
-                String valeurs = String.Join(", ", Session["ID"], noProduit, ctrEtoiles.Cote, "'" + commentaire + "'", "NULL", "'" + DateTime.Now + "'");
-                commandeEvaluation = new SqlCommand("INSERT INTO PPEvaluations VALUES (" + valeurs + ")", myConnection);
+                lblErreurCommentaire.Text = "";
+                String noProduit = Request.Params["noproduit"];
+
+                SqlCommand commandeEvaluation;
+
+                String commentaire = txtCommentaire.Text.Replace("'", "''");
+
+                if (DejaEvalue)
+                {
+                    String valeurs = "Cote = " + ctrEtoiles.Cote.ToString().Replace(",", ".") + ", Commentaire = '" + commentaire + "', DateMaj = '" + DateTime.Now + "'";
+                    commandeEvaluation = new SqlCommand("UPDATE PPEvaluations SET " + valeurs + " WHERE NoClient = " + Session["ID"] + " AND NoProduit = " + noProduit, myConnection);
+                }
+                else
+                {
+                    String valeurs = String.Join(", ", Session["ID"], noProduit, ctrEtoiles.Cote, "'" + commentaire + "'", "NULL", "'" + DateTime.Now + "'");
+                    commandeEvaluation = new SqlCommand("INSERT INTO PPEvaluations VALUES (" + valeurs + ")", myConnection);
+                }
+
+                myConnection.Open();
+                commandeEvaluation.ExecuteNonQuery();
+                myConnection.Close();
+
+                calculerCoteMoyenne();
+                DejaEvalue = true;
             }
-
-            myConnection.Open();
-            commandeEvaluation.ExecuteNonQuery();
-            myConnection.Close();
-
-            calculerCoteMoyenne();
         }
 
         protected void btnAjouterLaMienne_OnClick(object sender, EventArgs e)
@@ -303,18 +313,28 @@ namespace Puces_R
             short nbDemande;
             if (short.TryParse(e.Value, out nbDemande))
             {
-                myConnection.Open();
+                if (nbDemande < 1)
+                {
+                    e.IsValid = false;
+                    valQuantite.Text = "Vous devez commander au moins un article";
+                }
+                else
+                {
+                    myConnection.Open();
 
-                SqlCommand commandeNbItems = new SqlCommand("SELECT NombreItems FROM PPProduits WHERE NoProduit = " + Request.Params["noproduit"], myConnection);
-                short nbDisponible = (short)commandeNbItems.ExecuteScalar();
+                    SqlCommand commandeNbItems = new SqlCommand("SELECT NombreItems FROM PPProduits WHERE NoProduit = " + Request.Params["noproduit"], myConnection);
+                    short nbDisponible = (short)commandeNbItems.ExecuteScalar();
 
-                myConnection.Close();
+                    myConnection.Close();
 
-                e.IsValid = (nbDemande <= nbDisponible);
+                    e.IsValid = (nbDemande <= nbDisponible);
+                    valQuantite.Text = "Vous avez dépassé la quantité disponible";
+                }
             }
             else
             {
                 e.IsValid = false;
+                valQuantite.Text = "Le format est invalide";
             }
         }
 

@@ -59,6 +59,11 @@ namespace Puces_R.Controles
                                                                  "INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + " ORDER BY DateCreation DESC", connexion);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
+            if (tableProduits.Rows.Count == 0)
+            {
+                ParametresGet param = new ParametresGet(Request.RawUrl, new string[] { "texteretour", "cheminretour" });
+                Response.Redirect("NouveauxProduits.aspx" + param.Parametres);
+            }
 
             PagedDataSource objPds = new PagedDataSource();
             objPds.DataSource = new DataView(tableProduits);

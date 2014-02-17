@@ -17,7 +17,7 @@ namespace Puces_R
            
             if (!int.TryParse(Request.Params["noCommande"], out noCommande))
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("AccueilVendeur.aspx");
             }
             else
             {
@@ -34,7 +34,7 @@ namespace Puces_R
             maConnexion.ConnectionString = maChaineDeConnexion;
             maConnexion.Open();
 
-            SqlCommand maCommande = new SqlCommand("select * from PPCommandes where NoCommande=" + noCommande, maConnexion);
+            SqlCommand maCommande = new SqlCommand("select * from PPCommandes where NoCommande=" + noCommande + " AND NoVendeur = " + Session["ID"], maConnexion);
             object rep = maCommande.ExecuteScalar();
 
             if (rep != null)
@@ -60,7 +60,7 @@ namespace Puces_R
 
             else
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("AccueilVendeur.aspx");
             }
             maConnexion.Close();
         }

@@ -63,6 +63,10 @@ namespace Puces_R
                     String nom = (String)commandXML.ExecuteScalar();
 
                     myConnection.Close();
+                    if (nom == null)
+                    {
+                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilClient.aspx" : Chemin.UrlRetour);
+                    }
 
                     LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
 

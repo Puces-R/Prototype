@@ -59,7 +59,7 @@ namespace Puces_R
 
             String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
@@ -81,6 +81,7 @@ namespace Puces_R
                 Label lblCategorie = (Label)item.FindControl("lblCategorie");
                 Label lblDescriptionAbregee = (Label)item.FindControl("lblDescriptionAbregee");
                 Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
+                Label lblQuantiteDispo = (Label)item.FindControl("lblQuantiteDispo");
                 TextBox txtQuantite = (TextBox)item.FindControl("txtQuantite");
                 Button btnMAJQuantite = (Button)item.FindControl("btnMAJQuantite");
                 Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
@@ -94,12 +95,14 @@ namespace Puces_R
                 decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
                 short intQuantite = (short)drvProduit["NbItems"];
                 long noPanier = (long)drvProduit["NoPanier"];
+                int qttDispo = int.Parse(drvProduit["NombreItems"].ToString());
 
                 lblNoProduit.Text = noProduit.ToString();
                 imgProduit.ImageUrl = urlImage;
                 lblCategorie.Text = strCategorie;
                 lblDescriptionAbregee.Text = strDescriptionAbregee;
                 lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
+                lblQuantiteDispo.Text = qttDispo.ToString();
                 txtQuantite.Text = intQuantite.ToString();
                 btnMAJQuantite.CommandArgument = noPanier.ToString();
                 btnSupprimer.CommandArgument = noPanier.ToString();
@@ -158,25 +161,35 @@ namespace Puces_R
 
         protected void valQuantite_OnServerValidate(object sender, ServerValidateEventArgs e)
         {
+            CustomValidator valQuantite = (CustomValidator)sender;
             short nbDemande;
             if (short.TryParse(e.Value, out nbDemande))
             {
-                CustomValidator valQuantite = (CustomValidator)sender;
-                RepeaterItem item = (RepeaterItem)valQuantite.Parent;
-                Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                long noProduit = long.Parse(lblNoProduit.Text);
-                myConnection.Open();
+                if (nbDemande < 0)
+                {
+                    valQuantite.Text = "Vous devez commander au moins un article";
+                    e.IsValid = false;
+                }
+                else
+                {
+                    RepeaterItem item = (RepeaterItem)valQuantite.Parent;
+                    Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
+                    long noProduit = long.Parse(lblNoProduit.Text);
+                    myConnection.Open();
 
-                SqlCommand commandeNbItems = new SqlCommand("SELECT NombreItems FROM PPProduits WHERE NoProduit = " + noProduit, myConnection);
-                short nbDisponible = (short)commandeNbItems.ExecuteScalar();
+                    SqlCommand commandeNbItems = new SqlCommand("SELECT NombreItems FROM PPProduits WHERE NoProduit = " + noProduit, myConnection);
+                    short nbDisponible = (short)commandeNbItems.ExecuteScalar();
 
-                myConnection.Close();
+                    myConnection.Close();
 
-                e.IsValid = (nbDemande <= nbDisponible);
+                    e.IsValid = (nbDemande <= nbDisponible);
+                    valQuantite.Text = "Vous avez dépassé la quantité disponible";
+                }
             }
             else
             {
                 e.IsValid = false;
+                valQuantite.Text = "Le format est invalide";
             }
         }
     }

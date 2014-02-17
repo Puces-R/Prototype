@@ -17,6 +17,7 @@ namespace Puces_R
         string whereClause, orderByClause = "";
         int anneesMaximal;
         String havingClause = "";
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -138,7 +139,7 @@ namespace Puces_R
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
+            
             pdsDemandes.DataSource = new DataView(tableInnactif1);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -161,7 +162,7 @@ namespace Puces_R
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
                 Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
+                //Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
                 //Label lbl_no_vendeur = (Label)item.FindControl("lblNoVendeur");
                 Label lbl_nom_vendeur = (Label)item.FindControl("lbl_nom_vendeur");
                 Label lbl_date = (Label)item.FindControl("date_inactif1");
@@ -175,13 +176,13 @@ namespace Puces_R
                             
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
-               
-                         
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+
+
+                lbl_num.Text = (pdsDemandes.PageSize * pdsDemandes.CurrentPageIndex + e.Item.ItemIndex + 1).ToString();
 
                 //lbl_no_vendeur.Text = drvinactif1["NoVendeur"].ToString();
-                lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
+                //lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 //lbl_nom_vendeur.Text = drvinactif1["SousTotal"].ToString();
                 lbl_NomClient.Text = drvinactif1["NomC"].ToString() == "" ? "Nom Inconnu" : drvinactif1["NomC"].ToString();
                 lblMontant.Text = Convert.ToDecimal(drvinactif1["SousTotal"]).ToString("#0.00 $");
@@ -209,7 +210,7 @@ namespace Puces_R
         protected void desactiver_vendeur(object sender, CommandEventArgs e)
         {
             Session["desactiver_panier"] = e.CommandArgument.ToString();
-            Response.Redirect("verdict_desactiver.aspx");
+            Response.Redirect("DesactiverPanierVendeur.aspx");
         }
 
         protected void desactiver_liste(object sender, EventArgs e)
@@ -230,7 +231,7 @@ namespace Puces_R
             else
             {
                 Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
-                Response.Redirect("verdict_desactiver.aspx");
+                Response.Redirect("DesactiverPanierVendeur.aspx");
             }
         }
 

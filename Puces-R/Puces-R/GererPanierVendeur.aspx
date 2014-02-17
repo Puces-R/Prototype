@@ -68,7 +68,7 @@
 
         $(document).ready(function () {
             $('#cb_tout').click(function () {
-                var cases = $(".basRectangle").find(':checkbox');
+                var cases = $(".basRectangle").find(':checkbox');//mettre le nom de la classe de mes checkbox si on peux desactiver
                 if (this.checked) {
                     cases.prop('checked', 'checked');
                 } else {
@@ -145,7 +145,6 @@
 
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>
                     <th>#</th>
-                    <th>Nom d'affaires</th>
                     <th>Nom Client</th>
                     <th>Montant Panier</th>
                     <th>Date Inactivité</th>
@@ -157,7 +156,6 @@
                         <tr class="rectangleItem basRectangle">
                             <td><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" onchange="check_desactiver_tout(this);" /></td>
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
                             <td><asp:Label runat="server" ID="lblNomClient" /></td>
                             <td><asp:Label runat="server" ID="lblMontant" /></td>
                             <td><asp:Label runat="server" ID="date_inactif1" /></td>

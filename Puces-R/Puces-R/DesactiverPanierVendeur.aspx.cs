@@ -16,6 +16,7 @@ namespace Puces_R
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         int no_client;
         string liste_a_desactiver;
+        String[] split;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,9 +34,30 @@ namespace Puces_R
                     if (Session["desactiver_panier"].ToString() != "")
                     {
                         ((SiteMaster)Master).Titre = "Voulez vous vraiment supprimer ce panier";
-                        no_client = Convert.ToInt32(Session["desactiver_panier"].ToString());
+                        //no_client = Convert.ToInt32(Session["desactiver_panier"].ToString());
+                       
+                        //
+                        string nom = Session["desactiver_panier"].ToString();
+                        split = nom.Split('-');
+
+                        long noClient = (long)Convert.ToInt64(split[0]);
+
+                        string nomComplet;
+                        if (split[0].Trim() == "")
+                        {
+                            nomComplet = "Client #" + noClient;
+                        }
+                        else
+                        {
+                            nomComplet = split[1];
+                        }
+
+                        ctrBoitePanier.NoVendeur = (int)Session["ID"];
+                        ctrBoitePanier.NoClient = noClient;
+                        ctrBoitePanier.Titre = nomComplet;
+                        ctrBoitePanier.ChargerArticlesEnPanier();
+
                         mv_verdict.SetActiveView(view_un_vendeur);
-                        Session["desactiver_panier"] = null;
                     }
                 }
                 else
@@ -53,7 +75,12 @@ namespace Puces_R
                     else Response.Redirect("Default.aspx");
                 }
             }
-            
+
+            //BoitePanier ctrBoitePanier = (BoitePanier)item.FindControl("ctrBoitePanier");
+
+          
+
+            //Session["desactiver_panier"] = null;
             //myConnection.Open();
             ////SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs WHERE NoVendeur = " + no_client, myConnection);
 
@@ -86,20 +113,18 @@ namespace Puces_R
 
                 try
                 {
-                    string commande = "UPDATE PPVendeurs SET Statut = 1 WHERE NoVendeur = " + e.CommandArgument + "; ";
-                    commande += "DELETE FROM PPProduits WHERE NoVendeur = " + e.CommandArgument + " AND NoProduit NOT IN (SELECT NoProduit FROM PPDetailsCommandes);";
-                    commande += "UPDATE PPProduits SET Disponibilité = 0 WHERE NoVendeur = " + e.CommandArgument + " AND NoProduit IN (SELECT NoProduit FROM PPDetailsCommandes);";
+                    string commande = "DELETE FROM PPArticlesEnPanier where NoVendeur=" + Session["ID"] +" and NoClient="+ split[0] +"; ";
                     SqlCommand commande_desactiver_vendeur = new SqlCommand(commande, myConnection, transaction);
                     commande_desactiver_vendeur.ExecuteNonQuery();
                     transaction.Commit();
-                    Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été désactivé.";
-                    Response.Redirect("gerer_inactivite_vendeurs.aspx");
+                    //Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été désactivé.";
+                    Response.Redirect("GererPanierVendeur.aspx");
                 }
                 catch (SqlException ex)
                 {
                     transaction.Rollback();
                     Session["err_msg"] = "Erreur lors de la mise à jour de la base de données: " + ex.ToString();
-                    Response.Redirect("gerer_inactivite_vendeurs.aspx");
+                    Response.Redirect("GererPanierVendeur.aspx");
                 }
             }
 
@@ -113,7 +138,10 @@ namespace Puces_R
             tab_desactiver.AddRange(Session["desactiver_liste"].ToString().Split(','));
 
             foreach (string vendeur_a_desctiver in tab_desactiver)
-                desactiver_un_Panier(Convert.ToInt32(vendeur_a_desctiver));
+            {
+                String[] liste = vendeur_a_desctiver.Split('-');
+                desactiver_un_Panier(Convert.ToInt32(liste[0]));
+            }
 
             Session["msg"] = "Les paniers sélectionnés ont bien été supprimés.";
             Session["desactiver_liste"] = "";
@@ -132,12 +160,12 @@ namespace Puces_R
 
                 try
                 {
-                    string commande = "UPDATE PPVendeurs SET Statut = 1 WHERE NoVendeur = " + vendeur_a_desactiver + "; ";
-                    commande += "DELETE FROM PPProduits WHERE NoVendeur = " + vendeur_a_desactiver + " AND NoProduit NOT IN (SELECT NoProduit FROM PPDetailsCommandes);";
-                    commande += "UPDATE PPProduits SET Disponibilité = 0 WHERE NoVendeur = " + vendeur_a_desactiver + " AND NoProduit IN (SELECT NoProduit FROM PPDetailsCommandes);";
+                    string commande = "DELETE FROM PPArticlesEnPanier where NoVendeur=" + Session["ID"] + " and NoClient=" + vendeur_a_desactiver + "; ";
                     SqlCommand commande_desactiver_vendeur = new SqlCommand(commande, myConnection, transaction);
                     commande_desactiver_vendeur.ExecuteNonQuery();
                     transaction.Commit();
+                    //Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été désactivé.";
+                    
                 }
                 catch (SqlException ex)
                 {
@@ -150,10 +178,21 @@ namespace Puces_R
             myConnection.Close();
         }
 
+        private string creerListeNoClient()
+        {
+            string[] tab = liste_a_desactiver.Split(',');
+            for (int i = 0; i < tab.Length; i++)
+            {
+                tab[i] = tab[i].Split('-')[0];
+            }
+
+            return string.Join(", ", tab);
+        }
         private DataTable charge_liste()
         {
-            string req_liste = "SELECT * FROM PPVendeurs WHERE NoVendeur IN ( " + liste_a_desactiver + " ) ";
-
+            String chaine = creerListeNoClient();
+            //string req_liste = "SELECT * FROM PPVendeurs WHERE NoVendeur IN ( " + liste_a_desactiver + " ) ";
+            string req_liste="SELECT  (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal, MAX(A.DateCreation) AS DerniereMAJ FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient" + " WHERE A.NoVendeur="+Session["ID"] +" and C.NoClient IN ( " + chaine + " ) " + " GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient ";
             SqlDataAdapter adapteurInnactif1 = new SqlDataAdapter(req_liste, myConnection);
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
@@ -179,7 +218,7 @@ namespace Puces_R
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
-                item_a_desactiver.Text = drvinactif1["NomAffaires"].ToString() + ", par " + drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
+                item_a_desactiver.Text = " Panier de " +drvinactif1["NomC"].ToString() + ", pour un total de " + drvinactif1["SousTotal"].ToString() ;
             }
         }
     }

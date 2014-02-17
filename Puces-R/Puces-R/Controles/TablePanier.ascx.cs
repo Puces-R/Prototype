@@ -37,7 +37,7 @@ namespace Puces_R.Controles
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void ChargerArticlesEnPanier()
         {
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, PrixVente, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + NoVendeur + " AND A.NoClient = " + NoClient, myConnection);
             DataTable tableProduits = new DataTable();

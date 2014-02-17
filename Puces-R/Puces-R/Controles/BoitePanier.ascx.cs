@@ -38,6 +38,7 @@ namespace Puces_R.Controles
             set
             {
                 ViewState["NoClient"] = value;
+                //ctrProduits.NoClient = value;
             }
         }
 
@@ -50,10 +51,11 @@ namespace Puces_R.Controles
             set
             {
                 ViewState["NoVendeur"] = value;
+                //ctrProduits.NoVendeur = value;//
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void ChargerArticlesEnPanier()
         {
             SqlCommand commandePanier = new SqlCommand("SELECT TOP(1) SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + NoClient + " AND A.NoVendeur = " + NoVendeur + " GROUP BY A.NoVendeur", myConnexion);
 

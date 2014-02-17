@@ -13,6 +13,14 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+        public bool AfficherBoutonsActions
+        {
+            set
+            {
+                phBoutonsActions.Visible = value;
+            }
+        }
+
         public long NoProduit
         {
             get
@@ -103,6 +111,9 @@ namespace Puces_R.Controles
                 lblQuantite.Text = "En rupture de stock";
                 lblQuantite.ForeColor = Color.Red;
             }
+
+            btnSupprimer.CommandArgument = NoProduit.ToString();
+            btnModifier.CommandArgument = NoProduit.ToString();
 
             myConnection.Close();
         }

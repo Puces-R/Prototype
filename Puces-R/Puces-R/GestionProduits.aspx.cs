@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using Puces_R.Controles;
 
 namespace Puces_R
 {
@@ -118,7 +119,7 @@ namespace Puces_R
                     break;
             }
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
@@ -143,51 +144,17 @@ namespace Puces_R
         {
             DataListItem item = e.Item;
 
-            
+            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
+            {
+                BoiteProduit ctrProduit = (BoiteProduit)item.FindControl("ctrProduit");
 
-               
+                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
-                {
-                    HyperLink hypDescriptionAbregee = (HyperLink)item.FindControl("hypDescriptionAbregee");
-                    Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
-                    Image imgProduit = (Image)item.FindControl("imgProduit");
-                    Label lblCategorie = (Label)item.FindControl("lblCategorie");
-                    Label lblPrixDemande = (Label)item.FindControl("lblPrixDemande");
-                    Label lblQuantite = (Label)item.FindControl("lblQuantite");
-                    Button btnSupprimer = (Button)item.FindControl("btnSupprimer");
-                    Button btnModifier = (Button)item.FindControl("btnModifier");
+                long noProduit = (long)drvProduit["NoProduit"];
 
-                    DataRowView drvProduit = (DataRowView)e.Item.DataItem;
-
-                    long noProduit = (long)drvProduit["NoProduit"];
-
-                    Object photo = drvProduit["Photo"];
-                    String urlImage;
-                    if (photo is DBNull)
-                    {
-                        urlImage = "Images/image_non_disponible.png";
-                    }
-                    else
-                    {
-                        urlImage = "Images/Televerse/" + (String)photo;
-                    }
-                    String strCategorie = (String)drvProduit["Description"];
-                    String strDescriptionAbregee = (String)drvProduit["Nom"];
-                    decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];
-                    short intQuantite = (short)drvProduit["NombreItems"];
-
-                    lblNoProduit.Text = "No. " + noProduit.ToString();
-                    imgProduit.ImageUrl = urlImage;
-                    hypDescriptionAbregee.Text = strDescriptionAbregee;
-                    hypDescriptionAbregee.NavigateUrl = "DetailsProduit.aspx?noproduit=" + noProduit;
-                    lblCategorie.Text = strCategorie;
-                    lblPrixDemande.Text = "Prix demandé: " + decPrixDemande.ToString("C");
-                    lblQuantite.Text = "Quantité: " + intQuantite.ToString();
-
-                    btnSupprimer.CommandArgument = noProduit.ToString();
-                    btnModifier.CommandArgument = noProduit.ToString();
-                }
+                ctrProduit.NoProduit = noProduit;
+                ctrProduit.NoSequentiel = Master.PageActuelle * int.Parse(ddlParPage.SelectedValue) + item.ItemIndex + 1;
+            }
                 //Label lblNoProduit = (Label)item.FindControl("lblNoProduit");
                 //HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
                 //Label lblCategorie = (Label)item.FindControl("lblCategorie");

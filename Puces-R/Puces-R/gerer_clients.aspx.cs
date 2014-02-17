@@ -16,6 +16,7 @@ namespace Puces_R
         SqlConnection myConnection = Librairie.Connexion;
         string whereClause, orderByClause = " ORDER BY ";
         private int noCategorie;
+        PagedDataSource objPds = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,7 +105,6 @@ namespace Puces_R
             adapteurResultats.Fill(tableResultats);
             myConnection.Close();
 
-            PagedDataSource objPds = new PagedDataSource();
             objPds.DataSource = new DataView(tableResultats);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -134,7 +134,7 @@ namespace Puces_R
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.Text = (objPds.CurrentPageIndex * objPds.PageSize + e.Item.ItemIndex + 1).ToString();
                 nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
                 adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
 

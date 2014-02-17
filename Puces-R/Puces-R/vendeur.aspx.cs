@@ -76,11 +76,11 @@ namespace Puces_R
             {
                 lbl_nom_complet.Text = results["Prenom"].ToString() + " " + results["Nom"].ToString();
                 lbl_adresse.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
-                lbl_charge_max.Text = results["MaxLivraison"].ToString() + " lb";
+                lbl_charge_max.Text = results["MaxLivraison"].ToString() + " Lbs";
                 lbl_courriel.Text = results["AdresseEmail"].ToString();
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
-                lbl_livraison_gratuite.Text = "$" + results["LivraisonGratuite"].ToString();
+                lbl_livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";
                 //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
 
                 Master.Titre = results["NomAffaires"].ToString();
@@ -97,11 +97,11 @@ namespace Puces_R
                         lbl_statut.Text = "En attende d'approbation";
                         break;
                     case "3":
-                        lbl_statut.Text = "En retard de payement";
+                        lbl_statut.Text = "En retard de paiement";
                         break;
                 }
 
-                lbl_taux_redevence.Text = results["Pourcentage"].ToString();
+                lbl_taux_redevance.Text = results["Pourcentage"].ToString();
                 lbl_taxes.Text = (results["Taxes"].ToString() == "True" ? "Oui" : "Non");
                 lbl_tel1.Text = results["Tel1"].ToString();
                 lbl_tel2.Text = results["Tel2"].ToString();
@@ -153,7 +153,7 @@ namespace Puces_R
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
                 nom_meilleur_client.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                total_commande_meilleur_client.Text = "$" + drvDemande["total"].ToString();
+                total_commande_meilleur_client.Text = Convert.ToDecimal(drvDemande["Total"]).ToString("N") + " $";
             }
         }
 

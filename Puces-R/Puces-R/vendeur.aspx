@@ -72,8 +72,8 @@
                                 <td><asp:Label runat="server" ID="lbl_taxes" CssClass="info_cellule" Text="40"/></td>
                             </tr>
                             <tr>
-                                <th>Taux de redevence</th>
-                                <td><asp:Label runat="server" ID="lbl_taux_redevence" CssClass="info_cellule" Text="40"/></td>
+                                <th>Taux de redevance</th>
+                                <td><asp:Label runat="server" ID="lbl_taux_redevance" CssClass="info_cellule" Text="40"/></td>
                             </tr>
                             <tr>
                                 <th>Date d'inscription</th>
@@ -98,7 +98,7 @@
                         <asp:Label runat="server" ID="Label1" Text="Cinq meilleurs clients"/>
                     </div>
                     <div class="rectangleItem basRectangle">
-                        <table class="tableProduits" style="width:95%">
+                        <table class="table_avec_ligne" style="width:95%">
                             <colgroup>
                                 <col width="50%" />
                                 <col width="50%" />
@@ -111,7 +111,7 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td><asp:Label runat="server" ID="nom_meilleur_client" CssClass="info_cellule" Text="40"/></td>
-                                        <td><asp:Label runat="server" ID="total_commande_meilleur_client" CssClass="info_cellule" Text="40"/></td>
+                                        <td class="montant" ><asp:Label runat="server" ID="total_commande_meilleur_client" Text="40"/></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -152,7 +152,7 @@
                     <h2>Actions</h2>
                     <asp:Button runat="server" Text="Envoyer un message interne" ToolTip="Envoyer un message interne à ce vendeur" />
                     <asp:Button runat="server" Text="Envoyer un courriel" ToolTip="Envoyer un courriel à ce vendeur" />
-                    <asp:Button runat="server" Text="Enregistrer le payement de la redevence mensuelle" ToolTip="Enregistrer le payement de la redevence mensuelle de ce vendeur" />
+                    <asp:Button runat="server" Text="Enregistrer le paiement de la redevance mensuelle" ToolTip="Enregistrer le paiement de la redevance mensuelle de ce vendeur" />
                 </asp:View>
             </asp:MultiView>
         </div>

@@ -16,6 +16,7 @@ namespace Puces_R
         string req_inactif = ""; 
         string whereClause, orderByClause = " ORDER BY ";
         int anneesMaximal;
+        PagedDataSource pdsDemandes = new PagedDataSource();
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -144,7 +145,6 @@ namespace Puces_R
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
             pdsDemandes.DataSource = new DataView(tableInnactif1);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -173,7 +173,7 @@ namespace Puces_R
                 
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 lbl_nom_vendeur.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
                 //btnRefuser.CommandArgument = drvinactif1["AdresseEmail"].ToString();

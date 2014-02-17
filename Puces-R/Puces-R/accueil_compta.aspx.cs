@@ -137,8 +137,7 @@ namespace Puces_R
                 //Label date_demande = (Label)item.FindControl("date_demande");
                 LinkButton lbl_montant_du = (LinkButton)item.FindControl("lbl_montant_du");
 
-                DataRowView drvDemande = (DataRowView)e.Item.DataItem;                
-
+                DataRowView drvDemande = (DataRowView)e.Item.DataItem; 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvDemande["NomAffaires"].ToString();
                 lbl_nom_vendeur.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();

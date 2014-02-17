@@ -78,6 +78,8 @@ namespace Puces_R
             SqlCommand commande_enregistrer = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + no_vendeur, myConnection);
             object no_affaire = commande_enregistrer.ExecuteScalar();
             Master.Master.Titre = "Historique des redevences de \"" + no_affaire.ToString() + "\"";
+
+            myConnection.Close();
         }
 
         private void charge_redevences(object sender, EventArgs e)
@@ -92,6 +94,7 @@ namespace Puces_R
 
         private DataTable charge_redevences()
         {
+            myConnection.Open();
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPSuiviCompta WHERE NoVendeur = " + no_vendeur, myConnection);
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
@@ -119,26 +122,28 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_mois = (Label)item.FindControl("lbl_mois");
-                Label date_paiement = (Label)item.FindControl("date_paiement");
-                Label lbl_montant = (Label)item.FindControl("lbl_montant");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_mois = (LinkButton)item.FindControl("lbl_mois");
+                LinkButton date_paiement = (LinkButton)item.FindControl("date_paiement");
+                LinkButton lbl_montant = (LinkButton)item.FindControl("lbl_montant");
                 Button btn_enregistrer_paiement = (Button)item.FindControl("btn_enregistrer_paiement");
-                Button btn_voir_details_redevence = (Button)item.FindControl("btn_voir_details_redevence");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
-
                 string[] tab_date = drvDemande["Mois"].ToString().Split('-');
                 DateTime mois = new DateTime(Convert.ToInt32(tab_date[0]), Convert.ToInt32(tab_date[1]), Convert.ToInt32(tab_date[2].Remove(3)));
-                lbl_mois.Text = mois.ToString("MMMM yyyy").ToUpperInvariant();
 
+                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_mois.Text = mois.ToString("MMMM yyyy").ToUpperInvariant();
                 date_paiement.Text = (drvDemande["DatePaiement"] == DBNull.Value ? "Non payé" : drvDemande["DatePaiement"].ToString());
                 lbl_montant.Text = drvDemande["Montant"].ToString();
                 btn_enregistrer_paiement.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
                 btn_enregistrer_paiement.Visible = (drvDemande["DatePaiement"] == DBNull.Value);
-                btn_voir_details_redevence.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
+
+                lbl_num.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
+                lbl_mois.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
+                date_paiement.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
+                lbl_montant.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
 
                 if (drvDemande["DatePaiement"] == DBNull.Value)
                 {
@@ -156,6 +161,8 @@ namespace Puces_R
             //Response.Write(commande_enregistrer.CommandText);
             commande_enregistrer.ExecuteNonQuery();
             Session["histo_no_vendeur"] = tab_args[0];
+            Session["msg"] = "Le paiement a bien été enregistré";
+            myConnection.Close();
             charge_redevences();
         }
 

@@ -140,19 +140,22 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_client = (Label)item.FindControl("lbl_nom_client");
-                Label lbl_redevance = (Label)item.FindControl("lbl_redevance");
-                Label date_vente = (Label)item.FindControl("date_vente");
-                Button btn_voir_details_commande_redevance = (Button)item.FindControl("btn_voir_details_commande_redevance");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_client = (LinkButton)item.FindControl("lbl_nom_client");
+                LinkButton lbl_redevance = (LinkButton)item.FindControl("lbl_redevance");
+                LinkButton date_vente = (LinkButton)item.FindControl("date_vente");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
+                lbl_num.CommandArgument = drvDemande["NoCommande"].ToString();
+                lbl_nom_client.CommandArgument = drvDemande["NoCommande"].ToString();
+                lbl_redevance.CommandArgument = drvDemande["NoCommande"].ToString();
+                date_vente.CommandArgument = drvDemande["NoCommande"].ToString();
+
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
                 lbl_nom_client.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                lbl_redevance.Text = drvDemande["Redevance"].ToString();
+                lbl_redevance.Text = "$" + drvDemande["Redevance"].ToString();
                 date_vente.Text = drvDemande["DateVente"].ToString();
-                btn_voir_details_commande_redevance.CommandArgument = drvDemande["NoCommande"].ToString();
 
                 string[] str_mois = drvDemande["DateVente"].ToString().Split('-');
                 DateTime mois = new DateTime(Convert.ToInt32(str_mois[0]), Convert.ToInt32(str_mois[1]), 1);

@@ -107,20 +107,18 @@
             </asp:Panel>
 
             <div style="font-size: small;">
-                <table border="0" width="100%" cellpadding="5" cellspacing="2" >
+                <table border="0" width="100%" cellpadding="7" cellspacing="2" >
                     <tr class="rectangleItem hautRectangle" >
                         <th>#</th>
                         <th>Adresse courriel</th>
                         <th>Nom complet</th>
-                        <th></th>
                     </tr>
                     <asp:Repeater runat="server" ID="rptVendeurs" OnItemDataBound="rptVendeurs_ItemDataBound" >
                         <ItemTemplate>                        
                             <tr class="rectangleItem basRectangle" >
-                                <td><asp:Label runat="server" ID="lbl_num" /></td>
-                                <td><asp:label runat="server" ID="adresse_courriel" /></td>
-                                <td><asp:label runat="server" ID="nom_complet" /></td>
-                                <td><asp:Button runat="server" ID="btn_gerer" Text="Gérer" OnCommand="selectionner_client" CssClass="a_droite" ForeColor="Black" /></td>
+                                <td style="padding-top: 2%; padding-bottom: 2%;" ><asp:LinkButton runat="server" ID="lbl_num" OnCommand="selectionner_client" ToolTip="Cliquez pour sélectionner ce client" /></td>
+                                <td><asp:LinkButton runat="server" ID="adresse_courriel" OnCommand="selectionner_client" ToolTip="Cliquez pour sélectionner ce client" /></td>
+                                <td><asp:LinkButton runat="server" ID="nom_complet" OnCommand="selectionner_client" ToolTip="Cliquez pour sélectionner ce client" /></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

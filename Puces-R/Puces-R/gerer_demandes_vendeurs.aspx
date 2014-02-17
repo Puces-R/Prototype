@@ -44,22 +44,22 @@
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
     <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
-        <div style="font-size: small; width: 70%; margin: auto;">
+        <div style="font-size: small; width: 85%; margin: auto; font-size: small;">
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
                     <th>Nom d'affaires</th>
                     <th>Nom du vendeur</th>
                     <th>Date de demande</th>
-                    <th></th>
+                    <th>Actions</th>
                 </tr>
                 <asp:Repeater runat="server" ID="rptDemandes" OnItemDataBound="rptDemandes_ItemDataBound" >
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle">
-                            <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_vendeur" /></td>
-                            <td><asp:Label runat="server" ID="date_demande" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_num"  OnCommand="details_demande" ToolTip="Voir les détails de la demande" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_nom_affaire"  OnCommand="details_demande" ToolTip="Voir les détails de la demande" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_nom_vendeur" OnCommand="details_demande" ToolTip="Voir les détails de la demande"  /></td>
+                            <td><asp:LinkButton runat="server" ID="date_demande"  OnCommand="details_demande" ToolTip="Voir les détails de la demande" /></td>
                             <td>
                                 <asp:Button id="btn_accepter" runat="server" Text="Accepter" OnCommand="acceptation_demande" ToolTip="Accepter la demande de ce vendeur" />
                                 <asp:Button id="btn_refuser" runat="server" Text="Refuser" OnCommand="refus_demande" ToolTip="Refuser la demande de ce vendeur" />

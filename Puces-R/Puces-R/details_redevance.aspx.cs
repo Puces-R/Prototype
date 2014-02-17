@@ -28,11 +28,11 @@ namespace Puces_R
 
             if (txtCritereRecherche.Text != string.Empty)
             {
-                String colonne = "Nom";
+                String colonne = " PPClients.Nom + PPClients.Prenom";
                 switch (ddlTypeRecherche.SelectedIndex)
                 {
                     case 0:
-                        colonne = "Nom";
+                        colonne = " PPClients.Nom + PPClients.Prenom ";
                         break;
                 }
                 whereParts.Add(" AND " + colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
@@ -52,16 +52,16 @@ namespace Puces_R
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "NoCommande";
+                    orderByClause += " NoCommande ";
                     break;
                 case 1:
-                    orderByClause += "Nom";
+                    orderByClause += " PPClients.Nom ";
                     break;
                 case 2:
-                    orderByClause += "DateVente";
+                    orderByClause += " DateVente ";
                     break;
                 case 3:
-                    orderByClause += "MontantVente";
+                    orderByClause += " MontantVente ";
                     break;
             }
             

@@ -33,46 +33,50 @@
 <%--//hidden field valeur de la couleur--%>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <div class="rectangleComplet rectangleItem">
-            <table class="formulaire">
-                <se:ProfilVendeur ID="ctrProfil" runat="server" />
-                <tr>
-                    <td colspan="3">
-                        <asp:HyperLink runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Taux de redevance
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblTaux"></asp:Label>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Dernière mise à jour
-                    </td>
-                    <td>
-                        <asp:Label runat="server" ID="lblMAJ"></asp:Label>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <asp:Button runat="server" ID="btnSauvegarder" OnClick="sauvegarder" Text="Sauvegarder les changements" CausesValidation="false"/>
-                    </td>
-                </tr>
-            </table>
+        <div class="panneau pnlGauche">
+            <div class="rectangleComplet rectangleItem">
+                <table class="formulaire">
+                    <se:ProfilVendeur ID="ctrProfil" runat="server" />
+                    <tr>
+                        <td colspan="3">
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Taux de redevance
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblTaux"></asp:Label>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Dernière mise à jour
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblMAJ"></asp:Label>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <asp:Button runat="server" ID="btnSauvegarder" OnClick="sauvegarder" Text="Sauvegarder les changements" CausesValidation="false"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <asp:HiddenField ID="hidColor" runat="server" />
-        <div id='jqxColorPicker'>
+        <div class="panneau pnlDroite">
+            <div class="rectangleComplet rectangleItem">
+                <asp:HiddenField ID="hidColor" runat="server" />
+                <div id='jqxColorPicker'></div>
+                <asp:FileUpload ID="fileUploaderLogo" runat="server" /><br />
+                <asp:Button ID="btnPerso" OnClientClick="recevoirCouleur();" OnClick="sauverFavori" Text="Sauver personalisation" runat="server" />
+            </div>
         </div>
-        <asp:FileUpload ID="fileUploaderLogo" runat="server" /><br />
-        <asp:Button ID="btnPerso" OnClientClick="recevoirCouleur();" OnClick="sauverFavori"
-            Text="Sauver personalisation" runat="server" />
     </div>
 </asp:Content>

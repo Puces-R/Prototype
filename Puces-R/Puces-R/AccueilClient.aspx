@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AccueilClient.aspx.cs" Inherits="Puces_R.AccueilClient" %>
 
-<%@ Register TagPrefix="lp" TagName="TablePanier" Src="~/Controles/TablePanier.ascx" %>
+<%@ Register TagPrefix="lp" TagName="BoitePanier" Src="~/Controles/BoitePanier.ascx" %>
 <%@ Register TagPrefix="lp" TagName="Categories" Src="~/Controles/Categories.ascx" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
@@ -17,19 +17,13 @@
             <h2>Paniers</h2>
             <asp:MultiView runat="server" ID="mvPaniers">
                 <asp:View runat="server">
-                    <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
-                        <ItemTemplate>
-                            <div class="rectangleItem hautRectangle">
-                                <asp:HyperLink runat="server" ID="hypVendeur" />
-                            </div>
-                            <div class="rectangleItem basRectangle">
-                                <lp:TablePanier runat="server" ID="ctrProduits" />
-                                <div class="sousTotal">
-                                    Sous-Total: <asp:Label runat="server" ID="lblSousTotal" />
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>                
+                    <div class="paniers">
+                        <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
+                            <ItemTemplate>
+                                <lp:BoitePanier runat="server" ID="ctrBoitePanier"/>
+                            </ItemTemplate>
+                        </asp:Repeater> 
+                    </div>
                 </asp:View>
                 <asp:View runat="server">
                     <div class="aucunPanier rectangleItem rectangleComplet">

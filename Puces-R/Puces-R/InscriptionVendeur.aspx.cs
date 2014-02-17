@@ -12,6 +12,14 @@ namespace Puces_R
     {
         SqlConnection connexion = Librairie.Connexion;
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(true, true, false, false);
+            }
+        }
+
         protected void inscription(object sender, EventArgs e)
         {
             Page.Validate();

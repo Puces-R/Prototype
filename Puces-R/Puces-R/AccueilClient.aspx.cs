@@ -22,8 +22,9 @@ namespace Puces_R
                 {
                     Response.Redirect("Default.aspx", true);
                 }
+                Librairie.Autorisation(false, true, false, false);
 
-                SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + Session["ID"] + " GROUP BY V.NomAffaires, A.NoVendeur", myConnection);
+                SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT A.NoVendeur, V.NomAffaires FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs V ON A.NoVendeur = V.NoVendeur WHERE A.NoClient = " + Session["ID"] + " GROUP BY A.NoVendeur, V.NomAffaires", myConnection);
                 DataTable tablePaniers = new DataTable();
                 adapteurPaniers.Fill(tablePaniers);
 
@@ -40,21 +41,17 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                HyperLink hypVendeur = (HyperLink)item.FindControl("hypVendeur");
-                Label lblSousTotal = (Label)item.FindControl("lblSousTotal");
-                TablePanier ctrProduits = (TablePanier)item.FindControl("ctrProduits");
+                BoitePanier ctrBoitePanier = (BoitePanier)item.FindControl("ctrBoitePanier");
                 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
 
-                String vendeur = (String)drvPanier["NomAffaires"];
-                decimal sousTotal = (decimal)drvPanier["SousTotal"];
                 long noVendeur = (long)drvPanier["NoVendeur"];
+                string nomAffaires = (string)drvPanier["NomAffaires"];
 
-                hypVendeur.Text = vendeur;
-                hypVendeur.NavigateUrl = Chemin.Ajouter("Panier.aspx?novendeur=" + noVendeur, "Retour à l'accueil");
-                lblSousTotal.Text = sousTotal.ToString("C");
-                ctrProduits.NoVendeur = noVendeur;
-                ctrProduits.NoClient = (int)Session["ID"];
+                ctrBoitePanier.NoVendeur = noVendeur;
+                ctrBoitePanier.NoClient = (int)Session["ID"];
+                ctrBoitePanier.Titre = nomAffaires;
+                ctrBoitePanier.NavigateUrl = Chemin.Ajouter("~/Panier.aspx?novendeur=" + noVendeur, "Retour à l'accueil");
             }
         }
     }

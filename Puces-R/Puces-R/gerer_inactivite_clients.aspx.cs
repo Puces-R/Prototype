@@ -16,9 +16,14 @@ namespace Puces_R
         string req_inactif = "";
         string whereClause, orderByClause = " ORDER BY ";
         int anneesMaximal;
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             List<String> whereParts = new List<String>();
 
             if (txtCritereRecherche.Text != string.Empty)
@@ -138,7 +143,6 @@ namespace Puces_R
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
             pdsDemandes.DataSource = new DataView(tableInnactif1);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -161,17 +165,21 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_complet = (Label)item.FindControl("lbl_nom_complet");
-                Label lbl_courriel = (Label)item.FindControl("lbl_courriel");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_complet = (LinkButton)item.FindControl("lbl_nom_complet");
+                LinkButton lbl_courriel = (LinkButton)item.FindControl("lbl_courriel");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
 
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_nom_complet.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
                 lbl_courriel.Text = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoClient"].ToString();
+
+                lbl_num.CommandArgument = drvinactif1["NoClient"].ToString();
+                lbl_nom_complet.CommandArgument = drvinactif1["NoClient"].ToString();
+                lbl_courriel.CommandArgument = drvinactif1["NoClient"].ToString();
             }
         }
 

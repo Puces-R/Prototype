@@ -71,11 +71,13 @@
     <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
+    <Content Include="Controles\BoitePanier.ascx" />
     <Content Include="Controles\BoiteProduit.ascx" />
     <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\BoiteCommande.ascx" />
+    <Content Include="Controles\MenuACoteVendeur.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\style_sec4_2.css" />
     <Content Include="details_commande_redevance.aspx" />
@@ -168,7 +170,6 @@
     <Content Include="Default.aspx" />
     <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
-    <Content Include="Demonstration.aspx" />
     <Content Include="DetailsProduit.aspx" />
     <Content Include="GererPanierVendeur.aspx" />
     <Content Include="gerer_clients.aspx" />
@@ -730,6 +731,13 @@
     <Compile Include="Commande.aspx.designer.cs">
       <DependentUpon>Commande.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controles\BoitePanier.ascx.cs">
+      <DependentUpon>BoitePanier.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\BoitePanier.ascx.designer.cs">
+      <DependentUpon>BoitePanier.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controles\BoiteProduit.ascx.cs">
       <DependentUpon>BoiteProduit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -799,6 +807,13 @@
     </Compile>
     <Compile Include="Controles\LigneMessage.ascx.designer.cs">
       <DependentUpon>LigneMessage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MenuACoteVendeur.ascx.cs">
+      <DependentUpon>MenuACoteVendeur.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuACoteVendeur.ascx.designer.cs">
+      <DependentUpon>MenuACoteVendeur.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\MenuClient.ascx.cs">
       <DependentUpon>MenuClient.ascx</DependentUpon>
@@ -919,13 +934,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Demonstration.aspx.cs">
-      <DependentUpon>Demonstration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Demonstration.aspx.designer.cs">
-      <DependentUpon>Demonstration.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetailsCommandes.aspx.cs">
       <DependentUpon>DetailsCommandes.aspx</DependentUpon>

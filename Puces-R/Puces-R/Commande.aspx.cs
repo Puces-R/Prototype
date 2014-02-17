@@ -19,6 +19,7 @@ namespace Puces_R
         {
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, true, false, false);
                 int noVendeur;
                 if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
                 {

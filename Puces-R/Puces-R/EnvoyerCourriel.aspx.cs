@@ -18,6 +18,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             ClientScript.GetPostBackEventReference(this, string.Empty);
             string parametres = Request["__EVENTARGUMENT"];
             lstNoDestinataires = null;

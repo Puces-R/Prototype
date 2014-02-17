@@ -50,7 +50,7 @@
                                     <td colspan="2" class="verdict_vendeur center">
                                         <h2 class="center">Acceptation de la demande:</h2>                                
                                         <p class="center">
-                                            Entrez le taux de facturation du vendeur 
+                                            Entrez le taux de redevance du vendeur 
                                             <span class="remarque">(Format: 00.00)</span>: 
                                             <asp:TextBox runat="server" id="taux_facturation" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
                                             <asp:RegularExpressionValidator
@@ -80,6 +80,14 @@
                                         <p class="center">
                                             <asp:Button id="btn_refuser" runat="server" text="Envoyer le courriel de refus" OnCommand="refus_demande"/>
                                         </p>
+                                    </td>
+                                </tr>
+                            </asp:View>
+                            <asp:View runat="server" ID="view_details">
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <asp:Button id="btn_accepter_details" runat="server" Text="Accepter" OnCommand="acceptation_details_demande" ToolTip="Accepter la demande de ce vendeur" />
+                                        <asp:Button id="btn_refuser_details" runat="server" Text="Refuser" OnCommand="refus_details_demande" ToolTip="Refuser la demande de ce vendeur" />
                                     </td>
                                 </tr>
                             </asp:View>

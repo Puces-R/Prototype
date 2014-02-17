@@ -13,9 +13,10 @@ namespace Puces_R
 {
     public partial class gerer_vendeurs : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         string whereClause, orderByClause = " ORDER BY ";
         private int noCategorie;
+        PagedDataSource objPds = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,6 +24,7 @@ namespace Puces_R
             
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 String whereClause = String.Empty;
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" , myConnection);
                 DataTable tableCategories = new DataTable();
@@ -121,7 +123,6 @@ namespace Puces_R
             adapteurResultats.Fill(tableResultats);
             myConnection.Close();
 
-            PagedDataSource objPds = new PagedDataSource();
             objPds.DataSource = new DataView(tableResultats);
             objPds.AllowPaging = true;
             objPds.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -145,21 +146,19 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
-                Label nom_complet = (Label)item.FindControl("nom_complet");
-                //Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
-                //Label date_insc = (Label)item.FindControl("date_insc");
-                Button btn_gerer = (Button)item.FindControl("btn_gerer");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_affaire = (LinkButton)item.FindControl("lbl_nom_affaire");
+                LinkButton nom_complet = (LinkButton)item.FindControl("nom_complet");
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.Text = (objPds.CurrentPageIndex * objPds.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvVendeurs["NomAffaires"].ToString();
                 nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
-                //adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
-                //date_insc.Text = drvVendeurs["DateCreation"].ToString();
-                btn_gerer.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+
+                lbl_num.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+                lbl_nom_affaire.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+                nom_complet.CommandArgument = drvVendeurs["NoVendeur"].ToString();
             }
         }
 

@@ -15,6 +15,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             ((SiteMaster)Master).Titre = "Accueil";
 
             rptMeilleursClients.DataSource = chargerMeilleursClients();

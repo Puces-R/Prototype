@@ -140,5 +140,49 @@ namespace Puces_R
             System.Web.HttpContext.Current.Session["Fixer"] = fixer;
             System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerCourriel.aspx", retour));
         }
+
+
+        public static void Autorisation(bool visiteur, bool client, bool vendeur, bool gestionnaire)
+        {
+            object typeTmp = System.Web.HttpContext.Current.Session["Type"];
+            char type = ' ';
+            bool typeOk = typeTmp != null && char.TryParse(typeTmp.ToString(), out type);
+
+            if (typeOk)
+            {
+                if (!client && type == 'C')
+                {
+                    System.Web.HttpContext.Current.Response.Redirect("AccueilClient.aspx");
+                }
+                else if (!vendeur && type == 'V')
+                {
+                    System.Web.HttpContext.Current.Response.Redirect("AccueilVendeur.aspx");
+                }
+                else if (!gestionnaire && type == 'G')
+                {
+                    System.Web.HttpContext.Current.Response.Redirect("accueil_gestionnaire.aspx");
+                }
+                else if (!visiteur && !"CVG".Contains(type))
+                {
+                    System.Web.HttpContext.Current.Response.Redirect("Default.aspx");
+                }
+            }
+            else if (!visiteur)
+            {
+                System.Web.HttpContext.Current.Response.Redirect("Default.aspx");
+            }
+        }
+        public static void SelectionnerItemMenuActuel(MenuItemCollection items, String urlPage)
+        {
+            foreach (MenuItem item in items)
+            {
+                if (item.Selectable)
+                {
+                    String urlItem = Path.GetFileNameWithoutExtension(item.NavigateUrl);
+                    item.Selected = String.Equals(urlItem, urlPage);
+                }
+                SelectionnerItemMenuActuel(item.ChildItems, urlPage);
+            }
+        }
     }
 }

@@ -11,23 +11,28 @@ using System.Net;
 
 namespace Puces_R
 {
-    public partial class details_redevence : System.Web.UI.Page
+    public partial class details_redevance : System.Web.UI.Page
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string whereClause, orderByClause = " ORDER BY ", mois;
         int no_vendeur;
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             List<String> whereParts = new List<String>();
 
             if (txtCritereRecherche.Text != string.Empty)
             {
-                String colonne = "Nom";
+                String colonne = " PPClients.Nom + PPClients.Prenom";
                 switch (ddlTypeRecherche.SelectedIndex)
                 {
                     case 0:
-                        colonne = "Nom";
+                        colonne = " PPClients.Nom + PPClients.Prenom ";
                         break;
                 }
                 whereParts.Add(" AND " + colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
@@ -47,16 +52,16 @@ namespace Puces_R
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "NoCommande";
+                    orderByClause += " NoCommande ";
                     break;
                 case 1:
-                    orderByClause += "Nom";
+                    orderByClause += " PPClients.Nom ";
                     break;
                 case 2:
-                    orderByClause += "DateVente";
+                    orderByClause += " DateVente ";
                     break;
                 case 3:
-                    orderByClause += "MontantVente";
+                    orderByClause += " MontantVente ";
                     break;
             }
             
@@ -84,7 +89,7 @@ namespace Puces_R
                 else Response.Redirect("Default.aspx");
             else Response.Redirect("Default.aspx");
 
-            Master.ChargerItems += charge_details_redevence;
+            Master.ChargerItems += charge_details_redevance;
 
             if (!IsPostBack)
             {
@@ -92,9 +97,9 @@ namespace Puces_R
             } 
         }
 
-        private void charge_details_redevence(object sender, EventArgs e)
+        private void charge_details_redevance(object sender, EventArgs e)
         {
-            charge_details_redevence();
+            charge_details_redevance();
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)
@@ -102,7 +107,7 @@ namespace Puces_R
             Master.AfficherPremierePage();
         }
 
-        private DataTable charge_details_redevence()
+        private DataTable charge_details_redevance()
         {
             string req = "";
 
@@ -118,7 +123,6 @@ namespace Puces_R
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -126,33 +130,36 @@ namespace Puces_R
             pdsDemandes.CurrentPageIndex = Master.PageActuelle;
             Master.NbPages = pdsDemandes.PageCount;
 
-            rptDetailsRedevence.DataSource = pdsDemandes;
-            rptDetailsRedevence.DataBind();
+            rptDetailsRedevance.DataSource = pdsDemandes;
+            rptDetailsRedevance.DataBind();
             myConnection.Close();
 
             return tableDemandes;
         }
 
-        protected void rptDetailsRedevence_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptDetailsRedevance_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
 
             RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_client = (Label)item.FindControl("lbl_nom_client");
-                Label lbl_redevance = (Label)item.FindControl("lbl_redevance");
-                Label date_vente = (Label)item.FindControl("date_vente");
-                Button btn_voir_details_commande_redevance = (Button)item.FindControl("btn_voir_details_commande_redevance");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_client = (LinkButton)item.FindControl("lbl_nom_client");
+                LinkButton lbl_redevance = (LinkButton)item.FindControl("lbl_redevance");
+                LinkButton date_vente = (LinkButton)item.FindControl("date_vente");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.CommandArgument = drvDemande["NoCommande"].ToString();
+                lbl_nom_client.CommandArgument = drvDemande["NoCommande"].ToString();
+                lbl_redevance.CommandArgument = drvDemande["NoCommande"].ToString();
+                date_vente.CommandArgument = drvDemande["NoCommande"].ToString();
+
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_nom_client.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                lbl_redevance.Text = drvDemande["Redevance"].ToString();
+                lbl_redevance.Text = Convert.ToDecimal(drvDemande["Redevance"]).ToString("N") + " $";
                 date_vente.Text = drvDemande["DateVente"].ToString();
-                btn_voir_details_commande_redevance.CommandArgument = drvDemande["NoCommande"].ToString();
 
                 string[] str_mois = drvDemande["DateVente"].ToString().Split('-');
                 DateTime mois = new DateTime(Convert.ToInt32(str_mois[0]), Convert.ToInt32(str_mois[1]), 1);

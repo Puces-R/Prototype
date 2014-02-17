@@ -23,7 +23,7 @@ namespace Puces_R
         String dateAutorisation;
         String fraisMarchand;
 
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         private long NoCommande
         {
@@ -41,6 +41,7 @@ namespace Puces_R
         {
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, true, false, false);
                 int noClient = (int)Session["ID"];
                 long noVendeur = long.Parse(Request.Params["novendeur"]);
                 short codeLivraison = short.Parse(Request.Params["codelivraison"]);

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Détails de la redevence" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="details_redevence.aspx.cs" Inherits="Puces_R.details_redevence" EnableEventValidation="false" %>
+﻿<%@ Page Title="Détails de la redevance" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="details_redevance.aspx.cs" Inherits="Puces_R.details_redevance" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -42,28 +42,24 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="Items" runat="server">
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
     <div id="div_msg" runat="server"></div>
-    <div id="div_chck">    
-        <div style="font-size: small;">
-            <table border="0" width="100%" cellpadding="5" cellspacing="2" >
+        <div style="font-size: small; width: 70%; margin: auto;">
+            <table border="0" width="100%" cellpadding="7" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>
                     <th>Client</th>
-                    <th>Redevence</th>
+                    <th>Redevance</th>
                     <th>Date de vente</th>
-                    <th></th>
                 </tr>
-                <asp:Repeater runat="server" ID="rptDetailsRedevence" OnItemDataBound="rptDetailsRedevence_ItemDataBound" >
+                <asp:Repeater runat="server" ID="rptDetailsRedevance" OnItemDataBound="rptDetailsRedevance_ItemDataBound">
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle">
-                            <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:label runat="server" ID="lbl_nom_client" /></td>
-                            <td>$<asp:Label runat="server" ID="lbl_redevance" /></td>
-                            <td><asp:Label runat="server" ID="date_vente" /></td>
-                            <td><asp:Button runat="server" ID="btn_voir_details_commande_redevance" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" Text="Détails" /> </td>
+                            <td style="padding-top: 1%; padding-bottom: 1%;"><asp:LinkButton runat="server" ID="lbl_num" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_nom_client" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" /></td>
+                            <td class="montant" ><asp:LinkButton runat="server" ID="lbl_redevance" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" /></td>
+                            <td><asp:LinkButton runat="server" ID="date_vente" OnCommand="voir_details_commande_redevance" ToolTip="Voir les détails de cette commande" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </table>
         </div>
-    </div>
 </asp:Content>

@@ -16,7 +16,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(true, false, false, false);
+            }
         }
 
         protected void inscription(object sender, EventArgs e)

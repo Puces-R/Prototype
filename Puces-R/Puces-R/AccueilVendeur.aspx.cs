@@ -16,14 +16,18 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, true, false);
+            }
             myConnection.Open();
             SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur="+Session["ID"],myConnection);
             object nb = (object)maC.ExecuteScalar();
             myConnection.Close();
 
-            nbVisite.Text = nbVisite.Text + " : " + Convert.ToString(nb);
+            nbVisite.Text = Convert.ToString(nb);
 
-            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT TOP 5 (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient where A.NoVendeur="+Session["ID"] +" GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient ORDER BY SousTotal DESC", myConnection);
+            SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT TOP 5 A.NoClient, C.Prenom + ' ' + C.Nom AS NomComplet FROM PPArticlesEnPanier A INNER JOIN PPClients C ON A.NoClient = C.NoClient WHERE A.NoVendeur = " + Session["ID"] + " GROUP BY A.NoClient, A.NoVendeur, C.Prenom, C.Nom ORDER BY MAX(A.DateCreation)", myConnection);
             DataTable tablePaniers = new DataTable();
             adapteurPaniers.Fill(tablePaniers);
 
@@ -162,50 +166,25 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                HyperLink hypVendeur = (HyperLink)item.FindControl("hypVendeur");
-                Label lblSousTotal = (Label)item.FindControl("lblSousTotal");
-                Label lblNom = (Label)item.FindControl("lblNom");
-                Label lblNo = (Label)item.FindControl("lblNumero");
-                Label lblDate = (Label)item.FindControl("lblDateMAJ");
-
-                //TablePanier ctrPanier = (TablePanier)item.FindControl("ctrPanier");
+                BoitePanier ctrBoitePanier = (BoitePanier)item.FindControl("ctrBoitePanier");
 
                 DataRowView drvPanier = (DataRowView)e.Item.DataItem;
 
-                String vendeur = (String)drvPanier["NomAffaires"];
-                decimal sousTotal = (decimal)drvPanier["SousTotal"];
-                long noVendeur = (long)drvPanier["NoVendeur"];
                 long noClient = (long)drvPanier["NoClient"];
 
-                
-                //long numero = (long)drvPanier["NoClient"];
-                //ctrPanier.NoClient = (long)numero;
+                string nomComplet;
+                if (drvPanier["NomComplet"] is DBNull)
+                {
+                    nomComplet = "Client #" + noClient;
+                }
+                else
+                {
+                    nomComplet = (string)drvPanier["NomComplet"];
+                }
 
-                String date = "";
-                SqlCommand maC = new SqlCommand("select top 1 DateCreation from PPArticlesEnPanier where NoVendeur="+Session["ID"] +" and NoClient="+noClient.ToString() +"order by DateCreation desc ", myConnection);
-                myConnection.Open();
-
-               SqlDataReader rep= maC.ExecuteReader();
-               if (rep.Read()) 
-               {
-                   date = Convert.ToString((DateTime)rep[0]);
-                   //Response.Write(rep[0].ToString()+" ----   ");
-               }
-
-               myConnection.Close();
-
-               String nom = drvPanier["NomC"] == DBNull.Value ? "Nom Inconnu " : (String)drvPanier["NomC"];
-               
-                hypVendeur.Text = nom;
-                hypVendeur.NavigateUrl = "Panier.aspx?noclient=" + noClient + "&novendeur=" + noVendeur;
-
-                lblDate.Text = date;
-                lblNom.Text = nom;
-                lblNo.Text = noClient.ToString();
-                //ctrPanier.NoClient = noClient;
-                //ctrPanier.NoVendeur = (int)Session["ID"];
-
-                lblSousTotal.Text = sousTotal.ToString("C");
+                ctrBoitePanier.NoVendeur = (int)Session["ID"];
+                ctrBoitePanier.NoClient = noClient;
+                ctrBoitePanier.Titre = nomComplet;
             }
         }
 

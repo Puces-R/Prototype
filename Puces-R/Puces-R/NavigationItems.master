@@ -19,15 +19,13 @@
         </div>
     </asp:Panel>
     <asp:ScriptManager runat="server" ID="ctrScriptManager" />
-    <div class="pleineLargeur">
-        <asp:UpdatePanel runat="server" ID="udpProduits">
-            <ContentTemplate>
-                <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" LigneBasVisible="true" />
-                <div>
-                    <asp:ContentPlaceHolder runat="server" ID="Items"/>
-                </div>
-                <lp:NavigationParPage runat="server" ID="ctrNavigationBas" LigneHautVisible="true" />
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>
+    <asp:UpdatePanel runat="server" ID="udpProduits" class="pleineLargeur">
+        <ContentTemplate>
+            <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" LigneBasVisible="true" class="pleineLargeur" />
+            <div class="centerChildDiv">
+                <asp:ContentPlaceHolder runat="server" ID="Items"/>
+            </div>
+            <lp:NavigationParPage runat="server" ID="ctrNavigationBas" LigneHautVisible="true" class="pleineLargeur" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

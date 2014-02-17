@@ -254,6 +254,15 @@ namespace Puces_R
             {
                 mvProduits.ActiveViewIndex = 1;
             }
+
+            if (noVendeurs == null || noVendeurs.Split(',').Length > 1)
+            {
+                Master.Master.Titre = null;
+            }
+            else
+            {
+                Master.Master.NoVendeur = long.Parse(noVendeurs);
+            }
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)

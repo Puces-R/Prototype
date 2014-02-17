@@ -1187,7 +1187,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=iif(First(Fields!Tel2.Value, "ClientDetaille") Is Nothing, "Non disponible", First(Fields!Tel2.Value, "ClientDetaille"))</Value>
+                <Value>=iif(Len(First(Fields!Tel2.Value, "ClientDetaille")) &gt; 0, First(Fields!Tel2.Value, "ClientDetaille"), "Non disponible")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1429,7 +1429,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=iif(First(Fields!Tel2.Value, "VendeurDetaille") Is Nothing, "Non disponible", First(Fields!Tel2.Value, "VendeurDetaille"))</Value>
+                <Value>=iif(Len(First(Fields!Tel2.Value, "VendeurDetaille")) &gt; 0, First(Fields!Tel2.Value, "VendeurDetaille"), "Non disponible")</Value>
                 <Style />
               </TextRun>
             </TextRuns>

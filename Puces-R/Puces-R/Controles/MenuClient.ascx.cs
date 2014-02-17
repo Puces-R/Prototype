@@ -11,8 +11,6 @@ namespace Puces_R.Controles
 {
     public partial class MenuClient : System.Web.UI.UserControl
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
-
         protected void Page_Load(object sender, EventArgs e)
         {
             String urlPage = Path.GetFileNameWithoutExtension(Request.Url.AbsoluteUri);
@@ -29,33 +27,6 @@ namespace Puces_R.Controles
                     item.Selected = String.Equals(urlItem, urlPage);
                 }
                 SelectionnerCourant(item.ChildItems, urlPage);
-            }
-        }
-
-        public long NoVendeur
-        {
-            set
-            {
-                SqlCommand commandePanierVide = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"], myConnection);
-
-                myConnection.Open();
-                int nbItems = (int)commandePanierVide.ExecuteScalar();
-                myConnection.Close();
-
-                MenuItem itmPanier;
-
-                if (ctrMenu.FindItem("Panier") == null)
-                {
-                    itmPanier = new MenuItem("Panier", "Panier");
-                    itmPanier.NavigateUrl = "../Panier.aspx?novendeur=" + value;
-                    ctrMenu.Items.AddAt(2, itmPanier);
-                }
-                else
-                {
-                    itmPanier = ctrMenu.FindItem("Panier");
-                }
-
-                itmPanier.Text = "Panier (" + nbItems + " item" + (nbItems > 1 ? "s" : "") + ")";
             }
         }
     }

@@ -54,7 +54,7 @@ namespace Puces_R.Controles
 
             myConnection.Open();
 
-            SqlCommand commandeCommande = new SqlCommand("SELECT TOP(1) * FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur WHERE C.NoCommande = " + NoCommande + " ORDER BY DateCommande DESC", myConnection);
+            SqlCommand commandeCommande = new SqlCommand("SELECT TOP(1) V.NomAffaires, C.NoCommande, C.DateCommande, C.NoAutorisation, C.TypeLivraison, C.Statut FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur WHERE C.NoCommande = " + NoCommande + " ORDER BY DateCommande DESC", myConnection);
             SqlDataReader lecteurCommande = commandeCommande.ExecuteReader();
 
             lecteurCommande.Read();
@@ -75,6 +75,7 @@ namespace Puces_R.Controles
 
             lblNoAutorisation.Text = (String)lecteurCommande["NoAutorisation"];
             ctrMontantsFactures.NoCommande = (long)lecteurCommande["NoCommande"];
+            ctrMontantsFactures.CodeLivraison = (short)lecteurCommande["TypeLivraison"];
 
             myConnection.Close();
         }

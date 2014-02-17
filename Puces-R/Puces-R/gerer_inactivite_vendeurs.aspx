@@ -81,7 +81,7 @@
 <asp:Content ContentPlaceHolderID="Items" runat="server">
     <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
-        <div style="font-size: small;">
+        <div style="font-size: small; width: 70%; margin: auto;">
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>

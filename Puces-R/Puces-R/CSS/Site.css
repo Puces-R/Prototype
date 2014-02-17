@@ -39,13 +39,6 @@ body
     font-size: xx-large;
 }
 
-.logoVendeur
-{
-   vertical-align:middle;
-   max-width:150px; 
-   max-height:75px;
-}
-
 .droitePageMaitre
 {
     float: right;
@@ -63,12 +56,12 @@ body
     display:inline-block;
 }
 
-.main
+.centerChildDiv
 {
     text-align: center;
 }
 
-.main > div
+.centerChildDiv > div
 {
     overflow: hidden;
     display: inline-block;
@@ -88,18 +81,18 @@ body
     margin: 0 auto;
 }
 
-.barreTitre
+.titreVendeur
 {
-    font-size:x-large;
+    font-size:xx-large;
     font-weight:bold;
-    text-align:center; 
+    vertical-align:middle;
 }
 
 .barreVendeur
 {
     border: 1px solid #555555;
     border-radius: 10px;
-    padding:10px;
+    padding: 5px;
 }
 
 .footer
@@ -133,7 +126,7 @@ body
     border-bottom: 5px dotted Gray;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    display: inline-block; 
+    clear:both;
 }
 
 .pleineLargeur
@@ -218,13 +211,13 @@ body
  
 .rectangleItem
 {
-    padding: 10px;
-    box-shadow: 3px 3px 4px Gray;
+    padding:10px;
     overflow:hidden;
-    border: 1px solid Black;
-    margin:15px;
+    border:1px solid Black;
+    margin:10px;
+    box-shadow: 3px 3px 4px Gray;
 }
- 
+
 .hautRectangle
 {
     background-color: #555555;
@@ -323,7 +316,6 @@ body
     position:relative;
     width:100%;
     text-align:center !important;
-    z-index:-1;
 }
 
 .navigation input
@@ -503,4 +495,57 @@ body
 .ui-datepicker
 {
     font-size: x-small;
+}
+
+.rectanglePartieTitre
+{
+    display:inline-block;
+    padding:5px 15px;
+    height:75px;
+    overflow:hidden;
+    border:1px solid Black;
+}
+
+.rectangleTitreGauche
+{
+    border-radius: 10px 0 0 10px;
+    border-right-style: none; 
+    margin-right:0;
+    float:left;
+}
+
+.rectangleTitreDroite
+{
+    background-color: #555555;
+    border-radius: 0 10px 10px 0;
+    border-left-style: none; 
+    margin-left:0;
+    float:right;
+}
+
+.rectangleTitreDroite a
+{
+    color:White;
+    font-weight:bold;
+}
+
+.titreAvecLigne
+{
+    text-align:center;
+    display:inline-block;
+    width:100%;
+}
+
+.titreVendeurAvecMenu
+{
+    display:inline-block;
+    box-shadow: 3px 3px 4px Gray;
+    border-radius: 10px;
+}
+
+.logoVendeur
+{
+   vertical-align:middle;
+   max-width:150px; 
+   height:75px;
 }

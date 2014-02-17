@@ -44,7 +44,7 @@
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
     <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
-        <div style="font-size: small;">
+        <div style="font-size: small; width: 70%; margin: auto;">
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th>#</th>

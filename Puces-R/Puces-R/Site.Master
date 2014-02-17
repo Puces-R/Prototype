@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Puces_R.SiteMaster" %>
+﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Puces_R.SiteMaster" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -32,24 +32,31 @@
                         </div>
                     </div>
                     <asp:Panel runat="server" ID="pnlTitreAvecLigne" Visible="false" CssClass="titreAvecLigne">
-                        <div class="titreVendeurAvecMenu rectangleAvecOmbre">
-                            <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
-                                <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
-                                <asp:Label runat="server" ID="lblTitre" CssClass="titreVendeur" />
-                            </asp:Panel>
-                            <div class="rectanglePartieTitre rectangleTitreDroite">
-                                <asp:Menu runat="server" Orientation="Vertical" ID="ctrMenuVendeur" SkipLinkText="">
-                                    <StaticMenuItemStyle VerticalPadding="3" />
-                                    <StaticSelectedStyle ForeColor="#6AC331" />
-                                    <StaticHoverStyle ForeColor="#6AC331" />
-                                    <Items>
-                                        <asp:MenuItem Text="Produits" Value="Produits" />
-                                        <asp:MenuItem Text="Panier" Value="Panier" />
-                                        <asp:MenuItem Text="Historique" Value="Historique" />
-                                    </Items>
-                                </asp:Menu>
-                            </div>
-                        </div>
+                        <asp:MultiView runat="server" ID="mvTitre" ActiveViewIndex="0">
+                            <asp:View runat="server">
+                                 <asp:Label runat="server" ID="lblTitre" CssClass="titreVendeur" />
+                            </asp:View>
+                            <asp:View runat="server">
+                                <div class="titreVendeurAvecMenu rectangleAvecOmbre">
+                                    <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
+                                        <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
+                                        <asp:Label runat="server" ID="lblVendeur" CssClass="titreVendeur" />
+                                    </asp:Panel>
+                                    <div class="rectanglePartieTitre rectangleTitreDroite">
+                                        <asp:Menu runat="server" Orientation="Vertical" ID="ctrMenuVendeur" SkipLinkText="">
+                                            <StaticMenuItemStyle VerticalPadding="3" />
+                                            <StaticSelectedStyle ForeColor="#6AC331" />
+                                            <StaticHoverStyle ForeColor="#6AC331" />
+                                            <Items>
+                                                <asp:MenuItem Text="Produits" Value="Produits" />
+                                                <asp:MenuItem Text="Panier" Value="Panier" />
+                                                <asp:MenuItem Text="Historique" Value="Historique" />
+                                            </Items>
+                                        </asp:Menu>
+                                    </div>
+                                </div>
+                            </asp:View>
+                        </asp:MultiView>
                         <div class="lignePointilleHorizontale pleineLargeur"></div>
                     </asp:Panel>
                     <asp:Panel CssClass="lignePointilleHorizontale pleineLargeur centerChildDiv" runat="server">

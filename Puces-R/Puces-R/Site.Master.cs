@@ -33,7 +33,7 @@ namespace Puces_R
             set
             {
                 lblTitre.Text = value;
-                pnlTitreAvecLigne.Visible = (value != null);
+                pnlTitreAvecLigne.Visible = true;
             }
         }
 
@@ -41,12 +41,12 @@ namespace Puces_R
         {
             set
             {
-                SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+                pnlTitreAvecLigne.Visible = true;
 
                 SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
 
                 myConnection.Open();
-                Titre = (String)commandVendeur.ExecuteScalar();
+                lblVendeur.Text = (String)commandVendeur.ExecuteScalar();;
                 myConnection.Close();
 
                 SqlCommand commandePanierVide = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"], myConnection);
@@ -82,6 +82,8 @@ namespace Puces_R
                     pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
                     imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
                 }
+
+                mvTitre.ActiveViewIndex = 1;
             }
         }
 

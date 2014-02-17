@@ -34,6 +34,7 @@ namespace Puces_R
                 ddlVendeur.DataValueField = "NoVendeur";
                 ddlVendeur.DataBind();
                 ddlVendeur.Items.Add(new ListItem("Tous", "-1"){Selected=true});
+                ddlVendeur.SelectedValue = (Request.Params["novendeur"] == null ? "-1" : Request.Params["novendeur"]);
 
                 ChargerCommandes();
                 
@@ -64,9 +65,16 @@ namespace Puces_R
         {
             String whereClause = " WHERE C.NoClient = " + Session["ID"];
 
-            int noVendeur = int.Parse(ddlVendeur.SelectedValue);
-
-            if (noVendeur != -1)
+            string noVendeur;
+            if (IsPostBack)
+            {
+                noVendeur = ddlVendeur.SelectedValue;
+            }
+            else
+            {
+                noVendeur = Request.Params["novendeur"];
+            }
+            if (noVendeur != null && noVendeur != "-1")
             {
                 whereClause += " AND V.NoVendeur = " + noVendeur;
             }
@@ -87,6 +95,15 @@ namespace Puces_R
             dlCommandes.DataBind();
 
             mvCommandes.ActiveViewIndex = tableCommandes.Rows.Count == 0 ? 1 : 0;
+
+            if (noVendeur == null || noVendeur == "-1")
+            {
+                Master.Master.Titre = null;
+            }
+            else
+            {
+                Master.Master.NoVendeur = long.Parse(noVendeur);
+            }
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)

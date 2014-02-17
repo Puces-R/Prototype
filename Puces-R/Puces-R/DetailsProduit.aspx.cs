@@ -92,7 +92,7 @@ namespace Puces_R
                 short quantite = (short)lecteurProduit["NombreItems"];
                 if (quantite > 0)
                 {
-                    lblQuantiteDisponible.Text = "Quantité: " + quantite.ToString();
+                    lblQuantiteDisponible.Text = quantite.ToString();
                 }
                 else
                 {

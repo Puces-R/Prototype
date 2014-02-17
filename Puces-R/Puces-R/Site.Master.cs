@@ -49,10 +49,21 @@ namespace Puces_R
                 Titre = (String)commandVendeur.ExecuteScalar();
                 myConnection.Close();
 
-                if (Menu is MenuClient)
-                {
-                    ((MenuClient)Menu).NoVendeur = value;
-                }
+                SqlCommand commandePanierVide = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"], myConnection);
+
+                myConnection.Open();
+                int nbItems = (int)commandePanierVide.ExecuteScalar();
+                myConnection.Close();
+
+                MenuItem itmPanier = ctrMenuVendeur.FindItem("Panier");
+                MenuItem itmProduits = ctrMenuVendeur.FindItem("Produits");
+                MenuItem itmHistorique = ctrMenuVendeur.FindItem("Historique");
+
+                itmPanier.NavigateUrl = "../Panier.aspx?novendeur=" + value;
+                itmPanier.Text = "Panier (" + nbItems + " item" + (nbItems > 1 ? "s" : "") + ")";
+                itmProduits.NavigateUrl = "../Produits.aspx?novendeur=" + value;
+                itmHistorique.NavigateUrl = "../CommandesClient.aspx?novendeur=" + value;
+
                 imgLogo.Visible = true;
 
                 myConnection.Open();
@@ -69,7 +80,6 @@ namespace Puces_R
                     String couleur = lecture.Couleur;
 
                     pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
-                    pnlTitre.CssClass += " barreVendeur ";
                     imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
                 }
             }
@@ -122,12 +132,12 @@ namespace Puces_R
             }
         }
 
-        public Control Menu
+        public UserControl Menu
         {
             get
             {
                 loadMenu();
-                return menu.Controls[0];
+                return (UserControl)menu.Controls[0];
             }
         }
 

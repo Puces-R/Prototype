@@ -1,6 +1,9 @@
 ﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Puces_R.SiteMaster" %>
+ <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
+  <%@ Register TagPrefix="lp" TagName="MenuACoteVendeur" Src="~/Controles/MenuACoteVendeur.ascx" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -32,27 +35,18 @@
                         </div>
                     </div>
                     <asp:Panel runat="server" ID="pnlTitreAvecLigne" Visible="false" CssClass="titreAvecLigne">
-                        <asp:MultiView runat="server" ID="mvTitre" ActiveViewIndex="0">
+                        <asp:MultiView runat="server" ID="mvTitre">
                             <asp:View runat="server">
-                                 <asp:Label runat="server" ID="lblTitre" CssClass="titreVendeur" />
+                                 <asp:Label runat="server" ID="lblTitreSansMenu" CssClass="titreVendeur" />
                             </asp:View>
                             <asp:View runat="server">
                                 <div class="titreVendeurAvecMenu rectangleAvecOmbre">
                                     <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
                                         <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
-                                        <asp:Label runat="server" ID="lblVendeur" CssClass="titreVendeur" />
+                                        <asp:Label runat="server" ID="lblTitreAvecMenu" CssClass="titreVendeur" />
                                     </asp:Panel>
                                     <div class="rectanglePartieTitre rectangleTitreDroite">
-                                        <asp:Menu runat="server" Orientation="Vertical" ID="ctrMenuVendeur" SkipLinkText="">
-                                            <StaticMenuItemStyle VerticalPadding="3" />
-                                            <StaticSelectedStyle ForeColor="#6AC331" />
-                                            <StaticHoverStyle ForeColor="#6AC331" />
-                                            <Items>
-                                                <asp:MenuItem Text="Produits" Value="Produits" />
-                                                <asp:MenuItem Text="Panier" Value="Panier" />
-                                                <asp:MenuItem Text="Historique" Value="Historique" />
-                                            </Items>
-                                        </asp:Menu>
+                                        <lp:MenuACoteVendeur runat="server" ID="ctrMenuVendeur" />
                                     </div>
                                 </div>
                             </asp:View>

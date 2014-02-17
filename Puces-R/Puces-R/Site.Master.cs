@@ -32,8 +32,9 @@ namespace Puces_R
         {
             set
             {
-                lblTitre.Text = value;
-                pnlTitreAvecLigne.Visible = true;
+                lblTitreSansMenu.Text = value;
+                pnlTitreAvecLigne.Visible = (value != null);
+                mvTitre.ActiveViewIndex = 0;
             }
         }
 
@@ -41,49 +42,45 @@ namespace Puces_R
         {
             set
             {
-                pnlTitreAvecLigne.Visible = true;
-
                 SqlCommand commandVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
 
                 myConnection.Open();
-                lblVendeur.Text = (String)commandVendeur.ExecuteScalar();;
+                String nomAffaires = (String)commandVendeur.ExecuteScalar();
                 myConnection.Close();
 
-                SqlCommand commandePanierVide = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"], myConnection);
-
-                myConnection.Open();
-                int nbItems = (int)commandePanierVide.ExecuteScalar();
-                myConnection.Close();
-
-                MenuItem itmPanier = ctrMenuVendeur.FindItem("Panier");
-                MenuItem itmProduits = ctrMenuVendeur.FindItem("Produits");
-                MenuItem itmHistorique = ctrMenuVendeur.FindItem("Historique");
-
-                itmPanier.NavigateUrl = "../Panier.aspx?novendeur=" + value;
-                itmPanier.Text = "Panier (" + nbItems + " item" + (nbItems > 1 ? "s" : "") + ")";
-                itmProduits.NavigateUrl = "../Produits.aspx?novendeur=" + value;
-                itmHistorique.NavigateUrl = "../CommandesClient.aspx?novendeur=" + value;
-
-                imgLogo.Visible = true;
-
-                myConnection.Open();
-                SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
-                String nom = (String)commandXML.ExecuteScalar();
-
-                myConnection.Close();
-
-                LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
-
-                if (lecture.Existe)
+                if ((char)Session["Type"] == 'C')
                 {
+                    pnlTitreAvecLigne.Visible = true;
+
+                    lblTitreAvecMenu.Text = nomAffaires;
+
+                    this.ctrMenuVendeur.NoVendeur = value;
+
                     imgLogo.Visible = true;
-                    String couleur = lecture.Couleur;
 
-                    pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
-                    imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
+                    myConnection.Open();
+                    SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
+                    String nom = (String)commandXML.ExecuteScalar();
+
+                    myConnection.Close();
+
+                    LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
+
+                    if (lecture.Existe)
+                    {
+                        imgLogo.Visible = true;
+                        String couleur = lecture.Couleur;
+
+                        pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
+                        imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
+                    }
+
+                    mvTitre.ActiveViewIndex = 1;
                 }
-
-                mvTitre.ActiveViewIndex = 1;
+                else
+                {
+                    Titre = nomAffaires;
+                }
             }
         }
 

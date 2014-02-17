@@ -103,13 +103,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvTitre;
         
         /// <summary>
-        /// Contrôle lblTitre.
+        /// Contrôle lblTitreSansMenu.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitre;
+        protected global::System.Web.UI.WebControls.Label lblTitreSansMenu;
         
         /// <summary>
         /// Contrôle pnlTitre.
@@ -130,13 +130,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Image imgLogo;
         
         /// <summary>
-        /// Contrôle lblVendeur.
+        /// Contrôle lblTitreAvecMenu.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVendeur;
+        protected global::System.Web.UI.WebControls.Label lblTitreAvecMenu;
         
         /// <summary>
         /// Contrôle ctrMenuVendeur.
@@ -145,7 +145,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu ctrMenuVendeur;
+        protected global::Puces_R.Controles.MenuACoteVendeur ctrMenuVendeur;
         
         /// <summary>
         /// Contrôle MainContent.

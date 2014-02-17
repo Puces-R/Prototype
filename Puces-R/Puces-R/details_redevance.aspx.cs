@@ -85,6 +85,20 @@ namespace Puces_R
                     string[] tab_parametres = Session["no_vendeur_no_commande"].ToString().Split(';');
                     no_vendeur = Convert.ToInt32(tab_parametres[0]);
                     mois = tab_parametres[1];
+
+                    myConnection.Open();
+                    SqlCommand charger = new SqlCommand("SELECT NomAffaires, Montant, Mois FROM PPVendeurs, PPSuiviCompta WHERE PPSuiviCompta.NoVendeur = PPVendeurs.NoVendeur AND PPSuiviCompta.NoVendeur = " + no_vendeur + " AND YEAR(Mois) = " + mois.Split('-')[0] + " AND MONTH(Mois) = " + mois.Split('-')[1], myConnection);
+
+                    SqlDataReader results = charger.ExecuteReader();
+
+                    if (results.Read())
+                    {
+                        Master.Master.Titre = "Détails de la redevance de \"" + results["NomAffaires"].ToString() + "\" pour le mois de " +
+                            Convert.ToDateTime(results["Mois"]).ToString("MMMM yyyy").ToUpperInvariant(); 
+                        lbl_total.Text = "Montant de la redevance de ce mois: " + Convert.ToDecimal(results["Montant"]).ToString("N") + " $";
+                    }
+                    results.Close();
+                    myConnection.Close();
                 }
                 else Response.Redirect("Default.aspx");
             else Response.Redirect("Default.aspx");
@@ -133,13 +147,12 @@ namespace Puces_R
             rptDetailsRedevance.DataSource = pdsDemandes;
             rptDetailsRedevance.DataBind();
             myConnection.Close();
-
+            
             return tableDemandes;
         }
 
         protected void rptDetailsRedevance_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-
             RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
@@ -163,7 +176,6 @@ namespace Puces_R
 
                 string[] str_mois = drvDemande["DateVente"].ToString().Split('-');
                 DateTime mois = new DateTime(Convert.ToInt32(str_mois[0]), Convert.ToInt32(str_mois[1]), 1);
-                Master.Master.Titre = "Détails de la redevance de \"" + drvDemande["NomAffaires"].ToString() + "\" pour le mois de " + mois.ToString("MMMM yyyy").ToUpperInvariant();
             }
         }
 

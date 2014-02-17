@@ -76,6 +76,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Repeater rptDetailsRedevance;
         
         /// <summary>
+        /// Contrôle lbl_total.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_total;
+        
+        /// <summary>
         /// Propriété Master.
         /// </summary>
         /// <remarks>

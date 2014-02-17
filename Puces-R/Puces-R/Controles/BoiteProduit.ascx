@@ -18,4 +18,8 @@
         <asp:Label runat="server" ID="lblEvaluation" />
         <asp:Label runat="server" ID="lblQuantite" />
     </div>
+    <asp:PlaceHolder runat="server" ID="phBoutonsActions" Visible="false">
+        <asp:Button ID="btnSupprimer" runat="server" Text="Supprimer" CommandName="Supprimer" CssClass="boutonActionProduit" />
+        <asp:Button ID="btnModifier" runat="server" Text="Modifier" CommandName="Modifier" CssClass="boutonActionProduit" />
+    </asp:PlaceHolder>
 </div>

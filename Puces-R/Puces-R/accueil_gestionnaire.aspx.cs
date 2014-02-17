@@ -99,7 +99,7 @@ namespace Puces_R
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
-                lbl_meilleur_client.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString() + ": " + drvVendeurs["Total"].ToString() + "$";
+                lbl_meilleur_client.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString() + ": " + Convert.ToDecimal(drvVendeurs["Total"]).ToString("N") + " $";
             }
         }
 
@@ -113,7 +113,8 @@ namespace Puces_R
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
-                lbl_meilleur_vendeur.Text = drvVendeurs["NomAffaires"].ToString() + ", par " + drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString() + ": " + drvVendeurs["Total"].ToString() + "$";
+                lbl_meilleur_vendeur.Text = drvVendeurs["NomAffaires"].ToString() + ", par " + drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString() + ": " + 
+                    Convert.ToDecimal(drvVendeurs["Total"]).ToString("N") + " $";
             }
         }
 

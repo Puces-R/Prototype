@@ -38,7 +38,6 @@ namespace Puces_R.Controles
             set
             {
                 ViewState["NoClient"] = value;
-                //ctrProduits.NoClient = value;
             }
         }
 
@@ -51,7 +50,6 @@ namespace Puces_R.Controles
             set
             {
                 ViewState["NoVendeur"] = value;
-                //ctrProduits.NoVendeur = value;//
             }
         }
 
@@ -71,6 +69,7 @@ namespace Puces_R.Controles
             lblSousTotal.Text = sousTotal.ToString("C");
             ctrProduits.NoVendeur = NoVendeur;
             ctrProduits.NoClient = NoClient;
+            ctrProduits.ChargerArticlesEnPanier();
         }
     }
 }

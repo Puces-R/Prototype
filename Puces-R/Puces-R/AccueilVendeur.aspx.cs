@@ -185,6 +185,7 @@ namespace Puces_R
                 ctrBoitePanier.NoVendeur = (int)Session["ID"];
                 ctrBoitePanier.NoClient = noClient;
                 ctrBoitePanier.Titre = nomComplet;
+                ctrBoitePanier.ChargerArticlesEnPanier();
             }
         }
 

@@ -36,6 +36,7 @@ namespace Puces_R
                 ctrMontantsFactures.NoVendeur = noVendeur;
                 ctrTablePanier.NoVendeur = noVendeur;
                 ctrTablePanier.NoClient = (int)Session["ID"];
+                ctrTablePanier.ChargerArticlesEnPanier();
                 ctrMontantsFactures.CodeLivraison = codeLivraison;
 
                 int anneeActuelle = DateTime.Today.Year;

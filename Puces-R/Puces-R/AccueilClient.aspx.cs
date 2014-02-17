@@ -51,6 +51,7 @@ namespace Puces_R
                 ctrBoitePanier.NoVendeur = noVendeur;
                 ctrBoitePanier.NoClient = (int)Session["ID"];
                 ctrBoitePanier.Titre = nomAffaires;
+                ctrBoitePanier.ChargerArticlesEnPanier();
                 ctrBoitePanier.NavigateUrl = Chemin.Ajouter("~/Panier.aspx?novendeur=" + noVendeur, "Retour à l'accueil");
             }
         }

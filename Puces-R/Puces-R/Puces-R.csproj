@@ -170,7 +170,6 @@
     <Content Include="Default.aspx" />
     <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
-    <Content Include="Demonstration.aspx" />
     <Content Include="DetailsProduit.aspx" />
     <Content Include="GererPanierVendeur.aspx" />
     <Content Include="gerer_clients.aspx" />
@@ -935,13 +934,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Demonstration.aspx.cs">
-      <DependentUpon>Demonstration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Demonstration.aspx.designer.cs">
-      <DependentUpon>Demonstration.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetailsCommandes.aspx.cs">
       <DependentUpon>DetailsCommandes.aspx</DependentUpon>

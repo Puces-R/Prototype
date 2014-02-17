@@ -14,11 +14,14 @@ namespace Puces_R
         int noProduit = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, true, false);
+            }
             if (!int.TryParse(Request.Params["noproduit"], out noProduit))
             {
 
-                Response.Redirect("Default.aspx");
+                Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
             }
             else
             {
@@ -27,7 +30,7 @@ namespace Puces_R
 
                 if (verifierSiProduitDansPanier())
                 {
-                    lblAvertissement.Text = "LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D UN CLIENT!";
+                    lblAvertissement.Text = "LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D'UN CLIENT!";
                 }
                 //Response.Write(noProduit.ToString());
             }
@@ -115,7 +118,7 @@ namespace Puces_R
             maConnexion.ConnectionString = maChaineDeConnexion;
             maConnexion.Open();
 
-            SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoProduit=" + noProduit, maConnexion);
+            SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoProduit=" + noProduit + " AND NoVendeur = " + Session["ID"], maConnexion);
             object rep = maCommande.ExecuteScalar();
 
             if (rep != null)
@@ -151,7 +154,7 @@ namespace Puces_R
             }
             else
             {
-                Response.Redirect("Connexion.aspx");
+                Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
             }
             maConnexion.Close();
         }

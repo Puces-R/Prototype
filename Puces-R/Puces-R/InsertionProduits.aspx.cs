@@ -17,6 +17,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, true, false);
                 chargerCategorie();
             }
         }
@@ -62,7 +63,7 @@ namespace Puces_R
             string filename = "";
             if (uplNomFichier.HasFile)
             {
-                Response.Write("HAS FILWE \n");
+                //Response.Write("HAS FILWE \n");
                 try
                 {
 

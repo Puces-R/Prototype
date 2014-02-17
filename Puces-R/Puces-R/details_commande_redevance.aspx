@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Détail de la commande de la redevence" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+﻿<%@ Page Title="Détail de la commande de la redevance" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
     CodeBehind="details_commande_redevance.aspx.cs" Inherits="Puces_R.details_commande_redevance" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -29,31 +29,31 @@
                 </tr>
                 <tr>
                     <th>Montant de vente:</th>
-                    <td>$<asp:Label runat="server" ID="lbl_montant_vente" /></td>
+                    <td class="montant" ><asp:Label runat="server" ID="lbl_montant_vente" /></td>
                 </tr>
                 <tr>
-                    <th>Redevence:</th>
-                    <td>$<asp:Label runat="server" ID="lbl_redevance" /></td>
+                    <th>Redevance:</th>
+                    <td class="montant" ><asp:Label runat="server" ID="lbl_redevance" /></td>
                 </tr>
                 <tr>
                     <th>TPS:</th>
-                    <td>$<asp:Label runat="server" ID="lbl_tps" /></td>
+                    <td class="montant" ><asp:Label runat="server" ID="lbl_tps" /></td>
                 </tr>
                 <tr>
                     <th>TVQ:</th>
-                    <td>$<asp:Label runat="server" ID="lbl_tvq" /></td>
+                    <td class="montant" ><asp:Label runat="server" ID="lbl_tvq" /></td>
                 </tr>                        
                 <tr>
                     <th>Frais de livraison:</th>
-                    <td>$<asp:Label runat="server" ID="lbl_frais_livraison" /></td>
+                    <td class="montant" ><asp:Label runat="server" ID="lbl_frais_livraison" /></td>
+                </tr> 
+                <tr>
+                    <th>Frais LESi:</th>
+                    <td class="montant" ><asp:Label runat="server" ID="lbl_frais_lesi" /></td>
                 </tr> 
                 <tr>
                     <th>Numéro d'autorisation:</th>
                     <td><asp:Label runat="server" ID="lbl_num_autorisation" /></td>
-                </tr> 
-                <tr>
-                    <th>Frais LESi:</th>
-                    <td>$<asp:Label runat="server" ID="lbl_frais_lesi" /></td>
                 </tr> 
             </table>
         </div>

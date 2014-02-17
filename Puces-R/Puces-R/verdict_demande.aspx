@@ -50,7 +50,7 @@
                                     <td colspan="2" class="verdict_vendeur center">
                                         <h2 class="center">Acceptation de la demande:</h2>                                
                                         <p class="center">
-                                            Entrez le taux de facturation du vendeur 
+                                            Entrez le taux de redevance du vendeur 
                                             <span class="remarque">(Format: 00.00)</span>: 
                                             <asp:TextBox runat="server" id="taux_facturation" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
                                             <asp:RegularExpressionValidator

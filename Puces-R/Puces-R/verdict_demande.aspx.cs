@@ -17,7 +17,8 @@ namespace Puces_R
         int no_vendeur;
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            Master.Titre = "Verdict de la demande";
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
@@ -27,6 +28,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 if (Session["acceptation_vendeur"] != null)
                 {
                     if (Session["acceptation_vendeur"].ToString() != "")
@@ -77,8 +79,8 @@ namespace Puces_R
                 addr_demande.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
                 tels_demande.Text = results["Tel1"].ToString();
                 courriel_demande.Text = results["AdresseEmail"].ToString();
-                charge_max_demande.Text = results["MaxLivraison"].ToString() + "lb";
-                livraison_gratuite.Text = results["LivraisonGratuite"].ToString();
+                charge_max_demande.Text = results["MaxLivraison"].ToString() + " Lbs";
+                livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_accepter.CommandArgument = results["NoVendeur"].ToString();
                 btn_refuser.CommandArgument = results["NoVendeur"].ToString();
@@ -136,7 +138,7 @@ namespace Puces_R
             //Response.Write(commande_accepter_demande.CommandText);
             
             msg.Body = cont_mail_acceptation.Text;
-            msg.Body += "\nPourcentage de facturation retenu par le gestionnaire: " + taux_facturation.Text + "%";
+            msg.Body += "\nTaux de redevance retenu par le gestionnaire: " + taux_facturation.Text + "%";
 
             try
             {

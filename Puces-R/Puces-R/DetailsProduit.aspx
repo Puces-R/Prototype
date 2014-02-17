@@ -86,7 +86,7 @@
                     <td>Mise à jour: </td>
                     <td><asp:Label ID="lblDateMiseAJour" runat="server" /></td>
                 </tr>
-                <tr>
+                <tr runat="server" id="trQtt">
                     <td>Quantité: </td>
                     <td>
                         <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" Text="1" />
@@ -97,6 +97,8 @@
                     <td colspan="2" align="right">
                         <asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" />
                         <asp:Button runat="server" ID="btnEnvoyerMessage" Text="Contacter le vendeur" OnClick="btnEnvoyerMessage_Click" CausesValidation="false" />
+                        <asp:Button runat="server" ID="btnModifierProduit" Text="Modifier le produit" OnClick="btnModifierProduit_Click" CausesValidation="false" />
+                        <asp:Button runat="server" ID="btnSupprimerProduit" Text="Supprimer le produit" OnClick="btnSupprimerProduit_Click" CausesValidation="false" />
                     </td>
                 </tr> 
             </table>       

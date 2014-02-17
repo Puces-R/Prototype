@@ -85,15 +85,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lbl_frais_livraison;
         
         /// <summary>
-        /// Contrôle lbl_num_autorisation.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_num_autorisation;
-        
-        /// <summary>
         /// Contrôle lbl_frais_lesi.
         /// </summary>
         /// <remarks>
@@ -101,5 +92,14 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_frais_lesi;
+        
+        /// <summary>
+        /// Contrôle lbl_num_autorisation.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_num_autorisation;
     }
 }

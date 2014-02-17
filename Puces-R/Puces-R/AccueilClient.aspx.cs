@@ -22,6 +22,7 @@ namespace Puces_R
                 {
                     Response.Redirect("Default.aspx", true);
                 }
+                Librairie.Autorisation(false, true, false, false);
 
                 SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT A.NoVendeur, V.NomAffaires FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs V ON A.NoVendeur = V.NoVendeur WHERE A.NoClient = " + Session["ID"] + " GROUP BY A.NoVendeur, V.NomAffaires", myConnection);
                 DataTable tablePaniers = new DataTable();

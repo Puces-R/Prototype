@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Historique de payement des redevences du vendeur" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="histo_redevance_vendeur.aspx.cs" Inherits="Puces_R.histo_redevance_vendeur" EnableEventValidation="false" %>
+﻿<%@ Page Title="Historique de paiement des redevances du vendeur" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="histo_redevance_vendeur.aspx.cs" Inherits="Puces_R.histo_redevance_vendeur" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -46,10 +46,10 @@
                 <asp:Repeater runat="server" ID="rptRetard" OnItemDataBound="rptRetard_ItemDataBound" >
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle" runat="server" id="ligne_histo" >
-                            <td class="td_liste"><asp:LinkButton runat="server" ID="lbl_num" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
-                            <td><asp:LinkButton runat="server" ID="lbl_mois" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
-                            <td><asp:LinkButton runat="server" ID="lbl_montant" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
-                            <td><asp:LinkButton runat="server" ID="date_paiement" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td class="td_liste"><asp:LinkButton runat="server" ID="lbl_num" OnCommand="voir_details_redevance" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_mois" OnCommand="voir_details_redevance" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td class="montant" ><asp:LinkButton runat="server" ID="lbl_montant" OnCommand="voir_details_redevance" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td><asp:LinkButton runat="server" ID="date_paiement" OnCommand="voir_details_redevance" ToolTip="Voir les détails des commandes de ce mois" /></td>
                              <td> 
                                 <asp:Button runat="server" ID="btn_enregistrer_paiement" OnCommand="enregistrer_paiement" ToolTip="Enregister paiement" Text="Enregister la reception du paiement" />
                             </td>

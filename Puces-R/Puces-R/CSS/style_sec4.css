@@ -183,11 +183,6 @@ a
 	float: right;
 }
 
-.div_englobant
-{
-	
-}
-
 .categories
 {
 	line-height:20px;
@@ -275,21 +270,6 @@ a
 	text-align:center;
 }
 
-.tableTitreValeur td:first-child 
-{
-	
-}
-
-.tableTitreValeur td, .tableTitreValeur th
-{
-	
-}
-
-.tableTitreValeur
-{
-	
-}
-
 #targetchart {
     width: 500px;
     height: 375px;
@@ -306,4 +286,23 @@ a
 .hautRectangle select, .hautRectangle option
 {
     color: Black;
+}
+
+.montant
+{
+    text-align: right;
+}
+
+.table_avec_ligne td, .table_avec_ligne th
+{
+	padding:5px;
+    border: 1px dotted Black;
+}
+
+.table_avec_ligne
+{
+    border-collapse:collapse;
+    margin:10px;
+    width:350px;
+    font-size:small;
 }

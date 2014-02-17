@@ -16,9 +16,14 @@ namespace Puces_R
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string whereClause, orderByClause = " ORDER BY ";
         int no_vendeur;
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             List<String> whereParts = new List<String>();
                         
             //String whereClause;
@@ -67,7 +72,7 @@ namespace Puces_R
                 else Response.Redirect("Default.aspx");
             else Response.Redirect("Default.aspx");
 
-            Master.ChargerItems += charge_redevences;
+            Master.ChargerItems += charge_redevances;
 
             if (!IsPostBack)
             {
@@ -77,14 +82,14 @@ namespace Puces_R
             myConnection.Open();
             SqlCommand commande_enregistrer = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = " + no_vendeur, myConnection);
             object no_affaire = commande_enregistrer.ExecuteScalar();
-            Master.Master.Titre = "Historique des redevences de \"" + no_affaire.ToString() + "\"";
+            Master.Master.Titre = "Historique des redevances de \"" + no_affaire.ToString() + "\"";
 
             myConnection.Close();
         }
 
-        private void charge_redevences(object sender, EventArgs e)
+        private void charge_redevances(object sender, EventArgs e)
         {
-            charge_redevences();
+            charge_redevances();
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)
@@ -92,15 +97,14 @@ namespace Puces_R
             Master.AfficherPremierePage();
         }
 
-        private DataTable charge_redevences()
+        private DataTable charge_redevances()
         {
             myConnection.Open();
-            SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPSuiviCompta WHERE NoVendeur = " + no_vendeur, myConnection);
+            SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPSuiviCompta WHERE NoVendeur = " + no_vendeur + " " + orderByClause, myConnection);
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -133,10 +137,10 @@ namespace Puces_R
                 string[] tab_date = drvDemande["Mois"].ToString().Split('-');
                 DateTime mois = new DateTime(Convert.ToInt32(tab_date[0]), Convert.ToInt32(tab_date[1]), Convert.ToInt32(tab_date[2].Remove(3)));
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_mois.Text = mois.ToString("MMMM yyyy").ToUpperInvariant();
                 date_paiement.Text = (drvDemande["DatePaiement"] == DBNull.Value ? "Non payé" : drvDemande["DatePaiement"].ToString());
-                lbl_montant.Text = drvDemande["Montant"].ToString();
+                lbl_montant.Text = Convert.ToDecimal(drvDemande["Montant"]).ToString("N") + " $";
                 btn_enregistrer_paiement.CommandArgument = drvDemande["NoVendeur"].ToString() + ";" + drvDemande["Mois"].ToString();
                 btn_enregistrer_paiement.Visible = (drvDemande["DatePaiement"] == DBNull.Value);
 
@@ -163,13 +167,13 @@ namespace Puces_R
             Session["histo_no_vendeur"] = tab_args[0];
             Session["msg"] = "Le paiement a bien été enregistré";
             myConnection.Close();
-            charge_redevences();
+            charge_redevances();
         }
 
-        protected void voir_details_redevence(object sender, CommandEventArgs e)
+        protected void voir_details_redevance(object sender, CommandEventArgs e)
         {
             Session["no_vendeur_no_commande"] = e.CommandArgument;
-            Response.Redirect("details_redevence.aspx");
+            Response.Redirect("details_redevance.aspx");
         }
     }
 }

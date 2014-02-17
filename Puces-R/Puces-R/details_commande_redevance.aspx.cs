@@ -11,11 +11,15 @@ namespace Puces_R
 {
     public partial class details_commande_redevance : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         int no_commande;
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
@@ -51,13 +55,13 @@ namespace Puces_R
                 titre_demande.Text = "Commande No: " + results["NoCommande"].ToString();
                 lbl_nom_vendeur.Text = results["NomAffaires"].ToString();
                 lbl_nom_client.Text = results["Prenom"].ToString() + " " + results["Nom"].ToString();
-                lbl_montant_vente.Text = results["MontantVente"].ToString();
-                lbl_redevance.Text = results["Redevance"].ToString() + "lb";
-                lbl_tps.Text = results["FraisTPS"].ToString();
-                lbl_tvq.Text = results["FraisTVQ"].ToString();
-                lbl_frais_livraison.Text = results["FraisLivraison"].ToString();
+                lbl_montant_vente.Text = Convert.ToDecimal(results["MontantVente"]).ToString("N") + " $";
+                lbl_redevance.Text = Convert.ToDecimal(results["Redevance"]).ToString("N") + " $";
+                lbl_tps.Text = Convert.ToDecimal(results["FraisTPS"]).ToString("N") + " $";
+                lbl_tvq.Text = Convert.ToDecimal(results["FraisTVQ"]).ToString("N") + " $";
+                lbl_frais_livraison.Text = Convert.ToDecimal(results["FraisLivraison"]).ToString("N") + " $";
                 lbl_num_autorisation.Text = results["NoAutorisation"].ToString();
-                lbl_frais_lesi.Text = results["FraisLesi"].ToString();
+                lbl_frais_lesi.Text = Convert.ToDecimal(results["FraisLesi"]).ToString("N") + " $";
             }
 
             ((SiteMaster)Master).Titre = "Détails de la commande de \"" + results["NomAffaires"].ToString() + "\"";

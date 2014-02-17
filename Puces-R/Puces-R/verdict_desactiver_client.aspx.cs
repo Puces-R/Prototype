@@ -13,7 +13,7 @@ namespace Puces_R
 {
     public partial class verdict_desactiver_client : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         int no_client;
         string liste_a_desactiver;
 
@@ -28,6 +28,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 if (Session["desactiver_client"] != null)
                 {
                     if (Session["desactiver_client"].ToString() != "")

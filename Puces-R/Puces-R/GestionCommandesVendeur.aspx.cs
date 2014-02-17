@@ -12,7 +12,7 @@ namespace Puces_R
 {
     public partial class GestionCommandesVendeur : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,6 +23,10 @@ namespace Puces_R
                 if (Session["ID"] == null)
                 {
                     Response.Redirect("Default.aspx", true);
+                }
+                if (!IsPostBack)
+                {
+                    Librairie.Autorisation(false, false, true, false);
                 }
                 //SELECT DISTINCT V.NoClient, (V.Nom +' ' +V.Prenom) AS NomComplet FROM PPClients V INNER JOIN PPCommandes C ON V.noClient = C.NoClient WHERE C.NoVendeur =10
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NoClient, (V.Nom +' ' +V.Prenom) AS NomComplet FROM PPClients V INNER JOIN PPCommandes C ON V.noClient = C.NoClient WHERE C.NoVendeur ="+Session["ID"], myConnection);

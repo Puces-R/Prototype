@@ -24,6 +24,7 @@ namespace Puces_R
                 {
                     Response.Redirect("Default.aspx", true);
                 }
+                Librairie.Autorisation(false, true, false, false);
 
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPCommandes C ON V.NoVendeur = C.NoVendeur WHERE C.NoClient = " + Session["ID"], myConnection);
                 DataTable tableVendeurs = new DataTable();

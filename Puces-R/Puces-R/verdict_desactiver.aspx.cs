@@ -28,6 +28,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 if (Session["desactiver_vendeur"] != null)
                 {
                     if (Session["desactiver_vendeur"].ToString() != "")
@@ -65,8 +66,8 @@ namespace Puces_R
                 addr_demande.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
                 tels_demande.Text = results["Tel1"].ToString();
                 courriel_demande.Text = results["AdresseEmail"].ToString();
-                charge_max_demande.Text = results["MaxLivraison"].ToString() + "lb";
-                livraison_gratuite.Text = results["LivraisonGratuite"].ToString();
+                charge_max_demande.Text = results["MaxLivraison"].ToString() + " Lbs";
+                livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_desactiver.CommandArgument = results["NoVendeur"].ToString();
             }

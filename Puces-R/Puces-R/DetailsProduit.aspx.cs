@@ -37,12 +37,13 @@ namespace Puces_R
             }
         }
 
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, true, true, false);
                 int noProduit;
                 if (!int.TryParse(Request.Params["noproduit"], out noProduit))
                 {
@@ -50,69 +51,89 @@ namespace Puces_R
                 }
 
                 String whereClause = " WHERE P.noProduit = " + noProduit;
+                if ((char)Session["Type"] == 'V')
+                {
+                    trQtt.Visible =
+                    btnAjouterLaMienne.Visible =
+                    btnAjouterPanier.Visible =
+                    btnEnvoyerMessage.Visible = false;
+                    whereClause += " AND P.NoVendeur = " + Session["ID"];
+                }
+                else
+                {
+                    btnModifierProduit.Visible =
+                    btnSupprimerProduit.Visible = false;
+                }
 
                 SqlCommand commandeProduit = new SqlCommand("SELECT P.NoProduit,Photo,P.Description,C.Description AS Categorie,P.Nom,PrixDemande,PrixVente,NombreItems,Poids,P.DateCreation,P.DateMAJ,V.NoVendeur,NomAffaires FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPVendeurs V ON P.NoVendeur = V.NoVendeur" + whereClause, myConnection);
 
                 myConnection.Open();
                 SqlDataReader lecteurProduit = commandeProduit.ExecuteReader();
-                lecteurProduit.Read();
-
-                Object photo = lecteurProduit["Photo"];
-                String urlImage;
-                if (photo is DBNull)
+                if (lecteurProduit.Read())
                 {
-                    urlImage = "Images/image_non_disponible.png";
+
+                    Object photo = lecteurProduit["Photo"];
+                    String urlImage;
+                    if (photo is DBNull)
+                    {
+                        urlImage = "Images/image_non_disponible.png";
+                    }
+                    else
+                    {
+                        urlImage = "Images/Televerse/" + (String)photo;
+                    }
+                    this.imgProduit.ImageUrl = urlImage;
+
+                    this.lblProduit.Text = (String)lecteurProduit["Nom"];
+                    this.lblCategorie.Text = (String)lecteurProduit["Categorie"];
+                    this.lblDescription.Text = (String)lecteurProduit["Description"];
+
+                    decimal decPrixDemande = (decimal)lecteurProduit["PrixDemande"];
+
+                    this.lblPrixDemande.Text = decPrixDemande.ToString("C");
+
+                    Object objPrixVente = lecteurProduit["PrixVente"];
+                    decimal decPrixVente;
+                    if (objPrixVente is DBNull)
+                    {
+                        decPrixVente = decPrixDemande;
+                    }
+                    else
+                    {
+                        decPrixVente = (decimal)objPrixVente;
+                    }
+                    this.lblPrixEnVente.Text = decPrixVente.ToString("C");
+
+                    short quantite = (short)lecteurProduit["NombreItems"];
+                    if (quantite > 0)
+                    {
+                        lblQuantiteDisponible.Text = quantite.ToString();
+                    }
+                    else
+                    {
+                        lblQuantiteDisponible.Text = "En rupture de stock";
+                        lblQuantiteDisponible.ForeColor = Color.Red;
+                    }
+
+                    this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
+
+                    this.NoVendeur = (long)lecteurProduit["NoVendeur"];
+                    Master.NoVendeur = this.NoVendeur;
+
+                    object dateMAJ = lecteurProduit["DateMAJ"];
+                    if (dateMAJ is DBNull)
+                    {
+                        this.lblDateMiseAJour.Text = "Jamais modifié";
+                    }
+                    else
+                    {
+                        this.lblDateMiseAJour.Text = lecteurProduit["DateMAJ"].ToString();
+                    }
                 }
                 else
                 {
-                    urlImage = "Images/Televerse/" + (String)photo;
-                }
-                this.imgProduit.ImageUrl = urlImage;
-
-                this.lblProduit.Text = (String)lecteurProduit["Nom"];
-                this.lblCategorie.Text = (String)lecteurProduit["Categorie"];
-                this.lblDescription.Text = (String)lecteurProduit["Description"];
-
-                decimal decPrixDemande = (decimal)lecteurProduit["PrixDemande"];
-
-                this.lblPrixDemande.Text = decPrixDemande.ToString("C");
-
-                Object objPrixVente = lecteurProduit["PrixVente"];
-                decimal decPrixVente;
-                if (objPrixVente is DBNull)
-                {
-                    decPrixVente = decPrixDemande;
-                }
-                else
-                {
-                    decPrixVente = (decimal)objPrixVente;
-                }
-                this.lblPrixEnVente.Text = decPrixVente.ToString("C");
-
-                short quantite = (short)lecteurProduit["NombreItems"];
-                if (quantite > 0)
-                {
-                    lblQuantiteDisponible.Text = quantite.ToString();
-                }
-                else
-                {
-                    lblQuantiteDisponible.Text = "En rupture de stock";
-                    lblQuantiteDisponible.ForeColor = Color.Red;
-                }
-
-                this.lblDateCreation.Text = ((DateTime)lecteurProduit["DateCreation"]).ToShortDateString();
-
-                this.NoVendeur = (long)lecteurProduit["NoVendeur"];
-                Master.NoVendeur = this.NoVendeur;
-
-                object dateMAJ = lecteurProduit["DateMAJ"];
-                if (dateMAJ is DBNull)
-                {
-                    this.lblDateMiseAJour.Text = "Jamais modifié";
-                }
-                else
-                {
-                    this.lblDateMiseAJour.Text = lecteurProduit["DateMAJ"].ToString();
+                    myConnection.Close();
+                    Response.Redirect(Chemin.UrlRetour == null ? ((char)Session["Type"] == 'V' ? "AccueilVendeur.aspx" : "AccueilClient.aspx") : Chemin.UrlRetour);
                 }
                 myConnection.Close();
 
@@ -135,12 +156,13 @@ namespace Puces_R
                 SqlDataReader lecteurEvaluation = commandeEvaluation.ExecuteReader();
                                 
                 DejaEvalue = lecteurEvaluation.Read();
-                if (DejaEvalue)
+                if (DejaEvalue && (char)Session["Type"] == 'C')
                 {
                     ctrEtoiles.Cote = (decimal)lecteurEvaluation["Cote"];
                     txtCommentaire.Text = (String)lecteurEvaluation["Commentaire"];
                     afficherEvaluation();
                 }
+
                 myConnection.Close();
                 
                 calculerCoteMoyenne();
@@ -294,6 +316,16 @@ namespace Puces_R
             {
                 e.IsValid = false;
             }
+        }
+
+        protected void btnSupprimerProduit_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SuppressionProduits.aspx?noproduit=" + Request.Params["noproduit"]);
+        }
+
+        protected void btnModifierProduit_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificationProduits.aspx?noproduit=" + Request.Params["noproduit"]);
         }
     }
 }

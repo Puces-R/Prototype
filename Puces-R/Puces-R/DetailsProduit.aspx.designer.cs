@@ -184,6 +184,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lblDateMiseAJour;
         
         /// <summary>
+        /// Contrôle trQtt.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trQtt;
+        
+        /// <summary>
         /// Contrôle txtQuantite.
         /// </summary>
         /// <remarks>
@@ -218,6 +227,24 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEnvoyerMessage;
+        
+        /// <summary>
+        /// Contrôle btnModifierProduit.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModifierProduit;
+        
+        /// <summary>
+        /// Contrôle btnSupprimerProduit.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSupprimerProduit;
         
         /// <summary>
         /// Propriété Master.

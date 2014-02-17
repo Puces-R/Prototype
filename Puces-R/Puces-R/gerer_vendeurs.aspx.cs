@@ -13,7 +13,7 @@ namespace Puces_R
 {
     public partial class gerer_vendeurs : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         string whereClause, orderByClause = " ORDER BY ";
         private int noCategorie;
 
@@ -23,6 +23,7 @@ namespace Puces_R
             
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 String whereClause = String.Empty;
                 SqlDataAdapter adapteurCategories = new SqlDataAdapter("SELECT DISTINCT C.Description, C.NoCategorie FROM PPCategories C INNER JOIN PPProduits P ON C.NoCategorie = P.NoCategorie" , myConnection);
                 DataTable tableCategories = new DataTable();

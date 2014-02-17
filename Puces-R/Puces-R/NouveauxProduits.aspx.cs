@@ -17,6 +17,7 @@ namespace Puces_R.Controles
         {
             if (!IsPostBack)
             {
+                Librairie.Autorisation(true, false, false, false);
                 chargerProduits();
             }
         }

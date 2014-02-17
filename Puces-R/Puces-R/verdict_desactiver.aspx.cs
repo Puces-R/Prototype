@@ -28,6 +28,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 if (Session["desactiver_vendeur"] != null)
                 {
                     if (Session["desactiver_vendeur"].ToString() != "")

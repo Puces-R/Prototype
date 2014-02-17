@@ -18,7 +18,6 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             Master.Titre = "Verdict de la demande";
 
             if (Session["err_msg"] != null)
@@ -30,6 +29,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, false, true);
                 if (Session["acceptation_vendeur"] != null)
                 {
                     if (Session["acceptation_vendeur"].ToString() != "")

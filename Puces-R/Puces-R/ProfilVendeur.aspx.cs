@@ -23,6 +23,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, true, false);
                 lireXML();
 
                 SqlCommand commandeClient = new SqlCommand("SELECT NomAffaires, Prenom, Nom, Rue, Ville, Province, Pays, CodePostal, Tel1, Tel2, MaxLivraison, LivraisonGratuite, DateMAJ, Pourcentage, Taxes FROM PPVendeurs WHERE NoVendeur = @no", myConnection);

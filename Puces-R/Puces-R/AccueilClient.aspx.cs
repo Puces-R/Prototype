@@ -22,6 +22,7 @@ namespace Puces_R
                 {
                     Response.Redirect("Default.aspx", true);
                 }
+                Librairie.Autorisation(false, true, false, false);
 
                 SqlDataAdapter adapteurPaniers = new SqlDataAdapter("SELECT V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + Session["ID"] + " GROUP BY V.NomAffaires, A.NoVendeur", myConnection);
                 DataTable tablePaniers = new DataTable();

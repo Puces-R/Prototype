@@ -15,6 +15,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, true, true, true);
+            }
             this.Header.DataBind();
             char type = (char)Session["Type"];
             switch (type)

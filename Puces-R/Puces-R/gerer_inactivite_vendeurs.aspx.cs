@@ -19,6 +19,10 @@ namespace Puces_R
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             List<String> whereParts = new List<String>();
 
             if (txtCritereRecherche.Text != string.Empty)

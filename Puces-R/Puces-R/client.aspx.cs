@@ -16,6 +16,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             Master.Titre = "Gérer le client";
 
             if (Session["selected_client"] != null)

@@ -16,6 +16,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, true, false);
+            }
             myConnection.Open();
             SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur="+Session["ID"],myConnection);
             object nb = (object)maC.ExecuteScalar();

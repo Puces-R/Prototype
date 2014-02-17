@@ -11,21 +11,22 @@ namespace Puces_R
     public partial class ModificationProduits : System.Web.UI.Page
     {
 
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         int noProduit = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, false, true, false);
                 if (!int.TryParse(Request.Params["noproduit"], out noProduit))
                 {
-                    Response.Redirect("Default.aspx", true);
+                    Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour, true);
                 }
 
                 else
                 {
-                    String whereClause = " WHERE NoProduit = " + noProduit.ToString();
+                    String whereClause = " WHERE NoProduit = " + noProduit.ToString() + " AND NoVendeur = " + Session["ID"];
 
                     SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPProduits" + whereClause, myConnection);
 
@@ -33,23 +34,30 @@ namespace Puces_R
                     myConnection.Open();
 
                     SqlDataReader lecteurClient = commandeClient.ExecuteReader();
-                    lecteurClient.Read();
-                    chargerCategorie();
-
-                    LoaderCategorie((int)lecteurClient["NoCategorie"]);
-                    this.tbDescAbregée.Text = (String)lecteurClient["Nom"];
-                    this.tbComplete.Text = (String)lecteurClient["Description"]; ;
-                    this.tbPrixDemande.Text = Convert.ToString((Decimal)lecteurClient["PrixDemande"]);
-                    this.tbNbItems.Text = ((Int16)lecteurClient["NombreItems"]).ToString(); ;
-                    this.tbDateVente.Text = lecteurClient["DateVente"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateVente"]);
-                    this.tbPrixVente.Text = Convert.ToString((Decimal)lecteurClient["PrixVente"]); ;
-                    this.tbPoids.Text = Convert.ToString((Decimal)lecteurClient["Poids"]); ;
-                    this.tbDateCreation.Text = lecteurClient["DateCreation"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateCreation"]);
-                    this.tbMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]); ;
-                    Boolean b = (Boolean)lecteurClient["Disponibilité"];
-                    if (b) 
+                    if (lecteurClient.Read())
                     {
-                        cbDisponibilité.Checked = true;
+                        chargerCategorie();
+
+                        LoaderCategorie((int)lecteurClient["NoCategorie"]);
+                        this.tbDescAbregée.Text = (String)lecteurClient["Nom"];
+                        this.tbComplete.Text = (String)lecteurClient["Description"]; ;
+                        this.tbPrixDemande.Text = Convert.ToString((Decimal)lecteurClient["PrixDemande"]);
+                        this.tbNbItems.Text = ((Int16)lecteurClient["NombreItems"]).ToString(); ;
+                        this.tbDateVente.Text = lecteurClient["DateVente"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateVente"]);
+                        this.tbPrixVente.Text = Convert.ToString((Decimal)lecteurClient["PrixVente"]); ;
+                        this.tbPoids.Text = Convert.ToString((Decimal)lecteurClient["Poids"]); ;
+                        this.tbDateCreation.Text = lecteurClient["DateCreation"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateCreation"]);
+                        this.tbMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]); ;
+                        Boolean b = (Boolean)lecteurClient["Disponibilité"];
+                        if (b)
+                        {
+                            cbDisponibilité.Checked = true;
+                        }
+                    }
+                    else
+                    {
+                        myConnection.Close();
+                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
                     }
                     
                     //this.tbNomAffaires.Text = (String)lecteurClient["NomAffaires"];

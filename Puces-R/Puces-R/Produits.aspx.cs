@@ -15,8 +15,8 @@ namespace Puces_R
     {
         private String noVendeurs;
         private String noCategories;
-        
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+
+        SqlConnection myConnection = Librairie.Connexion;
 
         private bool RechercheAvance
         {
@@ -36,6 +36,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                Librairie.Autorisation(false, true, false, false);
                 RechercheAvance = false;
 
                 chargerProduits();

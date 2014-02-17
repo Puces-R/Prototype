@@ -11,11 +11,15 @@ namespace Puces_R
 {
     public partial class vendeur : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         int no_vendeur;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(false, false, false, true);
+            }
             Master.Titre = "Le nom d'affaire";
 
             if (Session["selected_vendeur"] != null)

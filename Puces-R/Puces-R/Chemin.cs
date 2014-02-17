@@ -52,9 +52,10 @@ namespace Puces_R
         {
             get
             {
-                if (Request.Params["texteretour"] != null)
+                if (Request.Params["texteretour"] != null && Request.Params["texteretour"].Trim() != string.Empty)
                 {
-                    return Decoder((String)Request.Params["texteretour"]);
+                    String decoder = Decoder((String)Request.Params["texteretour"]);
+                    return decoder == null ? "Retour" : decoder;
                 }
                 else
                 {
@@ -117,7 +118,14 @@ namespace Puces_R
 
         private static String Decoder(String texte)
         {
-            return Encoding.UTF8.GetString(Convert.FromBase64String(texte));
+            try
+            {
+                return Encoding.UTF8.GetString(Convert.FromBase64String(texte));
+            }
+            catch (FormatException)
+            {
+                return null;
+            }
         }
     }
 }

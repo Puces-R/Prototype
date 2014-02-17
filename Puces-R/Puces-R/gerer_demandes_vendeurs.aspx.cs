@@ -122,12 +122,12 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
-                Label date_demande = (Label)item.FindControl("date_demande");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_affaire = (LinkButton)item.FindControl("lbl_nom_affaire");
+                LinkButton date_demande = (LinkButton)item.FindControl("date_demande");
                 Button btn_accepter = (Button)item.FindControl("btn_accepter");
                 Button btn_refuser = (Button)item.FindControl("btn_refuser");
-                Label lbl_nom_vendeur = (Label)item.FindControl("lbl_nom_vendeur");
+                LinkButton lbl_nom_vendeur = (LinkButton)item.FindControl("lbl_nom_vendeur");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
@@ -137,6 +137,11 @@ namespace Puces_R
                 btn_accepter.CommandArgument = drvDemande["NoVendeur"].ToString();
                 btn_refuser.CommandArgument = drvDemande["NoVendeur"].ToString();
                 lbl_nom_vendeur.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
+
+                lbl_num.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_nom_affaire.CommandArgument = drvDemande["NoVendeur"].ToString();
+                date_demande.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_nom_vendeur.CommandArgument = drvDemande["NoVendeur"].ToString();
             }
         }
         
@@ -149,6 +154,12 @@ namespace Puces_R
         protected void acceptation_demande(object sender, CommandEventArgs e)
         {
             Session["acceptation_vendeur"] = e.CommandArgument.ToString();
+            Response.Redirect("verdict_demande.aspx");
+        }
+
+        protected void details_demande(object sender, CommandEventArgs e)
+        {
+            Session["details_demande"] = e.CommandArgument.ToString();
             Response.Redirect("verdict_demande.aspx");
         }
     }

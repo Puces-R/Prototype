@@ -165,9 +165,9 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_complet = (Label)item.FindControl("lbl_nom_complet");
-                Label lbl_courriel = (Label)item.FindControl("lbl_courriel");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_complet = (LinkButton)item.FindControl("lbl_nom_complet");
+                LinkButton lbl_courriel = (LinkButton)item.FindControl("lbl_courriel");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
 
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
@@ -176,6 +176,10 @@ namespace Puces_R
                 lbl_nom_complet.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
                 lbl_courriel.Text = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoClient"].ToString();
+
+                lbl_num.CommandArgument = drvinactif1["NoClient"].ToString();
+                lbl_nom_complet.CommandArgument = drvinactif1["NoClient"].ToString();
+                lbl_courriel.CommandArgument = drvinactif1["NoClient"].ToString();
             }
         }
 

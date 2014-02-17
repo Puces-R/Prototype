@@ -32,8 +32,8 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="Items" runat="server">
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
-    <div id="div_msg" runat="server"></div>
-    <div id="div_chck">    
+    <div >    
+        <div id="div_msg" runat="server"></div>
         <div style="font-size: small;">
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
@@ -41,17 +41,16 @@
                     <th>Mois</th>
                     <th>Montant</th>
                     <th>Date de paiement</th>
-                    <th></th>
+                    <th>Actions</th>
                 </tr>
                 <asp:Repeater runat="server" ID="rptRetard" OnItemDataBound="rptRetard_ItemDataBound" >
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle" runat="server" id="ligne_histo" >
-                            <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:label runat="server" ID="lbl_mois" /></td>
-                            <td>$<asp:Label runat="server" ID="lbl_montant" /></td>
-                            <td><asp:Label runat="server" ID="date_paiement" /></td>
-                             <td>
-                                <asp:Button runat="server" ID="btn_voir_details_redevence" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" Text="Détails" /> 
+                            <td class="td_liste"><asp:LinkButton runat="server" ID="lbl_num" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_mois" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_montant" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                            <td><asp:LinkButton runat="server" ID="date_paiement" OnCommand="voir_details_redevence" ToolTip="Voir les détails des commandes de ce mois" /></td>
+                             <td> 
                                 <asp:Button runat="server" ID="btn_enregistrer_paiement" OnCommand="enregistrer_paiement" ToolTip="Enregister paiement" Text="Enregister la reception du paiement" />
                             </td>
                         </tr>

@@ -101,7 +101,7 @@
         <span class="boiteListeDeroulante">
             Recherche:
             <asp:DropDownList ID="ddlTypeRecherche" runat="server">
-                <asp:ListItem Text="Nom d'affaires" />
+                <asp:ListItem Text="Nom de Client" />
             </asp:DropDownList>
             <asp:TextBox ID="txtCritereRecherche" runat="server" />
             <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
@@ -109,9 +109,8 @@
         <span class="boiteListeDeroulante">
             Trier par:
             <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
-                <asp:ListItem Text="Numéro" />
-                <asp:ListItem Text="Nom d'affaires" />
                 <asp:ListItem Text="Date de demande" />
+                <asp:ListItem Text="Montant du panier" />
             </asp:DropDownList>
         </span>
         <span class="boiteListeDeroulante">
@@ -128,9 +127,10 @@
             Temps d'inactivité:
             <asp:DropDownList ID="ddlTempsInnactivite" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
                 <asp:ListItem Text="Tous" Value="0" />
-                <asp:ListItem Text="1 An" Value="1" Selected="True" />
-                <asp:ListItem Text="2 Ans" Value="2" />
-                <asp:ListItem Text="3 Ans" Value="3"/>
+                <asp:ListItem Text="1 mois" Value="1" Selected="True" />
+                <asp:ListItem Text="2 mois" Value="2" />
+                <asp:ListItem Text="3 mois" Value="3"/>
+                <asp:ListItem Text="6 mois et +" Value="6"/>
             </asp:DropDownList>
         </span>
     </div>
@@ -139,24 +139,31 @@
     <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
         <div style="font-size: small;">
+        <asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/></th>
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
+
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>
                     <th>#</th>
-                    <th>NoClient</th>
                     <th>NoVendeur</th>
                     <th>Nom d'affaires</th>
+                    <th>Nom Client</th>
+                    <th>Montant Panier</th>
+                    <th>Date Inactivité</th>
                     <th>Action</th>
+                    
                 </tr>
                 <asp:Repeater runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >
-                    <ItemTemplate>                        
+                    <ItemTemplate>                      
                         <tr class="rectangleItem basRectangle">
                             <td><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" onchange="check_desactiver_tout(this);" /></td>
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
                             <td><asp:Label runat="server" ID="lblNoVendeur" /></td>
                             <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
+                            <td><asp:Label runat="server" ID="lblNomClient" /></td>
+                            <td><asp:Label runat="server" ID="lblMontant" /></td>
                             <td><asp:Label runat="server" ID="date_inactif1" /></td>
-                            <td><asp:Button ID="btn_desactiver" runat="server" Text="Effacer le panier" OnCommand="desactiver_vendeur" ToolTip="Effacer le panier" /></td>
+                            <td><asp:Label runat="server" ID="lblInactif"></asp:Label><asp:Button ID="btn_desactiver" runat="server" Text="Effacer le panier" OnCommand="desactiver_vendeur" ToolTip="Effacer le panier" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

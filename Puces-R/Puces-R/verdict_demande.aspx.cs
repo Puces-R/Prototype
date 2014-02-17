@@ -19,7 +19,6 @@ namespace Puces_R
         protected void Page_Load(object sender, EventArgs e)
         {
             Master.Titre = "Verdict de la demande";
-
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
@@ -37,6 +36,7 @@ namespace Puces_R
                         no_vendeur = Convert.ToInt32(Session["acceptation_vendeur"].ToString());
                         mv_verdict.SetActiveView(view_acceptation);
                         Session["acceptation_vendeur"] = null;
+                        Master.Titre = "Acceptation de la demande";
                     }
                 }
                 else
@@ -48,9 +48,23 @@ namespace Puces_R
                             no_vendeur = Convert.ToInt32(Session["refus_vendeur"].ToString());
                             mv_verdict.SetActiveView(view_refus);
                             Session["refus_vendeur"] = null;
+                            Master.Titre = "Refus de la demande";
                         }
                     }
-                    else Response.Redirect("Default.aspx");
+                    else
+                    {
+                        if (Session["details_demande"] != null)
+                        {
+                            if (Session["details_demande"].ToString() != "")
+                            {
+                                no_vendeur = Convert.ToInt32(Session["details_demande"].ToString());
+                                mv_verdict.SetActiveView(view_details);
+                                Session["details_demande"] = null;
+                                Master.Titre = "Détails de la demande";
+                            }
+                        }
+                        else Response.Redirect("Default.aspx");
+                    }
                 }
             }
 
@@ -72,6 +86,8 @@ namespace Puces_R
                 btn_refuser.CommandArgument = results["NoVendeur"].ToString();
                 cont_mail_acceptation.Text = "Bonjour " + results["Prenom"].ToString() + " " + results["Nom"].ToString() + "\nFélicitations! Votre inscription sur LesPetitesPuces.com a été acceptée.";
                 cont_mail_refus.Text = "Bonjour " + results["Prenom"].ToString() + " " + results["Nom"].ToString() + "\nVotre inscription sur LesPetitesPuces.com n'a pas été acceptée.";
+                btn_accepter_details.CommandArgument = results["NoVendeur"].ToString();
+                btn_refuser_details.CommandArgument = results["NoVendeur"].ToString();
             }
 
             myConnection.Close();
@@ -146,6 +162,18 @@ namespace Puces_R
             Response.Redirect("gerer_demandes_vendeurs.aspx");
             
             myConnection.Close();
+        }
+
+        protected void refus_details_demande(object sender, CommandEventArgs e)
+        {
+            Session["refus_vendeur"] = e.CommandArgument.ToString();
+            Response.Redirect("verdict_demande.aspx");
+        }
+
+        protected void acceptation_details_demande(object sender, CommandEventArgs e)
+        {
+            Session["acceptation_vendeur"] = e.CommandArgument.ToString();
+            Response.Redirect("verdict_demande.aspx");
         }
     }
 }

@@ -76,6 +76,7 @@
     <Content Include="Controles\ChangementMDP.ascx" />
     <Content Include="Controles\CodePostal.ascx" />
     <Content Include="Controles\BoiteCommande.ascx" />
+    <Content Include="Controles\MenuACoteVendeur.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\style_sec4_2.css" />
     <Content Include="details_commande_redevance.aspx" />
@@ -798,6 +799,13 @@
     </Compile>
     <Compile Include="Controles\LigneMessage.ascx.designer.cs">
       <DependentUpon>LigneMessage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\MenuACoteVendeur.ascx.cs">
+      <DependentUpon>MenuACoteVendeur.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuACoteVendeur.ascx.designer.cs">
+      <DependentUpon>MenuACoteVendeur.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\MenuClient.ascx.cs">
       <DependentUpon>MenuClient.ascx</DependentUpon>

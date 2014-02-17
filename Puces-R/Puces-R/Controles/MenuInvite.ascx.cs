@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Puces_R.Controles
 {
-    public partial class MenuInvite : System.Web.UI.UserControl
+    public partial class MenuInvite : UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +27,7 @@ namespace Puces_R.Controles
                 }
                 SelectionnerCourant(item.ChildItems, urlPage);
             }
+            Librairie.SelectionnerItemMenuActuel(ctrMenu.Items, Path.GetFileNameWithoutExtension(Request.Url.AbsoluteUri));
         }
     }
 }

@@ -141,6 +141,7 @@ namespace Puces_R
             System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerCourriel.aspx", retour));
         }
 
+
         public static void Autorisation(bool visiteur, bool client, bool vendeur, bool gestionnaire)
         {
             object typeTmp = System.Web.HttpContext.Current.Session["Type"];
@@ -169,6 +170,18 @@ namespace Puces_R
             else if (!visiteur)
             {
                 System.Web.HttpContext.Current.Response.Redirect("Default.aspx");
+            }
+        }
+        public static void SelectionnerItemMenuActuel(MenuItemCollection items, String urlPage)
+        {
+            foreach (MenuItem item in items)
+            {
+                if (item.Selectable)
+                {
+                    String urlItem = Path.GetFileNameWithoutExtension(item.NavigateUrl);
+                    item.Selected = String.Equals(urlItem, urlPage);
+                }
+                SelectionnerItemMenuActuel(item.ChildItems, urlPage);
             }
         }
     }

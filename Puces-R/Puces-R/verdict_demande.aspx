@@ -83,6 +83,14 @@
                                     </td>
                                 </tr>
                             </asp:View>
+                            <asp:View runat="server" ID="view_details">
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <asp:Button id="btn_accepter_details" runat="server" Text="Accepter" OnCommand="acceptation_details_demande" ToolTip="Accepter la demande de ce vendeur" />
+                                        <asp:Button id="btn_refuser_details" runat="server" Text="Refuser" OnCommand="refus_details_demande" ToolTip="Refuser la demande de ce vendeur" />
+                                    </td>
+                                </tr>
+                            </asp:View>
                         </asp:MultiView>
                     </table>
                 </div>

@@ -94,7 +94,7 @@ namespace Puces_R
 
                     try
                     {
-                        SqlCommand commande_existance_table = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoCommandes' and Xtype='T' ", myConnection, transaction);
+                        SqlCommand commande_existance_table = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoCommandes' and Xtype='U' ", myConnection, transaction);
                         SqlDataReader rd1 = commande_existance_table.ExecuteReader();
                         bool rd1_read, rd2_read;
 
@@ -106,7 +106,7 @@ namespace Puces_R
                             commande_creer_table.ExecuteNonQuery();
                         }
 
-                        SqlCommand commande_existance_table2 = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoDetailsCommandes' and Xtype='T' ", myConnection, transaction);
+                        SqlCommand commande_existance_table2 = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoDetailsCommandes' and Xtype='U' ", myConnection, transaction);
                         SqlDataReader rd2 = commande_existance_table2.ExecuteReader();
 
                         rd2_read = !rd2.Read();
@@ -182,7 +182,7 @@ namespace Puces_R
 
                     try
                     {
-                        SqlCommand commande_existance_table = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoCommandes' and Xtype='T' ", myConnection, transaction);
+                        SqlCommand commande_existance_table = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoCommandes' and Xtype='U' ", myConnection, transaction);
                         SqlDataReader rd1 = commande_existance_table.ExecuteReader();
                         bool rd1_read, rd2_read;
 
@@ -194,7 +194,7 @@ namespace Puces_R
                             commande_creer_table.ExecuteNonQuery();
                         }
 
-                        SqlCommand commande_existance_table2 = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoDetailsCommandes' and Xtype='T' ", myConnection, transaction);
+                        SqlCommand commande_existance_table2 = new SqlCommand("SELECT * FROM sysobjects WHERE name='HistoDetailsCommandes' and Xtype='U' ", myConnection, transaction);
                         SqlDataReader rd2 = commande_existance_table2.ExecuteReader();
 
                         rd2_read = !rd2.Read();

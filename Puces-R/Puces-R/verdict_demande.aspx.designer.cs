@@ -157,6 +157,33 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Button btn_refuser;
         
         /// <summary>
+        /// Contrôle view_details.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view_details;
+        
+        /// <summary>
+        /// Contrôle btn_accepter_details.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_accepter_details;
+        
+        /// <summary>
+        /// Contrôle btn_refuser_details.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_refuser_details;
+        
+        /// <summary>
         /// Propriété Master.
         /// </summary>
         /// <remarks>

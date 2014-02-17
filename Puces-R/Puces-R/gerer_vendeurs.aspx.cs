@@ -146,21 +146,19 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-                Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
-                Label nom_complet = (Label)item.FindControl("nom_complet");
-                //Label adresse_courriel = (Label)item.FindControl("adresse_courriel");
-                //Label date_insc = (Label)item.FindControl("date_insc");
-                Button btn_gerer = (Button)item.FindControl("btn_gerer");
+                LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
+                LinkButton lbl_nom_affaire = (LinkButton)item.FindControl("lbl_nom_affaire");
+                LinkButton nom_complet = (LinkButton)item.FindControl("nom_complet");
 
                 DataRowView drvVendeurs = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvVendeurs["NomAffaires"].ToString();
                 nom_complet.Text = drvVendeurs["Prenom"].ToString() + " " + drvVendeurs["Nom"].ToString();
-                //adresse_courriel.Text = drvVendeurs["AdresseEmail"].ToString();
-                //date_insc.Text = drvVendeurs["DateCreation"].ToString();
-                btn_gerer.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+
+                lbl_num.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+                lbl_nom_affaire.CommandArgument = drvVendeurs["NoVendeur"].ToString();
+                nom_complet.CommandArgument = drvVendeurs["NoVendeur"].ToString();
             }
         }
 

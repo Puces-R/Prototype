@@ -79,25 +79,26 @@
     </div>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="Items" runat="server">
+    <div>
     <div id="div_msg" runat="server"></div>
-    <div id="div_chck">    
-        <div style="font-size: small; width: 70%; margin: auto;">
+        <div id="div_chck" style="font-size: small; width: 100%; margin: auto;">
+        <p class="center"><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/></p>
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>
                     <th>#</th>
                     <th>Nom d'affaires</th>
                     <th>Nom du vendeur</th>
-                    <th><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/></th>
+                    <th>Actions</th>
                 </tr>
                 <asp:Repeater runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >
                     <ItemTemplate>                        
                         <tr class="rectangleItem basRectangle">
                             <td><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" onchange="check_desactiver_tout(this);" /></td>
-                            <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_affaire" /></td>
-                            <td><asp:Label runat="server" ID="lbl_nom_vendeur" /></td>
-                            <td><asp:Button ID="btn_desactiver" runat="server" Text="Voir détails/Désactiver" OnCommand="desactiver_vendeur" ToolTip="Désactiver ce vendeur" /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_num" OnCommand="desactiver_vendeur" ToolTip="Voir les informations ce vendeur"  /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_nom_affaire" OnCommand="desactiver_vendeur" ToolTip="Voir les informations ce vendeur"  /></td>
+                            <td><asp:LinkButton runat="server" ID="lbl_nom_vendeur" OnCommand="desactiver_vendeur" ToolTip="Voir les informations ce vendeur"  /></td>
+                            <td><asp:Button ID="btn_desactiver" runat="server" Text="Désactiver" OnCommand="desactiver_vendeur" ToolTip="Désactiver ce vendeur" /></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

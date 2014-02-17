@@ -49,7 +49,7 @@
            ControlToValidate="tbPrix"   
            EnableClientScript="false" runat="server"
            ErrorMessage="Format invalide !" 
-           ValidationExpression="^\d+([\.\,]\d{0,5})?$"> 
+           ValidationExpression="^\d+([\.\,]\d{0,2})?$"> 
            </asp:RegularExpressionValidator> 
 
       </td>

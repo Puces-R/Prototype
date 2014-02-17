@@ -84,7 +84,7 @@ namespace Puces_R
                         lbl_statut.Text = "En attende d'approbation";
                         break;
                     case "3":
-                        lbl_statut.Text = "En retard de payement";
+                        lbl_statut.Text = "En retard de paiement";
                         break;
                 }
 

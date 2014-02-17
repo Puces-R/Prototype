@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gérer des redevences de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="accueil_compta.aspx.cs" Inherits="Puces_R.accueil_compta" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gérer des redevances de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="accueil_compta.aspx.cs" Inherits="Puces_R.accueil_compta" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -56,7 +56,7 @@
                         <td class="td_liste"><asp:LinkButton runat="server" ID="lbl_num"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
                         <td><asp:LinkButton runat="server" ID="lbl_nom_affaire"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
                         <td><asp:LinkButton runat="server" ID="lbl_nom_vendeur" OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur"  /></td>
-                        <td><asp:LinkButton runat="server" ID="lbl_montant_du"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
+                        <td class="montant"><asp:LinkButton runat="server" ID="lbl_montant_du"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
                     </tr>
                 </ItemTemplate>                
             </asp:Repeater>

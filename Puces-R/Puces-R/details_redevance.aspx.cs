@@ -11,11 +11,12 @@ using System.Net;
 
 namespace Puces_R
 {
-    public partial class details_redevence : System.Web.UI.Page
+    public partial class details_redevance : System.Web.UI.Page
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string whereClause, orderByClause = " ORDER BY ", mois;
         int no_vendeur;
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -84,7 +85,7 @@ namespace Puces_R
                 else Response.Redirect("Default.aspx");
             else Response.Redirect("Default.aspx");
 
-            Master.ChargerItems += charge_details_redevence;
+            Master.ChargerItems += charge_details_redevance;
 
             if (!IsPostBack)
             {
@@ -92,9 +93,9 @@ namespace Puces_R
             } 
         }
 
-        private void charge_details_redevence(object sender, EventArgs e)
+        private void charge_details_redevance(object sender, EventArgs e)
         {
-            charge_details_redevence();
+            charge_details_redevance();
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace Puces_R
             Master.AfficherPremierePage();
         }
 
-        private DataTable charge_details_redevence()
+        private DataTable charge_details_redevance()
         {
             string req = "";
 
@@ -118,7 +119,6 @@ namespace Puces_R
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -126,14 +126,14 @@ namespace Puces_R
             pdsDemandes.CurrentPageIndex = Master.PageActuelle;
             Master.NbPages = pdsDemandes.PageCount;
 
-            rptDetailsRedevence.DataSource = pdsDemandes;
-            rptDetailsRedevence.DataBind();
+            rptDetailsRedevance.DataSource = pdsDemandes;
+            rptDetailsRedevance.DataBind();
             myConnection.Close();
 
             return tableDemandes;
         }
 
-        protected void rptDetailsRedevence_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptDetailsRedevance_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
 
             RepeaterItem item = e.Item;
@@ -152,9 +152,9 @@ namespace Puces_R
                 lbl_redevance.CommandArgument = drvDemande["NoCommande"].ToString();
                 date_vente.CommandArgument = drvDemande["NoCommande"].ToString();
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_nom_client.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                lbl_redevance.Text = "$" + drvDemande["Redevance"].ToString();
+                lbl_redevance.Text = Convert.ToDecimal(drvDemande["Redevance"]).ToString("N") + " $";
                 date_vente.Text = drvDemande["DateVente"].ToString();
 
                 string[] str_mois = drvDemande["DateVente"].ToString().Split('-');

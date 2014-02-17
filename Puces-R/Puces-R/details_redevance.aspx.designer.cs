@@ -10,7 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class details_redevence {
+    public partial class details_redevance {
         
         /// <summary>
         /// Contrôle ddlTypeRecherche.
@@ -67,13 +67,13 @@ namespace Puces_R {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
         
         /// <summary>
-        /// Contrôle rptDetailsRedevence.
+        /// Contrôle rptDetailsRedevance.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptDetailsRedevence;
+        protected global::System.Web.UI.WebControls.Repeater rptDetailsRedevance;
         
         /// <summary>
         /// Propriété Master.

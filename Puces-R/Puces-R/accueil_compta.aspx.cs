@@ -15,6 +15,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         string whereClause, orderByClause = " ORDER BY ";
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -110,7 +111,6 @@ namespace Puces_R
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -137,12 +137,12 @@ namespace Puces_R
                 //Label date_demande = (Label)item.FindControl("date_demande");
                 LinkButton lbl_montant_du = (LinkButton)item.FindControl("lbl_montant_du");
 
-                DataRowView drvDemande = (DataRowView)e.Item.DataItem; 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
+                DataRowView drvDemande = (DataRowView)e.Item.DataItem;
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
                 lbl_nom_affaire.Text = drvDemande["NomAffaires"].ToString();
                 lbl_nom_vendeur.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
                 //date_demande.Text = drvDemande["DateCreation"].ToString();
-                lbl_montant_du.Text = drvDemande["MontantDu"].ToString() + "$";
+                lbl_montant_du.Text = Convert.ToDecimal(drvDemande["MontantDu"]).ToString("N") + " $";
 
                 lbl_num.CommandArgument = drvDemande["NoVendeur"].ToString();
                 lbl_nom_affaire.CommandArgument = drvDemande["NoVendeur"].ToString();

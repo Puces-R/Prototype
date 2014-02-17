@@ -71,6 +71,7 @@
     <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
+    <Content Include="Controles\BoitePanier.ascx" />
     <Content Include="Controles\BoiteProduit.ascx" />
     <Content Include="Controles\Categories.ascx" />
     <Content Include="Controles\ChangementMDP.ascx" />
@@ -729,6 +730,13 @@
     </Compile>
     <Compile Include="Commande.aspx.designer.cs">
       <DependentUpon>Commande.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\BoitePanier.ascx.cs">
+      <DependentUpon>BoitePanier.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\BoitePanier.ascx.designer.cs">
+      <DependentUpon>BoitePanier.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controles\BoiteProduit.ascx.cs">
       <DependentUpon>BoiteProduit.ascx</DependentUpon>

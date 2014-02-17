@@ -7,99 +7,72 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R.Controles {
+namespace Puces_R {
     
     
-    public partial class BoiteProduit {
+    public partial class DesactiverPanierVendeur {
         
         /// <summary>
-        /// Contrôle hypDescriptionAbregee.
+        /// Contrôle mv_verdict.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypDescriptionAbregee;
+        protected global::System.Web.UI.WebControls.MultiView mv_verdict;
         
         /// <summary>
-        /// Contrôle imgProduit.
+        /// Contrôle view_un_vendeur.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduit;
+        protected global::System.Web.UI.WebControls.View view_un_vendeur;
         
         /// <summary>
-        /// Contrôle lblNoProduit.
+        /// Contrôle ctrBoitePanier.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoProduit;
+        protected global::Puces_R.Controles.BoitePanier ctrBoitePanier;
         
         /// <summary>
-        /// Contrôle lblCategorie.
+        /// Contrôle btn_desactiver.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategorie;
+        protected global::System.Web.UI.WebControls.Button btn_desactiver;
         
         /// <summary>
-        /// Contrôle lblPrixDemande.
+        /// Contrôle view_liste.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrixDemande;
+        protected global::System.Web.UI.WebControls.View view_liste;
         
         /// <summary>
-        /// Contrôle lblEvaluation.
+        /// Contrôle rptInnactifs1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEvaluation;
+        protected global::System.Web.UI.WebControls.Repeater rptInnactifs1;
         
         /// <summary>
-        /// Contrôle lblQuantite.
+        /// Contrôle btn_desactiver_liste.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantite;
-        
-        /// <summary>
-        /// Contrôle phBoutonsActions.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phBoutonsActions;
-        
-        /// <summary>
-        /// Contrôle btnSupprimer.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSupprimer;
-        
-        /// <summary>
-        /// Contrôle btnModifier.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModifier;
+        protected global::System.Web.UI.WebControls.Button btn_desactiver_liste;
     }
 }

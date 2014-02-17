@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MenuACoteVendeur.ascx.cs" Inherits="Puces_R.Controles.MenuACoteVendeur" %>
 
 <asp:Menu runat="server" Orientation="Vertical" ID="ctrMenu" SkipLinkText="">
-    <StaticMenuItemStyle VerticalPadding="3" />
+    <StaticMenuItemStyle VerticalPadding="1" />
     <StaticSelectedStyle ForeColor="#6AC331" />
     <StaticHoverStyle ForeColor="#6AC331" />
     <Items>

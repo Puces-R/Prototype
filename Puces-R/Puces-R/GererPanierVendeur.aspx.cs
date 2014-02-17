@@ -16,6 +16,8 @@ namespace Puces_R
         string req_inactif = "";
         string whereClause, orderByClause = "";
         int anneesMaximal;
+        String havingClause = "";
+        PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +47,26 @@ namespace Puces_R
 
              whereClause = " WHERE A.NoVendeur = " + Session["ID"];
 
-            
+              havingClause = "";
+             switch (ddlTempsInnactivite.SelectedIndex)
+             {
+                 case 0:
+                     
+                     break;
+                 case 1:
+                     havingClause+=(" HAVING MAX(A.DateCreation) <  DATEADD(month, -1, GetDate()) ");
+                     break;
+                 case 2:
+                     havingClause += (" HAVING MAX(A.DateCreation) <  DATEADD(month, -2, GetDate()) ");
+                     break;
+                 case 3:
+                     havingClause += (" HAVING MAX(A.DateCreation) <  DATEADD(month, -3, GetDate()) ");
+                     break;
+                 case 4:
+                     havingClause += (" HAVING MAX(A.DateCreation) <  DATEADD(month, -6, GetDate()) ");
+                     break;
+
+             }
 
             
             //whereParts.Add("A.NoVendeur = "+Session["ID"]);
@@ -68,6 +89,9 @@ namespace Puces_R
             }
 
             anneesMaximal = int.Parse(ddlTempsInnactivite.SelectedValue);
+
+            
+
 
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
@@ -107,7 +131,7 @@ namespace Puces_R
 
         private DataTable charge_inactifs1()
         {
-            req_inactif = "SELECT  (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal, MAX(A.DateCreation) AS DerniereMAJ FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient" + whereClause  + " GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient "+ orderByClause ;
+            req_inactif = "SELECT  (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * P.PrixVente) AS SousTotal, MAX(A.DateCreation) AS DerniereMAJ FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient" + whereClause + " GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient " + havingClause + orderByClause;
            
             //req_inactif += orderByClause;
 
@@ -115,7 +139,7 @@ namespace Puces_R
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
 
-            PagedDataSource pdsDemandes = new PagedDataSource();
+            
             pdsDemandes.DataSource = new DataView(tableInnactif1);
             pdsDemandes.AllowPaging = true;
             pdsDemandes.PageSize = int.Parse(ddlParPage.SelectedValue);
@@ -138,12 +162,13 @@ namespace Puces_R
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
                 Label lbl_num = (Label)item.FindControl("lbl_num");
-                Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
-                Label lbl_no_vendeur = (Label)item.FindControl("lblNoVendeur");
+                //Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
+                //Label lbl_no_vendeur = (Label)item.FindControl("lblNoVendeur");
                 Label lbl_nom_vendeur = (Label)item.FindControl("lbl_nom_vendeur");
                 Label lbl_date = (Label)item.FindControl("date_inactif1");
                 Label lbl_NomClient = (Label)item.FindControl("lblNomClient");
                 Label lblMontant = (Label)item.FindControl("lblMontant");
+                Label lblPasActif = (Label)item.FindControl("lblInactif");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
                
                             
@@ -151,27 +176,41 @@ namespace Puces_R
                             
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
-               
-                         
 
-                lbl_num.Text = (e.Item.ItemIndex + 1).ToString();
 
-                lbl_no_vendeur.Text = drvinactif1["NoVendeur"].ToString();
-                lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
+
+                lbl_num.Text = (pdsDemandes.PageSize * pdsDemandes.CurrentPageIndex + e.Item.ItemIndex + 1).ToString();
+
+                //lbl_no_vendeur.Text = drvinactif1["NoVendeur"].ToString();
+                //lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 //lbl_nom_vendeur.Text = drvinactif1["SousTotal"].ToString();
                 lbl_NomClient.Text = drvinactif1["NomC"].ToString() == "" ? "Nom Inconnu" : drvinactif1["NomC"].ToString();
-                lblMontant.Text = drvinactif1["SousTotal"].ToString()+"$";
+                lblMontant.Text = Convert.ToDecimal(drvinactif1["SousTotal"]).ToString("#0.00 $");
                 lbl_date.Text = drvinactif1["DerniereMAJ"].ToString();
 
+
+
+                DateTime myDate = DateTime.Now;
+                DateTime newDate = myDate.AddMonths(-6);
+
+
+                if ((DateTime)drvinactif1["DerniereMAJ"] < newDate)
+                {
+                    btn_desactiver.Visible = true;
+                }
+                else 
+                {
+                    lblPasActif.Visible = true;
+                }
                 //btnRefuser.CommandArgument = drvinactif1["AdresseEmail"].ToString();
-                btn_desactiver.CommandArgument = drvinactif1["NoVendeur"].ToString();
+                btn_desactiver.CommandArgument = drvinactif1["NoClient"].ToString() + "-" + drvinactif1["NomC"].ToString();
             }
         }
 
         protected void desactiver_vendeur(object sender, CommandEventArgs e)
         {
-            Session["desactiver_vendeur"] = e.CommandArgument.ToString();
-            Response.Redirect("verdict_desactiver.aspx");
+            Session["desactiver_panier"] = e.CommandArgument.ToString();
+            Response.Redirect("DesactiverPanierVendeur.aspx");
         }
 
         protected void desactiver_liste(object sender, EventArgs e)
@@ -192,7 +231,7 @@ namespace Puces_R
             else
             {
                 Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
-                Response.Redirect("verdict_desactiver.aspx");
+                Response.Redirect("DesactiverPanierVendeur.aspx");
             }
         }
 

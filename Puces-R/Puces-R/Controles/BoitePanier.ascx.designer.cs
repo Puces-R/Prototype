@@ -7,39 +7,36 @@
 // </généré automatiquement>
 //------------------------------------------------------------------------------
 
-namespace Puces_R {
+namespace Puces_R.Controles {
     
     
-    public partial class AccueilClient {
+    public partial class BoitePanier {
         
         /// <summary>
-        /// Contrôle mvPaniers.
+        /// Contrôle hypTitre.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvPaniers;
+        protected global::System.Web.UI.WebControls.HyperLink hypTitre;
         
         /// <summary>
-        /// Contrôle rptPaniers.
+        /// Contrôle ctrProduits.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPaniers;
+        protected global::Puces_R.Controles.TablePanier ctrProduits;
         
         /// <summary>
-        /// Propriété Master.
+        /// Contrôle lblSousTotal.
         /// </summary>
         /// <remarks>
-        /// Propriété générée automatiquement.
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        public new Puces_R.SiteMaster Master {
-            get {
-                return ((Puces_R.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Label lblSousTotal;
     }
 }

@@ -52,7 +52,7 @@ namespace Puces_R
                 req = "";
             }
 
-            generer_script("v1", js_tab, true);
+            generer_script("v1", js_tab, true, Page.ClientScript, false);
             myConnection.Close();
             mvStats.SetActiveView(v1);
         }
@@ -76,7 +76,7 @@ namespace Puces_R
             while (results.Read())
                 js_tab = "{'Total des ventes':" + results["Total"].ToString().Replace(',', '.') + ",'Vendeur':\"" + results["NomAffaires"].ToString() + "\"}," + js_tab;
 
-            generer_script("v2", js_tab, false);
+            generer_script("v2", js_tab, false, Page.ClientScript, false);
             myConnection.Close();
             mvStats.SetActiveView(v2);
         }
@@ -100,7 +100,7 @@ namespace Puces_R
             while (results.Read())
                 js_tab = "{'Nombre de visites':" + results["Visites"].ToString().Replace(',', '.') + ",'Vendeur':\"" + results["NomAffaires"].ToString() + "\"}," + js_tab;
 
-            generer_script("v3", js_tab, false);
+            generer_script("v3", js_tab, false, Page.ClientScript, false);
             myConnection.Close();
             mvStats.SetActiveView(v3);
         }
@@ -124,7 +124,7 @@ namespace Puces_R
             while (results.Read())
                 js_tab = "{'Nombre de paniers':" + results["Paniers"].ToString().Replace(',', '.') + ",'Vendeur':\"" + results["NomAffaires"].ToString() + "\"}," + js_tab;
 
-            generer_script("v4", js_tab, false);
+            generer_script("v4", js_tab, false, Page.ClientScript, false);
             myConnection.Close();
             mvStats.SetActiveView(v4);
         }
@@ -133,13 +133,13 @@ namespace Puces_R
         {
             string js_tab = "";
             int total_vendeur = 0;
-            SqlCommand charger = new SqlCommand("SELECT Statut, COUNT(*) NbVendeurs FROM PPVendeurs GROUP BY Statut ", myConnection);
+            SqlCommand charger = new SqlCommand("SELECT ISNULL(Statut, 0) AS StatutNonNull, COUNT(*) NbVendeurs FROM PPVendeurs GROUP BY ISNULL(Statut, 0) ", myConnection);
             myConnection.Open();
             SqlDataReader results = charger.ExecuteReader();
 
             while (results.Read())
             {
-                switch (results["Statut"].ToString())
+                switch (results["StatutNonNull"].ToString())
                 {
                     case "0" :
                         js_tab = "{ 'Nombre de vendeurs dans cette catégorie': " + results["NbVendeurs"].ToString() + ", 'Catégorie': 'Actifs' }, " + js_tab;
@@ -191,44 +191,41 @@ namespace Puces_R
             mvStats.SetActiveView(c0);
         }
 
-        protected void generer_script(string view, string js_tab, bool trois_d)
+        public static void generer_script(string view, string js_tab, bool trois_d, ClientScriptManager CSM, bool autre_script)
         {
             string script = "";
 
             script += " <script type='text/javascript' > ";
-            script += " 	window.onload =  ";
-            script += " 		function ()  ";
+            //script += " window.RemoveEventListener(\"load\", onLoadDoc" + view + ", false); ";
+            script += " window.addEventListener(\"load\", onLoadDoc" + view + ", false); ";
+            script += " 		var chart_" + view + ";  ";
+            script += " 		function onLoadDoc" + view + "()  ";
             script += " 		{  ";
-            script += " 			onLoadDoc();  ";
-            script += " 		} \n  ";
-            script += " 		var chart1;  ";
-            script += " 		function onLoadDoc()  ";
-            script += " 		{  ";
-            script += " 			chart1 = new cfx.Chart();  ";
-            script += " 			chart1.getAnimations().getLoad().setEnabled(true);  ";
-            script += " 			chart1.setGallery(cfx.Gallery.Bar);  ";
+            script += " 			chart_" + view + " = new cfx.Chart();  ";
+            script += " 			chart_" + view + ".getAnimations().getLoad().setEnabled(true);  ";
+            script += " 			chart_" + view + ".setGallery(cfx.Gallery.Bar);  ";
             if (trois_d)
             {
-                script += " 			chart1.getView3D().setEnabled(true);  ";
-                script += " 			chart1.getView3D().setRotated(true); ";
-                script += " 			chart1.getView3D().setAngleX(30);   ";
-                script += " 			chart1.getView3D().setAngleY(-20);  ";
-                script += " 			chart1.getView3D().setBoxThickness(10);    ";
-                script += " 			chart1.getView3D().setDepth(160);  ";
+                script += " 			chart_" + view + ".getView3D().setEnabled(true);  ";
+                script += " 			chart_" + view + ".getView3D().setRotated(true); ";
+                script += " 			chart_" + view + ".getView3D().setAngleX(30);   ";
+                script += " 			chart_" + view + ".getView3D().setAngleY(-20);  ";
+                script += " 			chart_" + view + ".getView3D().setBoxThickness(10);    ";
+                script += " 			chart_" + view + ".getView3D().setDepth(160);  ";
             }
-            script += " 			chart1.getView3D().setShadow(cfx.Shadow.Fixed);  ";
+            script += " 			chart_" + view + ".getView3D().setShadow(cfx.Shadow.Fixed);  ";
             script += " 			var items = [";
             script += js_tab;
             script += " 			]; ";
-            script += " 			chart1.setDataSource(items);  ";
+            script += " 			chart_" + view + ".setDataSource(items);  ";
             script += " 			var chartDiv = document.getElementById('chart_" + view + "'); ";
-            script += " 			chart1.create(chartDiv); ";
+            script += " 			chart_" + view + ".create(chartDiv); ";
             script += " 		}  ";
             script += " </script> ";
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "script_" + view, script, false);
+            CSM.RegisterClientScriptBlock(CSM.GetType(), view, script, false);
         }
 
-        protected void generer_script_pie(string view, string js_tab, string titre)
+        public void generer_script_pie(string view, string js_tab, string titre)
         {
             string script = "";
 
@@ -264,7 +261,7 @@ namespace Puces_R
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "script_" + view, script, false);
         }
 
-        protected void ajouter_list_item(DropDownList ddl, int premier, int nb, int increment)
+        public static void ajouter_list_item(DropDownList ddl, int premier, int nb, int increment)
         {
             ddl.Items.Add(new ListItem(null, premier.ToString(), true));
 

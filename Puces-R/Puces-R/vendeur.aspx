@@ -36,7 +36,7 @@
                     <div style="width:600px"> &nbsp;</div>
                     <h2>Informations</h2>
                     <div class="rectangleItem hautRectangle">
-                        <asp:Label runat="server" ID="lbl_nom_complet" Text="40"/>
+                        <asp:Label runat="server" ID="lbl_nom_complet" />
                     </div>
                     <div class="rectangleItem basRectangle">
                         <table class="tableProduits" style="width:95%">
@@ -46,46 +46,46 @@
                             </colgroup>
                             <tr>
                                 <th>Adresse</th>
-                                <td><asp:Label runat="server" ID="lbl_adresse" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_adresse" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Numéros de téléphone</th>
                                 <td>
-                                    <asp:Label runat="server" ID="lbl_tel1" CssClass="info_cellule" Text="40"/><br />
-                                    <asp:Label runat="server" ID="lbl_tel2" CssClass="info_cellule" Text="40"/>
+                                    <asp:Label runat="server" ID="lbl_tel1" CssClass="info_cellule" /><br />
+                                    <asp:Label runat="server" ID="lbl_tel2" CssClass="info_cellule" />
                                 </td>
                             </tr>
                             <tr>
                                 <th>Adresse courriel</th>
-                                <td><asp:Label runat="server" ID="lbl_courriel" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_courriel" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Charge maximale de livraison</th>
-                                <td><asp:Label runat="server" ID="lbl_charge_max" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_charge_max" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Montant minimal de livraison gratuite</th>
-                                <td><asp:Label runat="server" ID="lbl_livraison_gratuite" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_livraison_gratuite" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Vend avec taxes</th>
-                                <td><asp:Label runat="server" ID="lbl_taxes" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_taxes" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Taux de redevance</th>
-                                <td><asp:Label runat="server" ID="lbl_taux_redevance" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_taux_redevance" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Date d'inscription</th>
-                                <td><asp:Label runat="server" ID="lbl_date_insc" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_date_insc" CssClass="info_cellule"/></td>
                             </tr>
                             <tr>
                                 <th>Dernière mise à jour du profil</th>
-                                <td><asp:Label runat="server" ID="lbl_date_maj" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_date_maj" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Statut</th>
-                                <td><asp:Label runat="server" ID="lbl_statut" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_statut" CssClass="info_cellule"/></td>
                             </tr>
                         </table>
                     </div>
@@ -93,7 +93,7 @@
                 <asp:View ID="View2" runat="server">
                     <div style="width:600px"> &nbsp;</div>
                     <h2>Statistiques</h2>
-                    <h3>Nombre total de clients: <asp:Label runat="server" ID="lbl_nb_clients" CssClass="info_cellule" Text="40"/></h3>
+                    <h3>Nombre total de clients: <asp:Label runat="server" ID="lbl_nb_clients" CssClass="info_cellule" /></h3>
                     <div class="rectangleItem hautRectangle">
                         <asp:Label runat="server" ID="Label1" Text="Cinq meilleurs clients"/>
                     </div>
@@ -110,8 +110,8 @@
                             <asp:Repeater runat="server" ID="rptBestClients" OnItemDataBound="rptBestClients_ItemDataBound">
                                 <ItemTemplate>
                                     <tr>
-                                        <td><asp:Label runat="server" ID="nom_meilleur_client" CssClass="info_cellule" Text="40"/></td>
-                                        <td class="montant" ><asp:Label runat="server" ID="total_commande_meilleur_client" Text="40"/></td>
+                                        <td><asp:Label runat="server" ID="nom_meilleur_client" CssClass="info_cellule" /></td>
+                                        <td class="montant" ><asp:Label runat="server" ID="total_commande_meilleur_client" /></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -144,8 +144,6 @@
                     <div class="rectangleItem basRectangle">
                          <div id="ChartDiv2" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>               
                     </div>
-
-
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                     <div style="width:600px"> &nbsp;</div>

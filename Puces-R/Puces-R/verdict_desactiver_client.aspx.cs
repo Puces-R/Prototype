@@ -58,13 +58,13 @@ namespace Puces_R
             myConnection.Open();
             SqlCommand charger = new SqlCommand("SELECT * FROM PPclients WHERE Noclient = " + no_client, myConnection);
 
-            SqlDataReader results = charger.ExecuteReader();
+            SqlDataReader results = charger.ExecuteReader();            
 
             if (results.Read())
             {
                 titre_demande.Text = results["Prenom"].ToString() + " " + results["Nom"].ToString();
                 addr_demande.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
-                tels_demande.Text = results["Tel1"].ToString();
+                tels_demande.Text = (results["Tel1"] != DBNull.Value ? Telephone.Format(results["Tel1"].ToString()) : "") + (results["Tel2"] != DBNull.Value ? ", " + Telephone.Format(results["Tel2"].ToString()) : "");
                 courriel_demande.Text = results["AdresseEmail"].ToString();                
                 nb_connexions.Text = results["NbConnexions"].ToString();
                 date_demande.Text = results["DateCreation"].ToString();

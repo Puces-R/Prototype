@@ -45,38 +45,94 @@
                             </colgroup>
                             <tr>
                                 <th>Adresse</th>
-                                <td><asp:Label runat="server" ID="lbl_adresse" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_adresse" CssClass="info_cellule"/></td>
                             </tr>
                             <tr>
                                 <th>Numéros de téléphone</th>
                                 <td>
-                                    <asp:Label runat="server" ID="lbl_tel1" CssClass="info_cellule" Text="40"/><br />
-                                    <asp:Label runat="server" ID="lbl_tel2" CssClass="info_cellule" Text="40"/>
+                                    <asp:Label runat="server" ID="lbl_tel1" CssClass="info_cellule"/><br />
+                                    <asp:Label runat="server" ID="lbl_tel2" CssClass="info_cellule" />
                                 </td>
                             </tr>
                             <tr>
                                 <th>Adresse courriel</th>
-                                <td><asp:Label runat="server" ID="lbl_courriel" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_courriel" CssClass="info_cellule"/></td>
                             </tr>
                             <tr>
                                 <th>Date d'inscription</th>
-                                <td><asp:Label runat="server" ID="lbl_date_insc" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_date_insc" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Dernière mise à jour du profil</th>
-                                <td><asp:Label runat="server" ID="lbl_date_maj" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_date_maj" CssClass="info_cellule"/></td>
                             </tr>
                             <tr>
                                 <th>Nombre de connexions</th>
-                                <td><asp:Label runat="server" ID="lbl_nb_connexion" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_nb_connexion" CssClass="info_cellule" /></td>
                             </tr>
                             <tr>
                                 <th>Statut</th>
-                                <td><asp:Label runat="server" ID="lbl_statut" CssClass="info_cellule" Text="40"/></td>
+                                <td><asp:Label runat="server" ID="lbl_statut" CssClass="info_cellule"/></td>
                             </tr>
                         </table>
                     </div>
-                </asp:View>                
+                </asp:View>  
+                <asp:View ID="View2" runat="server">
+                    <div style="width:600px"> &nbsp;</div>
+                    <h2>Statistiques</h2>
+                    <h3>Nombre total de vendeurs: <asp:Label runat="server" ID="lbl_nb_vendeurs" CssClass="info_cellule" /></h3>
+                    <div class="rectangleItem hautRectangle">
+                        <asp:Label runat="server" ID="Label1" Text="Vendeurs favoris"/>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                        <table class="table_avec_ligne" style="width:95%">
+                            <colgroup>
+                                <col width="50%" />
+                                <col width="50%" />
+                            </colgroup>
+                            <tr>
+                                <th>Vendeur</th>
+                                <th>Total des commandes</th>
+                            </tr>
+                            <asp:Repeater runat="server" ID="rptFavVendeurs" OnItemDataBound="rptFavVendeurs_ItemDataBound">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><asp:Label runat="server" ID="nom_vendeur_favoris" CssClass="info_cellule" /></td>
+                                        <td class="montant" ><asp:Label runat="server" ID="total_commande_vendeur_favoris" /></td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Total des commandes des derniers mois</td>
+                            <td align="right" >
+                                Nombre de mois
+                                <asp:DropDownList ID="ddlNbMois_c1" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="generer_stat">
+                            </asp:DropDownList>
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_c1" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>                       
+                    </div>
+
+                     <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Nombre de commandes par mois</td>
+                            <td align="right" >
+                                Nombre de mois
+                                <asp:DropDownList ID="ddlNbMois_c2" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="generer_stat">
+                            </asp:DropDownList>
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_c2" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>               
+                    </div>
+                </asp:View>              
             </asp:MultiView>
         </div>
     </div>

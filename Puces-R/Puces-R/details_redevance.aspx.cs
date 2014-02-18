@@ -182,7 +182,7 @@ namespace Puces_R
         protected void voir_details_commande_redevance(object sender, CommandEventArgs e)
         {
             Session["no_commande_redevance"] = e.CommandArgument.ToString();
-            Response.Redirect("details_commande_redevance.aspx");
+            Response.Redirect(Chemin.Ajouter("details_commande_redevance.aspx", "Retour à la liste des commandes"));
         }
     }
 }

@@ -16,7 +16,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="div_englobant">
-    <div id="div_msg" runat="server"></div>
         <div class="panneau pnlGauche">
             <h2>Options</h2>
             <ul>
@@ -32,6 +31,7 @@
             </ul>
         </div>
         <div class="panneau pnlDroite">
+            <div id="div_msg" runat="server"></div>
             <asp:MultiView runat="server" ID="mvVendeur">
                 <asp:View ID="View1" runat="server">
                     <div style="width:600px"> &nbsp;</div>

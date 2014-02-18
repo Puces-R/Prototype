@@ -34,14 +34,14 @@ namespace Puces_R
                 if (Session["msg"].ToString() != "")
                 {
                     div_msg.InnerText = Session["msg"].ToString();
-                    Session["msg"] = "";
+                    Session["msg"] = null;
                 }
 
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
                     Response.Write(Session["err_msg"]);
-                    Session["err_msg"] = "";
+                    Session["err_msg"] = null;
                 }
 
             charger_info();
@@ -70,11 +70,12 @@ namespace Puces_R
                     case 5:                        
                         Session["desactiver_vendeur"] = no_vendeur.ToString();
                         Session["retour_desactiver_vendeur"] = "vendeur.aspx";
-                        Response.Redirect("verdict_desactiver.aspx");
+                        Response.Redirect(Chemin.Ajouter("verdict_desactiver.aspx", "Retour à la page de gestion du vendeur"));
                         break;
                     case 6:                        
                         Session["histo_no_vendeur"] = no_vendeur.ToString();
-                        Response.Redirect("histo_redevance_vendeur.aspx");  
+                        Response.Redirect(Chemin.Ajouter("histo_redevance_vendeur.aspx", "Retour à la page de gestion du vendeur"));
+
                         break;
                     default:
                         charger_info();

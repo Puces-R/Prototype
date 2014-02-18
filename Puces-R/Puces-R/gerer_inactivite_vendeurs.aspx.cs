@@ -190,7 +190,7 @@ namespace Puces_R
         protected void desactiver_vendeur(object sender, CommandEventArgs e)
         {
             Session["desactiver_vendeur"] = e.CommandArgument.ToString();
-            Response.Redirect("verdict_desactiver.aspx");  
+            Response.Redirect(Chemin.Ajouter("verdict_desactiver.aspx", "Retour à la liste des vendeurs innactifs"));  
         }
 
         protected void desactiver_liste(object sender, EventArgs e)

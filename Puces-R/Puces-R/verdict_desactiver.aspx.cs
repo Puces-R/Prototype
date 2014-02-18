@@ -101,6 +101,8 @@ namespace Puces_R
                 {
                     transaction.Rollback();
                     Session["err_msg"] = "Erreur lors de la mise à jour de la base de données: " + ex.ToString();
+                    if (Session["retour_desactiver_vendeur"] != null)
+                        Response.Redirect(Session["retour_desactiver_vendeur"].ToString());
                     Response.Redirect("gerer_inactivite_vendeurs.aspx");
                 }
             }

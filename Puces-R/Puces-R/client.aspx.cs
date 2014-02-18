@@ -35,6 +35,20 @@ namespace Puces_R
 
             charger_info();
             mvVendeur.SetActiveView(View1);
+
+            if (Session["msg"] != null)
+                if (Session["msg"].ToString() != "")
+                {
+                    div_msg.InnerText = Session["msg"].ToString();
+                    Session["msg"] = null;
+                }
+
+            if (Session["err_msg"] != null)
+                if (Session["err_msg"].ToString() != "")
+                {
+                    Response.Write(Session["err_msg"]);
+                    Session["err_msg"] = null;
+                }
         }
 
         protected void changer_view(object sender, CommandEventArgs e)
@@ -56,7 +70,7 @@ namespace Puces_R
                     case 4:
                         Session["desactiver_client"] = no_client.ToString();
                         Session["retour_desactiver_client"] = "client.aspx";
-                        Response.Redirect("verdict_desactiver_client.aspx");
+                        Response.Redirect(Chemin.Ajouter("verdict_desactiver_client.aspx", "Retour à la page de gestion du client"));
                         break;
                     default:
                         charger_info();
@@ -91,6 +105,7 @@ namespace Puces_R
                 {
                     case "1":
                         lbl_statut.Text = "Inactif";
+                        lb_desactiver.Enabled = false;
                         break;
                     default:
                         lbl_statut.Text = "Actif";

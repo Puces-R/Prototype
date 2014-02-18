@@ -151,6 +151,14 @@ namespace Puces_R
             char ordre;
             Int64 noMessage;
             divMessage.Visible = false;
+            bool lu = false;
+
+            if (Session["Lu"] != null)
+            {
+                lu = true;
+                Session.Remove("Lu");
+            }
+
             if (!IsPostBack && Request.QueryString["No"] != null && Int64.TryParse(Request.QueryString["No"], out noMessage))
             {
                 SqlCommand cmdEstDestinataire = new SqlCommand("SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg) AND (NoDestinataire = @noRcpt) AND (Boite > 0)", connexion);
@@ -168,7 +176,7 @@ namespace Puces_R
                           "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' (' + AdresseEmail + ') [Gestionnaire]' AS Texte FROM PPGestionnaires) AS X " +
                           "WHERE (No IN (SELECT NoDestinataire FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg)))", connexion);
 
-                SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
+                    SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
 
                 cmdEstDestinataire.Parameters.AddWithValue("@noMsg", noMessage);
                 cmdEstDestinataire.Parameters.AddWithValue("@noRcpt", Session["ID"].ToString());
@@ -197,8 +205,10 @@ namespace Puces_R
                     {
                         lnkRepondre.Visible = false;
                     }
-
-                    cmdLu.ExecuteNonQuery();
+                    if (lu)
+                    {
+                        cmdLu.ExecuteNonQuery();
+                    }
 
                     SqlDataReader sdr = cmdMessage.ExecuteReader();
                     bool ok;

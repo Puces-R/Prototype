@@ -98,6 +98,7 @@ namespace Puces_R
                 if (Session["Fixer"] != null)
                 {
                     btnDestinataire.Visible = !((bool)Session["Fixer"]);
+                    Session.Remove("Fixer");
                 }
             }
 
@@ -135,7 +136,8 @@ namespace Puces_R
 
         protected void envoyerMessage(object sender, EventArgs e)
         {
-            if (lbDestinataires.Items.Count > 0 && tbSujet.Text.Trim() != string.Empty && tbMessage.Text.Trim() != string.Empty)
+            Page.Validate();
+            if (Page.IsValid)
             {
                 SqlCommand cmdMessage = new SqlCommand();
                 cmdMessage.Connection = connexion;
@@ -185,7 +187,7 @@ namespace Puces_R
                 cmdMessage.ExecuteNonQuery();
                 connexion.Close();
 
-                Response.Redirect(Chemin.UrlRetour);
+                Response.Redirect(Chemin.UrlRetour == null ? "BoiteMessage.aspx" : Chemin.UrlRetour);
             }
         }
 
@@ -234,8 +236,12 @@ namespace Puces_R
             cmdSauvegarder.ExecuteNonQuery();
             connexion.Close();
 
-            Response.Redirect(Chemin.UrlRetour);
+            Response.Redirect(Chemin.UrlRetour == null ? "BoiteMessage.aspx" : Chemin.UrlRetour);
+        }
 
+        protected void checkNbDestinataires(object sender, ServerValidateEventArgs e)
+        {
+            e.IsValid = lbDestinataires.Items.Count > 0;
         }
     }
 }

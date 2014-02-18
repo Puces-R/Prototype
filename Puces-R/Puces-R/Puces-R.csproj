@@ -81,6 +81,7 @@
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\style_sec4_2.css" />
     <Content Include="details_commande_redevance.aspx" />
+    <Content Include="details_redevance.aspx" />
     <Content Include="EnvoyerCourriel.aspx" />
     <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
@@ -911,6 +912,13 @@
     </Compile>
     <Compile Include="details_commande_redevance.aspx.designer.cs">
       <DependentUpon>details_commande_redevance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="details_redevance.aspx.cs">
+      <DependentUpon>details_redevance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="details_redevance.aspx.designer.cs">
+      <DependentUpon>details_redevance.aspx</DependentUpon>
     </Compile>
     <Compile Include="EnvoyerCourriel.aspx.cs">
       <DependentUpon>EnvoyerCourriel.aspx</DependentUpon>

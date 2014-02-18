@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerMessage.aspx.cs" Inherits="Puces_R.EnvoyerMessage" MasterPageFile="~/Site.Master" %>
-<%@ MasterType VirtualPath="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerMessage.aspx.cs"
+    Inherits="Puces_R.EnvoyerMessage" MasterPageFile="~/Site.Master" %>
 
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <script type="text/javascript">
         function popup() {
@@ -21,8 +22,12 @@
                     Destinataire
                 </td>
                 <td>
-                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="700px" /><br />
-                    <asp:Button runat="server" ID="btnDestinataire" Text="Modifier les destinataires" OnClientClick="popup(); return false;" />
+                    <asp:ListBox runat="server" ID="lbDestinataires" Rows="1" Width="700px" />
+                    <br />
+                    <asp:Button runat="server" ID="btnDestinataire" Text="Modifier les destinataires"
+                        OnClientClick="popup(); return false;" />
+                    <asp:CustomValidator runat="server" ID="custDestinataire" OnServerValidate="checkNbDestinataires"
+                        Text="Vous devez sélectionner au moins un destinataire" CssClass="erreur" />
                 </td>
             </tr>
             <tr>
@@ -34,8 +39,20 @@
                 </td>
             </tr>
             <tr>
-            <td>Pièce jointe</td>
-            <td><asp:FileUpload runat="server" ID="upload" /></td>
+                <td>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator runat="server" ID="reqSujet" Text="Le sujet est obligatoire"
+                        CssClass="erreur" ControlToValidate="tbSujet" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pièce jointe
+                </td>
+                <td>
+                    <asp:FileUpload runat="server" ID="upload" />
+                </td>
             </tr>
             <tr>
                 <td style="vertical-align: top;">
@@ -46,10 +63,18 @@
                 </td>
             </tr>
             <tr>
+            <td></td>
+                <td>
+                    <asp:RequiredFieldValidator runat="server" ID="reqMessage" Text="Le contenu du message est obligatoire"
+                        CssClass="erreur" ControlToValidate="tbMessage" />
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2" style="text-align: center;">
-                    <asp:Button runat="server" OnClick="apercuMessage" Text="Aperçu" />
-                    <asp:Button runat="server" OnClick="envoyerMessage" Text="Envoyer" />
-                    <asp:Button runat="server" OnClick="sauvegarderMessage" Text="Sauvegarder comme brouillon" />
+                    <asp:Button runat="server" OnClick="apercuMessage" Text="Aperçu" CausesValidation="false" />
+                    <asp:Button runat="server" OnClick="envoyerMessage" Text="Envoyer" CausesValidation="false" />
+                    <asp:Button runat="server" OnClick="sauvegarderMessage" Text="Sauvegarder comme brouillon"
+                        CausesValidation="false" />
                 </td>
             </tr>
         </table>

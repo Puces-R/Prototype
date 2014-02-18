@@ -103,6 +103,7 @@ namespace Puces_R
                     boiteTxt = "Retour aux brouillons";
                     break;
             }
+            Session["Lu"] = true;
             Response.Redirect((_brouillon ? "EnvoyerMessage.aspx?NoMessage=" : "BoiteMessage.aspx" + paramGet.Parametres + (paramGet.Parametres == string.Empty ? "?" : "&") + "No=") + no, true);
         }
     }

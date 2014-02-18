@@ -56,9 +56,7 @@ namespace Puces_R
                 AjouterVendeurs(cblVendeur, tableVendeurs);
                 ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
                 Librairie.InitialiserListe("novendeur", ddlVendeur);
-
-                ddlVendeur.SelectedValue = (Request.Params["novendeur"] == null ? "-1" : Request.Params["novendeur"]);
-
+                
                 Master.AfficherPremierePage();
             }
 

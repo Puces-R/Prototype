@@ -15,6 +15,7 @@ namespace Puces_R
         {
             if (!IsPostBack)
             {
+<<<<<<< HEAD
                 Librairie.Autorisation(false, false, true, false);
                 int noCommande = Librairie.LireParametre<int>("noCommande");
 
@@ -23,6 +24,27 @@ namespace Puces_R
                 SqlConnection maConnexion = new SqlConnection();
                 maConnexion.ConnectionString = maChaineDeConnexion;
                 maConnexion.Open();
+=======
+                Response.Redirect("AccueilVendeur.aspx");
+            }
+            else
+            {
+                chargerDonnees();
+                //Response.Write(noProduit.ToString());
+            }
+        }
+
+        protected void chargerDonnees()
+        {
+            SqlConnection dbConn = new SqlConnection();
+            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
+            SqlConnection maConnexion = new SqlConnection();
+            maConnexion.ConnectionString = maChaineDeConnexion;
+            maConnexion.Open();
+
+            SqlCommand maCommande = new SqlCommand("select * from PPCommandes where NoCommande=" + noCommande + " AND NoVendeur = " + Session["ID"], maConnexion);
+            object rep = maCommande.ExecuteScalar();
+>>>>>>> c33e9493ad9290ee319b623a871fce196a9ddd6d
 
                 SqlCommand maCommande = new SqlCommand("select * from PPCommandes where NoCommande=" + noCommande, maConnexion);
                 object rep = maCommande.ExecuteScalar();
@@ -47,11 +69,17 @@ namespace Puces_R
                     }
                 }
 
+<<<<<<< HEAD
                 else
                 {
                     Librairie.RefuserAutorisation();
                 }
                 maConnexion.Close();
+=======
+            else
+            {
+                Response.Redirect("AccueilVendeur.aspx");
+>>>>>>> c33e9493ad9290ee319b623a871fce196a9ddd6d
             }
         }
         

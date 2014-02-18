@@ -7,18 +7,6 @@
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4_2.css" />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="lib/js/librairie.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#cb_tout').click(function () {
-                var cases = $(".basRectangle").find(':checkbox');
-                if (this.checked) {
-                    cases.prop('checked', 'checked');
-                } else {
-                    cases.prop('checked', '');
-                }
-            });
-        });
-    </script>
     <script type="text/javascript">
         function check_desactiver_tout(cb_case) {
             if (cb_case.checked == true) {
@@ -80,7 +68,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Items" runat="server">
     <div>
     <div id="div_msg" runat="server" class="center"></div>
-        <div id="div_chck" style="font-size: small; width: 100%; margin: auto;">
+        <div id="div_chck" style="font-size: small; width: 100%; margin: auto;" runat="server" >
             <p style="text-align: center;"><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les clients sélectionnés" disabled="true" OnClick="desactiver_liste"/></p>
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >

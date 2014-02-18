@@ -245,5 +245,43 @@ namespace Puces_R
                 SelectionnerItemMenuActuel(item.ChildItems, urlPage);
             }
         }
+
+        public static void activer_cocher_tout(Control div_chck, string id_case, string class_cases)
+        {
+            string script = "";
+            script += " <script> ";
+            script += " 	$(document).ready(function () { ";
+            script += " 		$('#" + id_case + "').click(function () { ";
+            script += " 			var cases = $(\".basRectangle\").find('." + class_cases + "'); ";
+            script += " 			if (this.checked) { ";
+            script += " 				cases.prop('checked', 'checked'); ";
+            script += " 			} else { ";
+            script += " 				cases.prop('checked', ''); ";
+            script += " 			} ";
+            script += " 		}); ";
+            script += " 	}); ";
+            script += " </script> ";
+
+            ScriptManager.RegisterStartupScript(div_chck, div_chck.GetType(), "script_cocher", script, false);
+        }
+
+        public static void activer_cocher_tout(Control div_chck)
+        {
+            string script = "";
+            script += " <script> ";
+            script += " 	$(document).ready(function () { ";
+            script += " 		$('#cb_tout').click(function () { ";
+            script += " 			var cases = $(\".basRectangle\").find(':checkbox'); ";
+            script += " 			if (this.checked) { ";
+            script += " 				cases.prop('checked', 'checked'); ";
+            script += " 			} else { ";
+            script += " 				cases.prop('checked', ''); ";
+            script += " 			} ";
+            script += " 		}); ";
+            script += " 	}); ";
+            script += " </script> ";
+
+            ScriptManager.RegisterStartupScript(div_chck, div_chck.GetType(), "script_cocher", script, false);
+        }
     }
 }

@@ -134,7 +134,9 @@ namespace Puces_R
 
                         transaction.Commit();
                         Session["msg"] = "Le client " + titre_demande.Text + " a bien été désactivé.";
-                        Response.Redirect("gerer_inactivite_clients.aspx");
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
+                        else Response.Redirect("gerer_inactivite_clients.aspx");
                     }
                     catch (SqlException ex)
                     {

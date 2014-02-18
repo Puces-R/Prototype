@@ -16,6 +16,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="div_englobant">
+    <div id="div_msg" runat="server"></div>
         <div class="panneau pnlGauche">
             <h2>Options</h2>
             <ul>
@@ -24,10 +25,10 @@
             </ul>
             <h2>Actions</h2>
             <ul>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="0" Text="Envoyer un message interne à ce vendeur" ToolTip="" /></li>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="1" Text="Envoyer un courriel a ce vendeur" ToolTip="" /></li>
-                <li><asp:LinkButton runat="server" OnCommand="selectionner_vendeur" Text="Désactiver ce vendeur" ToolTip="" /></li>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="2" Text="Gérer les paiements de ce vendeur" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="3" Text="Envoyer un message interne à ce vendeur" ToolTip="Envoyer d'un message à ce vendeur via le systeme de messagerie interne du site" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="4" Text="Envoyer un courriel a ce vendeur" ToolTip="Envoyer un courriel vers l'adresse email de ce vendeur" /></li>
+                <li><asp:LinkButton id="lb_desactiver" runat="server" OnCommand="changer_view" CommandArgument="5" Text="Désactiver ce vendeur" ToolTip="Rendre ce vendeur innactif" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="6" Text="Gérer les paiements de ce vendeur" ToolTip="Voir l'historique de paiements de ce vendeur" /></li>
             </ul>
         </div>
         <div class="panneau pnlDroite">
@@ -147,10 +148,8 @@
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                     <div style="width:600px"> &nbsp;</div>
-                    <h2>Actions</h2>
-                    <asp:Button runat="server" Text="Envoyer un message interne" ToolTip="Envoyer un message interne à ce vendeur" />
-                    <asp:Button runat="server" Text="Envoyer un courriel" ToolTip="Envoyer un courriel à ce vendeur" />
-                    <asp:Button runat="server" Text="Enregistrer le paiement de la redevance mensuelle" ToolTip="Enregistrer le paiement de la redevance mensuelle de ce vendeur" />
+                    <h2>Modifiaction du taux de redevance</h2>
+
                 </asp:View>
             </asp:MultiView>
         </div>

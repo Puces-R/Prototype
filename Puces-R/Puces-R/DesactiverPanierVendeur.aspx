@@ -16,6 +16,7 @@
         <asp:View runat="server" ID="view_un_vendeur" >
             <lp:BoitePanier runat="server" ID="ctrBoitePanier" />
               <asp:Button id="btn_desactiver" runat="server" text="Désactiver" OnCommand="desactiver_un_Panier"/>
+              <asp:HiddenField ID="hidNoClient" runat="server" />
         </asp:View>
         <asp:View runat="server" ID="view_liste">
             <div class="rectangleItem hautRectangle" style="width: 500px;" >

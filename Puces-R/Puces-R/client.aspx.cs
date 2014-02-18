@@ -13,6 +13,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         int no_client, min_option = 5, nb_option = 5, increment = 1;
+        int[] dest = new int[1];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,7 @@ namespace Puces_R
             {
                 if (Session["selected_client"].ToString() != "")
                     no_client = Convert.ToInt32(Session["selected_client"].ToString());
+                dest[0] = no_client;
             }
             //else Response.Redirect("connexion.aspx");
 
@@ -44,6 +46,17 @@ namespace Puces_R
                     case 1:
                         generer_stat();
                         mvVendeur.SetActiveView(View2);
+                        break;
+                    case 2:
+                        Librairie.Messagerie(dest, null, null, true, "Retour");
+                        break;
+                    case 3:
+                        Librairie.Courriel(dest, null, null, true, "Retour");
+                        break;
+                    case 4:
+                        Session["desactiver_client"] = no_client.ToString();
+                        Session["retour_desactiver_client"] = "client.aspx";
+                        Response.Redirect("verdict_desactiver_client.aspx");
                         break;
                     default:
                         charger_info();

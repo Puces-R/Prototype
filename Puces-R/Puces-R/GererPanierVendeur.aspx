@@ -68,7 +68,7 @@
 
         $(document).ready(function () {
             $('#cb_tout').click(function () {
-                var cases = $(".basRectangle").find(':checkbox');//mettre le nom de la classe de mes checkbox si on peux desactiver
+                var cases = $(".basRectangle").find('.cbCocher'); //mettre le nom de la classe de mes checkbox si on peux desactiver
                 if (this.checked) {
                     cases.prop('checked', 'checked');
                 } else {

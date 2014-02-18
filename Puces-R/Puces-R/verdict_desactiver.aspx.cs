@@ -67,7 +67,7 @@ namespace Puces_R
                 tels_demande.Text = (results["Tel1"] != DBNull.Value ? Telephone.Format(results["Tel1"].ToString()) : "") + (results["Tel2"] != DBNull.Value ? ", " + Telephone.Format(results["Tel2"].ToString()) : "");
                 courriel_demande.Text = results["AdresseEmail"].ToString();
                 charge_max_demande.Text = results["MaxLivraison"].ToString() + " Lbs";
-                livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";
+                livraison_gratuite.Text = (results["LivraisonGratuite"] != DBNull.Value ? Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $" : "Pas de livraison gratuite");
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_desactiver.CommandArgument = results["NoVendeur"].ToString();
             }
@@ -82,7 +82,6 @@ namespace Puces_R
             using (myConnection)
             {
                 SqlTransaction transaction;
-
                 transaction = myConnection.BeginTransaction();
 
                 try
@@ -94,7 +93,9 @@ namespace Puces_R
                     commande_desactiver_vendeur.ExecuteNonQuery();
                     transaction.Commit();
                     Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été désactivé.";
-                    Response.Redirect("gerer_inactivite_vendeurs.aspx");
+                    if (Session["retour_desactiver_vendeur"] != null)
+                        Response.Redirect(Session["retour_desactiver_vendeur"].ToString());
+                    else Response.Redirect("gerer_inactivite_vendeurs.aspx");
                 }
                 catch (SqlException ex)
                 {
@@ -128,7 +129,6 @@ namespace Puces_R
             using (myConnection)
             {
                 SqlTransaction transaction;
-
                 transaction = myConnection.BeginTransaction();
 
                 try

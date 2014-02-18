@@ -170,7 +170,7 @@ namespace Puces_R
                 Label lblMontant = (Label)item.FindControl("lblMontant");
                 Label lblPasActif = (Label)item.FindControl("lblInactif");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
-               
+                System.Web.UI.HtmlControls.HtmlInputCheckBox cbSupprimmer = (System.Web.UI.HtmlControls.HtmlInputCheckBox)item.FindControl("cb_desactiver");
                             
                            
                             
@@ -188,19 +188,20 @@ namespace Puces_R
                 lblMontant.Text = Convert.ToDecimal(drvinactif1["SousTotal"]).ToString("#0.00 $");
                 lbl_date.Text = drvinactif1["DerniereMAJ"].ToString();
 
-
-
                 DateTime myDate = DateTime.Now;
                 DateTime newDate = myDate.AddMonths(-6);
-
 
                 if ((DateTime)drvinactif1["DerniereMAJ"] < newDate)
                 {
                     btn_desactiver.Visible = true;
+                    cbSupprimmer.Attributes["class"] = "cbCocher";
                 }
                 else 
                 {
                     lblPasActif.Visible = true;
+                    cbSupprimmer.Attributes["Disabled"] = "false";
+
+                    //cbSupprimmer.Style
                 }
                 //btnRefuser.CommandArgument = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoClient"].ToString() + "-" + drvinactif1["NomC"].ToString();

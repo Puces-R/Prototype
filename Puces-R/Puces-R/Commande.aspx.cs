@@ -20,17 +20,9 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, true, false, false);
-                int noVendeur;
-                if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
+                int noVendeur = Librairie.LireParametre<int>("novendeur");
 
-                short codeLivraison;
-                if (!short.TryParse(Request.Params["codelivraison"], out codeLivraison))
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
+                short codeLivraison = Librairie.LireParametre<short>("codelivraison");
                 
                 Master.NoVendeur = noVendeur;
                 ctrMontantsFactures.NoVendeur = noVendeur;

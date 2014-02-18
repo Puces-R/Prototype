@@ -47,7 +47,7 @@ namespace Puces_R
                 AjouterCategories(ddlCategorie, tableCategories);
                 AjouterCategories(cblCategorie, tableCategories);
                 ddlCategorie.Items.Add(new ListItem("Toutes", "-1"));
-                ddlCategorie.SelectedValue = (Request.Params["nocategorie"] == null ? "-1" : Request.Params["nocategorie"]);
+                Librairie.InitialiserListe("nocategorie", ddlCategorie);
 
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPProduits P On V.NoVendeur = P.Novendeur WHERE Disponibilité = 1", myConnection);
                 DataTable tableVendeurs = new DataTable();
@@ -55,6 +55,8 @@ namespace Puces_R
                 AjouterVendeurs(ddlVendeur, tableVendeurs);
                 AjouterVendeurs(cblVendeur, tableVendeurs);
                 ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
+                Librairie.InitialiserListe("novendeur", ddlVendeur);
+
                 ddlVendeur.SelectedValue = (Request.Params["novendeur"] == null ? "-1" : Request.Params["novendeur"]);
 
                 Master.AfficherPremierePage();

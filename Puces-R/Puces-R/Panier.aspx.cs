@@ -30,6 +30,12 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, true, false, false);
+                int noVendeur = Librairie.LireParametre<int>("novendeur");
+
+                ctrMontantsFactures.NoVendeur =
+                Master.NoVendeur =
+                this.NoVendeur = noVendeur;
+
                 chargerProduits();
             }
         }
@@ -41,23 +47,7 @@ namespace Puces_R
 
         private void chargerProduits()
         {
-            if (Session["ID"] == null)
-            {
-                Response.Redirect("Default.aspx", true);
-            }
-
-            int noVendeur;
-            if (!int.TryParse(Request.Params["novendeur"], out noVendeur))
-            {
-                Response.Redirect("Default.aspx", true);
-            }
-
-            this.NoVendeur = noVendeur;
-            //ctrMenu.NoVendeur = noVendeur;
-            ctrMontantsFactures.NoVendeur = noVendeur;
-            Master.NoVendeur = noVendeur;
-
-            String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + noVendeur;
+            String whereClause = " WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + NoVendeur;
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems,Poids,A.NbItems,A.NoPanier FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();

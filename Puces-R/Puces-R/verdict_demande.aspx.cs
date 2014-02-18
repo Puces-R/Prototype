@@ -63,7 +63,7 @@ namespace Puces_R
                                 Master.Titre = "Détails de la demande";
                             }
                         }
-                        else Response.Redirect("Default.aspx");
+                        else Librairie.RefuserAutorisation();
                     }
                 }
             }

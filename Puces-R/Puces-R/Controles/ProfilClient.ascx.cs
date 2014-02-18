@@ -24,11 +24,8 @@ namespace Puces_R.Controles
         {
             if (!IsPostBack)
             {
-                if (Session["ID"] == null)
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
-
+                Librairie.Autorisation(false, true, false, false);
+                
                 String whereClause = " WHERE NoClient = " + Session["ID"];
 
                 SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients" + whereClause, myConnection);

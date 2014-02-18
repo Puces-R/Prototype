@@ -20,10 +20,6 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
-                if (Session["ID"] == null)
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
                 Librairie.Autorisation(false, true, false, false);
 
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT DISTINCT V.NomAffaires, V.NoVendeur FROM PPVendeurs V INNER JOIN PPCommandes C ON V.NoVendeur = C.NoVendeur WHERE C.NoClient = " + Session["ID"], myConnection);
@@ -35,7 +31,7 @@ namespace Puces_R
                 ddlVendeur.DataValueField = "NoVendeur";
                 ddlVendeur.DataBind();
                 ddlVendeur.Items.Add(new ListItem("Tous", "-1"){Selected=true});
-                ddlVendeur.SelectedValue = (Request.Params["novendeur"] == null ? "-1" : Request.Params["novendeur"]);
+                Librairie.InitialiserListe("novendeur", ddlVendeur);
 
                 ChargerCommandes();
                 

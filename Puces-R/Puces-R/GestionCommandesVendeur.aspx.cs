@@ -20,10 +20,6 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
-                if (Session["ID"] == null)
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
                 if (!IsPostBack)
                 {
                     Librairie.Autorisation(false, false, true, false);

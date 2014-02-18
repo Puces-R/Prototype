@@ -51,7 +51,7 @@ namespace Puces_R
                             mv_verdict.SetActiveView(view_liste);
                         }
                     }
-                    else Response.Redirect("Default.aspx");
+                    else Librairie.RefuserAutorisation();
                 }
             }
 

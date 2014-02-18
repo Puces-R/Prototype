@@ -33,9 +33,9 @@ namespace Puces_R
                 {
                     no_commande = Convert.ToInt32(Session["no_commande_redevance"]);
                 }
-                else Response.Redirect("Default.aspx");
+                else Librairie.RefuserAutorisation();
             }
-            else Response.Redirect("Default.aspx");
+            else Librairie.RefuserAutorisation();
 
             myConnection.Open();
             string req = "";

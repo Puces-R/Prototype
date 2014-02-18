@@ -44,11 +44,7 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, true, true, false);
-                int noProduit;
-                if (!int.TryParse(Request.Params["noproduit"], out noProduit))
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
+                int noProduit = Librairie.LireParametre<int>("noproduit");
 
                 String whereClause = " WHERE P.noProduit = " + noProduit;
                 if ((char)Session["Type"] == 'V')

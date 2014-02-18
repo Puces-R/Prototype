@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.ComponentModel;
 
 namespace Puces_R
 {
@@ -144,34 +145,94 @@ namespace Puces_R
 
         public static void Autorisation(bool visiteur, bool client, bool vendeur, bool gestionnaire)
         {
-            object typeTmp = System.Web.HttpContext.Current.Session["Type"];
-            char type = ' ';
-            bool typeOk = typeTmp != null && char.TryParse(typeTmp.ToString(), out type);
-
-            if (typeOk)
+            if (HttpContext.Current.Session["Type"] is char)
             {
-                if (!client && type == 'C')
+                char type = (char)HttpContext.Current.Session["Type"];
+                if ((!client && type == 'C') || (!vendeur && type == 'V') || (!gestionnaire && type == 'G') || (!visiteur && !"CVG".Contains(type)))
                 {
-                    System.Web.HttpContext.Current.Response.Redirect("AccueilClient.aspx");
-                }
-                else if (!vendeur && type == 'V')
-                {
-                    System.Web.HttpContext.Current.Response.Redirect("AccueilVendeur.aspx");
-                }
-                else if (!gestionnaire && type == 'G')
-                {
-                    System.Web.HttpContext.Current.Response.Redirect("accueil_gestionnaire.aspx");
-                }
-                else if (!visiteur && !"CVG".Contains(type))
-                {
-                    System.Web.HttpContext.Current.Response.Redirect("Default.aspx");
+                    RefuserUtilisateur(type);
                 }
             }
             else if (!visiteur)
             {
-                System.Web.HttpContext.Current.Response.Redirect("Default.aspx");
+                RefuserVisiteur();
             }
         }
+
+        public static void RefuserAutorisation()
+        {
+            if (HttpContext.Current.Session["Type"] is char)
+            {
+                RefuserUtilisateur((char)HttpContext.Current.Session["Type"]);
+            }
+            else
+            {
+                RefuserVisiteur();
+            }
+        }
+
+        private static void RefuserVisiteur()
+        {
+            HttpContext.Current.Response.Redirect("Default.aspx", true);
+        }
+        
+        private static void RefuserUtilisateur(char type)
+        {
+            String pageAccueil;
+            switch (type)
+            {
+                case 'C':
+                    pageAccueil = "AccueilClient.aspx";
+                    break;
+                case 'V':
+                    pageAccueil = "AccueilVendeur.aspx";
+                    break;
+                case 'G':
+                    pageAccueil = "accueil_gestionnaire.aspx";
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+            HttpContext.Current.Response.Redirect(pageAccueil, true);
+        }
+
+        public static void InitialiserListe(string nomParametre, DropDownList liste)
+        {
+            if (HttpContext.Current.Request.Params[nomParametre] == null)
+            {
+                liste.SelectedValue = "-1";
+            }
+            else
+            {
+                int noVendeur;
+                if (int.TryParse(HttpContext.Current.Request.Params[nomParametre], out noVendeur))
+                {
+                    liste.SelectedValue = noVendeur.ToString();
+                }
+                else
+                {
+                    RefuserAutorisation();
+                }
+            }
+        }
+
+        public static T LireParametre<T>(string nomParametre)
+        {
+            try
+            {
+                var converter = TypeDescriptor.GetConverter(typeof(T));
+                if(converter != null)
+                {
+                    return (T)converter.ConvertFromString(HttpContext.Current.Request.Params[nomParametre]);
+                }
+            }
+            catch(NotSupportedException)
+            {
+                Librairie.RefuserAutorisation();
+            }
+            return default(T);
+        }
+
         public static void SelectionnerItemMenuActuel(MenuItemCollection items, String urlPage)
         {
             foreach (MenuItem item in items)

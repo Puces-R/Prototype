@@ -16,11 +16,6 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ID"] == null)
-            {
-                Response.Redirect("Default.aspx", true);
-            }
-
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, false, true, false);

@@ -61,12 +61,6 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 ChargerItems(this, EventArgs.Empty);
-
-                if (Session["ID"] == null)
-                {
-                    Response.Redirect("Default.aspx", true);
-                }
-               
                 AfficherPremierePage();
             }
 

@@ -69,8 +69,8 @@ namespace Puces_R
                 {
                     no_vendeur = Convert.ToInt32(Session["histo_no_vendeur"]);
                 }
-                else Response.Redirect("Default.aspx");
-            else Response.Redirect("Default.aspx");
+                else Librairie.RefuserAutorisation();
+            else Librairie.RefuserAutorisation();
 
             Master.ChargerItems += charge_redevances;
 

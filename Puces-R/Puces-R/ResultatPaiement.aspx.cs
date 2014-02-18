@@ -42,9 +42,10 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, true, false, false);
-                int noClient = (int)Session["ID"];
-                long noVendeur = long.Parse(Request.Params["novendeur"]);
-                short codeLivraison = short.Parse(Request.Params["codelivraison"]);
+                long noVendeur = Librairie.LireParametre<long>("novendeur");
+                short codeLivraison = Librairie.LireParametre<short>("codelivraison");
+
+                long noClient = (long)Session["ID"];
 
                 HttpRequest requete = HttpContext.Current.Request;
 

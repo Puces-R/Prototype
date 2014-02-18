@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Puces_R.Controles;
 
-namespace Puces_R
+namespace Puces_R 
 {
     public partial class AccueilVendeur : System.Web.UI.Page
     {
@@ -24,6 +24,14 @@ namespace Puces_R
             SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur="+Session["ID"],myConnection);
             object nb = (object)maC.ExecuteScalar();
             myConnection.Close();
+
+            myConnection.Open();
+            SqlCommand commandeNotes = new SqlCommand("select AVG(Cote) FROM PPEvaluations  where SUBSTRING( CAST(NoProduit as varchar(50)),0,3) ="+Session["ID"],myConnection);
+            object note = (object)commandeNotes.ExecuteScalar();
+            myConnection.Close();
+
+            Response.Write(note.ToString());
+            ctrEtoiles.Cote = Convert.ToDecimal(note);
 
             nbVisite.Text = Convert.ToString(nb);
 

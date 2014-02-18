@@ -17,7 +17,7 @@ namespace Puces_R
         int no_client;
         string liste_a_desactiver;
         String[] split;
-
+        long noClient;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["err_msg"] != null)
@@ -40,8 +40,8 @@ namespace Puces_R
                         string nom = Session["desactiver_panier"].ToString();
                         split = nom.Split('-');
 
-                        long noClient = (long)Convert.ToInt64(split[0]);
-
+                         noClient = (long)Convert.ToInt64(split[0]);
+                         hidNoClient.Value = noClient.ToString();
                         string nomComplet;
                         if (split[0].Trim() == "")
                         {
@@ -113,7 +113,7 @@ namespace Puces_R
 
                 try
                 {
-                    string commande = "DELETE FROM PPArticlesEnPanier where NoVendeur=" + Session["ID"] +" and NoClient="+ split[0] +"; ";
+                    string commande = "DELETE FROM PPArticlesEnPanier where NoVendeur=" + Session["ID"] + " and NoClient=" + hidNoClient.Value + "; ";
                     SqlCommand commande_desactiver_vendeur = new SqlCommand(commande, myConnection, transaction);
                     commande_desactiver_vendeur.ExecuteNonQuery();
                     transaction.Commit();
@@ -150,7 +150,7 @@ namespace Puces_R
 
         public void desactiver_un_Panier(int vendeur_a_desactiver)
         {
-            //SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
             myConnection.Open();
             using (myConnection)
             {

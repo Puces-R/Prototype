@@ -3,12 +3,15 @@
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register TagPrefix="lp" TagName="BoitePanier" Src="~/Controles/BoitePanier.ascx" %>
 
+<%@ Register TagPrefix="lp" TagName="Etoiles" Src="~/Controles/Etoiles.ascx" %>
+
+
 <asp:Content ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    Consultations de votre catalogue: <asp:Label ID="nbVisite" runat="server"></asp:Label>
+    Consultations de votre catalogue: <asp:Label ID="nbVisite" runat="server"></asp:Label><asp:Label ID="Label1" runat="server" Text="Évaluation globales de vos produits " /><lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
     <div class="lignePointilleHorizontale pleineLargeur">
     </div>
     <div>

@@ -88,6 +88,8 @@ namespace Puces_R
                     Response.Write(Session["err_msg"]);
                     Session["err_msg"] = "";
                 }
+
+            Librairie.activer_cocher_tout(div_chck); 
         }
 
         private void charge_inactifs1(object sender, EventArgs e)
@@ -202,8 +204,13 @@ namespace Puces_R
                 }
             }
 
-            Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
-            Response.Redirect("verdict_desactiver_client.aspx");
+            if (liste == "")
+                Session["err_msg"] = "Aucun client selectionné";
+            else
+            {
+                Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
+                Response.Redirect("verdict_desactiver_client.aspx");
+            }
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)

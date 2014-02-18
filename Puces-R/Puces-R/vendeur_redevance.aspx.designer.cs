@@ -10,7 +10,34 @@
 namespace Puces_R {
     
     
-    public partial class accueil_compta {
+    public partial class vendeur_redevance {
+        
+        /// <summary>
+        /// Contrôle ddlTypeRecherche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        
+        /// <summary>
+        /// Contrôle txtCritereRecherche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        
+        /// <summary>
+        /// Contrôle btnRecherche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRecherche;
         
         /// <summary>
         /// Contrôle ddlTrierPar.
@@ -40,13 +67,13 @@ namespace Puces_R {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
         
         /// <summary>
-        /// Contrôle rptMois.
+        /// Contrôle rptRedevances.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMois;
+        protected global::System.Web.UI.WebControls.Repeater rptRedevances;
         
         /// <summary>
         /// Propriété Master.

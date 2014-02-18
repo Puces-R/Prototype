@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gérer des redevances de vendeurs" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="accueil_compta.aspx.cs" Inherits="Puces_R.accueil_compta" EnableEventValidation="false" %>
+﻿<%@ Page Title="Suivi des redevances mensuelles" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="accueil_compta.aspx.cs" Inherits="Puces_R.accueil_compta" EnableEventValidation="false" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -12,20 +12,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BarreCriteres" runat="server">
         <div class="barreListesDeroulantes">
             <span class="boiteListeDeroulante">
-                Recherche:
-                <asp:DropDownList ID="ddlTypeRecherche" runat="server">
-                    <asp:ListItem Text="Nom d'affaire" />
-                </asp:DropDownList>
-                <asp:TextBox ID="txtCritereRecherche" runat="server" />
-                <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
-            </span>
-            <span class="boiteListeDeroulante">
                 Trier par:
                 <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
-                    <asp:ListItem Text="Numéro" />
-                    <asp:ListItem Text="Nom d'affaire" />
-                    <asp:ListItem Text="Date de demande" />
-                    <asp:ListItem Text="Montant dû" Selected="True" />
+                    <asp:ListItem Text="Montant attendu" />
+                    <asp:ListItem Text="Montant reçu" />
+                    <asp:ListItem Text="Montant dû" />
+                    <asp:ListItem Text="Mois" Selected="True" />
                 </asp:DropDownList>
             </span>
             <span class="boiteListeDeroulante">
@@ -46,17 +38,19 @@
         <table border="0"  width="100%" cellpadding="7" cellspacing="2" >
             <tr class="rectangleItem hautRectangle" >
                 <th>#</th>
-                <th>Nom d'affaires</th>
-                <th>Nom du vendeur</th>
-                <th>Montant total dû</th>
+                <th>Mois</th>
+                <th>Montant attendu</th>
+                <th>Montant reçu</th>
+                <th>Montant dû</th>
             </tr>
-            <asp:Repeater runat="server" ID="rptRetard" OnItemDataBound="rptRetard_ItemDataBound" OnItemCommand="voir_histo" >
+            <asp:Repeater runat="server" ID="rptMois" OnItemDataBound="rptMois_ItemDataBound" >
                 <ItemTemplate>
                     <tr class="rectangleItem basRectangle" >
-                        <td class="td_liste"><asp:LinkButton runat="server" ID="lbl_num"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
-                        <td><asp:LinkButton runat="server" ID="lbl_nom_affaire"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
-                        <td><asp:LinkButton runat="server" ID="lbl_nom_vendeur" OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur"  /></td>
-                        <td class="montant"><asp:LinkButton runat="server" ID="lbl_montant_du"  OnCommand="voir_histo" ToolTip="Cliquez pour voir/modifier l'historique de paiement de ce vendeur" /></td>
+                        <td class="td_liste"><asp:LinkButton runat="server" ID="lbl_num"  OnCommand="voir_redevances_mois" ToolTip="Cliquez pour voir/modifier les redevances de ce mois" /></td>
+                        <td><asp:LinkButton runat="server" ID="lbl_mois"  OnCommand="voir_redevances_mois" ToolTip="Cliquez pour voir/modifier les redevances de ce mois" /></td>
+                        <td class="montant"><asp:LinkButton runat="server" ID="lbl_attendu"  OnCommand="voir_redevances_mois" ToolTip="Cliquez pour voir/modifier les redevances de ce mois" /></td>
+                        <td class="montant"><asp:LinkButton runat="server" ID="lbl_recu"  OnCommand="voir_redevances_mois" ToolTip="Cliquez pour voir/modifier les redevances de ce mois" /></td>
+                        <td class="montant"><asp:LinkButton runat="server" ID="lbl_du"  OnCommand="voir_redevances_mois" ToolTip="Cliquez pour voir/modifier les redevances de ce mois" /></td>
                     </tr>
                 </ItemTemplate>                
             </asp:Repeater>

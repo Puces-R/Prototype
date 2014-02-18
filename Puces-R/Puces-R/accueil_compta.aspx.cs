@@ -14,7 +14,7 @@ namespace Puces_R
     public partial class accueil_compta : System.Web.UI.Page
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
-        string whereClause, orderByClause = " ORDER BY ";
+        string orderByClause = " ORDER BY ";
         PagedDataSource pdsDemandes = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,44 +25,20 @@ namespace Puces_R
             }
             verifier_mois_compta();
 
-            List<String> whereParts = new List<String>();
-
-            if (txtCritereRecherche.Text != string.Empty)
-            {
-                String colonne = "PPVendeurs.NomAffaires";
-                switch (ddlTypeRecherche.SelectedIndex)
-                {
-                    case 0:
-                        colonne = "PPVendeurs.NomAffaires";
-                        break;
-                }
-                whereParts.Add(" AND " + colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
-            }
-
-            //String whereClause;
-            if (whereParts.Count > 0)
-            {
-                whereClause = " " + string.Join(" AND ", whereParts);
-            }
-            else
-            {
-                //whereClause = " WHERE Statut = 2 ";
-            }
-
             //String orderByClause = " ORDER BY ";
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "PPVendeurs.NoVendeur";
+                    orderByClause += " MontantAttendu ";
                     break;
                 case 1:
-                    orderByClause += "PPVendeurs.NomAffaires";
+                    orderByClause += " MontantRecu ";
                     break;
                 case 2:
-                    orderByClause += "PPVendeurs.DateCreation DESC";
+                    orderByClause += " MontantDu ";
                     break;
                 case 3:
-                    orderByClause += "MontantDu DESC";
+                    orderByClause += " Mois DESC ";
                     break;
             }
             
@@ -80,8 +56,8 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
 
-            Master.Master.Titre = "Vendeurs en retard de paiement";
-            Master.ChargerItems += charge_retard;
+            Master.Master.Titre = "Suivi des revedances";
+            Master.ChargerItems += charge_redevances_mensuelle;
 
             if (!IsPostBack)
             {
@@ -89,9 +65,9 @@ namespace Puces_R
             } 
         }
 
-        private void charge_retard(object sender, EventArgs e)
+        private void charge_redevances_mensuelle(object sender, EventArgs e)
         {
-            charge_retard();
+            charge_redevances_mensuelle();
         }
 
         protected void AfficherPremierePage(object sender, EventArgs e)
@@ -99,18 +75,15 @@ namespace Puces_R
             Master.AfficherPremierePage();
         }
 
-        private DataTable charge_retard()
+        private DataTable charge_redevances_mensuelle()
         {
             string req = "";
 
-            req += " SELECT PPVendeurs.NoVendeur, PPVendeurs.NomAffaires, Nom, Prenom, PPVendeurs.DateCreation, R2.MontantDu, ISNULL(Statut, 0) ";
-            req += " FROM PPVendeurs , ";
-            req += " (SELECT  NoVendeur, SUM(Montant) AS MontantDu ";
-            req += " FROM  PPSuiviCompta ";
-            req += " WHERE (DatePaiement IS NULL) ";
-            req += " GROUP BY NoVendeur ";
-            req += " ) AS R2 WHERE PPVendeurs.NoVendeur = R2.NoVendeur " + whereClause + orderByClause;
-            SqlDataAdapter adapteurDemandes = new SqlDataAdapter(req, myConnection);
+            req += " SELECT SUM(Montant) MontantAttendu, SUM(CASE WHEN DatePaiement IS NOT NULL THEN Montant ELSE 0 END) MontantRecu, SUM(CASE WHEN DatePaiement IS NULL THEN Montant ELSE 0 END) MontantDu, Mois ";
+            req += " FROM PPSuiviCompta ";
+            req += " GROUP BY Mois ";
+
+            SqlDataAdapter adapteurDemandes = new SqlDataAdapter(req + orderByClause, myConnection);
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );
@@ -122,43 +95,48 @@ namespace Puces_R
             pdsDemandes.CurrentPageIndex = Master.PageActuelle;
             Master.NbPages = pdsDemandes.PageCount;
 
-            rptRetard.DataSource = pdsDemandes;
-            rptRetard.DataBind();
+            rptMois.DataSource = pdsDemandes;
+            rptMois.DataBind();
             myConnection.Close();
 
             return tableDemandes;
         }
 
-        protected void rptRetard_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptMois_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             RepeaterItem item = e.Item;
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
                 LinkButton lbl_num = (LinkButton)item.FindControl("lbl_num");
-                LinkButton lbl_nom_affaire = (LinkButton)item.FindControl("lbl_nom_affaire");
-                LinkButton lbl_nom_vendeur = (LinkButton)item.FindControl("lbl_nom_vendeur");
-                //Label date_demande = (Label)item.FindControl("date_demande");
-                LinkButton lbl_montant_du = (LinkButton)item.FindControl("lbl_montant_du");
+                LinkButton lbl_mois = (LinkButton)item.FindControl("lbl_mois");
+                LinkButton lbl_attendu = (LinkButton)item.FindControl("lbl_attendu");
+                LinkButton lbl_recu = (LinkButton)item.FindControl("lbl_recu");
+                LinkButton lbl_du = (LinkButton)item.FindControl("lbl_du");
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
                 lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
-                lbl_nom_affaire.Text = drvDemande["NomAffaires"].ToString();
-                lbl_nom_vendeur.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
-                //date_demande.Text = drvDemande["DateCreation"].ToString();
-                lbl_montant_du.Text = Convert.ToDecimal(drvDemande["MontantDu"]).ToString("N") + " $";
+                string[] tab_date = drvDemande["Mois"].ToString().Split('-');
+                DateTime mois = new DateTime(Convert.ToInt32(tab_date[0]), Convert.ToInt32(tab_date[1]), Convert.ToInt32(tab_date[2].Remove(3)));
 
-                lbl_num.CommandArgument = drvDemande["NoVendeur"].ToString();
-                lbl_nom_affaire.CommandArgument = drvDemande["NoVendeur"].ToString();
-                lbl_nom_vendeur.CommandArgument = drvDemande["NoVendeur"].ToString();
-                lbl_montant_du.CommandArgument = drvDemande["NoVendeur"].ToString();
+                lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
+                lbl_mois.Text = mois.ToString("MMMM yyyy").ToUpperInvariant();
+                lbl_attendu.Text = Convert.ToDecimal(drvDemande["MontantAttendu"]).ToString("N") + " $";
+                lbl_recu.Text = Convert.ToDecimal(drvDemande["MontantRecu"]).ToString("N") + " $";
+                lbl_du.Text = Convert.ToDecimal(drvDemande["MontantDu"]).ToString("N") + " $";
+
+                lbl_num.CommandArgument = drvDemande["Mois"].ToString();
+                lbl_mois.CommandArgument = drvDemande["Mois"].ToString();
+                lbl_attendu.CommandArgument = drvDemande["Mois"].ToString();
+                lbl_recu.CommandArgument = drvDemande["Mois"].ToString();
+                lbl_du.CommandArgument = drvDemande["Mois"].ToString();
             }
         }
 
-        protected void voir_histo(object sender, CommandEventArgs e)
+        protected void voir_redevances_mois(object sender, CommandEventArgs e)
         {
-            Session["histo_no_vendeur"] = e.CommandArgument.ToString();
-            Response.Redirect("histo_redevance_vendeur.aspx");
+            Session["mois"] = e.CommandArgument.ToString();
+            Response.Redirect("vendeur_redevance.aspx");
         }
 
         protected void verifier_mois_compta()

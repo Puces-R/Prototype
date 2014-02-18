@@ -104,7 +104,7 @@ namespace Puces_R
                 lbl_courriel.Text = results["AdresseEmail"].ToString();
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
-                lbl_livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";
+                lbl_livraison_gratuite.Text = (results["LivraisonGratuite"] != DBNull.Value ? Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $" : "Pas de livraison gratuite");
                 //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
 
                 Master.Titre = results["NomAffaires"].ToString();
@@ -116,7 +116,7 @@ namespace Puces_R
                         lb_desactiver.Enabled = false;
                         break;
                     case "2":
-                        lbl_statut.Text = "En attende d'approbation";
+                        lbl_statut.Text = "En attente d'approbation";
                         break;
                     case "3":
                         lbl_statut.Text = "En retard de paiement";

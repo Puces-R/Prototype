@@ -24,9 +24,9 @@
             </ul>
             <h2>Actions</h2>
             <ul>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="0" Text="Envoyer un message interne à ce client" ToolTip="" /></li>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="1" Text="Envoyer un courriel a ce client" ToolTip="" /></li>
-                <li><asp:LinkButton runat="server" Text="Désactiver ce client" ToolTip="" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="2" Text="Envoyer un message interne à ce client" ToolTip="Envoyer d'un message à ce client via le systeme de messagerie interne du site" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="3" Text="Envoyer un courriel a ce client" ToolTip="Envoyer un courriel vers l'adresse email de ce client" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="4" Text="Désactiver ce client" ToolTip="Rendre ce client innactif" /></li>
             </ul>
         </div>
         <div class="panneau pnlDroite">

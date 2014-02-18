@@ -173,7 +173,7 @@ namespace Puces_R
 
         private static void RefuserVisiteur()
         {
-            HttpContext.Current.Response.Redirect("Default.aspx", true);
+            HttpContext.Current.Response.Redirect("Deconnexion.ashx", true);
         }
         
         private static void RefuserUtilisateur(char type)

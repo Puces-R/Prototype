@@ -906,6 +906,9 @@
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Deconnexion.ashx.cs">
+      <DependentUpon>Deconnexion.ashx</DependentUpon>
+    </Compile>
     <Compile Include="details_commande_redevance.aspx.cs">
       <DependentUpon>details_commande_redevance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1194,6 +1197,7 @@
       <DependentUpon>BonCommande.xsd</DependentUpon>
     </None>
     <Content Include="TelechargementMessage.ashx" />
+    <Content Include="Deconnexion.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BonCommande.rdlc">

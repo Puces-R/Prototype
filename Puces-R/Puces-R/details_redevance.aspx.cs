@@ -100,8 +100,8 @@ namespace Puces_R
                     results.Close();
                     myConnection.Close();
                 }
-                else Response.Redirect("Default.aspx");
-            else Response.Redirect("Default.aspx");
+                else Response.Redirect("Deconnexion.ashx");
+            else Response.Redirect("Deconnexion.ashx");
 
             Master.ChargerItems += charge_details_redevance;
 

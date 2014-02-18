@@ -32,6 +32,7 @@ namespace Puces_R
                 ajouter_list_item(ddlNbClients_c2, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbClients_c3, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbClients_c4, min_option, nb_option, increment);
+                ajouter_list_item(ddlNbClients_c5, 10, 5, 10);
             }
         }
         
@@ -316,6 +317,12 @@ namespace Puces_R
             mvStats.SetActiveView(c0);
         }
 
+        protected void chargerConnexionsc5(object sender, EventArgs e)
+        {
+            chargerDernieresConnexions();
+            mvStats.SetActiveView(c5);
+        }
+
         public static void generer_script(string view, string js_tab, bool trois_d, ClientScriptManager CSM, bool autre_script)
         {
             string script = "";
@@ -392,6 +399,41 @@ namespace Puces_R
 
             for (int i = premier + increment; i <= premier + nb * increment; i += increment)
                 ddl.Items.Add(new ListItem(null, i.ToString()));
+        }
+
+        private DataTable chargerDernieresConnexions()
+        {
+            SqlDataAdapter adapteurResultats = new SqlDataAdapter("SELECT TOP " + ddlNbClients_c5.SelectedValue + " NbConnexions, Nom, Prenom, AdresseEmail, DateDerniereConnexion FROM PPClients WHERE DateDerniereConnexion IS NOT NULL ORDER BY DateDerniereConnexion DESC ", myConnection);
+            DataTable tableResultats = new DataTable();
+            //Response.Write(ddlCategorie.SelectedValue + req + orderByClause);
+            adapteurResultats.Fill(tableResultats);
+            myConnection.Close();
+
+            rptConnexionsRecentes.DataSource = tableResultats;
+            rptConnexionsRecentes.DataBind();
+
+            return tableResultats;
+        }
+
+        protected void rptConnexionsRecentes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            RepeaterItem item = e.Item;
+
+            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
+            {
+
+                Label lbl_date = (Label)item.FindControl("lbl_date");
+                Label lbl_nom_client = (Label)item.FindControl("lbl_nom_client");
+                Label lbl_adresse_email_client = (Label)item.FindControl("lbl_adresse_email_client");
+                Label lbl_nb_connexions = (Label)item.FindControl("lbl_nb_connexions");
+
+                DataRowView drvDemande = (DataRowView)e.Item.DataItem;
+
+                lbl_date.Text = drvDemande["DateDerniereConnexion"].ToString();
+                lbl_nom_client.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
+                lbl_adresse_email_client.Text = drvDemande["AdresseEmail"].ToString();
+                lbl_nb_connexions.Text = drvDemande["NbConnexions"].ToString();
+            }
         }
     }
 }

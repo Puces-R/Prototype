@@ -94,7 +94,9 @@ namespace Puces_R
                     commande_desactiver_vendeur.ExecuteNonQuery();
                     transaction.Commit();
                     Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été désactivé.";
-                    Response.Redirect("gerer_inactivite_vendeurs.aspx");
+                    if (Session["retour_desactiver_vendeur"] != null)
+                        Response.Redirect(Session["retour_desactiver_vendeur"].ToString());
+                    else Response.Redirect("gerer_inactivite_vendeurs.aspx");
                 }
                 catch (SqlException ex)
                 {

@@ -94,6 +94,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
         
         /// <summary>
+        /// Contrôle LinkButton10.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton10;
+        
+        /// <summary>
         /// Contrôle LinkButton0.
         /// </summary>
         /// <remarks>
@@ -272,6 +281,33 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNbClients_c4;
+        
+        /// <summary>
+        /// Contrôle c5.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View c5;
+        
+        /// <summary>
+        /// Contrôle ddlNbClients_c5.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNbClients_c5;
+        
+        /// <summary>
+        /// Contrôle rptConnexionsRecentes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptConnexionsRecentes;
         
         /// <summary>
         /// Contrôle c0.

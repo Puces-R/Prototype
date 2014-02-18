@@ -31,6 +31,7 @@
                 <li><asp:LinkButton ID="LinkButton4" runat="server" OnCommand="chargerGraphiquec2" CommandArgument="c2" Text="Meilleurs clients" ToolTip="Les clients qui ont le plus de commande" /></li>
                 <li><asp:LinkButton ID="LinkButton5" runat="server" OnCommand="chargerGraphiquec3" CommandArgument="c2" Text="Meilleurs visiteurs" ToolTip="Les clients qui visitent le plus les vendeurs" /></li>
                 <li><asp:LinkButton ID="LinkButton6" runat="server" OnCommand="chargerGraphiquec4" CommandArgument="c4" Text="Meilleurs clients potentiels" ToolTip="Les clients qui ont le plus de paniers non commandés" /></li>
+                <li><asp:LinkButton ID="LinkButton10" runat="server" OnCommand="chargerConnexionsc5" CommandArgument="c4" Text="Dernieres connexions" ToolTip="Les clients qui se sont récenmment connecté au site " /></li>
                 <li><asp:LinkButton ID="LinkButton0" runat="server" OnCommand="chargerGraphiquec0" CommandArgument="c0" Text="Divers" ToolTip="Statistiques diverses sur les clients" /></li>
             </ul>
         </div>
@@ -158,6 +159,37 @@
                     </div>
                     <div class="rectangleItem basRectangle">
                          <div id="chart_c4" style="width:100%;height:650px;display:inline-block;margin: 0 auto;"></div>
+                    </div>
+                </asp:View>
+                <asp:View ID="c5" runat="server">
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Dernieres connexions de clients</td>
+                            <td align="right" >
+                                Nombre de clients
+                                <asp:DropDownList ID="ddlNbClients_c5" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerConnexionsc5" />
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <table class="table_avec_ligne" style="width:95%">
+                            <tr>
+                                <th>Date</th>
+                                <th>Nom</th>
+                                <th>Adresse email</th>
+                                <th>Nombre de connexions</th>
+                            </tr>
+                            <asp:Repeater runat="server" ID="rptConnexionsRecentes" OnItemDataBound="rptConnexionsRecentes_ItemDataBound">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><asp:Label runat="server" ID="lbl_date" /></td>
+                                        <td><asp:Label runat="server" ID="lbl_nom_client" /></td>
+                                        <td><asp:Label runat="server" ID="lbl_adresse_email_client" /></td>
+                                        <td><asp:Label runat="server" ID="lbl_nb_connexions" /></td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
                     </div>
                 </asp:View>
                 <asp:View ID="c0" runat="server">

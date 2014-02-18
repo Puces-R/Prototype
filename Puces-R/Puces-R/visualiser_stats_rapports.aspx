@@ -29,7 +29,7 @@
             <ul>
                 <li><asp:LinkButton ID="LinkButton3" runat="server" OnCommand="chargerGraphiquec1" CommandArgument="c1" Text="Nouveaux clients" ToolTip="Les nouveux clients depuis un période" /></li>
                 <li><asp:LinkButton ID="LinkButton4" runat="server" OnCommand="chargerGraphiquec2" CommandArgument="c2" Text="Meilleurs clients" ToolTip="Les clients qui ont le plus de commande" /></li>
-                <li><asp:LinkButton ID="LinkButton5" runat="server" OnCommand="chargerGraphiquec3" CommandArgument="c2" Text="Vendeurs clients" ToolTip="Les clients qui visitent le plus les vendeurs" /></li>
+                <li><asp:LinkButton ID="LinkButton5" runat="server" OnCommand="chargerGraphiquec3" CommandArgument="c2" Text="Meilleurs visiteurs" ToolTip="Les clients qui visitent le plus les vendeurs" /></li>
                 <li><asp:LinkButton ID="LinkButton6" runat="server" OnCommand="chargerGraphiquec4" CommandArgument="c4" Text="Meilleurs clients potentiels" ToolTip="Les clients qui ont le plus de paniers non commandés" /></li>
                 <li><asp:LinkButton ID="LinkButton0" runat="server" OnCommand="chargerGraphiquec0" CommandArgument="c0" Text="Divers" ToolTip="Statistiques diverses sur les clients" /></li>
             </ul>
@@ -99,20 +99,76 @@
                         <table class="tableProduits" style="width:95%;">
                             
                             <tr><th colspan="2" align="center" >Nombre total de vendeurs :<asp:label runat="server" Text="" ID="lbl_total_vendeurs" /></th></tr>
-                            <tr><th colspan="2" align="center" >Répartition du nombre de vendeurs <br /><div id="chart_v0" style="width:100%;height:500px;display:inline-block;margin: 0 auto;"></div></th></tr>
+                            <tr><th colspan="2" align="center" >Répartition des vendeurs par statut<br /><div id="chart_v0" style="width:100%;height:500px;display:inline-block;margin: 0 auto;"></div></th></tr>
                         </table>
                     </div>
                 </asp:View>
 
                 <asp:View ID="c1" runat="server">
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Nouveaux clients</td>
+                            <td align="right" >
+                                Nombre de mois
+                                <asp:DropDownList ID="ddlNbMois_c1" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerGraphiquec1" />
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_c1" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>
+                    </div>
                 </asp:View>
                 <asp:View ID="c2" runat="server">
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Client avec le plus de commandes</td>
+                            <td align="right" >
+                                Nombre de clients
+                                <asp:DropDownList ID="ddlNbClients_c2" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerGraphiquec2" />
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_c2" style="width:100%;height:650px;display:inline-block;margin: 0 auto;"></div>
+                    </div>
                 </asp:View>
                 <asp:View ID="c3" runat="server">
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Clients visitant le plus les vendeurs</td>
+                            <td align="right" >
+                                Nombre de clients
+                                <asp:DropDownList ID="ddlNbClients_c3" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerGraphiquec3" />
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_c3" style="width:100%;height:650px;display:inline-block;margin: 0 auto;"></div>
+                    </div>
                 </asp:View>
                 <asp:View ID="c4" runat="server">
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Meilleurs clients potentiels</td>
+                            <td align="right" >
+                                Nombre de clients
+                                <asp:DropDownList ID="ddlNbClients_c4" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerGraphiquec4" />
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_c4" style="width:100%;height:650px;display:inline-block;margin: 0 auto;"></div>
+                    </div>
                 </asp:View>
                 <asp:View ID="c0" runat="server">
+                    <div class="rectangleItem hautRectangle">Statistiques diverses sur les clients</div>
+                    <div class="rectangleItem basRectangle">
+                        <table class="tableProduits" style="width:95%;">
+                            
+                            <tr><th colspan="2" align="center" >Nombre total de clients :<asp:label runat="server" Text="" ID="lbl_total_clients" /></th></tr>
+                            <tr><th colspan="2" align="center" >Répartition des clients par catégorie <br /><div id="chart_c0" style="width:100%;height:500px;display:inline-block;margin: 0 auto;"></div></th></tr>
+                        </table>
+                    </div>
                 </asp:View>
             </asp:MultiView>
 

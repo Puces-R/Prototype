@@ -27,6 +27,11 @@ namespace Puces_R
                 ajouter_list_item(ddlNbVendeurs_v2, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbVendeurs_v3, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbVendeurs_v4, min_option, nb_option, increment);
+
+                ajouter_list_item(ddlNbMois_c1, min_option, nb_option, increment);
+                ajouter_list_item(ddlNbClients_c2, min_option, nb_option, increment);
+                ajouter_list_item(ddlNbClients_c3, min_option, nb_option, increment);
+                ajouter_list_item(ddlNbClients_c4, min_option, nb_option, increment);
             }
         }
         
@@ -163,30 +168,150 @@ namespace Puces_R
 
         protected void chargerGraphiquec1(object sender, EventArgs e)
         {
+            string req = "";
+            string js_tab = "";
+            SqlCommand charger;
+            myConnection.Open();
 
+            for (int i = 0; i < Convert.ToInt32(ddlNbMois_c1.SelectedValue); i++)
+            {
+                req += " SELECT COUNT(*) AS NbNouveauxVendeurs ";
+                req += " FROM PPClients ";
+                req += " WHERE DateCreation BETWEEN DATEADD(mm, " + -i + ", CAST(RTRIM(LTRIM(STR(YEAR(GETDATE())))) + '-' + RTRIM(LTRIM(STR(MONTH(GETDATE())))) + '-01' AS SMALLDATETIME)) ";
+                req += " AND DATEADD(dd, -1, DATEADD(mm, " + ((i == 0 ? 1 : -i + 1)) + ", CAST(RTRIM(LTRIM(STR(YEAR(GETDATE())))) + '-' + RTRIM(LTRIM(STR(MONTH(GETDATE())))) + '-01' AS SMALLDATETIME))) ";
+
+                charger = new SqlCommand(req, myConnection);
+
+                object results = charger.ExecuteScalar();
+                js_tab = "{'Nouveaux clients':" + Convert.ToInt32(results) + ",'Mois':'" + DateTime.Now.AddMonths(-i).ToString("MMM") + "'}," + js_tab;
+
+                req = "";
+            }
+
+            generer_script("c1", js_tab, true, Page.ClientScript, false);
+            myConnection.Close();
             mvStats.SetActiveView(c1);
         }
 
         protected void chargerGraphiquec2(object sender, EventArgs e)
         {
 
+            string req = "";
+            string js_tab = "";
+            SqlCommand charger;
+            myConnection.Open();
+
+            req += " SELECT TOP (" + ddlNbClients_c2.SelectedValue + ") AdresseEmail, SUM(MontantTotal) Total ";
+            req += " FROM PPClients, PPCommandes ";
+            req += " WHERE PPClients.NoClient =  PPCommandes.NoClient ";
+            req += " GROUP BY AdresseEmail ";
+            req += " ORDER BY SUM(MontantTotal) DESC ";
+
+            charger = new SqlCommand(req, myConnection);
+            SqlDataReader results = charger.ExecuteReader();
+
+            while (results.Read())
+                js_tab = "{'Total des achats':" + results["Total"].ToString().Replace(',', '.') + ",'CLient':\"" + results["AdresseEmail"].ToString() + "\"}," + js_tab;
+
+            generer_script("c2", js_tab, false, Page.ClientScript, false);
+            myConnection.Close();
             mvStats.SetActiveView(c2);
         }
 
         protected void chargerGraphiquec3(object sender, EventArgs e)
         {
+            string req = "";
+            string js_tab = "";
+            SqlCommand charger;
+            myConnection.Open();
+
+            req += " SELECT TOP (" + ddlNbClients_c3.SelectedValue + ") AdresseEmail, COUNT(*) Visites ";
+            req += " FROM PPClients, PPVendeursClients ";
+            req += " WHERE PPClients.NoClient =  PPVendeursClients.NoClient ";
+            req += " GROUP BY AdresseEmail ";
+            req += " ORDER BY COUNT(*) DESC ";
+
+            charger = new SqlCommand(req, myConnection);
+            SqlDataReader results = charger.ExecuteReader();
+
+            while (results.Read())
+                js_tab = "{'Nombre de visites':" + results["Visites"].ToString().Replace(',', '.') + ",'Cliebt':\"" + results["AdresseEmail"].ToString() + "\"}," + js_tab;
+
+            generer_script("c3", js_tab, false, Page.ClientScript, false);
+            myConnection.Close();
 
             mvStats.SetActiveView(c3);
         }
 
         protected void chargerGraphiquec4(object sender, EventArgs e)
         {
+            string req = "";
+            string js_tab = "";
+            SqlCommand charger;
+            myConnection.Open();
 
+            req += " SELECT TOP (" + ddlNbClients_c4.SelectedValue + ") AdresseEmail, COUNT(DISTINCT NoVendeur) Paniers ";
+            req += " FROM PPClients, PPArticlesEnPanier ";
+            req += " WHERE PPClients.NoClient =  PPArticlesEnPanier.NoClient ";
+            req += " GROUP BY AdresseEmail ";
+            req += " ORDER BY COUNT(DISTINCT NoVendeur) DESC ";
+
+            charger = new SqlCommand(req, myConnection);
+            SqlDataReader results = charger.ExecuteReader();
+
+            while (results.Read())
+                js_tab = "{'Nombre de paniers':" + results["Paniers"].ToString().Replace(',', '.') + ",'Client':\"" + results["AdresseEmail"].ToString() + "\"}," + js_tab;
+
+            generer_script("c4", js_tab, false, Page.ClientScript, false);
+            myConnection.Close();
             mvStats.SetActiveView(c4);
         }
 
         protected void chargerGraphiquec0(object sender, EventArgs e)
         {
+            string js_tab = "", req = "";
+            int total_vendeur = 0;
+
+            req += " SELECT ( ";
+            req += " SELECT COUNT(*) ";
+            req += " FROM ( ";
+            req += " 		SELECT DISTINCT NoClient FROM PPVendeursClients ";
+            req += " 		WHERE NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPArticlesEnPanier UNION SELECT DISTINCT NoClient FROM PPCommandes) ";
+            req += " 	  )  ";
+            req += " AS derivedtbl_1) , ";
+            req += " ( ";
+            req += " SELECT COUNT(*) AS Expr1 ";
+            req += " FROM ( ";
+            req += " 		SELECT DISTINCT NoClient ";
+            req += " 		FROM PPArticlesEnPanier ";
+            req += " 		WHERE NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPCommandes) ";
+            req += " 	)  ";
+            req += " AS derivedtbl_2), ";
+            req += " ( ";
+            req += " SELECT COUNT(*) AS Expr1 ";
+            req += " FROM ( ";
+            req += " 		SELECT DISTINCT NoClient ";
+            req += " 		FROM PPCommandes ";
+            req += " 	)  ";
+            req += " AS derivedtbl_3) ";
+
+            SqlCommand charger = new SqlCommand(req, myConnection);
+            myConnection.Open();
+            SqlDataReader results = charger.ExecuteReader();
+
+            if (results.Read())
+            {
+                js_tab = "{ 'Nombre de clients dans cette catégorie': " + results[0].ToString() + ", 'Catégorie': 'Visiteurs' }, " + js_tab;
+                total_vendeur += Convert.ToInt32(results[0]);
+                js_tab = "{ 'Nombre de clients dans cette catégorie': " + results[1].ToString() + ", 'Catégorie': 'Potentiels' }, " + js_tab;
+                total_vendeur += Convert.ToInt32(results[1]);
+                js_tab = "{ 'Nombre de clients dans cette catégorie': " + results[2].ToString() + ", 'Catégorie': 'Actifs' }, " + js_tab;
+                total_vendeur += Convert.ToInt32(results[2]);
+            }
+
+            lbl_total_clients.Text = total_vendeur.ToString();
+            generer_script_pie("c0", js_tab, "Répartition des clients selon la catégorie");
+            myConnection.Close();
 
             mvStats.SetActiveView(c0);
         }

@@ -194,8 +194,8 @@ namespace Puces_R
             req += " SELECT COUNT(*) ";
             req += " FROM ( ";
             req += " 		SELECT DISTINCT NoClient FROM PPVendeursClients ";
-            req += " 		WHERE NoVendeur = 10	 ";
-            req += " 		AND NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPArticlesEnPanier WHERE NoVendeur = 10 UNION SELECT DISTINCT NoClient FROM PPCommandes WHERE NoVendeur = 10) ";
+            req += " 		WHERE NoVendeur = " + no_vendeur + "	 ";
+            req += " 		AND NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPArticlesEnPanier WHERE NoVendeur = " + no_vendeur + " UNION SELECT DISTINCT NoClient FROM PPCommandes WHERE NoVendeur = " + no_vendeur + ") ";
             req += " 	  )  ";
             req += " AS derivedtbl_1), ";
             req += " ( ";
@@ -203,8 +203,8 @@ namespace Puces_R
             req += " FROM ( ";
             req += " 		SELECT DISTINCT NoClient ";
             req += " 		FROM PPArticlesEnPanier ";
-            req += " 		WHERE (NoVendeur = 10)  ";
-            req += " 		AND NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPCommandes WHERE NoVendeur = 10) ";
+            req += " 		WHERE (NoVendeur = " + no_vendeur + ")  ";
+            req += " 		AND NoClient NOT IN ( SELECT DISTINCT NoClient FROM PPCommandes WHERE NoVendeur = " + no_vendeur + ") ";
             req += " 	)  ";
             req += " AS derivedtbl_2), ";
             req += " ( ";
@@ -212,7 +212,7 @@ namespace Puces_R
             req += " FROM ( ";
             req += " 		SELECT DISTINCT NoClient ";
             req += " 		FROM PPCommandes ";
-            req += " 		WHERE (NoVendeur = 10) ";
+            req += " 		WHERE (NoVendeur = " + no_vendeur + ") ";
             req += " 	)  ";
             req += " AS derivedtbl_3) ";
 

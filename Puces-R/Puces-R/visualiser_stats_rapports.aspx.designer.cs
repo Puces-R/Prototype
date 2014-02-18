@@ -211,6 +211,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.View c1;
         
         /// <summary>
+        /// Contrôle ddlNbMois_c1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNbMois_c1;
+        
+        /// <summary>
         /// Contrôle c2.
         /// </summary>
         /// <remarks>
@@ -218,6 +227,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View c2;
+        
+        /// <summary>
+        /// Contrôle ddlNbClients_c2.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNbClients_c2;
         
         /// <summary>
         /// Contrôle c3.
@@ -229,6 +247,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.View c3;
         
         /// <summary>
+        /// Contrôle ddlNbClients_c3.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNbClients_c3;
+        
+        /// <summary>
         /// Contrôle c4.
         /// </summary>
         /// <remarks>
@@ -238,6 +265,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.View c4;
         
         /// <summary>
+        /// Contrôle ddlNbClients_c4.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNbClients_c4;
+        
+        /// <summary>
         /// Contrôle c0.
         /// </summary>
         /// <remarks>
@@ -245,6 +281,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View c0;
+        
+        /// <summary>
+        /// Contrôle lbl_total_clients.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_total_clients;
         
         /// <summary>
         /// Propriété Master.

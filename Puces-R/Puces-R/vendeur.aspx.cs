@@ -87,9 +87,6 @@ namespace Puces_R
 
                 switch (results["Statut"].ToString())
                 {
-                    case "0":
-                        lbl_statut.Text = "Actif";
-                        break;
                     case "1":
                         lbl_statut.Text = "Inactif";
                         break;
@@ -98,13 +95,19 @@ namespace Puces_R
                         break;
                     case "3":
                         lbl_statut.Text = "En retard de paiement";
+                        break;                    
+                    default:
+                        lbl_statut.Text = "Actif";
                         break;
                 }
 
                 lbl_taux_redevance.Text = results["Pourcentage"].ToString();
                 lbl_taxes.Text = (results["Taxes"].ToString() == "True" ? "Oui" : "Non");
-                lbl_tel1.Text = results["Tel1"].ToString();
-                lbl_tel2.Text = results["Tel2"].ToString();
+
+                if (results["Tel1"] != DBNull.Value)
+                    lbl_tel1.Text = Telephone.Format(results["Tel1"].ToString());
+                if (results["Tel2"] != DBNull.Value)
+                    lbl_tel2.Text = Telephone.Format(results["Tel2"].ToString());
             }
             myConnection.Close();
         }

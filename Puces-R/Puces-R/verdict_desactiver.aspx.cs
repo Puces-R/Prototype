@@ -64,7 +64,7 @@ namespace Puces_R
             {
                 titre_demande.Text = results["NomAffaires"].ToString() + ", par " + results["Prenom"].ToString() + " " + results["Nom"].ToString();
                 addr_demande.Text = results["Rue"].ToString() + ", " + results["Ville"].ToString() + ", " + results["Pays"].ToString();
-                tels_demande.Text = results["Tel1"].ToString();
+                tels_demande.Text = (results["Tel1"] != DBNull.Value ? Telephone.Format(results["Tel1"].ToString()) : "") + (results["Tel2"] != DBNull.Value ? ", " + Telephone.Format(results["Tel2"].ToString()) : "");
                 courriel_demande.Text = results["AdresseEmail"].ToString();
                 charge_max_demande.Text = results["MaxLivraison"].ToString() + " Lbs";
                 livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";

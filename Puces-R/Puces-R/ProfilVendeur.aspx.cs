@@ -193,7 +193,7 @@ namespace Puces_R
             fEcrit.Close();
 
             myConnection.Open();
-            SqlCommand maC = new SqlCommand("UPDATE PPVENDEURS SET Configuration=" + Session["ID"], myConnection);
+            SqlCommand maC = new SqlCommand("UPDATE PPVENDEURS SET Configuration=" + Session["ID"] +"where NoVendeur="+Session["ID"], myConnection);
             maC.ExecuteNonQuery();
             myConnection.Close();
 

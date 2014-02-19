@@ -37,14 +37,14 @@ namespace Puces_R
             this.CodeLivraison = codeLivraison;
         }
 
-        public Facture(long noClient, long noVendeur, short codeLivraison) : this(codeLivraison)
+        public Facture(long noClient, long noVendeur, short codeLivraison, bool commande = false) : this(codeLivraison)
         {
             this.NoClient = noClient;
             this.NoVendeur = noVendeur;
 
             String whereClause = " WHERE A.NoClient = " + noClient+ " AND P.NoVendeur = " + noVendeur;
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, ISNULL(PrixVente, PrixDemande) AS Prix, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, " + (commande ? "ISNULL(PrixVente, PrixDemande)" : "PrixDemande") + " AS Prix, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

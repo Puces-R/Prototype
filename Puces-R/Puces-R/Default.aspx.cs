@@ -14,7 +14,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Librairie.Autorisation(true, false, false, false);
+            if (!IsPostBack)
+            {
+                Librairie.Autorisation(true, false, false, false);
+            }
         }
 
         protected void seConnecter(object sender, EventArgs e)
@@ -65,6 +68,7 @@ namespace Puces_R
             SqlDataReader sdr = cmdConnexion.ExecuteReader();
             if (sdr.Read())
             {
+                Session.RemoveAll();
                 e.IsValid = true;
                 Session["ID"] = int.Parse(sdr["No"].ToString());
                 Session["Type"] = char.Parse(sdr["Type"].ToString());
@@ -79,26 +83,26 @@ namespace Puces_R
 
         protected void defautClient(object sender, EventArgs e)
         {
-            Session.Clear();
+            Session.RemoveAll();
             Session["ID"] = 10000;
             Session["Type"] = 'C';
-            Response.Redirect("AccueilClient.aspx", false);
+            Response.Redirect("AccueilClient.aspx", true);
         }
 
         protected void defautVendeur(object sender, EventArgs e)
         {
-            Session.Clear();
+            Session.RemoveAll();
             Session["ID"] = 10;
             Session["Type"] = 'V';
-            Response.Redirect("AccueilVendeur.aspx", false);
+            Response.Redirect("AccueilVendeur.aspx", true);
         }
 
         protected void defautGestionnaire(object sender, EventArgs e)
         {
-            Session.Clear();
+            Session.RemoveAll();
             Session["ID"] = 1;
             Session["Type"] = 'G';
-            Response.Redirect("accueil_gestionnaire.aspx", false);
+            Response.Redirect("accueil_gestionnaire.aspx", true);
         }
     }
 }

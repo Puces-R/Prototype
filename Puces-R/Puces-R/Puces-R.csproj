@@ -913,9 +913,11 @@
     </Compile>
     <Compile Include="DesactiverPanierVendeur.aspx.cs">
       <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DesactiverPanierVendeur.aspx.designer.cs">
       <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Deconnexion.ashx.cs">
       <DependentUpon>Deconnexion.ashx</DependentUpon>
     </Compile>
@@ -1164,6 +1166,7 @@
     </Compile>
     <Compile Include="vendeur_redevance.aspx.cs">
       <DependentUpon>vendeur_redevance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="vendeur_redevance.aspx.designer.cs">
       <DependentUpon>vendeur_redevance.aspx</DependentUpon>

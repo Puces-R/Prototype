@@ -56,6 +56,10 @@
     <td>
         <asp:FileUpload ID="uplNomFichier" runat="server" CssClass="" />
     </td>
+    <td class="erreur">
+        <asp:CustomValidator ID="CustomStyleImage" ControlToValidate="uplNomFichier" runat="server"
+            OnServerValidate="verifierFormat" ErrorMessage="Le Format de l'image doit être jpg,png ou gif"></asp:CustomValidator>
+    </td>
 </tr>
 <tr>
     <td>

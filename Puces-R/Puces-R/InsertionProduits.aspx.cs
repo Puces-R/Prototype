@@ -30,8 +30,6 @@ namespace Puces_R
             {
                 lblAvertissement.Text = "Il y a eu un problème lors de l'insertion. Veuillez corriger les erreurs!";
             }
-
-
         }
         
         public void insertionProduits(Object sender, EventArgs e)

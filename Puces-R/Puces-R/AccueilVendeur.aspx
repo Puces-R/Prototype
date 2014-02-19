@@ -16,17 +16,17 @@
     </div>
     <div>
         <div class="panneau pnlGauche">
-            <h2>Paniers en Cours</h2>
+            <h2>Paniers en Cours(Les 5 plus récents)</h2>
             <asp:Repeater ID="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
                 <ItemTemplate>
                     <lp:BoitePanier runat="server" ID="ctrBoitePanier" />
                 </ItemTemplate>
             </asp:Repeater>
-            <asp:HyperLink ID="hplPanier" runat="server" Text="Voir plus..." CssClass="catalogueGlobal"></asp:HyperLink>
+            <asp:HyperLink ID="hplPanier" runat="server" Text="Voir plus..." CssClass="catalogueGlobal" NavigateUrl="~/GererPanierVendeur.aspx"></asp:HyperLink>
         </div>
         <div class="panneau pnlDroite">
             <h2>
-                Commandes non traitées
+                Commandes non traitées(5 plus récentes)
             </h2>
             <asp:Repeater runat="server" ID="rptCommandes" OnItemDataBound="rptCommandes_ItemDataBound"
                 OnItemCommand="rptCommandes_ItemCommand">
@@ -99,7 +99,7 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-            <asp:HyperLink ID="hplToutesCommandes" runat="server" Text="Voir plus..." CssClass="catalogueGlobal"></asp:HyperLink>
+            <asp:HyperLink ID="hplToutesCommandes" runat="server" Text="Voir plus..." CssClass="catalogueGlobal" NavigateUrl="GestionCommandesVendeur.aspx"></asp:HyperLink>
         </div>
     </div>
 </asp:Content>

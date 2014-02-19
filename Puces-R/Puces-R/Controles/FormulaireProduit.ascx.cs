@@ -194,5 +194,22 @@ namespace Puces_R
             }
             connexion.Close();
         }
+
+        protected void verifierFormat(object sender, ServerValidateEventArgs e)
+        {
+            if (uplNomFichier.HasFile)
+            {
+                try
+                {
+                    String filename = Path.GetFileName(uplNomFichier.FileName);
+                    string[] split = filename.Split('.');
+                    e.IsValid = (split[1] == "jpg" || split[1] == "png" || split[1] == "gif" || split[1] == "jpeg");
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
+            }
+        }
     }
 }

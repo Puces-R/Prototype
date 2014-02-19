@@ -67,6 +67,24 @@ namespace Puces_R {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
         
         /// <summary>
+        /// Contrôle mv_commandes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mv_commandes;
+        
+        /// <summary>
+        /// Contrôle view_vendeur.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view_vendeur;
+        
+        /// <summary>
         /// Contrôle rptDetailsRedevance.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,24 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptDetailsRedevance;
+        
+        /// <summary>
+        /// Contrôle view_client.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view_client;
+        
+        /// <summary>
+        /// Contrôle rptDetailsCommande.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptDetailsCommande;
         
         /// <summary>
         /// Contrôle lbl_total.

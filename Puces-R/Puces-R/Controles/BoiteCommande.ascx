@@ -6,6 +6,7 @@
     <div class="rectangleItem hautRectangle">
         <asp:Label runat="server" ID="lblVendeur" Font-Size="Medium"/>
         <asp:Label runat="server" ID="lblDate" Font-Size="x-Small" />
+        <asp:HyperLink runat="server" ID="hypNomClient" Visible="false"></asp:HyperLink>
     </div>
     <div class="rectangleItem basRectangle">
         <div>
@@ -14,6 +15,7 @@
                     <tr>
                         <td>No. Commande: </td>
                         <td>
+                            <asp:HyperLink runat="server" ID="hypNoCommande" Visible="False"></asp:HyperLink>
                             <asp:Label runat="server" ID="lblNoCommande" />
                         </td>
                     </tr>
@@ -27,7 +29,7 @@
                     <tr>
                         <td><asp:Label runat="server" ID="lblClient" Text="NoClient:" Visible="false"/></td>
                         <td>
-                            <asp:Label runat="server" ID="lblNoClient" Visible="false"/>
+                            <asp:HyperLink runat="server" ID="lblNoClient" Visible="false"/>
                         </td>
                     </tr>
                 </table>
@@ -40,7 +42,7 @@
             Statut: <asp:Label runat="server" ID="lblStatut" Font-Bold="true" />
         </div>
         <div class="boutonCommande">
-            <asp:Button runat="server" ID="btnChanger" Font-Bold="true" Text="Changer le Statut" Visible="false" />
+            <asp:Button runat="server" ID="btnChanger" Font-Bold="true" Text="Changer le Statut" Visible="false" OnClick="ChangerStatut" />
         </div>
     </div>
 </div>

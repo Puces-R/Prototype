@@ -165,7 +165,7 @@ namespace Puces_R
         protected void selectionner_vendeur(object sender, CommandEventArgs e)
         {
             Session["selected_vendeur"] = e.CommandArgument;
-            Response.Redirect("vendeur.aspx");
+            Response.Redirect(Chemin.Ajouter("vendeur.aspx", "Retour à la liste des vendeurs"));
         }
 
         protected void rptVendeurs_ItemCommand(object sender, RepeaterCommandEventArgs e)

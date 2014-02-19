@@ -28,7 +28,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNoCommande;
+        protected global::System.Web.UI.WebControls.Label tbNoCommande;
         
         /// <summary>
         /// Contrôle lblNoClient.
@@ -46,7 +46,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNoClient;
+        protected global::System.Web.UI.WebControls.Label tbNoClient;
         
         /// <summary>
         /// Contrôle lblVendeur.
@@ -64,7 +64,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNoVendeur;
+        protected global::System.Web.UI.WebControls.Label tbNoVendeur;
         
         /// <summary>
         /// Contrôle lblDate.
@@ -82,7 +82,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDate;
+        protected global::System.Web.UI.WebControls.Label tbDate;
         
         /// <summary>
         /// Contrôle Label1.
@@ -100,7 +100,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLivraisonM;
+        protected global::System.Web.UI.WebControls.Label tbLivraisonM;
         
         /// <summary>
         /// Contrôle LblLivraison.
@@ -118,7 +118,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLivraisonType;
+        protected global::System.Web.UI.WebControls.Label tbLivraisonType;
         
         /// <summary>
         /// Contrôle lblMontant.
@@ -136,7 +136,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMontant;
+        protected global::System.Web.UI.WebControls.Label tbMontant;
         
         /// <summary>
         /// Contrôle lblTPS.
@@ -154,7 +154,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbTps;
+        protected global::System.Web.UI.WebControls.Label TbTps;
         
         /// <summary>
         /// Contrôle lblTVQ.
@@ -172,7 +172,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTvq;
+        protected global::System.Web.UI.WebControls.Label tbTvq;
         
         /// <summary>
         /// Contrôle lblPoids.
@@ -190,7 +190,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPoids;
+        protected global::System.Web.UI.WebControls.Label tbPoids;
         
         /// <summary>
         /// Contrôle lblStatut.
@@ -208,7 +208,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbStatut;
+        protected global::System.Web.UI.WebControls.Label tbStatut;
         
         /// <summary>
         /// Contrôle lblAutorisation.
@@ -226,7 +226,7 @@ namespace Puces_R {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNoAutorisation;
+        protected global::System.Web.UI.WebControls.Label tbNoAutorisation;
         
         /// <summary>
         /// Contrôle btnChangerStatut.
@@ -245,6 +245,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRetour;
+        
+        /// <summary>
+        /// Contrôle ctrBoitePanier.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.Controles.TableDetailsCommande ctrBoitePanier;
         
         /// <summary>
         /// Propriété Master.

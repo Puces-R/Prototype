@@ -44,8 +44,13 @@ namespace Puces_R
                         tbPoids.Text = Convert.ToString(repT[9]);
                         tbStatut.Text = Convert.ToString((String)repT[10]);
                         tbNoAutorisation.Text = (String)repT[11];
+
+                        //ctrBoitePanier.NoVendeur = (int)Session["ID"];
+                        ctrBoitePanier.NoCommande=(long)repT[0];
+                        ctrBoitePanier.ChargerArticlesEnPanier();
                     }
                 }
+
                 else
                 {
                     Librairie.RefuserAutorisation();

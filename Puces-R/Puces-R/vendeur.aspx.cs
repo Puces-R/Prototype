@@ -62,10 +62,10 @@ namespace Puces_R
                         mvVendeur.SetActiveView(View3);
                         break;
                     case 3:
-                        Librairie.Messagerie(dest, null, null, true, "Retour");
+                        Librairie.Messagerie(dest, null, null, true, "Retour à la page de gestion du vendeur");
                         break;
                     case 4:
-                        Librairie.Courriel(dest, null, null, true, "Retour");
+                        Librairie.Courriel(dest, null, null, true, "Retour à la page de gestion du vendeur");
                         break;
                     case 5:                        
                         Session["desactiver_vendeur"] = no_vendeur.ToString();

@@ -121,6 +121,7 @@ namespace Puces_R
                     Response.Write(Session["err_msg"]);
                     Session["err_msg"] = "";
                 }
+            Librairie.activer_cocher_tout(div_chck, "cb_tout", "cbCocher"); 
         }
 
         private void charge_inactifs1(object sender, EventArgs e)

@@ -209,7 +209,7 @@ namespace Puces_R
             else
             {
                 Session["desactiver_liste"] = liste.Remove(liste.Length - 2);
-                Response.Redirect("verdict_desactiver_client.aspx");
+                Response.Redirect(Chemin.Ajouter("verdict_desactiver_client.aspx", "Retour à la liste des clients innactifs"));
             }
         }
 

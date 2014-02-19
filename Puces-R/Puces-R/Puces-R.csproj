@@ -171,6 +171,7 @@
     <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
     <Content Include="DetailsProduit.aspx" />
+    <Content Include="Controles\FormulaireProduit.ascx" />
     <Content Include="GererPanierVendeur.aspx" />
     <Content Include="gerer_clients.aspx" />
     <Content Include="gerer_demandes_vendeurs.aspx" />
@@ -960,6 +961,13 @@
       <DependentUpon>DetailsProduit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facture.cs" />
+    <Compile Include="Controles\FormulaireProduit.ascx.cs">
+      <DependentUpon>FormulaireProduit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\FormulaireProduit.ascx.designer.cs">
+      <DependentUpon>FormulaireProduit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="GererPanierVendeur.aspx.cs">
       <DependentUpon>GererPanierVendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

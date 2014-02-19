@@ -23,7 +23,6 @@ namespace Puces_R
                 {
                     Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour, true);
                 }
-
                 else
                 {
                     String whereClause = " WHERE NoProduit = " + noProduit.ToString() + " AND NoVendeur = " + Session["ID"];
@@ -36,83 +35,63 @@ namespace Puces_R
                     SqlDataReader lecteurClient = commandeClient.ExecuteReader();
                     if (lecteurClient.Read())
                     {
-                        chargerCategorie();
-
-                        LoaderCategorie((int)lecteurClient["NoCategorie"]);
-                        this.tbDescAbregée.Text = (String)lecteurClient["Nom"];
-                        this.tbComplete.Text = (String)lecteurClient["Description"]; ;
-                        this.tbPrixDemande.Text = Convert.ToString((Decimal)lecteurClient["PrixDemande"]);
-                        this.tbNbItems.Text = ((Int16)lecteurClient["NombreItems"]).ToString(); ;
-                        this.tbDateVente.Text = lecteurClient["DateVente"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateVente"]);
-                        this.tbPrixVente.Text = Convert.ToString((Decimal)lecteurClient["PrixVente"]); ;
-                        this.tbPoids.Text = Convert.ToString((Decimal)lecteurClient["Poids"]); ;
-                        this.tbDateCreation.Text = lecteurClient["DateCreation"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateCreation"]);
-                        this.tbMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Date non disponible" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]); ;
-                        Boolean b = (Boolean)lecteurClient["Disponibilité"];
-                        if (b)
+                        ctrProduit.NoCategorie = Convert.ToInt32(lecteurClient["NoCategorie"]);
+                        ctrProduit.DescriptionAbregee = lecteurClient["Nom"].ToString();
+                        ctrProduit.PrixDemande = Convert.ToDecimal(lecteurClient["PrixDemande"]);
+                        ctrProduit.DescriptionComplete = lecteurClient["Description"].ToString();
+                        ctrProduit.NbItems = Convert.ToInt32(lecteurClient["NombreItems"]);
+                        if (!(lecteurClient["PrixVente"] is DBNull))
                         {
-                            cbDisponibilité.Checked = true;
+                            ctrProduit.PrixVente = Convert.ToDecimal(lecteurClient["PrixVente"]);
                         }
+                        ctrProduit.Poids = Convert.ToDecimal(lecteurClient["Poids"]);
+                        ctrProduit.Disponibilite = Convert.ToBoolean(lecteurClient["Disponibilité"]);
                     }
                     else
                     {
                         myConnection.Close();
-                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
+                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour, true);
                     }
-                    
-                    //this.tbNomAffaires.Text = (String)lecteurClient["NomAffaires"];
-                    //this.txtPrenom.Text = (String)lecteurClient["Prenom"];
-                    //this.txtNom.Text = (String)lecteurClient["Nom"];
-                    //this.txtRue.Text = (String)lecteurClient["Rue"];
-                    //this.txtVille.Text = (String)lecteurClient["Ville"];
-                    //this.ctrProvince.CodeProvince = (String)lecteurClient["Province"];
-                    //this.txtPays.Text = (String)lecteurClient["Pays"];
-                    //this.ctrCodePostal.Code = (String)lecteurClient["CodePostal"];
-
-
                     myConnection.Close();
                 }
             }
         }
 
-        public void LoaderCategorie(int numero)
+        protected void modifierProduit(object sender, EventArgs e)
         {
+            Page.Validate();
 
-            switch (numero)
+            if (Page.IsValid)
             {
-                case 10: ddlCategorieProduits.SelectedIndex = 1; break;
-                case 20: ddlCategorieProduits.SelectedIndex = 2; break;
-                case 30: ddlCategorieProduits.SelectedIndex = 3; break;
-                case 40: ddlCategorieProduits.SelectedIndex = 4; break;
-                case 50: ddlCategorieProduits.SelectedIndex = 5; break;
-                case 60: ddlCategorieProduits.SelectedIndex = 6; break;
-                case 70: ddlCategorieProduits.SelectedIndex = 7; break;
-                case 80: ddlCategorieProduits.SelectedIndex = 8; break;
+                SqlCommand cmdModifier = new SqlCommand(
+                    "UPDATE PPProduits SET " +
+                    "NoCategorie = @categorie, " +
+                    "Nom = @descAbregee, " +
+                    "PrixDemande = @prixDemande, " +
+                    "Description = @descComplete, " +
+                    "NombreItems = @nb, " +
+                    "PrixVente = @prixVente, " +
+                    "Poids = @poids, " +
+                    "Disponibilité = @dispo, " +
+                    "DateMAJ = @date " +
+                    "WHERE NoProduit = @no"
+                    , myConnection);
+
+                cmdModifier.Parameters.AddWithValue("@categorie", ctrProduit.NoCategorie);
+                cmdModifier.Parameters.AddWithValue("@descAbregee", ctrProduit.DescriptionAbregee);
+                cmdModifier.Parameters.AddWithValue("@prixDemande", ctrProduit.PrixDemande);
+                cmdModifier.Parameters.AddWithValue("@descComplete", ctrProduit.DescriptionComplete);
+                cmdModifier.Parameters.AddWithValue("@nb", ctrProduit.NbItems);
+                cmdModifier.Parameters.AddWithValue("@prixVente", ctrProduit.PrixVente == -1 ? DBNull.Value : (object)ctrProduit.PrixVente);
+                cmdModifier.Parameters.AddWithValue("@poids", ctrProduit.Poids);
+                cmdModifier.Parameters.AddWithValue("@dispo", ctrProduit.Disponibilite);
+                cmdModifier.Parameters.AddWithValue("@date", DateTime.Now);
+                cmdModifier.Parameters.AddWithValue("@no", Request.Params["noproduit"]);
+
+                myConnection.Open();
+                cmdModifier.ExecuteNonQuery();
+                myConnection.Close();
             }
-
-        }
-
-        public void chargerCategorie()
-        {
-            SqlConnection dbConn = new SqlConnection();
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
-            maConnexion.Open();
-
-            SqlCommand maCommande = new SqlCommand("select * from PPCategories ", maConnexion);
-            SqlDataReader rep = maCommande.ExecuteReader();
-
-            ddlCategorieProduits.Items.Add("");
-            while (rep.Read())
-            {
-                String nom = (String)rep[1];
-                ddlCategorieProduits.Items.Add(nom);
-            }
-            maConnexion.Close();
-
-
-
         }
     }
 }

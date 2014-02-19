@@ -10,52 +10,7 @@
 namespace Puces_R {
     
     
-    public partial class details_redevance {
-        
-        /// <summary>
-        /// Contrôle ddlTypeRecherche.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
-        
-        /// <summary>
-        /// Contrôle txtCritereRecherche.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
-        
-        /// <summary>
-        /// Contrôle btnRecherche.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecherche;
-        
-        /// <summary>
-        /// Contrôle ddlTrierPar.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrierPar;
-        
-        /// <summary>
-        /// Contrôle ddlParPage.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
+    public partial class stats_desactiver_client {
         
         /// <summary>
         /// Contrôle div_msg.
@@ -67,69 +22,120 @@ namespace Puces_R {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
         
         /// <summary>
-        /// Contrôle mv_commandes.
+        /// Contrôle mv_verdict.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mv_commandes;
+        protected global::System.Web.UI.WebControls.MultiView mv_verdict;
         
         /// <summary>
-        /// Contrôle view_vendeur.
+        /// Contrôle view_un_client.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View view_vendeur;
+        protected global::System.Web.UI.WebControls.View view_un_client;
         
         /// <summary>
-        /// Contrôle rptDetailsRedevance.
+        /// Contrôle titre_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptDetailsRedevance;
+        protected global::System.Web.UI.WebControls.Label titre_demande;
         
         /// <summary>
-        /// Contrôle view_client.
+        /// Contrôle addr_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View view_client;
+        protected global::System.Web.UI.WebControls.Label addr_demande;
         
         /// <summary>
-        /// Contrôle rptDetailsCommande.
+        /// Contrôle tels_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptDetailsCommande;
+        protected global::System.Web.UI.WebControls.Label tels_demande;
         
         /// <summary>
-        /// Contrôle lbl_total.
+        /// Contrôle courriel_demande.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_total;
+        protected global::System.Web.UI.WebControls.Label courriel_demande;
         
         /// <summary>
-        /// Propriété Master.
+        /// Contrôle date_demande.
         /// </summary>
         /// <remarks>
-        /// Propriété générée automatiquement.
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        public new Puces_R.NavigationItems Master {
-            get {
-                return ((Puces_R.NavigationItems)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Label date_demande;
+        
+        /// <summary>
+        /// Contrôle nb_connexions.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nb_connexions;
+        
+        /// <summary>
+        /// Contrôle lbl_nb_lien.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_nb_lien;
+        
+        /// <summary>
+        /// Contrôle btn_voir_plus.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_voir_plus;
+        
+        /// <summary>
+        /// Contrôle view_liste.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view_liste;
+        
+        /// <summary>
+        /// Contrôle rptInnactifs1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptInnactifs1;
+        
+        /// <summary>
+        /// Contrôle view_commandes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view_commandes;
     }
 }

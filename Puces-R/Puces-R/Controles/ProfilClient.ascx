@@ -3,7 +3,6 @@
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Telephone" Src="~/Controles/Telephone.ascx" %>
-<%@ Register TagPrefix="lp" TagName="ChangementMDP" Src="~/Controles/ChangementMDP.ascx" %>
 <%@ Register TagPrefix="se" TagName="Adresse" Src="~/Controles/Adresse.ascx" %>
 <asp:PlaceHolder runat="server" ID="phCourrielEtMotDePasse">
     <tr>
@@ -16,7 +15,15 @@
         <td>
         </td>
     </tr>
-    <lp:ChangementMDP runat="server" ID="ctrMotDePasse" />
+        <tr>
+        <td>
+        </td>
+        <td>
+            <asp:HyperLink runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
+        </td>
+        <td>
+        </td>
+    </tr>
 </asp:PlaceHolder>
 <tr>
     <td>

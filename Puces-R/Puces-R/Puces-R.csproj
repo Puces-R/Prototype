@@ -79,6 +79,7 @@
     <Content Include="Controles\BoiteCommande.ascx" />
     <Content Include="Controles\MenuACoteVendeur.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
+    <Content Include="Controles\TableDetailsCommande.ascx" />
     <Content Include="CSS\style_sec4_2.css" />
     <Content Include="DesactiverPanierVendeur.aspx" />
     <Content Include="details_commande_redevance.aspx" />
@@ -600,6 +601,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="stats_desactiver_client.aspx" />
     <Content Include="SuppressionProduits.aspx" />
     <Content Include="vendeur.aspx" />
     <Content Include="vendeur_redevance.aspx" />
@@ -897,6 +899,13 @@
     <Compile Include="Controles\Province.ascx.designer.cs">
       <DependentUpon>Province.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controles\TableDetailsCommande.ascx.cs">
+      <DependentUpon>TableDetailsCommande.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\TableDetailsCommande.ascx.designer.cs">
+      <DependentUpon>TableDetailsCommande.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controles\TablePanier.ascx.cs">
       <DependentUpon>TablePanier.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -920,6 +929,13 @@
     </Compile>
     <Compile Include="Deconnexion.ashx.cs">
       <DependentUpon>Deconnexion.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DesactiverPanierVendeur.aspx.cs">
+      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesactiverPanierVendeur.aspx.designer.cs">
+      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
     </Compile>
     <Compile Include="details_commande_redevance.aspx.cs">
       <DependentUpon>details_commande_redevance.aspx</DependentUpon>
@@ -1146,6 +1162,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="stats_desactiver_client.aspx.cs">
+      <DependentUpon>stats_desactiver_client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stats_desactiver_client.aspx.designer.cs">
+      <DependentUpon>stats_desactiver_client.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuppressionProduits.aspx.cs">
       <DependentUpon>SuppressionProduits.aspx</DependentUpon>

@@ -38,7 +38,7 @@ namespace Puces_R
                 ctrProfil.CodePostal = (String)lecteurClient["CodePostal"];
                 ctrProfil.Tel1 = (String)lecteurClient["Tel1"];
                 ctrProfil.Tel2 = lecteurClient["Tel2"] == DBNull.Value ? null : (String)lecteurClient["Tel2"];
-                ctrProfil.PoidsMaximum = (int)lecteurClient["MaxLivraison"];
+                ctrProfil.PoidsMaximum = Convert.ToDecimal(lecteurClient["MaxLivraison"]);
                 ctrProfil.LivraisonGratuite = (Decimal)lecteurClient["LivraisonGratuite"];
                 lblMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Jamais" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]);
                 if (lecteurClient["Pourcentage"] is DBNull)

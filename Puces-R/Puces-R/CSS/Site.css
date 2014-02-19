@@ -284,12 +284,6 @@ form
     padding: 10px !important;
 }
 
-.paniers
-{
-    max-height:600px;
-    overflow: auto;
-}
-
 .categories
 {
     padding-right:15px;

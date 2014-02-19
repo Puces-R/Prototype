@@ -148,6 +148,7 @@ namespace Puces_R
                     fileUploaderLogo.SaveAs(MapPath("Images/Logo/" + Session["ID"] + "." + split[1]));
                     image = Session["ID"] + "." + split[1];
 
+
                     //StatusLabel.Text = "Upload status: File uploaded!";
 
                 }
@@ -190,6 +191,11 @@ namespace Puces_R
             fEcrit.WriteLine("<logo ImageURL=\"" + image + "\"> </logo>");
             fEcrit.WriteLine("</Configuration>");
             fEcrit.Close();
+
+            myConnection.Open();
+            SqlCommand maC = new SqlCommand("UPDATE PPVENDEURS SET Configuration=" + Session["ID"], myConnection);
+            maC.ExecuteNonQuery();
+            myConnection.Close();
 
         }
 

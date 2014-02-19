@@ -151,6 +151,7 @@ namespace Puces_R
             rptInnactifs1.DataSource = pdsDemandes;
             rptInnactifs1.DataBind();
 
+            mvCommandes.ActiveViewIndex = tableInnactif1.Rows.Count == 0 ? 1 : 0;
             myConnection.Close();
 
             return tableInnactif1;

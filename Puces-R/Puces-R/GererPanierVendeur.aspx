@@ -139,6 +139,9 @@
     <div id="div_msg" runat="server"></div>
     <div id="div_chck" runat="server">    
         <div style="font-size: small;">
+
+        <asp:MultiView runat="server" ID="mvCommandes" ActiveViewIndex="0">
+        <asp:View ID="View1" runat="server">
         <asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/>
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
@@ -164,6 +167,11 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </table>
+            </asp:View>
+             <asp:View ID="View2" runat="server">
+                <div class="messageCentral">Aucun client n'a de panier chez vous!</div>
+            </asp:View>
+            </asp:MultiView>
         </div>
     </div>
 </asp:Content>

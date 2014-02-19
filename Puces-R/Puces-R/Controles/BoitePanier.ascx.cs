@@ -53,7 +53,7 @@ namespace Puces_R.Controles
             }
         }
 
-        public void ChargerArticlesEnPanier()
+        public void ChargerArticlesEnPanier() 
         {
             SqlCommand commandePanier = new SqlCommand("SELECT TOP(1) SUM(A.NbItems * P.PrixVente) AS SousTotal FROM PPArticlesEnPanier AS A INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + NoClient + " AND A.NoVendeur = " + NoVendeur + " GROUP BY A.NoVendeur", myConnexion);
 

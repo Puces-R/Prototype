@@ -17,7 +17,7 @@ namespace Puces_R
         protected void Page_Load(object sender, EventArgs e)
         {
             Master.ChargerItems += ChargerCommandes;
-
+             
             if (!IsPostBack)
             {
                 if (!IsPostBack)
@@ -52,7 +52,9 @@ namespace Puces_R
                 DataRowView drvCommande = (DataRowView)e.Item.DataItem;
 
                 ctrCommande.NoCommande = (long)drvCommande["NoCommande"];
+                ctrCommande.URL = Convert.ToString((long)drvCommande["NoCommande"]);
                 ctrCommande.NoClient = (long)drvCommande["NoClient"];
+                ctrCommande.Titre = drvCommande["NomComplet"] == DBNull.Value ? "Nom Inconnu" : (String)drvCommande["NomComplet"];
             }
         }
 
@@ -72,7 +74,40 @@ namespace Puces_R
                 whereClause += " AND C.NoClient = " + noVendeur;
             }
 
-            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT C.NoCommande ,C.NoClient FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur" + whereClause + " ORDER BY DateCommande DESC", myConnection);
+            List<String> whereParts = new List<String>();
+
+            if (txtCritereRecherche.Text != string.Empty)
+            {
+                String colonne = "NomComplet";
+                switch (ddlTypeRecherche.SelectedIndex)
+                {
+                    case 0:
+                        colonne = " and (CI.Nom+ ' '+ CI.Prenom)  ";
+                        break;
+                }
+                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+            }
+
+
+           String orderByClause = "";
+           switch (ddlStatut.SelectedIndex)
+            {
+                case 1:
+                    whereParts.Add(" C.Statut='p'  ");
+                    break;
+                case 2:
+                   whereParts.Add(" C.Statut='l'  ");
+                    break;
+
+
+            }
+
+            if (whereParts.Count > 0)
+            {
+                whereClause += string.Join(" AND ", whereParts);
+            }
+
+            SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT C.NoCommande ,C.NoClient , (CI.Nom+ ' '+ CI.Prenom) as NomComplet , C.Statut FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur inner join PPClients CI on C.NoClient= CI.NoClient " + whereClause + " ORDER BY C.Statut DESC, DateCommande DESC", myConnection);
             DataTable tableCommandes = new DataTable();
             adapteurCommandes.Fill(tableCommandes);
 

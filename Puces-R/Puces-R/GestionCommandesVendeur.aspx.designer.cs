@@ -13,6 +13,33 @@ namespace Puces_R {
     public partial class GestionCommandesVendeur {
         
         /// <summary>
+        /// Contrôle ddlTypeRecherche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRecherche;
+        
+        /// <summary>
+        /// Contrôle txtCritereRecherche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCritereRecherche;
+        
+        /// <summary>
+        /// Contrôle btnRecherche.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRecherche;
+        
+        /// <summary>
         /// Contrôle ddlParPage.
         /// </summary>
         /// <remarks>
@@ -22,13 +49,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.DropDownList ddlParPage;
         
         /// <summary>
-        /// Contrôle DropDownList1.
+        /// Contrôle ddlStatut.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatut;
         
         /// <summary>
         /// Contrôle ddlVendeur.

@@ -8,6 +8,15 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="BarreCriteres">
     <span class="boiteListeDeroulante">
+            Recherche:
+            <asp:DropDownList ID="ddlTypeRecherche" runat="server">
+                <asp:ListItem Text="Nom de Client" />
+            </asp:DropDownList>
+            <asp:TextBox ID="txtCritereRecherche" runat="server" />
+            <asp:Button runat="server" Text="Go" ID="btnRecherche" OnClick="AfficherPremierePage" />
+        </span>
+
+    <span class="boiteListeDeroulante">
         Par page:
         <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
             <asp:ListItem Value="3" />
@@ -20,7 +29,8 @@
 
     <span class="boiteListeDeroulante">
         Par Statut:
-        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+        <asp:DropDownList ID="ddlStatut" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+            <asp:ListItem Value="Tous" Text="Tous"/>
             <asp:ListItem Value="p" Text="Prêt pour livraison"/>
             <asp:ListItem Value="l" Text="Livré"/>
 
@@ -44,7 +54,7 @@
                 </asp:DataList>
             </asp:View>
             <asp:View ID="View2" runat="server">
-                <div class="messageCentral">Aucune commande ne vous a été demandé!</div>
+                <div class="messageCentral">Aucune commande ne vous a été soumise!</div>
             </asp:View>
         </asp:MultiView>
     </div>

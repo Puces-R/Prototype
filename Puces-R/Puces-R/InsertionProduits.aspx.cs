@@ -58,6 +58,42 @@ namespace Puces_R
 
         }
 
+        protected void verifierFormat(object sender, ServerValidateEventArgs e) 
+        {
+            bool format = false;
+            if (uplNomFichier.HasFile)
+            {
+                //Response.Write("HAS FILWE \n");
+                try
+                {
+
+                    String filename = Path.GetFileName(uplNomFichier.FileName);
+                    //uplNomFichier.SaveAs(MapPath("Images/Televerse/") + filename);
+                    //Response.Write(filename);
+                    string[] split = filename.Split('.');
+
+
+                    if (split[1] == "jpg" || split[1] == "png" || split[1] == "gif" || split[1] == "jpeg")
+                    {
+                        format = true;
+                        e.IsValid = true;
+                    }
+                    else
+                    {
+                        e.IsValid = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                    //StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                }
+            }
+            
+                
+           
+        }
+
         protected string televerser(long noProduit)
         {
             string filename = "";
@@ -71,6 +107,7 @@ namespace Puces_R
                     //uplNomFichier.SaveAs(MapPath("Images/Televerse/") + filename);
                     //Response.Write(filename);
                     string [] split = filename.Split('.');
+                    
                    // String nom[] = filename.Split('.');
                     //string ext = System.IO.Path.GetExtension(this.File1.PostedFile.FileName);
                    // Response.Write(uplNomFichier.PostedFile.ContentType);
@@ -172,9 +209,17 @@ namespace Puces_R
             Int64 numProduit = Convert.ToInt64(noProduit);
             String nomImage = televerser(numProduit);
             DateTime date = DateTime.Now;
+            String disponibilite = "";
+            if (cbDisponibilite.Checked == true)
+            {
+                disponibilite = "1";
+            }
+            else 
+            {
+                disponibilite = "0";
+            }
 
-
-            SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ","+Session["ID"]+"," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','"+nomImage+"'," + tbPrix.Text + "," + tbNbItems.Text + ",1,NULL," + (tbPrixVente.Text=="" ?"NULL":tbPrixVente.Text ) + "," + tbPois.Text + "," + "'"+date.ToShortDateString()+"'," + "NULL)", maConnexion);
+            SqlCommand maCommande1 = new SqlCommand("INSERT INTO PPProduits VALUES(" + numProduit + ","+Session["ID"]+"," + cat + ",'" + tbDescAbregee.Text + "','" + tbDescComplete.Text + "','"+nomImage+"'," + tbPrix.Text + "," + tbNbItems.Text + ","+disponibilite+",NULL," + (tbPrixVente.Text=="" ?"NULL":tbPrixVente.Text ) + "," + tbPois.Text + "," + "'"+date.ToShortDateString()+"'," + "NULL)", maConnexion);
             maCommande1.ExecuteNonQuery();
             maConnexion.Close();
             //Response.Redirect("GestionProduits.aspx");

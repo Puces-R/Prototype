@@ -43,10 +43,19 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Items" runat="server">
     <div>
+     <asp:MultiView runat="server" ID="mvCommandes" ActiveViewIndex="0">
+         <asp:View ID="View1" runat="server">
         <asp:DataList ID="dtlProduits" RepeatColumns="5" RepeatDirection="Horizontal" runat="server" OnItemDataBound="dtlProduits_ItemDataBound" OnItemCommand="dtlProduits_ItemCommand">
             <ItemTemplate>
                 <lp:BoiteProduit runat="server" ID="ctrProduit" LienActive="true" AfficherBoutonsActions="true" />
             </ItemTemplate>
         </asp:DataList>
+        </asp:View>
+
+        <asp:View ID="View2" runat="server">
+                <div class="messageCentral">Vous n'avez aucun produit dans votre catalogue selon les critères de recherche fournis!</div>
+        </asp:View>
+
+        </asp:MultiView>
     </div>
 </asp:Content>

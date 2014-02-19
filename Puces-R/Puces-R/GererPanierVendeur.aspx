@@ -66,16 +66,16 @@
     <script type="text/javascript" src="lib/js/librairie.js"></script>
     <script>
 
-        $(document).ready(function () {
-            $('#cb_tout').click(function () {
-                var cases = $(".basRectangle").find('.cbCocher'); //mettre le nom de la classe de mes checkbox si on peux desactiver
-                if (this.checked) {
-                    cases.prop('checked', 'checked');
-                } else {
-                    cases.prop('checked', '');
-                }
-            });
-        });
+//        $(document).ready(function () {
+//            $('#cb_tout').click(function () {
+//                var cases = $(".basRectangle").find('.cbCocher'); //mettre le nom de la classe de mes checkbox si on peux desactiver
+//                if (this.checked) {
+//                    cases.prop('checked', 'checked');
+//                } else {
+//                    cases.prop('checked', '');
+//                }
+//            });
+//        });
     </script>
     <script type="text/javascript">
         function check_desactiver_tout(cb_case) {
@@ -137,7 +137,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Items" runat="server">
     <div id="div_msg" runat="server"></div>
-    <div id="div_chck">    
+    <div id="div_chck" runat="server">    
         <div style="font-size: small;">
         <asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les vendeurs sélectionnés" disabled="true" OnClick="desactiver_liste"/>
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >

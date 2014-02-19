@@ -117,7 +117,22 @@ namespace Puces_R
                         default:
                             throw new InvalidOperationException();
                     }
-                    menu.Controls.Add(c);
+                    menu.Controls.Clear();
+                    try
+                    {
+                        menu.Controls.Add(c);
+                    }
+                    catch (Exception)
+                    {
+                        try
+                        {
+                            menu.Controls.Add(c); // Weird error...
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+
                     if (!IsPostBack)
                     {
                         SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);

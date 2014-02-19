@@ -12,6 +12,14 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = Librairie.Connexion;
 
+        public string Province
+        {
+            get
+            {
+                return ctrProvince.CodeProvince;
+            }
+        }
+
         public bool AfficherCourrielEtMotDePasse
         {
             set

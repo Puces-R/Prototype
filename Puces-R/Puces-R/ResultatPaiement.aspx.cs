@@ -45,7 +45,7 @@ namespace Puces_R
                 long noVendeur = Librairie.LireParametre<long>("novendeur");
                 short codeLivraison = Librairie.LireParametre<short>("codelivraison");
 
-                long noClient = (long)Session["ID"];
+                int noClient = (int)Session["ID"];
 
                 HttpRequest requete = HttpContext.Current.Request;
 

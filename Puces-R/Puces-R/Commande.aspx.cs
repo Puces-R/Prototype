@@ -37,6 +37,9 @@ namespace Puces_R
                     ddlAnneeExpiration.Items.Add(i.ToString().Substring(2));
                 }
             }
+
+            ctrMontantsFactures.Province = ctrProfilClient.Province;
+            ctrMontantsFactures.CalculerCout();
         }
 
         protected void btnFacturer_OnClick(object sender, EventArgs e)

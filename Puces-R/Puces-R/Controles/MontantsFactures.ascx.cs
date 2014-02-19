@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Drawing;
 
 namespace Puces_R.Controles
 {
@@ -103,6 +104,18 @@ namespace Puces_R.Controles
             }
         }
 
+        public String Province
+        {
+            get
+            {
+                return (String)ViewState["Province"];
+            }
+            set
+            {
+                ViewState["Province"] = value;
+            }
+        }
+
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -127,7 +140,19 @@ namespace Puces_R.Controles
             }
             else if (ViewState["NoVendeur"] != null)
             {
+<<<<<<< HEAD
                 facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Commande);
+=======
+                if (Province == null)
+                {
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
+                }
+                else
+                {
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Province);
+                }
+                
+>>>>>>> 7038d50b0e40f808b5e5c56e1928e7838bd6e809
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
 
@@ -142,7 +167,17 @@ namespace Puces_R.Controles
             ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
             lblLivraison.Text = facture.PrixLivraison.ToString("C");
             lblTPS.Text = facture.PrixTPS.ToString("C");
-            lblTVQ.Text = facture.PrixTVQ.ToString("C");
+
+            if (facture.PrixTVQInconnu)
+            {
+                mvTVQ.ActiveViewIndex = 1;
+            }
+            else
+            {
+                mvTVQ.ActiveViewIndex = 0;
+                lblTVQ.Text = facture.PrixTVQ.ToString("C");
+            }
+
             lblGrandTotal.Text = facture.GrandTotal.ToString("C");
 
             myConnection.Close();

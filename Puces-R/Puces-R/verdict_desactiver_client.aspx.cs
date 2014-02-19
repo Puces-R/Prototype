@@ -132,14 +132,21 @@ namespace Puces_R
                         SqlCommand commande_effacer_paniers = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
                         commande_effacer_paniers.ExecuteNonQuery();
 
+                        SqlCommand commande_changer_statut = new SqlCommand("UPDATE PPClients SET Statut = 1 WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
+                        commande_changer_statut.ExecuteNonQuery();
+
                         transaction.Commit();
                         Session["msg"] = "Le client " + titre_demande.Text + " a bien été désactivé.";
-                        Response.Redirect("gerer_inactivite_clients.aspx");
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
+                        else Response.Redirect("gerer_inactivite_clients.aspx");
                     }
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
                         Session["err_msg"] = "Erreur lors de la mise à jour de la base de données : " + ex.ToString();
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
                         Response.Redirect("gerer_inactivite_clients.aspx");
                     }
                 }
@@ -220,12 +227,18 @@ namespace Puces_R
                         SqlCommand commande_effacer_paniers = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
                         commande_effacer_paniers.ExecuteNonQuery();
 
+                        SqlCommand commande_changer_statut = new SqlCommand("UPDATE PPClients SET Statut = 1 WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
+                        commande_changer_statut.ExecuteNonQuery();
+
                         transaction.Commit();
+                        Session["msg"] = "Le client " + titre_demande.Text + " a bien été désactivé.";
                     }
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
                         Session["err_msg"] = "Erreur lors de la mise à jour de la base de données pour le client: " + client_a_desactiver + ". Message: " + ex.ToString();
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
                         Response.Redirect("gerer_inactivite_clients.aspx");
                     }
                 }

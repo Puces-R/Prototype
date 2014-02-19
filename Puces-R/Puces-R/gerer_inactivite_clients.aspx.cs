@@ -188,7 +188,7 @@ namespace Puces_R
         protected void desactiver_client(object sender, CommandEventArgs e)
         {
             Session["desactiver_client"] = e.CommandArgument.ToString();
-            Response.Redirect("verdict_desactiver_client.aspx");
+            Response.Redirect(Chemin.Ajouter("verdict_desactiver_client.aspx", "Retour à la liste des clients innactifs"));  
         }
 
         protected void desactiver_liste(object sender, EventArgs e)

@@ -100,8 +100,8 @@ namespace Puces_R
                     results.Close();
                     myConnection.Close();
                 }
-                else Response.Redirect("Default.aspx");
-            else Response.Redirect("Default.aspx");
+                else Response.Redirect("Deconnexion.ashx");
+            else Response.Redirect("Deconnexion.ashx");
 
             Master.ChargerItems += charge_details_redevance;
 
@@ -182,7 +182,7 @@ namespace Puces_R
         protected void voir_details_commande_redevance(object sender, CommandEventArgs e)
         {
             Session["no_commande_redevance"] = e.CommandArgument.ToString();
-            Response.Redirect("details_commande_redevance.aspx");
+            Response.Redirect(Chemin.Ajouter("details_commande_redevance.aspx", "Retour à la liste des commandes"));
         }
     }
 }

@@ -31,7 +31,14 @@ namespace Puces_R
             myConnection.Close();
 
             Response.Write(note.ToString());
-            ctrEtoiles.Cote = Convert.ToDecimal(note);
+            if (note is DBNull)
+            {
+                ctrEtoiles.Visible = false;
+            }
+            else
+            {
+                ctrEtoiles.Cote = Convert.ToDecimal(note);
+            }
 
             nbVisite.Text = Convert.ToString(nb);
 

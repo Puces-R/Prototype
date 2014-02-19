@@ -41,7 +41,14 @@ namespace Puces_R
                 ctrProfil.PoidsMaximum = (int)lecteurClient["MaxLivraison"];
                 ctrProfil.LivraisonGratuite = (Decimal)lecteurClient["LivraisonGratuite"];
                 lblMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Jamais" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]);
-                lblTaux.Text = Convert.ToString((Decimal)lecteurClient["Pourcentage"] * 100) + " %";
+                if (lecteurClient["Pourcentage"] is DBNull)
+                {
+                    lblTaux.Text = "Votre profil n'a pas encore été accepté";
+                }
+                else
+                {
+                    lblTaux.Text = Convert.ToString((Decimal)lecteurClient["Pourcentage"] * 100) + " %";
+                }
                 ctrProfil.Taxes = (Boolean)lecteurClient["Taxes"];
             }
 

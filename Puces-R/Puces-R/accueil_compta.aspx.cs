@@ -136,7 +136,7 @@ namespace Puces_R
         protected void voir_redevances_mois(object sender, CommandEventArgs e)
         {
             Session["mois"] = e.CommandArgument.ToString();
-            Response.Redirect("vendeur_redevance.aspx");
+            Response.Redirect(Chemin.Ajouter("vendeur_redevance.aspx", "Retour à l'accueil du suivi des redevances"));
         }
 
         protected void verifier_mois_compta()

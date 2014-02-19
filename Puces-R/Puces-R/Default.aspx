@@ -18,7 +18,7 @@
                 <table class="formulaire formulaireConnexion colonneTitre">
                     <tr>
                         <td>
-                            Adresse courriel: 
+                            Adresse courriel
                         </td>
                         <td>
                             <asp:TextBox runat="server" ID="tbCourriel" MaxLength="100" Width="150" />

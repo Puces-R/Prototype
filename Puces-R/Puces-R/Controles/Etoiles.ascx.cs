@@ -25,6 +25,10 @@ namespace Puces_R.Controles
         {
             get
             {
+                if (ViewState["Cote"] == null)
+                {
+                    return -1;
+                }
                 return (decimal)ViewState["Cote"];
             }
             set
@@ -35,7 +39,7 @@ namespace Puces_R.Controles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!IsPostBack && Cote != -1)
             {
                 afficherCote();
             }

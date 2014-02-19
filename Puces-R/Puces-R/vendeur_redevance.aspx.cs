@@ -190,7 +190,7 @@ namespace Puces_R
         protected void voir_details_redevance(object sender, CommandEventArgs e)
         {
             Session["no_vendeur_no_commande"] = e.CommandArgument;
-            Response.Redirect("details_redevance.aspx");
+            Response.Redirect(Chemin.Ajouter("details_redevance.aspx", "Retour à la liste des vendeurs de ce mois"));
         }
     }
 }

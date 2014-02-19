@@ -228,6 +228,8 @@
     <Content Include="lib\js\librairie.js" />
     <Content Include="ModificationProduits.aspx" />
     <Content Include="ModifierMotPasse.aspx" />
+    <Content Include="MsgDownload\msg12_jaimecharest.png" />
+    <Content Include="MsgDownload\msg17_batman-logo-big.gif" />
     <Content Include="MsgDownload\msg2_Steve_Jobs_Headshot_2010-CROP.jpg" />
     <Content Include="NouveauxProduits.aspx" />
     <Content Include="Panier.aspx" />
@@ -928,13 +930,6 @@
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
-    <Compile Include="DesactiverPanierVendeur.aspx.cs">
-      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DesactiverPanierVendeur.aspx.designer.cs">
-      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Deconnexion.ashx.cs">
       <DependentUpon>Deconnexion.ashx</DependentUpon>
     </Compile>
@@ -1255,6 +1250,7 @@
     </None>
     <Content Include="TelechargementMessage.ashx" />
     <Content Include="Deconnexion.ashx" />
+    <None Include="MsgDownload\msg8_Offre de stage - Irosoft - H14.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BonCommande.rdlc">

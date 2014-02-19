@@ -60,7 +60,7 @@ namespace Puces_R
         {
             get
             {
-                return (!Obligatoire || reqMDP.IsValid) && (!Longueur && custMDP.IsValid);
+                return (!Obligatoire || reqMDP.IsValid) && (!Longueur || custMDP.IsValid);
             }
         }
 

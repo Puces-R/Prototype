@@ -17,21 +17,26 @@ namespace Puces_R.Controles
         {
             set
             {
-                SqlCommand commandePanierVide = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"], myConnection);
-
-                myConnection.Open();
-                int nbItems = (int)commandePanierVide.ExecuteScalar();
-                myConnection.Close();
-
+                loadNbItems(value);
                 MenuItem itmPanier = ctrMenu.FindItem("Panier");
                 MenuItem itmProduits = ctrMenu.FindItem("Produits");
                 MenuItem itmHistorique = ctrMenu.FindItem("Historique");
 
                 itmPanier.NavigateUrl = "../Panier.aspx?novendeur=" + value;
-                itmPanier.Text = "Panier (" + nbItems + " item" + (nbItems > 1 ? "s" : "") + ")";
                 itmProduits.NavigateUrl = "../Produits.aspx?novendeur=" + value;
                 itmHistorique.NavigateUrl = "../CommandesClient.aspx?novendeur=" + value;
             }
+        }
+
+        public void loadNbItems(long noVendeur)
+        {
+            SqlCommand commandePanierVide = new SqlCommand("SELECT COUNT(*) FROM PPArticlesEnPanier WHERE NoVendeur = " + noVendeur + " AND NoClient = " + Session["ID"], myConnection);
+
+            myConnection.Open();
+            int nbItems = (int)commandePanierVide.ExecuteScalar();
+            myConnection.Close();
+
+            ctrMenu.FindItem("Panier").Text = "Panier (" + nbItems + " item" + (nbItems > 1 ? "s" : "") + ")";
         }
 
         protected void Page_Load(object sender, EventArgs e)

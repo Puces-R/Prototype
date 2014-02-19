@@ -52,34 +52,33 @@ namespace Puces_R.Controles
 
         public void Sauvegarder()
         {
-            Dictionary<String, String> dicPaires = new Dictionary<String, String>();
+            SqlCommand cmdProfil = new SqlCommand(
+                "UPDATE PPClients SET " +
+                "Prenom = @prenom, " +
+                "Nom = @nom, " +
+                "Rue = @rue, " +
+                "Ville = @ville, " +
+                "Province = @province, " +
+                "Pays = @pays, " +
+                "CodePostal = @codepostal, " +
+                "Tel1 = @tel1, " +
+                "Tel2 = @tel2 " +
+                "WHERE NoClient = @no"
+                , myConnection);
 
-            dicPaires.Add("Prenom", this.txtPrenom.Text);
-            dicPaires.Add("Nom", this.txtNom.Text);
-            dicPaires.Add("Rue", this.txtRue.Text);
-            dicPaires.Add("Ville", this.txtVille.Text);
-            dicPaires.Add("Province", this.ctrProvince.CodeProvince);
-            dicPaires.Add("Pays", this.txtPays.Text);
-            dicPaires.Add("CodePostal", this.ctrCodePostal.Code);
-            dicPaires.Add("Tel1", this.ctrTelephone.NoTelephone);
-            dicPaires.Add("Tel2", this.ctrCellulaire.NoTelephone);
-
-            if (ctrMotDePasse.EstDeroule)
-            {
-                dicPaires.Add("MotDePasse", this.ctrMotDePasse.MotDePasse);
-            }
-
-            List<String> tabPaires = new List<String>();
-            foreach (String clee in dicPaires.Keys)
-            {
-                tabPaires.Add(clee + " = '" + dicPaires[clee] + "'");
-            }
-            String strPaires = String.Join(", ", tabPaires);
-
-            SqlCommand commandeClient = new SqlCommand("UPDATE PPClients SET " + strPaires + " WHERE NoClient = " + Session["ID"], myConnection);
+            cmdProfil.Parameters.AddWithValue("@prenom", this.txtPrenom.Text);
+            cmdProfil.Parameters.AddWithValue("@nom", this.txtNom.Text);
+            cmdProfil.Parameters.AddWithValue("@rue", this.txtRue.Text);
+            cmdProfil.Parameters.AddWithValue("@ville", this.txtVille.Text);
+            cmdProfil.Parameters.AddWithValue("@province", this.ctrProvince.CodeProvince);
+            cmdProfil.Parameters.AddWithValue("@pays", this.txtPays.Text);
+            cmdProfil.Parameters.AddWithValue("@codepostal", this.ctrCodePostal.Code);
+            cmdProfil.Parameters.AddWithValue("@tel1", this.ctrTelephone.NoTelephone);
+            cmdProfil.Parameters.AddWithValue("@tel2", this.ctrCellulaire.NoTelephone == null ? DBNull.Value : (object)this.ctrCellulaire.NoTelephone);
+            cmdProfil.Parameters.AddWithValue("@no", Session["ID"]);
 
             myConnection.Open();
-            commandeClient.ExecuteNonQuery();
+            cmdProfil.ExecuteNonQuery();
             myConnection.Close();
         }
     }

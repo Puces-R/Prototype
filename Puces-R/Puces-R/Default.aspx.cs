@@ -79,6 +79,7 @@ namespace Puces_R
 
         protected void defautClient(object sender, EventArgs e)
         {
+            Session.Clear();
             Session["ID"] = 10000;
             Session["Type"] = 'C';
             Response.Redirect("AccueilClient.aspx", false);
@@ -86,6 +87,7 @@ namespace Puces_R
 
         protected void defautVendeur(object sender, EventArgs e)
         {
+            Session.Clear();
             Session["ID"] = 10;
             Session["Type"] = 'V';
             Response.Redirect("AccueilVendeur.aspx", false);
@@ -93,6 +95,7 @@ namespace Puces_R
 
         protected void defautGestionnaire(object sender, EventArgs e)
         {
+            Session.Clear();
             Session["ID"] = 1;
             Session["Type"] = 'G';
             Response.Redirect("accueil_gestionnaire.aspx", false);

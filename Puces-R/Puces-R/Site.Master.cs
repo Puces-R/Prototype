@@ -60,26 +60,32 @@ namespace Puces_R
 
                     myConnection.Open();
                     SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
-                    String nom = (String)commandXML.ExecuteScalar();
+                    Object nom = commandXML.ExecuteScalar();
 
                     myConnection.Close();
-                    if (nom == null)
+
+                    if (!(nom is DBNull))
                     {
-                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilClient.aspx" : Chemin.UrlRetour);
+                        LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
+
+                        if (lecture.Existe)
+                        {
+                            imgLogo.Visible = true;
+                            String couleur = lecture.Couleur;
+
+                            pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
+                            imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
+                            mvTitre.ActiveViewIndex = 1;
+                        }
+                        else
+                        {
+                            Titre = nomAffaires;
+                        }
                     }
-
-                    LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
-
-                    if (lecture.Existe)
+                    else
                     {
-                        imgLogo.Visible = true;
-                        String couleur = lecture.Couleur;
-
-                        pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
-                        imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
+                        Titre = nomAffaires;
                     }
-
-                    mvTitre.ActiveViewIndex = 1;
                 }
                 else
                 {

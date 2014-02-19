@@ -44,7 +44,7 @@ namespace Puces_R
 
             String whereClause = " WHERE A.NoClient = " + noClient+ " AND P.NoVendeur = " + noVendeur;
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, PrixDemande, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, ISNULL(PrixVente, PrixDemande) AS Prix, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
@@ -54,7 +54,7 @@ namespace Puces_R
             foreach (DataRow produit in tableProduits.Rows)
             {
                 short nbItems = (short)produit["NbItems"];
-                SousTotal += nbItems * (decimal)produit["PrixDemande"];
+                SousTotal += nbItems * (decimal)produit["Prix"];
                 PoidsTotal += nbItems * (decimal)produit["Poids"];
             }
 

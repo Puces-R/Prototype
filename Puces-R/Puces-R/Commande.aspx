@@ -13,7 +13,7 @@
         <div class="panneau pnlGauche pnlDetails">
             <h2>
                 Produits</h2>
-            <lp:TablePanier runat="server" ID="ctrTablePanier" />
+            <lp:TablePanier runat="server" ID="ctrTablePanier" Commande="true" />
             <div class="lignePointilleHorizontale pleineLargeur">
             </div>
             <h2>

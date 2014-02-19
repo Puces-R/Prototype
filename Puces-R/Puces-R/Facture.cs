@@ -23,6 +23,8 @@ namespace Puces_R
         public decimal TauxTPS { get; private set; }
         public decimal TauxTVQ { get; private set; }
         public short CodeLivraison { get; private set; }
+        public bool PrixTVQInconnu { get; private set; }
+        public string Province { get; private set; }
 
         public decimal GrandTotal
         {
@@ -37,12 +39,14 @@ namespace Puces_R
             this.CodeLivraison = codeLivraison;
         }
 
-        public Facture(long noClient, long noVendeur, short codeLivraison) : this(codeLivraison)
+        public Facture(long noClient, long noVendeur, short codeLivraison) : this(noClient, noVendeur, codeLivraison, null) { }
+
+        public Facture(long noClient, long noVendeur, short codeLivraison, String provinceClient) : this(codeLivraison)
         {
             this.NoClient = noClient;
             this.NoVendeur = noVendeur;
 
-            String whereClause = " WHERE A.NoClient = " + noClient+ " AND P.NoVendeur = " + noVendeur;
+            String whereClause = " WHERE A.NoClient = " + noClient + " AND P.NoVendeur = " + noVendeur;
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, PrixDemande, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
@@ -91,16 +95,32 @@ namespace Puces_R
 
             this.PrixTPS = prixAvecLivraison * TauxTPS;
 
-            SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
-            string provinceClient = (String)commandeClient.ExecuteScalar();
-
-            if (provinceVendeur != "QC" || provinceClient != "QC")
+            if (provinceClient == null)
             {
-                this.PrixTVQ = 0;
+
+                SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
+
+                Object objPorvinceClient = commandeClient.ExecuteScalar();
+
+                if (objPorvinceClient is String)
+                {
+                    provinceClient = (String)objPorvinceClient;
+                }
+            }
+            if (provinceClient == null)
+            {
+                this.PrixTVQInconnu = true;
             }
             else
             {
-                this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                if (provinceVendeur != "QC" || provinceClient != "QC")
+                {
+                    this.PrixTVQ = 0;
+                }
+                else
+                {
+                    this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                }
             }
         }
 

@@ -189,6 +189,7 @@
     <Content Include="Images\EtoileVide.png" />
     <Content Include="Images\EtoilePleine.png" />
     <Content Include="Images\Dernier.png" />
+    <Content Include="Images\Fond\centre-achat.jpg" />
     <Content Include="Images\image_non_disponible.png" />
     <Content Include="Images\logo-original.png" />
     <Content Include="Images\logo.jpg" />
@@ -234,6 +235,7 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
+    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="ResultatPaiement.aspx" />
     <Content Include="ScriptsColorPicker\globalization\globalize.culture.cs-CZ.js" />
@@ -925,6 +927,13 @@
     </Compile>
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesactiverPanierVendeur.aspx.cs">
+      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesactiverPanierVendeur.aspx.designer.cs">
+      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
     </Compile>
     <Compile Include="Deconnexion.ashx.cs">
       <DependentUpon>Deconnexion.ashx</DependentUpon>

@@ -79,7 +79,7 @@ namespace Puces_R
 
         protected void defautClient(object sender, EventArgs e)
         {
-            Session["ID"] = 30063;
+            Session["ID"] = 10000;
             Session["Type"] = 'C';
             Response.Redirect("AccueilClient.aspx", false);
         }

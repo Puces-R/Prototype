@@ -103,6 +103,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.MultiView mvTitre;
         
         /// <summary>
+        /// Contrôle View1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
+        
+        /// <summary>
         /// Contrôle lblTitreSansMenu.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitreSansMenu;
+        
+        /// <summary>
+        /// Contrôle View2.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
         /// Contrôle pnlTitre.

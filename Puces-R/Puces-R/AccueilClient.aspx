@@ -9,14 +9,14 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div>
-        <div class="panneau pnlGauche">
-            <lp:Categories runat="server" />
+    <div class="pleineHauteur">
+        <div class="panneau pnlGauche pleineHauteur">
+            <lp:Categories ID="Categories1" runat="server" />
         </div>
-        <div class="panneau pnlDroite" style="height: 400px;">
+        <div class="panneau pnlDroite pleineHauteur">
             <h2>Paniers</h2>
             <asp:MultiView runat="server" ID="mvPaniers">
-                <asp:View runat="server">
+                <asp:View ID="View1" runat="server">
                     <div class="paniers">
                         <ASP:Repeater id="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
                             <ItemTemplate>
@@ -25,7 +25,7 @@
                         </asp:Repeater> 
                     </div>
                 </asp:View>
-                <asp:View runat="server">
+                <asp:View ID="View2" runat="server">
                     <div class="aucunPanier rectangleItem rectangleComplet">
                         <img src="Images/Precedent.png" alt="Flèche" />
                         <p>Vous n'avez présentement aucun produit en panier. Vous pouvez explorer par catégorie les différents produits de nos vendeurs.</p>

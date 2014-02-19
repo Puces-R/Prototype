@@ -10,6 +10,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">  
     <div>
+    <div id="div_msg" runat="server"></div>
     <asp:MultiView runat="server" ID="mv_verdict" >
         <asp:View runat="server" ID="view_un_client">
             <div class="rectangleItem hautRectangle" >

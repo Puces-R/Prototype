@@ -31,7 +31,15 @@ namespace Puces_R
             myConnection.Close();
 
             Response.Write(note.ToString());
-            ctrEtoiles.Cote = Convert.ToDecimal(note);
+            if (note is DBNull)
+            {
+                ctrEtoiles.Visible = false;
+                lblEvaluation.Text = " ----  Aucune évaluation";
+            }
+            else
+            {
+                ctrEtoiles.Cote = Convert.ToDecimal(note);
+            }
 
             nbVisite.Text = Convert.ToString(nb);
 
@@ -42,11 +50,16 @@ namespace Puces_R
             rptPaniers.DataSource = new DataView(tablePaniers);
             rptPaniers.DataBind();
 
+            mvPanier.ActiveViewIndex = tablePaniers.Rows.Count == 0 ? 1 : 0;
+
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT TOP 5 * from PPCommandes where Statut='p' and NoVendeur="+Session["ID"] +" order by DateCommande DESC ", myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
+
             rptCommandes.DataSource = tableProduits;
             rptCommandes.DataBind();
+
+            mvCommandes.ActiveViewIndex = tableProduits.Rows.Count == 0 ? 1 : 0;
         }
 
         protected void rptCommandes_ItemCommand(object sender, RepeaterCommandEventArgs e)

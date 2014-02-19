@@ -41,7 +41,14 @@ namespace Puces_R
                 ctrProfil.PoidsMaximum = (int)lecteurClient["MaxLivraison"];
                 ctrProfil.LivraisonGratuite = (Decimal)lecteurClient["LivraisonGratuite"];
                 lblMAJ.Text = lecteurClient["DateMAJ"] == DBNull.Value ? "Jamais" : Convert.ToString((DateTime)lecteurClient["DateMAJ"]);
-                lblTaux.Text = Convert.ToString((Decimal)lecteurClient["Pourcentage"] * 100) + " %";
+                if (lecteurClient["Pourcentage"] is DBNull)
+                {
+                    lblTaux.Text = "Votre profil n'a pas encore été accepté";
+                }
+                else
+                {
+                    lblTaux.Text = Convert.ToString((Decimal)lecteurClient["Pourcentage"] * 100) + " %";
+                }
                 ctrProfil.Taxes = (Boolean)lecteurClient["Taxes"];
             }
 
@@ -141,6 +148,7 @@ namespace Puces_R
                     fileUploaderLogo.SaveAs(MapPath("Images/Logo/" + Session["ID"] + "." + split[1]));
                     image = Session["ID"] + "." + split[1];
 
+
                     //StatusLabel.Text = "Upload status: File uploaded!";
 
                 }
@@ -183,6 +191,11 @@ namespace Puces_R
             fEcrit.WriteLine("<logo ImageURL=\"" + image + "\"> </logo>");
             fEcrit.WriteLine("</Configuration>");
             fEcrit.Close();
+
+            myConnection.Open();
+            SqlCommand maC = new SqlCommand("UPDATE PPVENDEURS SET Configuration=" + Session["ID"], myConnection);
+            maC.ExecuteNonQuery();
+            myConnection.Close();
 
         }
 

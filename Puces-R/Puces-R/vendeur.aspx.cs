@@ -13,6 +13,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = Librairie.Connexion;
         int no_vendeur;
+        int[] dest = new int[1];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,17 +27,25 @@ namespace Puces_R
             {
                 if (Session["selected_vendeur"].ToString() != "")
                     no_vendeur = Convert.ToInt32(Session["selected_vendeur"].ToString());
+                dest[0] = no_vendeur;
             }
-            //else Response.Redirect("connexion.aspx");
+
+            if (Session["msg"] != null)
+                if (Session["msg"].ToString() != "")
+                {
+                    div_msg.InnerText = Session["msg"].ToString();
+                    Session["msg"] = null;
+                }
+
+            if (Session["err_msg"] != null)
+                if (Session["err_msg"].ToString() != "")
+                {
+                    Response.Write(Session["err_msg"]);
+                    Session["err_msg"] = null;
+                }
 
             charger_info();
             mvVendeur.SetActiveView(View1);
-        }
-
-        protected void selectionner_vendeur(object sender, CommandEventArgs e)
-        {
-            Session["hist_vendeur"] = e.CommandArgument;
-            Response.Redirect("en_construction.aspx");
         }
 
         protected void changer_view(object sender, CommandEventArgs e)
@@ -51,6 +60,22 @@ namespace Puces_R
                         break;
                     case 2:
                         mvVendeur.SetActiveView(View3);
+                        break;
+                    case 3:
+                        Librairie.Messagerie(dest, null, null, true, "Retour à la page de gestion du vendeur");
+                        break;
+                    case 4:
+                        Librairie.Courriel(dest, null, null, true, "Retour à la page de gestion du vendeur");
+                        break;
+                    case 5:                        
+                        Session["desactiver_vendeur"] = no_vendeur.ToString();
+                        Session["retour_desactiver_vendeur"] = "vendeur.aspx";
+                        Response.Redirect(Chemin.Ajouter("verdict_desactiver.aspx", "Retour à la page de gestion du vendeur"));
+                        break;
+                    case 6:                        
+                        Session["histo_no_vendeur"] = no_vendeur.ToString();
+                        Response.Redirect(Chemin.Ajouter("histo_redevance_vendeur.aspx", "Retour à la page de gestion du vendeur"));
+
                         break;
                     default:
                         charger_info();
@@ -80,7 +105,7 @@ namespace Puces_R
                 lbl_courriel.Text = results["AdresseEmail"].ToString();
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
-                lbl_livraison_gratuite.Text = Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $";
+                lbl_livraison_gratuite.Text = (results["LivraisonGratuite"] != DBNull.Value ? Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $" : "Pas de livraison gratuite");
                 //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
 
                 Master.Titre = results["NomAffaires"].ToString();
@@ -89,9 +114,10 @@ namespace Puces_R
                 {
                     case "1":
                         lbl_statut.Text = "Inactif";
+                        lb_desactiver.Enabled = false;
                         break;
                     case "2":
-                        lbl_statut.Text = "En attende d'approbation";
+                        lbl_statut.Text = "En attente d'approbation";
                         break;
                     case "3":
                         lbl_statut.Text = "En retard de paiement";

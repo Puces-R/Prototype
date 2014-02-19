@@ -13,6 +13,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         int no_client, min_option = 5, nb_option = 5, increment = 1;
+        int[] dest = new int[1];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,11 +29,26 @@ namespace Puces_R
             {
                 if (Session["selected_client"].ToString() != "")
                     no_client = Convert.ToInt32(Session["selected_client"].ToString());
+                dest[0] = no_client;
             }
             //else Response.Redirect("connexion.aspx");
 
             charger_info();
             mvVendeur.SetActiveView(View1);
+
+            if (Session["msg"] != null)
+                if (Session["msg"].ToString() != "")
+                {
+                    div_msg.InnerText = Session["msg"].ToString();
+                    Session["msg"] = null;
+                }
+
+            if (Session["err_msg"] != null)
+                if (Session["err_msg"].ToString() != "")
+                {
+                    Response.Write(Session["err_msg"]);
+                    Session["err_msg"] = null;
+                }
         }
 
         protected void changer_view(object sender, CommandEventArgs e)
@@ -44,6 +60,17 @@ namespace Puces_R
                     case 1:
                         generer_stat();
                         mvVendeur.SetActiveView(View2);
+                        break;
+                    case 2:
+                        Librairie.Messagerie(dest, null, null, true, "Retour à la page de gestion du client");
+                        break;
+                    case 3:
+                        Librairie.Courriel(dest, null, null, true, "Retour à la page de gestion du client");
+                        break;
+                    case 4:
+                        Session["desactiver_client"] = no_client.ToString();
+                        Session["retour_desactiver_client"] = "client.aspx";
+                        Response.Redirect(Chemin.Ajouter("verdict_desactiver_client.aspx", "Retour à la page de gestion du client"));
                         break;
                     default:
                         charger_info();
@@ -78,6 +105,7 @@ namespace Puces_R
                 {
                     case "1":
                         lbl_statut.Text = "Inactif";
+                        lb_desactiver.Enabled = false;
                         break;
                     default:
                         lbl_statut.Text = "Actif";

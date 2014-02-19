@@ -18,12 +18,19 @@ namespace Puces_R
         string liste_a_desactiver;
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            if (Session["msg"] != null)
+                if (Session["msg"].ToString() != "")
+                {
+                    div_msg.InnerText = Session["msg"].ToString();
+                    Session["msg"] = null;
+                }
+
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
                     Response.Write(Session["err_msg"]);
-                    Session["err_msg"] = "";
+                    Session["err_msg"] = null;
                 }
 
             if (!IsPostBack)
@@ -36,7 +43,7 @@ namespace Puces_R
                         ((SiteMaster)Master).Titre = "Voulez vous vraiment désactiver ce client";
                         no_client = Convert.ToInt32(Session["desactiver_client"].ToString());
                         mv_verdict.SetActiveView(view_un_client);
-                        Session["desactiver_client"] = null;
+                        //Session["desactiver_client"] = null;
                     }
                 }
                 else
@@ -79,6 +86,7 @@ namespace Puces_R
             myConnection.Open();
             SqlCommand commande_verifier_visite = new SqlCommand("SELECT NoClient FROM PPVendeursClients WHERE NoClient = " + e.CommandArgument, myConnection);
             object visite = commande_verifier_visite.ExecuteScalar();
+            int nb_liens;
 
             if (visite == DBNull.Value)
             {
@@ -129,18 +137,29 @@ namespace Puces_R
                         SqlCommand commande_effacer_commande = new SqlCommand("DELETE FROM PPCommandes WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
                         commande_effacer_commande.ExecuteNonQuery();
 
+                        SqlCommand commande_effacer_liens = new SqlCommand("DELETE FROM PPVendeursClients WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
+                        nb_liens = commande_effacer_liens.ExecuteNonQuery();
+
                         SqlCommand commande_effacer_paniers = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
                         commande_effacer_paniers.ExecuteNonQuery();
 
+                        SqlCommand commande_changer_statut = new SqlCommand("UPDATE PPClients SET Statut = 1 WHERE NoClient = " + e.CommandArgument, myConnection, transaction);
+                        commande_changer_statut.ExecuteNonQuery();
+
                         transaction.Commit();
                         Session["msg"] = "Le client " + titre_demande.Text + " a bien été désactivé.";
-                        Response.Redirect("gerer_inactivite_clients.aspx");
+                        Session["nb_liens"] = nb_liens;
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
+                        else Response.Redirect(Chemin.Ajouter("stats_desactiver_client.aspx", "Retour aux informations du client"));
                     }
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
                         Session["err_msg"] = "Erreur lors de la mise à jour de la base de données : " + ex.ToString();
-                        Response.Redirect("gerer_inactivite_clients.aspx");
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
+                        Response.Redirect("gerer_inactivite_client.aspx");
                     }
                 }
             }
@@ -151,22 +170,26 @@ namespace Puces_R
         protected void desactiver_liste_client(object sender, CommandEventArgs e)
         {
             List<String> tab_desactiver = new List<String>();
+            string liste_nb_liens = "";
             //tab_desactiver = liste_a_desactiver.Split(',');
             tab_desactiver.AddRange(Session["desactiver_liste"].ToString().Split(','));
 
             foreach (string client_a_desctiver in tab_desactiver)
-                desactiver_un_client(Convert.ToInt32(client_a_desctiver));
+                liste_nb_liens += desactiver_un_client(Convert.ToInt32(client_a_desctiver)) + ",";
 
             Session["msg"] = "Les clients sélectionnés ont bien été désactivés.";
-            Session["desactiver_liste"] = "";
-            Response.Redirect("gerer_inactivite_clients.aspx");
+            Session["liste_nb_liens"] = liste_nb_liens;
+            //Session["desactiver_liste"] = "";
+            Response.Redirect(Chemin.Ajouter("stats_desactiver_client.aspx", "Retour à la liste des clients désactivés"));
         }
 
-        public void desactiver_un_client(int client_a_desactiver)
+        public int desactiver_un_client(int client_a_desactiver)
         {
+            SqlConnection myConnection = Librairie.Connexion;
             myConnection.Open();
             SqlCommand commande_verifier_visite = new SqlCommand("SELECT NoClient FROM PPVendeursClients WHERE NoClient = " + client_a_desactiver, myConnection);
             object visite = commande_verifier_visite.ExecuteScalar();
+            int nb_liens = 0;
 
             if (visite == DBNull.Value)
             {
@@ -217,22 +240,33 @@ namespace Puces_R
                         SqlCommand commande_effacer_commande = new SqlCommand("DELETE FROM PPCommandes WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
                         commande_effacer_commande.ExecuteNonQuery();
 
+                        SqlCommand commande_effacer_liens = new SqlCommand("DELETE FROM PPVendeursClients WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
+                        nb_liens = commande_effacer_liens.ExecuteNonQuery();
+
                         SqlCommand commande_effacer_paniers = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
                         commande_effacer_paniers.ExecuteNonQuery();
 
+                        SqlCommand commande_changer_statut = new SqlCommand("UPDATE PPClients SET Statut = 1 WHERE NoClient = " + client_a_desactiver, myConnection, transaction);
+                        commande_changer_statut.ExecuteNonQuery();
+
                         transaction.Commit();
+                        Session["msg"] = "Le client " + titre_demande.Text + " a bien été désactivé.";
                     }
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
                         Session["err_msg"] = "Erreur lors de la mise à jour de la base de données pour le client: " + client_a_desactiver + ". Message: " + ex.ToString();
-                        Response.Redirect("gerer_inactivite_clients.aspx");
+                        if (Session["retour_desactiver_client"] != null)
+                            Response.Redirect(Session["retour_desactiver_client"].ToString());
+                        Response.Redirect("gerer_inactivite_client.aspx");
                     }
                 }
+
             }
 
             myConnection.Close();
-            Response.Redirect("gerer_inactivite_clients.aspx");
+            //Response.Redirect("gerer_inactivite_clients.aspx");
+            return nb_liens;
         }
 
         private DataTable charge_liste()

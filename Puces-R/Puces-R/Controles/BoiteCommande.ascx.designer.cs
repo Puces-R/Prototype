@@ -31,6 +31,24 @@ namespace Puces_R.Controles {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
+        /// Contrôle hypNomClient.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypNomClient;
+        
+        /// <summary>
+        /// Contrôle hypNoCommande.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypNoCommande;
+        
+        /// <summary>
         /// Contrôle lblNoCommande.
         /// </summary>
         /// <remarks>
@@ -64,7 +82,7 @@ namespace Puces_R.Controles {
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoClient;
+        protected global::System.Web.UI.WebControls.HyperLink lblNoClient;
         
         /// <summary>
         /// Contrôle ctrMontantsFactures.

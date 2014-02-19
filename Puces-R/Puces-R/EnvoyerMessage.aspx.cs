@@ -27,14 +27,17 @@ namespace Puces_R
             string parametres = Request["__EVENTARGUMENT"];
             lstNoDestinataires = null;
 
-            if (Request["__EVENTTARGET"] == "ChoixDestinataires" && parametres != string.Empty)
+            if (Request["__EVENTTARGET"] == "ChoixDestinataires")
             {
                 lbDestinataires.Items.Clear();
-                string[] lstParametres = parametres.Split(",".ToArray());
-                lstNoDestinataires = new int[lstParametres.Length];
-                for (int i = 0; i < lstNoDestinataires.Length; i++)
+                if (parametres != string.Empty)
                 {
-                    lstNoDestinataires[i] = int.Parse(lstParametres[i]);
+                    string[] lstParametres = parametres.Split(",".ToArray());
+                    lstNoDestinataires = new int[lstParametres.Length];
+                    for (int i = 0; i < lstNoDestinataires.Length; i++)
+                    {
+                        lstNoDestinataires[i] = int.Parse(lstParametres[i]);
+                    }
                 }
             }
             else if (Request.QueryString["NoMessage"] != null)

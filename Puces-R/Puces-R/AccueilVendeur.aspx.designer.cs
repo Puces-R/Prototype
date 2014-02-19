@@ -22,13 +22,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label nbVisite;
         
         /// <summary>
-        /// Contrôle Label1.
+        /// Contrôle lblEvaluation.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblEvaluation;
         
         /// <summary>
         /// Contrôle ctrEtoiles.
@@ -40,6 +40,24 @@ namespace Puces_R {
         protected global::Puces_R.Controles.Etoiles ctrEtoiles;
         
         /// <summary>
+        /// Contrôle mvPanier.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mvPanier;
+        
+        /// <summary>
+        /// Contrôle View1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
+        
+        /// <summary>
         /// Contrôle rptPaniers.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptPaniers;
+        
+        /// <summary>
+        /// Contrôle View2.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
         /// Contrôle hplPanier.
@@ -58,6 +85,24 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.HyperLink hplPanier;
         
         /// <summary>
+        /// Contrôle mvCommandes.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mvCommandes;
+        
+        /// <summary>
+        /// Contrôle View3.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View3;
+        
+        /// <summary>
         /// Contrôle rptCommandes.
         /// </summary>
         /// <remarks>
@@ -65,6 +110,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCommandes;
+        
+        /// <summary>
+        /// Contrôle View5.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View5;
         
         /// <summary>
         /// Contrôle hplToutesCommandes.

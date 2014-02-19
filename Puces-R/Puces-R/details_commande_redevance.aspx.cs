@@ -64,7 +64,7 @@ namespace Puces_R
                 lbl_frais_lesi.Text = Convert.ToDecimal(results["FraisLesi"]).ToString("N") + " $";
             }
 
-            ((SiteMaster)Master).Titre = "Détails de la commande de \"" + results["NomAffaires"].ToString() + "\"";
+            ((SiteMaster)Master).Titre = "Détails de la commande" + " de \"" + results["NomAffaires"].ToString() + "\"";
             myConnection.Close();
         }         
     }

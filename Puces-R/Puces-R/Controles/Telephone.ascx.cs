@@ -89,7 +89,15 @@ namespace Puces_R
 
         public static string Format(string NoTel)
         {
+            if (NoTel == null)
+            {
+                return "";
+            }
             string tmp = Parse(NoTel);
+            if (tmp.Length < 10)
+            {
+                return "";
+            }
             string reg = tmp.Substring(0, 3);
             string part1 = tmp.Substring(3, 3);
             string part2 = tmp.Substring(6, 4);

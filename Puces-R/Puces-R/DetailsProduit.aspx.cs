@@ -134,14 +134,14 @@ namespace Puces_R
                 }
                 myConnection.Close();
 
-                SqlDataAdapter adapteurEvaluations = new SqlDataAdapter("SELECT E.Cote, E.Commentaire, E.DateCreation, C.Prenom + ' ' + C.Nom AS NomComplet FROM PPEvaluations E INNER JOIN PPClients C ON E.NoClient = C.NoClient WHERE E.NoProduit = " + noProduit + " AND C.NoClient != " + Session["ID"], myConnection);
+                SqlDataAdapter adapteurEvaluations = new SqlDataAdapter("SELECT E.Cote, E.Commentaire, E.DateCreation, ISNULL(C.Prenom + ' ' + C.Nom, AdresseEmail) AS NomComplet FROM PPEvaluations E INNER JOIN PPClients C ON E.NoClient = C.NoClient WHERE E.NoProduit = " + noProduit + " AND C.NoClient != " + Session["ID"], myConnection);
                 DataTable tableEvaluations = new DataTable();
                 adapteurEvaluations.Fill(tableEvaluations);
 
                 rptEvaluations.DataSource = tableEvaluations;
                 rptEvaluations.DataBind();
 
-                SqlCommand commandClient = new SqlCommand("SELECT Prenom + ' ' + Nom AS NomComplet FROM PPClients WHERE NoClient = " + Session["ID"], myConnection);
+                SqlCommand commandClient = new SqlCommand("SELECT ISNULL(Prenom + ' ' + Nom, AdresseEmail) AS NomComplet FROM PPClients WHERE NoClient = " + Session["ID"], myConnection);
 
                 myConnection.Open();
                 lblClient.Text = (String)commandClient.ExecuteScalar();

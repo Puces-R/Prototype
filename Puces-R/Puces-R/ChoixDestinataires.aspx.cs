@@ -54,7 +54,7 @@ namespace Puces_R
         }
 
         [System.Web.Services.WebMethod]
-        public static string GetResultats(string name, string id, string type = "ZZ")
+        public static string GetResultats(string name, string id, long courant, string type = "ZZ", int option = 0)
         {
             string retour = ";;;";
             string[] lstId = id.Split(new char[] { ',' });
@@ -89,11 +89,13 @@ namespace Puces_R
                         cmdChosen[s].Parameters.AddWithValue(param[i], lstId[i]);
                     }
                 }
+                int nbSelectionnees = 0;
+
                 foreach (string s in cmdChosen.Keys)
                 {
                     cmdChosen[s].CommandText += string.Format(" WHERE No" + s + " IN ({0})", string.Join(", ", param));
                     SqlDataReader sdrChosen = cmdChosen[s].ExecuteReader();
-                    for (int i = 0; sdrChosen.Read(); i++)
+                    for (int i = 0; sdrChosen.Read(); i++, nbSelectionnees++)
                     {
                         if (i == 0)
                         {
@@ -105,6 +107,18 @@ namespace Puces_R
                     }
                     sdrChosen.Close();
                 }
+                if (nbSelectionnees == 0)
+                {
+                    retour += "<li>";
+                    retour += "<em>Aucun destinataire n'a été sélectionné</em>";
+                    retour += "</li>";
+                }
+            }
+            else
+            {
+                retour += "<li>";
+                retour += "<em>Aucun destinataire n'a été sélectionné</em>";
+                retour += "</li>";
             }
 
 
@@ -117,14 +131,53 @@ namespace Puces_R
                 {
                     case 'C':
                         cmdAutocomplete = new SqlCommand("SELECT NoClient 'No', ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) 'Texte' FROM PPClients WHERE (Nom LIKE @nom OR AdresseEmail LIKE @nom OR Prenom LIKE @nom)", connexion);
+                        switch (option)
+                        {
+                            case 1:
+                                if (type[1] == 'V')
+                                {
+                                    cmdAutocomplete.CommandText += " AND NoClient IN (SELECT NoClient FROM PPArticlesEnPanier WHERE NoVendeur = @ven GROUP BY NoClient)";
+                                    cmdAutocomplete.Parameters.AddWithValue("@ven", courant);
+                                }
+                                break;
+                            case 2:
+                                if (type[1] == 'V')
+                                {
+                                    cmdAutocomplete.CommandText += " AND NoClient IN (SELECT NoClient FROM PPCommandes WHERE NoVendeur = @ven GROUP BY NoClient)";
+                                    cmdAutocomplete.Parameters.AddWithValue("@ven", courant);
+                                }
+                                break;
+                        }
                         champNo = "NoClient";
                         break;
                     case 'V':
                         cmdAutocomplete = new SqlCommand("SELECT NoVendeur 'No', RTRIM(NomAffaires) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPVendeurs WHERE (NomAffaires LIKE @nom OR AdresseEmail LIKE @nom)", connexion);
+                        switch (option)
+                        {
+                            case 1:
+                                if (type[1] == 'C')
+                                {
+                                    cmdAutocomplete.CommandText += " AND NoVendeur IN (SELECT NoVendeur FROM PPArticlesEnPanier WHERE NoClient = @cli GROUP BY NoVendeur)";
+                                    cmdAutocomplete.Parameters.AddWithValue("@cli", courant);
+                                }
+                                break;
+                            case 2:
+                                if (type[1] == 'C')
+                                {
+                                    cmdAutocomplete.CommandText += " AND NoVendeur IN (SELECT NoVendeur FROM PPCommandes WHERE NoClient = @cli GROUP BY NoVendeur)";
+                                    cmdAutocomplete.Parameters.AddWithValue("@cli", courant);
+                                }
+                                break;
+                        }
                         champNo = "NoVendeur";
                         break;
                     case 'G':
                         cmdAutocomplete = new SqlCommand("SELECT NoGestionnaire 'No', RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;' 'Texte' FROM PPGestionnaires WHERE (Nom LIKE @nom OR AdresseEmail LIKE @nom OR Prenom LIKE @nom) ", connexion);
+                        if (type[1] == 'G')
+                        {
+                            cmdAutocomplete.CommandText += " AND NoGestionnaire != @gest";
+                            cmdAutocomplete.Parameters.AddWithValue("@gest", courant);
+                        }
                         champNo = "NoGestionnaire";
                         break;
                 }
@@ -144,7 +197,8 @@ namespace Puces_R
                 cmdAutocomplete.Parameters.AddWithValue("@nom", "%" + name + "%");
                 Regex rgx = new Regex("(" + Regex.Escape(name) + ")", RegexOptions.IgnoreCase);
                 SqlDataReader sdrAutocomplete = cmdAutocomplete.ExecuteReader();
-                while (sdrAutocomplete.Read())
+                int nbComplete = 0;
+                for (nbComplete = 0; sdrAutocomplete.Read(); nbComplete++)
                 {
                     string no = sdrAutocomplete["No"].ToString();
                     string texte = sdrAutocomplete["Texte"].ToString();
@@ -153,6 +207,18 @@ namespace Puces_R
                     retour = "</li>\n" + retour;
                 }
                 sdrAutocomplete.Close();
+                if (nbComplete == 0)
+                {
+                    retour = "<li>" + retour;
+                    retour = "<em>Aucun destinataire ne correspond à ces critères</em>" + retour;
+                    retour = "</li>\n" + retour;
+                }
+            }
+            else
+            {
+                retour = "<li>" + retour;
+                retour = "<em>Veuillez sélectionner un type d'utilisateur</em>" + retour;
+                retour = "</li>\n" + retour;
             }
             connexion.Close();
             return retour == string.Empty ? ";;;" : retour;

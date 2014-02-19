@@ -147,7 +147,7 @@ namespace Puces_R
         protected void selectionner_client(object sender, CommandEventArgs e)
         {
             Session["selected_client"] = e.CommandArgument;
-            Response.Redirect("client.aspx");
+            Response.Redirect(Chemin.Ajouter("client.aspx", "Retour à la liste des clients"));
         }     
     }
 }

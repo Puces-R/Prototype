@@ -172,6 +172,7 @@
     <Content Include="DetailsCommandes.aspx" />
     <Content Include="EnvoyerMessage.aspx" />
     <Content Include="DetailsProduit.aspx" />
+    <Content Include="Controles\FormulaireProduit.ascx" />
     <Content Include="GererPanierVendeur.aspx" />
     <Content Include="gerer_clients.aspx" />
     <Content Include="gerer_demandes_vendeurs.aspx" />
@@ -915,6 +916,8 @@
     </Compile>
     <Compile Include="DesactiverPanierVendeur.aspx.designer.cs">
       <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+    <Compile Include="Deconnexion.ashx.cs">
+      <DependentUpon>Deconnexion.ashx</DependentUpon>
     </Compile>
     <Compile Include="details_commande_redevance.aspx.cs">
       <DependentUpon>details_commande_redevance.aspx</DependentUpon>
@@ -967,6 +970,13 @@
       <DependentUpon>DetailsProduit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facture.cs" />
+    <Compile Include="Controles\FormulaireProduit.ascx.cs">
+      <DependentUpon>FormulaireProduit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\FormulaireProduit.ascx.designer.cs">
+      <DependentUpon>FormulaireProduit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="GererPanierVendeur.aspx.cs">
       <DependentUpon>GererPanierVendeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1210,6 +1220,7 @@
       <DependentUpon>BonCommande.xsd</DependentUpon>
     </None>
     <Content Include="TelechargementMessage.ashx" />
+    <Content Include="Deconnexion.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BonCommande.rdlc">

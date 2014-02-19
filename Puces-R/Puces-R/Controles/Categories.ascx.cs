@@ -48,7 +48,10 @@ namespace Puces_R.Controles
                 int noCategorie = (int)drvCategorie["NoCategorie"];
 
                 hypCategorie.Text = description;
-                hypCategorie.NavigateUrl = CreerLienProduits("?nocategorie=" + noCategorie);
+                if (Session["Type"] != null)
+                {
+                    hypCategorie.NavigateUrl = CreerLienProduits("?nocategorie=" + noCategorie);
+                }
 
                 SqlDataAdapter adapteurVendeurs = new SqlDataAdapter("SELECT P.NoVendeur, V.NomAffaires, P.NoCategorie, COUNT(P.NoProduit) AS NbProduits FROM PPVendeurs V INNER JOIN PPProduits P ON V.NoVendeur = P.NoVendeur WHERE P.NoCategorie = " + noCategorie + " AND P.Disponibilité = 1 GROUP BY P.NoVendeur, V.NomAffaires, P.NoCategorie", myConnection);
                 DataTable tableVendeurs = new DataTable();
@@ -76,7 +79,7 @@ namespace Puces_R.Controles
                 int nbProduits = (int)drvVendeur["NbProduits"];
 
                 hypVendeur.Text = description;
-                hypVendeur.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur + "&nocategorie=" + noCategorie);
+                hypVendeur.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur + (Session["Type"] == null ? "" : "&nocategorie=" + noCategorie));
 
                 lblNbProduits.Text = nbProduits.ToString();
             }
@@ -125,7 +128,7 @@ namespace Puces_R.Controles
                 int nbProduits = (int)drvVendeur["NbProduits"];
 
                 hypCategorie.Text = description;
-                hypCategorie.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur + "&nocategorie=" + noCategorie);
+                hypCategorie.NavigateUrl = CreerLienProduits("?novendeur=" + noVendeur + (Session["Type"] == null ? "" : "&nocategorie=" + noCategorie));
 
                 lblNbProduits.Text = nbProduits.ToString();
             }

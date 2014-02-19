@@ -72,7 +72,7 @@ CREATE TABLE PPMessages (
 	NoMessage bigint PRIMARY KEY,
 	NoExpediteur bigint NOT NULL,
 	DateEnvoi datetime NOT NULL,
-	Sujet varchar(50) NOT NULL,
+	Sujet varchar(100) NOT NULL,
 	Contenu varchar(MAX) NOT NULL,
 	FichierJoint varchar(50),
 	Boite smallint NOT NULL FOREIGN KEY REFERENCES PPBoites(NoBoite)

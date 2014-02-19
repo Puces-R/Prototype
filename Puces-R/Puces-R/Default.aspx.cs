@@ -14,7 +14,7 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.Clear();
+            Librairie.Autorisation(true, false, false, false);
         }
 
         protected void seConnecter(object sender, EventArgs e)
@@ -26,26 +26,25 @@ namespace Puces_R
             cmdAddConnexion.Parameters.AddWithValue("@addr", tbCourriel.Text);
             cmdAddConnexion.Parameters.AddWithValue("@date", DateTime.Now);
             string redirection = "Default.aspx";
+            connexion.Open();
             if (Page.IsValid)
             {
                 switch ((char)Session["Type"])
                 {
                     case 'C':
                         cmdAddConnexion.CommandText = "UPDATE PPClients SET NbConnexions = ISNULL(NbConnexions, 0) + 1, DateDerniereConnexion = @date WHERE AdresseEmail = @addr";
+                        cmdAddConnexion.ExecuteNonQuery();
                         redirection = "AccueilClient.aspx";
                         break;
                     case 'V':
-                        cmdAddConnexion.CommandText = "UPDATE PPVendeurs SET NbConnexions = ISNULL(NbConnexions, 0) + 1, DateDerniereConnexion = @date WHERE AdresseEmail = @addr";
                         redirection = "AccueilVendeur.aspx";
                         break;
                     case 'G':
                         cmdAddConnexion.CommandText = "UPDATE PPGestionnaires SET NbConnexions = ISNULL(NbConnexions, 0) + 1, DateDerniereConnexion = @date WHERE AdresseEmail = @addr";
+                        cmdAddConnexion.ExecuteNonQuery();
                         redirection = "accueil_gestionnaire.aspx";
                         break;
                 }
-
-                connexion.Open();
-                cmdAddConnexion.ExecuteNonQuery();
                 connexion.Close();
 
                 Response.Redirect(redirection, false);

@@ -37,6 +37,8 @@ namespace Puces_R
 
 
                 Master.Master.NoVendeur = (int)(Session["ID"]);
+
+                mvCommandes.ActiveViewIndex = tableCategories.Rows.Count == 0 ? 1 : 0;
                 Master.AfficherPremierePage();
 
                 //SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit,Photo,C.Description,Nom,PrixDemande,NombreItems FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie where P.NoVendeur=" + Session["ID"], myConnection);

@@ -12,6 +12,33 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+
+        public String Titre
+        {
+           
+            set
+            {
+                hypNomClient.Visible = true;
+                lblVendeur.Visible = false;
+                lblDate.Visible = false;
+                hypNomClient.Text = value.ToString();
+                
+            }
+        }
+
+        public String URL
+        {
+           
+            set
+            {
+                hypNoCommande.Visible = true;
+                lblNoCommande.Visible = false;
+                hypNoCommande.Text=value.ToString();
+                hypNoCommande.NavigateUrl = "~/DetailsCommandes.aspx?noCommande=" + value.ToString();
+            }
+        }
+
+
         public long NoCommande
         {
             get
@@ -26,6 +53,8 @@ namespace Puces_R.Controles
 
         public long NoClient
         {
+          
+            
 
             set
             {
@@ -34,6 +63,8 @@ namespace Puces_R.Controles
                 lblClient.Visible = true;
                 lblNoClient.Visible = true;
                 lblNoClient.Text = value.ToString();
+                hypNomClient.NavigateUrl = "~/CommuniquerClient.aspx?noClient=" + value;
+                lblNoClient.NavigateUrl = "~/CommuniquerClient.aspx?noClient=" + value;
             }
         }
 
@@ -45,7 +76,43 @@ namespace Puces_R.Controles
                 btnChanger.Visible = true;
                 lblClient.Visible = true;
                 lblNoClient.Visible = true;
+                
             }
+        }
+
+        protected void ChangerStatut(object sender, EventArgs e) 
+        {
+            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+           
+            String statut = ((String) btnChanger.CommandArgument);
+
+            myConnection.Open();
+            SqlCommand maC = new SqlCommand("Select Statut from PPCommandes where NoCommande=" + statut, myConnection);
+            object nb = (object)maC.ExecuteScalar();
+
+            String statutCommande = nb.ToString();
+
+            //Response.Write(noC + "----" + stat);
+
+
+            if (statutCommande == "l")
+            {
+                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPCommandes SET Statut ='p' WHERE NoCommande = " + statut, myConnection);
+                commandeMAJQuantite.ExecuteNonQuery();
+            }
+            else if (statutCommande == "p")
+            {
+
+                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPCommandes SET Statut ='l' WHERE NoCommande = " + statut, myConnection);
+                commandeMAJQuantite.ExecuteNonQuery();
+            }
+
+            else
+            {
+                //Response.Write("ALLO");
+            }
+           
+            myConnection.Close();
         }
 
         protected override void OnPreRender(EventArgs e)
@@ -73,10 +140,11 @@ namespace Puces_R.Controles
                     break;
             }
 
+        
             lblNoAutorisation.Text = (String)lecteurCommande["NoAutorisation"];
             ctrMontantsFactures.NoCommande = (long)lecteurCommande["NoCommande"];
             ctrMontantsFactures.CodeLivraison = (short)lecteurCommande["TypeLivraison"];
-
+            btnChanger.CommandArgument = Convert.ToString((long)lecteurCommande["NoCommande"]);
             myConnection.Close();
         }
     }

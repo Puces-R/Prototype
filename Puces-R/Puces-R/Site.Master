@@ -1,8 +1,9 @@
-﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Puces_R.SiteMaster" %>
- <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
-  <%@ Register TagPrefix="lp" TagName="MenuACoteVendeur" Src="~/Controles/MenuACoteVendeur.ascx" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Puces_R.SiteMaster" %>
+<%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
+<%@ Register TagPrefix="lp" TagName="MenuACoteVendeur" Src="~/Controles/MenuACoteVendeur.ascx" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html> 
+<%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">--%>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head runat="server">
@@ -20,7 +21,7 @@
                         <div class="gauchePageMaitre">
                             <span class="titre">Les Petites Puces</span>
                             <div>
-                                <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="LightGray" />
+                                <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="Gray" />
                             </div>
                         </div>
                         <div runat="server" ID="divMenu" class="droitePageMaitre">
@@ -34,29 +35,32 @@
                             </div>
                         </div>
                     </div>
-                    <asp:Panel runat="server" ID="pnlTitreAvecLigne" Visible="false" CssClass="titreAvecLigne">
-                        <asp:MultiView runat="server" ID="mvTitre">
-                            <asp:View runat="server">
-                                 <asp:Label runat="server" ID="lblTitreSansMenu" CssClass="titreVendeur" />
-                            </asp:View>
-                            <asp:View runat="server">
-                                <div class="titreVendeurAvecMenu rectangleAvecOmbre">
-                                    <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
-                                        <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
-                                        <asp:Label runat="server" ID="lblTitreAvecMenu" CssClass="titreVendeur" />
-                                    </asp:Panel>
-                                    <div class="rectanglePartieTitre rectangleTitreDroite">
-                                        <lp:MenuACoteVendeur runat="server" ID="ctrMenuVendeur" />
+                    <div class="content">
+                        <asp:Panel runat="server" ID="pnlTitreAvecLigne" Visible="false" CssClass="titreAvecLigne">
+                            <asp:MultiView runat="server" ID="mvTitre">
+                                <asp:View ID="View1" runat="server">
+                                        <asp:Label runat="server" ID="lblTitreSansMenu" CssClass="titreVendeur" />
+                                </asp:View>
+                                <asp:View ID="View2" runat="server">
+                                    <div class="titreVendeurAvecMenu rectangleAvecOmbre">
+                                        <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
+                                            <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
+                                            <asp:Label runat="server" ID="lblTitreAvecMenu" CssClass="titreVendeur" />
+                                        </asp:Panel>
+                                        <div class="rectanglePartieTitre rectangleTitreDroite">
+                                            <lp:MenuACoteVendeur runat="server" ID="ctrMenuVendeur" />
+                                        </div>
                                     </div>
-                                </div>
-                            </asp:View>
-                        </asp:MultiView>
-                        <div class="lignePointilleHorizontale pleineLargeur"></div>
-                    </asp:Panel>
-                    <asp:Panel CssClass="lignePointilleHorizontale pleineLargeur centerChildDiv" runat="server">
-                        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
-                    </asp:Panel>
+                                </asp:View>
+                            </asp:MultiView>
+                            <div class="lignePointilleHorizontale pleineLargeur"></div>
+                        </asp:Panel>
+                        <asp:Panel CssClass="pleineLargeur centerChildDiv pleineHauteur" runat="server">
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                        </asp:Panel>
+                    </div>
                     <div class="footer">
+                        <div class="lignePointilleHorizontale"></div>
                         <asp:HyperLink runat="server" ID="hypDevenirVendeur" Text="Ouvrir votre propre magasin..." NavigateUrl="InscriptionVendeur.aspx" Font-Size="Small" CssClass="noPrint" />
                         © 2014 Cégep Gérald Godin
                     </div>

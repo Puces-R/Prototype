@@ -1,5 +1,18 @@
-﻿{
-    border: 0 !important;
+﻿html
+{
+    height:100%;
+}
+
+body
+{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Segoe UI';
+    margin: 0 auto;
+        
+    background-image:url('../Images/Fond/centre-achat.jpg');
+    background-attachment: fixed;
+    background-size:100% 100%;
 }
 
 a
@@ -8,15 +21,29 @@ a
     text-decoration:none;
 }
 
-.cbCocher
+form
 {
-      
+    position: relative;
 }
 
-body
+.page
 {
-    font-family: 'Segoe UI';
-    margin: 12px auto;
+    text-align: center;
+}
+
+.page > div
+{
+    text-align: left;
+    width: 1200px;
+    margin: 0 auto;
+    background-color:rgba(255, 255, 255 , 0.85);
+    padding:10px;
+}
+
+.footer
+{
+    text-align: right;
+    margin:10px;
 }
 
 .formulaire
@@ -72,19 +99,6 @@ body
     text-align: left;
 }
 
-.page
-{
-    text-align: center;
-}
-
-.page > div
-{
-    display: inline-block;
-    text-align: left;
-    width: 1200px;
-    margin: 0 auto;
-}
-
 .titreVendeur
 {
     font-size:xx-large;
@@ -97,11 +111,6 @@ body
     border: 1px solid #555555;
     border-radius: 10px;
     padding: 5px;
-}
-
-.footer
-{
-    text-align: right;
 }
 
 .boiteImageProduit
@@ -141,6 +150,7 @@ body
 .panneau
 {
    margin-top:10px;
+   height:100%;
 }
 
 .panneau h2:first-child
@@ -282,8 +292,6 @@ body
 
 .categories
 {
-    max-height:600px;
-    overflow: auto;
     padding-right:15px;
     line-height:20px;
 }

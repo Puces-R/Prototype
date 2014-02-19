@@ -132,15 +132,15 @@ namespace Puces_R.Controles
             }
         }
 
-        public int PoidsMaximum
+        public decimal PoidsMaximum
         {
             get
             {
-                return int.Parse(tbMaxLivraison.Text.Trim());
+                return decimal.Parse(tbMaxLivraison.Text.Trim());
             }
             set
             {
-                tbMaxLivraison.Text = value.ToString();
+                tbMaxLivraison.Text = value.ToString("#0.0");
             }
         }
 
@@ -152,7 +152,7 @@ namespace Puces_R.Controles
             }
             set
             {
-                tbLivraisonGratuite.Text = value.ToString();
+                tbLivraisonGratuite.Text = value.ToString("#0.00");
             }
         }
 

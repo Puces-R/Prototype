@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Détail de la commande de la redevance" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+﻿<%@ Page Title="Détail de la commande" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
     CodeBehind="details_commande_redevance.aspx.cs" Inherits="Puces_R.details_commande_redevance" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">

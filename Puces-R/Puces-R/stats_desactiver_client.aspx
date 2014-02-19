@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Détail/Confirmation de la désactivation des clients" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-    CodeBehind="verdict_desactiver_client.aspx.cs" Inherits="Puces_R.verdict_desactiver_client" EnableEventValidation="false" %>
+﻿<%@ Page Title="Statistiques sur désactivation des clients" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+    CodeBehind="stats_desactiver_client.aspx.cs" Inherits="Puces_R.stats_desactiver_client" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/style_sec4.css" />
@@ -41,11 +41,15 @@
                     <tr>
                         <th>Nombre de connexion:</th>
                         <td><asp:Label runat="server" ID="nb_connexions" /></td>
-                    </tr>                     
+                    </tr>   
+                    <tr>
+                        <th>Nombre de liens Vendeur-Client:</th>
+                        <td><asp:Label runat="server" ID="lbl_nb_lien" /></td>
+                    </tr>                   
                     <tr>
                         <td colspan="2" class="verdict_client">                                        
                             <p class="center">
-                                <asp:Button id="btn_desactiver" runat="server" text="Désactiver" OnCommand="desactiver_un_client"/>
+                                <asp:Button id="btn_voir_plus" runat="server" text="Voir plus" OnCommand="voir_plus" ToolTip="Cliquez pour voir les commandes de ce client" />
                             </p>
                         </td>
                     </tr>
@@ -54,23 +58,21 @@
         </asp:View>
         <asp:View runat="server" ID="view_liste">
             <div class="rectangleItem hautRectangle" style="width: 500px;" >
-                Liste des clients à désactiver
+                Liste des clients désactivés
             </div>
             <div class="rectangleItem basRectangle" >
            <ul>            
                 <asp:Repeater runat="server" ID="rptInnactifs1" OnItemDataBound="rptInnactifs1_ItemDataBound" >
                     <ItemTemplate>                        
-                        <li><asp:Label ID="lbl_num" runat="server" /> - <asp:Label ID="item_a_desactiver" runat="server" /></li>
+                        <li><asp:LinkButton ID="lbl_client" runat="server" OnCommand="voir_plus" ToolTip="Cliquez pour voir les commandes de ce client" /></li>
                     </ItemTemplate>
                 </asp:Repeater>
            </ul>
-               <p class="center">
-                    <asp:Button id="btn_desactiver_liste" runat="server" text="Désactiver ces clients" OnCommand="desactiver_liste_client"/>
-                </p>
            </div>
         </asp:View>
 
-        <asp:View ID="view_stats_desactivation">
+        <asp:View  runat="server" ID="view_commandes">
+            
         </asp:View>
     </asp:MultiView>
     </div>

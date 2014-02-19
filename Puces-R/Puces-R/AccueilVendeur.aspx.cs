@@ -210,31 +210,31 @@ namespace Puces_R
             }
         }
 
-        protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            RepeaterItem item = e.Item;
+        //protected void rptProduits_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        //{
+        //    RepeaterItem item = e.Item;
 
-            if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
-            {
-                HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
-                Label lblQuantite = (Label)item.FindControl("lblQuantite");
-                Label lblPrixUnitaire = (Label)item.FindControl("lblPrixUnitaire");
-                Label lblPrixTotal = (Label)item.FindControl("lblPrixTotal");
+        //    if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
+        //    {
+        //        HyperLink hypProduit = (HyperLink)item.FindControl("hypProduit");
+        //        Label lblQuantite = (Label)item.FindControl("lblQuantite");
+        //        Label lblPrixUnitaire = (Label)item.FindControl("lblPrixUnitaire");
+        //        Label lblPrixTotal = (Label)item.FindControl("lblPrixTotal");
 
-                DataRowView drvProduit = (DataRowView)e.Item.DataItem;
+        //        DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
-                String produit = (String)drvProduit["Nom"];
-                short quantite = (short)drvProduit["NbItems"];
-                decimal prixUnitaire = (decimal)drvProduit["PrixVente"];
-                decimal prixTotal = quantite * prixUnitaire;
-                long noProduit = (long)drvProduit["NoProduit"];
+        //        String produit = (String)drvProduit["Nom"];
+        //        short quantite = (short)drvProduit["NbItems"];
+        //        decimal prixUnitaire = (decimal)drvProduit["PrixVente"];
+        //        decimal prixTotal = quantite * prixUnitaire;
+        //        long noProduit = (long)drvProduit["NoProduit"];
 
-                hypProduit.Text = produit;
-                hypProduit.NavigateUrl = "DetailsProduit.aspx?noclient=10000&noproduit=" + noProduit;
-                lblQuantite.Text = quantite.ToString();
-                lblPrixUnitaire.Text = prixUnitaire.ToString("C");
-                lblPrixTotal.Text = prixTotal.ToString("C");
-            }
-        }
+        //        hypProduit.Text = produit;
+        //        hypProduit.NavigateUrl = "DetailsProduit.aspx?noclient=10000&noproduit=" + noProduit;
+        //        lblQuantite.Text = quantite.ToString();
+        //        lblPrixUnitaire.Text = prixUnitaire.ToString("C");
+        //        lblPrixTotal.Text = prixTotal.ToString("C");
+        //    }
+        //}
     }
 }

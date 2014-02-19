@@ -140,19 +140,14 @@ namespace Puces_R.Controles
             }
             else if (ViewState["NoVendeur"] != null)
             {
-<<<<<<< HEAD
-                facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Commande);
-=======
                 if (Province == null)
                 {
-                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Commande);
                 }
                 else
                 {
-                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Province);
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Province, Commande);
                 }
-                
->>>>>>> 7038d50b0e40f808b5e5c56e1928e7838bd6e809
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
 

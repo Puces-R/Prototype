@@ -22,6 +22,7 @@ namespace Puces_R.Controles
                 lblVendeur.Visible = false;
                 lblDate.Visible = false;
                 hypNomClient.Text = value.ToString();
+                
             }
         }
 
@@ -52,6 +53,8 @@ namespace Puces_R.Controles
 
         public long NoClient
         {
+          
+            
 
             set
             {
@@ -60,6 +63,8 @@ namespace Puces_R.Controles
                 lblClient.Visible = true;
                 lblNoClient.Visible = true;
                 lblNoClient.Text = value.ToString();
+                hypNomClient.NavigateUrl = "~/CommuniquerClient.aspx?noClient=" + value;
+                lblNoClient.NavigateUrl = "~/CommuniquerClient.aspx?noClient=" + value;
             }
         }
 
@@ -135,6 +140,7 @@ namespace Puces_R.Controles
                     break;
             }
 
+        
             lblNoAutorisation.Text = (String)lecteurCommande["NoAutorisation"];
             ctrMontantsFactures.NoCommande = (long)lecteurCommande["NoCommande"];
             ctrMontantsFactures.CodeLivraison = (short)lecteurCommande["TypeLivraison"];

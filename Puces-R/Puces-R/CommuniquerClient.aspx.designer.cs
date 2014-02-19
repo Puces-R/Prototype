@@ -10,124 +10,106 @@
 namespace Puces_R {
     
     
-    public partial class AccueilVendeur {
+    public partial class CommuniquerClient {
         
         /// <summary>
-        /// Contrôle nbVisite.
+        /// Contrôle txtPrenom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nbVisite;
+        protected global::System.Web.UI.WebControls.TextBox txtPrenom;
         
         /// <summary>
-        /// Contrôle lblEvaluation.
+        /// Contrôle txtNom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEvaluation;
+        protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
-        /// Contrôle ctrEtoiles.
+        /// Contrôle txtRue.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.Etoiles ctrEtoiles;
+        protected global::Puces_R.Controles.Adresse txtRue;
         
         /// <summary>
-        /// Contrôle mvPanier.
+        /// Contrôle txtVille.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvPanier;
+        protected global::System.Web.UI.WebControls.TextBox txtVille;
         
         /// <summary>
-        /// Contrôle View1.
+        /// Contrôle ctrProvince.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::Puces_R.Province ctrProvince;
         
         /// <summary>
-        /// Contrôle rptPaniers.
+        /// Contrôle txtPays.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPaniers;
+        protected global::System.Web.UI.WebControls.TextBox txtPays;
         
         /// <summary>
-        /// Contrôle View2.
+        /// Contrôle ctrCodePostal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::Puces_R.CodePostal ctrCodePostal;
         
         /// <summary>
-        /// Contrôle hplPanier.
+        /// Contrôle ctrTelephone.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplPanier;
+        protected global::Puces_R.Telephone ctrTelephone;
         
         /// <summary>
-        /// Contrôle mvCommandes.
+        /// Contrôle ctrCellulaire.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvCommandes;
+        protected global::Puces_R.Telephone ctrCellulaire;
         
         /// <summary>
-        /// Contrôle View3.
+        /// Contrôle btnCourrierInterne.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
+        protected global::System.Web.UI.WebControls.Button btnCourrierInterne;
         
         /// <summary>
-        /// Contrôle rptCommandes.
+        /// Contrôle btnCourrielExterne.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCommandes;
-        
-        /// <summary>
-        /// Contrôle View5.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View5;
-        
-        /// <summary>
-        /// Contrôle hplToutesCommandes.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplToutesCommandes;
+        protected global::System.Web.UI.WebControls.Button btnCourrielExterne;
         
         /// <summary>
         /// Propriété Master.

@@ -11,23 +11,32 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    Consultations de votre catalogue: <asp:Label ID="nbVisite" runat="server"></asp:Label><asp:Label ID="Label1" runat="server" Text="Évaluation globales de vos produits " /><lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
+    Consultations de votre catalogue: <asp:Label ID="nbVisite" runat="server"> </asp:Label><asp:Label ID="lblEvaluation" runat="server" Text="--- Évaluation globales de vos produits " /><lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
     <div class="lignePointilleHorizontale pleineLargeur">
     </div>
     <div>
         <div class="panneau pnlGauche">
             <h2>Paniers en Cours(Les 5 plus récents)</h2>
+            <asp:MultiView runat="server" ID="mvPanier" ActiveViewIndex="0">
+              <asp:View ID="View1" runat="server">
             <asp:Repeater ID="rptPaniers" runat="server" OnItemDataBound="rptPaniers_ItemDataBound">
                 <ItemTemplate>
                     <lp:BoitePanier runat="server" ID="ctrBoitePanier" />
                 </ItemTemplate>
             </asp:Repeater>
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                <div class="messageCentral">Aucun client n'a de panier chez vous!</div>
+            </asp:View>
+            </asp:MultiView>
             <asp:HyperLink ID="hplPanier" runat="server" Text="Voir plus..." CssClass="catalogueGlobal" NavigateUrl="~/GererPanierVendeur.aspx"></asp:HyperLink>
         </div>
         <div class="panneau pnlDroite">
             <h2>
                 Commandes non traitées(5 plus récentes)
             </h2>
+            <asp:MultiView runat="server" ID="mvCommandes" ActiveViewIndex="0">
+              <asp:View ID="View3" runat="server">
             <asp:Repeater runat="server" ID="rptCommandes" OnItemDataBound="rptCommandes_ItemDataBound"
                 OnItemCommand="rptCommandes_ItemCommand">
                 <ItemTemplate>
@@ -99,7 +108,15 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-            <asp:HyperLink ID="hplToutesCommandes" runat="server" Text="Voir plus..." CssClass="catalogueGlobal" NavigateUrl="GestionCommandesVendeur.aspx"></asp:HyperLink>
+            
+        </asp:View>
+         <asp:View ID="View5" runat="server">
+                <div class="messageCentral">Aucune commande n'a été passé chez vous!</div>
+            </asp:View>
+
+       </asp:MultiView>
+
+       <asp:HyperLink ID="hplToutesCommandes" runat="server" Text="Voir plus..." CssClass="catalogueGlobal" NavigateUrl="GestionCommandesVendeur.aspx"></asp:HyperLink>
         </div>
     </div>
 </asp:Content>

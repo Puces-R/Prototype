@@ -20,7 +20,7 @@ namespace Puces_R
         {
             if (!IsPostBack)
             {
-                Librairie.Autorisation(false, false, false, true);
+                Librairie.Autorisation(false, true, true, true);
             }
             ClientScript.GetPostBackEventReference(this, string.Empty);
             string parametres = Request["__EVENTARGUMENT"];

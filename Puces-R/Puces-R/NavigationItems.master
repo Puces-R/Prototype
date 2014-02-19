@@ -13,19 +13,21 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Panel runat="server" ID="pnlBarreCritere" CssClass="lignePointilleHorizontale pleineLargeur">
-        <div class="barreListesDeroulantes">
-            <asp:ContentPlaceHolder runat="server" ID="BarreCriteres"/>
-        </div>
-    </asp:Panel>
-    <asp:ScriptManager runat="server" ID="ctrScriptManager" />
-    <asp:UpdatePanel runat="server" ID="udpProduits" class="pleineLargeur">
-        <ContentTemplate>
-            <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" LigneBasVisible="true" class="pleineLargeur" />
-            <div class="centerChildDiv">
-                <asp:ContentPlaceHolder runat="server" ID="Items"/>
+    <div class="pleineLargeur">
+        <asp:Panel runat="server" ID="pnlBarreCritere" CssClass="lignePointilleHorizontale pleineLargeur">
+            <div class="barreListesDeroulantes">
+                <asp:ContentPlaceHolder runat="server" ID="BarreCriteres"/>
             </div>
-            <lp:NavigationParPage runat="server" ID="ctrNavigationBas" LigneHautVisible="true" class="pleineLargeur" />
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </asp:Panel>
+        <asp:ScriptManager runat="server" ID="ctrScriptManager" />
+        <asp:UpdatePanel runat="server" ID="udpProduits" class="pleineLargeur">
+            <ContentTemplate>
+                <lp:NavigationParPage runat="server" ID="ctrNavigationHaut" LigneBasVisible="true" class="pleineLargeur" />
+                <div class="centerChildDiv">
+                    <asp:ContentPlaceHolder runat="server" ID="Items"/>
+                </div>
+                <lp:NavigationParPage runat="server" ID="ctrNavigationBas" LigneHautVisible="true" class="pleineLargeur" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
 </asp:Content>

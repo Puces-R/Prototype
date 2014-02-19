@@ -80,6 +80,7 @@
     <Content Include="Controles\MenuACoteVendeur.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="CSS\style_sec4_2.css" />
+    <Content Include="DesactiverPanierVendeur.aspx" />
     <Content Include="details_commande_redevance.aspx" />
     <Content Include="details_redevance.aspx" />
     <Content Include="EnvoyerCourriel.aspx" />
@@ -185,6 +186,7 @@
     <Content Include="Images\EtoileVide.png" />
     <Content Include="Images\EtoilePleine.png" />
     <Content Include="Images\Dernier.png" />
+    <Content Include="Images\Fond\centre-achat.jpg" />
     <Content Include="Images\image_non_disponible.png" />
     <Content Include="Images\logo-original.png" />
     <Content Include="Images\logo.jpg" />
@@ -230,6 +232,7 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
+    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="ResultatPaiement.aspx" />
     <Content Include="ScriptsColorPicker\globalization\globalize.culture.cs-CZ.js" />
@@ -598,6 +601,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="SuppressionProduits.aspx" />
     <Content Include="vendeur.aspx" />
+    <Content Include="vendeur_redevance.aspx" />
     <Content Include="verdict_demande.aspx" />
     <Content Include="verdict_desactiver.aspx" />
     <Content Include="verdict_desactiver_client.aspx" />
@@ -906,6 +910,12 @@
     <Compile Include="Controles\Telephone.ascx.designer.cs">
       <DependentUpon>Telephone.ascx</DependentUpon>
     </Compile>
+    <Compile Include="DesactiverPanierVendeur.aspx.cs">
+      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DesactiverPanierVendeur.aspx.designer.cs">
+      <DependentUpon>DesactiverPanierVendeur.aspx</DependentUpon>
+    </Compile>
     <Compile Include="details_commande_redevance.aspx.cs">
       <DependentUpon>details_commande_redevance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1141,6 +1151,12 @@
     </Compile>
     <Compile Include="vendeur.aspx.designer.cs">
       <DependentUpon>vendeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vendeur_redevance.aspx.cs">
+      <DependentUpon>vendeur_redevance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vendeur_redevance.aspx.designer.cs">
+      <DependentUpon>vendeur_redevance.aspx</DependentUpon>
     </Compile>
     <Compile Include="verdict_demande.aspx.cs">
       <DependentUpon>verdict_demande.aspx</DependentUpon>

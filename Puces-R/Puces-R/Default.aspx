@@ -8,7 +8,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div>
+    <div class="pleineHauteur">
         <div class="panneau pnlGauche">
             <lp:Categories runat="server" Public="true" />
         </div>

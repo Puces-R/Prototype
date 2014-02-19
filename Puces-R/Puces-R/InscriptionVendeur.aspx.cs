@@ -48,7 +48,7 @@ namespace Puces_R
                 cmdAjoutVendeur.Parameters.AddWithValue("@pays", ctrProfil.Pays);
                 cmdAjoutVendeur.Parameters.AddWithValue("@tel1", ctrProfil.Tel1);
 
-                cmdAjoutVendeur.Parameters.AddWithValue("@tel2", ctrProfil.Tel2 == string.Empty ? DBNull.Value : (object)ctrProfil.Tel2);
+                cmdAjoutVendeur.Parameters.AddWithValue("@tel2", ctrProfil.Tel2 == null ? DBNull.Value : (object)ctrProfil.Tel2);
                 cmdAjoutVendeur.Parameters.AddWithValue("@courriel", tbIdentifiants.Adresse);
                 cmdAjoutVendeur.Parameters.AddWithValue("@mdp", tbIdentifiants.MotDePasse);
                 cmdAjoutVendeur.Parameters.AddWithValue("@maxLivraison", ctrProfil.PoidsMaximum);
@@ -65,7 +65,7 @@ namespace Puces_R
 
                 connexion.Close();
                 string retourUrgence = "Default.aspx";
-                if ((char)Session["Type"] == 'C')
+                if (Session["Type"] != null && (char)Session["Type"] == 'C')
                 {
                     retourUrgence = "AccueilClient.aspx";
                 }

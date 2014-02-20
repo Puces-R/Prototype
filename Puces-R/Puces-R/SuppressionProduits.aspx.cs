@@ -39,29 +39,23 @@ namespace Puces_R
 
         protected void supprimerProduits(object sender, EventArgs e)
         {
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
-            maConnexion.Open();
+            SqlConnection maConnexion = Librairie.Connexion;
 
-            SqlCommand maCommande;
+            SqlCommand maCommande = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoProduit = " + noProduit, maConnexion);
             if (verifierSiProduitEstCommande())
             {
-                maCommande = new SqlCommand("UPDATE PPProduits SET NombreItems=0,Disponibilité=0 where NoProduit=" + noProduit, maConnexion);
-                maCommande.ExecuteNonQuery();
-
-                Response.Redirect("GestionProduits.aspx");
-
+                maCommande.CommandText += "\nUPDATE PPProduits SET NombreItems=0, Disponibilité=0 where NoProduit=" + noProduit;
             }
             else
             {
-                maCommande = new SqlCommand("DELETE FROM PPProduits WHERE NoProduit=" + noProduit, maConnexion);
-                maCommande.ExecuteNonQuery();
-
-                Response.Redirect("GestionProduits.aspx");
-
+                maCommande.CommandText += "\nDELETE FROM PPProduits WHERE NoProduit=" + noProduit;
             }
+
+            maConnexion.Open();
+            maCommande.ExecuteNonQuery();
             maConnexion.Close();
+
+            Response.Redirect("GestionProduits.aspx");
         }
         protected bool verifierSiProduitEstCommande()
         {

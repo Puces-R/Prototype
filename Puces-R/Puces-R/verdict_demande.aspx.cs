@@ -167,13 +167,13 @@ namespace Puces_R
         protected void refus_details_demande(object sender, CommandEventArgs e)
         {
             Session["refus_vendeur"] = e.CommandArgument.ToString();
-            Response.Redirect(Chemin.Ajouter("verdict_demande.aspx", "Retour à la liste des demandes"));
+            Response.Redirect(Chemin.Ajouter("verdict_demande.aspx", "Retour à l'accueil"));
         }
 
         protected void acceptation_details_demande(object sender, CommandEventArgs e)
         {
             Session["acceptation_vendeur"] = e.CommandArgument.ToString();
-            Response.Redirect("verdict_demande.aspx");
+            Response.Redirect(Chemin.Ajouter("verdict_demande.aspx", "Retour à l'accueil"));
         }
     }
 }

@@ -58,7 +58,7 @@ namespace Puces_R
         {
             SqlCommand cmdConnexion = new SqlCommand("SELECT No, Type FROM " +
                                                             "(SELECT NoClient AS No, 'C' AS Type, AdresseEmail, MotDePasse FROM PPClients UNION " +
-                                                             "SELECT NoVendeur AS No, 'V' AS Type, AdresseEmail, MotDePasse FROM PPVendeurs WHERE ISNULL(NoStatut, 0) != 2 UNION " +
+                                                             "SELECT NoVendeur AS No, 'V' AS Type, AdresseEmail, MotDePasse FROM PPVendeurs WHERE ISNULL(Statut, 0) != 2 UNION " +
                                                              "SELECT NoGestionnaire AS No, 'G' AS Type, AdresseEmail, MotDePasse FROM PPGestionnaires) AS X " +
                                                          "WHERE (AdresseEmail LIKE @adr) AND (MotDePasse COLLATE sql_latin1_General_CP1_cs_as LIKE @mdp)", connexion);
 

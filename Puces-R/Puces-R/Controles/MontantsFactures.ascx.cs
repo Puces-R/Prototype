@@ -24,6 +24,22 @@ namespace Puces_R.Controles
             }
         }
 
+        public bool Commande
+        {
+            get
+            {
+                if (ViewState["Commande"] == null)
+                {
+                    return false;
+                }
+                return (bool)ViewState["Commande"];
+            }
+            set
+            {
+                ViewState["Commande"] = value;
+            }
+        }
+
         public bool Enabled
         {
             set
@@ -126,13 +142,12 @@ namespace Puces_R.Controles
             {
                 if (Province == null)
                 {
-                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Commande);
                 }
                 else
                 {
-                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Province);
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Province, Commande);
                 }
-                
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
 

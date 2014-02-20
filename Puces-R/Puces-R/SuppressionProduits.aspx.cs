@@ -130,13 +130,20 @@ namespace Puces_R
                     int categorie = (int)repT[2];
                     LoaderCategorie(categorie);
 
-                    tbDescAbregee.Text = (String)repT[3];
-                    tbDescComplete.Text = (String)repT[4];
-                    String photo = (String)repT[5];
-                    imgProduits.ImageUrl = "Images/Televerse/" + photo;
-                    tbPrix.Text = Convert.ToString((Decimal)repT[6]);
-                    tbNbItems.Text = Convert.ToString((Int16)repT[7]);
-                    Boolean dispo = (Boolean)repT[8];
+                    tbDescAbregee.Text = (String)repT["Nom"];
+                    tbDescComplete.Text = (String)repT["Description"];
+                    object photo = repT["Photo"];
+                    if (!(photo is DBNull))
+                    {
+                        imgProduits.ImageUrl = "Images/Televerse/" + photo.ToString();
+                    }
+                    else
+                    {
+                        imgProduits.ImageUrl = "Images/image_non_disponible.png";
+                    }
+                    tbPrix.Text = Convert.ToString((Decimal)repT["PrixDemande"]);
+                    tbNbItems.Text = Convert.ToString((Int16)repT["NombreItems"]);
+                    Boolean dispo = (Boolean)repT["Disponibilité"];
                     if (dispo)
                     {
                         cbDisponibilite.Checked = true;
@@ -147,7 +154,7 @@ namespace Puces_R
                     }
 
                     //Double prixV = (Decimal)repT[10];
-                    tbPois.Text = Convert.ToString((Decimal)repT[11]);
+                    tbPois.Text = Convert.ToString((Decimal)repT["Poids"]);
                     //DateTime dateCreation = (DateTime)repT[12];
 
                 }

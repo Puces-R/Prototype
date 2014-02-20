@@ -26,28 +26,29 @@ namespace Puces_R
             }
 
             if (Session["client_desactive"] != null)
+            {
                 Session["no_vendeur_no_commande"] = null;
+            }
 
-            List<String> whereParts = new List<String>();              
-            
-            if (Session["msg"] != null)
-                if (Session["msg"].ToString() != "")
-                {
-                    div_msg.InnerText = Session["msg"].ToString();
-                    Session["msg"] = "";
-                }
+            List<String> whereParts = new List<String>();
 
-            if (Session["err_msg"] != null)
-                if (Session["err_msg"].ToString() != "")
-                {
-                    Response.Write(Session["err_msg"]);
-                    Session["err_msg"] = "";
-                }
+            if (Session["msg"] != null && Session["msg"].ToString() != "")
+            {
+                div_msg.InnerText = Session["msg"].ToString();
+                Session["msg"] = "";
+            }
+
+            if (Session["err_msg"] != null && Session["err_msg"].ToString() != "")
+            {
+                Response.Write(Session["err_msg"]);
+                Session["err_msg"] = "";
+            }
 
             if (Session["no_vendeur_no_commande"] != null)
+            {
                 if (Session["no_vendeur_no_commande"].ToString() != "")
                 {
-                    if (txtCritereRecherche.Text != string.Empty)
+                    if (txtCritereRecherche.Text.Trim() != string.Empty)
                     {
                         String colonne = " PPClients.Nom + PPClients.Prenom";
                         switch (ddlTypeRecherche.SelectedIndex)
@@ -56,7 +57,7 @@ namespace Puces_R
                                 colonne = " PPClients.AdresseEmail ";
                                 break;
                         }
-                        whereParts.Add(" AND " + colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                        whereParts.Add(" AND " + colonne + " LIKE @critere");
                     }
 
                     //String whereClause;
@@ -104,12 +105,16 @@ namespace Puces_R
                     results.Close();
                     myConnection.Close();
                 }
-                else Response.Redirect("Deconnexion.ashx");
+                else
+                {
+                    Response.Redirect("Deconnexion.ashx");
+                }
+            }
             else
             {
                 if (Session["client_desactive"] != null)
                 {
-                    if (txtCritereRecherche.Text != string.Empty)
+                    if (txtCritereRecherche.Text.Trim() != string.Empty)
                     {
                         String colonne = " NomAffaires ";
                         switch (ddlTypeRecherche.SelectedIndex)
@@ -118,7 +123,7 @@ namespace Puces_R
                                 colonne = " NomAffaires ";
                                 break;
                         }
-                        whereParts.Add(" AND " + colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                        whereParts.Add(" AND " + colonne + " LIKE @critere");
                     }
 
                     //String whereClause;
@@ -158,7 +163,7 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Master.AfficherPremierePage();
-            } 
+            }
         }
 
         private void charge_details_redevance(object sender, EventArgs e)
@@ -186,6 +191,10 @@ namespace Puces_R
                 req += " AND MONTH(PPHistoriquePaiements.DateVente) = MONTH('" + mois + "') ";
             }
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter(req + whereClause + orderByClause, myConnection);
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
+            {
+                adapteurDemandes.SelectCommand.Parameters.AddWithValue("@critere", txtCritereRecherche.Text.Trim());
+            }
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );
@@ -210,7 +219,7 @@ namespace Puces_R
                 mv_commandes.SetActiveView(view_client);
             }
             myConnection.Close();
-            
+
             return tableDemandes;
         }
 

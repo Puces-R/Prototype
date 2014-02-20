@@ -84,7 +84,7 @@ namespace Puces_R
                         colonne = "(CI.Nom+ ' '+ CI.Prenom)  ";
                         break;
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(colonne + " LIKE @critere");
             }
 
 
@@ -107,6 +107,10 @@ namespace Puces_R
             }
 
             SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT C.NoCommande ,C.NoClient , (CI.Nom+ ' '+ CI.Prenom) as NomComplet , C.Statut FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur inner join PPClients CI on C.NoClient= CI.NoClient " + whereClause + " ORDER BY C.Statut DESC, DateCommande DESC", myConnection);
+            if (txtCritereRecherche.Text != string.Empty)
+            {
+                adapteurCommandes.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text + "%");
+            }
             DataTable tableCommandes = new DataTable();
             adapteurCommandes.Fill(tableCommandes);
 

@@ -110,7 +110,7 @@ namespace Puces_R
         {
             List<String> whereParts = new List<String>();
 
-            if (txtCritereRecherche.Text != string.Empty)
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
             {
                 String colonne = "P.DateCreation";
                 switch (ddlTypeRecherche.SelectedIndex)
@@ -122,7 +122,7 @@ namespace Puces_R
                         colonne = "P.NoProduit";
                         break;
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(colonne + " LIKE @critere");
             }
 
             if (IsPostBack)
@@ -230,6 +230,10 @@ namespace Puces_R
             }
             
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, C.Description, P.Nom, P.PrixDemande, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
+            {
+                adapteurProduits.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text.Trim() + "%");
+            }
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

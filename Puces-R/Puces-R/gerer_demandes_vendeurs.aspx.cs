@@ -25,7 +25,7 @@ namespace Puces_R
             }
             List<String> whereParts = new List<String>();
 
-            if (txtCritereRecherche.Text != string.Empty)
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
             {
                 String colonne = "PPVendeurs.NomAffaires";
                 switch (ddlTypeRecherche.SelectedIndex)
@@ -34,7 +34,7 @@ namespace Puces_R
                         colonne = "PPVendeurs.NomAffaires";
                         break;
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(colonne + " LIKE @critere");
             }
 
             //String whereClause;
@@ -98,6 +98,10 @@ namespace Puces_R
         private DataTable charge_demandes()
         {
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPVendeurs " + whereClause + orderByClause, myConnection);
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
+            {
+                adapteurDemandes.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text.Trim() + "%");
+            }
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
             myConnection.Close();

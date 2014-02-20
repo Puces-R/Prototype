@@ -13,7 +13,7 @@ namespace Puces_R
 {
     public partial class vendeur_redevance : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         string whereClause, orderByClause = " ORDER BY ";
         PagedDataSource pdsDemandes = new PagedDataSource();
         DateTime mois;
@@ -27,7 +27,7 @@ namespace Puces_R
 
             List<String> whereParts = new List<String>();
 
-            if (txtCritereRecherche.Text != string.Empty)
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
             {
                 String colonne = "PPVendeurs.NomAffaires";
                 switch (ddlTypeRecherche.SelectedIndex)
@@ -36,7 +36,7 @@ namespace Puces_R
                         colonne = "PPVendeurs.NomAffaires";
                         break;
                 }
-                whereParts.Add(" AND " + colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(" AND " + colonne + " LIKE @critere");
             }
 
             //String whereClause;
@@ -118,6 +118,10 @@ namespace Puces_R
             req += " AND  Mois = '" + mois.ToString("u").Remove(mois.ToString().Length - 1) + "' " + whereClause + orderByClause;
 
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter(req, myConnection);
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
+            {
+                adapteurDemandes.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text.Trim() + "%");
+            }
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
             //Response.Write(req );

@@ -73,7 +73,7 @@ namespace Puces_R
                         colonne = "P.Description";
                         break;
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(colonne + " LIKE @critere");
             }
 
            
@@ -122,6 +122,10 @@ namespace Puces_R
             }
 
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NoProduit FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie" + whereClause + orderByClause, myConnection);
+            if (txtCritereRecherche.Text != string.Empty)
+            {
+                adapteurProduits.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text + "%");
+            }
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 

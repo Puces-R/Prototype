@@ -15,6 +15,8 @@ namespace Puces_R
     {
         SqlConnection myConnection = Librairie.Connexion;
         string whereClause, orderByClause = " ORDER BY ";
+        string[] param;
+        string[] mots;
         private int noCategorie;
         PagedDataSource objPds = new PagedDataSource();
 
@@ -28,16 +30,18 @@ namespace Puces_R
             
             List<String> whereParts = new List<String>();
 
-            if (txtCritereRecherche.Text != string.Empty)
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
             {
-                string[] mots = txtCritereRecherche.Text.Split(' ');
+                mots = txtCritereRecherche.Text.Trim().Split(' ');
+                param = new string[mots.Length];
 
-                foreach (string mot in mots)
+                for (int i = 0; i < mots.Length; i++)
                 {
-                    whereParts.Add("Nom" + " LIKE '%" + mot + "%'");
-                    whereParts.Add("Prenom" + " LIKE '%" + mot + "%'");
-                    whereParts.Add("Nom" + " LIKE '%" + mot + "%'");
-                    whereParts.Add("AdresseEmail" + " LIKE '%" + mot + "%'");
+                    param[i] = "@mot" + i;
+                    whereParts.Add("Nom" + " LIKE @mot" + i);
+                    whereParts.Add("Prenom" + " LIKE @mot" + i);
+                    whereParts.Add("Nom" + " LIKE @mot" + i);
+                    whereParts.Add("AdresseEmail" + " LIKE @mot" + i);
                 }
             }
 
@@ -100,6 +104,10 @@ namespace Puces_R
             //    req += (txtCritereRecherche.Text == string.Empty? " WHERE " : " AND ") + " V.NoVendeur IN (SELECT NoVendeur FROM PPProduits P, PPCategories C WHERE P.NoCategorie = C.NoCategorie AND C.NoCategorie = " + ddlCategorie.SelectedValue + " GROUP BY NoVendeur) ";
 
             SqlDataAdapter adapteurResultats = new SqlDataAdapter(req + orderByClause, myConnection);
+            for (int i = 0 ; txtCritereRecherche.Text.Trim() != string.Empty && i < mots.Length ; i++)
+            {
+                adapteurResultats.SelectCommand.Parameters.AddWithValue(param[i], "%" + mots[i] + "%");
+            }
             DataTable tableResultats = new DataTable();
             //Response.Write(ddlCategorie.SelectedValue + req + orderByClause);
             adapteurResultats.Fill(tableResultats);

@@ -12,7 +12,7 @@ namespace Puces_R
 {
     public partial class GererPanierVendeur : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         string req_inactif = "";
         string whereClause, orderByClause = "";
         int anneesMaximal;
@@ -41,7 +41,7 @@ namespace Puces_R
                         colonne = " and (C.Nom + ' ' + C.Prenom) ";
                         break;
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(colonne + " LIKE @critere");
             }
 
 
@@ -54,7 +54,7 @@ namespace Puces_R
                      
                      break;
                  case 1:
-                     havingClause+=(" HAVING MAX(A.DateCreation) <  DATEADD(month, -1, GetDate()) ");
+                     havingClause += (" HAVING MAX(A.DateCreation) <  DATEADD(month, -1, GetDate()) ");
                      break;
                  case 2:
                      havingClause += (" HAVING MAX(A.DateCreation) <  DATEADD(month, -2, GetDate()) ");
@@ -137,6 +137,10 @@ namespace Puces_R
             //req_inactif += orderByClause;
 
             SqlDataAdapter adapteurInnactif1 = new SqlDataAdapter(req_inactif, myConnection);
+            if (txtCritereRecherche.Text != string.Empty)
+            {
+                adapteurInnactif1.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text + "%");
+            }
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
 

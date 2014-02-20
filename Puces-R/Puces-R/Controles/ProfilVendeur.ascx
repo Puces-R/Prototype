@@ -11,7 +11,7 @@
         Nom d'affaires
     </td>
     <td>
-        <asp:TextBox ID="tbNomAffaires" runat="server" />
+        <asp:TextBox ID="tbNomAffaires" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator ID="reqNomAffaires" runat="server" ControlToValidate="tbNomAffaires"
@@ -23,7 +23,7 @@
         Prénom
     </td>
     <td>
-        <asp:TextBox ID="txtPrenom" runat="server" />
+        <asp:TextBox ID="txtPrenom" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator ID="reqPrenom" runat="server" ControlToValidate="txtPrenom"
@@ -35,7 +35,7 @@
         Nom
     </td>
     <td>
-        <asp:TextBox ID="txtNom" runat="server" />
+        <asp:TextBox ID="txtNom" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator ID="reqNom" runat="server" ControlToValidate="txtNom"
@@ -48,7 +48,7 @@
         Ville
     </td>
     <td>
-        <asp:TextBox ID="txtVille" runat="server" />
+        <asp:TextBox ID="txtVille" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator ID="reqVille" runat="server" ControlToValidate="txtVille"
@@ -71,7 +71,7 @@
         Pays
     </td>
     <td>
-        <asp:TextBox ID="txtPays" runat="server" Enabled="false" Text="Canada" />
+        <asp:TextBox ID="txtPays" runat="server" Enabled="false" Text="Canada" MaxLength="10" />
     </td>
     <td class="erreur">
     <%-- Pas nécessaire, mais ajouté en sécurité de plus --%>
@@ -86,10 +86,10 @@
         Poids maximum d'une livraison (en lbs)
     </td>
     <td>
-        <asp:TextBox ID="tbMaxLivraison" runat="server" />
+        <asp:TextBox ID="tbMaxLivraison" runat="server" MaxLength="10" />
     </td>
     <td class="erreur">
-        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMaxLivraison" ErrorMessage="Ce champ est obligatoire"
+        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMaxLivraison" ErrorMessage="Le poids est obligatoire"
             Display="Dynamic" />
         <asp:RangeValidator runat="server" ControlToValidate="tbMaxLivraison" Type="Integer"
             MinimumValue="0" MaximumValue="2147483647" ErrorMessage="Ce champ doit contenir un nombre entre 0 et 2147483647"
@@ -101,7 +101,7 @@
         Montant minimum pour livraison gratuit
     </td>
     <td>
-        <asp:TextBox ID="tbLivraisonGratuite" runat="server" />
+        <asp:TextBox ID="tbLivraisonGratuite" runat="server" MaxLength="9" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLivraisonGratuite"

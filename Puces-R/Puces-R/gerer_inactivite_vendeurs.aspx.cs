@@ -12,7 +12,7 @@ namespace Puces_R
 {
     public partial class gerer_inactivite_vendeurs : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         string req_inactif = ""; 
         string whereClause, orderByClause = " ORDER BY ";
         int anneesMaximal;
@@ -26,7 +26,7 @@ namespace Puces_R
             }
             List<String> whereParts = new List<String>();
 
-            if (txtCritereRecherche.Text != string.Empty)
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
             {
                 String colonne = "PPVendeurs.NomAffaires";
                 switch (ddlTypeRecherche.SelectedIndex)
@@ -35,7 +35,7 @@ namespace Puces_R
                         colonne = "PPVendeurs.NomAffaires";
                         break;
                 }
-                whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
+                whereParts.Add(colonne + " LIKE @critere");
             }
 
             whereParts.Add("PPVendeurs.NoVendeur IN ");
@@ -144,6 +144,10 @@ namespace Puces_R
             //req_inactif += orderByClause;
 
             SqlDataAdapter adapteurInnactif1 = new SqlDataAdapter(req_inactif, myConnection);
+            if (txtCritereRecherche.Text.Trim() != string.Empty)
+            {
+                adapteurInnactif1.SelectCommand.Parameters.AddWithValue("@critere", "%" + txtCritereRecherche.Text.Trim() + "%");
+            }
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
 

@@ -223,7 +223,14 @@ namespace Puces_R
                 var converter = TypeDescriptor.GetConverter(typeof(T));
                 if(converter != null)
                 {
-                    return (T)converter.ConvertFromString(HttpContext.Current.Request.Params[nomParametre]);
+                    try
+                    {
+                        return (T)converter.ConvertFromString(HttpContext.Current.Request.Params[nomParametre]);
+                    }
+                    catch (Exception)
+                    {
+                        return default(T);
+                    }
                 }
             }
             catch(NotSupportedException)

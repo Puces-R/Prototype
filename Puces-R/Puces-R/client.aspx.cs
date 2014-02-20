@@ -13,7 +13,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
         int no_client, min_option = 5, nb_option = 5, increment = 1;
-        int[] dest = new int[1];
+        long[] dest = new long[1];
 
         protected void Page_Load(object sender, EventArgs e)
         {

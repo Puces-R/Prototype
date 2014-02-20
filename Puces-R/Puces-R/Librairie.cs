@@ -100,7 +100,7 @@ namespace Puces_R
             return retour;
         }
 
-        public static void Messagerie(int[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
+        public static void Messagerie(long[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
         {
             if (destinataires != null)
             {
@@ -121,7 +121,7 @@ namespace Puces_R
             System.Web.HttpContext.Current.Response.Redirect(Chemin.Ajouter("EnvoyerMessage.aspx", retour));
         }
 
-        public static void Courriel(int[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
+        public static void Courriel(long[] destinataires, string sujet = null, string message = null, bool fixer = false, string retour = "Retour")
         {
             if (destinataires != null)
             {

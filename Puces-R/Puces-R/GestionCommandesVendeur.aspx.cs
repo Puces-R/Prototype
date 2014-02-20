@@ -65,16 +65,15 @@ namespace Puces_R
 
         private void ChargerCommandes()
         {
-            String whereClause = " WHERE V.NoVendeur = " + Session["ID"];
+            List<String> whereParts = new List<String>();
+            whereParts.Add("WHERE V.NoVendeur = " + Session["ID"]);
 
             int noVendeur = int.Parse(ddlVendeur.SelectedValue);
 
             if (noVendeur != -1)
             {
-                whereClause += " AND C.NoClient = " + noVendeur;
+                whereParts.Add("C.NoClient = " + noVendeur);
             }
-
-            List<String> whereParts = new List<String>();
 
             if (txtCritereRecherche.Text != string.Empty)
             {
@@ -82,7 +81,7 @@ namespace Puces_R
                 switch (ddlTypeRecherche.SelectedIndex)
                 {
                     case 0:
-                        colonne = " and (CI.Nom+ ' '+ CI.Prenom)  ";
+                        colonne = "(CI.Nom+ ' '+ CI.Prenom)  ";
                         break;
                 }
                 whereParts.Add(colonne + " LIKE '%" + txtCritereRecherche.Text + "%'");
@@ -93,18 +92,18 @@ namespace Puces_R
            switch (ddlStatut.SelectedIndex)
             {
                 case 1:
-                    whereParts.Add(" C.Statut='p'  ");
+                    whereParts.Add("C.Statut='p'");
                     break;
                 case 2:
-                   whereParts.Add(" C.Statut='l'  ");
+                   whereParts.Add("C.Statut='l'");
                     break;
 
 
             }
-
+           string whereClause = "";
             if (whereParts.Count > 0)
             {
-                whereClause += string.Join(" AND ", whereParts);
+                whereClause = string.Join(" AND ", whereParts);
             }
 
             SqlDataAdapter adapteurCommandes = new SqlDataAdapter("SELECT C.NoCommande ,C.NoClient , (CI.Nom+ ' '+ CI.Prenom) as NomComplet , C.Statut FROM PPCommandes C INNER JOIN PPVendeurs V ON C.NoVendeur = V.NoVendeur inner join PPClients CI on C.NoClient= CI.NoClient " + whereClause + " ORDER BY C.Statut DESC, DateCommande DESC", myConnection);

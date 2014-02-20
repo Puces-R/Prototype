@@ -14,7 +14,7 @@ namespace Puces_R
     public partial class EnvoyerMessage : System.Web.UI.Page
     {
         SqlConnection connexion = Librairie.Connexion;
-        private int[] lstNoDestinataires;
+        private long[] lstNoDestinataires;
         int noBrouillon = -1;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -33,10 +33,10 @@ namespace Puces_R
                 if (parametres != string.Empty)
                 {
                     string[] lstParametres = parametres.Split(",".ToArray());
-                    lstNoDestinataires = new int[lstParametres.Length];
+                    lstNoDestinataires = new long[lstParametres.Length];
                     for (int i = 0; i < lstNoDestinataires.Length; i++)
                     {
-                        lstNoDestinataires[i] = int.Parse(lstParametres[i]);
+                        lstNoDestinataires[i] = long.Parse(lstParametres[i]);
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace Puces_R
                     {
                         cmdDestinataires.Parameters.AddWithValue("@no", noBrouillon);
                         SqlDataReader sdrDest = cmdDestinataires.ExecuteReader();
-                        List<int> tmpDest = new List<int>();
+                        List<long> tmpDest = new List<long>();
                         for (int i = 0; sdrDest.Read(); i++)
                         {
                             tmpDest.Add(int.Parse(sdrDest["NoDestinataire"].ToString()));
@@ -94,7 +94,7 @@ namespace Puces_R
 
                 if (Session["ListeDestinataires"] != null)
                 {
-                    lstNoDestinataires = (int[])Session["ListeDestinataires"];
+                    lstNoDestinataires = (long[])Session["ListeDestinataires"];
                     Session.Remove("ListeDestinataires");
                 }
 

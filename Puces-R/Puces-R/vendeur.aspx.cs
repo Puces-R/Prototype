@@ -13,7 +13,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = Librairie.Connexion;
         int no_vendeur;
-        int[] dest = new int[1];
+        long[] dest = new long[1];
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -13,7 +13,22 @@ namespace Puces_R
     public partial class BoiteMessage : System.Web.UI.Page
     {
         SqlConnection connexion = Librairie.Connexion;
-        int noExpediteur = -1;
+
+        private long NoExpediteur
+        {
+            get
+            {
+                if (ViewState["Expediteur"] == null)
+                {
+                    return -1;
+                }
+                return (long)ViewState["Expediteur"];
+            }
+            set
+            {
+                ViewState["Expediteur"] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -218,7 +233,7 @@ namespace Puces_R
                         lblDe.Text = sdr["Texte"].ToString();
                         lblMessage.Text = sdr["Contenu"].ToString().Replace("\r\n", "<br />");
                         lblSujet.Text = sdr["Sujet"].ToString();
-                        noExpediteur = int.Parse(sdr["NoExpediteur"].ToString());
+                        NoExpediteur = long.Parse(sdr["NoExpediteur"].ToString());
                         if (sdr["FichierJoint"] != DBNull.Value)
                         {
                             trPiece.Visible = true;
@@ -445,7 +460,7 @@ namespace Puces_R
         protected void repondre(object sender, EventArgs e)
         {
 
-            Librairie.Messagerie(new int[] { noExpediteur }, "RE : " + lblSujet.Text, null, false, "Retour au message");
+            Librairie.Messagerie(new long[] { NoExpediteur }, "RE : " + lblSujet.Text, null, false, "Retour au message");
         }
 
 

@@ -15,6 +15,7 @@ namespace Puces_R
         private string _message = "";
         private string _nomEnvoyeur = "";
         private string _courrielEnvoyeur = "";
+        public string err_msg = "Message d'erreur: ";
 
         public string Sujet
         {
@@ -40,11 +41,12 @@ namespace Puces_R
             }
         }
 
-        private static SmtpClient client = new SmtpClient(/*"smtp.gmail.com", 587*/)
+        private static bool local = true; // Mettre à false avant de publier sur le ftp
+
+        public static SmtpClient client = new SmtpClient()
         {
-            //Credentials = new NetworkCredential("raikou4@gmail.com", "p0k3m0n2515"),
-            //EnableSsl = true
-            Host = "192.168.10.25"
+            Credentials = local ? new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ") : null,
+            Host = local ? "smtpout.secureserver.net" : "192.168.10.25"
         };
 
         public Courriel() : this("(Aucun message)", "(Vide)") { }
@@ -106,8 +108,9 @@ namespace Puces_R
                 client.Send(courriel);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                err_msg += e.Message;
                 return false;
             }
 

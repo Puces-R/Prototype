@@ -13,8 +13,6 @@ namespace Puces_R
 {
     public class Librairie
     { 
-        public static string serveur_mail = "192.168.10.25";
-
         public static SqlConnection Connexion
         {
             get

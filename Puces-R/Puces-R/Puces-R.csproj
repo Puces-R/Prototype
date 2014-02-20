@@ -69,6 +69,7 @@
     <Content Include="client.aspx" />
     <Content Include="CommandesClient.aspx" />
     <Content Include="CommuniquerClient.aspx" />
+    <Content Include="CommuniquerClientPanier.aspx" />
     <Content Include="Controles\Adresse.ascx" />
     <Content Include="BoiteMessage.aspx" />
     <Content Include="Commande.aspx" />
@@ -839,6 +840,13 @@
     </Compile>
     <Compile Include="CommuniquerClient.aspx.designer.cs">
       <DependentUpon>CommuniquerClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CommuniquerClientPanier.aspx.cs">
+      <DependentUpon>CommuniquerClientPanier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommuniquerClientPanier.aspx.designer.cs">
+      <DependentUpon>CommuniquerClientPanier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controles\Adresse.ascx.cs">
       <DependentUpon>Adresse.ascx</DependentUpon>

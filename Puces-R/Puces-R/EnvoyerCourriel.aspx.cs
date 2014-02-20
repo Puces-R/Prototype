@@ -14,7 +14,7 @@ namespace Puces_R
     public partial class EnvoyerCourriel : System.Web.UI.Page
     {
         SqlConnection connexion = Librairie.Connexion;
-        private int[] lstNoDestinataires;
+        private long[] lstNoDestinataires;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,10 +30,10 @@ namespace Puces_R
             {
                 lbDestinataires.Items.Clear();
                 string[] lstParametres = parametres.Split(",".ToArray());
-                lstNoDestinataires = new int[lstParametres.Length];
+                lstNoDestinataires = new long[lstParametres.Length];
                 for (int i = 0; i < lstNoDestinataires.Length; i++)
                 {
-                    lstNoDestinataires[i] = int.Parse(lstParametres[i]);
+                    lstNoDestinataires[i] = long.Parse(lstParametres[i]);
                 }
             }
             else if (Session["Sujet"] != null || Session["Message"] != null || Session["ListeDestinataires"] != null || Session["Fixer"] != null)
@@ -52,7 +52,7 @@ namespace Puces_R
 
                 if (Session["ListeDestinataires"] != null)
                 {
-                    lstNoDestinataires = (int[])Session["ListeDestinataires"];
+                    lstNoDestinataires = (long[])Session["ListeDestinataires"];
                     Session.Remove("ListeDestinataires");
                 }
 

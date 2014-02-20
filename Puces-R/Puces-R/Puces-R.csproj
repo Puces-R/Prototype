@@ -347,7 +347,6 @@
     <Content Include="Global.asax" />
     <Content Include="ProfilClient.aspx" />
     <Content Include="ProfilVendeur.aspx" />
-    <Content Include="Puces-R.Publish.xml" />
     <Content Include="RecupererMotDePasse.aspx" />
     <Content Include="ResultatPaiement.aspx" />
     <Content Include="ScriptsColorPicker\globalization\globalize.culture.cs-CZ.js" />

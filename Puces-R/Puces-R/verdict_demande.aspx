@@ -53,6 +53,11 @@
                                             Entrez le taux de redevance du vendeur 
                                             <span class="remarque">(Format: 00.00)</span>: 
                                             <asp:TextBox runat="server" id="taux_facturation" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
+                                            <asp:RequiredFieldValidator
+                                                runat="server"
+                                                ControlToValidate="taux_facturation"
+                                                ErrorMessage="Veuillez entrer le taux de redevance"
+                                                Display="Dynamic" />
                                             <asp:RegularExpressionValidator
                                                 runat="server"
                                                 id="regex_taux"
@@ -77,6 +82,11 @@
                                         <h2 class="center">Refus de la demande:</h2>
                                         Mail de refus envoyé au vendeur <br />
                                         <asp:TextBox runat="server" id="cont_mail_refus" TextMode="MultiLine" Columns="70" Rows="15" />
+                                            <asp:RequiredFieldValidator 
+                                                runat="server"
+                                                ControlToValidate="cont_mail_refus"
+                                                ErrorMessage="Veuillez entrer un message de refus"
+                                                Display="Dynamic" />
                                         <p class="center">
                                             <asp:Button id="btn_refuser" runat="server" text="Envoyer le courriel de refus" OnCommand="refus_demande"/>
                                         </p>

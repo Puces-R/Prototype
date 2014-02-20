@@ -75,7 +75,9 @@ namespace Puces_R
                     case 6:                        
                         Session["histo_no_vendeur"] = no_vendeur.ToString();
                         Response.Redirect(Chemin.Ajouter("histo_redevance_vendeur.aspx", "Retour à la page de gestion du vendeur"));
-
+                        break;
+                    case 7:
+                        mvVendeur.SetActiveView(View3);
                         break;
                     default:
                         charger_info();
@@ -94,9 +96,8 @@ namespace Puces_R
         {
             myConnection.Open();
             SqlCommand charger = new SqlCommand("SELECT * FROM PPVendeurs WHERE NoVendeur = " + no_vendeur, myConnection);
-
             SqlDataReader results = charger.ExecuteReader();
-
+            
             if (results.Read())
             {
                 lbl_nom_complet.Text = results["Prenom"].ToString() + " " + results["Nom"].ToString();
@@ -106,7 +107,7 @@ namespace Puces_R
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
                 lbl_livraison_gratuite.Text = (results["LivraisonGratuite"] != DBNull.Value ? Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $" : "Pas de livraison gratuite");
-                //lb_vendeur.CommandArgument = results["NoVendeur"].ToString();
+                lbl_ancien_taux.Text = Convert.ToDecimal(results["Pourcentage"]).ToString("N");
 
                 Master.Titre = results["NomAffaires"].ToString();
 
@@ -135,6 +136,28 @@ namespace Puces_R
                 if (results["Tel2"] != DBNull.Value)
                     lbl_tel2.Text = Telephone.Format(results["Tel2"].ToString());
             }
+            results.Close();
+
+            SqlCommand compter_commandes = new SqlCommand("SELECT COUNT (NoVendeur) FROM PPCommandes WHERE NoVendeur = " + no_vendeur, myConnection);
+            object nb_comandes = compter_commandes.ExecuteScalar();
+
+            if (Convert.ToInt32(nb_comandes) > 0)
+                li_modifier_taux.Visible = false;
+
+            SqlCommand chercher_etoiles = new SqlCommand("SELECT AVG(Cote) FROM PPEvaluations, PPProduits WHERE PPProduits.NoProduit = PPEvaluations.NoProduit AND  PPProduits.NoVendeur = " + no_vendeur, myConnection);
+            object nb_etoiles = chercher_etoiles.ExecuteScalar();
+
+            if (nb_etoiles != DBNull.Value)
+            {
+                ctr_etoiles.Modifiable = false;
+                ctr_etoiles.Cote = Convert.ToDecimal(nb_etoiles);
+                lbl_commentaire_etoiles.Text = " (" + Convert.ToDecimal(nb_etoiles).ToString("N") + ")";
+            }
+            else
+            {
+                lbl_commentaire_etoiles.Text = " (Aucune évaluation)";
+            }
+
             myConnection.Close();
         }
 
@@ -254,5 +277,17 @@ namespace Puces_R
             mvVendeur.SetActiveView(View2);
             myConnection.Close();
         }
+
+        protected void changer_taux (object sender, EventArgs e)
+        {
+            myConnection.Open();
+            SqlCommand modifier_taux = new SqlCommand("UPDATE PPVendeurs SET Pourcentage = + " + tb_nouveau_taux_redevance.Text + " WHERE NoVendeur = " + no_vendeur, myConnection);
+            modifier_taux.ExecuteNonQuery();
+            myConnection.Close();
+            Session["msg"] = "Le taux de redevance de ce vendeur a bien été modifié";
+            Page_Load(sender, e);
+            mvVendeur.SetActiveView(View3);
+        }
     }
+
 }

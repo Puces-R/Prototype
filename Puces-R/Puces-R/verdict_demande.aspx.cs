@@ -130,34 +130,21 @@ namespace Puces_R
 
         protected void acceptation_demande(object sender, CommandEventArgs e)
         {
-            MailMessage msg = new MailMessage();
+            string msg = "";
             
             myConnection.Open();
             SqlCommand commande_accepter_demande = new SqlCommand("UPDATE PPVendeurs SET Statut = 0, Pourcentage = " + taux_facturation.Text + " WHERE NoVendeur = " + e.CommandArgument.ToString(), myConnection);
             commande_accepter_demande.ExecuteNonQuery();
             //Response.Write(commande_accepter_demande.CommandText);
             
-            msg.Body = cont_mail_acceptation.Text;
-            msg.Body += "\nTaux de redevance retenu par le gestionnaire: " + taux_facturation.Text + "%";
-
-            try
-            {
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);                
-
-                msg.Subject = "Acceptation de la demande d'abonnement au site LesPetiesPuces.com";
-                msg.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
-                msg.To.Add(new MailAddress(courriel_demande.Text));
-                SmtpServer.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(msg);
-
-            }
-            catch (Exception k)
-            {
-                Session["err_msg"] = "Echec de l'envoi du mail de confirmation: " + k.ToString();
-            }
-
-            Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été accepté.";
+            msg = cont_mail_acceptation.Text;
+            msg += "\n\nTaux de redevance retenu par le gestionnaire: " + taux_facturation.Text + "%";
+            
+            Courriel conf_mail = new Courriel("Acceptation de la demande d'abonnement au site LesPetiesPuces.com", msg, courriel_demande.Text);
+            
+            if (conf_mail.envoyer())
+                Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été accepté.";
+            else Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été accepté mais une erreure est survenue lors de l'envoi du courriel de confirmation";
 
             Response.Redirect("gerer_demandes_vendeurs.aspx");
             

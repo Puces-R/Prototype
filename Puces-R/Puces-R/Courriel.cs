@@ -40,10 +40,11 @@ namespace Puces_R
             }
         }
 
-        private static SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+        private static SmtpClient client = new SmtpClient(/*"smtp.gmail.com", 587*/)
         {
-            Credentials = new NetworkCredential("raikou4@gmail.com", "p0k3m0n2515"),
-            EnableSsl = true
+            //Credentials = new NetworkCredential("raikou4@gmail.com", "p0k3m0n2515"),
+            //EnableSsl = true
+            Host = "192.168.10.25"
         };
 
         public Courriel() : this("(Aucun message)", "(Vide)") { }
@@ -103,13 +104,13 @@ namespace Puces_R
             try
             {
                 client.Send(courriel);
+                return true;
             }
             catch (Exception)
             {
                 return false;
             }
 
-            return true;
         }
     }
 }

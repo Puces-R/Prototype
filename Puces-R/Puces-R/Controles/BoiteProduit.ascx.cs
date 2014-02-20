@@ -95,6 +95,7 @@ namespace Puces_R.Controles
 
             lblNoProduit.Text = "No. " + NoProduit.ToString();
             imgProduit.ImageUrl = urlImage;
+
             hypDescriptionAbregee.Text = NoSequentiel + ". " + strDescriptionAbregee;
             if (LienActive)
             {

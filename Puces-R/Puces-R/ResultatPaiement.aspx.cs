@@ -205,6 +205,28 @@ namespace Puces_R
                 SqlCommand commandeNbItems = new SqlCommand("UPDATE P SET NombreItems = P.NombreItems - A.NbItems FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND P.NoVendeur = " + facture.NoVendeur, myConnection, transaction);
                 commandeNbItems.ExecuteNonQuery();
 
+                SqlCommand commandeArticlesEnPanier = new SqlCommand("SELECT A.NoProduit, A.NbItems, ISNULL(P.PrixVente, P.PrixDemande) Prix FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoClient = " + Session["ID"] + " AND A.NoVendeur = " + facture.NoVendeur, myConnection, transaction);
+                SqlDataReader lecteurActiclesEnPanier = commandeArticlesEnPanier.ExecuteReader();
+
+                List<SqlCommand> commandesAjoutDetailsCommande = new List<SqlCommand>();
+
+                while (lecteurActiclesEnPanier.Read())
+                {
+                    SqlCommand commandeDetailsCommande = new SqlCommand("INSERT INTO PPDetailsCommandes VALUES (((SELECT MAX(NoDetailCommandes) FROM PPDetailsCommandes) + 1), @noCommande, @noProduit, @prixVente, @quantite)", myConnection, transaction);
+                    SqlParameterCollection parametersDetailsCommande = commandeDetailsCommande.Parameters;
+                    parametersDetailsCommande.Add(new SqlParameter("noCommande", NoCommande));
+                    parametersDetailsCommande.Add(new SqlParameter("noProduit", lecteurActiclesEnPanier["NoProduit"]));
+                    parametersDetailsCommande.Add(new SqlParameter("prixVente", lecteurActiclesEnPanier["Prix"]));
+                    parametersDetailsCommande.Add(new SqlParameter("quantite", lecteurActiclesEnPanier["NbItems"]));
+                    commandesAjoutDetailsCommande.Add(commandeDetailsCommande);
+                }
+                lecteurActiclesEnPanier.Close();
+
+                foreach (SqlCommand commandeDetailsCommande in commandesAjoutDetailsCommande)
+                {
+                    commandeDetailsCommande.ExecuteNonQuery();
+                }
+                
                 SqlCommand commandeViderPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoClient = " + Session["ID"] + " AND NoVendeur = " + facture.NoVendeur, myConnection, transaction);
                 commandeViderPanier.ExecuteNonQuery();
 

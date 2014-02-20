@@ -44,7 +44,7 @@
                                 <asp:View ID="View2" runat="server">
                                     <div class="titreVendeurAvecMenu rectangleAvecOmbre">
                                         <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
-                                            <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
+                                            <asp:Image ID="imgLogo" runat="server" CssClass="logoVendeur" />
                                             <asp:Label runat="server" ID="lblTitreAvecMenu" CssClass="titreVendeur" />
                                         </asp:Panel>
                                         <div class="rectanglePartieTitre rectangleTitreDroite">

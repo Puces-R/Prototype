@@ -2593,7 +2593,7 @@
         <Width>1.32292cm</Width>
         <ZIndex>62</ZIndex>
         <Visibility>
-          <Hidden>= (Not(IsNothing(Parameters!LogoVendeur.Value)))</Hidden>
+          <Hidden>= IsNothing(Parameters!LogoVendeur.Value)</Hidden>
         </Visibility>
         <Style>
           <Border>

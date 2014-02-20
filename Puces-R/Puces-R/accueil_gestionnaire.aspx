@@ -50,7 +50,7 @@
                             </asp:Repeater>                  
                         </ul>
                         <div class="lienDetails">
-                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="gerer_demandes_vendeurs.aspx" Text="Détails" />
+                            <asp:HyperLink runat="server" id="hyp_details_demandes"  Text="Détails" />
                         </div>
                     </div>
                 </asp:TableCell><asp:TableCell>
@@ -75,7 +75,7 @@
                             </li>                     
                         </ul>
                         <div class="lienDetails">
-                            <asp:HyperLink runat="server" NavigateUrl="visualiser_stats_rapports.aspx" Text="Détails" />
+                            <asp:HyperLink runat="server" id="hyp_details_stats" Text="Détails" />
                         </div>
                     </div>
                 </asp:TableCell></asp:TableRow></asp:Table></div></asp:Content>

@@ -34,6 +34,10 @@
                 <li><asp:LinkButton ID="LinkButton10" runat="server" OnCommand="chargerConnexionsc5" CommandArgument="c4" Text="Dernieres connexions" ToolTip="Les clients qui se sont récenmment connecté au site " /></li>
                 <li><asp:LinkButton ID="LinkButton0" runat="server" OnCommand="chargerGraphiquec0" CommandArgument="c0" Text="Divers" ToolTip="Statistiques diverses sur les clients" /></li>
             </ul>
+            <h2 style="display: none;">Comptabilité</h2>
+            <ul style="display: none;">                
+                <li><asp:LinkButton ID="LinkButton11" runat="server" OnCommand="chargerGraphiquev5" CommandArgument="v5" Text="Total des redevances mensuelles" ToolTip="Voir le total des redevances de chaque mois" /></li>
+            </ul>
         </div>
         <div class="panneau pnlDroite">
             <div style="width:675px; height: 0px;"> &nbsp;</div>
@@ -92,6 +96,21 @@
                     </div>
                     <div class="rectangleItem basRectangle">
                          <div id="chart_v4" style="width:100%;height:650px;display:inline-block;margin: 0 auto;"></div>
+                    </div>
+                </asp:View>
+                <asp:View ID="v5" runat="server">
+                    <div class="rectangleItem hautRectangle">
+                        <table border="0" width="100%" >
+                            <tr><td>Total des redevances dues et reçues des derniers mois</td>
+                            <td align="right" >
+                                Nombre de mois
+                                <asp:DropDownList ID="ddlNbMois_v5" runat="server" AutoPostBack="true" ForeColor="Black" OnSelectedIndexChanged="chargerGraphiquev5" />
+                            </td></tr>
+                        </table>
+                    </div>
+                    <div class="rectangleItem basRectangle">
+                         <div id="chart_v5" style="width:100%;height:375px;display:inline-block;margin: 0 auto;"></div>
+                         En construction
                     </div>
                 </asp:View>
                 <asp:View ID="v0" runat="server">

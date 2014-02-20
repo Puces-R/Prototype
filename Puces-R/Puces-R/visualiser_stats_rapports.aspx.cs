@@ -27,6 +27,7 @@ namespace Puces_R
                 ajouter_list_item(ddlNbVendeurs_v2, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbVendeurs_v3, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbVendeurs_v4, min_option, nb_option, increment);
+                ajouter_list_item(ddlNbMois_v5, min_option, nb_option, increment);
 
                 ajouter_list_item(ddlNbMois_c1, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbClients_c2, min_option, nb_option, increment);
@@ -133,6 +134,11 @@ namespace Puces_R
             generer_script("v4", js_tab, false, Page.ClientScript, false);
             myConnection.Close();
             mvStats.SetActiveView(v4);
+        }
+
+        protected void chargerGraphiquev5(object sender, EventArgs e)
+        {
+            mvStats.SetActiveView(v5);
         }
 
         protected void chargerGraphiquev0(object sender, EventArgs e)

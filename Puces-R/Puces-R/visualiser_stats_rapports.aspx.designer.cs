@@ -112,6 +112,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton0;
         
         /// <summary>
+        /// Contrôle LinkButton11.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton11;
+        
+        /// <summary>
         /// Contrôle mvStats.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,24 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNbVendeurs_v4;
+        
+        /// <summary>
+        /// Contrôle v5.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View v5;
+        
+        /// <summary>
+        /// Contrôle ddlNbMois_v5.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNbMois_v5;
         
         /// <summary>
         /// Contrôle v0.

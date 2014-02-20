@@ -13,16 +13,6 @@ namespace Puces_R {
     public partial class accueil_gestionnaire {
         
         /// <summary>
-        /// Propriété Master.
-        /// </summary>
-        /// <remarks>
-        /// Propriété générée automatiquement.
-        /// </remarks>
-        public new Puces_R.SiteMaster Master {
-            get {
-                return ((Puces_R.SiteMaster)(base.Master));
-            }
-        }
         /// Contrôle rptMeilleursClients.
         /// </summary>
         /// <remarks>
@@ -59,13 +49,13 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Repeater rptDemandes;
         
         /// <summary>
-        /// Contrôle HyperLink1.
+        /// Contrôle hyp_details_demandes.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.HyperLink hyp_details_demandes;
         
         /// <summary>
         /// Contrôle lbl_nb_nouv_vendeurs.
@@ -102,5 +92,26 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_nb_clients;
+        
+        /// <summary>
+        /// Contrôle hyp_details_stats.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyp_details_stats;
+        
+        /// <summary>
+        /// Propriété Master.
+        /// </summary>
+        /// <remarks>
+        /// Propriété générée automatiquement.
+        /// </remarks>
+        public new Puces_R.SiteMaster Master {
+            get {
+                return ((Puces_R.SiteMaster)(base.Master));
+            }
+        }
     }
 }

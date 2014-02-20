@@ -36,7 +36,7 @@
                         <asp:ListItem Text="Description" />
                         <asp:ListItem Text="Numéro" />
                     </asp:DropDownList>
-                    <asp:TextBox ID="txtCritereRecherche" runat="server" Width="60" Font-Size="X-Small" OnTextChanged="AfficherPremierePage" OnKeyUp="RefreshUpdatePanel();" />
+                    <asp:TextBox ID="txtCritereRecherche" runat="server" Width="100" Font-Size="X-Small" OnTextChanged="AfficherPremierePage" OnKeyUp="RefreshUpdatePanel();" />
                 </span>
                 <span class="boiteListeDeroulante">
                     Trier par:

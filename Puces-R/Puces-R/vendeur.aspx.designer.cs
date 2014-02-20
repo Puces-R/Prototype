@@ -265,15 +265,6 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.TextBox tb_nouveau_taux_redevance;
         
         /// <summary>
-        /// Contrôle regex_taux.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_taux;
-        
-        /// <summary>
         /// Contrôle btn_changer_taux.
         /// </summary>
         /// <remarks>
@@ -281,6 +272,15 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_changer_taux;
+        
+        /// <summary>
+        /// Contrôle regex_taux.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_taux;
         
         /// <summary>
         /// Propriété Master.

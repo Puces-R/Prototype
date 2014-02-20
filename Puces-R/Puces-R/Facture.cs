@@ -67,7 +67,7 @@ namespace Puces_R
 
             myConnection.Open();
 
-            SqlCommand commandeVendeur = new SqlCommand("SELECT Province, LivraisonGratuite, MaxLivraison FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+            SqlCommand commandeVendeur = new SqlCommand("SELECT Province, LivraisonGratuite, MaxLivraison, Taxes FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
             SqlDataReader lecteurVendeur = commandeVendeur.ExecuteReader();
 
             lecteurVendeur.Read();
@@ -75,6 +75,7 @@ namespace Puces_R
             decimal livraisonGratuite = (decimal)lecteurVendeur["LivraisonGratuite"];
             String provinceVendeur = (String)lecteurVendeur["Province"];
             this.PoidsMaximal = (int)lecteurVendeur["MaxLivraison"];
+            bool taxes = (bool)lecteurVendeur["Taxes"];
 
             lecteurVendeur.Close();
 
@@ -96,33 +97,31 @@ namespace Puces_R
             SqlCommand commandeTauxTVQ = new SqlCommand("SELECT TOP(1) TauxTVQ FROM PPTaxeProvinciale ORDER BY DateEffectiveTVQ DESC", myConnection);
             this.TauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
 
-            this.PrixTPS = prixAvecLivraison * TauxTPS;
-
-            if (provinceClient == null)
+            if (taxes)
             {
-
-                SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
-
-                Object objPorvinceClient = commandeClient.ExecuteScalar();
-
-                if (objPorvinceClient is String)
+                this.PrixTPS = prixAvecLivraison * TauxTPS;
+                if (provinceClient == null)
                 {
-                    provinceClient = (String)objPorvinceClient;
+
+                    SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
+
+                    Object objPorvinceClient = commandeClient.ExecuteScalar();
+
+                    if (objPorvinceClient is String)
+                    {
+                        provinceClient = (String)objPorvinceClient;
+                    }
                 }
-            }
-            if (provinceClient == null)
-            {
-                this.PrixTVQInconnu = true;
-            }
-            else
-            {
-                if (provinceVendeur != "QC" || provinceClient != "QC")
+                if (provinceClient == null)
                 {
-                    this.PrixTVQ = 0;
+                    this.PrixTVQInconnu = true;
                 }
                 else
                 {
-                    this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                    if (provinceVendeur == "QC" && provinceClient == "QC")
+                    {
+                        this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                    }
                 }
             }
         }

@@ -12,7 +12,7 @@
         <link href="CSS/Site.css" rel="stylesheet" type="text/css" />
         <asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
     </head>
-    <body>
+    <body class="imageFond">
         <form runat="server">
             <asp:Panel ID="divPage" CssClass="page" runat="server">
                 <div>
@@ -44,7 +44,7 @@
                                 <asp:View ID="View2" runat="server">
                                     <div class="titreVendeurAvecMenu rectangleAvecOmbre">
                                         <asp:Panel runat="server" ID="pnlTitre" CssClass="rectanglePartieTitre rectangleTitreGauche">
-                                            <asp:Image ID="imgLogo" runat="server" Visible="false" CssClass="logoVendeur" />
+                                            <asp:Image ID="imgLogo" runat="server" CssClass="logoVendeur" />
                                             <asp:Label runat="server" ID="lblTitreAvecMenu" CssClass="titreVendeur" />
                                         </asp:Panel>
                                         <div class="rectanglePartieTitre rectangleTitreDroite">

@@ -55,14 +55,15 @@ namespace Puces_R
                     lblTitreAvecMenu.Text = nomAffaires;
 
                     this.ctrMenuVendeur.NoVendeur = value;
-
-                    imgLogo.Visible = true;
-
+                    
                     myConnection.Open();
                     SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
                     Object nom = commandXML.ExecuteScalar();
 
                     myConnection.Close();
+
+                    imgLogo.Visible = false;
+                    pnlTitre.BackColor = Color.LightGray;
 
                     if (!(nom is DBNull))
                     {
@@ -70,22 +71,13 @@ namespace Puces_R
 
                         if (lecture.Existe)
                         {
-                            imgLogo.Visible = true;
-                            String couleur = lecture.Couleur;
-
-                            pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
+                            pnlTitre.BackColor = ColorTranslator.FromHtml("#" + lecture.Couleur);
                             imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
-                            mvTitre.ActiveViewIndex = 1;
-                        }
-                        else
-                        {
-                            Titre = nomAffaires;
+                            imgLogo.Visible = true;
                         }
                     }
-                    else
-                    {
-                        Titre = nomAffaires;
-                    }
+                    
+                    mvTitre.ActiveViewIndex = 1;
                 }
                 else
                 {

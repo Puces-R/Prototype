@@ -58,11 +58,12 @@ namespace Puces_R
                 }
                 else
                 {
+                    trVente.Visible =
                     btnModifierProduit.Visible =
                     btnSupprimerProduit.Visible = false;
                 }
 
-                SqlCommand commandeProduit = new SqlCommand("SELECT P.NoProduit,Photo,P.Description,C.Description AS Categorie,P.Nom,PrixDemande,PrixVente,NombreItems,Poids,P.DateCreation,P.DateMAJ,V.NoVendeur,NomAffaires FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPVendeurs V ON P.NoVendeur = V.NoVendeur" + whereClause, myConnection);
+                SqlCommand commandeProduit = new SqlCommand("SELECT P.NoProduit,Photo,P.Description,C.Description AS Categorie,P.Nom,PrixDemande,ISNULL(PrixVente, PrixDemande) AS PrixVente,NombreItems,Poids,P.DateCreation,P.DateMAJ,V.NoVendeur,NomAffaires FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPVendeurs V ON P.NoVendeur = V.NoVendeur" + whereClause, myConnection);
 
                 myConnection.Open();
                 SqlDataReader lecteurProduit = commandeProduit.ExecuteReader();
@@ -234,7 +235,7 @@ namespace Puces_R
         protected void btnEnvoyerMessage_Click(object sender, EventArgs e)
         {
             String message = "Question sur le produit '" + lblProduit.Text + "' (#" + Request.Params["noproduit"] + ")";
-            Librairie.Messagerie(new int[] { (int)NoVendeur }, message, null, true);
+            Librairie.Messagerie(new long[] { NoVendeur }, message, null, true);
         }
 
         protected void rptEvaluations_OnItemDataBound(object sender, RepeaterItemEventArgs e)

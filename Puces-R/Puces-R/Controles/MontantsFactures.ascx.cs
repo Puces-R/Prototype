@@ -6,12 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Drawing;
 
 namespace Puces_R.Controles
 {
     public partial class MontantsFactures : System.Web.UI.UserControl
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         private Facture facture;
 
@@ -20,6 +21,22 @@ namespace Puces_R.Controles
             get
             {
                 return facture.GrandTotal;
+            }
+        }
+
+        public bool Commande
+        {
+            get
+            {
+                if (ViewState["Commande"] == null)
+                {
+                    return false;
+                }
+                return (bool)ViewState["Commande"];
+            }
+            set
+            {
+                ViewState["Commande"] = value;
             }
         }
 
@@ -87,6 +104,18 @@ namespace Puces_R.Controles
             }
         }
 
+        public String Province
+        {
+            get
+            {
+                return (String)ViewState["Province"];
+            }
+            set
+            {
+                ViewState["Province"] = value;
+            }
+        }
+
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -111,7 +140,14 @@ namespace Puces_R.Controles
             }
             else if (ViewState["NoVendeur"] != null)
             {
-                facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison);
+                if (Province == null)
+                {
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Commande);
+                }
+                else
+                {
+                    facture = new Facture((int)Session["ID"], NoVendeur, CodeLivraison, Province, Commande);
+                }
                 lblTauxTPS.Text = "(" + facture.TauxTPS.ToString("P3") + ")";
                 lblTauxTVQ.Text = "(" + facture.TauxTVQ.ToString("P3") + ")";
 
@@ -126,7 +162,17 @@ namespace Puces_R.Controles
             ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
             lblLivraison.Text = facture.PrixLivraison.ToString("C");
             lblTPS.Text = facture.PrixTPS.ToString("C");
-            lblTVQ.Text = facture.PrixTVQ.ToString("C");
+
+            if (facture.PrixTVQInconnu)
+            {
+                mvTVQ.ActiveViewIndex = 1;
+            }
+            else
+            {
+                mvTVQ.ActiveViewIndex = 0;
+                lblTVQ.Text = facture.PrixTVQ.ToString("C");
+            }
+
             lblGrandTotal.Text = facture.GrandTotal.ToString("C");
 
             myConnection.Close();

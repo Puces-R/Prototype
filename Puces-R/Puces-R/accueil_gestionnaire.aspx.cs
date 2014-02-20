@@ -20,6 +20,8 @@ namespace Puces_R
                 Librairie.Autorisation(false, false, false, true);
             }
             ((SiteMaster)Master).Titre = "Accueil";
+            hyp_details_stats.NavigateUrl = Chemin.Ajouter("visualiser_stats_rapports.aspx", "Retour à l'accueil");
+            hyp_details_demandes.NavigateUrl = Chemin.Ajouter("gerer_demandes_vendeurs.aspx", "Retour à l'accueil");
 
             rptMeilleursClients.DataSource = chargerMeilleursClients();
             rptMeilleursClients.DataBind();

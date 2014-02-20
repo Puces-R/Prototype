@@ -30,7 +30,7 @@ namespace Puces_R
                 SqlCommand cmdAjoutVendeur = new SqlCommand("INSERT INTO PPVendeurs values(@no, @nomAffaire, @nom, @prenom, @rue, " + 
                                                                                           "@ville, @province, @codePostal, @pays, @tel1, " +
                                                                                           "@tel2, @courriel, @mdp, @maxLivraison, @gratuite, @taxes, " +
-                                                                                          "NULL, @config, @creation, NULL, @status)", connexion);
+                                                                                          "NULL, NULL, @creation, NULL, 2)", connexion);
                 SqlCommand cmdVendeur = new SqlCommand("SELECT NomAffaires FROM PPVendeurs WHERE NoVendeur = @no", connexion);
 
                 
@@ -55,9 +55,7 @@ namespace Puces_R
                 cmdAjoutVendeur.Parameters.AddWithValue("@gratuite", ctrProfil.LivraisonGratuite);
                 cmdAjoutVendeur.Parameters.AddWithValue("@taxes", ctrProfil.Taxes);
 
-                cmdAjoutVendeur.Parameters.AddWithValue("@config", DBNull.Value); // Placeholder
                 cmdAjoutVendeur.Parameters.AddWithValue("@creation", DateTime.Now);
-                cmdAjoutVendeur.Parameters.AddWithValue("@status", DBNull.Value); // Libre ? À hardcoder
 
                 cmdAjoutVendeur.ExecuteNonQuery();
 

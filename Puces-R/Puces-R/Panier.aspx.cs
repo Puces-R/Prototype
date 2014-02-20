@@ -81,7 +81,7 @@ namespace Puces_R
                 DataRowView drvProduit = (DataRowView)e.Item.DataItem;
 
                 long noProduit = (long)drvProduit["NoProduit"];
-                String urlImage = "Images/Televerse/" + (String)drvProduit["Photo"];
+                String urlImage = "Images/" + (drvProduit["Photo"] is DBNull ? "image_non_disponible.png" : "Televerse/" + (String)drvProduit["Photo"]);
                 String strCategorie = (String)drvProduit["Description"];
                 String strDescriptionAbregee = (String)drvProduit["Nom"];
                 decimal decPrixDemande = (decimal)drvProduit["PrixDemande"];

@@ -19,7 +19,7 @@ namespace Puces_R
             String couleur = tab[1];
             NomLogo=tab[2];
             Couleur = couleur;
-            Existe = (tab[0] != String.Empty);
+            Existe = (tab[0] == "O");
         }
 
         public bool Existe

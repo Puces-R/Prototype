@@ -23,6 +23,8 @@ namespace Puces_R
         public decimal TauxTPS { get; private set; }
         public decimal TauxTVQ { get; private set; }
         public short CodeLivraison { get; private set; }
+        public bool PrixTVQInconnu { get; private set; }
+        public string Province { get; private set; }
 
         public decimal GrandTotal
         {
@@ -37,14 +39,19 @@ namespace Puces_R
             this.CodeLivraison = codeLivraison;
         }
 
-        public Facture(long noClient, long noVendeur, short codeLivraison) : this(codeLivraison)
+
+        public Facture(long noClient, long noVendeur, short codeLivraison, bool commande = false) : this(noClient, noVendeur, codeLivraison, null, commande) { }
+
+        public Facture(long noClient, long noVendeur, short codeLivraison) : this(noClient, noVendeur, codeLivraison, null) { }
+
+        public Facture(long noClient, long noVendeur, short codeLivraison, String provinceClient, bool commande = false) : this(codeLivraison)
         {
             this.NoClient = noClient;
             this.NoVendeur = noVendeur;
 
-            String whereClause = " WHERE A.NoClient = " + noClient+ " AND P.NoVendeur = " + noVendeur;
+            String whereClause = " WHERE A.NoClient = " + noClient + " AND P.NoVendeur = " + noVendeur;
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, PrixDemande, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, " + (commande ? "ISNULL(PrixVente, PrixDemande)" : "PrixDemande") + " AS Prix, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
@@ -54,13 +61,13 @@ namespace Puces_R
             foreach (DataRow produit in tableProduits.Rows)
             {
                 short nbItems = (short)produit["NbItems"];
-                SousTotal += nbItems * (decimal)produit["PrixDemande"];
+                SousTotal += nbItems * (decimal)produit["Prix"];
                 PoidsTotal += nbItems * (decimal)produit["Poids"];
             }
 
             myConnection.Open();
 
-            SqlCommand commandeVendeur = new SqlCommand("SELECT Province, LivraisonGratuite, MaxLivraison FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+            SqlCommand commandeVendeur = new SqlCommand("SELECT Province, LivraisonGratuite, MaxLivraison, Taxes FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
             SqlDataReader lecteurVendeur = commandeVendeur.ExecuteReader();
 
             lecteurVendeur.Read();
@@ -68,6 +75,7 @@ namespace Puces_R
             decimal livraisonGratuite = (decimal)lecteurVendeur["LivraisonGratuite"];
             String provinceVendeur = (String)lecteurVendeur["Province"];
             this.PoidsMaximal = (int)lecteurVendeur["MaxLivraison"];
+            bool taxes = (bool)lecteurVendeur["Taxes"];
 
             lecteurVendeur.Close();
 
@@ -89,18 +97,32 @@ namespace Puces_R
             SqlCommand commandeTauxTVQ = new SqlCommand("SELECT TOP(1) TauxTVQ FROM PPTaxeProvinciale ORDER BY DateEffectiveTVQ DESC", myConnection);
             this.TauxTVQ = ((decimal)commandeTauxTVQ.ExecuteScalar()) / 100;
 
-            this.PrixTPS = prixAvecLivraison * TauxTPS;
-
-            SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
-            string provinceClient = (String)commandeClient.ExecuteScalar();
-
-            if (provinceVendeur != "QC" || provinceClient != "QC")
+            if (taxes)
             {
-                this.PrixTVQ = 0;
-            }
-            else
-            {
-                this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                this.PrixTPS = prixAvecLivraison * TauxTPS;
+                if (provinceClient == null)
+                {
+
+                    SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
+
+                    Object objPorvinceClient = commandeClient.ExecuteScalar();
+
+                    if (objPorvinceClient is String)
+                    {
+                        provinceClient = (String)objPorvinceClient;
+                    }
+                }
+                if (provinceClient == null)
+                {
+                    this.PrixTVQInconnu = true;
+                }
+                else
+                {
+                    if (provinceVendeur == "QC" && provinceClient == "QC")
+                    {
+                        this.PrixTVQ = prixAvecLivraison * TauxTVQ;
+                    }
+                }
             }
         }
 

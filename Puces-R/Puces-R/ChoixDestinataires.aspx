@@ -12,6 +12,11 @@
             font-size: small;
             list-style: none;
         }
+        body 
+        {
+            min-width: 900px;
+            background: white;
+        }
     </style>
     <script type="text/javascript" src="Scripts/jquery-1.4.1.js"></script>
     <script type="text/javascript">

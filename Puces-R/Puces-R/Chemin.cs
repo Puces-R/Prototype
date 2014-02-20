@@ -91,12 +91,17 @@ namespace Puces_R
 
         public static String Ajouter(string adresse, string texteRetour)
         {
+            return Ajouter(adresse, texteRetour, UrlActuel);
+        }
+
+        public static String Ajouter(string adresse, string texteRetour, string urlActuel)
+        {
             String parametre = String.Empty;
             if (Parties != null)
             {
                 parametre += Parties + ";";
             }
-            parametre += UrlActuel;
+            parametre += urlActuel;
 
             if (adresse.Contains("?"))
             {

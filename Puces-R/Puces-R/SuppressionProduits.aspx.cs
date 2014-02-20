@@ -39,29 +39,23 @@ namespace Puces_R
 
         protected void supprimerProduits(object sender, EventArgs e)
         {
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
-            maConnexion.Open();
+            SqlConnection maConnexion = Librairie.Connexion;
 
-            SqlCommand maCommande;
+            SqlCommand maCommande = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoProduit = " + noProduit, maConnexion);
             if (verifierSiProduitEstCommande())
             {
-                maCommande = new SqlCommand("UPDATE PPProduits SET NombreItems=0,Disponibilité=0 where NoProduit=" + noProduit, maConnexion);
-                maCommande.ExecuteNonQuery();
-
-                Response.Redirect("GestionProduits.aspx");
-
+                maCommande.CommandText += "\nUPDATE PPProduits SET NombreItems=0, Disponibilité=0 where NoProduit=" + noProduit;
             }
             else
             {
-                maCommande = new SqlCommand("DELETE FROM PPProduits WHERE NoProduit=" + noProduit, maConnexion);
-                maCommande.ExecuteNonQuery();
-
-                Response.Redirect("GestionProduits.aspx");
-
+                maCommande.CommandText += "\nDELETE FROM PPProduits WHERE NoProduit=" + noProduit;
             }
+
+            maConnexion.Open();
+            maCommande.ExecuteNonQuery();
             maConnexion.Close();
+
+            Response.Redirect("GestionProduits.aspx");
         }
         protected bool verifierSiProduitEstCommande()
         {
@@ -130,13 +124,20 @@ namespace Puces_R
                     int categorie = (int)repT[2];
                     LoaderCategorie(categorie);
 
-                    tbDescAbregee.Text = (String)repT[3];
-                    tbDescComplete.Text = (String)repT[4];
-                    String photo = (String)repT[5];
-                    imgProduits.ImageUrl = "Images/Televerse/" + photo;
-                    tbPrix.Text = Convert.ToString((Decimal)repT[6]);
-                    tbNbItems.Text = Convert.ToString((Int16)repT[7]);
-                    Boolean dispo = (Boolean)repT[8];
+                    tbDescAbregee.Text = (String)repT["Nom"];
+                    tbDescComplete.Text = (String)repT["Description"];
+                    object photo = repT["Photo"];
+                    if (!(photo is DBNull))
+                    {
+                        imgProduits.ImageUrl = "Images/Televerse/" + photo.ToString();
+                    }
+                    else
+                    {
+                        imgProduits.ImageUrl = "Images/image_non_disponible.png";
+                    }
+                    tbPrix.Text = Convert.ToString((Decimal)repT["PrixDemande"]);
+                    tbNbItems.Text = Convert.ToString((Int16)repT["NombreItems"]);
+                    Boolean dispo = (Boolean)repT["Disponibilité"];
                     if (dispo)
                     {
                         cbDisponibilite.Checked = true;
@@ -147,7 +148,7 @@ namespace Puces_R
                     }
 
                     //Double prixV = (Decimal)repT[10];
-                    tbPois.Text = Convert.ToString((Decimal)repT[11]);
+                    tbPois.Text = Convert.ToString((Decimal)repT["Poids"]);
                     //DateTime dateCreation = (DateTime)repT[12];
 
                 }

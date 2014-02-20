@@ -27,13 +27,13 @@
         <asp:Label ID="lblPrix" runat="server">Prix demandé</asp:Label>
     </td>
     <td>
-        <asp:TextBox ID="tbPrix" runat="server" MaxLength="9" />
+        <asp:TextBox ID="tbPrix" runat="server" MaxLength="8" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="tbPrix"
             EnableClientScript="false" ErrorMessage="Le prix demandé est obligatoire" runat="server" />
         <asp:RegularExpressionValidator ID="rePrixDemande" ControlToValidate="tbPrix" EnableClientScript="false"
-            runat="server" ErrorMessage="Le format du prix demandé est invalide" ValidationExpression="^\d{1,6}([\.\,]\d{0,2})?$" />
+            runat="server" ErrorMessage="Le format du prix demandé est invalide" ValidationExpression="^\d{1,5}([\.\,]\d{0,2})?$" />
     </td>
 </tr>
 <tr>
@@ -81,12 +81,12 @@
         <asp:Label ID="lblprixVente" runat="server">Prix de vente</asp:Label>
     </td>
     <td>
-        <asp:TextBox ID="tbPrixVente" runat="server" MaxLength="9" />
+        <asp:TextBox ID="tbPrixVente" runat="server" MaxLength="8" />
     </td>
     <td class="erreur">
         <asp:RegularExpressionValidator ID="rePrixVente" ControlToValidate="tbPrixVente"
             EnableClientScript="false" runat="server" ErrorMessage="Le format du prix de vente est invalide"
-            ValidationExpression="^\d{1,6}([\.\,]\d{0,2})?$"> 
+            ValidationExpression="^\d{1,5}([\.\,]\d{0,2})?$"> 
         </asp:RegularExpressionValidator>
         <asp:CustomValidator runat="server" ID="adresseExiste" ControlToValidate="tbPrixVente"
             OnServerValidate="validerPrixVente" ErrorMessage="Le prix de vente doit être plus petit que le prix demandé" />

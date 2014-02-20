@@ -37,7 +37,7 @@
                 <div class="rectangleItem basRectangle">
                     <asp:TextBox runat="server" ID="txtCommentaire" Rows="3" TextMode="MultiLine" CssClass="commentaireEvaluation"
                         Font-Size="Small" />
-                        <asp:Label runat="server" ID="lblErreurCommentaire" CssClass="erreur" />
+                    <asp:Label runat="server" ID="lblErreurCommentaire" CssClass="erreur" />
                     <asp:Button runat="server" ID="btnSoumettre" Text="Soumettre" OnClick="btnSoumettre_OnClick"
                         CssClass="boutonSoumettre" />
                 </div>
@@ -94,7 +94,7 @@
                         <asp:Label ID="lblPrixDemande" runat="server" />
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server" id="trVente">
                     <td>
                         Prix en vente:
                     </td>

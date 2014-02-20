@@ -9,7 +9,10 @@ body
     margin-bottom: 0;
     font-family: 'Segoe UI';
     margin: 0 auto;
-        
+}
+
+.imageFond
+{
     background-image:url('../Images/Fond/centre-achat.jpg');
     background-attachment: fixed;
     background-size:100% 100%;
@@ -104,6 +107,7 @@ form
     font-size:xx-large;
     font-weight:bold;
     vertical-align:middle;
+    line-height:75px;
 }
 
 .barreVendeur
@@ -192,7 +196,7 @@ form
 {
     border-collapse:collapse;
     margin:10px;
-    width:350px;
+    width:400px;
     font-size:small;
 }
 

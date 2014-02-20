@@ -55,30 +55,28 @@ namespace Puces_R
                     lblTitreAvecMenu.Text = nomAffaires;
 
                     this.ctrMenuVendeur.NoVendeur = value;
-
-                    imgLogo.Visible = true;
-
+                    
                     myConnection.Open();
                     SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
-                    String nom = (String)commandXML.ExecuteScalar();
+                    Object nom = commandXML.ExecuteScalar();
 
                     myConnection.Close();
-                    if (nom == null)
+
+                    imgLogo.Visible = false;
+                    pnlTitre.BackColor = Color.LightGray;
+
+                    if (!(nom is DBNull))
                     {
-                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilClient.aspx" : Chemin.UrlRetour);
+                        LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
+
+                        if (lecture.Existe)
+                        {
+                            pnlTitre.BackColor = ColorTranslator.FromHtml("#" + lecture.Couleur);
+                            imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
+                            imgLogo.Visible = true;
+                        }
                     }
-
-                    LectureXML lecture = new LectureXML(Convert.ToInt64(nom));
-
-                    if (lecture.Existe)
-                    {
-                        imgLogo.Visible = true;
-                        String couleur = lecture.Couleur;
-
-                        pnlTitre.BackColor = ColorTranslator.FromHtml("#" + couleur);
-                        imgLogo.ImageUrl = "~/Images/Logo/" + lecture.NomLogo;
-                    }
-
+                    
                     mvTitre.ActiveViewIndex = 1;
                 }
                 else
@@ -111,7 +109,22 @@ namespace Puces_R
                         default:
                             throw new InvalidOperationException();
                     }
-                    menu.Controls.Add(c);
+                    menu.Controls.Clear();
+                    try
+                    {
+                        menu.Controls.Add(c);
+                    }
+                    catch (Exception)
+                    {
+                        try
+                        {
+                            menu.Controls.Add(c); // Weird error...
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+
                     if (!IsPostBack)
                     {
                         SqlCommand cmdNbMessages = new SqlCommand("SELECT COUNT(*) FROM PPDestinatairesMessages WHERE Boite = 1 AND Lu = 0 AND NoDestinataire = @no", myConnection);
@@ -146,6 +159,9 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             loadMenu();
             hypDevenirVendeur.NavigateUrl = Chemin.Ajouter(hypDevenirVendeur.NavigateUrl, "Retour à la page précédente");
             if (!IsPostBack)

@@ -13,6 +13,22 @@ namespace Puces_R.Controles
     {
         SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
 
+        public bool Commande
+        {
+            get
+            {
+                if (ViewState["Commande"] == null)
+                {
+                    return false;
+                }
+                return (bool)ViewState["Commande"];
+            }
+            set
+            {
+                ViewState["Commande"] = value;
+            }
+        }
+
         public long NoVendeur
         {
             get
@@ -39,7 +55,7 @@ namespace Puces_R.Controles
 
         public void ChargerArticlesEnPanier()
         {
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, ISNULL(PrixVente, PrixDemande) AS PrixVente, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + NoVendeur + " AND A.NoClient = " + NoClient, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT Nom, NbItems, " + (Commande ? "ISNULL(PrixVente, PrixDemande)" : "PrixDemande") +" AS Prix, A.NoProduit FROM PPArticlesEnPanier A INNER JOIN PPProduits P ON A.NoProduit = P.NoProduit WHERE A.NoVendeur = " + NoVendeur + " AND A.NoClient = " + NoClient, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
@@ -62,7 +78,7 @@ namespace Puces_R.Controles
 
                 String produit = (String)drvProduit["Nom"];
                 short quantite = (short)drvProduit["NbItems"];
-                decimal prixUnitaire = (decimal)drvProduit["PrixVente"];
+                decimal prixUnitaire = (decimal)drvProduit["Prix"];
                 decimal prixTotal = quantite * prixUnitaire;
                 long noProduit = (long)drvProduit["NoProduit"];
 

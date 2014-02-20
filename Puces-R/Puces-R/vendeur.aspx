@@ -159,9 +159,9 @@
                     Entrez le nouveau taux de redevance:
                     <asp:TextBox runat="server" id="tb_nouveau_taux_redevance" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
                     <asp:Button ID="btn_changer_taux" runat="server" OnClick="changer_taux" Text="Enregistrer"/> <br />                    
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                    <asp:RequiredFieldValidator
                         runat="server"
-                        ControlToValidate="taux_facturation"
+                        ControlToValidate="tb_nouveau_taux_redevance"
                         ErrorMessage="Veuillez entrer le taux de redevance"
                         Display="Dynamic" />
                     <asp:RegularExpressionValidator

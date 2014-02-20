@@ -2585,13 +2585,16 @@
       </Tablix>
       <Image Name="Image4">
         <Source>External</Source>
-        <Value>=IIf(IsNothing(Parameters!LogoVendeur.Value), "", "file:///" + Parameters!LogoVendeur.Value)</Value>
+        <Value>="file:///" + Parameters!LogoVendeur.Value</Value>
         <Sizing>Fit</Sizing>
         <Top>0.63711cm</Top>
         <Left>8.33692cm</Left>
         <Height>1.32292cm</Height>
         <Width>1.32292cm</Width>
         <ZIndex>62</ZIndex>
+        <Visibility>
+          <Hidden>= (Not(IsNothing(Parameters!LogoVendeur.Value)))</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>

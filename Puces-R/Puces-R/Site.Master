@@ -12,7 +12,7 @@
         <link href="CSS/Site.css" rel="stylesheet" type="text/css" />
         <asp:ContentPlaceHolder ID="HeadContent" runat="server"/>
     </head>
-    <body>
+    <body class="imageFond">
         <form runat="server">
             <asp:Panel ID="divPage" CssClass="page" runat="server">
                 <div>

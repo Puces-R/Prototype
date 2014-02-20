@@ -253,8 +253,6 @@
     <Content Include="Images\Televerse\2000020.jpg" />
     <Content Include="Images\Televerse\2000030.jpg" />
     <Content Include="Images\Televerse\2000040.jpg" />
-    <Content Include="Images\Televerse\201000010.jpg" />
-    <Content Include="Images\Televerse\201000011.jpg" />
     <Content Include="Images\Televerse\201000012.jpg" />
     <Content Include="Images\Televerse\201000013.jpg" />
     <Content Include="Images\Televerse\201000014.jpg" />
@@ -343,7 +341,6 @@
     <Content Include="ModifierMotPasse.aspx" />
     <Content Include="MsgDownload\msg12_jaimecharest.png" />
     <Content Include="MsgDownload\msg17_batman-logo-big.gif" />
-    <Content Include="MsgDownload\msg2_Steve_Jobs_Headshot_2010-CROP.jpg" />
     <Content Include="NouveauxProduits.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />

@@ -22,6 +22,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.LinkButton lb_desactiver;
         
         /// <summary>
+        /// Contrôle li_modifier_taux.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_modifier_taux;
+        
+        /// <summary>
         /// Contrôle div_msg.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,24 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.Label lbl_statut;
         
         /// <summary>
+        /// Contrôle ctr_etoiles.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::Puces_R.Controles.Etoiles ctr_etoiles;
+        
+        /// <summary>
+        /// Contrôle lbl_commentaire_etoiles.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_commentaire_etoiles;
+        
+        /// <summary>
         /// Contrôle View2.
         /// </summary>
         /// <remarks>
@@ -218,6 +245,42 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View3;
+        
+        /// <summary>
+        /// Contrôle lbl_ancien_taux.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ancien_taux;
+        
+        /// <summary>
+        /// Contrôle tb_nouveau_taux_redevance.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_nouveau_taux_redevance;
+        
+        /// <summary>
+        /// Contrôle regex_taux.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_taux;
+        
+        /// <summary>
+        /// Contrôle btn_changer_taux.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_changer_taux;
         
         /// <summary>
         /// Propriété Master.

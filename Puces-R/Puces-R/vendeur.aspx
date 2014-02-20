@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Gérer le vendeur" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vendeur.aspx.cs" Inherits="Puces_R.vendeur" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
+<%@ Register TagPrefix="lp" TagName="Etoiles" Src="~/Controles/Etoiles.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -28,6 +29,7 @@
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="4" Text="Envoyer un courriel a ce vendeur" ToolTip="Envoyer un courriel vers l'adresse email de ce vendeur" /></li>
                 <li><asp:LinkButton id="lb_desactiver" runat="server" OnCommand="changer_view" CommandArgument="5" Text="Désactiver ce vendeur" ToolTip="Rendre ce vendeur innactif" /></li>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="6" Text="Gérer les paiements de ce vendeur" ToolTip="Voir l'historique de paiements de ce vendeur" /></li>
+                <li id="li_modifier_taux" runat="server" ><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="7" Text="Modifier le taux de redevance de ce vendeur" ToolTip="La modification du taux de redevance de ce vendeur est possible car ce dernier n'a jamais eu de commande" /></li>
             </ul>
         </div>
         <div class="panneau pnlDroite">
@@ -47,46 +49,50 @@
                             </colgroup>
                             <tr>
                                 <th>Adresse</th>
-                                <td><asp:Label runat="server" ID="lbl_adresse" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_adresse" /></td>
                             </tr>
                             <tr>
                                 <th>Numéros de téléphone</th>
                                 <td>
-                                    <asp:Label runat="server" ID="lbl_tel1" CssClass="info_cellule" /><br />
-                                    <asp:Label runat="server" ID="lbl_tel2" CssClass="info_cellule" />
+                                    <asp:Label runat="server" ID="lbl_tel1" /><br />
+                                    <asp:Label runat="server" ID="lbl_tel2" />
                                 </td>
                             </tr>
                             <tr>
                                 <th>Adresse courriel</th>
-                                <td><asp:Label runat="server" ID="lbl_courriel" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_courriel"  /></td>
                             </tr>
                             <tr>
                                 <th>Charge maximale de livraison</th>
-                                <td><asp:Label runat="server" ID="lbl_charge_max" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_charge_max"/></td>
                             </tr>
                             <tr>
                                 <th>Montant minimal de livraison gratuite</th>
-                                <td><asp:Label runat="server" ID="lbl_livraison_gratuite" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_livraison_gratuite" /></td>
                             </tr>
                             <tr>
                                 <th>Vend avec taxes</th>
-                                <td><asp:Label runat="server" ID="lbl_taxes" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_taxes" /></td>
                             </tr>
                             <tr>
                                 <th>Taux de redevance</th>
-                                <td><asp:Label runat="server" ID="lbl_taux_redevance" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_taux_redevance"  /></td>
                             </tr>
                             <tr>
                                 <th>Date d'inscription</th>
-                                <td><asp:Label runat="server" ID="lbl_date_insc" CssClass="info_cellule"/></td>
+                                <td><asp:Label runat="server" ID="lbl_date_insc" /></td>
                             </tr>
                             <tr>
                                 <th>Dernière mise à jour du profil</th>
-                                <td><asp:Label runat="server" ID="lbl_date_maj" CssClass="info_cellule" /></td>
+                                <td><asp:Label runat="server" ID="lbl_date_maj"  /></td>
                             </tr>
                             <tr>
                                 <th>Statut</th>
-                                <td><asp:Label runat="server" ID="lbl_statut" CssClass="info_cellule"/></td>
+                                <td><asp:Label runat="server" ID="lbl_statut" /></td>
+                            </tr>
+                            <tr>
+                                <th>Moyenne de la côte des produits</th>
+                                <td><lp:Etoiles runat="server" ID="ctr_etoiles" LienActive="true" /> <asp:Label runat="server" ID="lbl_commentaire_etoiles" /></td>
                             </tr>
                         </table>
                     </div>
@@ -149,7 +155,18 @@
                 <asp:View ID="View3" runat="server">
                     <div style="width:600px"> &nbsp;</div>
                     <h2>Modifiaction du taux de redevance</h2>
-
+                    Taux de redevance actuel: <asp:Label ID="lbl_ancien_taux" runat="server" /> <br /><br />
+                    Entrez le nouveau taux de redevance:
+                    <asp:TextBox runat="server" id="tb_nouveau_taux_redevance" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
+                    <asp:RegularExpressionValidator
+                        runat="server"
+                        id="regex_taux"
+                        ControlToValidate="tb_nouveau_taux_redevance"
+                        Display="Dynamic"
+                        ErrorMessage="Format: 00.00"
+                        EnableClientScript="true" 
+                        ValidationExpression="^\d{1,2}\.\d{1,2}$" />
+                        <asp:Button ID="btn_changer_taux" runat="server" OnClick="changer_taux" Text="Enregistrer"/>
                 </asp:View>
             </asp:MultiView>
         </div>

@@ -9,14 +9,14 @@
     <DynamicMenuStyle CssClass="popupMenu" />
     <Items>
         <asp:MenuItem Text="Accueil" NavigateUrl="../accueil_gestionnaire.aspx" />
-        <asp:MenuItem Text="Gerer les vendeurs" NavigateUrl="../gerer_vendeurs.aspx">            
+        <asp:MenuItem Text="Gérer les vendeurs" NavigateUrl="../gerer_vendeurs.aspx">            
             <asp:MenuItem Text="Inactivité des vendeurs" NavigateUrl="../gerer_inactivite_vendeurs.aspx" />
             <asp:MenuItem Text="Nouvelles demandes de vendeurs" NavigateUrl="../gerer_demandes_vendeurs.aspx" />
             <asp:MenuItem Text="Suivi des redevances" NavigateUrl="../accueil_compta.aspx" />  
             <asp:MenuItem Text="Rechercher un vendeur" NavigateUrl="../gerer_vendeurs.aspx" />  
         </asp:MenuItem>
-        <asp:MenuItem Text="Gerer les clients" NavigateUrl="../gerer_clients.aspx">            
-            <asp:MenuItem Text="Inactivité des client" NavigateUrl="../gerer_inactivite_clients.aspx" />
+        <asp:MenuItem Text="Gérer les clients" NavigateUrl="../gerer_clients.aspx">            
+            <asp:MenuItem Text="Inactivité des clients" NavigateUrl="../gerer_inactivite_clients.aspx" />
             <asp:MenuItem Text="Rechercher un client" NavigateUrl="../gerer_clients.aspx" />  
         </asp:MenuItem>
         <asp:MenuItem Text="Statistiques et rapports" NavigateUrl="../visualiser_stats_rapports.aspx" />

@@ -343,6 +343,8 @@
     <Content Include="ModifierMotPasse.aspx" />
     <Content Include="MsgDownload\msg12_jaimecharest.png" />
     <Content Include="MsgDownload\msg17_batman-logo-big.gif" />
+    <Content Include="MsgDownload\msg1_batman-logo-big.gif" />
+    <Content Include="MsgDownload\msg4_batman-logo-big.gif" />
     <Content Include="NouveauxProduits.aspx" />
     <Content Include="Panier.aspx" />
     <Content Include="Produits.aspx" />
@@ -1361,6 +1363,8 @@
     </None>
     <Content Include="TelechargementMessage.ashx" />
     <Content Include="Deconnexion.ashx" />
+    <None Include="MsgDownload\msg6_Jeu de test.xlsx" />
+    <None Include="MsgDownload\msg8_Jeu de test.xlsx" />
     <None Include="MsgDownload\msg8_Offre de stage - Irosoft - H14.pdf" />
   </ItemGroup>
   <ItemGroup>

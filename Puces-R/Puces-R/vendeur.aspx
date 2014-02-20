@@ -158,6 +158,12 @@
                     Taux de redevance actuel: <asp:Label ID="lbl_ancien_taux" runat="server" /> <br /><br />
                     Entrez le nouveau taux de redevance:
                     <asp:TextBox runat="server" id="tb_nouveau_taux_redevance" MaxLength="5"  Width="55" step="0.01" Min="0" Max="100" /> <br />
+                    <asp:Button ID="btn_changer_taux" runat="server" OnClick="changer_taux" Text="Enregistrer"/> <br />                    
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                        runat="server"
+                        ControlToValidate="taux_facturation"
+                        ErrorMessage="Veuillez entrer le taux de redevance"
+                        Display="Dynamic" />
                     <asp:RegularExpressionValidator
                         runat="server"
                         id="regex_taux"
@@ -166,7 +172,6 @@
                         ErrorMessage="Format: 00.00"
                         EnableClientScript="true" 
                         ValidationExpression="^\d{1,2}\.\d{1,2}$" />
-                        <asp:Button ID="btn_changer_taux" runat="server" OnClick="changer_taux" Text="Enregistrer"/>
                 </asp:View>
             </asp:MultiView>
         </div>

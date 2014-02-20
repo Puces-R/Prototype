@@ -167,9 +167,10 @@ namespace Puces_R
                 //Label lbl_nom_affaire = (Label)item.FindControl("lbl_nom_affaire");
                 //Label lbl_no_vendeur = (Label)item.FindControl("lblNoVendeur");
                 Label lbl_nom_vendeur = (Label)item.FindControl("lbl_nom_vendeur");
-                Label lbl_date = (Label)item.FindControl("date_inactif1");
-                Label lbl_NomClient = (Label)item.FindControl("lblNomClient");
-                Label lblMontant = (Label)item.FindControl("lblMontant");
+                HyperLink lbl_date = (HyperLink)item.FindControl("date_inactif1");  
+                HyperLink lbl_NomClient = (HyperLink)item.FindControl("lblNomClient");
+
+                HyperLink lblMontant = (HyperLink)item.FindControl("lblMontant");
                 Label lblPasActif = (Label)item.FindControl("lblInactif");
                 Button btn_desactiver = (Button)item.FindControl("btn_desactiver");
                 System.Web.UI.HtmlControls.HtmlInputCheckBox cbSupprimmer = (System.Web.UI.HtmlControls.HtmlInputCheckBox)item.FindControl("cb_desactiver");
@@ -187,8 +188,11 @@ namespace Puces_R
                 //lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 //lbl_nom_vendeur.Text = drvinactif1["SousTotal"].ToString();
                 lbl_NomClient.Text = drvinactif1["NomC"].ToString() == "" ? "Nom Inconnu" : drvinactif1["NomC"].ToString();
+                lbl_NomClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(),"Retouner à la gestion des paniers");;
                 lblMontant.Text = Convert.ToDecimal(drvinactif1["SousTotal"]).ToString("#0.00 $");
+                lblMontant.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
                 lbl_date.Text = drvinactif1["DerniereMAJ"].ToString();
+                lbl_date.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
 
                 DateTime myDate = DateTime.Now;
                 DateTime newDate = myDate.AddMonths(-6);

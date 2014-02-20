@@ -37,7 +37,8 @@
             </h2>
             <asp:MultiView runat="server" ID="mvCommandes" ActiveViewIndex="0">
               <asp:View ID="View3" runat="server">
-            <asp:Repeater runat="server" ID="rptCommandes" OnItemDataBound="rptCommandes_ItemDataBound"
+
+               <asp:Repeater runat="server" ID="rptCommandes" OnItemDataBound="rptCommandes_ItemDataBound"
                 OnItemCommand="rptCommandes_ItemCommand">
                 <ItemTemplate>
                     <div class="rectangleItem rectangleComplet">
@@ -108,6 +109,7 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
+         
             
         </asp:View>
          <asp:View ID="View5" runat="server">
@@ -117,6 +119,6 @@
        </asp:MultiView>
 
        <asp:HyperLink ID="hplToutesCommandes" runat="server" Text="Voir plus..." CssClass="catalogueGlobal" NavigateUrl="GestionCommandesVendeur.aspx"></asp:HyperLink>
-        </div>
+       
     </div>
 </asp:Content>

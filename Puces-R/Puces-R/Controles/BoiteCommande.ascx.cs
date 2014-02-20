@@ -34,7 +34,7 @@ namespace Puces_R.Controles
                 hypNoCommande.Visible = true;
                 lblNoCommande.Visible = false;
                 hypNoCommande.Text=value.ToString();
-                hypNoCommande.NavigateUrl = "~/DetailsCommandes.aspx?noCommande=" + value.ToString();
+                hypNoCommande.NavigateUrl = Chemin.Ajouter("~/DetailsCommandes.aspx?noCommande=" + value.ToString(),"Retour à Gestion des commandes");
             }
         }
 
@@ -63,8 +63,8 @@ namespace Puces_R.Controles
                 lblClient.Visible = true;
                 lblNoClient.Visible = true;
                 lblNoClient.Text = value.ToString();
-                hypNomClient.NavigateUrl = "~/CommuniquerClient.aspx?noClient=" + value;
-                lblNoClient.NavigateUrl = "~/CommuniquerClient.aspx?noClient=" + value;
+                hypNomClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + value,"Retour à Gestion des commandes");
+                lblNoClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + value,"Retour à Gestion des commandes");
             }
         }
 

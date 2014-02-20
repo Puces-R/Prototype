@@ -30,7 +30,7 @@ namespace Puces_R
             object note = (object)commandeNotes.ExecuteScalar();
             myConnection.Close();
 
-            Response.Write(note.ToString());
+            //Response.Write(note.ToString());
             if (note is DBNull)
             {
                 ctrEtoiles.Visible = false;
@@ -152,7 +152,7 @@ namespace Puces_R
 
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
-                lblNoProduit.NavigateUrl = "DetailsCommandes.aspx?noCommande=" + noCommande;
+                lblNoProduit.NavigateUrl = Chemin.Ajouter("DetailsCommandes.aspx?noCommande=" + noCommande,"Retour à l'Acceuil");
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
                 //lblNoVendeur.Text = noVendeur.ToString();

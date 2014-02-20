@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommuniquerClient.aspx.cs" Inherits="Puces_R.CommuniquerClient" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommuniquerClientPanier.aspx.cs" Inherits="Puces_R.CommuniquerClientPanier"  %>
 
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>
 <%@ Register TagPrefix="yc" TagName="Province" Src="~/Controles/Province.ascx" %>
@@ -12,8 +12,11 @@
     <link rel="stylesheet" type="text/css" href="CSS/InsertionProduits.css" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<div class="panneau pnlGauche">
+ <lp:BoitePanier runat="server" ID="ctrBoitePanier" />
 
-
+ </div>
+ <div "panneau pnlDroite>
 <div class="rectangleComplet rectangleItem">
        
 <table class="formulaire" style="width: 700px;">
@@ -77,7 +80,8 @@
 
 </table>
 
-<asp:Button ID="btnCourrierInterne" runat="server" Text="Envoyer un courriel interne" OnCommand="changer_view" CommandArgument="1"/><asp:Button ID="btnCourrielExterne" runat="server" Text="Envoyer un courriel Externe" OnCommand="changer_view" CommandArgument="2"/>
+<asp:Button ID="btnCourrierInterne" runat="server" Text="Envoyer un courriel interne" OnClick="changer" />
+<asp:Button ID="btnCourrielExterne" runat="server" Text="Envoyer un courriel Externe" OnCommand="changer_view" CommandArgument="2"/>
     </div>
-
+    </div>
 </asp:Content>

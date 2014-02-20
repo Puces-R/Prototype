@@ -159,9 +159,9 @@
                         <tr class="rectangleItem basRectangle">
                             <td><input type="checkbox" ID="cb_desactiver" runat="server" title="Sélectionner ce vendeur" class="cb_selection" onchange="check_desactiver_tout(this);" /></td>
                             <td><asp:Label runat="server" ID="lbl_num" /></td>
-                            <td><asp:Label runat="server" ID="lblNomClient" /></td>
-                            <td><asp:Label runat="server" ID="lblMontant" /></td>
-                            <td><asp:Label runat="server" ID="date_inactif1" /></td>
+                            <td><asp:HyperLink runat="server" ID="lblNomClient" /></td>
+                            <td><asp:HyperLink runat="server" ID="lblMontant" /></td>
+                            <td><asp:HyperLink runat="server" ID="date_inactif1" /></td>
                             <td><asp:Label runat="server" ID="lblInactif" Visible="false"  CssClass="erreur" Text="Ce panier est trop récent pour être supprimé! "></asp:Label><asp:Button ID="btn_desactiver" runat="server" Text="Effacer le panier" OnCommand="desactiver_vendeur" ToolTip="Effacer le panier" Visible="false"/></td>
                         </tr>
                     </ItemTemplate>

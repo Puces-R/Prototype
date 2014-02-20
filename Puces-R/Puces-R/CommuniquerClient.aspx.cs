@@ -81,6 +81,10 @@ namespace Puces_R
                             this.ctrTelephone.NoTelephone = lecteurClient["Tel1"] is DBNull ? "" : (String)lecteurClient["Tel1"];
                             this.ctrCellulaire.NoTelephone = lecteurClient["Tel2"] is DBNull ? "" : (String)lecteurClient["Tel2"];
 
+                            //ctrBoitePanier.NoVendeur = (int)Session["ID"];
+                            //ctrBoitePanier.NoClient = noClient;
+                            //ctrBoitePanier.Titre = "Le panier du client #" +noClient;
+                            //ctrBoitePanier.ChargerArticlesEnPanier();
                     }
                     else
                     {

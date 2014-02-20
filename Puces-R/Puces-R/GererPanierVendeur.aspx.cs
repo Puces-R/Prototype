@@ -188,11 +188,11 @@ namespace Puces_R
                 //lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 //lbl_nom_vendeur.Text = drvinactif1["SousTotal"].ToString();
                 lbl_NomClient.Text = drvinactif1["NomC"].ToString() == "" ? "Nom Inconnu" : drvinactif1["NomC"].ToString();
-                lbl_NomClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(),"Retouner à la gestion des paniers");;
+                lbl_NomClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + drvinactif1["NoClient"].ToString(),"Retouner à la gestion des paniers");;
                 lblMontant.Text = Convert.ToDecimal(drvinactif1["SousTotal"]).ToString("#0.00 $");
-                lblMontant.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
+                lblMontant.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
                 lbl_date.Text = drvinactif1["DerniereMAJ"].ToString();
-                lbl_date.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
+                lbl_date.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
 
                 DateTime myDate = DateTime.Now;
                 DateTime newDate = myDate.AddMonths(-6);

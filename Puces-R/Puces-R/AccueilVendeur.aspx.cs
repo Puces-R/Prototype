@@ -33,8 +33,7 @@ namespace Puces_R
             Response.Write(note.ToString());
             if (note is DBNull)
             {
-                ctrEtoiles.Visible = false;
-                lblEvaluation.Text = " ----  Aucune évaluation";
+                lblEvaluation.Visible = false;
             }
             else
             {

@@ -11,7 +11,13 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    Consultations de votre catalogue: <asp:Label ID="nbVisite" runat="server"> </asp:Label><asp:Label ID="lblEvaluation" runat="server" Text="--- Évaluation globales de vos produits " /><lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
+    <span class="boiteListeDeroulante">
+        Consultations de votre catalogue: <asp:Label ID="nbVisite" runat="server" />
+    </span>
+    <asp:Label runat="server" id="lblEvaluation" class="boiteListeDeroulante">
+        Évaluation moyenne de vos produits: 
+        <lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
+    </asp:Label>
     <div class="lignePointilleHorizontale pleineLargeur">
     </div>
     <div>

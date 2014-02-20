@@ -42,8 +42,8 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="Items" runat="server">
     <!--<div class="titre_sec">Demandes de vendeurs</div>-->
-    <div id="div_msg" runat="server"></div>
     <div id="div_chck">    
+    <div id="div_msg" runat="server"></div>
         <div style="font-size: small; width: 85%; margin: auto; font-size: small;">
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >

@@ -12,7 +12,7 @@ namespace Puces_R
     {
         SqlConnection myConnection = Librairie.Connexion;
         int noClient = 0;
-        int[] dest = new int[1];
+        long[] dest = new long[1];
 
         protected void changer(Object sender, EventArgs e)
         {
@@ -29,7 +29,7 @@ namespace Puces_R
         {
             if (e != null)
             {
-                int allo = dest[0];
+                long allo = dest[0];
                 dest[0] = (Int32)ViewState["noClientMessage"];
                 // Response.Write(allo);
                 switch (Convert.ToInt32(e.CommandArgument.ToString()))

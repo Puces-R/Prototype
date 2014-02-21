@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page  Title="ommande" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Commande.aspx.cs" Inherits="Puces_R.Commande" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

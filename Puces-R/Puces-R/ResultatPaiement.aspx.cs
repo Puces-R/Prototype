@@ -240,12 +240,12 @@ namespace Puces_R
                 MemoryStream flux = new MemoryStream(bytes);
 
                 Attachment attachement = new Attachment(flux, "BonDeCommande-" + NoCommande + ".pdf");
-                SmtpClient client = new SmtpClient("smtpout.secureserver.net", 80);
-                client.Credentials = new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ");
+                //SmtpClient client = new SmtpClient("smtpout.secureserver.net", 80);
+                //client.Credentials = new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ");
                 MailAddress source = new MailAddress("petitespuces@towardnewobjects.org", "Gestionnaire de LesPetiesPuces.com");
 
-                EnvoyerMessage(client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement, source);
-                EnvoyerMessage(client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement, source);
+                EnvoyerMessage(Courriel.client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement, source);
+                EnvoyerMessage(Courriel.client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement, source);
 
                 transaction.Commit();
             }

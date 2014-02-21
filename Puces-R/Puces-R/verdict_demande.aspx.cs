@@ -84,8 +84,8 @@ namespace Puces_R
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_accepter.CommandArgument = results["NoVendeur"].ToString();
                 btn_refuser.CommandArgument = results["NoVendeur"].ToString();
-                cont_mail_acceptation.Text = "Bonjour " + results["Prenom"].ToString() + " " + results["Nom"].ToString() + "\nFélicitations! Votre inscription sur LesPetitesPuces.com a été acceptée.";
-                cont_mail_refus.Text = "Bonjour " + results["Prenom"].ToString() + " " + results["Nom"].ToString() + "\nVotre inscription sur LesPetitesPuces.com n'a pas été acceptée.";
+                cont_mail_acceptation.Text = "Bonjour " + results["Prenom"].ToString() + " " + results["Nom"].ToString() + ". \nFélicitations! Votre inscription sur LesPetitesPuces.com a été acceptée.";
+                cont_mail_refus.Text = "Bonjour " + results["Prenom"].ToString() + " " + results["Nom"].ToString() + ". \nVotre inscription sur LesPetitesPuces.com n'a pas été acceptée.";
                 btn_accepter_details.CommandArgument = results["NoVendeur"].ToString();
                 btn_refuser_details.CommandArgument = results["NoVendeur"].ToString();
             }
@@ -96,33 +96,15 @@ namespace Puces_R
 
         protected void refus_demande(object sender, CommandEventArgs e)
         {
-            MailMessage msg = new MailMessage();
-
             myConnection.Open();
             SqlCommand commande_refuser_demande = new SqlCommand("DELETE FROM PPVendeurs WHERE NoVendeur = " + e.CommandArgument.ToString(), myConnection);
             commande_refuser_demande.ExecuteNonQuery();
-            //Response.Write(commande_accepter_demande.CommandText);
 
-            msg.Body = cont_mail_refus.Text;
+            Courriel conf_mail = new Courriel("Refus de la demande d'abonnement au site LesPetiesPuces.com", cont_mail_refus.Text, courriel_demande.Text);
 
-            try
-            {
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-
-                msg.Subject = "Refus de la demande d'abonnement au site LesPetiesPuces.com";
-                msg.From = new MailAddress("e.clubdegolf@gmail.com", "Gestionnaire de LesPetiesPuces.com");
-                msg.To.Add(new MailAddress(courriel_demande.Text));
-                SmtpServer.Credentials = new NetworkCredential("e.clubdegolf@gmail.com", "TouraTou");
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(msg);
-
-            }
-            catch (Exception k)
-            {
-                Session["err_msg"] = "Echec de l'envoi du mail de confirmation: " + k.ToString();
-            }
-
-            Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été refusé.";
+            if (conf_mail.envoyer())
+                Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été refusé.";
+            else Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été refusé mais une erreur est survenue lors de l'envoi du courriel de refus";
             Response.Redirect("gerer_demandes_vendeurs.aspx");
 
             myConnection.Close();
@@ -138,7 +120,7 @@ namespace Puces_R
             //Response.Write(commande_accepter_demande.CommandText);
             
             msg = cont_mail_acceptation.Text;
-            msg += "\n\nTaux de redevance retenu par le gestionnaire: " + taux_facturation.Text + "%";
+            msg += " \n\nTaux de redevance retenu par le gestionnaire: " + taux_facturation.Text + "%";
             
             Courriel conf_mail = new Courriel("Acceptation de la demande d'abonnement au site LesPetiesPuces.com", msg, courriel_demande.Text);
             

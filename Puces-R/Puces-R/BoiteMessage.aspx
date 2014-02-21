@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"  Title="Messagerie interne"
     MasterPageFile="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">

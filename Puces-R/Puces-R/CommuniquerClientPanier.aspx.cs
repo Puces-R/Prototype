@@ -14,15 +14,15 @@ namespace Puces_R
         int noClient = 0;
         int[] dest = new int[1];
 
-        protected void changer(Object sender, EventArgs e) 
+        protected void changer(Object sender, EventArgs e)
         {
-           // Trace.Warn("changer");
+            // Trace.Warn("changer");
             Response.Write("DEDANS ONCLICK");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data Insert Successfully...');", true);
-             dest[0] = (Int32)ViewState["noClientMessage"];
-             
-             Librairie.Messagerie(dest, null, null, true, "Retour");
-                  
+            dest[0] = (Int32)ViewState["noClientMessage"];
+
+            Librairie.Messagerie(dest, null, null, true, "Retour");
+
         }
 
         protected void changer_view(object sender, CommandEventArgs e)
@@ -31,7 +31,7 @@ namespace Puces_R
             {
                 int allo = dest[0];
                 dest[0] = (Int32)ViewState["noClientMessage"];
-               // Response.Write(allo);
+                // Response.Write(allo);
                 switch (Convert.ToInt32(e.CommandArgument.ToString()))
                 {
 
@@ -77,7 +77,7 @@ namespace Puces_R
                     {
 
                         dest[0] = lecteurClient["NoClient"] is DBNull ? 0 : Convert.ToInt32(lecteurClient["NoClient"]); ;
-                       // Response.Write(dest[0]);
+                        // Response.Write(dest[0]);
 
                         ViewState.Add("noClientMessage", dest[0]);
                         this.txtPrenom.Text = lecteurClient["Prenom"] is DBNull ? "" : (String)lecteurClient["Prenom"];

@@ -41,12 +41,13 @@ namespace Puces_R
             }
         }
 
-        private static bool local = true; // Mettre à false avant de publier sur le ftp
-
-        public static SmtpClient client = new SmtpClient()
+        public static SmtpClient Client = new SmtpClient()
         {
-            Credentials = local ? new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ") : null,
-            Host = local ? "smtpout.secureserver.net" : "192.168.10.25"
+#if(DEBUG)
+            Credentials = new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ"), Host = "smtpout.secureserver.net", Port = 80
+#elif(RELEASE)
+            Host = "192.168.10.25"
+#endif
         };
 
         public Courriel() : this("(Aucun message)", "(Vide)") { }
@@ -105,7 +106,7 @@ namespace Puces_R
 
             try
             {
-                client.Send(courriel);
+                Client.Send(courriel);
                 return true;
             }
             catch (Exception e)

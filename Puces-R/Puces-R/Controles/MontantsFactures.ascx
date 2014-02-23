@@ -24,14 +24,7 @@
             <tr>
                 <td>TVQ <asp:Label ID="lblTauxTVQ" CssClass="tauxTaxes" runat="server" />: </td>
                 <td>
-                    <asp:MultiView runat="server" ID="mvTVQ">
-                        <asp:View runat="server">
-                            <asp:Label ID="lblTVQ" runat="server" />
-                        </asp:View>
-                        <asp:View runat="server">
-                            <asp:Label runat="server" Text="À déterminer" ForeColor="Red" Font-Bold="true" Font-Size="Smaller" />
-                        </asp:View>
-                    </asp:MultiView>
+                    <asp:Label ID="lblTVQ" runat="server" />
                 </td>
             </tr>
             <tr>

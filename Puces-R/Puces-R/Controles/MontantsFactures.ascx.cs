@@ -162,17 +162,7 @@ namespace Puces_R.Controles
             ddlModesLivraison.SelectedValue = CodeLivraison.ToString();
             lblLivraison.Text = facture.PrixLivraison.ToString("C");
             lblTPS.Text = facture.PrixTPS.ToString("C");
-
-            if (facture.PrixTVQInconnu)
-            {
-                mvTVQ.ActiveViewIndex = 1;
-            }
-            else
-            {
-                mvTVQ.ActiveViewIndex = 0;
-                lblTVQ.Text = facture.PrixTVQ.ToString("C");
-            }
-
+            lblTVQ.Text = facture.PrixTVQ.ToString("C");
             lblGrandTotal.Text = facture.GrandTotal.ToString("C");
 
             myConnection.Close();

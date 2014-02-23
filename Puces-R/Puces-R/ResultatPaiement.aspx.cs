@@ -244,8 +244,8 @@ namespace Puces_R
                 //client.Credentials = new NetworkCredential("petitespuces@towardnewobjects.org", "NWa7dZ");
                 MailAddress source = new MailAddress("petitespuces@towardnewobjects.org", "Gestionnaire de LesPetiesPuces.com");
 
-                EnvoyerMessage(Courriel.client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement, source);
-                EnvoyerMessage(Courriel.client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement, source);
+                EnvoyerMessage(Courriel.Client, GetAdresse("PPClients", " WHERE NoClient = " + facture.NoClient, transaction), attachement, source);
+                EnvoyerMessage(Courriel.Client, GetAdresse("PPVendeurs", " WHERE NoVendeur = " + facture.NoVendeur, transaction), attachement, source);
 
                 transaction.Commit();
             }

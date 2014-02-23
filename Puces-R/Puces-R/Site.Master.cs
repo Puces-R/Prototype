@@ -78,6 +78,18 @@ namespace Puces_R
                     }
                     
                     mvTitre.ActiveViewIndex = 1;
+
+                    myConnection.Open();
+
+                    SqlCommand commandNbVisitesAujourdhui = new SqlCommand("SELECT COUNT(*) FROM PPVendeursClients WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"] + " AND DateVisite = '" + DateTime.Today + "'", myConnection);
+                    int nbVisitesAujourdhui = (int)commandNbVisitesAujourdhui.ExecuteScalar();
+                    if (nbVisitesAujourdhui == 0)
+                    {
+                        SqlCommand commandAjouterVisite = new SqlCommand("INSERT INTO PPVendeursClients VALUES (" + value + ", " + Session["ID"] + ", '" + DateTime.Today + "')", myConnection);
+                        commandAjouterVisite.ExecuteNonQuery();
+                    }
+
+                    myConnection.Close();
                 }
                 else
                 {

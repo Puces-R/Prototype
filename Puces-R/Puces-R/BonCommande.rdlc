@@ -2610,6 +2610,7 @@
               <TextRun>
                 <Value>=First(Fields!NomAffaires.Value, "VendeurDetaille")</Value>
                 <Style>
+                  <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -2618,15 +2619,16 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
-        <Top>0.99695cm</Top>
+        <Top>0.63711cm</Top>
         <Left>9.65984cm</Left>
-        <Height>0.6cm</Height>
+        <Height>1.32292cm</Height>
         <Width>6.03056cm</Width>
         <ZIndex>63</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
+          <VerticalAlign>Middle</VerticalAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -2635,7 +2637,9 @@
       </Textbox>
     </ReportItems>
     <Height>18.03405cm</Height>
-    <Style />
+    <Style>
+      <BackgroundColor>White</BackgroundColor>
+    </Style>
   </Body>
   <ReportParameters>
     <ReportParameter Name="SousTotal">

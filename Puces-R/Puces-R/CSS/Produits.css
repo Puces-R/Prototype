@@ -2,6 +2,7 @@
 {
     width:195px;
     font-size:small;
+    text-align:center;
 }
 
 .boiteImageProduit > div
@@ -12,8 +13,8 @@
 
 .boiteImageProduit img
 {
-    max-width:180px;
-    max-height:180px;
+    max-width:185px;
+    max-height:185px;
 }
 
 .titreRectangle
@@ -47,14 +48,14 @@
 
 .largeurFixeCritere
 {
-    width:200px;
+    width:185px;
 }
 
 .listeCochable
 {
     max-height:50px;
     display:inline-block;
-    width:200px;
+    width:185px;
     height:50px;
 }
 
@@ -64,7 +65,7 @@
     text-align:left;
     max-height:50px;
     font-size: x-small;
-    width:200px;
+    width:185px;
     transition:max-height 0.5s linear 0.5s;
     overflow:auto;
     position:absolute;
@@ -74,7 +75,7 @@
 
 .listeCochable > div:hover
 {
-    max-height:200px;
+    max-height:180px;
 }
 
 .listeCochable *

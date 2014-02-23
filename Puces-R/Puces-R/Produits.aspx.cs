@@ -222,12 +222,13 @@ namespace Puces_R
                     orderByClause += "C.Description";
                     break;
                 case 2:
-                    orderByClause += "P.DateCreation DESC";
+                    orderByClause += "P.DateCreation";
                     break;
                 case 3:
-                    orderByClause += "Evaluation DESC";
+                    orderByClause += "Evaluation";
                     break;
             }
+            orderByClause += " " + ddlOrdre.SelectedValue;
             
             SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT P.NoProduit, C.Description, P.Nom, P.PrixDemande, P.DateCreation, AVG(E.Cote) AS Evaluation FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie LEFT JOIN PPEvaluations E ON E.NoProduit = P.NoProduit" + whereClause + " GROUP BY P.NoProduit, P.Photo, C.Description, P.Nom, P.PrixDemande, P.NombreItems, P.DateCreation" + orderByClause, myConnection);
             if (txtCritereRecherche.Text.Trim() != string.Empty)

@@ -82,6 +82,7 @@
     <Content Include="Controles\MenuACoteVendeur.ascx" />
     <Content Include="Controles\NettoyerPanier.ascx" />
     <Content Include="Controles\TableDetailsCommande.ascx" />
+    <Content Include="CSS\AccueilVendeur.css" />
     <Content Include="CSS\style_sec4_2.css" />
     <Content Include="DesactiverPanierVendeur.aspx" />
     <Content Include="details_commande_redevance.aspx" />

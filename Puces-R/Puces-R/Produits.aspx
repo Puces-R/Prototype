@@ -36,7 +36,7 @@
                         <asp:ListItem Text="Description" />
                         <asp:ListItem Text="Numéro" />
                     </asp:DropDownList>
-                    <asp:TextBox ID="txtCritereRecherche" runat="server" Width="100" Font-Size="X-Small" OnTextChanged="AfficherPremierePage" OnKeyUp="RefreshUpdatePanel();" />
+                    <asp:TextBox ID="txtCritereRecherche" runat="server" Width="75" Font-Size="X-Small" OnTextChanged="AfficherPremierePage" OnKeyUp="RefreshUpdatePanel();" />
                 </span>
                 <span class="boiteListeDeroulante">
                     Trier par:
@@ -45,6 +45,10 @@
                         <asp:ListItem Text="Catégorie" />
                         <asp:ListItem Text="Date de parution" />
                         <asp:ListItem Text="Évaluations" />
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlOrdre" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" >
+                        <asp:ListItem Text="Croissant" Value="ASC" />
+                        <asp:ListItem Text="Décroissant" Value="DESC" />
                     </asp:DropDownList>
                 </span>
                 <span class="boiteListeDeroulante">

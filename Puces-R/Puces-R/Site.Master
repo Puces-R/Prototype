@@ -21,7 +21,7 @@
                         <div class="gauchePageMaitre">
                             <span class="titre">Les Petites Puces</span>
                             <div>
-                                <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="Gray" />
+                                <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="LightGray" />
                             </div>
                         </div>
                         <div runat="server" ID="divMenu" class="droitePageMaitre">

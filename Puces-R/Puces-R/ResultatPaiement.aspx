@@ -24,7 +24,7 @@
         <div class="lignePointilleHorizontale pleineLargeur"></div>
         <div>
             <asp:ScriptManager runat="server" EnableHistory="true" />
-            <rsweb:ReportViewer SizeToReportContent="true" ID="ctrRapport" runat="server" Font-Names="Verdana" Font-Size="8pt" ShowToolBar="false" InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" CssClass="bonCommande">
+            <rsweb:ReportViewer SizeToReportContent="true" ID="ctrRapport" runat="server" Font-Names="Verdana" Font-Size="8pt" ShowToolBar="false" InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" CssClass="bonCommande" >
                 <LocalReport ReportPath="BonCommande.rdlc">
                     <DataSources>
                         <rsweb:ReportDataSource DataSourceId="ArticleEnPanierDetaille" 

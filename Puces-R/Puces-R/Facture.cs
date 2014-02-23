@@ -23,8 +23,6 @@ namespace Puces_R
         public decimal TauxTPS { get; private set; }
         public decimal TauxTVQ { get; private set; }
         public short CodeLivraison { get; private set; }
-        public bool PrixTVQInconnu { get; private set; }
-        public string Province { get; private set; }
 
         public decimal GrandTotal
         {
@@ -100,28 +98,9 @@ namespace Puces_R
             if (taxes)
             {
                 this.PrixTPS = prixAvecLivraison * TauxTPS;
-                if (provinceClient == null)
+                if (provinceVendeur == "QC")
                 {
-
-                    SqlCommand commandeClient = new SqlCommand("SELECT Province FROM PPClients WHERE NoClient = " + noClient, myConnection);
-
-                    Object objPorvinceClient = commandeClient.ExecuteScalar();
-
-                    if (objPorvinceClient is String)
-                    {
-                        provinceClient = (String)objPorvinceClient;
-                    }
-                }
-                if (provinceClient == null)
-                {
-                    this.PrixTVQInconnu = true;
-                }
-                else
-                {
-                    if (provinceVendeur == "QC" && provinceClient == "QC")
-                    {
-                        this.PrixTVQ = prixAvecLivraison * TauxTVQ;
-                    }
+                    this.PrixTVQ = prixAvecLivraison * TauxTVQ;
                 }
             }
         }

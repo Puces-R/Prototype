@@ -31,7 +31,7 @@ namespace Puces_R
 
         protected void validerCourrielIdentique(object sender, ServerValidateEventArgs e)
         {
-            if (!tbCourriel.IsValid || tbCourriel.Adresse == tbCourrielConfirmation.Text)
+            if (!tbCourriel.IsValid || tbCourriel.Adresse == tbCourrielConfirmation.Text.ToLower())
             {
                 e.IsValid = true;
             }

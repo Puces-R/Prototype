@@ -169,9 +169,9 @@
                         id="regex_taux"
                         ControlToValidate="tb_nouveau_taux_redevance"
                         Display="Dynamic"
-                        ErrorMessage="Format: 00.00"
+                        ErrorMessage="Format: --.-- dans l'intervalle ]0,100["
                         EnableClientScript="true" 
-                        ValidationExpression="^\d{1,2}\.\d{1,2}$" />
+                        ValidationExpression="^(?!(00\.00))(\d{1,2}\.\d{1,2})$" />  
                 </asp:View>
             </asp:MultiView>
         </div>

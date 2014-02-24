@@ -140,7 +140,7 @@ namespace Puces_R.Controles
             }
             set
             {
-                tbMaxLivraison.Text = value.ToString("#0.0");
+                tbMaxLivraison.Text = value.ToString();
             }
         }
 

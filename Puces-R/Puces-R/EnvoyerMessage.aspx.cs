@@ -196,9 +196,16 @@ namespace Puces_R
 
         protected void apercuMessage(object sender, EventArgs e)
         {
+            SqlCommand cmdDe = new SqlCommand("SELECT X.Texte FROM " +
+                                                "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                                "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' &lt;' + AdresseEmail + '&gt; (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                                "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt; (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
+                                                "WHERE X.No = " + Session["ID"], connexion);
             divApercu.Visible = true;
-            lblDate.Text = DateTime.Now.ToString("d MMMM yyyy à hh\\hmm");
-            lblDe.Text = "test";
+            lblDate.Text = DateTime.Now.ToString("d MMMM yyyy à HH\\hmm");
+            connexion.Open();
+            lblDe.Text = cmdDe.ExecuteScalar().ToString();
+            connexion.Close();
             lblSujet.Text = tbSujet.Text;
             lblMessage.Text = tbMessage.Text.Replace("\r\n", "<br />");
         }

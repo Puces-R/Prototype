@@ -42,9 +42,9 @@
                 </td></tr>
                                                 
                 <tr><th colspan="2">Date d'inscription entre</th></tr>
-                <tr><td>Début:</td><td><asp:textbox runat="server" id="datepicker3" /></td></tr>
+                <tr><td>Début:</td><td><asp:textbox runat="server" id="datepicker3" ReadOnly="true" /></td></tr>
                 <tr><td>Fin:</td><td>
-                    <asp:textbox runat="server" id="datepicker4" /><br />
+                    <asp:textbox runat="server" id="datepicker4" ReadOnly="true" /><br />
                     <%-- <asp:CompareValidator
                         runat="server"
                         ControlToValidate="datepicker4"

@@ -35,13 +35,13 @@ namespace Puces_R
             if (Session["msg"] != null && Session["msg"].ToString() != "")
             {
                 div_msg.InnerText = Session["msg"].ToString();
-                Session["msg"] = "";
+                Session["msg"] = null;
             }
 
             if (Session["err_msg"] != null && Session["err_msg"].ToString() != "")
             {
                 Response.Write(Session["err_msg"]);
-                Session["err_msg"] = "";
+                Session["err_msg"] = null;
             }
 
             if (Session["no_vendeur_no_commande"] != null)

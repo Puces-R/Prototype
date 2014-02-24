@@ -25,7 +25,7 @@
             </ul>
             <h2>Actions</h2>
             <ul>
-                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="3" Text="Envoyer un message interne à ce vendeur" ToolTip="Envoyer d'un message à ce vendeur via le systeme de messagerie interne du site" /></li>
+                <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="3" Text="Envoyer un message interne à ce vendeur" ToolTip="Envoyer un message à ce vendeur via le système de messagerie interne du site" /></li>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="4" Text="Envoyer un courriel a ce vendeur" ToolTip="Envoyer un courriel vers l'adresse email de ce vendeur" /></li>
                 <li><asp:LinkButton id="lb_desactiver" runat="server" OnCommand="changer_view" CommandArgument="5" Text="Désactiver ce vendeur" ToolTip="Rendre ce vendeur innactif" /></li>
                 <li><asp:LinkButton runat="server" OnCommand="changer_view" CommandArgument="6" Text="Gérer les paiements de ce vendeur" ToolTip="Voir l'historique de paiements de ce vendeur" /></li>

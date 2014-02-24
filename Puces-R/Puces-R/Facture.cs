@@ -10,7 +10,7 @@ namespace Puces_R
     [Serializable]
     public class Facture
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         public long NoClient {get; private set;}
         public long NoVendeur { get; private set; }
@@ -102,6 +102,8 @@ namespace Puces_R
                     this.PrixTVQ = prixAvecLivraison * TauxTVQ;
                 }
             }
+
+            myConnection.Close();
         }
 
         public Facture(long noCommande, short codeLivraison) : this(codeLivraison)

@@ -12,7 +12,7 @@ namespace Puces_R
 {
     public partial class AccueilVendeur : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,9 +23,6 @@ namespace Puces_R
             myConnection.Open();
             SqlCommand maC = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur="+Session["ID"],myConnection);
             object nb = (object)maC.ExecuteScalar();
-            myConnection.Close();
-
-            myConnection.Open();
             SqlCommand commandeNotes = new SqlCommand("select AVG(Cote) FROM PPEvaluations  where SUBSTRING( CAST(NoProduit as varchar(50)),0,3) ="+Session["ID"],myConnection);
             object note = (object)commandeNotes.ExecuteScalar();
             myConnection.Close();
@@ -65,7 +62,7 @@ namespace Puces_R
         {
             //TextBox txtQuantite = (TextBox)e.Item.FindControl("txtQuantite");
 
-            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+            SqlConnection myConnection = Librairie.Connexion;
 
             String[] statut = ((String)e.CommandArgument).Split('-');
             String noC = statut[0];

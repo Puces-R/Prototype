@@ -50,6 +50,8 @@ namespace Puces_R
                     lblTaux.Text = Convert.ToString((Decimal)lecteurClient["Pourcentage"] * 100) + " %";
                 }
                 ctrProfil.Taxes = (Boolean)lecteurClient["Taxes"];
+
+                myConnection.Close();
             }
 
             // ScriptManager.RegisterStartupScript(this, this.GetType(), "Javascript", "DefinirCouleur('0020A3');", true);

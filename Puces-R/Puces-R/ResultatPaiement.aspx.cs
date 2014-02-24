@@ -259,6 +259,7 @@ namespace Puces_R
             catch (SqlException)
             {
                 transaction.Rollback();
+                myConnection.Close();
             }
 
             myConnection.Close();

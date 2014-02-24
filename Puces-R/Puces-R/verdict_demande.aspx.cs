@@ -13,7 +13,7 @@ namespace Puces_R
 {
     public partial class verdict_demande : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         int no_vendeur;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -117,7 +117,6 @@ namespace Puces_R
             myConnection.Open();
             SqlCommand commande_accepter_demande = new SqlCommand("UPDATE PPVendeurs SET Statut = 0, Pourcentage = " + taux_facturation.Text + " WHERE NoVendeur = " + e.CommandArgument.ToString(), myConnection);
             commande_accepter_demande.ExecuteNonQuery();
-            //Response.Write(commande_accepter_demande.CommandText);
             
             msg = cont_mail_acceptation.Text;
             msg += " \n\nTaux de redevance retenu par le gestionnaire: " + taux_facturation.Text + "%";
@@ -128,9 +127,10 @@ namespace Puces_R
                 Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été accepté.";
             else Session["msg"] = "Le vendeur " + titre_demande.Text + " a bien été accepté mais une erreure est survenue lors de l'envoi du courriel de confirmation";
 
-            Response.Redirect("gerer_demandes_vendeurs.aspx");
-            
+
             myConnection.Close();
+
+            Response.Redirect("gerer_demandes_vendeurs.aspx");
         }
 
         protected void refus_details_demande(object sender, CommandEventArgs e)

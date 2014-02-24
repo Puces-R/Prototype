@@ -107,7 +107,7 @@ namespace Puces_R
                 lbl_date_insc.Text = results["DateCreation"].ToString();
                 lbl_date_maj.Text = results["DateMAJ"].ToString();
                 lbl_livraison_gratuite.Text = (results["LivraisonGratuite"] != DBNull.Value ? Convert.ToDecimal(results["LivraisonGratuite"]).ToString("N") + " $" : "Pas de livraison gratuite");
-                lbl_ancien_taux.Text = Convert.ToDecimal(results["Pourcentage"]).ToString("N");
+                lbl_ancien_taux.Text = (results["Pourcentage"] != DBNull.Value ? Convert.ToDecimal(results["Pourcentage"]).ToString("N") + " %" : "Pas encore spécifié");
 
                 Master.Titre = results["NomAffaires"].ToString();
 
@@ -128,7 +128,7 @@ namespace Puces_R
                         break;
                 }
 
-                lbl_taux_redevance.Text = results["Pourcentage"].ToString();
+                lbl_taux_redevance.Text = (results["Pourcentage"] != DBNull.Value ? Convert.ToDecimal(results["Pourcentage"]).ToString("N") + " %" : "Pas encore spécifié");
                 lbl_taxes.Text = (results["Taxes"].ToString() == "True" ? "Oui" : "Non");
 
                 if (results["Tel1"] != DBNull.Value)

@@ -30,7 +30,7 @@
         Prénom
     </td>
     <td>
-        <asp:TextBox ID="txtPrenom" runat="server" />
+        <asp:TextBox ID="txtPrenom" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator runat="server" Text="Le prénom est obligatoire" ControlToValidate="txtPrenom"
@@ -42,7 +42,7 @@
         Nom
     </td>
     <td>
-        <asp:TextBox ID="txtNom" runat="server" />
+        <asp:TextBox ID="txtNom" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator runat="server" Text="Le nom est obligatoire" ControlToValidate="txtNom"
@@ -55,7 +55,7 @@
         Ville
     </td>
     <td>
-        <asp:TextBox ID="txtVille" runat="server" />
+        <asp:TextBox ID="txtVille" runat="server" MaxLength="50" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator runat="server" Text="La ville est obligatoire"

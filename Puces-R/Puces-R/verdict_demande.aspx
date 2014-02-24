@@ -63,9 +63,9 @@
                                                 id="regex_taux"
                                                 ControlToValidate="taux_facturation"
                                                 Display="Dynamic"
-                                                ErrorMessage="Format: 00.00"
+                                                ErrorMessage="Format: --.-- dans l'intervalle ]0,100["
                                                 EnableClientScript="true" 
-                                                ValidationExpression="^\d{1,2}\.\d{1,2}$" />
+                                                ValidationExpression="^(?!(00\.00))(\d{1,2}\.\d{1,2})$" />  
                                         </p>
                                         Mail de confirmation de l'acceptation envoyé au vendeur <br />
                                         <span class="remarque">(N'ajouter pas le taux dans le mail de confirmation, il sera automatiquement ajouté dans le mail avant l'envoi)</span><br />

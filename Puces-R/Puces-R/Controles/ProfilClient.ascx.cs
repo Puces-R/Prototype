@@ -86,7 +86,13 @@ namespace Puces_R.Controles
             cmdProfil.Parameters.AddWithValue("@no", Session["ID"]);
 
             myConnection.Open();
+
             cmdProfil.ExecuteNonQuery();
+
+            SqlCommand commandeDateMaj = new SqlCommand("UPDATE PPClients SET DateMAJ = @DateMAJ WHERE NoClient = " + Session["ID"], myConnection);
+            commandeDateMaj.Parameters.AddWithValue("DateMAJ", DateTime.Now);
+            commandeDateMaj.ExecuteNonQuery();
+
             myConnection.Close();
         }
     }

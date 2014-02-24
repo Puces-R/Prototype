@@ -173,16 +173,6 @@ a
 	text-decoration: none;
 }
 
-.pnlGauche
-{
-	float: left;
-}
-
-.pnlDroite
-{
-	float: right;
-}
-
 .categories
 {
 	line-height:20px;
@@ -305,4 +295,9 @@ a
     margin:10px;
     width:350px;
     font-size:small;
+}
+
+.msg
+{
+    text-align: center;
 }

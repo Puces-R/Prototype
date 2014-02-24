@@ -119,7 +119,7 @@ namespace Puces_R
             string req = "SELECT * FROM PPVendeurs V " + whereClause;
 
             if ((ddlCategorie.SelectedValue != "-1") && (ddlCategorie.SelectedValue != ""))
-                req += (txtCritereRecherche.Text == string.Empty? " WHERE " : " AND ") + " V.NoVendeur IN (SELECT NoVendeur FROM PPProduits P, PPCategories C WHERE P.NoCategorie = C.NoCategorie AND C.NoCategorie = " + ddlCategorie.SelectedValue + " GROUP BY NoVendeur) ";
+                req += (whereClause == "" ? " WHERE " : " AND ") + " V.NoVendeur IN (SELECT NoVendeur FROM PPProduits P, PPCategories C WHERE P.NoCategorie = C.NoCategorie AND C.NoCategorie = " + ddlCategorie.SelectedValue + " GROUP BY NoVendeur) ";
 
             SqlDataAdapter adapteurResultats = new SqlDataAdapter(req + orderByClause, myConnection);
             for (int i = 0; txtCritereRecherche.Text.Trim() != string.Empty && i < mots.Length; i++)

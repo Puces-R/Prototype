@@ -19,47 +19,6 @@
         </div>
         <div class="panneau pnlDroite pnlDetails">
             <h2>
-                Évaluations (<asp:Literal ID="litNbEvaluations" runat="server" />)</h2>
-            <asp:MultiView runat="server" ID="mvMoyenneOuMessage">
-                <asp:View runat="server">
-                    Moyenne:
-                    <asp:Label ID="lblCoteMoyenne" runat="server" CssClass="coteMoyenne" />
-                </asp:View>
-                <asp:View runat="server">
-                    Ce produit n'a pas encore été évalué.
-                </asp:View>
-            </asp:MultiView>
-            <asp:Panel runat="server" CssClass="evaluation" ID="pnlEvaluation" Visible="false">
-                <div class="rectangleItem hautRectangle">
-                    <asp:Label runat="server" ID="lblClient" />
-                    <lp:Etoiles runat="server" ID="ctrEtoiles" Cote="0" Modifiable="true" />
-                </div>
-                <div class="rectangleItem basRectangle">
-                    <asp:TextBox runat="server" ID="txtCommentaire" Rows="3" TextMode="MultiLine" CssClass="commentaireEvaluation"
-                        Font-Size="Small" />
-                    <asp:Label runat="server" ID="lblErreurCommentaire" CssClass="erreur" />
-                    <asp:Button runat="server" ID="btnSoumettre" Text="Soumettre" OnClick="btnSoumettre_OnClick"
-                        CssClass="boutonSoumettre" />
-                </div>
-            </asp:Panel>
-            <asp:Repeater runat="server" ID="rptEvaluations" OnItemDataBound="rptEvaluations_OnItemDataBound">
-                <ItemTemplate>
-                    <div class="evaluation">
-                        <div class="rectangleItem hautRectangle">
-                            <asp:Label runat="server" ID="lblClient" />
-                            <lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
-                        </div>
-                        <div class="rectangleItem basRectangle">
-                            <asp:Label runat="server" ID="lblCommentaire" Font-Size="Small" />
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-            <asp:Button runat="server" Text="Ajouter la mienne" ID="btnAjouterLaMienne" OnClick="btnAjouterLaMienne_OnClick"
-                CssClass="boutonAjouterLaMienne" />
-        </div>
-        <div class="panneau pnlDroite pnlDetails">
-            <h2>
                 Description</h2>
             <table>
                 <tr>
@@ -151,6 +110,47 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div class="panneau pnlDroite pnlDetails">
+            <h2>
+                Évaluations (<asp:Literal ID="litNbEvaluations" runat="server" />)</h2>
+            <asp:MultiView runat="server" ID="mvMoyenneOuMessage">
+                <asp:View ID="View1" runat="server">
+                    Moyenne:
+                    <asp:Label ID="lblCoteMoyenne" runat="server" CssClass="coteMoyenne" />
+                </asp:View>
+                <asp:View ID="View2" runat="server">
+                    Ce produit n'a pas encore été évalué.
+                </asp:View>
+            </asp:MultiView>
+            <asp:Panel runat="server" CssClass="evaluation" ID="pnlEvaluation" Visible="false">
+                <div class="rectangleItem hautRectangle">
+                    <asp:Label runat="server" ID="lblClient" />
+                    <lp:Etoiles runat="server" ID="ctrEtoiles" Cote="0" Modifiable="true" />
+                </div>
+                <div class="rectangleItem basRectangle">
+                    <asp:TextBox runat="server" ID="txtCommentaire" Rows="3" TextMode="MultiLine" CssClass="commentaireEvaluation"
+                        Font-Size="Small" />
+                    <asp:Label runat="server" ID="lblErreurCommentaire" CssClass="erreur" />
+                    <asp:Button runat="server" ID="btnSoumettre" Text="Soumettre" OnClick="btnSoumettre_OnClick"
+                        CssClass="boutonSoumettre" />
+                </div>
+            </asp:Panel>
+            <asp:Repeater runat="server" ID="rptEvaluations" OnItemDataBound="rptEvaluations_OnItemDataBound">
+                <ItemTemplate>
+                    <div class="evaluation">
+                        <div class="rectangleItem hautRectangle">
+                            <asp:Label runat="server" ID="lblClient" />
+                            <lp:Etoiles runat="server" ID="ctrEtoiles" Modifiable="false" />
+                        </div>
+                        <div class="rectangleItem basRectangle">
+                            <asp:Label runat="server" ID="lblCommentaire" Font-Size="Small" />
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            <asp:Button runat="server" Text="Ajouter la mienne" ID="btnAjouterLaMienne" OnClick="btnAjouterLaMienne_OnClick"
+                CssClass="boutonAjouterLaMienne" />
         </div>
     </div>
 </asp:Content>

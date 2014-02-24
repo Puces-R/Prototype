@@ -107,6 +107,8 @@
                     <td class="erreur">
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCCV" Text="Le numéro de sécurité est obligatoire"
                             Display="Dynamic" />
+                        <asp:RegularExpressionValidator ControlToValidate="txtCCV" Text="Le numéro doit être composé de 3 chiffres" 
+                            Display="Dynamic" runat="server" ValidationExpression="^\d{3}$" />
                     </td>
                 </tr>
             </table>

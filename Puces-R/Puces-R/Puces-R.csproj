@@ -88,7 +88,6 @@
     <Content Include="details_commande_redevance.aspx" />
     <Content Include="details_redevance.aspx" />
     <Content Include="EnvoyerCourriel.aspx" />
-    <Content Include="CSS\CommandesClient.css" />
     <Content Include="Controles\Courriel.ascx" />
     <Content Include="Controles\DoubleMdp.ascx" />
     <Content Include="Controles\Etoiles.ascx" />
@@ -110,7 +109,6 @@
     <Content Include="CSS\accueil_gestionnaire.css" />
     <Content Include="CSS\Commande.css" />
     <Content Include="CSS\DetailsProduit.css" />
-    <Content Include="CSS\GestionCommandesVendeur.css" />
     <Content Include="CSS\InsertionProduits.css" />
     <Content Include="CSS\jchart\jChartFX Palettes\adventure.css" />
     <Content Include="CSS\jchart\jChartFX Palettes\alternate.css" />
@@ -738,7 +736,10 @@
     </Content>
     <Content Include="XML\10.xml" />
     <Content Include="XML\20.xml" />
-    <Content Include="XML\30.xml" />
+    <Content Include="XML\60.xml" />
+    <Content Include="XML\40.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">

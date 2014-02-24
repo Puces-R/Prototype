@@ -10,6 +10,9 @@
     </div>
     <div class="rectangleItem basRectangle">
         <div>
+            <div class="pnlDroite pnlDroiteCommande montantsFactures">
+                <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Enabled="false" />
+            </div>
             <div class="pnlGauche">
                 <table class="colonneTitre">
                     <tr>
@@ -33,9 +36,6 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="pnlDroite montantsFactures">
-                <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Enabled="false" />
             </div>
         </div>
         <div class="statutLivraison">

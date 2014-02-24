@@ -290,5 +290,22 @@ namespace Puces_R
 
             ScriptManager.RegisterStartupScript(div_chck, div_chck.GetType(), "script_cocher", script, false);
         }
+
+        public static bool LireEtValiderPlage(String texte, out DateTime date)
+        {
+            if (DateTime.TryParse(texte, out date))
+            {
+                return ValiderPlage(date);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool ValiderPlage(DateTime date)
+        {
+            return (date >= new DateTime(1900, 01, 01, 00, 00, 00) && date <= new DateTime(2079, 06, 06, 23, 59, 00));
+        }
     }
 }

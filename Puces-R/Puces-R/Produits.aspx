@@ -6,15 +6,21 @@
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <link href="CSS/Produits.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript">
         $(function () { setDatePicker("#<%=txtAPartirDe.ClientID%>"); setDatePicker("#<%=txtJusquA.ClientID%>") })
 
         function setDatePicker(id) 
         {
-            $(id).datepicker(); $("#format").change(function () { $(id).datepicker("format", "yy-mm-dd", $(this).val()); });
+            $(id).datepicker({
+                onSelect: function (dateText) {
+                    RefreshUpdatePanel();
+                }
+            });
+
+            $("#format").change(function () { $(id).datepicker("format", "yy-mm-dd", $(this).val()); });
         }
     </script>
 
@@ -36,7 +42,7 @@
                         <asp:ListItem Text="Description" />
                         <asp:ListItem Text="Numéro" />
                     </asp:DropDownList>
-                    <asp:TextBox ID="txtCritereRecherche" runat="server" Width="75" Font-Size="X-Small" OnTextChanged="AfficherPremierePage" OnKeyUp="RefreshUpdatePanel();" />
+                    <asp:TextBox ID="txtCritereRecherche" runat="server" Width="75" Font-Size="X-Small" OnKeyDown="return (event.keyCode!=13);" OnKeyUp="RefreshUpdatePanel();" MaxLength="25" />
                 </span>
                 <span class="boiteListeDeroulante">
                     Trier par:
@@ -53,7 +59,7 @@
                 </span>
                 <span class="boiteListeDeroulante">
                     Par page:
-                    <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" >
+                    <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" On="AfficherPremierePage" Font-Size="X-Small" >
                         <asp:ListItem Value="5" />
                         <asp:ListItem Value="10" />
                         <asp:ListItem Value="15" Selected="True" />
@@ -68,11 +74,11 @@
                 <asp:Panel runat="server" ID="pnlDeJusquA" Visible="false">
                     <span class="boiteListeDeroulante">
                         Publié après:
-                        <asp:TextBox ID="txtAPartirDe" runat="server" Width="60" Font-Size="X-Small" AutoPostBack="true" OnTextChanged="AfficherPremierePage" />
+                        <asp:TextBox ID="txtAPartirDe" runat="server" Width="60" Font-Size="X-Small" MaxLength="10" OnKeyDown="return (event.keyCode!=13);" OnKeyUp="RefreshUpdatePanel();" />
                     </span>
                     <span class="boiteListeDeroulante">
                         Publié avant:
-                        <asp:TextBox ID="txtJusquA" runat="server" Width="60" Font-Size="X-Small" AutoPostBack="true" OnTextChanged="AfficherPremierePage" />
+                        <asp:TextBox ID="txtJusquA" runat="server" Width="60" Font-Size="X-Small" MaxLength="10" OnKeyDown="return (event.keyCode!=13);" OnKeyUp="RefreshUpdatePanel();" />
                     </span>
                 </asp:Panel>
             </div>

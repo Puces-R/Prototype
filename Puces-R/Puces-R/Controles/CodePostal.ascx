@@ -19,6 +19,6 @@
         <asp:CustomValidator runat="server" ID="reqCodePostal" OnServerValidate="validerObligatoire"
             ErrorMessage="Le code postal est obligatoire" Visible="false" Display="Dynamic" />
         <asp:CustomValidator runat="server" OnServerValidate="validerFormat" ErrorMessage="Le format du code postal est incorrect"
-            Display="Dynamic" />
+            Display="Dynamic" CssClass="erreur" />
     </td>
 </tr>

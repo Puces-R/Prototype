@@ -131,6 +131,7 @@ namespace Puces_R
             req_inactif += "				  ) R5 ";
             req_inactif += "WHERE R5.nbCommandes = 0 ";
             req_inactif += "AND PPVendeurs.NoVendeur = R5.NoVendeur ";
+            req_inactif += "AND DATEADD(yy," + anneesMaximal + ", DateCreation) <= GETDATE()";
             req_inactif += "INTERSECT ";
             req_inactif += "SELECT PPVendeurs.NoVendeur ";
             req_inactif += "FROM PPVendeurs, ( ";

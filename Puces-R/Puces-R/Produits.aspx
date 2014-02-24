@@ -59,7 +59,7 @@
                 </span>
                 <span class="boiteListeDeroulante">
                     Par page:
-                    <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" On="AfficherPremierePage" Font-Size="X-Small" >
+                    <asp:DropDownList ID="ddlParPage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" Font-Size="X-Small" >
                         <asp:ListItem Value="5" />
                         <asp:ListItem Value="10" />
                         <asp:ListItem Value="15" Selected="True" />

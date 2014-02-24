@@ -13,7 +13,7 @@ namespace Puces_R
 {
     public partial class accueil_compta : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         string orderByClause = " ORDER BY ";
         PagedDataSource pdsDemandes = new PagedDataSource();
 

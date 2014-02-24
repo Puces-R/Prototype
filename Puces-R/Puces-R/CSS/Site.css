@@ -618,5 +618,10 @@ form
 
 .messagePrixRevise
 {
+	color:Red;
+}
     
+.centre, .centre > *
+{
+    text-align:center;
 }

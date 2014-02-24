@@ -265,7 +265,6 @@ namespace Puces_R
             }
 
             myConnection.Close();
-            //Response.Redirect("gerer_inactivite_clients.aspx");
             return nb_liens;
         }
 

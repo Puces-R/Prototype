@@ -60,10 +60,7 @@ namespace Puces_R
         protected bool verifierSiProduitEstCommande()
         {
             bool produitDansCommande = false;
-            SqlConnection dbConn = new SqlConnection();
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
+            SqlConnection maConnexion = Librairie.Connexion;
             maConnexion.Open();
 
             SqlCommand maCommande = new SqlCommand("select * from PPDetailsCommandes where NoProduit=" + noProduit, maConnexion);
@@ -84,10 +81,7 @@ namespace Puces_R
         protected bool verifierSiProduitDansPanier()
         {
             bool produitDansPanier = false;
-            SqlConnection dbConn = new SqlConnection();
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
+            SqlConnection maConnexion = Librairie.Connexion;
             maConnexion.Open();
 
             SqlCommand maCommande = new SqlCommand("select * from PPArticlesEnPanier where NoProduit=" + noProduit, maConnexion);
@@ -106,10 +100,7 @@ namespace Puces_R
 
         protected void chargerDonnees()
         {
-            SqlConnection dbConn = new SqlConnection();
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
+            SqlConnection maConnexion = Librairie.Connexion;
             maConnexion.Open();
 
             SqlCommand maCommande = new SqlCommand("select * from PPProduits where NoProduit=" + noProduit + " AND NoVendeur = " + Session["ID"], maConnexion);
@@ -182,10 +173,7 @@ namespace Puces_R
 
         public void chargerCategorie()
         {
-            SqlConnection dbConn = new SqlConnection();
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
+            SqlConnection maConnexion = Librairie.Connexion;
             maConnexion.Open();
 
             SqlCommand maCommande = new SqlCommand("select * from PPCategories ", maConnexion);

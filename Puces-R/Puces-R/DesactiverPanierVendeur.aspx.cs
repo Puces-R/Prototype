@@ -13,7 +13,7 @@ namespace Puces_R
 {
     public partial class DesactiverPanierVendeur : System.Web.UI.Page
     {
-        SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+        SqlConnection myConnection = Librairie.Connexion;
         int no_client;
         string liste_a_desactiver;
         String[] split;
@@ -150,7 +150,7 @@ namespace Puces_R
 
         public void desactiver_un_Panier(int vendeur_a_desactiver)
         {
-            SqlConnection myConnection = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2");
+            SqlConnection myConnection = Librairie.Connexion;
             myConnection.Open();
             using (myConnection)
             {

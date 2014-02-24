@@ -60,8 +60,6 @@ namespace Puces_R
                     SqlCommand commandXML = new SqlCommand("SELECT Configuration FROM PPVendeurs WHERE NoVendeur = " + value, myConnection);
                     Object nom = commandXML.ExecuteScalar();
 
-                    myConnection.Close();
-
                     imgLogo.Visible = false;
                     pnlTitre.BackColor = Color.LightGray;
 
@@ -78,8 +76,6 @@ namespace Puces_R
                     }
                     
                     mvTitre.ActiveViewIndex = 1;
-
-                    myConnection.Open();
 
                     SqlCommand commandNbVisitesAujourdhui = new SqlCommand("SELECT COUNT(*) FROM PPVendeursClients WHERE NoVendeur = " + value + " AND NoClient = " + Session["ID"] + " AND DateVisite = '" + DateTime.Today + "'", myConnection);
                     int nbVisitesAujourdhui = (int)commandNbVisitesAujourdhui.ExecuteScalar();

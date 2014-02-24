@@ -52,6 +52,10 @@ namespace Puces_R
 
                 Response.Redirect(redirection, false);
             }
+            else
+            {
+                connexion.Close();
+            }
         }
 
         protected void existe(object sender, ServerValidateEventArgs e)

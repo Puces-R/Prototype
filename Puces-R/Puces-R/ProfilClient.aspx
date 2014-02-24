@@ -11,7 +11,7 @@
             <table class="formulaire">
                 <lp:ProfilClient runat="server" AfficherCourrielEtMotDePasse="true" ID="ctrProfil" />
                 <tr>
-                    <td colspan="3">
+                    <td colspan="3" class="centre">
                         <asp:Button runat="server" ID="btnSauvegarder" Text="Sauvegarder" OnClick="btnSauvegarder_OnClick"
                             CausesValidation="false" />
                     </td>

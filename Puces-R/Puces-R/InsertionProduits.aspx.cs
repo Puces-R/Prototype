@@ -34,10 +34,7 @@ namespace Puces_R
         
         public void insertionProduits(Object sender, EventArgs e)
         {
-            SqlConnection dbConn = new SqlConnection();
-            String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-            SqlConnection maConnexion = new SqlConnection();
-            maConnexion.ConnectionString = maChaineDeConnexion;
+            SqlConnection maConnexion = Librairie.Connexion;
             maConnexion.Open();
             long cat = ctrProduit.NoCategorie;
 
@@ -64,7 +61,6 @@ namespace Puces_R
 
             cmdInsertion.ExecuteNonQuery();
             maConnexion.Close();
-            //Response.Redirect("GestionProduits.aspx");
         }
 
     }

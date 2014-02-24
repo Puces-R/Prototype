@@ -146,11 +146,9 @@ namespace Puces_R
 
                 myConnection.Open();
                 lblClient.Text = (String)commandClient.ExecuteScalar();
-                myConnection.Close();
 
                 SqlCommand commandeEvaluation = new SqlCommand("SELECT Cote, Commentaire, DateCreation FROM PPEvaluations WHERE NoProduit = " + noProduit + " AND NoClient = " + Session["ID"], myConnection);
 
-                myConnection.Open();
                 SqlDataReader lecteurEvaluation = commandeEvaluation.ExecuteReader();
                                 
                 DejaEvalue = lecteurEvaluation.Read();

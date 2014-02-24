@@ -29,8 +29,8 @@
                     </tr>
                 </table>
                 <div>
-                    <div>
-                        <asp:CustomValidator runat="server" Text="Les identifiants sont incorrects" OnServerValidate="existe" CssClass="erreur" Display="Dynamic" />
+                    <div class="centre erreur">
+                        <asp:CustomValidator runat="server" Text="Les identifiants sont incorrects" OnServerValidate="existe" Display="Static" />
                     </div>
                     <div class="boutonsConnexion">
                         <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />

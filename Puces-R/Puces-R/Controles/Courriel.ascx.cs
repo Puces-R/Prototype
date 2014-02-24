@@ -10,7 +10,7 @@ namespace Puces_R
 {
     public partial class CourrielControle : System.Web.UI.UserControl
     {
-        SqlConnection connexion = new SqlConnection("Server=sqlinfo.cgodin.qc.ca;Database=BD6B8_424R;User Id=6B8equipe424r;Password=Password2;");
+        SqlConnection connexion = Librairie.Connexion;
 
         public bool Existe
         {

@@ -18,10 +18,7 @@ namespace Puces_R
                 Librairie.Autorisation(false, false, true, false);
                 int noCommande = Librairie.LireParametre<int>("noCommande");
 
-                SqlConnection dbConn = new SqlConnection();
-                String maChaineDeConnexion = "Data Source=sqlinfo.cgodin.qc.ca;Initial Catalog=BD6B8_424R;Persist Security Info=True;User ID=6B8equipe424r;Password=Password2";
-                SqlConnection maConnexion = new SqlConnection();
-                maConnexion.ConnectionString = maChaineDeConnexion;
+                SqlConnection maConnexion = Librairie.Connexion;
                 maConnexion.Open();
 
                 SqlCommand maCommande = new SqlCommand("select * from PPCommandes where NoCommande=" + noCommande + " AND NoVendeur = " + Session["ID"], maConnexion);

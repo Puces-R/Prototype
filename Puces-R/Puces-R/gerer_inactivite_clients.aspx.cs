@@ -90,7 +90,8 @@ namespace Puces_R
                     Session["err_msg"] = "";
                 }
 
-            Librairie.activer_cocher_tout(div_chck); 
+            Librairie.activer_cocher_tout(div_chck);
+            Session["desactiver_client"] = null;
         }
 
         private void charge_inactifs1(object sender, EventArgs e)

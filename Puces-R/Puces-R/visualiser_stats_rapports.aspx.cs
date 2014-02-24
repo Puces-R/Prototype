@@ -18,10 +18,11 @@ namespace Puces_R
             int min_option = 5, nb_option = 5, increment = 1;
 
             Master.Titre = "Statistiques & Rapports";
-            chargerGraphiquev0(sender, e);
 
             if (!IsPostBack)
             {
+                chargerGraphiquev0(sender, e);
+
                 Librairie.Autorisation(false, false, false, true);
                 ajouter_list_item(ddlNbMois_v1, min_option, nb_option, increment);
                 ajouter_list_item(ddlNbVendeurs_v2, min_option, nb_option, increment);

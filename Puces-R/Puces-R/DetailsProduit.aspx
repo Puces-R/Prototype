@@ -26,7 +26,7 @@
                         Produit:
                     </td>
                     <td>
-                        <asp:Label ID="lblProduit" runat="server" />
+                        <asp:Label ID="lblProduit" runat="server" CssClass="description" />
                     </td>
                 </tr>
                 <tr>

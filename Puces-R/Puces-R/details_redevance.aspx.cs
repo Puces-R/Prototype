@@ -143,7 +143,7 @@ namespace Puces_R
                             orderByClause += " NoCommande ";
                             break;
                         case 1:
-                            orderByClause += " NomAffaires ";
+                            orderByClause += " PPVendeurs.NomAffaires ";
                             break;
                         case 2:
                             orderByClause += " DateVente ";

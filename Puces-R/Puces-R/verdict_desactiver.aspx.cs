@@ -73,8 +73,7 @@ namespace Puces_R
             }
 
             myConnection.Close();
-        }
-         
+        }         
 
         protected void desactiver_un_vendeur(object sender, CommandEventArgs e)
         {

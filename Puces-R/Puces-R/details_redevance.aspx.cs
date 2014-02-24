@@ -65,12 +65,7 @@ namespace Puces_R
                     {
                         whereClause = " " + string.Join(" AND ", whereParts);
                     }
-                    else
-                    {
-                        //whereClause = " WHERE Statut = 2 ";
-                    }
 
-                    //String orderByClause = " ORDER BY ";
                     switch (ddlTrierPar.SelectedIndex)
                     {
                         case 0:
@@ -199,7 +194,7 @@ namespace Puces_R
             }
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
-            //Response.Write(req );
+            //Response.Write(adapteurDemandes.SelectCommand.CommandText);
 
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;

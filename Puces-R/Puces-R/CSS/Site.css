@@ -15,7 +15,7 @@ body
 {
     background-image:url('../Images/Fond/centre-achat.jpg');
     background-attachment: fixed;
-    background-size:100% 100%;
+    background-size:100vw 100vh;
 }
 
 a
@@ -107,7 +107,6 @@ form
     font-size:xx-large;
     font-weight:bold;
     vertical-align:middle;
-    line-height:75px;
 }
 
 .barreVendeur
@@ -153,8 +152,13 @@ form
 
 .panneau
 {
-   margin-top:10px;
    height:100%;
+   
+   display:table-cell;
+   padding-top:10px;
+   padding-left:20px;
+   padding-right:20px;
+   vertical-align: top;
 }
 
 .panneau h2:first-child
@@ -162,18 +166,15 @@ form
     margin-top:-5px;
 }
 
-.pnlGauche
-{
-    float: left;
-}
+.pnlGauche {}
 
 .pnlDroite
 {
-    float: right;
+    /*float: right;*/
     border-left: 5px dotted Gray;
-    padding-left: 20px;
-    margin-left: 20px;
-    display: inline-block;
+    /*padding-left: 20px;*/
+    /*margin-left: 20px;
+    /*display: inline-block;*/    
 }
 
 .pnlDetails td
@@ -513,6 +514,8 @@ form
 
 .gauchePageMaitre
 {
+    margin-top:-15px;
+    margin-bottom:-10px;    
     display:inline-block;
     vertical-align:middle;
 }
@@ -584,4 +587,29 @@ form
 {
     margin-top:5px;
     margin-right:5px;
+}
+
+.boutonRetour
+{
+    margin-top:-5px;
+}
+
+.grandTotal
+{
+    border-top:1px solid Gray;
+}
+
+.pnlDroiteCommande
+{
+    float:right;
+}
+
+.rectangleCommande
+{
+    width:400px;
+}
+
+.rectangleTitreGauche .titreVendeur
+{
+    line-height:75px;
 }

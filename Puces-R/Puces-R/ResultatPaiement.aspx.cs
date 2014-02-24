@@ -53,76 +53,83 @@ namespace Puces_R
                 dateAutorisation = (String)requete.Form["DateAutorisation"];
                 fraisMarchand = (String)requete.Form["FraisMarchand"];
 
-                switch (noAutorisation)
+                if (noAutorisation == null || dateAutorisation == null || fraisMarchand == null)
                 {
-                    case "0":
-                        lblMessageResultat.Text = "Transaction annulée par l'utilisateur";
-                        break;
-                    case "1":
-                        lblMessageResultat.Text = "Transaction refusée : Date d'expiration dépassée";
-                        break;
-                    case "2":
-                        lblMessageResultat.Text = "Transaction refusée : Limite de crédit atteinte";
-                        break;
-                    case "3":
-                        lblMessageResultat.Text = "Transaction refusée : Carte refusée";
-                        break;
-                    default:
-                        transactionAccepte = true;
-                        mvActionMessage.ActiveViewIndex = 1;
-                        phRapport.Visible = true;
-                        lblMessageResultat.Text = "Merci, la transaction à été acceptée!";
-                        lblMessageResultat.ForeColor = Color.Green;
-                        facture = new Facture(noClient, noVendeur, codeLivraison);
-
-                        SqlCommand commandeTypeLivraison = new SqlCommand("SELECT Description FROM PPTypesLivraison WHERE CodeLivraison = " + codeLivraison, myConnection);
-
-                        myConnection.Open();
-                        String typeLivraison = (String)commandeTypeLivraison.ExecuteScalar();
-                        myConnection.Close();
-
-                        ctrRapport.LocalReport.EnableExternalImages = true;
-                        ctrRapport.LocalReport.DataSources.Clear();  
-                        ctrRapport.LocalReport.ReportPath = "BonCommande.rdlc";
-
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("SousTotal", facture.SousTotal.ToString()));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("Poids", facture.PoidsTotal.ToString()));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("TypeLivraison", typeLivraison));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("CoutLivraison", facture.PrixLivraison.ToString()));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("TPS", facture.PrixTPS.ToString()));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("TVQ", facture.PrixTVQ.ToString()));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("GrandTotal", facture.GrandTotal.ToString()));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("NoAutorisation", noAutorisation));
-                        ctrRapport.LocalReport.SetParameters(new ReportParameter("DateAutorisation", dateAutorisation));
-
-                        LectureXML lecture = new LectureXML(noVendeur);
-                        if (lecture.Existe)
-                        {
-                            string cheminLogo = Server.MapPath("~/Images/Logo/" + lecture.NomLogo);
-                            ctrRapport.LocalReport.SetParameters(new ReportParameter("LogoVendeur", cheminLogo));
-                        }
-
-                        SqlDataAdapter adapteurArticlesEnPanier = new SqlDataAdapter("SELECT P.Nom, P.Poids, P.PrixVente, A.NbItems, P.NoProduit, A.NoPanier FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE (A.NoClient = " + noClient + ") AND (A.NoVendeur = " + noVendeur + ") ", myConnection);
-                        DataTable tableArticlesEnPanier = new DataTable();
-                        adapteurArticlesEnPanier.Fill(tableArticlesEnPanier);
-                        ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("ArticlesEnPanierDetaille", tableArticlesEnPanier));
-
-                        SqlDataAdapter adapteurClientDetaille = new SqlDataAdapter("SELECT NoClient, AdresseEmail, Prenom + ' ' + Nom AS NomComplet, Rue, Ville, Province, CodePostal, Pays, Tel1, Tel2 FROM PPClients WHERE NoClient = " + noClient, myConnection);
-                        DataTable tableClientDetaille = new DataTable();
-                        adapteurClientDetaille.Fill(tableClientDetaille);
-                        ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("ClientDetaille", tableClientDetaille));
-
-                        SqlDataAdapter adapteurVendeurDetaille = new SqlDataAdapter("SELECT NoVendeur, NomAffaires, Prenom + ' ' + Nom AS NomComplet, Rue, Ville, Province, CodePostal, Pays, Tel1, Tel2, AdresseEmail FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
-                        DataTable tableVendeurDetaille = new DataTable();
-                        adapteurVendeurDetaille.Fill(tableVendeurDetaille);
-                        ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("VendeurDetaille", tableVendeurDetaille));
-
-                        ctrRapport.LocalReport.Refresh();
-
-                        break;
+                    Librairie.RefuserAutorisation();
                 }
+                else
+                {
+                    switch (noAutorisation)
+                    {
+                        case "0":
+                            lblMessageResultat.Text = "Transaction annulée par l'utilisateur";
+                            break;
+                        case "1":
+                            lblMessageResultat.Text = "Transaction refusée : Date d'expiration dépassée";
+                            break;
+                        case "2":
+                            lblMessageResultat.Text = "Transaction refusée : Limite de crédit atteinte";
+                            break;
+                        case "3":
+                            lblMessageResultat.Text = "Transaction refusée : Carte refusée";
+                            break;
+                        default:
+                            transactionAccepte = true;
+                            mvActionMessage.ActiveViewIndex = 1;
+                            phRapport.Visible = true;
+                            lblMessageResultat.Text = "Merci, la transaction à été acceptée!";
+                            lblMessageResultat.ForeColor = Color.Green;
+                            facture = new Facture(noClient, noVendeur, codeLivraison);
 
-                hypReessayer.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison;
+                            SqlCommand commandeTypeLivraison = new SqlCommand("SELECT Description FROM PPTypesLivraison WHERE CodeLivraison = " + codeLivraison, myConnection);
+
+                            myConnection.Open();
+                            String typeLivraison = (String)commandeTypeLivraison.ExecuteScalar();
+                            myConnection.Close();
+
+                            ctrRapport.LocalReport.EnableExternalImages = true;
+                            ctrRapport.LocalReport.DataSources.Clear();
+                            ctrRapport.LocalReport.ReportPath = "BonCommande.rdlc";
+
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("SousTotal", facture.SousTotal.ToString()));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("Poids", facture.PoidsTotal.ToString()));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("TypeLivraison", typeLivraison));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("CoutLivraison", facture.PrixLivraison.ToString()));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("TPS", facture.PrixTPS.ToString()));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("TVQ", facture.PrixTVQ.ToString()));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("GrandTotal", facture.GrandTotal.ToString()));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("NoAutorisation", noAutorisation));
+                            ctrRapport.LocalReport.SetParameters(new ReportParameter("DateAutorisation", dateAutorisation));
+
+                            LectureXML lecture = new LectureXML(noVendeur);
+                            if (lecture.Existe)
+                            {
+                                string cheminLogo = Server.MapPath("~/Images/Logo/" + lecture.NomLogo);
+                                ctrRapport.LocalReport.SetParameters(new ReportParameter("LogoVendeur", cheminLogo));
+                            }
+
+                            SqlDataAdapter adapteurArticlesEnPanier = new SqlDataAdapter("SELECT P.Nom, P.Poids, P.PrixVente, A.NbItems, P.NoProduit, A.NoPanier FROM PPProduits P INNER JOIN PPArticlesEnPanier A ON P.NoProduit = A.NoProduit WHERE (A.NoClient = " + noClient + ") AND (A.NoVendeur = " + noVendeur + ") ", myConnection);
+                            DataTable tableArticlesEnPanier = new DataTable();
+                            adapteurArticlesEnPanier.Fill(tableArticlesEnPanier);
+                            ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("ArticlesEnPanierDetaille", tableArticlesEnPanier));
+
+                            SqlDataAdapter adapteurClientDetaille = new SqlDataAdapter("SELECT NoClient, AdresseEmail, Prenom + ' ' + Nom AS NomComplet, Rue, Ville, Province, CodePostal, Pays, Tel1, Tel2 FROM PPClients WHERE NoClient = " + noClient, myConnection);
+                            DataTable tableClientDetaille = new DataTable();
+                            adapteurClientDetaille.Fill(tableClientDetaille);
+                            ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("ClientDetaille", tableClientDetaille));
+
+                            SqlDataAdapter adapteurVendeurDetaille = new SqlDataAdapter("SELECT NoVendeur, NomAffaires, Prenom + ' ' + Nom AS NomComplet, Rue, Ville, Province, CodePostal, Pays, Tel1, Tel2, AdresseEmail FROM PPVendeurs WHERE NoVendeur = " + noVendeur, myConnection);
+                            DataTable tableVendeurDetaille = new DataTable();
+                            adapteurVendeurDetaille.Fill(tableVendeurDetaille);
+                            ctrRapport.LocalReport.DataSources.Add(new ReportDataSource("VendeurDetaille", tableVendeurDetaille));
+
+                            ctrRapport.LocalReport.Refresh();
+
+                            break;
+                    }
+
+                    hypReessayer.NavigateUrl = "Commande.aspx?novendeur=" + noVendeur + "&codelivraison=" + codeLivraison;
+                }
             }
         }
 

@@ -63,13 +63,15 @@
                 <asp:ListItem Text="3 Ans" Value="3"/>
             </asp:DropDownList>
         </span>
+        <span class="boiteListeDeroulante">
+            <asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les clients sélectionnés" disabled="true" OnClick="desactiver_liste"/>
+        </span>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Items" runat="server">
     <div>
     <div id="div_msg" runat="server" class="center"></div>
         <div id="div_chck" style="font-size: small; width: 100%; margin: auto;" runat="server" >
-            <p style="text-align: center;"><asp:Button ID="btn_desactiver_tout" runat="server" Text="Désactiver la sélection" ForeColor="Black" ToolTip="Désactiver tous les clients sélectionnés" disabled="true" OnClick="desactiver_liste"/></p>
             <table border="0" width="100%" cellpadding="5" cellspacing="2" >
                 <tr class="rectangleItem hautRectangle" >
                     <th><input type="checkbox" id="cb_tout" title="Sélectionner/Desélectionner tous les items de la page" class="cocher_tout" onchange="check_desactiver_tout(this);" /></th>

@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Puces_R.Controles;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace Puces_R
 {
@@ -57,6 +58,10 @@ namespace Puces_R
                 ddlVendeur.Items.Add(new ListItem("Tous", "-1"));
                 Librairie.InitialiserListe("novendeur", ddlVendeur);
                 
+                Master.AfficherPremierePage();
+            }
+            else if (Request.Params.Get("__EVENTTARGET") == "MainContent_udpProduits")
+            {
                 Master.AfficherPremierePage();
             }
 
@@ -146,7 +151,11 @@ namespace Puces_R
             }
             else
             {
-                noVendeurs = Request.Params["novendeur"];
+                String parametre = Request.Params["novendeur"];
+                if (parametre != null && Regex.IsMatch(parametre, "^\\d+(?:,\\d+)*$"))
+                {
+                    noVendeurs = parametre;
+                }
             }
             if (noVendeurs != null)
             {
@@ -185,20 +194,30 @@ namespace Puces_R
 
             if (RechercheAvance)
             {
-                if (txtAPartirDe.Text != string.Empty)
+                DateTime aPartirDe;
+                DateTime jusquA;
+
+                if (Librairie.LireEtValiderPlage(txtAPartirDe.Text, out aPartirDe))
                 {
-                    if (txtJusquA.Text != string.Empty)
+                    if (Librairie.LireEtValiderPlage(txtJusquA.Text, out jusquA))
                     {
                         whereParts.Add("P.DateCreation BETWEEN '" + txtAPartirDe.Text + "' AND '" + txtJusquA.Text + "'");
                     }
                     else
-                    {
+                    {                   
                         whereParts.Add("P.DateCreation > '" + txtAPartirDe.Text + "'");
                     }
                 }
-                else if (txtJusquA.Text != string.Empty)
+                else
                 {
-                    whereParts.Add("P.DateCreation < '" + txtJusquA.Text + "'");
+                    if (Librairie.LireEtValiderPlage(txtJusquA.Text, out jusquA))
+                    {
+                        whereParts.Add("P.DateCreation < '" + txtJusquA.Text + "'");
+                    }
+                    else
+                    {
+                        txtJusquA.Text = string.Empty;
+                    }
                 }
             }
 
@@ -273,7 +292,11 @@ namespace Puces_R
 
         protected void AfficherPremierePage(object sender, EventArgs e)
         {
-            Master.AfficherPremierePage();
+            Validate();
+            if (IsValid)
+            {
+                Master.AfficherPremierePage();
+            }
         }
 
         protected void btnRechercheAvance_OnClick(object sender, EventArgs e)
@@ -286,7 +309,40 @@ namespace Puces_R
 
             btnRechercheAvance.Text = RechercheAvance ? "▲" : "▼";
 
-            Master.AfficherPremierePage();
+            if (RechercheAvance)
+            {
+                if (ddlVendeur.SelectedValue == "-1")
+                {
+                    foreach (ListItem item in cblVendeur.Items)
+                    {
+                        item.Selected = true;
+                    }
+                }
+                else
+                {
+                    cblVendeur.ClearSelection();
+                    cblVendeur.Items.FindByValue(ddlVendeur.SelectedValue).Selected = true;
+                }
+
+                if (ddlCategorie.SelectedValue == "-1")
+                {
+                    foreach (ListItem item in cblCategorie.Items)
+                    {
+                        item.Selected = true;
+                    }
+                }
+                else
+                {
+                    cblCategorie.ClearSelection();
+                    cblCategorie.Items.FindByValue(ddlCategorie.SelectedValue).Selected = true;
+                }
+            }
+        }
+
+        protected void ValiderDate(object sender, ServerValidateEventArgs e)
+        {
+            DateTime date;
+            e.IsValid = Librairie.LireEtValiderPlage(e.Value, out date);
         }
     }
 }

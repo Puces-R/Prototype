@@ -86,7 +86,7 @@
                         Nom sur la carte:
                     </td>
                     <td>
-                        <asp:TextBox runat="server" ID="txtNomCarte" />
+                        <asp:TextBox runat="server" ID="txtNomCarte" MaxLength="50" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNomCarte" Text="Le nom sur la carte ne peut pas être vide!"
                             CssClass="erreur" Display="Dynamic" />
                     </td>
@@ -99,6 +99,8 @@
                         <asp:TextBox runat="server" ID="txtCCV" MaxLength="3" Columns="3" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCCV" Text="Le numéro de sécurité doit être spécifié!"
                             CssClass="erreur" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ControlToValidate="txtCCV" Text="Le numéro doit être composé de 3 chiffers!" 
+                            CssClass="erreur" Display="Dynamic" runat="server" ValidationExpression="^\d{3}$" />
                     </td>
                 </tr>
             </table>

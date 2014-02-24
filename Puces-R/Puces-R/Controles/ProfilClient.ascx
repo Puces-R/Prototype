@@ -30,10 +30,10 @@
         Prénom
     </td>
     <td>
-        <asp:TextBox ID="txtPrenom" runat="server" />
+        <asp:TextBox ID="txtPrenom" runat="server" MaxLength="50" />
     </td>
     <td>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="erreur"
+        <asp:RequiredFieldValidator runat="server" CssClass="erreur"
             Text="Le prénom ne peut pas être vide!" ControlToValidate="txtPrenom" Display="Dynamic" />
     </td>
 </tr>
@@ -42,10 +42,10 @@
         Nom
     </td>
     <td>
-        <asp:TextBox ID="txtNom" runat="server" />
+        <asp:TextBox ID="txtNom" runat="server" MaxLength="50" />
     </td>
     <td>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="erreur"
+        <asp:RequiredFieldValidator runat="server" CssClass="erreur"
             Text="Le nom ne peut pas être vide!" ControlToValidate="txtNom" Display="Dynamic" />
     </td>
 </tr>
@@ -55,7 +55,7 @@
         Ville
     </td>
     <td>
-        <asp:TextBox ID="txtVille" runat="server" />
+        <asp:TextBox ID="txtVille" runat="server" MaxLength="50" />
     </td>
     <td>
         <asp:RequiredFieldValidator runat="server" CssClass="erreur" Text="La ville ne peut pas être vide!"

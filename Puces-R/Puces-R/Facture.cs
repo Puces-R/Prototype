@@ -37,7 +37,6 @@ namespace Puces_R
             this.CodeLivraison = codeLivraison;
         }
 
-
         public Facture(long noClient, long noVendeur, short codeLivraison, bool commande = false) : this(noClient, noVendeur, codeLivraison, null, commande) { }
 
         public Facture(long noClient, long noVendeur, short codeLivraison) : this(noClient, noVendeur, codeLivraison, null) { }

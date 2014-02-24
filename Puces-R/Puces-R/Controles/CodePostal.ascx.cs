@@ -40,11 +40,6 @@ namespace Puces_R
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         protected void validerObligatoire(object sender, ServerValidateEventArgs e)
         {
             e.IsValid = reqPart1.IsValid || reqPart2.IsValid;

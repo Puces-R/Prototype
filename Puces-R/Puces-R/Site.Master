@@ -20,7 +20,7 @@
                         <img src="Images/logo.png" alt="Logo" class="logo"/>
                         <div class="gauchePageMaitre">
                             <span class="titre">Les Petites Puces</span>
-                            <div>
+                            <div class="boutonRetour">
                                 <asp:HyperLink runat="server" ID="hypRetour" Text="◄ Retour" Font-Size="Small" Font-Bold="true" ForeColor="LightGray" />
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <asp:Panel runat="server" ID="pnlTitreAvecLigne" Visible="false" CssClass="titreAvecLigne">
                             <asp:MultiView runat="server" ID="mvTitre">
                                 <asp:View ID="View1" runat="server">
-                                        <asp:Label runat="server" ID="lblTitreSansMenu" CssClass="titreVendeur" />
+                                    <asp:Label runat="server" ID="lblTitreSansMenu" CssClass="titreVendeur" />
                                 </asp:View>
                                 <asp:View ID="View2" runat="server">
                                     <div class="titreVendeurAvecMenu rectangleAvecOmbre">

@@ -34,6 +34,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <div class="panneau pnlGauche">
+            <h2>Information</h2>
             <div class="rectangleComplet rectangleItem">
                 <table class="formulaire">
                     <se:ProfilVendeur ID="ctrProfil" runat="server" />
@@ -71,6 +72,7 @@
             </div>
         </div>
         <div class="panneau pnlDroite">
+            <h2>Personnalisation</h2>
             <div class="rectangleComplet rectangleItem">
                 <asp:HiddenField ID="hidColor" runat="server" />
                 <div id='jqxColorPicker'></div>

@@ -427,7 +427,7 @@ namespace Puces_R
 
             if ((item.ItemType == ListItemType.Item) || (item.ItemType == ListItemType.AlternatingItem))
             {
-
+                Label lbl_num = (Label)item.FindControl("lbl_num");
                 Label lbl_date = (Label)item.FindControl("lbl_date");
                 Label lbl_nom_client = (Label)item.FindControl("lbl_nom_client");
                 Label lbl_adresse_email_client = (Label)item.FindControl("lbl_adresse_email_client");
@@ -435,6 +435,7 @@ namespace Puces_R
 
                 DataRowView drvDemande = (DataRowView)e.Item.DataItem;
 
+                lbl_num.Text = (item.ItemIndex + 1).ToString();
                 lbl_date.Text = drvDemande["DateDerniereConnexion"].ToString();
                 lbl_nom_client.Text = drvDemande["Prenom"].ToString() + " " + drvDemande["Nom"].ToString();
                 lbl_adresse_email_client.Text = drvDemande["AdresseEmail"].ToString();

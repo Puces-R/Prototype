@@ -17,7 +17,6 @@ namespace Puces_R
         string whereClause, orderByClause = " ORDER BY ";
         string[] param;
         string[] mots;
-        private int noCategorie;
         PagedDataSource objPds = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -69,15 +68,16 @@ namespace Puces_R
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "V.Nom";
+                    orderByClause += " V.AdresseEmail ";
                     break;
                 case 1:
-                    orderByClause += "V.DateCreation";
+                    orderByClause += " V.Nom ";
                     break;
-                default:
-                    orderByClause = "";
-                    break; 
+                case 2:
+                    orderByClause += " V.DateCreation ";
+                    break;
             }
+            orderByClause += ddlOrdre.SelectedValue;
             
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
@@ -91,7 +91,7 @@ namespace Puces_R
             ctrNavigation.PageChangee += changerDePage;
         }
 
-        private void changerDePage(object sender, EventArgs e)
+        protected void changerDePage(object sender, EventArgs e)
         {
             chargerResultats();
         }

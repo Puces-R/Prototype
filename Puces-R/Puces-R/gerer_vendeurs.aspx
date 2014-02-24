@@ -80,7 +80,12 @@
                         <asp:ListItem Text="Nom d'affaires" />
                         <asp:ListItem Text="Nom" />
                         <asp:ListItem Text="Date de d'inscription" />
-                    </asp:DropDownList><br /><br />
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlOrdre" runat="server" AutoPostBack="true" OnSelectedIndexChanged="changerDePage" >
+                        <asp:ListItem Text="Croissant" Value=" ASC " />
+                        <asp:ListItem Text="Décroissant" Value=" DESC " />
+                    </asp:DropDownList>
+                <br /><br />
                 </td></tr>
          
                 <tr><th colspan="2">Nombre d'items par page:</th></tr>

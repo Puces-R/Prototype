@@ -71,9 +71,13 @@
                 <tr><th colspan="2"><br />Trier par:</th></tr>
                 <tr><td colspan="2">
                     <asp:DropDownList ID="ddlTrierPar" runat="server" AutoPostBack="true">
-                        <asp:ListItem Text="Adresse courriel" />
+                        <asp:ListItem Text="Adresse email" />
                         <asp:ListItem Text="Nom" />
                         <asp:ListItem Text="Date de d'inscription" />
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlOrdre" runat="server" AutoPostBack="true" OnSelectedIndexChanged="changerDePage" >
+                        <asp:ListItem Text="Croissant" Value=" ASC " />
+                        <asp:ListItem Text="Décroissant" Value=" DESC " />
                     </asp:DropDownList><br /><br />
                 </td></tr>
          

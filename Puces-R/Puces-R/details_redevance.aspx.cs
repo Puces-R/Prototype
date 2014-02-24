@@ -86,6 +86,7 @@ namespace Puces_R
                             orderByClause += " MontantVente ";
                             break;
                     }
+                    orderByClause += ddlOrdre.SelectedValue;
 
                     string[] tab_parametres = Session["no_vendeur_no_commande"].ToString().Split(';');
                     no_vendeur = Convert.ToInt32(tab_parametres[0]);
@@ -152,6 +153,7 @@ namespace Puces_R
                             orderByClause += " MontantVente ";
                             break;
                     }
+                    orderByClause += ddlOrdre.SelectedValue;
 
                     no_client = Convert.ToInt32(Session["client_desactive"]);
                     Master.Master.Titre = "Détails de la commande";

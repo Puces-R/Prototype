@@ -53,10 +53,10 @@ namespace Puces_R
             switch (ddlTrierPar.SelectedIndex)
             {
                 case 0:
-                    orderByClause += "PPVendeurs.NoVendeur";
+                    orderByClause += " PPVendeurs.NoVendeur ";
                     break;
                 case 1:
-                    orderByClause += "PPVendeurs.NomAffaires";
+                    orderByClause += " PPVendeurs.NomAffaires ";
                     break;
                 case 2:
                     orderByClause += " DatePaiement ";
@@ -65,6 +65,7 @@ namespace Puces_R
                     orderByClause += " Montant ";
                     break;
             }
+            orderByClause += ddlOrdre.SelectedValue;
             
             if (Session["msg"] != null)
                 if (Session["msg"].ToString() != "")

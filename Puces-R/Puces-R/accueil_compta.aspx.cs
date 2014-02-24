@@ -38,9 +38,10 @@ namespace Puces_R
                     orderByClause += " MontantDu ";
                     break;
                 case 3:
-                    orderByClause += " Mois DESC ";
+                    orderByClause += " Mois ";
                     break;
             }
+            orderByClause += ddlOrdre.SelectedValue;
             
             if (Session["msg"] != null)
                 if (Session["msg"].ToString() != "")

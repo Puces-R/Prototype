@@ -17,7 +17,7 @@ namespace Puces_R
         string whereClause, orderByClause = " ORDER BY ";
         string[] mots;
         string[] param;
-        private int noCategorie;
+        //private int noCategorie;
         PagedDataSource objPds = new PagedDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Puces_R
                 ListItem li = new ListItem("Toutes", "-1");
                 li.Selected = true;
                 ddlCategorie.Items.Add(li);
-                ddlCategorie.SelectedValue = noCategorie.ToString();
+                //ddlCategorie.SelectedValue = noCategorie.ToString();
             }
 
             List<String> whereParts = new List<String>();
@@ -94,8 +94,9 @@ namespace Puces_R
                     break;
                 default:
                     orderByClause = "";
-                    break; 
+                    break;
             }
+            orderByClause += ddlOrdre.SelectedValue;
             
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
@@ -109,7 +110,7 @@ namespace Puces_R
             ctrNavigation.PageChangee += changerDePage;
         }
 
-        private void changerDePage(object sender, EventArgs e)
+        protected void changerDePage(object sender, EventArgs e)
         {
             chargerResultats();
         }

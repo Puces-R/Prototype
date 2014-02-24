@@ -55,9 +55,10 @@ namespace Puces_R
                     orderByClause += "PPClients.Prenom, PPClients.Nom";
                     break;
                 case 2:
-                    orderByClause += "PPClients.DateCreation DESC ";
+                    orderByClause += "PPClients.DateCreation ";
                     break;
             }
+            orderByClause += ddlOrdre.SelectedValue;
 
             anneesMaximal = int.Parse(ddlTempsInnactivite.SelectedValue);
 

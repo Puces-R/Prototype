@@ -19,6 +19,10 @@
                     <asp:ListItem Text="Montant dû" />
                     <asp:ListItem Text="Mois" Selected="True" />
                 </asp:DropDownList>
+                <asp:DropDownList ID="ddlOrdre" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+                    <asp:ListItem Text="Croissant" Value=" ASC " />
+                    <asp:ListItem Text="Décroissant" Value=" DESC " />
+                </asp:DropDownList>
             </span>
             <span class="boiteListeDeroulante">
                 Par page:

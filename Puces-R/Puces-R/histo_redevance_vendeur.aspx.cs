@@ -46,10 +46,11 @@ namespace Puces_R
                     orderByClause += " DatePaiement ";
                     break;
                 case 2:
-                    orderByClause += " Montant DESC";
+                    orderByClause += " Montant ";
                     break;
             }
-            
+            orderByClause += ddlOrdre.SelectedValue;
+
             if (Session["msg"] != null)
                 if (Session["msg"].ToString() != "")
                 {

@@ -57,9 +57,10 @@ namespace Puces_R
                     orderByClause += "PPVendeurs.NomAffaires";
                     break;
                 case 2:
-                    orderByClause += "PPVendeurs.DateCreation DESC";
+                    orderByClause += "PPVendeurs.DateCreation ";
                     break;
             }
+            orderByClause += ddlOrdre.SelectedValue;
             
             if (Session["msg"] != null)
                 if (Session["msg"].ToString() != "")

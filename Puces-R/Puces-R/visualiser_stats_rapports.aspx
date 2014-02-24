@@ -193,6 +193,7 @@
                     <div class="rectangleItem basRectangle">
                          <table class="table_avec_ligne" style="width:95%">
                             <tr>
+                                <th class="center">#</th>
                                 <th>Date</th>
                                 <th>Nom</th>
                                 <th>Adresse email</th>
@@ -201,10 +202,11 @@
                             <asp:Repeater runat="server" ID="rptConnexionsRecentes" OnItemDataBound="rptConnexionsRecentes_ItemDataBound">
                                 <ItemTemplate>
                                     <tr>
+                                        <td class="center"><asp:Label runat="server" ID="lbl_num" /></td>
                                         <td><asp:Label runat="server" ID="lbl_date" /></td>
                                         <td><asp:Label runat="server" ID="lbl_nom_client" /></td>
                                         <td><asp:Label runat="server" ID="lbl_adresse_email_client" /></td>
-                                        <td><asp:Label runat="server" ID="lbl_nb_connexions" /></td>
+                                        <td class="center"><asp:Label runat="server" ID="lbl_nb_connexions" /></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>

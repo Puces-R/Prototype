@@ -43,6 +43,10 @@
                 <asp:ListItem Text="Nom complet" />
                 <asp:ListItem Text="Date de demande" />
             </asp:DropDownList>
+            <asp:DropDownList ID="ddlOrdre" runat="server" AutoPostBack="true" OnSelectedIndexChanged="AfficherPremierePage" >
+                <asp:ListItem Text="Croissant" Value=" ASC " />
+                <asp:ListItem Text="Décroissant" Value=" DESC " />
+            </asp:DropDownList>
         </span>
         <span class="boiteListeDeroulante">
             Par page:

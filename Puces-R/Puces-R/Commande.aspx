@@ -1,4 +1,4 @@
-﻿<%@ Page  Title="ommande" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Commande" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Commande.aspx.cs" Inherits="Puces_R.Commande" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -30,22 +30,24 @@
             </div>
             <h2>
                 Carte de crédit</h2>
-            <table>
+            <table class="formulaire">
                 <tr>
                     <td>
-                        Numéro:
+                        Numéro
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="txtNumero" MaxLength="16" Columns="16" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumero" Text="Le numéro ne peut pas être vide!"
-                            CssClass="erreur" Display="Dynamic" />
+                    </td>
+                    <td class="erreur">
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumero" Text="Le numéro est obligatoire"
+                            Display="Dynamic" />
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumero" ValidationExpression="^\d{16}$"
-                            Text="Le numéro doit être composé de 16 chiffres!" CssClass="erreur" Display="Dynamic" />
+                            Text="Le numéro doit être composé de 16 chiffres" Display="Dynamic" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Mois d'expiration:
+                        Mois d'expiration
                     </td>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlMoisExpiration">
@@ -63,53 +65,58 @@
                             <asp:ListItem Text="Novembre" Value="11" />
                             <asp:ListItem Text="Décembre" Value="12" />
                         </asp:DropDownList>
+                    </td>
+                    <td class="erreur">
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlMoisExpiration"
-                            Text="Le mois d'expiration ne peut pas être vide!" CssClass="erreur" InitialValue="-1"
-                            Display="Dynamic" />
+                            Text="Le mois d'expiration est obligatoire" InitialValue="-1" Display="Dynamic" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Année d'expiration:
+                        Année d'expiration
                     </td>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlAnneeExpiration">
                             <asp:ListItem Text="" Value="-1" />
                         </asp:DropDownList>
+                    </td>
+                    <td class="erreur">
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlAnneeExpiration"
-                            Text="L'année d'expiration ne peut pas être vide!" CssClass="erreur" InitialValue="-1"
+                            Text="L'année d'expiration est obligatoire" InitialValue="-1" Display="Dynamic" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nom sur la carte
+                    </td>
+                    <td>
+                        <asp:TextBox runat="server" ID="txtNomCarte" />
+                    </td>
+                    <td class="erreur">
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNomCarte" Text="Le nom sur la carte est obligatoire"
                             Display="Dynamic" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Nom sur la carte:
-                    </td>
-                    <td>
-                        <asp:TextBox runat="server" ID="txtNomCarte" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNomCarte" Text="Le nom sur la carte ne peut pas être vide!"
-                            CssClass="erreur" Display="Dynamic" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        CCV:
+                        CCV
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="txtCCV" MaxLength="3" Columns="3" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCCV" Text="Le numéro de sécurité doit être spécifié!"
-                            CssClass="erreur" Display="Dynamic" />
+                    </td>
+                    <td class="erreur">
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCCV" Text="Le numéro de sécurité est obligatoire"
+                            Display="Dynamic" />
                     </td>
                 </tr>
             </table>
             <div class="boutonsAction">
-                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" />
+                <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" CausesValidation="false"/>
                 <asp:Button runat="server" Text="Simulation" ID="btnEssaie" OnClick="btnEssaie_OnClick"
                     CausesValidation="false" />
             </div>
-            <div>
-                <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" OnServerValidate="valQuantite_OnServerValidate"
-                    CssClass="erreur" />
+            <div class="erreur">
+                <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" OnServerValidate="valQuantite_OnServerValidate" />
             </div>
         </div>
     </div>

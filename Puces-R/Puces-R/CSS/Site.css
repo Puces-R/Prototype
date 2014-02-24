@@ -60,12 +60,14 @@ form
     height: 30px;
 }
 
-.erreur
+.erreur, .erreur > *
 {
     font-size: 10px;
+    line-height: 100%;
     color: Red;
     text-align:left;
     font-style: italic;
+    vertical-align: middle;
 }
 
 .titre
@@ -216,7 +218,7 @@ form
     border: 1px dotted Black;
 }
 
-.tableProfil th, .tableProfil td 
+.tableProfil th, .tableProfil td:not(.erreur)
 {
     padding:3px;
     font-size:large;

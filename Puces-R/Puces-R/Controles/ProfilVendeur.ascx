@@ -86,13 +86,13 @@
         Poids maximum d'une livraison (en lbs)
     </td>
     <td>
-        <asp:TextBox ID="tbMaxLivraison" runat="server" MaxLength="10" />
+        <asp:TextBox ID="tbMaxLivraison" runat="server" MaxLength="9" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMaxLivraison" ErrorMessage="Le poids est obligatoire"
             Display="Dynamic" />
         <asp:RangeValidator runat="server" ControlToValidate="tbMaxLivraison" Type="Integer"
-            MinimumValue="0" MaximumValue="2147483647" ErrorMessage="Ce champ doit contenir un nombre entre 0 et 2147483647"
+            MinimumValue="1" MaximumValue="999999999" ErrorMessage="Le poids doit se situer entre 1 et 999999999 lbs"
             Display="Dynamic" />
     </td>
 </tr>
@@ -101,13 +101,13 @@
         Montant minimum pour livraison gratuit
     </td>
     <td>
-        <asp:TextBox ID="tbLivraisonGratuite" runat="server" MaxLength="9" />
+        <asp:TextBox ID="tbLivraisonGratuite" runat="server" MaxLength="8" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLivraisonGratuite"
-            ErrorMessage="Ce champ est obligatoire" Display="Dynamic" />
+            ErrorMessage="Le montant est obligatoire" Display="Dynamic" />
         <asp:RangeValidator runat="server" ControlToValidate="tbLivraisonGratuite" Type="Currency"
-            MinimumValue="0" MaximumValue="214748,36" ErrorMessage="Ce champ doit contenir un nombre en 0 et 214748,36"
+            MinimumValue="0" MaximumValue="99999,99" ErrorMessage="Le montant doit se situer entre 0 et 99999,99 $"
             Display="Dynamic" />
     </td>
 </tr>

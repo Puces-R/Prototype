@@ -30,7 +30,7 @@
                 </table>
                 <div>
                     <div>
-                        <asp:CustomValidator runat="server" Text="Les identifiants sont incorrects" OnServerValidate="existe" CssClass="erreur" Display="Static" />
+                        <asp:CustomValidator runat="server" Text="Les identifiants sont incorrects" OnServerValidate="existe" CssClass="erreur" Display="Dynamic" />
                     </div>
                     <div class="boutonsConnexion">
                         <asp:Button runat="server" CausesValidation="false" Text="Se connecter" OnClick="seConnecter" />

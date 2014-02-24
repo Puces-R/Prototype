@@ -15,7 +15,7 @@
         <td>
         </td>
     </tr>
-        <tr>
+    <tr>
         <td>
         </td>
         <td>
@@ -32,9 +32,9 @@
     <td>
         <asp:TextBox ID="txtPrenom" runat="server" />
     </td>
-    <td>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="erreur"
-            Text="Le prénom ne peut pas être vide!" ControlToValidate="txtPrenom" Display="Dynamic" />
+    <td class="erreur">
+        <asp:RequiredFieldValidator runat="server" Text="Le prénom est obligatoire" ControlToValidate="txtPrenom"
+            Display="Dynamic" />
     </td>
 </tr>
 <tr>
@@ -44,9 +44,9 @@
     <td>
         <asp:TextBox ID="txtNom" runat="server" />
     </td>
-    <td>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="erreur"
-            Text="Le nom ne peut pas être vide!" ControlToValidate="txtNom" Display="Dynamic" />
+    <td class="erreur">
+        <asp:RequiredFieldValidator runat="server" Text="Le nom est obligatoire" ControlToValidate="txtNom"
+            Display="Dynamic" />
     </td>
 </tr>
 <se:Adresse ID="txtRue" runat="server" Label="Rue" />
@@ -57,8 +57,8 @@
     <td>
         <asp:TextBox ID="txtVille" runat="server" />
     </td>
-    <td>
-        <asp:RequiredFieldValidator runat="server" CssClass="erreur" Text="La ville ne peut pas être vide!"
+    <td class="erreur">
+        <asp:RequiredFieldValidator runat="server" Text="La ville est obligatoire"
             ControlToValidate="txtVille" />
     </td>
 </tr>

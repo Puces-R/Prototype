@@ -14,8 +14,12 @@
 .boiteDetailsProduit > div > *
 {
     display:block;
-    line-height:25px;
     margin-left:10px;
+}
+
+.boiteDetailsProduit > div > *:not(.erreur)
+{
+    line-height:25px;
 }
 
 .pnlDroite

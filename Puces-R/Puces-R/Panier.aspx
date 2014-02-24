@@ -39,11 +39,12 @@
                                             <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" />
                                             <asp:Button runat="server" ID="btnMAJQuantite" Text="Changer" CommandName="MAJQuantite" />
                                         </div>
-                                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="reqQuantite" Text="Le champ est obligatoire"
-                                            ControlToValidate="txtQuantite" CssClass="erreur" />
-                                        <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" Text="Quantité disponible dépassée!"
-                                            ControlToValidate="txtQuantite" OnServerValidate="valQuantite_OnServerValidate"
-                                            CssClass="erreur" />
+                                        <div class="erreur">
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="reqQuantite" Text="Le champ est obligatoire"
+                                                ControlToValidate="txtQuantite" />
+                                            <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" Text="Quantité disponible dépassée"
+                                                ControlToValidate="txtQuantite" OnServerValidate="valQuantite_OnServerValidate" />
+                                        </div>
                                         <div>
                                             <asp:Button runat="server" ID="btnSupprimer" Text="Supprimer" CommandName="Supprimer"
                                                 CausesValidation="false" />
@@ -65,7 +66,7 @@
             </asp:View>
             <asp:View runat="server">
                 <div class="messageCentral">
-                    Le panier pour ce vendeur est présentement vide!</div>
+                    Le panier pour ce vendeur est présentement vide</div>
             </asp:View>
         </asp:MultiView>
     </div>

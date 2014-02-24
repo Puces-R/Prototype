@@ -41,9 +41,8 @@
             <tr>
                 <td>
                 </td>
-                <td>
-                    <asp:RequiredFieldValidator runat="server" ID="reqSujet" Text="Le sujet est obligatoire"
-                        CssClass="erreur" ControlToValidate="tbSujet" />
+                <td class="erreur">
+                    <asp:RequiredFieldValidator runat="server" ID="reqSujet" Text="Le sujet est obligatoire" ControlToValidate="tbSujet" />
                 </td>
             </tr>
             <tr>
@@ -63,10 +62,10 @@
                 </td>
             </tr>
             <tr>
-            <td></td>
                 <td>
-                    <asp:RequiredFieldValidator runat="server" ID="reqMessage" Text="Le contenu du message est obligatoire"
-                        CssClass="erreur" ControlToValidate="tbMessage" />
+                </td>
+                <td class="erreur">
+                    <asp:RequiredFieldValidator runat="server" ID="reqMessage" Text="Le contenu du message est obligatoire" ControlToValidate="tbMessage" />
                 </td>
             </tr>
             <tr>

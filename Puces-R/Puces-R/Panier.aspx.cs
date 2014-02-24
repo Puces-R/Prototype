@@ -126,7 +126,7 @@ namespace Puces_R
                 chargerProduits();
             }
 
-            ctrMontantsFactures.MessageErreur = IsValid ? null : "Les quantités sont invalides!";
+            ctrMontantsFactures.MessageErreur = IsValid ? null : "Les quantités sont invalides";
             //ctrMontantsFactures.CalculerCouts();
         }
 

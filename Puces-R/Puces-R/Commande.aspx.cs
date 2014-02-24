@@ -47,6 +47,8 @@ namespace Puces_R
 
         protected void btnFacturer_OnClick(object sender, EventArgs e)
         {
+            Page.Validate();
+
             if (Page.IsValid)
             {
                 ctrMontantsFactures.CalculerCout();

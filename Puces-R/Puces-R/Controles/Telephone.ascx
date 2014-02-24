@@ -24,11 +24,10 @@
         <asp:RegularExpressionValidator runat="server" ID="formatPart2" ControlToValidate="tbPart2"
             ValidationExpression="^\d{4}$" EnableClientScript="false" Display="None" />
     </td>
-    <td>
+    <td class="erreur">
         <asp:CustomValidator runat="server" ID="reqTel" OnServerValidate="validerObligatoire"
-            ErrorMessage="Ce champ est obligatoire" Visible="false" Display="Dynamic" CssClass="erreur" />
+            ErrorMessage="Le numéro de téléphone est obligatoire" Visible="false" Display="Dynamic" />
         <asp:CustomValidator ID="CustomValidator1" runat="server" OnServerValidate="validerTelephone"
-            ErrorMessage="Le format du numéro de téléphone est incorrect" Display="Dynamic"
-            CssClass="erreur" />
+            ErrorMessage="Le format du numéro de téléphone est incorrect" Display="Dynamic" />
     </td>
 </tr>

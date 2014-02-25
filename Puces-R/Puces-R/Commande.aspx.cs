@@ -129,15 +129,14 @@ namespace Puces_R
             myConnection.Close();
         }
 
-        //protected void btnEssaie_OnClick(object sender, EventArgs e)
-        //{
-        //    txtNumero.Text = "1234123412341234";
-        //    txtNomCarte.Text = "Tom Sawyer";
-        //    txtCCV.Text = "123";
-        //    ddlMoisExpiration.SelectedIndex = 1;
-        //    ddlAnneeExpiration.SelectedIndex = 1;
-        //    Validate();
-        //    btnFacturer_OnClick(sender, e);
-        //}
+        protected void VerifierExpire(object sender, ServerValidateEventArgs e)
+        {
+            String anneeActuelle = DateTime.Today.Year.ToString().Substring(2);
+
+            if (ddlAnneeExpiration.SelectedValue == anneeActuelle && int.Parse(ddlMoisExpiration.SelectedValue) < DateTime.Today.Month)
+            {
+                e.IsValid = false;
+            }
+        }
     }
 }

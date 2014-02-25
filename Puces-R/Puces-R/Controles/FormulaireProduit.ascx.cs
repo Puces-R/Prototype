@@ -165,7 +165,10 @@ namespace Puces_R
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            chargerCategorie();
+            if (!IsPostBack)
+            {
+                chargerCategorie();
+            }
         }
 
         protected void validerPrixVente(object sender, ServerValidateEventArgs e)

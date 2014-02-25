@@ -19,7 +19,7 @@ namespace Puces_R
             // Trace.Warn("changer");
             Response.Write("DEDANS ONCLICK");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data Insert Successfully...');", true);
-            dest[0] = (Int32)ViewState["noClientMessage"];
+            dest[0] = (long)ViewState["noClientMessage"];
 
             Librairie.Messagerie(dest, null, null, true, "Retour");
 

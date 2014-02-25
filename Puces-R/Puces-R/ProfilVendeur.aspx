@@ -75,8 +75,13 @@
             <h2>Personnalisation</h2>
             <div class="rectangleComplet rectangleItem">
                 <asp:HiddenField ID="hidColor" runat="server" />
+                <asp:HiddenField ID="hidImage" runat="server" />
                 <div id='jqxColorPicker'></div>
-                <asp:FileUpload ID="fileUploaderLogo" runat="server" /><br />
+                Logo : <asp:FileUpload ID="fileUploaderLogo" runat="server" />
+                
+                <asp:CustomValidator ID="CustomStyleImage" ControlToValidate="fileUploaderLogo" runat="server" CssClass="erreur"
+                    OnServerValidate="verifierFormat" ErrorMessage="Le Format de l'image doit être jpg,png ou gif"></asp:CustomValidator>
+
                 <asp:Button ID="btnPerso" OnClientClick="recevoirCouleur();" OnClick="sauverFavori" Text="Sauver personalisation" runat="server" />
             </div>
         </div>

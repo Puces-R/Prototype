@@ -132,7 +132,11 @@ namespace Puces_R
 
         private DataTable charge_inactifs1()
         {
-            req_inactif = "SELECT  (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * ISNULL(P.PrixVente, P.PrixDemande)) AS SousTotal, MAX(A.DateCreation) AS DerniereMAJ FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient" + whereClause + " GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient " + havingClause + orderByClause;
+
+            req_inactif = "SELECT  (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * ISNULL(P.PrixVente,P.PrixDemande)) AS SousTotal, MAX(A.DateCreation) AS DerniereMAJ FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient" + whereClause + " GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient " + havingClause + orderByClause;
+
+            //req_inactif = "SELECT  (C.Nom + ' ' + C.Prenom) AS NomC, C.NoClient,V.NomAffaires, A.NoVendeur, SUM(A.NbItems * ISNULL(P.PrixVente, P.PrixDemande)) AS SousTotal, MAX(A.DateCreation) AS DerniereMAJ FROM PPArticlesEnPanier AS A INNER JOIN PPVendeurs AS V ON A.NoVendeur = V.NoVendeur INNER JOIN PPProduits AS P ON A.NoProduit = P.NoProduit inner join PPClients AS C on A.NoClient = C.NoClient" + whereClause + " GROUP BY V.NomAffaires, A.NoVendeur, C.Nom,C.Prenom,C.NoClient " + havingClause + orderByClause;
+
            
             //req_inactif += orderByClause;
 
@@ -192,11 +196,11 @@ namespace Puces_R
                 //lbl_nom_affaire.Text = drvinactif1["NomAffaires"].ToString();
                 //lbl_nom_vendeur.Text = drvinactif1["SousTotal"].ToString();
                 lbl_NomClient.Text = drvinactif1["NomC"].ToString() == "" ? "Nom Inconnu" : drvinactif1["NomC"].ToString();
-                lbl_NomClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + drvinactif1["NoClient"].ToString(),"Retouner à la gestion des paniers");;
+                lbl_NomClient.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(),"Retouner à la gestion des paniers");;
                 lblMontant.Text = Convert.ToDecimal(drvinactif1["SousTotal"]).ToString("#0.00 $");
-                lblMontant.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
-                lbl_date.Text = drvinactif1["DerniereMAJ"].ToString();
-                lbl_date.NavigateUrl = Chemin.Ajouter("~/CommuniquerClient.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
+                lblMontant.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
+                lbl_date.Text = drvinactif1["DerniereMAJ"] == DBNull.Value ? "Non disponible" : Convert.ToDateTime(drvinactif1["DerniereMAJ"]).ToShortDateString();
+                lbl_date.NavigateUrl = Chemin.Ajouter("~/CommuniquerClientPanier.aspx?noClient=" + drvinactif1["NoClient"].ToString(), "Retouner à la gestion des paniers"); ;
 
                 DateTime myDate = DateTime.Now;
                 DateTime newDate = myDate.AddMonths(-6);

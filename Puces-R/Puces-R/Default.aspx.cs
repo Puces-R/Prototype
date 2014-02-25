@@ -85,28 +85,28 @@ namespace Puces_R
             connexion.Close();
         }
 
-        protected void defautClient(object sender, EventArgs e)
-        {
-            Session.RemoveAll();
-            Session["ID"] = 10000;
-            Session["Type"] = 'C';
-            Response.Redirect("AccueilClient.aspx", true);
-        }
+        //protected void defautClient(object sender, EventArgs e)
+        //{
+        //    Session.RemoveAll();
+        //    Session["ID"] = 10000;
+        //    Session["Type"] = 'C';
+        //    Response.Redirect("AccueilClient.aspx", true);
+        //}
 
-        protected void defautVendeur(object sender, EventArgs e)
-        {
-            Session.RemoveAll();
-            Session["ID"] = 10;
-            Session["Type"] = 'V';
-            Response.Redirect("AccueilVendeur.aspx", true);
-        }
+        //protected void defautVendeur(object sender, EventArgs e)
+        //{
+        //    Session.RemoveAll();
+        //    Session["ID"] = 10;
+        //    Session["Type"] = 'V';
+        //    Response.Redirect("AccueilVendeur.aspx", true);
+        //}
 
-        protected void defautGestionnaire(object sender, EventArgs e)
-        {
-            Session.RemoveAll();
-            Session["ID"] = 1;
-            Session["Type"] = 'G';
-            Response.Redirect("accueil_gestionnaire.aspx", true);
-        }
+        //protected void defautGestionnaire(object sender, EventArgs e)
+        //{
+        //    Session.RemoveAll();
+        //    Session["ID"] = 1;
+        //    Session["Type"] = 'G';
+        //    Response.Redirect("accueil_gestionnaire.aspx", true);
+        //}
     }
 }

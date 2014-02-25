@@ -181,7 +181,14 @@ namespace Puces_R
                 DataRowView drvinactif1 = (DataRowView)e.Item.DataItem;
 
                 lbl_num.Text = (pdsDemandes.CurrentPageIndex * pdsDemandes.PageSize + e.Item.ItemIndex + 1).ToString();
-                lbl_nom_complet.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
+
+                if (drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString() == " ")
+                {
+                    lbl_nom_complet.Text = "Non fourni";
+                    lbl_nom_complet.ForeColor = System.Drawing.Color.Black;
+                    lbl_nom_complet.Enabled = false;
+                }
+                else lbl_nom_complet.Text = drvinactif1["Prenom"].ToString() + " " + drvinactif1["Nom"].ToString();
                 lbl_courriel.Text = drvinactif1["AdresseEmail"].ToString();
                 btn_desactiver.CommandArgument = drvinactif1["NoClient"].ToString();
 

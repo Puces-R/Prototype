@@ -54,12 +54,14 @@ namespace Puces_R
                 menu.Items.Add(new MenuItem(boite == 3 ? "Restaurer" : "Supprimer", boite == 3 ? "Restore" : "Delete"));
                 if (boite == 3)
                 {
-                    menu.Items.Add(new MenuItem("Supprimer définitivement", "DestroyDestinataire"));
+                    MenuItem mi = new MenuItem("Supprimer définitivement", "DestroyDestinataire");
+                    menu.Items.Add(mi);
                 }
             }
             else if (boite < 0)
             {
-                menu.Items.Add(new MenuItem("Supprimer définitivement", "DestroyExpediteur"));
+                MenuItem mi = new MenuItem("Supprimer définitivement", "DestroyExpediteur");
+                menu.Items.Add(mi);
             }
         }
 
@@ -219,14 +221,14 @@ namespace Puces_R
                 if (boiteEstDestinataire != null || boiteEstExpediteur != null)
                 {
 
-                    if (boiteEstDestinataire != null)
+                    if (boiteEstExpediteur != null)
                     {
                         lnkRepondre.Visible = false;
-                        makeMenu(Convert.ToInt32(boiteEstDestinataire), menuMessage);
+                        makeMenu(Convert.ToInt32(boiteEstExpediteur), menuMessage);
                     }
                     else
                     {
-                        makeMenu(Convert.ToInt32(boiteEstExpediteur), menuMessage);
+                        makeMenu(Convert.ToInt32(boiteEstDestinataire), menuMessage);
                     }
 
                     if (lu)

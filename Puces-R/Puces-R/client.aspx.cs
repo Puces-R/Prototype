@@ -49,6 +49,7 @@ namespace Puces_R
                     Response.Write(Session["err_msg"]);
                     Session["err_msg"] = null;
                 }
+            Session["retour_desactiver_client"] = null;
         }
 
         protected void changer_view(object sender, CommandEventArgs e)

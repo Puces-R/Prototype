@@ -76,6 +76,11 @@ namespace Puces_R
                 nb_connexions.Text = results["NbConnexions"].ToString();
                 date_demande.Text = results["DateCreation"].ToString();
                 btn_desactiver.CommandArgument = results["NoClient"].ToString();
+                if (results["Statut"].ToString() == "1")
+                {
+                    btn_desactiver.Visible = false;
+                    ((SiteMaster)Master).Titre = "Vous avez désactivé ce client";
+                }
             }
 
             myConnection.Close();
@@ -151,7 +156,7 @@ namespace Puces_R
                         Session["nb_liens"] = nb_liens;
                         if (Session["retour_desactiver_client"] != null)
                             Response.Redirect(Session["retour_desactiver_client"].ToString());
-                        else Response.Redirect(Chemin.Ajouter("stats_desactiver_client.aspx", "Retour à la liste des clients innactifs", "gerer_inactivite_clients.aspx"));
+                        else Response.Redirect(Chemin.Ajouter("stats_desactiver_client.aspx", "Retour"));
                     }
                     catch (SqlException ex)
                     {

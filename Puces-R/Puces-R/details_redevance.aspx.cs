@@ -48,7 +48,7 @@ namespace Puces_R
             {
                 if (Session["no_vendeur_no_commande"].ToString() != "")
                 {
-                    if (txtCritereRecherche.Text.Trim() != string.Empty)
+                    if (txtCritereRecherche.Text.Trim() != "")
                     {
                         String colonne = " PPClients.Nom + PPClients.Prenom";
                         switch (ddlTypeRecherche.SelectedIndex)
@@ -57,7 +57,7 @@ namespace Puces_R
                                 colonne = " PPClients.AdresseEmail ";
                                 break;
                         }
-                        whereParts.Add(" AND " + colonne + " LIKE @critere");
+                        whereParts.Add(" AND " + colonne + " LIKE '%@critere%' ");
                     }
 
                     //String whereClause;
@@ -126,10 +126,6 @@ namespace Puces_R
                     if (whereParts.Count > 0)
                     {
                         whereClause = " " + string.Join(" AND ", whereParts);
-                    }
-                    else
-                    {
-                        //whereClause = " WHERE Statut = 2 ";
                     }
 
                     //String orderByClause = " ORDER BY ";

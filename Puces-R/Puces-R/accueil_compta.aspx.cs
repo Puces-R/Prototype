@@ -62,7 +62,9 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Master.AfficherPremierePage();
-            } 
+            }
+
+            Session["client_desactive"] = null;
         }
 
         private void charge_redevances_mensuelle(object sender, EventArgs e)

@@ -57,6 +57,16 @@ namespace Puces_R
                         }
                         ctrProduit.Poids = Convert.ToDecimal(lecteurClient["Poids"]);
                         ctrProduit.Disponibilite = Convert.ToBoolean(lecteurClient["Disponibilité"]);
+
+                        object photo = lecteurClient["Photo"];
+                        if (!(photo is DBNull))
+                        {
+                            imgProduits.ImageUrl = "Images/Televerse/" + photo.ToString();
+                        }
+                        else
+                        {
+                            imgProduits.ImageUrl = "Images/image_non_disponible.png";
+                        }
                     }
                     else
                     {

@@ -67,6 +67,15 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.HiddenField hidColor;
         
         /// <summary>
+        /// hidImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidImage;
+        
+        /// <summary>
         /// fileUploaderLogo control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace Puces_R {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fileUploaderLogo;
+        
+        /// <summary>
+        /// CustomStyleImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomStyleImage;
         
         /// <summary>
         /// btnPerso control.

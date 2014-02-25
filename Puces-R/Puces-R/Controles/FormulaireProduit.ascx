@@ -94,14 +94,14 @@
 </tr>
 <tr>
     <td>
-        <asp:Label ID="lblPois" runat="server">Pois de l'article</asp:Label>
+        <asp:Label ID="lblPois" runat="server">Poids de l'article</asp:Label>
     </td>
     <td>
         <asp:TextBox ID="tbPois" runat="server" MaxLength="9" />
     </td>
     <td class="erreur">
         <asp:RequiredFieldValidator ID="RequiredPois" ControlToValidate="tbPois" EnableClientScript="false"
-            ErrorMessage="Le pois est obligatoire" runat="server" />
+            ErrorMessage="Le poids est obligatoire" runat="server" />
         <asp:RegularExpressionValidator ID="rePoids" ControlToValidate="tbPois" EnableClientScript="false"
             runat="server" ErrorMessage="Le format du poids est invalide" ValidationExpression="^\d{1,7}([\.\,]\d{0,1})?$"> 
         </asp:RegularExpressionValidator>

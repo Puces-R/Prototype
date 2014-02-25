@@ -122,17 +122,18 @@ namespace Puces_R
 
 
                 hidColor.Value = noCouleur;
+                hidImage.Value = nomLogo;
 
             }
             else
             {
-                Response.Write("File existse pas");
+                Response.Write("Le fichier n' existe pas");
             }
         }
 
         protected void sauverFavori(object sender, EventArgs e)
         {
-            Response.Write(hidColor.Value);
+          
             String image = "";
 
             if (fileUploaderLogo.HasFile)
@@ -141,28 +142,29 @@ namespace Puces_R
                 {
 
                     image = Path.GetFileName(fileUploaderLogo.FileName);
-
                     string[] split = image.Split('.');
-                    // String nom[] = filename.Split('.');
-                    //string ext = System.IO.Path.GetExtension(this.File1.PostedFile.FileName);
-                    // Response.Write(uplNomFichier.PostedFile.ContentType);
-                    //SqlCommand maC = new SqlCommand("select Photo from PPProduits where NoVendeur="+Session["ID"]);
                     fileUploaderLogo.SaveAs(MapPath("Images/Logo/" + Session["ID"] + "." + split[1]));
                     image = Session["ID"] + "." + split[1];
-
-
-                    //StatusLabel.Text = "Upload status: File uploaded!";
-
+                    //hidImage.Value = image;
                 }
                 catch (Exception ex)
                 {
                     Response.Write(ex.Message);
-                    //StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
                 }
             }
-
-            ecrireFichierXML(hidColor.Value, image);
-            Response.Redirect("AcceuilVendeur.aspx");
+            CustomStyleImage.Validate();
+            if (CustomStyleImage.IsValid)
+            {
+                if (image == "")
+                {
+                    ecrireFichierXML(hidColor.Value, hidImage.Value);
+                }
+                else
+                {
+                    ecrireFichierXML(hidColor.Value, image);
+                }
+            }
+            //Response.Redirect("AccueilVendeur.aspx");
         }
 
         protected void ecrireFichierXML(String value, String image)
@@ -182,11 +184,6 @@ namespace Puces_R
             /* Création du fichier texte */
             fEcrit = new StreamWriter(strNomFichier);
 
-
-            /*<?xml version="1.0" encoding="utf-8" ?>
- <college>
-   <departement no="101" nom="Biologie">*/
-
             fEcrit.WriteLine("<?xml version=\"" + "1.0" + "\" encoding=\"" + "utf-8" + "\"?>");
             fEcrit.WriteLine("<Configuration>");
             fEcrit.WriteLine("<couleur Valeur=\"" + value + "\"> </couleur>");
@@ -199,6 +196,23 @@ namespace Puces_R
             maC.ExecuteNonQuery();
             myConnection.Close();
 
+        }
+
+        protected void verifierFormat(object sender, ServerValidateEventArgs e)
+        {
+            if (fileUploaderLogo.HasFile)
+            {
+                try
+                {
+                    String filename = Path.GetFileName(fileUploaderLogo.FileName);
+                    string[] split = filename.Split('.');
+                    e.IsValid = (split[1] == "jpg" || split[1] == "png" || split[1] == "gif" || split[1] == "jpeg");
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
+            }
         }
 
         protected void sauvegarder(object sender, EventArgs e)

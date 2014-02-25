@@ -131,7 +131,7 @@ namespace Puces_R
                 {
                     return -1;
                 }
-                return decimal.Parse(tbPrixVente.Text.Trim());
+                return decimal.Parse(tbPrixVente.Text.Trim().Replace('.',','));
             }
             set
             {

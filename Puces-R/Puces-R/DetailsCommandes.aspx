@@ -86,7 +86,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label runat="server" ID="lblPoids" Text="Poids total" />
+                        <asp:Label runat="server" ID="lblPoids" Text="Poids total (en lbs)" />
                     </td>
                     <td>
                         <asp:Label runat="server" ID="tbPoids" Enabled="false" />
@@ -109,8 +109,7 @@
                     </td>
                 </tr>
             </table>
-            <asp:Button ID="btnChangerStatut" runat="server" Text="Changer le staut de la commande" />
-            <asp:Button ID="btnRetour" runat="server" Text=" Retour" />
+            <asp:Button ID="btnChangerStatut" runat="server" Text="Changer le staut de la commande" OnClick="ChangerStatut"/>
         </div>
     </div>
     <div class="panneau pnlDroite">

@@ -162,7 +162,7 @@ namespace Puces_R
             }
 
             ecrireFichierXML(hidColor.Value, image);
-            Response.Redirect("AcceuilVendeur.aspx");
+            Response.Redirect("AccueilVendeur.aspx");
         }
 
         protected void ecrireFichierXML(String value, String image)

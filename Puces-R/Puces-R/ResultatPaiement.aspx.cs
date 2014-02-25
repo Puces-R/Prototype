@@ -168,7 +168,7 @@ namespace Puces_R
                 parametersCommandes.Add(new SqlParameter("TVQ", facture.PrixTVQ));
                 parametersCommandes.Add(new SqlParameter("poidsTotal", facture.PoidsTotal));
                 parametersCommandes.Add(new SqlParameter("statut", "p"));
-                parametersCommandes.Add(new SqlParameter("noAutorisation", 1));
+                parametersCommandes.Add(new SqlParameter("noAutorisation", noAutorisation));
 
                 commandeCommande.ExecuteNonQuery();
 

@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="CSS/AccueilClient.css" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="boiteDetailsProduit">
+<div>
+    <div class="boiteDetailsProduit panneau pnlGauche">
         <div>
             <table>
                 <tr>
@@ -112,7 +113,8 @@
             <asp:Button ID="btnRetour" runat="server" Text=" Retour" />
         </div>
     </div>
-    <div>
+    <div class="panneau pnlDroite">
         <se:BoiteDetails runat="server" ID="ctrBoitePanier" />
     </div>
+</div>
 </asp:Content>

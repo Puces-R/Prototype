@@ -30,7 +30,7 @@
             </div>
             <h2>
                 Carte de crédit</h2>
-            <table class="formulaire">
+            <table class="formulaire tableCarteCredit">
                 <tr>
                     <td>
                         Numéro

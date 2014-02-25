@@ -221,7 +221,7 @@ form
     border: 1px dotted Black;
 }
 
-.tableProfil th, .tableProfil td:not(.erreur)
+.tableProfil th, .tableProfil td:not(.erreur), .tableCarteCredit td, .tableCarteCredit td:not(.erreur)
 {
     padding:3px;
     font-size:large;

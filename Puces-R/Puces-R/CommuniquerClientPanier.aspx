@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="CSS/InsertionProduits.css" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<div>
+<div><asp:Label ID="lblNbVisite" runat="server"></asp:Label></div>
 <div class="panneau pnlGauche">
  <lp:BoitePanier runat="server" ID="ctrBoitePanier" />
 
@@ -82,6 +84,7 @@
 
 <asp:Button ID="btnCourrierInterne" runat="server" Text="Envoyer un courriel interne" OnClick="changer" />
 <asp:Button ID="btnCourrielExterne" runat="server" Text="Envoyer un courriel Externe" OnCommand="changer_view" CommandArgument="2"/>
+    </div>
     </div>
     </div>
 </asp:Content>

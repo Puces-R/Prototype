@@ -23,13 +23,15 @@ namespace Puces_R
 
             if (!Int64.TryParse(Request.Params["noClient"], out noClient))
             {
-                Response.Redirect(Chemin.UrlRetour == null ? "GestionCommandesVendeur.aspx" : Chemin.UrlRetour);
+                Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
             }
             else
             {
-                SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients WHERE NoClient = @cli AND NoClient IN (SELECT NoClient FROM PPCommandes WHERE NoVendeur = @ven GROUP BY NoClient)", myConnection);
-                commandeClient.Parameters.AddWithValue("@cli", noClient);
-                commandeClient.Parameters.AddWithValue("@ven", Session["ID"]);
+
+
+                String whereClause = " WHERE NoClient = " + noClient.ToString();
+
+                SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients" + whereClause, myConnection);
 
                 myConnection.Open();
 
@@ -59,10 +61,19 @@ namespace Puces_R
                 }
                 else
                 {
-                    Response.Redirect(Chemin.UrlRetour == null ? "GestionCommandesVendeur.aspx" : Chemin.UrlRetour);
+                    Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
                 }
 
                 myConnection.Close();
+
+                myConnection.Open();
+                SqlCommand nbVisite = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur=" + Session["ID"] + "AND NoClient=" + noClient.ToString(), myConnection);
+                object nb = (object)nbVisite.ExecuteScalar();
+
+                lblNbVisite.Text = "Ce client a consulté votre catalogue "+nb.ToString()+" fois!";
+                myConnection.Close();
+
+
             }
         }
 

@@ -19,17 +19,15 @@ namespace Puces_R
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, false, true, false);
-                hl.NavigateUrl = Chemin.Ajouter(hl.NavigateUrl, "Retour au profil");
                 lireXML();
 
-                SqlCommand commandeClient = new SqlCommand("SELECT AdresseEmail, NomAffaires, Prenom, Nom, Rue, Ville, Province, Pays, CodePostal, Tel1, Tel2, MaxLivraison, LivraisonGratuite, DateMAJ, Pourcentage, Taxes FROM PPVendeurs WHERE NoVendeur = @no", myConnection);
+                SqlCommand commandeClient = new SqlCommand("SELECT NomAffaires, Prenom, Nom, Rue, Ville, Province, Pays, CodePostal, Tel1, Tel2, MaxLivraison, LivraisonGratuite, DateMAJ, Pourcentage, Taxes FROM PPVendeurs WHERE NoVendeur = @no", myConnection);
                 commandeClient.Parameters.AddWithValue("@no", Session["ID"]);
 
                 myConnection.Open();
                 SqlDataReader lecteurClient = commandeClient.ExecuteReader();
                 lecteurClient.Read();
 
-                lblCourriel.Text = lecteurClient["AdresseEmail"].ToString().ToLower();
                 ctrProfil.NomAffaires = (String)lecteurClient["NomAffaires"];
                 ctrProfil.Prenom = (String)lecteurClient["Prenom"];
                 ctrProfil.Nom = (String)lecteurClient["Nom"];
@@ -129,7 +127,7 @@ namespace Puces_R
             }
             else
             {
-                
+                Response.Write("Le fichier n' existe pas");
             }
         }
 
@@ -151,7 +149,7 @@ namespace Puces_R
                 }
                 catch (Exception ex)
                 {
-                    
+                    Response.Write(ex.Message);
                 }
             }
 
@@ -214,7 +212,7 @@ namespace Puces_R
                 }
                 catch (Exception ex)
                 {
-                    
+                    Response.Write(ex.Message);
                 }
             }
         }
@@ -259,14 +257,7 @@ namespace Puces_R
                 cmdMAJ.ExecuteNonQuery();
                 myConnection.Close();
 
-                if (Chemin.UrlRetour == null)
-                {
-                    Response.Redirect("AccueilVendeur.aspx");
-                }
-                else
-                {
-                    Response.Redirect(Chemin.UrlRetour);
-                }
+                Response.Redirect("AccueilVendeur.aspx");
             }
         }
     }

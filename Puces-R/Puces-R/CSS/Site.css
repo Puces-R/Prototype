@@ -635,3 +635,9 @@ form
 {
     text-align:center;
 }
+
+.imageProduitADroite
+{
+    float:left;
+    padding-right:10px;
+}

@@ -11,6 +11,7 @@
         Modification d'un produit
     </h2>
     <div class="rectangleComplet rectangleItem">
+        <asp:Image ID="imgProduits" ImageUrl="logo.png" Height="250" runat="server" CssClass="imageProduitADroite" />
         <table class="formulaire"  style="width: 700px;">
             <yc:FormulaireProduit runat="server" ID="ctrProduit" />
         </table>

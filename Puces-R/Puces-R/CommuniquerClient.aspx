@@ -12,6 +12,9 @@
     <link rel="stylesheet" type="text/css" href="CSS/InsertionProduits.css" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<div>
+<div><asp:Label ID="lblNbVisite" runat="server"></asp:Label></div>
+
     <div class="rectangleComplet rectangleItem">
         <table class="formulaire" style="width: 700px;">
             <tr>
@@ -89,5 +92,6 @@
         </table>
         <asp:Button ID="btnCourrierInterne" runat="server" Text="Envoyer un courriel interne" OnCommand="changer_view" CommandArgument="1" />
         <asp:Button ID="btnCourrielExterne" runat="server" Text="Envoyer un courriel Externe" OnCommand="changer_view" CommandArgument="2" />
+    </div>
     </div>
 </asp:Content>

@@ -16,6 +16,8 @@ namespace Puces_R
 
         protected void changer(Object sender, EventArgs e)
         {
+            // Trace.Warn("changer");
+            Response.Write("DEDANS ONCLICK");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data Insert Successfully...');", true);
             dest[0] = (long)ViewState["noClientMessage"];
 
@@ -57,14 +59,15 @@ namespace Puces_R
                 Librairie.Autorisation(false, false, true, false);
                 if (!int.TryParse(Request.Params["noClient"], out noClient))
                 {
-                    Response.Redirect(Chemin.UrlRetour == null ? "GererPanierVendeur.aspx" : Chemin.UrlRetour, true);
+                    Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour, true);
                 }
 
                 else
                 {
-                    SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients WHERE NoClient = @cli AND NoClient IN (SELECT NoClient FROM PPArticlesEnPanier WHERE NoVendeur = @ven GROUP BY NoClient)", myConnection);
-                    commandeClient.Parameters.AddWithValue("@cli", noClient);
-                    commandeClient.Parameters.AddWithValue("@ven", Session["ID"]);
+                    String whereClause = " WHERE NoClient = " + noClient.ToString();
+
+                    SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients" + whereClause, myConnection);
+
 
                     myConnection.Open();
 
@@ -73,6 +76,7 @@ namespace Puces_R
                     {
 
                         dest[0] = lecteurClient["NoClient"] is DBNull ? 0 : Convert.ToInt32(lecteurClient["NoClient"]); ;
+                        // Response.Write(dest[0]);
 
                         ViewState.Add("noClientMessage", dest[0]);
                         this.lblPrenom.Text = lecteurClient["Prenom"] is DBNull ? "" : (String)lecteurClient["Prenom"];
@@ -93,18 +97,22 @@ namespace Puces_R
                     else
                     {
                         myConnection.Close();
-                        Response.Redirect(Chemin.UrlRetour == null ? "GererPanierVendeur.aspx" : Chemin.UrlRetour);
+                        Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
                     }
 
 
 
                     myConnection.Close();
+
+                    myConnection.Open();
+                    SqlCommand nbVisite = new SqlCommand("Select Count(*) from PPVendeursClients where NoVendeur=" + Session["ID"] + "AND NoClient=" + noClient.ToString(), myConnection);
+                    object nb = (object)nbVisite.ExecuteScalar();
+
+                    lblNbVisite.Text = "Ce client a consulté votre catalogue " + nb.ToString() + " fois!";
+                    myConnection.Close();
                 }
             }
 
         }
-
-
-
     }
 }

@@ -37,14 +37,6 @@
                     </div>
                 </div>
             </div>
-<%--            <h2>Comptes de test</h2>
-            <div class="rectangleComplet rectangleItem">
-                <div class="boutonsConnexion">
-                    <asp:Button runat="server" CausesValidation="false" Text="Client" OnClick="defautClient" />
-                    <asp:Button runat="server" CausesValidation="false" Text="Vendeur" OnClick="defautVendeur" />
-                    <asp:Button runat="server" CausesValidation="false" Text="Gestionnaire" OnClick="defautGestionnaire" />
-                </div>
-            </div>--%>
         </div>
     </div>
 </asp:Content>

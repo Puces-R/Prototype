@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecupererMotDePasse.aspx.cs" Inherits="Puces_R.RecupererMotDePasse" MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecupererMotDePasse.aspx.cs" Inherits="Puces_R.RecupererMotDePasse" MasterPageFile="~/Site.Master" Title="Récupération du mot de passe" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">

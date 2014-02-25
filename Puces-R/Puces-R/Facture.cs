@@ -23,6 +23,7 @@ namespace Puces_R
         public decimal TauxTPS { get; private set; }
         public decimal TauxTVQ { get; private set; }
         public short CodeLivraison { get; private set; }
+        public bool ProduitsEnVente { get; private set; }
 
         public decimal GrandTotal
         {
@@ -48,7 +49,7 @@ namespace Puces_R
 
             String whereClause = " WHERE A.NoClient = " + noClient + " AND P.NoVendeur = " + noVendeur;
 
-            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, " + (commande ? "ISNULL(PrixVente, PrixDemande)" : "PrixDemande") + " AS Prix, Poids FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
+            SqlDataAdapter adapteurProduits = new SqlDataAdapter("SELECT NbItems, " + (commande ? "ISNULL(PrixVente, PrixDemande)" : "PrixDemande") + " AS Prix, Poids, CAST(CASE WHEN (PrixVente IS NOT NULL AND PrixDemande != PrixVente) THEN 1 ELSE 0 END AS bit) AS EnVente FROM PPProduits P INNER JOIN PPCategories C ON C.NoCategorie = P.NoCategorie INNER JOIN PPArticlesEnPanier A ON A.NoProduit = P.NoProduit" + whereClause, myConnection);
             DataTable tableProduits = new DataTable();
             adapteurProduits.Fill(tableProduits);
 
@@ -60,6 +61,10 @@ namespace Puces_R
                 short nbItems = (short)produit["NbItems"];
                 SousTotal += nbItems * (decimal)produit["Prix"];
                 PoidsTotal += nbItems * (decimal)produit["Poids"];
+                if ((bool)produit["EnVente"])
+                {
+                    ProduitsEnVente = true;
+                }
             }
 
             myConnection.Open();

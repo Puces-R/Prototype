@@ -54,7 +54,14 @@ namespace Puces_R
                 c.ajouterDestinataire(tbCourriel.Text.Trim());
                 c.Sujet = "Récupération du mot de passe";
                 connexion.Open();
-                c.Message = "Mot de passe : " + cmdMdp.ExecuteScalar().ToString();
+                c.Message = "Bonjour, <br /><br />" +
+                            "Vous avez fait une demande de récupération de mot de passe <br /> <br />" +
+                            "Vos identifiants sont les suivants : <br />" +
+                            "Adresse courriel : " + tbCourriel.Text.Trim().ToLower() + "<br />" +
+                            "Mot de passe : " + cmdMdp.ExecuteScalar().ToString() + "<br /><br />" +
+                            "Vous n'avez qu'à <a href=\"http://424r.cgodin.qc.ca\">cliquer ici</a> pour revenir au site Des Petites Puces. <br /><br />" +
+                            "Cordialement, <br />" +
+                            "Les Petites Puces";
                 connexion.Close();
                 c.envoyer();
             }

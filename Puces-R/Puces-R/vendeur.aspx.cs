@@ -116,9 +116,14 @@ namespace Puces_R
                     case "1":
                         lbl_statut.Text = "Inactif";
                         lb_desactiver.Enabled = false;
+                        lb_desactiver.ToolTip = "Vous ne pouvez pas désactiver ce vendeur car il a déjà été désactivé";
                         break;
                     case "2":
                         lbl_statut.Text = "En attente d'approbation";
+                        lb_desactiver.Enabled = false;
+                        lb_desactiver.ToolTip = "Vous ne pouvez pas désactiver ce vendeur car il n'a pas encore été approuvé";
+                        lb_voir_histo.Enabled = false;
+                        lb_voir_histo.ToolTip = "Vous ne pouvez pas voir l'historique de redevances de ce vendeur car il n'a pas encore été approuvé";
                         break;
                     case "3":
                         lbl_statut.Text = "En retard de paiement";

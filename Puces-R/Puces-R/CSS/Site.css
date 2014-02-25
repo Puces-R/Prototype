@@ -161,6 +161,8 @@ form
    padding-left:20px;
    padding-right:20px;
    vertical-align: top;
+   
+   position:relative;
 }
 
 .panneau h2:first-child
@@ -219,7 +221,7 @@ form
     border: 1px dotted Black;
 }
 
-.tableProfil th, .tableProfil td:not(.erreur)
+.tableProfil th, .tableProfil td:not(.erreur), .tableCarteCredit td, .tableCarteCredit td:not(.erreur)
 {
     padding:3px;
     font-size:large;
@@ -617,6 +619,14 @@ form
 }
 
 .messagePrixRevise
+{
+	color:Red;
+	font-size:xx-small;
+	position:absolute;
+	bottom:5px;
+}
+
+.etoilePrixRevise
 {
 	color:Red;
 }

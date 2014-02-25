@@ -28,10 +28,9 @@
                 </td>
             </tr>
             <tr>
-                <td>Grand-Total: </td>
+                <td>Grand-Total<asp:Label Visible="false" ID="lblPrixReviseEtoile" ForeColor="Red" Text="*" runat="server" CssClass="etoilePrixRevise" />: </td>
                 <td>
                     <asp:Label ID="lblGrandTotal" runat="server" CssClass="grandTotal" />
-                    <asp:Label Visible="false" ID="lblPrixReviseEtoile" ForeColor="Red" />
                 </td>
             </tr>
         </asp:View>
@@ -44,4 +43,4 @@
         </asp:View>
     </asp:MultiView>
 </table>
-<asp:Label Visible="false" ID="lblPrixReviseMessage" runat="server" Text="*Certain produits sont en vente, le prix seras révisé à la baisse lors de la commande." CssClass="" />
+<asp:Label Visible="false" ID="lblPrixReviseMessage" runat="server" Text="*Certain produits sont en vente, le prix seras réduit lors de la commande." CssClass="messagePrixRevise" />

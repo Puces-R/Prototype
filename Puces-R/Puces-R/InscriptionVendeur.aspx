@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InscriptionVendeur.aspx.cs"
+﻿<%@ Page Title="Inscription d'un vendeur" Language="C#" AutoEventWireup="true" CodeBehind="InscriptionVendeur.aspx.cs"
     Inherits="Puces_R.InscriptionVendeur" MasterPageFile="~/Site.Master" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

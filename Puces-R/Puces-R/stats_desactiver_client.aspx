@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Statistiques sur désactivation des clients" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+﻿<%@ Page Title="Statistiques sur la désactivation des clients" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
     CodeBehind="stats_desactiver_client.aspx.cs" Inherits="Puces_R.stats_desactiver_client" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">

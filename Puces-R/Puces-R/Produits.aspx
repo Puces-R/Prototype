@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Produits.aspx.cs" Inherits="Puces_R.Produits" MasterPageFile="~/NavigationItems.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Produits.aspx.cs" Inherits="Puces_R.Produits" MasterPageFile="~/NavigationItems.Master" Title="Catalogue du vendeur" %>
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 
 <%@ Register TagPrefix="lp" TagName="BoiteProduit" Src="~/Controles/BoiteProduit.ascx" %>

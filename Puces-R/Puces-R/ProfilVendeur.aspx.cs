@@ -152,6 +152,7 @@ namespace Puces_R
                     Response.Write(ex.Message);
                 }
             }
+
             CustomStyleImage.Validate();
             if (CustomStyleImage.IsValid)
             {
@@ -164,7 +165,8 @@ namespace Puces_R
                     ecrireFichierXML(hidColor.Value, image);
                 }
             }
-            //Response.Redirect("AccueilVendeur.aspx");
+            Response.Redirect("AccueilVendeur.aspx");
+
         }
 
         protected void ecrireFichierXML(String value, String image)

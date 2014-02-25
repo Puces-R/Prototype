@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResultatPaiement.aspx.cs" Inherits="Puces_R.ResultatPaiement" %>
+﻿<%@ Page Title="Résultat du paiement" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResultatPaiement.aspx.cs" Inherits="Puces_R.ResultatPaiement" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>

@@ -38,7 +38,7 @@ namespace Puces_R
             maConnexion.Open();
             long cat = ctrProduit.NoCategorie;
 
-            SqlCommand maCommande = new SqlCommand("SELECT ISNULL(MAX(NoProduit), NoVendeur * 100000) + 1 FROM PPProduits WHERE (NoVendeur = @no) GROUP BY NoVendeur", maConnexion);
+            SqlCommand maCommande = new SqlCommand("SELECT ISNULL(NoProduit, 75 * 100000) + 1 AS NoProduit FROM (SELECT MAX(NoProduit) AS NoProduit FROM PPProduits WHERE NoVendeur = 75) AS T", maConnexion);
             maCommande.Parameters.AddWithValue("@no", Session["ID"]);
 
             int no = Convert.ToInt32(maCommande.ExecuteScalar());

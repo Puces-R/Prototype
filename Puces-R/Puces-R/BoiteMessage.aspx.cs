@@ -39,24 +39,27 @@ namespace Puces_R
             Update();
         }
 
-        private void makeMenu(int boite)
+        private void makeMenu(int boite, Menu menu)
         {
-            menuAction.Items.Clear();
-            menuAction.Items.Add(new MenuItem("Nouveau message", "New"));
+            menu.Items.Clear();
+            if (menu == menuAction)
+            {
+                menu.Items.Add(new MenuItem("Nouveau message", "New"));
+            }
             if (boite > 0)
             {
-                menuAction.Items.Add(new MenuItem("Marquer comme lu", "Read"));
-                menuAction.Items.Add(new MenuItem("Marquer comme non-lu", "Unread"));
-                menuAction.Items.Add(new MenuItem(boite == 2 ? "Désarchiver" : "Archiver", boite == 2 ? "Unarchive" : "Archive"));
-                menuAction.Items.Add(new MenuItem(boite == 3 ? "Restaurer" : "Supprimer", boite == 3 ? "Restore" : "Delete"));
+                menu.Items.Add(new MenuItem("Marquer comme lu", "Read"));
+                menu.Items.Add(new MenuItem("Marquer comme non-lu", "Unread"));
+                menu.Items.Add(new MenuItem(boite == 2 ? "Désarchiver" : "Archiver", boite == 2 ? "Unarchive" : "Archive"));
+                menu.Items.Add(new MenuItem(boite == 3 ? "Restaurer" : "Supprimer", boite == 3 ? "Restore" : "Delete"));
                 if (boite == 3)
                 {
-                    menuAction.Items.Add(new MenuItem("Supprimer définitivement", "DestroyDestinataire"));
+                    menu.Items.Add(new MenuItem("Supprimer définitivement", "DestroyDestinataire"));
                 }
             }
             else if (boite < 0)
             {
-                menuAction.Items.Add(new MenuItem("Supprimer définitivement", "DestroyExpediteur"));
+                menu.Items.Add(new MenuItem("Supprimer définitivement", "DestroyExpediteur"));
             }
         }
 
@@ -105,25 +108,25 @@ namespace Puces_R
 
             if (boite > 0)
             {
-                cmd.CommandText = "SELECT M.NoMessage, DM.Lu, X.Texte AS 'Personne', M.Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
+                cmd.CommandText = "SELECT M.NoMessage, DM.Lu, X.Texte AS 'Personne', CASE M.Sujet WHEN '' THEN '(Aucun sujet)' ELSE M.Sujet END AS Sujet, M.DateEnvoi FROM PPDestinatairesMessages AS DM INNER JOIN " +
                                   "PPMessages AS M ON DM.NoMessage = M.NoMessage INNER JOIN  " +
-                                        "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
-                                         "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
-                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X ON X.No = M.NoExpediteur " +
+                                        "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                         "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' &lt;' + AdresseEmail + '&gt; (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt; (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X ON X.No = M.NoExpediteur " +
                                    "WHERE  (DM.Boite = @noBoite) AND (DM.NoDestinataire = @id) " +
                                    "ORDER BY " + ordreCmd;
             }
             else if (boite < 0)
             {
-                cmd.CommandText = "SELECT DM.NoMessage, COUNT(*) - 1 AS NbDestinataires, M.Sujet, M.DateEnvoi, " +
-                                    "(SELECT Texte FROM " +
-                                        "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
-                                         "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
-                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
-                                     "WHERE (No = MIN(DM.NoDestinataire))) AS Personne " +
-                                  "FROM PPDestinatairesMessages AS DM INNER JOIN PPMessages AS M ON DM.NoMessage = M.NoMessage " +
+                cmd.CommandText = "SELECT M.NoMessage, COUNT(*) - 1 AS NbDestinataires, CASE M.Sujet WHEN '' THEN '(Aucun sujet)' ELSE M.Sujet END AS Sujet, M.DateEnvoi, " +
+                                    "ISNULL((SELECT Texte FROM " +
+                                        "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                         "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' &lt;' + AdresseEmail + '&gt; (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                         "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt; (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
+                                     "WHERE (No = MIN(DM.NoDestinataire))), '(Aucun destinataire)') AS Personne " +
+                                  "FROM PPDestinatairesMessages AS DM RIGHT JOIN PPMessages AS M ON DM.NoMessage = M.NoMessage " +
                                     "WHERE (M.NoExpediteur = @id) AND (M.Boite = @noBoite) " +
-                                    "GROUP BY DM.NoMessage, M.Sujet, M.DateEnvoi " +
+                                    "GROUP BY M.NoMessage, M.Sujet, M.DateEnvoi " +
                                     "ORDER BY " + ordreCmd;
             }
             cmd.Parameters.AddWithValue("@id", Session["ID"]);
@@ -176,14 +179,14 @@ namespace Puces_R
 
             if (!IsPostBack && Request.QueryString["No"] != null && Int64.TryParse(Request.QueryString["No"], out noMessage))
             {
-                SqlCommand cmdEstDestinataire = new SqlCommand("SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg) AND (NoDestinataire = @noRcpt) AND (Boite > 0)", connexion);
-                SqlCommand cmdEstExpediteur = new SqlCommand("SELECT CASE WHEN COUNT(*) = 1 THEN 'true' ELSE 'false' END FROM PPMessages WHERE (NoMessage = @noMsg) AND (NoExpediteur = @id) AND (Boite < 0)", connexion);
+                SqlCommand cmdEstDestinataire = new SqlCommand("SELECT Boite FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg) AND (NoDestinataire = @noRcpt) AND (Boite > 0)", connexion);
+                SqlCommand cmdEstExpediteur = new SqlCommand("SELECT Boite FROM PPMessages WHERE (NoMessage = @noMsg) AND (NoExpediteur = @id) AND (Boite < 0)", connexion);
 
                 SqlCommand cmdMessage = new SqlCommand("SELECT M.NoExpediteur, X.Texte, M.DateEnvoi, M.Sujet, M.Contenu, M.FichierJoint FROM PPMessages M " +
                     "INNER JOIN PPDestinatairesMessages DM ON M.NoMessage = DM.NoMessage " +
-                    "INNER JOIN (SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '>', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
-                                "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' <' + AdresseEmail + '> (Vendeur)' AS Texte FROM PPVendeurs UNION " +
-                                "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' <' + AdresseEmail + '> (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
+                    "INNER JOIN (SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt;', AdresseEmail) + ' (Client)' AS Texte FROM PPClients UNION " +
+                                "SELECT NoVendeur AS No, RTRIM(NomAffaires) + ' &lt;' + AdresseEmail + '&gt; (Vendeur)' AS Texte FROM PPVendeurs UNION " +
+                                "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' &lt;' + AdresseEmail + '&gt; (Gestionnaire)' AS Texte FROM PPGestionnaires) AS X " +
                     "ON X.No = M.NoExpediteur WHERE (M.NoMessage = @noMsg)", connexion);
                 SqlCommand cmdDestinataires = new SqlCommand("SELECT Texte FROM " +
                          "(SELECT NoClient AS No, ISNULL(Nom + ', ' + RTRIM(Prenom) + ' (' + AdresseEmail + ')', AdresseEmail) + ' [Client]' AS Texte FROM PPClients UNION " +
@@ -191,7 +194,7 @@ namespace Puces_R
                           "SELECT NoGestionnaire AS No, RTRIM(Nom) + ', ' + RTRIM(Prenom) + ' (' + AdresseEmail + ') [Gestionnaire]' AS Texte FROM PPGestionnaires) AS X " +
                           "WHERE (No IN (SELECT NoDestinataire FROM PPDestinatairesMessages WHERE (NoMessage = @noMsg)))", connexion);
 
-                    SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
+                SqlCommand cmdLu = new SqlCommand("UPDATE PPDestinatairesMessages SET Lu = 1 WHERE NoMessage = @noMsg AND NoDestinataire = @noRcpt", connexion);
 
                 cmdEstDestinataire.Parameters.AddWithValue("@noMsg", noMessage);
                 cmdEstDestinataire.Parameters.AddWithValue("@noRcpt", Session["ID"].ToString());
@@ -210,16 +213,22 @@ namespace Puces_R
 
                 connexion.Open();
 
-                bool estDestinataire = bool.Parse(cmdEstDestinataire.ExecuteScalar().ToString());
-                bool estExpediteur = bool.Parse(cmdEstExpediteur.ExecuteScalar().ToString());
+                object boiteEstDestinataire = cmdEstDestinataire.ExecuteScalar();
+                object boiteEstExpediteur = cmdEstExpediteur.ExecuteScalar();
 
-                if (estDestinataire || estExpediteur)
+                if (boiteEstDestinataire != null || boiteEstExpediteur != null)
                 {
 
-                    if (estExpediteur)
+                    if (boiteEstDestinataire != null)
                     {
                         lnkRepondre.Visible = false;
+                        makeMenu(Convert.ToInt32(boiteEstDestinataire), menuMessage);
                     }
+                    else
+                    {
+                        makeMenu(Convert.ToInt32(boiteEstExpediteur), menuMessage);
+                    }
+
                     if (lu)
                     {
                         cmdLu.ExecuteNonQuery();
@@ -272,13 +281,53 @@ namespace Puces_R
             {
                 ordre = tri == 2 ? 'D' : 'A';
             }
-            makeMenu(boite);
+            makeMenu(boite, menuAction);
             Fill(boite, tri, ordre);
 
             if (!IsPostBack)
             {
                 ddlBoite.SelectedValue = boite.ToString();
             }
+        }
+
+        protected void clickMessage(object sender, MenuEventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connexion;
+
+            switch (e.Item.Value)
+            {
+                case "Read":
+                    cmd.CommandText = "UPDATE PPDestinatairesMessages SET Lu = 'True' WHERE NoMessage = @no AND NoDestinataire = @id";
+                    break;
+                case "Unread":
+                    cmd.CommandText = "UPDATE PPDestinatairesMessages SET Lu = 'False' WHERE NoMessage = @no AND NoDestinataire = @id";
+                    break;
+                case "Delete":
+                    cmd.CommandText = "UPDATE PPDestinatairesMessages SET Boite = 3 WHERE NoMessage = @no AND NoDestinataire = @id";
+                    break;
+                case "DestroyDestinataire":
+                    cmd.CommandText = "UPDATE PPDestinatairesMessages SET Boite = 0 WHERE NoMessage = @no AND NoDestinataire = @id";
+                    break;
+                case "DestroyExpediteur":
+                    cmd.CommandText = "UPDATE PPMessages SET Boite = 0 WHERE NoMessage = @noAND NoExpediteur = @id";
+                    break;
+                case "Archive":
+                    cmd.CommandText = "UPDATE PPDestinatairesMessages SET Boite = 2 WHERE NoMessage = @no AND NoDestinataire = @id";
+                    break;
+                case "Restore":
+                case "Unarchive":
+                    cmd.CommandText = "UPDATE PPDestinatairesMessages SET Boite = 1 WHERE NoMessage = @no AND NoDestinataire = @id";
+                    break;
+            }
+            cmd.Parameters.AddWithValue("@id", Session["ID"]);
+            cmd.Parameters.AddWithValue("@no", Request.Params["No"]);
+
+            connexion.Open();
+            cmd.ExecuteNonQuery();
+            connexion.Close();
+
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void clickOption(object sender, MenuEventArgs e)
@@ -365,8 +414,9 @@ namespace Puces_R
                     connexion.Open();
                     cmd.ExecuteNonQuery();
                     connexion.Close();
-                    Response.Redirect(Request.RawUrl);
                 }
+
+                Response.Redirect(Request.RawUrl);
             }
         }
 

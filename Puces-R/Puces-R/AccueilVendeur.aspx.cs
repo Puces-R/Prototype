@@ -148,7 +148,7 @@ namespace Puces_R
 
 
                 lblNoProduit.Text = "No." + noCommande.ToString();
-                lblNoProduit.NavigateUrl = Chemin.Ajouter("DetailsCommandes.aspx?noCommande=" + noCommande,"Retour à l'Acceuil");
+                lblNoProduit.NavigateUrl = Chemin.Ajouter("DetailsCommandes.aspx?noCommande=" + noCommande,"Retour à l'Accueil");
                 // imgProduit.ImageUrl = urlImage;
                 lblNoClient.Text = strCategorie.ToString();
                 //lblNoVendeur.Text = noVendeur.ToString();

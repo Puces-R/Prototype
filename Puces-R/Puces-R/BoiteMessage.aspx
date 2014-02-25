@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"  Title="Messagerie interne"
-    MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BoiteMessage.aspx.cs" Inherits="Puces_R.BoiteMessage"
+    Title="Messagerie interne" MasterPageFile="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
     <style type="text/css">
@@ -90,7 +90,7 @@
                 </asp:DropDownList>
             </div>
         </div>
-        <div style="max-height: 400px; overflow: scroll; float: left; width: 100%">
+        <div style="max-height: 400px; overflow: scroll; float: left; width: 100%" class="lignePointilleHorizontale">
             <div runat="server" class="rectangleComplet rectangleItem">
                 <table class="sBoite">
                     <thead>
@@ -113,7 +113,14 @@
                 </table>
             </div>
         </div>
-        <div runat="server" id="divMessage" style="max-height: 400px; overflow:scroll; width:100%" visible="false">
+        <div>
+            <asp:Menu ID="menuMessage" runat="server" Orientation="Horizontal" CssClass="sMenuBoite"
+                OnMenuItemClick="clickMessage">
+                <StaticMenuItemStyle HorizontalPadding="10" />
+            </asp:Menu>
+        </div>
+        <div runat="server" id="divMessage" style="max-height: 400px; overflow: scroll; width: 100%"
+            visible="false">
             <div class="rectangleComplet rectangleItem" style="width: 1088px;">
                 <table style="border-collapse: collapse; table-layout: fixed; width: 0;">
                     <tr>

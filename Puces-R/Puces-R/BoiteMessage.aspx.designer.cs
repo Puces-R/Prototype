@@ -67,6 +67,15 @@ namespace Puces_R {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ListeMessage;
         
         /// <summary>
+        /// Contrôle menuMessage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Menu menuMessage;
+        
+        /// <summary>
         /// Contrôle divMessage.
         /// </summary>
         /// <remarks>

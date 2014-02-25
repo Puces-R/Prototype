@@ -18,7 +18,7 @@
             </div>
             <h2>
                 Facture</h2>
-            <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Commande="true" />
+            <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Commande="true" AfficherVente="false" />
         </div>
         <div class="panneau pnlDroite pnlDetails">
             <h2>
@@ -30,7 +30,7 @@
             </div>
             <h2>
                 Carte de crédit</h2>
-            <table class="formulaire">
+            <table class="formulaire tableCarteCredit">
                 <tr>
                     <td>
                         Numéro
@@ -114,8 +114,8 @@
             </table>
             <div class="boutonsAction">
                 <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" CausesValidation="false"/>
-                <asp:Button runat="server" Text="Simulation" ID="btnEssaie" OnClick="btnEssaie_OnClick"
-                    CausesValidation="false" />
+<%--                <asp:Button runat="server" Text="Simulation" ID="btnEssaie" OnClick="btnEssaie_OnClick"
+                    CausesValidation="false" />--%>
             </div>
             <div class="erreur">
                 <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" OnServerValidate="valQuantite_OnServerValidate" />

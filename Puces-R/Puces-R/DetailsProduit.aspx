@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Détails du produit" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="DetailsProduit.aspx.cs" Inherits="Puces_R.DetailsProduit" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -92,15 +92,15 @@
                     <td>
                         <asp:TextBox runat="server" ID="txtQuantite" CssClass="boiteQuantite" Text="1" />
                         <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="reqQuantite" Text="Le champ est obligatoire"
-                            ControlToValidate="txtQuantite" CssClass="erreur" />
+                            ControlToValidate="txtQuantite" CssClass="erreur" ValidationGroup="Quantite" />
                         <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" Text="Quantité disponible dépassée!"
                             ControlToValidate="txtQuantite" OnServerValidate="valQuantite_OnServerValidate"
-                            CssClass="erreur" />
+                            CssClass="erreur" ValidationGroup="Quantite" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" align="right">
-                        <asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" />
+                        <asp:Button runat="server" ID="btnAjouterPanier" Text="Ajouter au panier" OnClick="btnAjouterPanier_Click" ValidationGroup="Quantite" />
                         <asp:Button runat="server" ID="btnEnvoyerMessage" Text="Contacter le vendeur" OnClick="btnEnvoyerMessage_Click"
                             CausesValidation="false" />
                         <asp:Button runat="server" ID="btnModifierProduit" Text="Modifier le produit" OnClick="btnModifierProduit_Click"
@@ -150,7 +150,7 @@
                 </ItemTemplate>
             </asp:Repeater>
             <asp:Button runat="server" Text="Ajouter la mienne" ID="btnAjouterLaMienne" OnClick="btnAjouterLaMienne_OnClick"
-                CssClass="boutonAjouterLaMienne" />
+                CssClass="boutonAjouterLaMienne" ValidationGroup="Evaluation" />
         </div>
     </div>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerMessage.aspx.cs"
+﻿<%@ Page Title="Envoi d'un message interne" Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerMessage.aspx.cs"
     Inherits="Puces_R.EnvoyerMessage" MasterPageFile="~/Site.Master" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

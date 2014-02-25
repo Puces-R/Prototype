@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionProduits.aspx.cs" Inherits="Puces_R.GestionProduits" %>
+﻿<%@ Page Title="Vos produits" Language="C#" MasterPageFile="~/NavigationItems.Master" AutoEventWireup="true" CodeBehind="GestionProduits.aspx.cs" Inherits="Puces_R.GestionProduits" %>
 
 <%@ MasterType VirtualPath="~/NavigationItems.Master" %>
 

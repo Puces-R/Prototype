@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ModificationProduits.aspx.cs"
+﻿<%@ Page Title="Modification du produit" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ModificationProduits.aspx.cs"
     Inherits="Puces_R.ModificationProduits" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

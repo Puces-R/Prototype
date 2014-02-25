@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerCourriel.aspx.cs" Inherits="Puces_R.EnvoyerCourriel" MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Title="Envoi d'un courriel" Language="C#" AutoEventWireup="true" CodeBehind="EnvoyerCourriel.aspx.cs" Inherits="Puces_R.EnvoyerCourriel" MasterPageFile="~/Site.Master" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">

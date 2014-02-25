@@ -46,9 +46,15 @@ namespace Puces_R
 
                 c.ajouterDestinataire(ctlIdentifiants.Adresse);
                 c.Sujet = "Inscription aux Petites Puces";
-                c.Message = "NoClient = " + noClient + "<br />" +
-                                "Adresse courriel = " + ctlIdentifiants.Adresse + "<br />" +
-                                "Mot de passe = " + ctlIdentifiants.MotDePasse;
+                c.Message = "Bonjour, <br /><br />" +
+                            "Nous vous souhaitons la bienvenue au site <a href=\"http://424r.cgodin.qc.ca\">Des Petites Puces</a>. <br /> <br />" +
+                            "Vos identifiants sont les suivants : <br />" +
+                            "Numéro : " + noClient + "<br />" +
+                            "Adresse courriel : " + ctlIdentifiants.Adresse + "<br />" +
+                            "Mot de passe : " + ctlIdentifiants.MotDePasse + "<br /><br />" +
+                            "Nous vous souhaitons un agréable séjour sur notre site. <br /><br />" +
+                            "Cordialement, <br />" +
+                            "Les Petites Puces";
                 c.envoyer();
 
                 Response.Redirect(Chemin.UrlRetour == null ? "Default.aspx" : Chemin.UrlRetour);

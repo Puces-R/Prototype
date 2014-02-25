@@ -39,7 +39,7 @@ namespace Puces_R.Controles
                 ViewState["Commande"] = value;
             }
         }
-
+        
         public bool Enabled
         {
             set
@@ -116,6 +116,18 @@ namespace Puces_R.Controles
             }
         }
 
+        public bool AfficherVente
+        {
+            get
+            {
+                return (bool)ViewState["AfficherVente"];
+            }
+            set
+            {
+                ViewState["AfficherVente"] = value;
+            }
+        }
+
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -164,6 +176,12 @@ namespace Puces_R.Controles
             lblTPS.Text = facture.PrixTPS.ToString("C");
             lblTVQ.Text = facture.PrixTVQ.ToString("C");
             lblGrandTotal.Text = facture.GrandTotal.ToString("C");
+
+            if (this.AfficherVente && facture.ProduitsEnVente)
+            {
+                lblPrixReviseEtoile.Visible = true;
+                lblPrixReviseMessage.Visible = true;
+            }
 
             myConnection.Close();
         }

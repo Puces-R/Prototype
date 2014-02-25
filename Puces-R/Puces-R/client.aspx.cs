@@ -106,6 +106,7 @@ namespace Puces_R
                     case "1":
                         lbl_statut.Text = "Inactif";
                         lb_desactiver.Enabled = false;
+                        lb_desactiver.ToolTip = "Vous ne pouvez pas désactiver ce client car il a déjà été désactivé";
                         break;
                     default:
                         lbl_statut.Text = "Actif";

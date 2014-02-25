@@ -46,7 +46,6 @@ namespace Puces_R
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
-                    Response.Write(Session["err_msg"]);
                     Session["err_msg"] = null;
                 }
         }
@@ -140,7 +139,6 @@ namespace Puces_R
 
             SqlDataAdapter adapteurResultats = new SqlDataAdapter(req, myConnection);
             DataTable tableResultats = new DataTable();
-            //Response.Write(ddlCategorie.SelectedValue + req + orderByClause);
             adapteurResultats.Fill(tableResultats);
             myConnection.Close();
 

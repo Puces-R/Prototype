@@ -80,17 +80,17 @@ namespace Puces_R
                 string filename = "";
                 if (uplNomFichier.HasFile)
                 {
-                    //Response.Write("HAS FILWE \n");
+                    //
                     try
                     {
 
                         filename = Path.GetFileName(uplNomFichier.FileName);
                         //uplNomFichier.SaveAs(MapPath("Images/Televerse/") + filename);
-                        //Response.Write(filename);
+                        //
                         string[] split = filename.Split('.');
                         // String nom[] = filename.Split('.');
                         //string ext = System.IO.Path.GetExtension(this.File1.PostedFile.FileName);
-                        // Response.Write(uplNomFichier.PostedFile.ContentType);
+                        // 
                         //SqlCommand maC = new SqlCommand("select Photo from PPProduits where NoVendeur="+Session["ID"]);
                         uplNomFichier.SaveAs(MapPath("~/Images/Televerse/" + Session["ID"] + _noProduit.ToString() + "." + split[1]));
                         filename = Session["ID"] + _noProduit.ToString() + "." + split[1];
@@ -210,7 +210,7 @@ namespace Puces_R
                 }
                 catch (Exception ex)
                 {
-                    Response.Write(ex.Message);
+                    
                 }
             }
         }

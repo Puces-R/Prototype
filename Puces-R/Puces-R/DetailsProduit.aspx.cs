@@ -336,12 +336,12 @@ namespace Puces_R
 
         protected void btnSupprimerProduit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SuppressionProduits.aspx?noproduit=" + Request.Params["noproduit"]);
+            Response.Redirect(Chemin.Ajouter("SuppressionProduits.aspx?noproduit=" + Request.Params["noproduit"], "Retour au produit"));
         }
 
         protected void btnModifierProduit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ModificationProduits.aspx?noproduit=" + Request.Params["noproduit"]);
+            Response.Redirect(Chemin.Ajouter("ModificationProduits.aspx?noproduit=" + Request.Params["noproduit"], "Retour au produit"));
         }
     }
 }

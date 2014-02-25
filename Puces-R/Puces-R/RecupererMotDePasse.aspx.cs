@@ -64,6 +64,8 @@ namespace Puces_R
                             "Les Petites Puces";
                 connexion.Close();
                 c.envoyer();
+
+                Response.Redirect("Default.aspx");
             }
         }
     }

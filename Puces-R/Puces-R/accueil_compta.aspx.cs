@@ -53,7 +53,6 @@ namespace Puces_R
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
-                    Response.Write(Session["err_msg"]);
                     Session["err_msg"] = "";
                 }
 
@@ -87,7 +86,6 @@ namespace Puces_R
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter(req + orderByClause, myConnection);
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
-            //Response.Write(req );
 
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;
@@ -167,8 +165,6 @@ namespace Puces_R
                     results.Close();
                     SqlCommand inserer_nouveau_mois = new SqlCommand(req.Remove(req.Length - 2), myConnection);
                     inserer_nouveau_mois.ExecuteNonQuery();
-                    //Response.Write(inserer_nouveau_mois.CommandText);
-                    //Response.Write(derniere_date.ToString() + " - " + DateTime.Now.Date.ToString());
                 }
             }
             else
@@ -200,7 +196,6 @@ namespace Puces_R
                     }
                     SqlCommand inserer_tous_mois = new SqlCommand(req_all_update.Remove(req_all_update.Length - 2), myConnection);
                     inserer_tous_mois.ExecuteNonQuery();
-                    //Response.Write(inserer_tous_mois.CommandText);
                 }
             }
             myConnection.Close();

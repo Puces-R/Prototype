@@ -29,7 +29,7 @@ namespace Puces_R
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
-                    Response.Write(Session["err_msg"]);
+                    
                     Session["err_msg"] = null;
                 }
 
@@ -275,7 +275,7 @@ namespace Puces_R
             SqlDataAdapter adapteurInnactif1 = new SqlDataAdapter(req_liste, myConnection);
             DataTable tableInnactif1 = new DataTable();
             adapteurInnactif1.Fill(tableInnactif1);
-            //Response.Write(req_liste);
+            //
 
             rptInnactifs1.DataSource = tableInnactif1;
             rptInnactifs1.DataBind();

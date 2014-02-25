@@ -63,7 +63,7 @@ form
 .erreur, .erreur > *
 {
     font-size: 10px;
-    line-height: 100%;
+    line-height: 10px;
     color: Red;
     text-align:left;
     font-style: italic;

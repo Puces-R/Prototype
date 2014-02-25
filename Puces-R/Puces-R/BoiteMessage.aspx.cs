@@ -383,7 +383,6 @@ namespace Puces_R
                     {
                         param[i] = string.Format("@no{0}", i);
                         cmd.Parameters.AddWithValue(param[i], selectionne[i]);
-                        Response.Write(selectionne[i] + "<br />");
                     }
 
                     switch (e.Item.Value)

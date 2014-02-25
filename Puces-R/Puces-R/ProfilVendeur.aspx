@@ -34,15 +34,24 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <div class="panneau pnlGauche">
-            <h2>Information</h2>
+            <h2>
+                Information</h2>
             <div class="rectangleComplet rectangleItem">
                 <table class="formulaire">
-                    <se:ProfilVendeur ID="ctrProfil" runat="server" />
                     <tr>
-                        <td colspan="3">
-                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
+                        <td>
+                            Adresse courriel
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblCourriel" />
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="3">
+                            <asp:HyperLink ID="hl" runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
+                        </td>
+                    </tr>
+                    <se:ProfilVendeur ID="ctrProfil" runat="server" />
                     <tr>
                         <td>
                             Taux de redevance
@@ -65,24 +74,27 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <asp:Button runat="server" ID="btnSauvegarder" OnClick="sauvegarder" Text="Sauvegarder les changements" CausesValidation="false"/>
+                            <asp:Button runat="server" ID="btnSauvegarder" OnClick="sauvegarder" Text="Sauvegarder les changements"
+                                CausesValidation="false" />
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
         <div class="panneau pnlDroite">
-            <h2>Personnalisation</h2>
+            <h2>
+                Personnalisation</h2>
             <div class="rectangleComplet rectangleItem">
                 <asp:HiddenField ID="hidColor" runat="server" />
                 <asp:HiddenField ID="hidImage" runat="server" />
-                <div id='jqxColorPicker'></div>
-                Logo : <asp:FileUpload ID="fileUploaderLogo" runat="server" />
-                
-                <asp:CustomValidator ID="CustomStyleImage" ControlToValidate="fileUploaderLogo" runat="server" CssClass="erreur"
-                    OnServerValidate="verifierFormat" ErrorMessage="Le Format de l'image doit être jpg,png ou gif"></asp:CustomValidator>
-
-                <asp:Button ID="btnPerso" OnClientClick="recevoirCouleur();" OnClick="sauverFavori" Text="Sauver personalisation" runat="server" />
+                <div id='jqxColorPicker'>
+                </div>
+                Logo :
+                <asp:FileUpload ID="fileUploaderLogo" runat="server" />
+                <asp:CustomValidator ID="CustomStyleImage" ControlToValidate="fileUploaderLogo" runat="server"
+                    CssClass="erreur" OnServerValidate="verifierFormat" ErrorMessage="Le Format de l'image doit être jpg,png ou gif"></asp:CustomValidator>
+                <asp:Button ID="btnPerso" OnClientClick="recevoirCouleur();" OnClick="sauverFavori"
+                    Text="Sauver personalisation" runat="server" />
             </div>
         </div>
     </div>

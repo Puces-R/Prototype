@@ -104,7 +104,7 @@ namespace Puces_R
                     break;
             }
             Session["Lu"] = true;
-            Response.Redirect((_brouillon ? "EnvoyerMessage.aspx?NoMessage=" : "BoiteMessage.aspx" + paramGet.Parametres + (paramGet.Parametres == string.Empty ? "?" : "&") + "No=") + no, true);
+            Response.Redirect(Chemin.Ajouter((_brouillon ? "EnvoyerMessage.aspx?NoMessage=" : "BoiteMessage.aspx" + paramGet.Parametres + (paramGet.Parametres == string.Empty ? "?" : "&") + "No=") + no, "Retour à la messagerie"), true);
         }
     }
 }

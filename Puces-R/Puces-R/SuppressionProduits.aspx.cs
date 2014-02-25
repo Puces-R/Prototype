@@ -32,7 +32,7 @@ namespace Puces_R
                 {
                     lblAvertissement.Text = "LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D'UN CLIENT!";
                 }
-                //Response.Write(noProduit.ToString());
+                //
             }
 
         }

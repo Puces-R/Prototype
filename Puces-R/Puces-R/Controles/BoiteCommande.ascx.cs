@@ -92,7 +92,7 @@ namespace Puces_R.Controles
 
             String statutCommande = nb.ToString();
 
-            //Response.Write(noC + "----" + stat);
+            //
 
 
             if (statutCommande == "l")
@@ -109,7 +109,7 @@ namespace Puces_R.Controles
 
             else
             {
-                //Response.Write("ALLO");
+                //
             }
            
             myConnection.Close();

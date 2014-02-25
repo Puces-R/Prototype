@@ -84,7 +84,6 @@ namespace Puces_R
         {
             SqlDataAdapter adapteurResultats = new SqlDataAdapter(req, myConnection);
             DataTable tableResultats = new DataTable();
-            //Response.Write(ddlCategorie.SelectedValue + req + orderByClause);
             adapteurResultats.Fill(tableResultats);
             myConnection.Close();
 

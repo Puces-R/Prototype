@@ -27,7 +27,6 @@ namespace Puces_R
             object note = (object)commandeNotes.ExecuteScalar();
             myConnection.Close();
 
-            //Response.Write(note.ToString());
             if (note is DBNull)
             {
                 lblEvaluation.Visible = false;
@@ -68,7 +67,6 @@ namespace Puces_R
             String noC = statut[0];
             String stat = statut[1];
 
-           // Response.Write(noC + "----" + stat);
             myConnection.Open();
 
             if (stat == "O")
@@ -81,11 +79,6 @@ namespace Puces_R
 
                 SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPCommandes SET Statut ='O' WHERE NoCommande = " + noC, myConnection);
                 commandeMAJQuantite.ExecuteNonQuery();
-            }
-
-            else
-            {
-                //Response.Write("ALLO");
             }
             // SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPArticlesEnPanier SET NbItems = " + txtQuantite.Text + " WHERE NoPanier = " + e.CommandArgument, myConnection);
             // commandeMAJQuantite.ExecuteNonQuery();
@@ -132,9 +125,7 @@ namespace Puces_R
 
 
                 String decPrixDemande = Convert.ToString(drvCommande["Livraison"].ToString().Replace(',', '.'));
-                //Response.Write(decPrixDemande);
                 String intQuantite = Convert.ToString(drvCommande["TypeLivraison"]);
-                //Response.Write(intQuantite);
                 String noPanier = Convert.ToString(drvCommande["MontantTotal"]);
                 String tps = Convert.ToString(drvCommande["TPS"]);
                 String tvq = Convert.ToString(drvCommande["TVQ"]);

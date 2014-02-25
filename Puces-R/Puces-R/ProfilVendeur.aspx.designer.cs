@@ -13,6 +13,24 @@ namespace Puces_R {
     public partial class ProfilVendeur {
         
         /// <summary>
+        /// Contrôle lblCourriel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCourriel;
+        
+        /// <summary>
+        /// Contrôle hl.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hl;
+        
+        /// <summary>
         /// Contrôle ctrProfil.
         /// </summary>
         /// <remarks>
@@ -20,15 +38,6 @@ namespace Puces_R {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::Puces_R.Controles.ProfilVendeur ctrProfil;
-        
-        /// <summary>
-        /// Contrôle HyperLink1.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
         /// Contrôle lblTaux.
@@ -67,17 +76,16 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.HiddenField hidColor;
         
         /// <summary>
-        /// hidImage control.
+        /// Contrôle hidImage.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidImage;
         
         /// <summary>
-        /// fileUploaderLogo control.
-
+        /// Contrôle fileUploaderLogo.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
@@ -86,17 +94,16 @@ namespace Puces_R {
         protected global::System.Web.UI.WebControls.FileUpload fileUploaderLogo;
         
         /// <summary>
-        /// CustomStyleImage control.
+        /// Contrôle CustomStyleImage.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator CustomStyleImage;
         
         /// <summary>
-        /// btnPerso control.
-
+        /// Contrôle btnPerso.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.

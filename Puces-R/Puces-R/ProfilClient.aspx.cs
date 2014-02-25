@@ -24,6 +24,14 @@ namespace Puces_R
             if (IsValid)
             {
                 ctrProfil.Sauvegarder();
+                if (Chemin.UrlRetour == null)
+                {
+                    Response.Redirect("AccueilClient.aspx");
+                }
+                else
+                {
+                    Response.Redirect(Chemin.UrlRetour);
+                }
             }
         }
     }

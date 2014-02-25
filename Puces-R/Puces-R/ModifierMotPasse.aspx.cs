@@ -53,6 +53,15 @@ namespace Puces_R
                 connexion.Open();
                 cmdChangerMdp.ExecuteNonQuery();
                 connexion.Close();
+
+                if (Chemin.UrlRetour == null)
+                {
+                    Response.Redirect(this.redirection());
+                }
+                else
+                {
+                    Response.Redirect(Chemin.UrlRetour);
+                }
             }
         }
 
@@ -84,6 +93,21 @@ namespace Puces_R
             }
 
             return null;
+        }
+
+        private string redirection()
+        {
+            switch ((Char)Session["Type"])
+            {
+                case 'V':
+                    return "ProfilVendeur.aspx";
+                case 'C':
+                    return "ProfilClient.aspx";
+                case 'G':
+                    return "accueil_gestionnaire.aspx";
+            }
+
+            return "Default.aspx";
         }
     }
 }

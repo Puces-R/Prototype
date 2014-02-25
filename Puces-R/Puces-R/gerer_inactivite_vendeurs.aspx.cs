@@ -65,7 +65,7 @@ namespace Puces_R
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
-                    Response.Write(Session["err_msg"]);
+                    
                     Session["err_msg"] = "";
                 }
             
@@ -87,7 +87,7 @@ namespace Puces_R
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
-                    Response.Write(Session["err_msg"]);
+                    
                     Session["err_msg"] = "";
                 }
 

@@ -412,7 +412,7 @@ namespace Puces_R
         {
             SqlDataAdapter adapteurResultats = new SqlDataAdapter("SELECT TOP " + ddlNbClients_c5.SelectedValue + " NbConnexions, Nom, Prenom, AdresseEmail, DateDerniereConnexion FROM PPClients WHERE DateDerniereConnexion IS NOT NULL ORDER BY DateDerniereConnexion DESC ", myConnection);
             DataTable tableResultats = new DataTable();
-            //Response.Write(ddlCategorie.SelectedValue + req + orderByClause);
+            //
             adapteurResultats.Fill(tableResultats);
             myConnection.Close();
 

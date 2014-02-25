@@ -21,6 +21,7 @@ namespace Puces_R
 
             if (!IsPostBack)
             {
+                btnAjouter.PostBackUrl = Chemin.Ajouter(btnAjouter.PostBackUrl, "Retour au produit");
                 Librairie.Autorisation(false, false, true, false);
                 chargerProduits();
                 
@@ -189,7 +190,7 @@ namespace Puces_R
 
                       
 
-                //Response.Write(btnSupprimer.CommandName);
+                //
             
         }
 
@@ -203,11 +204,11 @@ namespace Puces_R
 
             if (Type == "Supprimer")
             {
-                Response.Redirect("SuppressionProduits.aspx?noproduit="+e.CommandArgument.ToString());
+                Response.Redirect(Chemin.Ajouter("SuppressionProduits.aspx?noproduit="+e.CommandArgument.ToString(), "Retour aux produits"));
             }
             else if (Type == "Modifier") 
             {
-                Response.Redirect("ModificationProduits.aspx?noproduit="+e.CommandArgument.ToString());
+                Response.Redirect(Chemin.Ajouter("ModificationProduits.aspx?noproduit="+e.CommandArgument.ToString(), "Retour aux produits"));
             }
             
         }

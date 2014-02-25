@@ -61,6 +61,8 @@ namespace Puces_R
 
             cmdInsertion.ExecuteNonQuery();
             maConnexion.Close();
+
+            Response.Redirect(Request.RawUrl);
         }
 
     }

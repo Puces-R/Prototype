@@ -23,13 +23,13 @@ namespace Puces_R
 
             if (!Int64.TryParse(Request.Params["noClient"], out noClient))
             {
-                Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
+                Response.Redirect(Chemin.UrlRetour == null ? "GestionCommandesVendeur.aspx" : Chemin.UrlRetour);
             }
             else
             {
-                String whereClause = " WHERE NoClient = " + noClient.ToString();
-
-                SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients" + whereClause, myConnection);
+                SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients WHERE NoClient = @cli AND NoClient IN (SELECT NoClient FROM PPCommandes WHERE NoVendeur = @ven GROUP BY NoClient)", myConnection);
+                commandeClient.Parameters.AddWithValue("@cli", noClient);
+                commandeClient.Parameters.AddWithValue("@ven", Session["ID"]);
 
                 myConnection.Open();
 
@@ -59,7 +59,7 @@ namespace Puces_R
                 }
                 else
                 {
-                    Response.Redirect(Chemin.UrlRetour == null ? "AccueilVendeur.aspx" : Chemin.UrlRetour);
+                    Response.Redirect(Chemin.UrlRetour == null ? "GestionCommandesVendeur.aspx" : Chemin.UrlRetour);
                 }
 
                 myConnection.Close();

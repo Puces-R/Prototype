@@ -33,7 +33,8 @@ namespace Puces_R.Controles
             if (!IsPostBack)
             {
                 Librairie.Autorisation(false, true, false, false);
-                
+                hl.NavigateUrl = Chemin.Ajouter(hl.NavigateUrl, "Retour au profil");
+
                 String whereClause = " WHERE NoClient = " + Session["ID"];
 
                 SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPClients" + whereClause, myConnection);

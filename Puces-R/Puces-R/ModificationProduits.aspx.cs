@@ -11,6 +11,18 @@ namespace Puces_R
     public partial class ModificationProduits : System.Web.UI.Page
     {
 
+        private bool DansPanier
+        {
+            get
+            {
+                return (bool)ViewState["Panier"];
+            }
+            set
+            {
+                ViewState["Panier"] = value;
+            }
+        }
+
         SqlConnection myConnection = Librairie.Connexion;
         int noProduit = 0;
 
@@ -28,7 +40,6 @@ namespace Puces_R
                     String whereClause = " WHERE NoProduit = " + noProduit.ToString() + " AND NoVendeur = " + Session["ID"];
 
                     SqlCommand commandeClient = new SqlCommand("SELECT * FROM PPProduits" + whereClause, myConnection);
-
 
                     myConnection.Open();
 
@@ -90,7 +101,22 @@ namespace Puces_R
 
                 myConnection.Open();
                 cmdModifier.ExecuteNonQuery();
+                if (!ctrProduit.Disponibilite)
+                {
+                    SqlCommand cmdPanier = new SqlCommand("DELETE FROM PPArticlesEnPanier WHERE NoProduit = @no", myConnection);
+                    cmdPanier.Parameters.AddWithValue("@no", Request.Params["noproduit"]);
+                    cmdPanier.ExecuteNonQuery();
+                }
                 myConnection.Close();
+
+                if (Chemin.UrlRetour == null)
+                {
+                    Response.Redirect("GestionProduits.aspx");
+                }
+                else
+                {
+                    Response.Redirect(Chemin.UrlRetour);
+                }
             }
         }
     }

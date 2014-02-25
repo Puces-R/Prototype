@@ -61,7 +61,7 @@ namespace Puces_R
             if (Session["err_msg"] != null)
                 if (Session["err_msg"].ToString() != "")
                 {
-                    Response.Write(Session["err_msg"]);
+                    
                     Session["err_msg"] = "";
                 }
 
@@ -104,7 +104,7 @@ namespace Puces_R
             SqlDataAdapter adapteurDemandes = new SqlDataAdapter("SELECT * FROM PPSuiviCompta WHERE NoVendeur = " + no_vendeur + " " + orderByClause, myConnection);
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
-            //Response.Write(req );
+            //
 
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;
@@ -163,7 +163,7 @@ namespace Puces_R
             myConnection.Open();
             string[] tab_args = e.CommandArgument.ToString().Split(';');
             SqlCommand commande_enregistrer = new SqlCommand("UPDATE PPSuiviCompta SET DatePaiement = GETDATE() WHERE NoVendeur = " + tab_args[0] + " AND Mois = '" + tab_args[1] + "'", myConnection);
-            //Response.Write(commande_enregistrer.CommandText);
+            //
             commande_enregistrer.ExecuteNonQuery();
             Session["histo_no_vendeur"] = tab_args[0];
             Session["msg"] = "Le paiement a bien été enregistré";

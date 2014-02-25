@@ -19,7 +19,7 @@
         <td>
         </td>
         <td>
-            <asp:HyperLink runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
+            <asp:HyperLink ID="hl" runat="server" NavigateUrl="~/ModifierMotPasse.aspx" Text="Modifier le mot de passe" />
         </td>
         <td>
         </td>

@@ -40,7 +40,7 @@ namespace Puces_R
 
             if (Session["err_msg"] != null && Session["err_msg"].ToString() != "")
             {
-                Response.Write(Session["err_msg"]);
+                
                 Session["err_msg"] = null;
             }
 
@@ -194,7 +194,7 @@ namespace Puces_R
             }
             DataTable tableDemandes = new DataTable();
             adapteurDemandes.Fill(tableDemandes);
-            //Response.Write(adapteurDemandes.SelectCommand.CommandText);
+            //
 
             pdsDemandes.DataSource = new DataView(tableDemandes);
             pdsDemandes.AllowPaging = true;

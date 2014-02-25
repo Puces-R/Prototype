@@ -63,6 +63,7 @@
                 $(this).attr("checked", value);
             });
         }
+
     </script>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SuppressionProduits.aspx.cs" Inherits="Puces_R.SuppressionProduits"  %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SuppressionProduits.aspx.cs" Inherits="Puces_R.SuppressionProduits" Title="Suppression du produit"  %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">

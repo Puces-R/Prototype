@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommuniquerClient.aspx.cs" Title="Communiquer avec le client"
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommuniquerClient.aspx.cs" Title="Informations du client"
     Inherits="Puces_R.CommuniquerClient" %>
 
 <%@ Register TagPrefix="yc" TagName="CodePostal" Src="~/Controles/CodePostal.ascx" %>

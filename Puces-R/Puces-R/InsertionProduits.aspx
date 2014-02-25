@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InsertionProduits.aspx.cs"
+﻿<%@ Page Title="Création d'un nouveau produit" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InsertionProduits.aspx.cs"
     Inherits="Puces_R.InsertionProduits" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

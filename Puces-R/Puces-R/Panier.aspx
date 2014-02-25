@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Panier.aspx.cs" Inherits="Puces_R.Panier"
-    MasterPageFile="~/Site.Master" %>
+    MasterPageFile="~/Site.Master" Title="Panier" %>
 
 <%@ Register TagPrefix="lp" TagName="MontantsFactures" Src="~/Controles/MontantsFactures.ascx" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>

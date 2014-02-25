@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetailsCommandes.aspx.cs"
+﻿<%@ Page Title="Détails de la commande" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetailsCommandes.aspx.cs"
     Inherits="Puces_R.DetailsCommandes" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

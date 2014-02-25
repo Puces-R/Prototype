@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Profil du client" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="ProfilClient.aspx.cs" Inherits="Puces_R.ProfilClient" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>

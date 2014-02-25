@@ -58,7 +58,7 @@
                 <div class="panneau pnlDroite pnlDetails">
                     <h2>
                         Facture</h2>
-                    <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" />
+                    <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" AfficherVente="true" />
                     <div class="boutonsAction">
                         <asp:Button runat="server" Text="Commander" ID="btnCommander" OnClick="btnCommander_OnClick" />
                     </div>

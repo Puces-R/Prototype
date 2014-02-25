@@ -161,6 +161,8 @@ form
    padding-left:20px;
    padding-right:20px;
    vertical-align: top;
+   
+   position:relative;
 }
 
 .panneau h2:first-child
@@ -617,6 +619,14 @@ form
 }
 
 .messagePrixRevise
+{
+	color:Red;
+	font-size:x-small;
+	position:absolute;
+	bottom:5px;
+}
+
+.etoilePrixRevise
 {
 	color:Red;
 }

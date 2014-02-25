@@ -11,7 +11,7 @@
     <div class="rectangleItem basRectangle">
         <div>
             <div class="pnlDroite pnlDroiteCommande montantsFactures">
-                <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Enabled="false" />
+                <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Enabled="false" AfficherVente="false" />
             </div>
             <div class="pnlGauche">
                 <table class="colonneTitre">

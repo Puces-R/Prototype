@@ -18,7 +18,7 @@
             </div>
             <h2>
                 Facture</h2>
-            <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Commande="true" />
+            <lp:MontantsFactures runat="server" ID="ctrMontantsFactures" Commande="true" AfficherVente="false" />
         </div>
         <div class="panneau pnlDroite pnlDetails">
             <h2>

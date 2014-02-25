@@ -48,6 +48,7 @@ namespace Puces_R
                 {
                     Session["err_msg"] = null;
                 }
+            Session["retour_desactiver_client"] = null;
         }
 
         protected void changer_view(object sender, CommandEventArgs e)

@@ -194,9 +194,13 @@
     <Content Include="Images\logo-original.png" />
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\Logo\10.gif" />
     <Content Include="Images\Logo\10.jpg" />
+    <Content Include="Images\Logo\10.svg" />
     <Content Include="Images\Logo\20.jpg" />
     <Content Include="Images\Logo\641px-Mad_scientist_transparent_background_svg.png" />
+    <Content Include="Images\Logo\74.jpg" />
+    <Content Include="Images\Logo\75.JPG" />
     <Content Include="Images\Logo\logo.png" />
     <Content Include="Images\Logo\signpng.png" />
     <Content Include="Images\Logo\spiderman-logo.png" />

@@ -39,9 +39,9 @@ namespace Puces_R
                         TbTps.Text = Convert.ToString(repT[7]);
                         tbTvq.Text = Convert.ToString(repT[8]);
                         tbPoids.Text = Convert.ToString(repT[9]);
-                        tbStatut.Text = Convert.ToString((String)repT[10]);
+                        tbStatut.Text = Convert.ToString((String)repT[10] =="p" ? "Prêt pour livraison" : "Livré");
                         tbNoAutorisation.Text = (String)repT[11];
-
+                        btnChangerStatut.CommandArgument = Convert.ToString((Int64)repT[0]);
                         //ctrBoitePanier.NoVendeur = (int)Session["ID"];
                         ctrBoitePanier.NoCommande=(long)repT[0];
                         ctrBoitePanier.ChargerArticlesEnPanier();
@@ -54,6 +54,45 @@ namespace Puces_R
                 }
                 maConnexion.Close();
             }
+        }
+
+        protected void ChangerStatut(object sender, EventArgs e)
+        {
+            SqlConnection myConnection = Librairie.Connexion;
+
+            
+            String statut = ((String)btnChangerStatut.CommandArgument);
+            myConnection.Open();
+            SqlCommand maC = new SqlCommand("Select Statut from PPCommandes where NoCommande=" + statut, myConnection);
+            object nb = (object)maC.ExecuteScalar();
+
+            String statutCommande = nb.ToString();
+
+            //Response.Write(noC + "----" + stat);
+
+
+            if (statutCommande == "l")
+            {
+                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPCommandes SET Statut ='p' WHERE NoCommande = " + statut, myConnection);
+                commandeMAJQuantite.ExecuteNonQuery();
+                myConnection.Close();
+                Response.Redirect("~/GestionCommandesVendeur.aspx");
+            }
+            else if (statutCommande == "p")
+            {
+
+                SqlCommand commandeMAJQuantite = new SqlCommand("UPDATE PPCommandes SET Statut ='l' WHERE NoCommande = " + statut, myConnection);
+                commandeMAJQuantite.ExecuteNonQuery();
+                myConnection.Close();
+                Response.Redirect("~/GestionCommandesVendeur.aspx");
+            }
+
+            else
+            {
+                //Response.Write("ALLO");
+            }
+
+            //myConnection.Close();
         }
     }
 }

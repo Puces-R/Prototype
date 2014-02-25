@@ -69,6 +69,8 @@
                     <td class="erreur">
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlMoisExpiration"
                             Text="Le mois d'expiration est obligatoire" InitialValue="-1" Display="Dynamic" />
+                        <asp:CustomValidator runat="server" ControlToValidate="ddlMoisExpiration"
+                            Text="La date d'expiration a été dépassée" InitialValue="-1" Display="Dynamic" OnServerValidate="VerifierExpire" />
                     </td>
                 </tr>
                 <tr>
@@ -114,8 +116,6 @@
             </table>
             <div class="boutonsAction">
                 <asp:Button runat="server" Text="Facturer" ID="btnFacturer" OnClick="btnFacturer_OnClick" CausesValidation="false"/>
-<%--                <asp:Button runat="server" Text="Simulation" ID="btnEssaie" OnClick="btnEssaie_OnClick"
-                    CausesValidation="false" />--%>
             </div>
             <div class="erreur">
                 <asp:CustomValidator runat="server" Display="Dynamic" ID="valQuantite" OnServerValidate="valQuantite_OnServerValidate" />

@@ -39,15 +39,15 @@ namespace Puces_R
                     dest[0] = lecteurClient["NoClient"] == DBNull.Value ? 0 : Convert.ToInt64(lecteurClient["NoClient"]);
 
                     //ViewState.Add("noClientMessage", dest[0]);
-                    this.txtPrenom.Text = lecteurClient["Prenom"] is DBNull ? "" : (String)lecteurClient["Prenom"];
-                    this.txtNom.Text = lecteurClient["Nom"] is DBNull ? "" : (String)lecteurClient["Nom"];
-                    this.txtRue.Text = lecteurClient["Rue"] is DBNull ? "" : (String)lecteurClient["Rue"];
-                    this.txtVille.Text = lecteurClient["Ville"] is DBNull ? "" : (String)lecteurClient["Ville"];
-                    this.ctrProvince.CodeProvince = lecteurClient["Province"] is DBNull ? "" : (String)lecteurClient["Province"];
-                    this.txtPays.Text = lecteurClient["Pays"] is DBNull ? "Canada" : (String)lecteurClient["Pays"];
-                    this.ctrCodePostal.Code = lecteurClient["CodePostal"] is DBNull ? "" : (String)lecteurClient["CodePostal"];
-                    this.ctrTelephone.NoTelephone = lecteurClient["Tel1"] is DBNull ? "" : (String)lecteurClient["Tel1"];
-                    this.ctrCellulaire.NoTelephone = lecteurClient["Tel2"] is DBNull ? "" : (String)lecteurClient["Tel2"];
+                    this.lblPrenom.Text = lecteurClient["Prenom"] is DBNull ? "" : (String)lecteurClient["Prenom"];
+                    this.lblNom.Text = lecteurClient["Nom"] is DBNull ? "" : (String)lecteurClient["Nom"];
+                    this.lblRue.Text = lecteurClient["Rue"] is DBNull ? "" : (String)lecteurClient["Rue"];
+                    this.lblVille.Text = lecteurClient["Ville"] is DBNull ? "" : (String)lecteurClient["Ville"];
+                    this.lblProvince.Text = lecteurClient["Province"] is DBNull ? "" : Librairie.provinceTexte((String)lecteurClient["Province"]);
+                    this.lblPays.Text = lecteurClient["Pays"] is DBNull ? "Canada" : (String)lecteurClient["Pays"];
+                    this.lblCodePostal.Text = lecteurClient["CodePostal"] is DBNull ? "" : CodePostal.Format((String)lecteurClient["CodePostal"]);
+                    this.lblTelephone1.Text = lecteurClient["Tel1"] is DBNull ? "" : Telephone.Format((String)lecteurClient["Tel1"]);
+                    this.lblTelephone2.Text = lecteurClient["Tel2"] is DBNull ? "Aucun" : Telephone.Format((String)lecteurClient["Tel2"]);
 
                     //ctrBoitePanier.NoVendeur = (int)Session["ID"];
                     //ctrBoitePanier.NoClient = noClient;

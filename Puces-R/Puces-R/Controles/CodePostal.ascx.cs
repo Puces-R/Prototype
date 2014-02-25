@@ -40,6 +40,16 @@ namespace Puces_R
             }
         }
 
+        public static string Format(string code)
+        {
+            string s = code.Replace("-", "").Replace(" ", "").Trim().ToUpper();
+            if (s.Length != 6)
+            {
+                return "";
+            }
+            return s.Substring(0, 3) + " " + s.Substring(3, 3);
+        }
+
         protected void validerObligatoire(object sender, ServerValidateEventArgs e)
         {
             e.IsValid = reqPart1.IsValid || reqPart2.IsValid;

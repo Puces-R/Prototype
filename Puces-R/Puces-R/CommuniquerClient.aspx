@@ -19,9 +19,7 @@
                     Prénom
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPrenom" runat="server" ReadOnly="true" />
-                </td>
-                <td>
+                    <asp:Label ID="lblPrenom" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -29,20 +27,23 @@
                     Nom
                 </td>
                 <td>
-                    <asp:TextBox ID="txtNom" runat="server" ReadOnly="true" />
-                </td>
-                <td>
+                    <asp:Label ID="lblNom" runat="server" />
                 </td>
             </tr>
-            <se:Adresse ID="txtRue" runat="server" Label="Rue" ReadOnly="true" />
+            <tr>
+                <td>
+                    Rue
+                </td>
+                <td>
+                    <asp:Label ID="lblRue" runat="server" />
+                </td>
+            </tr>
             <tr>
                 <td>
                     Ville
                 </td>
                 <td>
-                    <asp:TextBox ID="txtVille" runat="server" ReadOnly="true" />
-                </td>
-                <td>
+                    <asp:Label ID="lblVille" runat="server"/>
                 </td>
             </tr>
             <tr>
@@ -50,9 +51,7 @@
                     Province
                 </td>
                 <td>
-                    <yc:Province ID="ctrProvince" runat="server" ReadOnly="true" />
-                </td>
-                <td>
+                    <asp:Label ID="lblProvince" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -60,14 +59,33 @@
                     Pays
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPays" runat="server" ReadOnly="true" />
-                </td>
-                <td>
+                    <asp:Label ID="lblPays" runat="server" />
                 </td>
             </tr>
-            <yc:CodePostal ID="ctrCodePostal" runat="server" Obligatoire="true" />
-            <yc:Telephone ID="ctrTelephone" runat="server" Obligatoire="true" />
-            <yc:Telephone ID="ctrCellulaire" Label="Cellulaire" Obligatoire="false" runat="server" />
+            <tr>
+                <td>
+                    Code postal
+                </td>
+                <td>
+                    <asp:Label ID="lblCodePostal" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Téléphone 1
+                </td>
+                <td>
+                    <asp:Label ID="lblTelephone1" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Téléphone 2
+                </td>
+                <td>
+                    <asp:Label ID="lblTelephone2" runat="server" />
+                </td>
+            </tr>
         </table>
         <asp:Button ID="btnCourrierInterne" runat="server" Text="Envoyer un courriel interne" OnCommand="changer_view" CommandArgument="1" />
         <asp:Button ID="btnCourrielExterne" runat="server" Text="Envoyer un courriel Externe" OnCommand="changer_view" CommandArgument="2" />

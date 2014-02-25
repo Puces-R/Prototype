@@ -33,6 +33,7 @@ namespace Puces_R
             }
             set
             {
+                ViewState["NoCategorie"] = value.ToString();
                 ddlCategorieProduits.SelectedValue = value.ToString();
             }
         }
@@ -196,6 +197,10 @@ namespace Puces_R
                 ddlCategorieProduits.Items.Add(new ListItem(rep["Description"].ToString(), rep["NoCategorie"].ToString()));
             }
             connexion.Close();
+            if (ViewState["NoCategorie"] != null)
+            {
+                ddlCategorieProduits.SelectedValue = ViewState["NoCategorie"].ToString();
+            }
         }
 
         protected void verifierFormat(object sender, ServerValidateEventArgs e)

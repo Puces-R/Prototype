@@ -307,5 +307,19 @@ namespace Puces_R
         {
             return (date >= new DateTime(1900, 01, 01, 00, 00, 00) && date <= new DateTime(2079, 06, 06, 23, 59, 00));
         }
+
+        public static string provinceTexte(string province)
+        {
+            switch (province.Trim().ToUpper())
+            {
+                case "QC":
+                    return "Québec";
+                case "ON":
+                    return "Ontario";
+                case "NB":
+                    return "Nouveau-Brunswick";
+            }
+            return "";
+        }
     }
 }

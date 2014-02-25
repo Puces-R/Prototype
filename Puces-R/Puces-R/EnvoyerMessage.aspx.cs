@@ -253,5 +253,17 @@ namespace Puces_R
         {
             e.IsValid = lbDestinataires.Items.Count > 0;
         }
+
+        protected void grosseur(object sender, ServerValidateEventArgs e)
+        {
+            if (upload.HasFile)
+            {
+                e.IsValid = upload.PostedFile.ContentLength < 10485760;
+            }
+            else
+            {
+                e.IsValid = true;
+            }
+        }
     }
 }

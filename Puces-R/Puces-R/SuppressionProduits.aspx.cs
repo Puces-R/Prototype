@@ -32,7 +32,6 @@ namespace Puces_R
                 {
                     lblAvertissement.Text = "LE PRODUIT EST PRÉSENTEMENT DANS LE PANIER D'UN CLIENT!";
                 }
-                //
             }
 
         }
@@ -55,7 +54,15 @@ namespace Puces_R
             maCommande.ExecuteNonQuery();
             maConnexion.Close();
 
-            Response.Redirect("GestionProduits.aspx");
+
+            if (Chemin.UrlRetour == null)
+            {
+                Response.Redirect("GestionProduits.aspx");
+            }
+            else
+            {
+                Response.Redirect(Chemin.UrlRetour);
+            }
         }
         protected bool verifierSiProduitEstCommande()
         {
@@ -153,22 +160,7 @@ namespace Puces_R
 
         public void LoaderCategorie(int numero)
         {
-
-            switch (numero)
-            {
-                case 10: ddlCategorieProduits.SelectedIndex = 1; break;
-                case 20: ddlCategorieProduits.SelectedIndex = 2; break;
-                case 30: ddlCategorieProduits.SelectedIndex = 3; break;
-                case 40: ddlCategorieProduits.SelectedIndex = 4; break;
-                case 50: ddlCategorieProduits.SelectedIndex = 5; break;
-                case 60: ddlCategorieProduits.SelectedIndex = 6; break;
-                case 70: ddlCategorieProduits.SelectedIndex = 7; break;
-                case 80: ddlCategorieProduits.SelectedIndex = 8; break;
-            }
-
-
-
-
+            ddlCategorieProduits.SelectedValue = numero.ToString();
         }
 
         public void chargerCategorie()
@@ -182,13 +174,11 @@ namespace Puces_R
             ddlCategorieProduits.Items.Add("");
             while (rep.Read())
             {
-                String nom = (String)rep[1];
-                ddlCategorieProduits.Items.Add(nom);
+                String nom = (String)rep["Description"];
+                String valeur = rep["NoCategorie"].ToString();
+                ddlCategorieProduits.Items.Add(new ListItem(nom, valeur));
             }
             maConnexion.Close();
-
-
-
         }
     }
 }

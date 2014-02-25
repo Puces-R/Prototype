@@ -22,85 +22,85 @@ namespace Puces_R {
         protected global::Puces_R.Controles.BoitePanier ctrBoitePanier;
         
         /// <summary>
-        /// Contrôle txtPrenom.
+        /// Contrôle lblPrenom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrenom;
+        protected global::System.Web.UI.WebControls.Label lblPrenom;
         
         /// <summary>
-        /// Contrôle txtNom.
+        /// Contrôle lblNom.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNom;
+        protected global::System.Web.UI.WebControls.Label lblNom;
         
         /// <summary>
-        /// Contrôle txtRue.
+        /// Contrôle lblRue.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Controles.Adresse txtRue;
+        protected global::System.Web.UI.WebControls.Label lblRue;
         
         /// <summary>
-        /// Contrôle txtVille.
+        /// Contrôle lblVille.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVille;
+        protected global::System.Web.UI.WebControls.Label lblVille;
         
         /// <summary>
-        /// Contrôle ctrProvince.
+        /// Contrôle lblProvince.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Province ctrProvince;
+        protected global::System.Web.UI.WebControls.Label lblProvince;
         
         /// <summary>
-        /// Contrôle txtPays.
+        /// Contrôle lblPays.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPays;
+        protected global::System.Web.UI.WebControls.Label lblPays;
         
         /// <summary>
-        /// Contrôle ctrCodePostal.
+        /// Contrôle lblCodePostal.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.CodePostal ctrCodePostal;
+        protected global::System.Web.UI.WebControls.Label lblCodePostal;
         
         /// <summary>
-        /// Contrôle ctrTelephone.
+        /// Contrôle lblTelephone1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Telephone ctrTelephone;
+        protected global::System.Web.UI.WebControls.Label lblTelephone1;
         
         /// <summary>
-        /// Contrôle ctrCellulaire.
+        /// Contrôle lblTelephone2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::Puces_R.Telephone ctrCellulaire;
+        protected global::System.Web.UI.WebControls.Label lblTelephone2;
         
         /// <summary>
         /// Contrôle btnCourrierInterne.

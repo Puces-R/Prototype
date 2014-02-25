@@ -54,6 +54,13 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                </td>
+                <td class="erreur">
+                    <asp:CustomValidator runat="server" ID="custFichier" Text="Le fichier doit être inférieur à 10 Mio" OnServerValidate="grosseur" />
+                </td>
+            </tr>
+            <tr>
                 <td style="vertical-align: top;">
                     Message
                 </td>

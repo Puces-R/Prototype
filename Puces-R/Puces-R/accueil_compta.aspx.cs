@@ -182,7 +182,7 @@ namespace Puces_R
                     DateTime date_courante = dt_premiere.Date, comp_now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     string req_all_update = "INSERT INTO PPSuiviCompta VALUES ";
 
-                    while (date_courante.AddMonths(1) != comp_now)
+                    do
                     {
                         SqlDataReader results = charger.ExecuteReader();
                         while (results.Read())
@@ -195,7 +195,7 @@ namespace Puces_R
                         }
                         date_courante = date_courante.AddMonths(1);
                         results.Close();
-                    }
+                    } while (date_courante != comp_now);
                     SqlCommand inserer_tous_mois = new SqlCommand(req_all_update.Remove(req_all_update.Length - 2), myConnection);
                     inserer_tous_mois.ExecuteNonQuery();
                 }
